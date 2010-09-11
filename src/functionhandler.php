@@ -47,11 +47,29 @@ namespace TheSeer\phpDox {
 
       public function process(processContext $context, Array $stack) {
          //var_dump($stack);
-         $tok = $stack[$this->findTok(T_FUNCTION, $stack)];
+         $func = $stack[$this->findTok(T_FUNCTION, $stack)];
          $tag  = $context->class != null ? 'method' : 'function';
          $node = $this->createNode($tag, $context->getStackNode());
-         $node->setAttribute('name',$tok[1]);
-         $node->setAttribute('line',$tok[2]);
+         $node->setAttribute('name',$func[1]);
+
+         $static = 'false';
+         foreach($stack as $tok) {
+            switch($tok[0]) {
+               case T_PUBLIC:
+               case T_PRIVATE:
+               case T_PROTECTED: {
+                  $node->setAttribute('visibility', $tok[1]);
+                  break;
+               }
+
+               case T_STATIC: {
+                  $static = 'true';
+                  break;
+               }
+            }
+         }
+         $node->setAttribute('static', $static);
+         $node->setAttribute('line',$func[2]);
       }
 
    }
