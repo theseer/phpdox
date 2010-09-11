@@ -38,115 +38,20 @@
 namespace TheSeer\phpDox {
 
    /**
-    * Stack Handling Inteface
+    * Stack Handler for function elements
     *
     * @author     Arne Blankerts <arne@blankerts.de>
     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
     */
-   interface stackHandler {
+   class functionStackHandler extends stackHandler {
 
-      public function process(\StdClass $context, Array $stack);
-
-   }
-
-
-   class debugStackHandler implements stackHandler {
-
-      protected $name;
-
-      public function __construct($tokID) {
-         $this->name = token_name($tokID);
-      }
-
-      public function process(\StdClass $context, Array $stack) {
-         /*
-         echo "--------- {$this->name} -------\n";
-         echo "CONTEXT:";
-         var_dump($context->namespace, $context->class, $context->docBlock);
-         echo "STACK:";
-         var_dump($stack);
-         echo "-----------------------------------------------------------\n";
-         */
-      }
-
-   }
-
-   class functionStackHandler implements stackHandler {
-
-      public function process(\StdClass $context, Array $stack) {
-         var_dump($stack);
-         $ctx = end($context->nodeStack);
-         $ns = $ctx->ownerDocument->createElementNS('http://phpdox.de/xml#','function');
-         foreach($stack as $p => $st) {
-            if (is_array($st) && $st[1]=='function') {
-               $ns->setAttribute('name', $stack[$p+1][1]);
-               break;
-            }
-         }
-         $ctx->appendChild($ns);
-      }
-
-   }
-
-   class namespaceStackHandler implements stackHandler {
-
-      public function process(\StdClass $context, Array $stack) {
-         $context->namespace='';
-         array_shift($stack);
-         foreach($stack as $tok) {
-            $context->namespace .= $tok[1];
-         }
-         $ctx = end($context->nodeStack);
-         $ns = $ctx->ownerDocument->createElementNS('http://phpdox.de/xml#','namespace');
-         $ns->setAttribute('name', $context->namespace);
-         $ctx->appendChild($ns);
-         $context->nodeStack[] = $ns;
-
-      }
-
-   }
-
-   class classStackHandler extends debugStackHandler {
-
-      public function process(\StdClass $context, Array $stack) {
-         $pos=0;
-         $size = count($stack);
-         for($t=0; $t<$size; $t++) {
-            $pos++;
-            if ($stack[$t][0]==T_CLASS) break;
-         }
-         $context->class = $stack[$pos][1];
-
-         $ctx = end($context->nodeStack);
-         $node = $ctx->ownerDocument->createElementNS('http://phpdox.de/xml#','class');
-         $node->setAttribute('name', $context->class);
-         $ctx->appendChild($node);
-         $context->nodeStack[] = $node;
-
-         //parent::process($context, $stack);
-      }
-
-   }
-
-   /**
-    * Factory for handler classes
-    *
-    * @author     Arne Blankerts <arne@blankerts.de>
-    * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-    */
-   class stackHandlerFactory {
-
-      public function __construct() {
-      }
-
-      public function getInstanceFor($tokID) {
-         switch ($tokID) {
-            case T_NAMESPACE: return new namespaceStackHandler($tokID);
-            case T_FUNCTION:  return new functionStackHandler($tokID);
-            case T_CLASS:     return new classStackHandler($tokID);
-            //case T_CONSTANT_ENCAPSED_STRING:
-            default: return new debugStackHandler($tokID);
-         }
+      public function process(processContext $context, Array $stack) {
+         //var_dump($stack);
+         $tok = $stack[$this->findTok(T_FUNCTION, $stack)];
+         $tag  = $context->class != null ? 'method' : 'function';
+         $node = $this->createNode($tag, $context->getStackNode());
+         $node->setAttribute('name',$tok[1]);
+         $node->setAttribute('line',$tok[2]);
       }
 
    }

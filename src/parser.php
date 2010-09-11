@@ -50,22 +50,17 @@ namespace TheSeer\phpDox {
       protected $handler = null;
 
       protected $context = null;
-      protected $dom = null;
 
       protected $stackHandlerFactory;
 
       public function __construct(stackHandlerFactory $factory, \DomElement $node) {
-         $this->dom = $node->ownerDocument;
          $this->stackHandlerFactory = $factory;
-         $this->context = new \stdClass();
-         $this->context->nodeStack = array($node);
-         $this->context->namespace = '';
-         $this->context->class     = '';
-         $this->context->docBlock  = '';
+         $this->context = new processContext($node);
       }
 
       public function parseFile($filename) {
-         $this->context->filename = $filename;
+         $this->context->setFileName($filename);
+         $this->context->getStackNode()->setAttribute('file', realpath($filename));
          $tokens = token_get_all(file_get_contents($filename));
          $bracketCount = 0;
          $waitBracketCount = 0;
@@ -84,7 +79,8 @@ namespace TheSeer\phpDox {
                   }
 
                   case T_DOC_COMMENT: {
-                     $this->context->docBlock = $tok;
+                     // TODO: Run this through docblock parser and add resulting object
+                     $this->context->setDocBlock($tok);
                      continue;
                   }
 
@@ -99,6 +95,7 @@ namespace TheSeer\phpDox {
                      // no break!
                   }
 
+                  case T_CONST:
                   case T_CONSTANT_ENCAPSED_STRING:
                   case T_INTERFACE:
                   case T_CLASS: {
@@ -107,7 +104,6 @@ namespace TheSeer\phpDox {
                      break;
                   }
 
-                  case T_CONST:
                   case T_PUBLIC:
                   case T_PROTECTED:
                   case T_PRIVATE:
@@ -126,23 +122,24 @@ namespace TheSeer\phpDox {
                      $bracketCount--;
                      if ($waitBracketCount>0) $waitBracketCount--;
 
-                     if ($nsStyle) { // bracket based namespace
-                        if ($bracketCount==1) {
-                           $this->context->class = null;
-                           if (count($this->context->nodeStack)>1) {
-                              array_pop($this->context->nodeStack);
+                     if ($this->handler instanceof namespaceStackHandler) {
+                        if ($nsStyle) { // bracket based namespace
+                           if ($bracketCount==1) {
+                              $this->context->setClass(null);
+                              if (count($this->context->nodeStack)>1) {
+                                 $this->context->decrementStack();
+                              }
+                           } else if ($bracketCount == 0)  {
+                              if (count($this->context->nodeStack)>1) {
+                                 $this->context->decrementStack();
+                              }
                            }
-                        } else if ($bracketCount == 0)  {
-                           $this->context->namespace = null;
-                           if (count($this->context->nodeStack)>1) {
-                              array_pop($this->context->nodeStack);
-                           }
-                        }
-                     } else { // ; style
-                        if ($bracketCount == 0) {
-                           $this->context->class = null;
-                           if (count($this->context->nodeStack)>1) {
-                              array_pop($this->context->nodeStack);
+                        } else { // ; style
+                           if ($bracketCount == 0) {
+                              $this->context->setClass(null);
+                              if (count($this->context->nodeStack)>1) {
+                                 $this->context->decrementStack();
+                              }
                            }
                         }
                      }

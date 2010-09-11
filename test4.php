@@ -2,20 +2,23 @@
 
 namespace u\v\w {
 
-  class foo extends f implements x, y {
+   final class foo extends \bla\blupp\parentclass implements \some\other\interfaceA, interfaceB {
 
-     const ABC = '123';
+      const ABC = '123';
+      const DDD = 1234;
 
-     protected $foo;
+      protected $property;
 
-     public function bar(someClass $obj) {
-          $this->foo = $obj;
-     }
+      public function bar(someClass $obj) {
+         $this->property = $obj;
+      }
 
-     protected static function baz($a, $b, $c) {
-        // nothing yet
-     }
-  }
+      protected static function baz($a, $b, $c) {
+         // nothing yet
+      }
+   }
 
 }
+
+
 ?>

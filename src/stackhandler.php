@@ -45,30 +45,70 @@ namespace TheSeer\phpDox {
     */
    class stackHandlerFactory {
 
-      public function __construct() {
+      protected $dom;
+
+      public function __construct(\DomDocument $dom) {
+         $this->dom = $dom;
       }
 
       public function getInstanceFor($tokID) {
-         switch ($tokID) {
-            case T_NAMESPACE: return new namespaceStackHandler($tokID);
-            case T_FUNCTION:  return new functionStackHandler($tokID);
-            case T_CLASS:     return new classStackHandler($tokID);
-            //case T_CONSTANT_ENCAPSED_STRING:
-            default: return new debugStackHandler($tokID);
-         }
+         $candidates=array(
+            T_NAMESPACE => 'namespace',
+            T_FUNCTION  => 'function',
+            T_CLASS     => 'class',
+            T_VARIABLE  => 'variable',
+            T_CONST     => 'const',
+            T_CONSTANT_ENCAPSED_STRING => 'const'
+         );
+         //$handler='\\TheSeer\\phpDox\\debugStackHandler';
+         $handler = __NAMESPACE__ .'\\'. (isset($candidates[$tokID]) ? $candidates[$tokID] : 'debug') . 'StackHandler';
+         return new $handler($this->dom, $tokID);
       }
 
    }
 
    /**
-    * Stack Handling Inteface
+    * Stack Handling base class
     *
     * @author     Arne Blankerts <arne@blankerts.de>
     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
     */
-   interface stackHandler {
+   abstract class stackHandler {
 
-      public function process(\StdClass $context, Array $stack);
+      protected $token;
+      protected $dom;
+      protected $ctxNode;
+
+      public function __construct(\DomDocument $dom, $tok) {
+         $this->dom = $dom;
+         $this->token = $tok;
+      }
+
+      abstract public function process(processContext $context, Array $stack);
+
+      /**
+       * Helper to find position of Token on stack
+       *
+       * @param $tok    A token constant value
+       * @param $stack  The Stack Array to search in
+       *
+       * @return int    Position or null
+       */
+      protected function findTok($tok, Array $stack) {
+         $size = count($stack);
+         for($t=0; $t<$size; $t++) {
+            if ($stack[$t][0]==$tok) return $t+1;
+         }
+      }
+
+      protected function createNode($name, \DomElement $ctx = null) {
+         if (is_null($ctx)) {
+            $ctx = $this->ctxNode;
+         }
+         $node = $this->dom->createElementNS('http://phpdox.de/xml#', $name);
+         $ctx->appendChild($node);
+         return $node;
+      }
 
    }
 

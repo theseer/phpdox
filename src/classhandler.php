@@ -38,115 +38,75 @@
 namespace TheSeer\phpDox {
 
    /**
-    * Stack Handling Inteface
+    * Stack Handler for class elements
     *
     * @author     Arne Blankerts <arne@blankerts.de>
     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
     */
-   interface stackHandler {
+   class classStackHandler extends stackHandler {
 
-      public function process(\StdClass $context, Array $stack);
+      public function process(processContext $context, Array $stack) {
+         $node = $this->createNode('class', $context->getStackNode());
+         $context->addStackNode($node);
 
-   }
+         $class = $this->findClass($stack);
+         $context->setClass($class[1]);
+         $node->setAttribute('name', $context->class);
 
+         if ($extends = $this->findExtends($stack)) {
+            $node->setAttribute('extends', $extends);
+         }
 
-   class debugStackHandler implements stackHandler {
-
-      protected $name;
-
-      public function __construct($tokID) {
-         $this->name = token_name($tokID);
-      }
-
-      public function process(\StdClass $context, Array $stack) {
-         /*
-         echo "--------- {$this->name} -------\n";
-         echo "CONTEXT:";
-         var_dump($context->namespace, $context->class, $context->docBlock);
-         echo "STACK:";
-         var_dump($stack);
-         echo "-----------------------------------------------------------\n";
-         */
-      }
-
-   }
-
-   class functionStackHandler implements stackHandler {
-
-      public function process(\StdClass $context, Array $stack) {
-         var_dump($stack);
-         $ctx = end($context->nodeStack);
-         $ns = $ctx->ownerDocument->createElementNS('http://phpdox.de/xml#','function');
-         foreach($stack as $p => $st) {
-            if (is_array($st) && $st[1]=='function') {
-               $ns->setAttribute('name', $stack[$p+1][1]);
-               break;
+         if ($implements = $this->findImplements($stack)) {
+            foreach($implements as $int) {
+               $this->createNode('implements', $node)->setAttribute('interface', $int);
             }
          }
-         $ctx->appendChild($ns);
+         $modifier = $this->findModifier($stack);
+         $node->setAttribute('abstract', $modifier == 'abstract' ? 'true' : 'false');
+         $node->setAttribute('final', $modifier == 'final' ? 'true' : 'false');
+         $node->setAttribute('line', $class[2]);
       }
 
-   }
 
-   class namespaceStackHandler implements stackHandler {
+      protected function findClass(Array $stack) {
+         $pos = $this->findTok(T_CLASS, $stack);
+         return $stack[$pos];
+      }
 
-      public function process(\StdClass $context, Array $stack) {
-         $context->namespace='';
-         array_shift($stack);
-         foreach($stack as $tok) {
-            $context->namespace .= $tok[1];
+      protected function findExtends(Array $stack) {
+         $pos = $this->findTok(T_EXTENDS, $stack);
+         if (!$pos) return null;
+         $max = count($stack);
+         for($t=$pos; $t<$max; $t++) {
+            if ($stack[$t][0]==T_IMPLEMENTS) break;
+            $res[] = $stack[$t][1];
          }
-         $ctx = end($context->nodeStack);
-         $ns = $ctx->ownerDocument->createElementNS('http://phpdox.de/xml#','namespace');
-         $ns->setAttribute('name', $context->namespace);
-         $ctx->appendChild($ns);
-         $context->nodeStack[] = $ns;
-
+         return join($res);
       }
 
-   }
-
-   class classStackHandler extends debugStackHandler {
-
-      public function process(\StdClass $context, Array $stack) {
-         $pos=0;
-         $size = count($stack);
-         for($t=0; $t<$size; $t++) {
-            $pos++;
-            if ($stack[$t][0]==T_CLASS) break;
+      protected function findImplements(Array $stack) {
+         $pos = $this->findTok(T_IMPLEMENTS, $stack);
+         if (!$pos) return null;
+         $max = count($stack);
+         $res = array();
+         for($t=$pos; $t<$max; $t++) {
+            if ($stack[$t]===',') {
+               $res[] = ',';
+               continue;
+            }
+            if ($stack[$t][0]==T_EXTENDS) break;
+            $res[] = $stack[$t][1];
          }
-         $context->class = $stack[$pos][1];
-
-         $ctx = end($context->nodeStack);
-         $node = $ctx->ownerDocument->createElementNS('http://phpdox.de/xml#','class');
-         $node->setAttribute('name', $context->class);
-         $ctx->appendChild($node);
-         $context->nodeStack[] = $node;
-
-         //parent::process($context, $stack);
+         return  explode(',', join($res));
       }
 
-   }
+      protected function findModifier(Array $stack) {
+         $pos = $this->findTok(T_FINAL, $stack);
+         if ($pos) return 'final';
 
-   /**
-    * Factory for handler classes
-    *
-    * @author     Arne Blankerts <arne@blankerts.de>
-    * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-    */
-   class stackHandlerFactory {
-
-      public function __construct() {
-      }
-
-      public function getInstanceFor($tokID) {
-         switch ($tokID) {
-            case T_NAMESPACE: return new namespaceStackHandler($tokID);
-            case T_FUNCTION:  return new functionStackHandler($tokID);
-            case T_CLASS:     return new classStackHandler($tokID);
-            //case T_CONSTANT_ENCAPSED_STRING:
-            default: return new debugStackHandler($tokID);
-         }
+         $pos = $this->findTok(T_ABSTRACT, $stack);
+         if ($pos) return 'abstract';
       }
 
    }
