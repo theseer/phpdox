@@ -52,7 +52,10 @@ namespace TheSeer\phpDox {
          $node = $this->createNode($tag, $context->getStackNode());
          $node->setAttribute('name',$func[1]);
 
-         $static = 'false';
+         $static   = 'false';
+         $final    = 'false';
+         $abstract = 'false';
+
          foreach($stack as $tok) {
             switch($tok[0]) {
                case T_PUBLIC:
@@ -66,9 +69,19 @@ namespace TheSeer\phpDox {
                   $static = 'true';
                   break;
                }
+               case T_FINAL: {
+                  $final = 'true';
+                  break;
+               }
+               case T_ABSTRACT: {
+                  $abstract = 'true';
+                  break;
+               }
             }
          }
          $node->setAttribute('static', $static);
+         $node->setAttribute('abstract', $abstract);
+         $node->setAttribute('final', $final);
          $node->setAttribute('line',$func[2]);
       }
 

@@ -11,6 +11,7 @@ namespace TheSeer\phpDox {
    $factory = new stackHandlerFactory($dom);
    $parser  = new parser($factory, $root);
 
+   //$parser->parseFile('../test0.php');
    $parser->parseFile('../test4.php');
 
    echo $dom->saveXML();

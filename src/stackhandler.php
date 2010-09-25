@@ -56,6 +56,7 @@ namespace TheSeer\phpDox {
             T_NAMESPACE => 'namespace',
             T_FUNCTION  => 'function',
             T_CLASS     => 'class',
+            T_INTERFACE => 'interface',
             T_VARIABLE  => 'variable',
             T_CONST     => 'const',
             T_CONSTANT_ENCAPSED_STRING => 'const'

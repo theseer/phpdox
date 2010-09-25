@@ -63,10 +63,17 @@ namespace TheSeer\phpDox {
          $this->context->getStackNode()->setAttribute('file', realpath($filename));
          $tokens = token_get_all(file_get_contents($filename));
          $bracketCount = 0;
-         $waitBracketCount = 0;
+         $wait = false;
+         $waitBracketCount = array(
+            'namespace' => 0,
+            'class' => 0,
+            'function' => 0
+         );
          $nsStyle = false;
 
          foreach($tokens as $tok) {
+            //var_dump($tok);
+
             if (is_array($tok)) {
                switch ($tok[0]) {
                   case T_WHITESPACE: {
@@ -85,21 +92,22 @@ namespace TheSeer\phpDox {
                   }
 
                   case T_VARIABLE: {
-                     if (!is_null($this->handler) || $waitBracketCount!=0) break;
+                     if (!is_null($this->handler) || $wait) break;
                      $this->handler = $this->stackHandlerFactory->getInstanceFor(T_VARIABLE);
                      break;
                   }
 
-                  case T_FUNCTION: {
-                     $waitBracketCount = $bracketCount;
-                     // no break!
-                  }
-
                   case T_CONST:
                   case T_CONSTANT_ENCAPSED_STRING:
+                  case T_FUNCTION: {
+                     if ($wait) break;
+                  }
+
                   case T_INTERFACE:
                   case T_CLASS: {
-                     $this->handler = $this->stackHandlerFactory->getInstanceFor($tok[0]);
+                     if (is_null($this->handler)) {
+                        $this->handler = $this->stackHandlerFactory->getInstanceFor($tok[0]);
+                     }
                      $this->stack = true;
                      break;
                   }
@@ -119,37 +127,32 @@ namespace TheSeer\phpDox {
             } else {
                switch ($tok) {
                   case '}': {
-                     $bracketCount--;
-                     if ($waitBracketCount>0) $waitBracketCount--;
-
-                     if ($this->handler instanceof namespaceStackHandler) {
-                        if ($nsStyle) { // bracket based namespace
-                           if ($bracketCount==1) {
-                              $this->context->setClass(null);
-                              if (count($this->context->nodeStack)>1) {
-                                 $this->context->decrementStack();
-                              }
-                           } else if ($bracketCount == 0)  {
-                              if (count($this->context->nodeStack)>1) {
-                                 $this->context->decrementStack();
-                              }
-                           }
-                        } else { // ; style
-                           if ($bracketCount == 0) {
-                              $this->context->setClass(null);
-                              if (count($this->context->nodeStack)>1) {
-                                 $this->context->decrementStack();
-                              }
-                           }
-                        }
+                     if ($waitBracketCount['function']==$bracketCount) {
+                        $wait = false;
+                        $waitBracketCount['function']=0;
+                     } else if ($waitBracketCount['class']==$bracketCount) {
+                        $this->context->setClass('');
+                        $this->context->decrementStack();
+                        $waitBracketCount['class']=0;
+                     } else if ($waitBracketCount['namespace']==$bracketCount) {
+                        $this->context->setNamespace('');
+                        $this->context->decrementStack();
+                        $waitBracketCount['namespace']=0;
                      }
+                     $bracketCount--;
                      break;
                   }
                   case '{': {
+                     $bracketCount++;
                      if ($this->handler instanceof namespaceStackHandler) {
                         $nsStyle = true;
+                        $waitBracketCount['namespace'] = $bracketCount;
+                     } else if ($this->handler instanceof classStackHandler || $this->handler instanceof interfaceStackHandler) {
+                        $waitBracketCount['class'] = $bracketCount;
+                     } else if ($this->handler instanceof functionStackHandler) {
+                        $waitBracketCount['function'] = $bracketCount;
+                        $wait = true;
                      }
-                     $bracketCount++;
                      // no break!
                   }
                   case ';': {

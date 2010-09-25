@@ -40,6 +40,10 @@ namespace TheSeer\phpDox {
    class constStackHandler extends stackHandler {
 
       public function process(processContext $context, Array $stack) {
+         //var_dump($stack);
+         //if (count($stack)>3) {
+         //   var_dump($stack);
+         //}
          $node = $this->createNode('constant', $context->getStackNode());
          $node->setAttribute('name', $stack[1][1]);
          $node->setAttribute('value', $stack[2][1]);
