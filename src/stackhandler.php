@@ -98,7 +98,7 @@ namespace TheSeer\phpDox {
       protected function findTok($tok, Array $stack) {
          $size = count($stack);
          for($t=0; $t<$size; $t++) {
-            if ($stack[$t][0]==$tok) return $t+1;
+            if ($stack[$t][0]==$tok) return $t;
          }
       }
 

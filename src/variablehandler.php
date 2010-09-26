@@ -41,9 +41,10 @@ namespace TheSeer\phpDox {
 
       public function process(processContext $context, Array $stack) {
          $node = $this->createNode($context->class ? 'member' : 'variable', $context->getStackNode());
+         //var_dump($stack);
 
-         $var = array_pop($stack);
-         $node->setAttribute('name', $var[1]);
+         $pos = $this->findTok(T_VARIABLE, $stack);
+         $node->setAttribute('name', $stack[$pos][1]);
 
          $static = 'false';
          foreach($stack as $tok) {
@@ -54,7 +55,6 @@ namespace TheSeer\phpDox {
                   $node->setAttribute('visibility', $tok[1]);
                   break;
                }
-
                case T_STATIC: {
                   $static = 'true';
                   break;
@@ -62,7 +62,7 @@ namespace TheSeer\phpDox {
             }
          }
          $node->setAttribute('static', $static);
-         $node->setAttribute('line', $var[2]);
+         $node->setAttribute('line', $stack[$pos][2]);
       }
 
    }

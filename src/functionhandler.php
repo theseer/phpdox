@@ -47,7 +47,7 @@ namespace TheSeer\phpDox {
 
       public function process(processContext $context, Array $stack) {
          //var_dump($stack);
-         $func = $stack[$this->findTok(T_FUNCTION, $stack)];
+         $func = $stack[$this->findTok(T_FUNCTION, $stack)+1];
          $tag  = $context->class != null ? 'method' : 'function';
          $node = $this->createNode($tag, $context->getStackNode());
          $node->setAttribute('name',$func[1]);

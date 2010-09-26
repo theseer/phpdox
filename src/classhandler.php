@@ -71,14 +71,14 @@ namespace TheSeer\phpDox {
 
       protected function findClass(Array $stack) {
          $pos = $this->findTok(T_CLASS, $stack);
-         return $stack[$pos];
+         return $stack[$pos+1];
       }
 
       protected function findExtends(Array $stack) {
          $pos = $this->findTok(T_EXTENDS, $stack);
-         if (!$pos) return null;
+         if (is_null($pos)) return;
          $max = count($stack);
-         for($t=$pos; $t<$max; $t++) {
+         for($t=$pos+1; $t<$max; $t++) {
             if ($stack[$t][0]==T_IMPLEMENTS) break;
             $res[] = $stack[$t][1];
          }
@@ -87,10 +87,10 @@ namespace TheSeer\phpDox {
 
       protected function findImplements(Array $stack) {
          $pos = $this->findTok(T_IMPLEMENTS, $stack);
-         if (!$pos) return null;
+         if (is_null($pos)) return;
          $max = count($stack);
          $res = array();
-         for($t=$pos; $t<$max; $t++) {
+         for($t=$pos+1; $t<$max; $t++) {
             if ($stack[$t]===',') {
                $res[] = ',';
                continue;
@@ -98,15 +98,15 @@ namespace TheSeer\phpDox {
             if ($stack[$t][0]==T_EXTENDS) break;
             $res[] = $stack[$t][1];
          }
-         return  explode(',', join($res));
+         return explode(',', join($res));
       }
 
       protected function findModifier(Array $stack) {
          $pos = $this->findTok(T_FINAL, $stack);
-         if ($pos) return 'final';
+         if ($pos!==null) return 'final';
 
          $pos = $this->findTok(T_ABSTRACT, $stack);
-         if ($pos) return 'abstract';
+         if ($pos!==null) return 'abstract';
       }
 
    }
