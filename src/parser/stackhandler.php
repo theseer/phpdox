@@ -102,7 +102,7 @@ namespace TheSeer\phpDox {
          }
       }
 
-      protected function createNode($name, \DomElement $ctx = null) {
+      public function createNode($name, \DomElement $ctx = null) {
          if (is_null($ctx)) {
             $ctx = $this->ctxNode;
          }

@@ -46,9 +46,13 @@ namespace TheSeer\phpDox {
          $pos = $this->findTok(T_VARIABLE, $stack);
          $node->setAttribute('name', $stack[$pos][1]);
 
+         $value = array();
          $static = 'false';
          foreach($stack as $tok) {
             switch($tok[0]) {
+               case T_VARIABLE: {
+                  continue;
+               }
                case T_PUBLIC:
                case T_PRIVATE:
                case T_PROTECTED: {
@@ -59,12 +63,18 @@ namespace TheSeer\phpDox {
                   $static = 'true';
                   break;
                }
+               default: {
+                  $value[] = $tok;
+               }
             }
          }
+
+         $valHandler = new valueHandler($this, $context);
+         $valHandler->processValue($value, $node);
+
+
          $node->setAttribute('static', $static);
          $node->setAttribute('line', $stack[$pos][2]);
       }
-
    }
-
 }
