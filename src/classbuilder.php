@@ -43,9 +43,12 @@ namespace TheSeer\phpDox {
    class ClassBuilder {
 
       protected $ctx;
+      protected $publicOnly;
+      
 
-      public function __construct(fDOMElement $ctx) {
+      public function __construct(fDOMElement $ctx, $publicOnly = false) {
          $this->ctx = $ctx;
+         $this->publicOnly = $publicOnly;
       }
 
       public function process(\ReflectionClass $class) {
@@ -81,6 +84,8 @@ namespace TheSeer\phpDox {
          $this->processConstants($node, $class->getConstants());
          $this->processMembers($node, $class->getProperties());
          $this->processMethods($node, $class->getMethods());
+         
+         return $node;
 
       }
 
@@ -93,7 +98,7 @@ namespace TheSeer\phpDox {
          return $node;
       }
 
-      protected function addModifiers(fDOMElement $ctx, $src) {
+      protected function addModifiers(fDOMElement $ctx, $src) {       
          $ctx->setAttribute('static', $src->isStatic() ? 'true' : 'false');
          if ($src->isPrivate()) {
             $ctx->setAttribute('visibility', 'private');
@@ -155,6 +160,9 @@ namespace TheSeer\phpDox {
 
       protected function processMembers(fDOMElement $ctx, Array $members) {
          foreach($members as $member) {
+            if ($this->publicOnly && ($member->isPrivate() || $member->isProtected())) {
+               continue;
+            }
             $memberNode = $ctx->appendElementNS('http://phpdox.de/xml#','member');
             $memberNode->setAttribute('name', $member->getName());
             $this->addModifiers($memberNode, $member);
@@ -164,6 +172,10 @@ namespace TheSeer\phpDox {
 
       protected function processMethods(fDOMElement $ctx, Array $methods) {
          foreach($methods as $method) {
+            if ($this->publicOnly && ($method->isPrivate() || $method->isProtected())) {
+               continue;
+            }
+            
             if ($method->isConstructor()) {
                $nodeName = 'constructor';
             } elseif ($method->isDestructor()) {
