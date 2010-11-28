@@ -42,12 +42,18 @@ namespace TheSeer\phpDox {
 
    class Builder {
 
+      protected $publicOnly;
+      
       protected $namespaces;
       protected $interfaces;
       protected $classes;
 
       protected $file;
       protected $dom;
+      
+      public function __construct($publicOnly = false) {
+         $this->publicOnly = $publicOnly;
+      }
 
       public function getClasses() {
          return $this->classes;
@@ -99,7 +105,7 @@ namespace TheSeer\phpDox {
             $context = $this->handleNamespace($class);
          }
 
-         $classBuilder = new ClassBuilder($context);
+         $classBuilder = new ClassBuilder($context, $this->publicOnly);
          $classNode = $classBuilder->process($class);
 
          if ($class->isInterface()) {
