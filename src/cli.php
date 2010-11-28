@@ -38,6 +38,7 @@
 namespace TheSeer\phpDox {
 
    use \TheSeer\Tools\PHPFilterIterator;
+   use \TheSeer\fDom\fDomDocument;
 
    class CLI {
 
@@ -47,17 +48,41 @@ namespace TheSeer\phpDox {
        * @var string
        */
       const VERSION = "%version%";
+      
+      /**
+       * Base path files are stored in
+       * 
+       * @var string
+       */
+      protected $outputDir;
+      
+      /**
+       * Array of Container DOM Documents
+       *
+       * @var array
+       */
+      protected $container = array();
 
       /**
        * Main executor for CLI process
        */
       public function run() {
-         $input = new \ezcConsoleInput();
-         $this->registerOptions($input);
          try {
+            $input = new \ezcConsoleInput();
+            $this->registerOptions($input);
             $input->process();
-            $processor = new Processor($input->getOption('output')->value);
+            $this->outputDir = $input->getOption('output')->value;
+            $processor = new Processor(
+               $this->outputDir,
+               $this->getContainerDocument('namespaces'),
+               $this->getContainerDocument('interfaces'),
+               $this->getContainerDocument('classes')
+            );
+            if ($input->getOption('public')->value) {
+               $processor->setPublicOnly(true);
+            }
             $processor->run($this->getScanner($input));
+            $this->saveContainer();            
          } catch (\ezcConsoleException $e) {
             fwrite(STDERR, $e->getMessage()."\n");
             exit(3);
@@ -90,6 +115,16 @@ namespace TheSeer\phpDox {
             'o', 'output', \ezcConsoleInput::TYPE_STRING, 'phpdox', false,
             'Output directory for generated (default: phpdox)'
          ));
+
+         $input->registerOption( new \ezcConsoleOption(
+            'p', 'public', \ezcConsoleInput::TYPE_NONE, null, false,
+            'Only show public member and methods'
+         ));
+         
+         $input->argumentDefinition = new \ezcConsoleArguments();
+         $input->argumentDefinition[0] = new \ezcConsoleArgument( "directory" );
+         $input->argumentDefinition[0]->shorthelp = "The directory to process.";
+         
       }
 
       /**
@@ -121,6 +156,36 @@ namespace TheSeer\phpDox {
          $args = $input->getArguments();
          return $scanner($args[0]);
       }
-
+      
+      /**
+       * Helper to load or create Container DOM Documents for namespaces, classes, interfaces, ...
+       * 
+       * @param $name name of the file (identical to root node) 
+       * 
+       * @return \TheSeer\fDom\fDomDocument
+       */
+      protected function getContainerDocument($name) {
+         $fname = $this->outputDir . '/' . $name .'.xml';
+         $dom = new fDOMDocument('1.0', 'UTF-8');         
+         if (file_exists($fname)) {
+            $dom->load($fname);                     
+         } else {
+            $rootNode = $dom->createElementNS('http://phpdox.de/xml#', $name);
+            $dom->appendChild($rootNode);            
+         }
+         $dom->registerNamespace('dox', 'http://phpdox.de/xml#');
+         $dom->formatOutput = true;
+         $this->container[$fname] = $dom; 
+         return $dom;
+      }
+      
+      /**
+       * Helper to save all known and (updated) container files  
+       */
+      protected function saveContainer() {
+         foreach($this->container as $fname => $dom) {
+            $dom->save($fname);
+         }
+      }
    }
 }

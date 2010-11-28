@@ -43,28 +43,30 @@ namespace TheSeer\phpDox {
    class Processor {
 
       protected $outputDir;
+      
+      protected $publicOnly = false;
 
-      protected $dom = array();
       protected $namespaces;
       protected $interfaces;
       protected $classes;
 
       /**
-       * Constructor
-       *
-       * @param \eczConsoleOptions $input
+       * Processor constructor
+       * 
+       * @param string 		 $outputDir	Base path to store individual class files in 
+       * @param fDomDocument $nsDom		DOM instance to register namespaces in 
+       * @param fDomDocument $iDom		DOM instance to register interfaces in
+       * @param fDomDocument $cDom		DOM instance to register classes in
        */
-      public function __construct($outputDir) {
-         $this->outputDir = $outputDir;
-         $this->namespaces = $this->createContainerDocument('namespaces');
-         $this->interfaces = $this->createContainerDocument('interfaces');
-         $this->classes    = $this->createContainerDocument('classes');
+      public function __construct($outputDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+         $this->outputDir  = $outputDir;
+         $this->namespaces = $nsDom;
+         $this->interfaces = $iDom;
+         $this->classes    = $cDom;
       }
-
-      public function __destruct() {
-         foreach($this->dom as $name => $dom) {
-            $dom->save($this->outputDir . '/' . $name . '.xml');
-         }
+      
+      public function setPublicOnly($switch) {
+         $this->publicOnly = $switch;
       }
 
       /**
@@ -75,42 +77,57 @@ namespace TheSeer\phpDox {
       public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner) {
 
          $worker  = new PHPFilterIterator($scanner);
-         $builder = new Builder();
+         $builder = new Builder($this->publicOnly);
 
          foreach($worker as $file) {
+            $target = $this->setupTarget($file);
+            if (file_exists($target) && filemtime($target)==$file->getMTime()) {
+               continue;
+            }
             $xml = $builder->processFile($file);
             $xml->formatOutput= true;
-            $target = $this->setupTarget($file);
             $xml->save($target);
             touch($target, $file->getMTime(), $file->getATime());
 
             $this->registerNamespaces($target, $file->getPathName(), $builder->getNamespaces());
-            $this->registerInterfaces($target, $file->getPathName(), $builder->getInterfaces());
-            $this->registerClasses($target, $file->getPathName(), $builder->getClasses());
+            $this->registerInContainer($this->interfaces, 'interface', $target, $file->getPathName(), $builder->getInterfaces());
+            $this->registerInContainer($this->classes, 'class', $target, $file->getPathName(), $builder->getClasses());
          }
       }
 
-      protected function registerNamespaces($target, $src, $list) {
-         $dom = $this->dom['namespaces'];
+      protected function registerNamespaces($target, $src, array $list) {
          foreach($list as $namespace) {
             $name = $namespace->getAttribute('name');
-            $nsNode = $dom->query("//dox:namespace[@name='$name']")->item(0);
+            $nsNode = $this->namespaces->query("//dox:namespace[@name='$name']")->item(0);
             if (!$nsNode) {
-               $nsNode = $dom->createElementNS('http://phpdox.de/xml#','namespace');
-               $nsNode->setAttribute('name', $name);
-               $this->namespaces->appendChild($nsNode);
+               $nsNode = $this->namespaces->documentElement->appendElementNS('http://phpdox.de/xml#','namespace');
+               $nsNode->setAttribute('name', $name);               
             }
-            $file = $dom->createElementNS('http://phpdox.de/xml#','file');
+            $file = $nsNode->appendElementNS('http://phpdox.de/xml#','file');
             $file->setAttribute('xml', $target);
-            $file->setAttribute('src', $src);
-            $nsNode->appendChild($file);
+            $file->setAttribute('src', $src);           
          }
       }
-
-      protected function registerInterfaces($target, $src, $list) {
-      }
-
-      protected function registerClasses($target, $src, $list) {
+      
+      protected function registerInContainer(fDomDocument $container, $nodeName, $target, $src, $list) {
+         foreach($list as $srcNode) { 
+            if ($srcNode->parentNode->localName=='namespace') {
+               $ns = $srcNode->parentNode->getAttribute('name');
+               $ctx = $container->query("//dox:namespace[@name='$ns']")->item(0);
+               if (!$ctx) {
+                  $ctx = $container->documentElement->appendElementNS('http://phpdox.de/xml#','namespace');
+                  $ctx->setAttribute('name', $srcNode->parentNode->getAttribute('name'));
+               }
+            } else {
+               $ctx = $container->documentElement;
+            }            
+            $workNode = $ctx->appendElementNS('http://phpdox.de/xml#',$nodeName);
+            foreach($srcNode->attributes as $attr) {
+               $workNode->appendChild($container->importNode($attr,true));
+            }
+            $workNode->setAttribute('xml', $target);
+            $workNode->setAttribute('src', $src);           
+         }
       }
 
       protected function setupTarget($file) {
@@ -128,13 +145,5 @@ namespace TheSeer\phpDox {
          return $target;
       }
 
-      protected function createContainerDocument($root) {
-         $this->dom[$root] = new fDOMDocument('1.0', 'UTF-8');
-         $this->dom[$root]->registerNamespace('dox', 'http://phpdox.de/xml#');
-         $this->dom[$root]->formatOutput = true;
-         $rootNode = $this->dom[$root]->createElementNS('http://phpdox.de/xml#', $root);
-         $this->dom[$root]->appendChild($rootNode);
-         return $rootNode;
-      }
    }
 }
