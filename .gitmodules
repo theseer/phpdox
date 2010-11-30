@@ -1,0 +1,15 @@
+[submodule "lib/DirectoryScanner"]
+	path = lib/DirectoryScanner
+	url = git://github.com/theseer/DirectoryScanner.git
+[submodule "lib/docblock"]
+	path = lib/docblock
+	url = git://github.com/spriebsch/docblock.git
+[submodule "lib/Autoload"]
+	path = lib/Autoload
+	url = git://github.com/theseer/Autoload.git
+[submodule "lib/fDOMDocument"]
+	path = lib/fDOMDocument
+	url = git://github.com/theseer/fDOMDocument.git
+[submodule "lib/staticReflection"]
+	path = lib/staticReflection
+	url = git://github.com/manuelpichler/staticReflection.git

@@ -45,12 +45,17 @@
 use \TheSeer\phpDox;
 use \pdepend\reflection\Autoloader;
 
-require __DIR__ . '/../DirectoryScanner/autoload.php';
-require __DIR__ . '/../Autoload/src/phpfilter.php';
-require __DIR__ . '/../fDomDocument/autoload.php';
-require __DIR__ . '/../ezc/current/Base/src/base.php';
-require __DIR__ . '/../staticReflection/source/pdepend/reflection/Autoloader.php';
-require __DIR__ . '/../docblock/DocBlock.php';
+if (file_exists(__DIR__ . '/.git')) {
+    require __DIR__ . '/lib/DirectoryScanner/autoload.php';
+    require __DIR__ . '/lib/Autoload/src/phpfilter.php';
+    require __DIR__ . '/lib/fDOMDocument/autoload.php';
+    require __DIR__ . '/lib/staticReflection/source/pdepend/reflection/Autoloader.php';
+    require __DIR__ . '/lib/docblock/DocBlock.php';
+} else {
+    // ...
+}
+
+require_once 'ezc/Base/base.php';
 
 require __DIR__ . '/src/cli.php';
 require __DIR__ . '/src/builder.php';
