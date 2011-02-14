@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,6 +33,12 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
+ * 
+ * Exit codes:
+ *   0 - No error
+ *   1 - Execution Error
+ *   3 - Parameter Error
+ * 
  */
 
 namespace TheSeer\phpDox {
@@ -50,11 +56,18 @@ namespace TheSeer\phpDox {
       const VERSION = "%version%";
       
       /**
-       * Base path files are stored in
+       * Base path xml files are stored in
        * 
        * @var string
        */
-      protected $outputDir;
+      protected $xmlDir;
+      
+      /**
+       * Base path documentation files are stored in
+       * 
+       * @var string
+       */
+      protected $docDir;
       
       /**
        * Array of Container DOM Documents
@@ -64,67 +77,86 @@ namespace TheSeer\phpDox {
       protected $container = array();
 
       /**
-       * Main executor for CLI process
+       * Main executor for CLI process.
        */
       public function run() {
          try {
             $input = new \ezcConsoleInput();
             $this->registerOptions($input);
             $input->process();
-            $this->outputDir = $input->getOption('output')->value;
-            $processor = new Processor(
-               $this->outputDir,
-               $this->getContainerDocument('namespaces'),
-               $this->getContainerDocument('interfaces'),
-               $this->getContainerDocument('classes')
-            );
-            if ($input->getOption('public')->value) {
-               $processor->setPublicOnly(true);
+
+            if ($input->getOption('help')->value === true) {
+               $this->showVersion();
+               $this->showUsage();
+               exit(0);
             }
-            $processor->run($this->getScanner($input));
-            $this->saveContainer();            
+
+            if ( $input->getOption('version')->value === true ) {
+               $this->showVersion();
+               exit(0);
+            }
+                        
+            if ($require = $input->getOption('require')->value) {
+               $this->processRequire($require);
+            }
+
+            $this->xmlDir = $input->getOption('xml')->value;
+            $this->docDir = $input->getOption('docs')->value;
+            
+            if (!$input->getOption('generate')->value) {
+               $collector = new Collector(
+                  $this->xmlDir,
+                  $this->getContainerDocument('namespaces'),
+                  $this->getContainerDocument('interfaces'),
+                  $this->getContainerDocument('classes')
+               );
+               if ($input->getOption('public')->value) {
+                  $collector->setPublicOnly(true);
+               }
+               $collector->run($this->getScanner($input));
+               $this->saveContainer();
+            }
+            if (!$input->getOption('collect')->value) {
+               $generator = new Generator(
+                  $this->xmlDir,
+                  $this->docDir,
+                  $this->getContainerDocument('namespaces'),
+                  $this->getContainerDocument('interfaces'),
+                  $this->getContainerDocument('classes')
+               );
+               $generator->setPublicOnly($input->getOption('public')->value);
+               $generator->run($input->getOption('backend')->value);               
+            }            
          } catch (\ezcConsoleException $e) {
-            fwrite(STDERR, $e->getMessage()."\n");
+            $this->showVersion();            
+            fwrite(STDERR, $e->getMessage()."\n\n");
+            $this->showUsage();
             exit(3);
+         } catch (CLIException $e) {
+            $this->showVersion();            
+            fwrite(STDERR, "Error while processing request:\n");
+            fwrite(STDERR, $e->getMessage()."\n");
+            exit(3);            
          } catch (\Exception $e) {
+            $this->showVersion();            
             fwrite(STDERR, "Error while processing request:\n");
             fwrite(STDERR, ' - ' . $e."\n");
             exit(1);
          }
       }
-
-      protected function registerOptions(\ezcConsoleInput $input) {
-         $versionOption = $input->registerOption( new \ezcConsoleOption( 'v', 'version' ) );
-         $versionOption->shorthelp    = 'Prints the version and exits';
-         $versionOption->isHelpOption = true;
-
-         $helpOption = $input->registerOption( new \ezcConsoleOption( 'h', 'help' ) );
-         $helpOption->isHelpOption = true;
-         $helpOption->shorthelp    = 'Prints this usage information';
-
-         $input->registerOption( new \ezcConsoleOption(
-            'i', 'include', \ezcConsoleInput::TYPE_STRING, '*.php', true,
-            'File pattern to include (default: *.php)'
-         ));
-         $input->registerOption( new \ezcConsoleOption(
-            'e', 'exclude', \ezcConsoleInput::TYPE_STRING, null, true,
-            'File pattern to exclude'
-         ));
-
-         $outputOption = $input->registerOption( new \ezcConsoleOption(
-            'o', 'output', \ezcConsoleInput::TYPE_STRING, 'phpdox', false,
-            'Output directory for generated (default: phpdox)'
-         ));
-
-         $input->registerOption( new \ezcConsoleOption(
-            'p', 'public', \ezcConsoleInput::TYPE_NONE, null, false,
-            'Only show public member and methods'
-         ));
-         
-         $input->argumentDefinition = new \ezcConsoleArguments();
-         $input->argumentDefinition[0] = new \ezcConsoleArgument( "directory" );
-         $input->argumentDefinition[0]->shorthelp = "The directory to process.";
-         
+      
+      /**
+       * Helper to load requested require files 
+       *
+       * @param Array $require	Array of files to require
+       */
+      protected function processRequire(Array $require) {
+         foreach($require as $file) {
+            if (!file_exists($file) || !is_file($file)) {
+               throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
+            }
+            require $file;
+         }
       }
 
       /**
@@ -160,12 +192,15 @@ namespace TheSeer\phpDox {
       /**
        * Helper to load or create Container DOM Documents for namespaces, classes, interfaces, ...
        * 
-       * @param $name name of the file (identical to root node) 
+       * @param string $name name of the file (identical to root node) 
        * 
        * @return \TheSeer\fDom\fDomDocument
        */
       protected function getContainerDocument($name) {
-         $fname = $this->outputDir . '/' . $name .'.xml';
+         if (isset($this->container[$name])) {
+            return $this->container[$name];
+         }
+         $fname = $this->xmlDir . '/' . $name .'.xml';
          $dom = new fDOMDocument('1.0', 'UTF-8');         
          if (file_exists($fname)) {
             $dom->load($fname);                     
@@ -173,19 +208,127 @@ namespace TheSeer\phpDox {
             $rootNode = $dom->createElementNS('http://phpdox.de/xml#', $name);
             $dom->appendChild($rootNode);            
          }
-         $dom->registerNamespace('dox', 'http://phpdox.de/xml#');
+         $dom->registerNamespace('phpdox', 'http://phpdox.de/xml#');
          $dom->formatOutput = true;
          $this->container[$fname] = $dom; 
          return $dom;
       }
       
       /**
-       * Helper to save all known and (updated) container files  
+       * Helper to save all known and (updated) container files. 
        */
       protected function saveContainer() {
          foreach($this->container as $fname => $dom) {
             $dom->save($fname);
          }
       }
+
+      /**
+       * Helper to output version information.
+       */
+      protected function showVersion() {
+         printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
+      }
+      
+      protected function registerOptions(\ezcConsoleInput $input) {
+         $versionOption = $input->registerOption( new \ezcConsoleOption( 'v', 'version' ) );
+         $versionOption->shorthelp    = 'Prints the version and exits';
+         $versionOption->isHelpOption = true;
+
+         $helpOption = $input->registerOption( new \ezcConsoleOption( 'h', 'help' ) );
+         $helpOption->isHelpOption = true;
+         $helpOption->shorthelp    = 'Prints this usage information';
+
+         $input->registerOption( new \ezcConsoleOption(
+            'i', 'include', \ezcConsoleInput::TYPE_STRING, '*.php', true,
+            'File pattern to include (default: *.php)'
+         ));
+         $input->registerOption( new \ezcConsoleOption(
+            'e', 'exclude', \ezcConsoleInput::TYPE_STRING, null, true,
+            'File pattern to exclude'
+         ));
+
+         $input->registerOption( new \ezcConsoleOption(
+            'x', 'xml', \ezcConsoleInput::TYPE_STRING, './xml', false,
+            'Output directory for collected data (default: ./xml)'
+         ));
+         $input->registerOption( new \ezcConsoleOption(
+            'd', 'docs', \ezcConsoleInput::TYPE_STRING, './docs', false,
+            'Output directory for generated documentation (default: ./docs)'
+         ));
+         $input->registerOption( new \ezcConsoleOption(
+            'b', 'backend', \ezcConsoleInput::TYPE_STRING, 'htmlBuilder', false,
+            'Transformation/Processing backend to use (default: htmlBuilder)'
+         ));         
+         $input->registerOption( new \ezcConsoleOption(
+            'p', 'public', \ezcConsoleInput::TYPE_NONE, null, false,
+            'Only show public member and methods'
+         ));
+         
+         $gen = $input->registerOption( new \ezcConsoleOption(
+            'g', 'generate', \ezcConsoleInput::TYPE_NONE, null, false,
+            'No collecting, generate documentation only'
+         ));
+         $col = $input->registerOption( new \ezcConsoleOption(
+            'c', 'collect', \ezcConsoleInput::TYPE_NONE, null, false,
+            'Only collect data, do not generate docs'
+         )); 
+         $gen->addExclusion(new \ezcConsoleOptionRule($col));
+         $col->addExclusion(new \ezcConsoleOptionRule($gen));
+                 
+         $input->registerOption( new \ezcConsoleOption(
+            's', 'silent', \ezcConsoleInput::TYPE_NONE, null, false,
+            'Do not output anything to the console'
+         ));
+         $input->registerOption( new \ezcConsoleOption(
+            'l', 'log', \ezcConsoleInput::TYPE_STRING, null, false,
+            'Generate XML style logfile'
+         ));
+         $input->registerOption( new \ezcConsoleOption(
+            'r', 'require', \ezcConsoleInput::TYPE_STRING, null, true,
+            'Custom PHP Source file to load'
+         ));
+         $input->argumentDefinition = new \ezcConsoleArguments();
+         $input->argumentDefinition[0] = new \ezcConsoleArgument( "directory" );
+         $input->argumentDefinition[0]->shorthelp = "The directory to process.";
+         
+      }
+      
+      /**
+       * Helper to output usage information.
+       */
+      protected function showUsage() {
+         print <<<EOF
+Usage: phpdox [switches] <directory>
+
+  -x, --xml        Output directory for collected data (default: ./xml)
+  -d, --docs       Output directory for generated documentation (default: ./docs)
+
+  -b, --backend    Transformation/Processing backend to use (default: htmlBuilder)
+
+  -p, --public 	   Only process public member and methods
+  
+  -c, --collect    Only collect data, do not generate docs
+  -g, --generate   No collecting, generate documentation only
+
+  -l, --log        Generate XML style logfile (not implemented yet) 
+  -s, --silent	   Do not output anything to the console (not implemented yet)
+  
+  -i, --include    File pattern to include (default: *.php)
+  -e, --exclude    File pattern to exclude
+  
+  -r, --require    Custom PHP Source file to load
+  
+  -h, --help       Prints this usage information
+  -v, --version    Prints the version and exits
+  
+  
+EOF;
+      }
+   }
+   
+   
+   class CLIException extends \Exception {
+      const RequireFailed = 1;
    }
 }

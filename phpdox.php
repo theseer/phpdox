@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Copyright (c) 2009-2010 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,23 +42,16 @@
  *   4 - Lint Error
  */
 
-use \TheSeer\phpDox;
-use \pdepend\reflection\Autoloader;
-
 require __DIR__ . '/../DirectoryScanner/autoload.php';
-require __DIR__ . '/../Autoload/src/phpfilter.php';
 require __DIR__ . '/../fDomDocument/autoload.php';
+require __DIR__ . '/../fXSL/autoload.php';
 require __DIR__ . '/../ezc/current/Base/src/base.php';
 require __DIR__ . '/../staticReflection/source/pdepend/reflection/Autoloader.php';
 require __DIR__ . '/../docblock/DocBlock.php';
-
-require __DIR__ . '/src/cli.php';
-require __DIR__ . '/src/builder.php';
-require __DIR__ . '/src/processor.php';
-require __DIR__ . '/src/classbuilder.php';
+require __DIR__ . '/autoload.php';
 
 spl_autoload_register( array('\ezcBase','autoload'));
-spl_autoload_register( array(new Autoloader(),'autoload'));
+spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
 
 $exec = new \TheSeer\phpDox\CLI();
 $exec->run();

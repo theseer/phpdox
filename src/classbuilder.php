@@ -38,13 +38,11 @@
 namespace TheSeer\phpDox {
 
    use \TheSeer\fDOM\fDOMElement;
-   use \DocBlock;
 
    class ClassBuilder {
 
       protected $ctx;
       protected $publicOnly;
-      
 
       public function __construct(fDOMElement $ctx, $publicOnly = false) {
          $this->ctx = $ctx;
@@ -65,9 +63,9 @@ namespace TheSeer\phpDox {
          $node->setAttribute('start', $class->getStartLine());
          $node->setAttribute('end', $class->getEndLine());
 
-         if ($doccomment = $class->getDocComment()) {
+         if ($docComment = $class->getDocComment()) {
             $docNode = $node->appendElementNS('http://phpdox.de/xml#', 'docblock');
-            $this->processClassDocBlock($docNode, $doccomment);
+            $this->processDocBlock($docNode, $docComment);
          }
 
          if ($extends = $class->getParentClass()) {
@@ -109,52 +107,50 @@ namespace TheSeer\phpDox {
          }
       }
 
-      protected function processClassDocBlock(fDOMElement $docNode, $comment) {
-            $doc = new \DocBlock();
+      protected function processDocBlock(fDOMElement $docNode, $comment) {
+         try {
+            $doc = new DocBlock();
             $doc->parse($comment);
-
-            $attributes=array(
-              'author',
-              'copyright',
-              'deprecated',
-              'global',
-              'ignore',
-              'internal',
-              'link',
-              'package',
-              'see',
-              'since',
-              'subpackage',
-              'todo',
-              'version',
-            );
-
-            foreach($attributes as $tag) {
+   
+            foreach($doc->getSupportedTags() as $tag) {
                $hname='has'.lcfirst($tag);
                $gname='get'.lcfirst($tag);
                if ($doc->$hname()) {
                   $docNode->setAttribute($tag, $doc->$gname());
                }
             }
-
+   
             $desc = $docNode->appendElementNS('http://phpdox.de/xml#','description');
             $desc->setAttribute('compact', $doc->getShortDescription());
             if ($long = $doc->getLongDescription()) {
                $desc->appendChild($desc->ownerDocument->createTextNode($long));
             }
-
-
+            
+            $throws = $doc->getThrows();
+            if (!empty($throws)) {
+               foreach($throws as $thr) {
+                  $docNode->appendElementNS('http://phpdox.de/xml#','throws')->setAttribute('name', $thr);                 
+               }
+            }
+            
             if ($doc->hasExample()) {
                $example = $docNode->appendElementNS('http://phpdox.de/xml#','example');
                $example->appendChild($docNode->ownerDocument->createTextNode($doc->geExample()));
             }
+            
+            return $doc;
+         } catch (\Exception $e) {
+            // TODO: Error logger -> addWarning
+            //var_dump($comment);
+            throw $e;
+         }
       }
 
       protected function processConstants(fDOMElement $ctx, Array $constants) {
          foreach($constants as $constant => $value) {
             $constNode = $ctx->appendElementNS('http://phpdox.de/xml#','constant');
             $constNode->setAttribute('name',  $constant);
-            $constNode->setAttribute('value', $value);
+            $constNode->setAttribute('value', $value);            
          }
       }
 
@@ -167,6 +163,10 @@ namespace TheSeer\phpDox {
             $memberNode->setAttribute('name', $member->getName());
             $this->addModifiers($memberNode, $member);
             $this->processValue($memberNode, $member->getValue());
+            if ($docComment = $member->getDocComment()) {
+               $docNode = $memberNode->appendElementNS('http://phpdox.de/xml#', 'docblock');
+               $this->processDocBlock($docNode, $docComment);
+            }            
          }
       }
 
@@ -191,13 +191,19 @@ namespace TheSeer\phpDox {
             $methodNode->setAttribute('final',  $method->isFinal() ? 'true' : 'false');
 
             $this->addModifiers($methodNode, $method);
-            $this->processParameters($methodNode, $method->getParameters());
+            
+            $docBlock = null;
+            if ($docComment = $method->getDocComment()) {
+               $docNode = $methodNode->appendElementNS('http://phpdox.de/xml#', 'docblock');
+               $docBlock = $this->processDocBlock($docNode, $docComment);
+            }                        
+            $this->processParameters($methodNode, $method->getParameters(), $docBlock);
 
          }
       }
 
-      protected function processParameters(fDOMElement $ctx, Array $parameters) {
-         foreach($parameters as $param) {
+      protected function processParameters(fDOMElement $ctx, Array $parameters, DocBlock $docBlock = null) {
+         foreach($parameters as $idx => $param) {
             $paramNode = $ctx->appendElementNS('http://phpdox.de/xml#', 'parameter');
             $paramNode->setAttribute('name', $param->getName());
             if ($class = $param->getClass()) {
@@ -207,14 +213,34 @@ namespace TheSeer\phpDox {
                   $paramNode->setAttribute('namespace', $class->getNamespaceName());
                }
             } elseif ($param->isArray()) {
-               $paramNode->setAttribute('type','array');
+               $paramNode->setAttribute('type','array');            
             } else {
-               // parse by docblock
+               $paramNode->setAttribute('type', '{unknown}');
             }
             $paramNode->setAttribute('optional', $param->isOptional() ? 'true' : 'false');
             $paramNode->setAttribute('byreference', $param->isPassedByReference() ? 'true' : 'false');
             if ($param->isDefaultValueAvailable()) {
                $this->processValue($paramNode, $param->getDefaultValue());
+            }
+            if ($docBlock !== null) {
+               try {
+                  $dcc = $docBlock->getNumberOfParamTags();
+                  if (($dcc > 0) && ($dcc != count($parameters))) {
+                     // TODO: Error logger -> add Warning
+                     if ($idx > $dcc) {
+                        continue;
+                     }                
+                  }
+                  if ($param->getName() != $docBlock->getParamName($idx)) {
+                     // TODO: Error logger -> add Warning
+                     continue;
+                  }
+                  $paramNode->setAttribute('doctype', $docBlock->getParamType($idx));
+                  $paramNode->setAttribute('description', $docBlock->getParamDescription($idx));
+               } catch (\Exception $e) {
+                  //TODO: Logger -> warning       
+                  //throw $e;           
+               }
             }
          }
       }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -40,9 +40,9 @@ namespace TheSeer\phpDox {
    use \TheSeer\Tools\PHPFilterIterator;
    use \TheSeer\fDOM\fDOMDocument;
 
-   class Processor {
+   class Collector {
 
-      protected $outputDir;
+      protected $xmlDir;
       
       protected $publicOnly = false;
 
@@ -51,15 +51,15 @@ namespace TheSeer\phpDox {
       protected $classes;
 
       /**
-       * Processor constructor
+       * Collector constructor
        * 
-       * @param string 		 $outputDir	Base path to store individual class files in 
+       * @param string 		 $xmlDir	Base path to store individual class files in 
        * @param fDomDocument $nsDom		DOM instance to register namespaces in 
        * @param fDomDocument $iDom		DOM instance to register interfaces in
        * @param fDomDocument $cDom		DOM instance to register classes in
        */
-      public function __construct($outputDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
-         $this->outputDir  = $outputDir;
+      public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+         $this->xmlDir     = $xmlDir;
          $this->namespaces = $nsDom;
          $this->interfaces = $iDom;
          $this->classes    = $cDom;
@@ -70,7 +70,7 @@ namespace TheSeer\phpDox {
       }
 
       /**
-       * Main executer of the processor, looping over the iterator with found files
+       * Main executer of the collector, looping over the iterator with found files
        *
        * @param \Iterator $scanner
        */
@@ -98,7 +98,7 @@ namespace TheSeer\phpDox {
       protected function registerNamespaces($target, $src, array $list) {
          foreach($list as $namespace) {
             $name = $namespace->getAttribute('name');
-            $nsNode = $this->namespaces->query("//dox:namespace[@name='$name']")->item(0);
+            $nsNode = $this->namespaces->query("//phpdox:namespace[@name='$name']")->item(0);
             if (!$nsNode) {
                $nsNode = $this->namespaces->documentElement->appendElementNS('http://phpdox.de/xml#','namespace');
                $nsNode->setAttribute('name', $name);               
@@ -113,7 +113,7 @@ namespace TheSeer\phpDox {
          foreach($list as $srcNode) { 
             if ($srcNode->parentNode->localName=='namespace') {
                $ns = $srcNode->parentNode->getAttribute('name');
-               $ctx = $container->query("//dox:namespace[@name='$ns']")->item(0);
+               $ctx = $container->query("//phpdox:namespace[@name='$ns']")->item(0);
                if (!$ctx) {
                   $ctx = $container->documentElement->appendElementNS('http://phpdox.de/xml#','namespace');
                   $ctx->setAttribute('name', $srcNode->parentNode->getAttribute('name'));
@@ -125,7 +125,7 @@ namespace TheSeer\phpDox {
             foreach($srcNode->attributes as $attr) {
                $workNode->appendChild($container->importNode($attr,true));
             }
-            $workNode->setAttribute('xml', $target);
+            $workNode->setAttribute('xml', substr($target, strlen($this->xmlDir)));
             $workNode->setAttribute('src', $src);           
          }
       }
@@ -136,7 +136,7 @@ namespace TheSeer\phpDox {
             if($part == '.' || $part == '') continue;
             $path[] = $part;
          }
-         $target = $this->outputDir . '/' . join('/',$path).'.xml';
+         $target = $this->xmlDir . '/' . join('/',$path).'.xml';
          $targetDir = dirname($target);
          clearstatcache();
          if (!file_exists($targetDir)) {

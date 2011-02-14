@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,29 +37,12 @@
 
 namespace TheSeer\phpDox {
 
-   /**
-    * Stack Handler for namespace elements
-    *
-    * @author     Arne Blankerts <arne@blankerts.de>
-    * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-    */
-   class namespaceStackHandler extends stackHandler {
-
-      public function process(processContext $context, Array $stack) {
-         $namespace = '';
-         $nsToken = array_shift($stack);
-         foreach($stack as $tok) {
-            $namespace .= $tok[1];
-         }
-         $context->setNamespace($namespace);
-
-         $ctx = $context->getStackNode();
-         $ns = $this->createNode('namespace', $ctx);
-         $ns->setAttribute('name', $context->namespace);
-         $ns->setAttribute('line', $nsToken[2]);
-         $context->addStackNode($ns);
+   class DocBlock extends \DocBlock {
+      
+      public function getSupportedTags() {
+         return $this->supportedTags;
       }
-
+      
    }
-
+   
 }

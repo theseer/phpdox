@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,19 +37,22 @@
 
 namespace TheSeer\phpDox {
 
-   class constStackHandler extends stackHandler {
+   use \TheSeer\fDom\fDomDocument;
 
-      public function process(processContext $context, Array $stack) {
-         //var_dump($stack);
-         //if (count($stack)>3) {
-         //   var_dump($stack);
-         //}
-         $node = $this->createNode('constant', $context->getStackNode());
-         $node->setAttribute('name', $stack[1][1]);
-         $node->setAttribute('value', $stack[2][1]);
-         $node->setAttribute('line', $stack[0][2]);
+   class htmlBuilder extends genericBackend {
+
+      public function build() {
+         $tpl = new fDomDocument();
+         $tpl->load(__DIR__.'/htmlBuilder/class.xsl');
+         $xsl = $this->getXSLTProcessor($tpl);
+         
+         foreach($this->getClasses() as $class) {
+            $html = $xsl->transformToDoc($this->getXMLByClassName($class));
+            $this->saveDomDocument($html, 'classes/'. $this->classNameToFileName($class,'xhtml'));
+         }
+         
       }
-
+      
    }
-
+   
 }
