@@ -43,14 +43,14 @@ namespace TheSeer\phpDox {
    class Builder {
 
       protected $publicOnly;
-      
+
       protected $namespaces;
       protected $interfaces;
       protected $classes;
 
       protected $file;
       protected $dom;
-      
+
       public function __construct($publicOnly = false) {
          $this->publicOnly = $publicOnly;
       }

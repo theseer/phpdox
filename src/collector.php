@@ -43,7 +43,7 @@ namespace TheSeer\phpDox {
    class Collector {
 
       protected $xmlDir;
-      
+
       protected $publicOnly = false;
 
       protected $namespaces;
@@ -52,9 +52,9 @@ namespace TheSeer\phpDox {
 
       /**
        * Collector constructor
-       * 
-       * @param string 		 $xmlDir	Base path to store individual class files in 
-       * @param fDomDocument $nsDom		DOM instance to register namespaces in 
+       *
+       * @param string 		 $xmlDir	Base path to store individual class files in
+       * @param fDomDocument $nsDom		DOM instance to register namespaces in
        * @param fDomDocument $iDom		DOM instance to register interfaces in
        * @param fDomDocument $cDom		DOM instance to register classes in
        */
@@ -64,7 +64,7 @@ namespace TheSeer\phpDox {
          $this->interfaces = $iDom;
          $this->classes    = $cDom;
       }
-      
+
       public function setPublicOnly($switch) {
          $this->publicOnly = $switch;
       }
@@ -101,16 +101,16 @@ namespace TheSeer\phpDox {
             $nsNode = $this->namespaces->query("//phpdox:namespace[@name='$name']")->item(0);
             if (!$nsNode) {
                $nsNode = $this->namespaces->documentElement->appendElementNS('http://phpdox.de/xml#','namespace');
-               $nsNode->setAttribute('name', $name);               
+               $nsNode->setAttribute('name', $name);
             }
             $file = $nsNode->appendElementNS('http://phpdox.de/xml#','file');
             $file->setAttribute('xml', $target);
-            $file->setAttribute('src', $src);           
+            $file->setAttribute('src', $src);
          }
       }
-      
+
       protected function registerInContainer(fDomDocument $container, $nodeName, $target, $src, $list) {
-         foreach($list as $srcNode) { 
+         foreach($list as $srcNode) {
             if ($srcNode->parentNode->localName=='namespace') {
                $ns = $srcNode->parentNode->getAttribute('name');
                $ctx = $container->query("//phpdox:namespace[@name='$ns']")->item(0);
@@ -120,13 +120,13 @@ namespace TheSeer\phpDox {
                }
             } else {
                $ctx = $container->documentElement;
-            }            
+            }
             $workNode = $ctx->appendElementNS('http://phpdox.de/xml#',$nodeName);
             foreach($srcNode->attributes as $attr) {
                $workNode->appendChild($container->importNode($attr,true));
             }
             $workNode->setAttribute('xml', substr($target, strlen($this->xmlDir)));
-            $workNode->setAttribute('src', $src);           
+            $workNode->setAttribute('src', $src);
          }
       }
 

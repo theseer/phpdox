@@ -38,11 +38,11 @@
 namespace TheSeer\phpDox {
 
    class DocBlock extends \DocBlock {
-      
+
       public function getSupportedTags() {
          return $this->supportedTags;
       }
-      
+
    }
-   
+
 }

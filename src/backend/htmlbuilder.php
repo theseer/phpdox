@@ -45,14 +45,14 @@ namespace TheSeer\phpDox {
          $tpl = new fDomDocument();
          $tpl->load(__DIR__.'/htmlBuilder/class.xsl');
          $xsl = $this->getXSLTProcessor($tpl);
-         
+
          foreach($this->getClasses() as $class) {
             $html = $xsl->transformToDoc($this->getXMLByClassName($class));
             $this->saveDomDocument($html, 'classes/'. $this->classNameToFileName($class,'xhtml'));
          }
-         
+
       }
-      
+
    }
-   
+
 }

@@ -33,12 +33,12 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- * 
+ *
  * Exit codes:
  *   0 - No error
  *   1 - Execution Error
  *   3 - Parameter Error
- * 
+ *
  */
 
 namespace TheSeer\phpDox {
@@ -54,21 +54,21 @@ namespace TheSeer\phpDox {
        * @var string
        */
       const VERSION = "%version%";
-      
+
       /**
        * Base path xml files are stored in
-       * 
+       *
        * @var string
        */
       protected $xmlDir;
-      
+
       /**
        * Base path documentation files are stored in
-       * 
+       *
        * @var string
        */
       protected $docDir;
-      
+
       /**
        * Array of Container DOM Documents
        *
@@ -95,20 +95,20 @@ namespace TheSeer\phpDox {
                $this->showVersion();
                exit(0);
             }
-                        
+
             if ($require = $input->getOption('require')->value) {
                $this->processRequire($require);
             }
 
             $this->xmlDir = $input->getOption('xml')->value;
             $this->docDir = $input->getOption('docs')->value;
-            
+
             if (!$input->getOption('generate')->value) {
                $collector = new Collector(
-                  $this->xmlDir,
-                  $this->getContainerDocument('namespaces'),
-                  $this->getContainerDocument('interfaces'),
-                  $this->getContainerDocument('classes')
+               $this->xmlDir,
+               $this->getContainerDocument('namespaces'),
+               $this->getContainerDocument('interfaces'),
+               $this->getContainerDocument('classes')
                );
                if ($input->getOption('public')->value) {
                   $collector->setPublicOnly(true);
@@ -118,37 +118,37 @@ namespace TheSeer\phpDox {
             }
             if (!$input->getOption('collect')->value) {
                $generator = new Generator(
-                  $this->xmlDir,
-                  $this->docDir,
-                  $this->getContainerDocument('namespaces'),
-                  $this->getContainerDocument('interfaces'),
-                  $this->getContainerDocument('classes')
+               $this->xmlDir,
+               $this->docDir,
+               $this->getContainerDocument('namespaces'),
+               $this->getContainerDocument('interfaces'),
+               $this->getContainerDocument('classes')
                );
                $generator->setPublicOnly($input->getOption('public')->value);
-               $generator->run($input->getOption('backend')->value);               
-            }            
+               $generator->run($input->getOption('backend')->value);
+            }
          } catch (\ezcConsoleException $e) {
-            $this->showVersion();            
+            $this->showVersion();
             fwrite(STDERR, $e->getMessage()."\n\n");
             $this->showUsage();
             exit(3);
          } catch (CLIException $e) {
-            $this->showVersion();            
+            $this->showVersion();
             fwrite(STDERR, "Error while processing request:\n");
             fwrite(STDERR, $e->getMessage()."\n");
-            exit(3);            
+            exit(3);
          } catch (\Exception $e) {
-            $this->showVersion();            
+            $this->showVersion();
             fwrite(STDERR, "Error while processing request:\n");
             fwrite(STDERR, ' - ' . $e."\n");
             exit(1);
          }
       }
-      
+
       /**
-       * Helper to load requested require files 
+       * Helper to load requested require files
        *
-       * @param Array $require	Array of files to require
+       * @param Array $require Array of files to require
        */
       protected function processRequire(Array $require) {
          foreach($require as $file) {
@@ -162,7 +162,7 @@ namespace TheSeer\phpDox {
       /**
        * Helper to get instance of DirectoryScanner with cli options applied
        *
-       * @param ezcConsoleInput $input  CLI Options pased to app
+       * @param ezcConsoleInput $input CLI Options pased to app
        *
        * @return Theseer\Tools\IncludeExcludeFilterIterator
        */
@@ -188,12 +188,12 @@ namespace TheSeer\phpDox {
          $args = $input->getArguments();
          return $scanner($args[0]);
       }
-      
+
       /**
        * Helper to load or create Container DOM Documents for namespaces, classes, interfaces, ...
-       * 
-       * @param string $name name of the file (identical to root node) 
-       * 
+       *
+       * @param string $name name of the file (identical to root node)
+       *
        * @return \TheSeer\fDom\fDomDocument
        */
       protected function getContainerDocument($name) {
@@ -201,21 +201,21 @@ namespace TheSeer\phpDox {
             return $this->container[$name];
          }
          $fname = $this->xmlDir . '/' . $name .'.xml';
-         $dom = new fDOMDocument('1.0', 'UTF-8');         
+         $dom = new fDOMDocument('1.0', 'UTF-8');
          if (file_exists($fname)) {
-            $dom->load($fname);                     
+            $dom->load($fname);
          } else {
             $rootNode = $dom->createElementNS('http://phpdox.de/xml#', $name);
-            $dom->appendChild($rootNode);            
+            $dom->appendChild($rootNode);
          }
          $dom->registerNamespace('phpdox', 'http://phpdox.de/xml#');
          $dom->formatOutput = true;
-         $this->container[$fname] = $dom; 
+         $this->container[$fname] = $dom;
          return $dom;
       }
-      
+
       /**
-       * Helper to save all known and (updated) container files. 
+       * Helper to save all known and (updated) container files.
        */
       protected function saveContainer() {
          foreach($this->container as $fname => $dom) {
@@ -229,7 +229,7 @@ namespace TheSeer\phpDox {
       protected function showVersion() {
          printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
       }
-      
+
       protected function registerOptions(\ezcConsoleInput $input) {
          $versionOption = $input->registerOption( new \ezcConsoleOption( 'v', 'version' ) );
          $versionOption->shorthelp    = 'Prints the version and exits';
@@ -242,58 +242,58 @@ namespace TheSeer\phpDox {
          $input->registerOption( new \ezcConsoleOption(
             'i', 'include', \ezcConsoleInput::TYPE_STRING, '*.php', true,
             'File pattern to include (default: *.php)'
-         ));
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $input->registerOption( new \ezcConsoleOption(
             'e', 'exclude', \ezcConsoleInput::TYPE_STRING, null, true,
             'File pattern to exclude'
-         ));
+            ));
 
-         $input->registerOption( new \ezcConsoleOption(
+            $input->registerOption( new \ezcConsoleOption(
             'x', 'xml', \ezcConsoleInput::TYPE_STRING, './xml', false,
             'Output directory for collected data (default: ./xml)'
-         ));
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $input->registerOption( new \ezcConsoleOption(
             'd', 'docs', \ezcConsoleInput::TYPE_STRING, './docs', false,
             'Output directory for generated documentation (default: ./docs)'
-         ));
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $input->registerOption( new \ezcConsoleOption(
             'b', 'backend', \ezcConsoleInput::TYPE_STRING, 'htmlBuilder', false,
             'Transformation/Processing backend to use (default: htmlBuilder)'
-         ));         
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $input->registerOption( new \ezcConsoleOption(
             'p', 'public', \ezcConsoleInput::TYPE_NONE, null, false,
             'Only show public member and methods'
-         ));
-         
-         $gen = $input->registerOption( new \ezcConsoleOption(
+            ));
+
+            $gen = $input->registerOption( new \ezcConsoleOption(
             'g', 'generate', \ezcConsoleInput::TYPE_NONE, null, false,
             'No collecting, generate documentation only'
-         ));
-         $col = $input->registerOption( new \ezcConsoleOption(
+            ));
+            $col = $input->registerOption( new \ezcConsoleOption(
             'c', 'collect', \ezcConsoleInput::TYPE_NONE, null, false,
             'Only collect data, do not generate docs'
-         )); 
-         $gen->addExclusion(new \ezcConsoleOptionRule($col));
-         $col->addExclusion(new \ezcConsoleOptionRule($gen));
-                 
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $gen->addExclusion(new \ezcConsoleOptionRule($col));
+            $col->addExclusion(new \ezcConsoleOptionRule($gen));
+
+            $input->registerOption( new \ezcConsoleOption(
             's', 'silent', \ezcConsoleInput::TYPE_NONE, null, false,
             'Do not output anything to the console'
-         ));
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $input->registerOption( new \ezcConsoleOption(
             'l', 'log', \ezcConsoleInput::TYPE_STRING, null, false,
             'Generate XML style logfile'
-         ));
-         $input->registerOption( new \ezcConsoleOption(
+            ));
+            $input->registerOption( new \ezcConsoleOption(
             'r', 'require', \ezcConsoleInput::TYPE_STRING, null, true,
             'Custom PHP Source file to load'
-         ));
-         $input->argumentDefinition = new \ezcConsoleArguments();
-         $input->argumentDefinition[0] = new \ezcConsoleArgument( "directory" );
-         $input->argumentDefinition[0]->shorthelp = "The directory to process.";
-         
+            ));
+            $input->argumentDefinition = new \ezcConsoleArguments();
+            $input->argumentDefinition[0] = new \ezcConsoleArgument( "directory" );
+            $input->argumentDefinition[0]->shorthelp = "The directory to process.";
+
       }
-      
+
       /**
        * Helper to output usage information.
        */
@@ -307,27 +307,27 @@ Usage: phpdox [switches] <directory>
   -b, --backend    Transformation/Processing backend to use (default: htmlBuilder)
 
   -p, --public 	   Only process public member and methods
-  
+
   -c, --collect    Only collect data, do not generate docs
   -g, --generate   No collecting, generate documentation only
 
-  -l, --log        Generate XML style logfile (not implemented yet) 
+  -l, --log        Generate XML style logfile (not implemented yet)
   -s, --silent	   Do not output anything to the console (not implemented yet)
-  
+
   -i, --include    File pattern to include (default: *.php)
   -e, --exclude    File pattern to exclude
-  
+
   -r, --require    Custom PHP Source file to load
-  
+
   -h, --help       Prints this usage information
   -v, --version    Prints the version and exits
-  
-  
+
+
 EOF;
       }
    }
-   
-   
+
+
    class CLIException extends \Exception {
       const RequireFailed = 1;
    }

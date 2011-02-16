@@ -43,7 +43,7 @@ namespace TheSeer\phpDox {
    class Generator {
       protected $xmlDir;
       protected $docDir;
-      
+
       protected $publicOnly = false;
 
       protected $namespaces;
@@ -52,26 +52,26 @@ namespace TheSeer\phpDox {
 
       /**
        * Generator constructor
-       * 
-       * @param string 		 $xmlDir	Base path where class xml files are found
-       * @param string       $docDir    Base directory to store documentation files in 
-       * @param fDomDocument $nsDom		DOM instance to register namespaces in 
-       * @param fDomDocument $iDom		DOM instance to register interfaces in
-       * @param fDomDocument $cDom		DOM instance to register classes in
+       *
+       * @param string $xmlDir      Base path where class xml files are found
+       * @param string $docDir      Base directory to store documentation files in
+       * @param fDomDocument $nsDom DOM instance to register namespaces in
+       * @param fDomDocument $iDom  DOM instance to register interfaces in
+       * @param fDomDocument $cDom  DOM instance to register classes in
        */
       public function __construct($xmlDir, $docDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
          $this->xmlDir  = $xmlDir;
          $this->docDir  = $docDir;
-         
+
          $this->namespaces = $nsDom;
          $this->interfaces = $iDom;
          $this->classes    = $cDom;
       }
-      
+
       public function setPublicOnly($switch) {
          $this->publicOnly = $switch;
       }
-      
+
       public function isPublicOnly() {
          return $this->publicOnly;
       }
@@ -79,48 +79,48 @@ namespace TheSeer\phpDox {
       public function getNamespacesAsDOM() {
          return $this->namespaces;
       }
-      
+
       public function getInterfacesAsDOM() {
          return $this->interfaces;
       }
-      
+
       public function getClassesAsDOM() {
          return $this->classes;
       }
-      
+
       public function getXMLDirectory() {
          return $this->xmlDir;
       }
-      
+
       public function getDocumentationDirectory() {
          return $this->docDir;
       }
-      
+
       /**
        * Main executer of the generator
        *
-       * @param string $class  Classname of the backend implementation to use
+       * @param string $class Classname of the backend implementation to use
        */
       public function run($class) {
          if (strpos('\\', $class)===false) {
             $class = 'TheSeer\\phpDox\\' . $class;
          }
-         
+
          if (!class_exists($class, true)) {
-            throw new GeneratorException("Backend class '$class' is not defined", GeneratorException::ClassNotDefined); 
+            throw new GeneratorException("Backend class '$class' is not defined", GeneratorException::ClassNotDefined);
          }
          $backend = new $class();
          if (!$backend instanceof genericBackend) {
             throw new GeneratorException("'$class' must implement the GeneratorBackendInterface to be used as backend", GeneratorException::UnsupportedBackend);
-         }               
+         }
          $backend->run($this);
       }
-      
+
    }
-   
+
    class GeneratorException extends \Exception {
       const ClassNotDefined    = 1;
       const UnsupportedBackend = 2;
       const UnexepctedType     = 3;
-   } 
+   }
 }
