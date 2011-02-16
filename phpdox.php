@@ -43,9 +43,9 @@
  */
 
 require __DIR__ . '/../DirectoryScanner/autoload.php';
-require __DIR__ . '/../fDomDocument/autoload.php';
+require __DIR__ . '/../fDOMDocument/autoload.php';
 require __DIR__ . '/../fXSL/autoload.php';
-require __DIR__ . '/../ezc/current/Base/src/base.php';
+require 'ezc/Base/base.php';
 require __DIR__ . '/../staticReflection/src/main/php/pdepend/reflection/Autoloader.php';
 require __DIR__ . '/../docblock/DocBlock.php';
 require __DIR__ . '/autoload.php';
