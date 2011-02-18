@@ -10,7 +10,7 @@
    <xsl:template match="/">
       <html>
          <head>
-            <link type="text/css" href="" rel="stylesheet" />
+            <link type="text/css" href="../style/media.css" rel="stylesheet" />
          </head>
          <body>
             <xsl:apply-templates select="file:file/file:namespace" />
@@ -21,42 +21,26 @@
 
    <xsl:template match="file:namespace">
       <div class="classNamespace">
-         <p class="classNamespacename"><xsl:value-of select="./@name"/></p>
+         <p class="classNamespaceName"><xsl:value-of select="./@name"/></p>
       </div>
    </xsl:template>
 
    <xsl:template match="file:class">
-      <h2 class="className">
+      <h2 class="className" id="className">
          <xsl:value-of select="./@name" />
       </h2>
       <xsl:apply-templates select="file:extends" />
       <xsl:apply-templates select="file:docblock" />
-      <div class="classConstants">
-         <h3>Constants</h3>
-         <ul class="classConstantList">
-            <xsl:apply-templates select="file:constant" />
-         </ul>
-      </div>      
-      <div class="classMembers">
-         <h3>Members</h3>
-         <ul class="classMemberList">
-            <xsl:apply-templates select="file:member" />
-         </ul>
-      </div>
-      <div class="classMethods">
-         <h3>Methods</h3>
-         <ul class="classMethodList">
-            <xsl:apply-templates select="file:constructor" />
-            <xsl:apply-templates select="file:method" />
-         </ul>
-      </div>
+      <xsl:call-template name="classConstants" /> 
+      <xsl:call-template name="classMembers" /> 
+      <xsl:call-template name="classMethods" /> 
    </xsl:template>
 
    <xsl:template match="file:extends">
       <div class="inheritance">
-         extending
+         <p class="prefixes">extending </p>
          <xsl:value-of select="./@class" />
-      </div>   
+      </div>
    </xsl:template>
    
    <xsl:template match="file:constant">
@@ -80,7 +64,7 @@
             </div>
          </xsl:if>
          <xsl:if test="file:description">
-            <xsl:call-template name="docBlockDescriptons"></xsl:call-template>
+            <xsl:call-template name="docBlockDescriptons" />
          </xsl:if>
       </div>
    </xsl:template>
@@ -112,7 +96,7 @@
    </xsl:template>
 
    <xsl:template match="file:method">
-      <li class="classMethod">
+      <li class="classMethodItem">
          <p class="prefixes">
             <xsl:call-template name="prefixVisibility" />
             <xsl:call-template name="prefixFinal" />
@@ -140,7 +124,41 @@
    </xsl:template>
 
 
+   
+   <xsl:template name="classConstants">
+      <xsl:if test="file:constant">
+         <div class="classConstants">
+            <h3 id="constants">Constants</h3>
+            <ul class="classConstantList">
+               <xsl:apply-templates select="file:constant" />
+            </ul>
+         </div>
+      </xsl:if>
+   </xsl:template>
 
+   <xsl:template name="classMembers">
+      <xsl:if test="file:member">
+         <div class="classMembers">
+            <h3 id="members">Members</h3>
+            <ul class="classMemberList">
+               <xsl:apply-templates select="file:member" />
+            </ul>
+         </div>
+      </xsl:if>
+   </xsl:template>
+
+   <xsl:template name="classMethods">
+      <xsl:if test="file:method or file:constructor">
+         <div class="classMethods">
+            <h3 id="methods">Methods</h3>
+            <ul class="classMethodList">
+               <xsl:apply-templates select="file:constructor" />
+               <xsl:apply-templates select="file:method" />
+            </ul>
+         </div>
+      </xsl:if>
+   </xsl:template>
+   
    <xsl:template name="docBlockDescriptons">
       <div class="description">
          <xsl:if test="file:description/@compact">
@@ -165,13 +183,18 @@
    </xsl:template>
 
    <xsl:template name="typeHint">
-      <xsl:if test="not(./@type='{unknown}')" >
-<!--     
-    @type = 'array'
-    @type = 'object' => @class
-
--->
-         <xsl:value-of select="./@class" />
+      <xsl:if test="./@type='object'" >
+         <p class="typeHint">
+            <xsl:value-of select="./@class" />
+         </p>
+         <xsl:text> </xsl:text>
+      </xsl:if>
+      <xsl:if test="./@type='array'">
+         <p class="typeHint">array</p>
+         <xsl:text> </xsl:text>
+      </xsl:if>
+      <xsl:if test="./@type='{unknown}'">
+         <p class="typeHint">mixed</p>
          <xsl:text> </xsl:text>
       </xsl:if>
    </xsl:template>
