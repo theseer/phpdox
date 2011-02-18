@@ -2,4 +2,5 @@
 .project
 .settings
 /output
-
+docs/
+xml/
