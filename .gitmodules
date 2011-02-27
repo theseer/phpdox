@@ -1,0 +1,6 @@
+[submodule "lib/docblock"]
+	path = lib/docblock
+	url = git://github.com/spriebsch/docblock.git
+[submodule "lib/staticReflection"]
+	path = lib/staticReflection
+	url = git://github.com/manuelpichler/staticReflection.git
