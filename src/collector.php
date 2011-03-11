@@ -34,7 +34,6 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
 namespace TheSeer\phpDox {
 
    use \TheSeer\Tools\PHPFilterIterator;
@@ -66,33 +65,49 @@ namespace TheSeer\phpDox {
       }
 
       public function setPublicOnly($switch) {
-         $this->publicOnly = $switch;
+         $this->publicOnly = $switch === true;
       }
 
       /**
        * Main executer of the collector, looping over the iterator with found files
        *
        * @param \Iterator $scanner
+       * @param Logger    $logger
        */
-      public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner) {
+      public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner, $logger) {
 
          $worker  = new PHPFilterIterator($scanner);
          $builder = new Builder($this->publicOnly);
 
+         if (!file_exists($this->xmlDir)) {
+            mkdir($this->xmlDir);
+         }
+
          foreach($worker as $file) {
             $target = $this->setupTarget($file);
             if (file_exists($target) && filemtime($target)==$file->getMTime()) {
+               $logger->progress('cached');
                continue;
             }
-            $xml = $builder->processFile($file);
-            $xml->formatOutput= true;
-            $xml->save($target);
-            touch($target, $file->getMTime(), $file->getATime());
+            try {
+               $xml = $builder->processFile($file);
+               $xml->formatOutput= true;
+               $xml->save($target);
+               touch($target, $file->getMTime(), $file->getATime());
 
-            $this->registerNamespaces($target, $file->getPathName(), $builder->getNamespaces());
-            $this->registerInContainer($this->interfaces, 'interface', $target, $file->getPathName(), $builder->getInterfaces());
-            $this->registerInContainer($this->classes, 'class', $target, $file->getPathName(), $builder->getClasses());
+               $src = realpath($file->getPathName());
+
+               $this->registerNamespaces($target, $src, $builder->getNamespaces());
+               $this->registerInContainer($this->interfaces, 'interface', $target, $src, $builder->getInterfaces());
+               $this->registerInContainer($this->classes, 'class', $target, $src, $builder->getClasses());
+               $logger->progress('processed');
+            } catch (\Exception $e) {
+               $logger->progress('failed');
+               // TODO: Report Exception ;)
+            }
          }
+
+         $logger->buildSummary();
       }
 
       protected function registerNamespaces($target, $src, array $list) {
@@ -103,13 +118,19 @@ namespace TheSeer\phpDox {
                $nsNode = $this->namespaces->documentElement->appendElementNS('http://phpdox.de/xml#','namespace');
                $nsNode->setAttribute('name', $name);
             }
-            $file = $nsNode->appendElementNS('http://phpdox.de/xml#','file');
-            $file->setAttribute('xml', $target);
-            $file->setAttribute('src', $src);
+            $fNode = $this->namespaces->query("//phpdox:namespace[@name='$name']/phpdox:file[@src='$src']")->item(0);
+            if (!$fNode) {
+               $file = $nsNode->appendElementNS('http://phpdox.de/xml#','file');
+               $file->setAttribute('xml', $target);
+               $file->setAttribute('src', $src);
+            }
          }
       }
 
       protected function registerInContainer(fDomDocument $container, $nodeName, $target, $src, $list) {
+         foreach($container->query("//phpdox:*[@src='$src']") as $old) {
+            $old->parentNode->removeChild($old);
+         }
          foreach($list as $srcNode) {
             if ($srcNode->parentNode->localName=='namespace') {
                $ns = $srcNode->parentNode->getAttribute('name');
@@ -125,7 +146,7 @@ namespace TheSeer\phpDox {
             foreach($srcNode->attributes as $attr) {
                $workNode->appendChild($container->importNode($attr,true));
             }
-            $workNode->setAttribute('xml', substr($target, strlen($this->xmlDir)));
+            $workNode->setAttribute('xml', substr($target, strlen($this->xmlDir)+1));
             $workNode->setAttribute('src', $src);
          }
       }
@@ -144,6 +165,5 @@ namespace TheSeer\phpDox {
          }
          return $target;
       }
-
    }
 }

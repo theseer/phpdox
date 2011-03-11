@@ -121,7 +121,7 @@ namespace TheSeer\phpDox {
             }
 
             $desc = $docNode->appendElementNS('http://phpdox.de/xml#','description');
-            $desc->setAttribute('compact', $doc->getShortDescription());
+            $desc->setAttribute('short', $doc->getShortDescription());
             if ($long = $doc->getLongDescription()) {
                $desc->appendChild($desc->ownerDocument->createTextNode($long));
             }
@@ -142,7 +142,7 @@ namespace TheSeer\phpDox {
          } catch (\Exception $e) {
             // TODO: Error logger -> addWarning
             //var_dump($comment);
-            throw $e;
+            //throw $e;
          }
       }
 
@@ -247,7 +247,8 @@ namespace TheSeer\phpDox {
 
       protected function processValue(fDOMElement $ctx, $src) {
          $value =  is_null($src) ? 'null' : var_export($src, true);
-         $ctx->appendElementNS('http://phpdox.de/xml#', 'default', $value);
+         $default = $ctx->appendElementNS('http://phpdox.de/xml#', 'default');
+         $default->appendChild($ctx->ownerDocument->createTextnode($value));
       }
    }
 
