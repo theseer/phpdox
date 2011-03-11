@@ -1,6 +1,7 @@
 .buildpath
 .project
 .settings
-/output
+build
 docs/
 xml/
+phpunit.xml
