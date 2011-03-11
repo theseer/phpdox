@@ -50,7 +50,7 @@ require  'ezc/Base/base.php';
 require __DIR__ . '/lib/staticReflection/src/main/php/pdepend/reflection/Autoloader.php';
 require __DIR__ . '/lib/docblock/DocBlock.php';
 
-require __DIR__ . '/autoload.php';
+require __DIR__ . '/src/autoload.php';
 
 spl_autoload_register( array('\ezcBase','autoload'));
 spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
