@@ -35,12 +35,28 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\DocBlock {
 
-   class DocBlock extends \DocBlock {
+   class GenericContext {
 
-      public function getSupportedTags() {
-         return $this->supportedTags;
+      protected $name;
+      protected $payload;
+
+      public function __construct($name) {
+         $this->name = $name;
+      }
+
+      public function setPayload($payload) {
+         $this->payload = $payload;
+      }
+
+      public function getObject(array $buffer) {
+         $obj = new GenericElement($this->name);
+         $obj->setVaue($this->payload);
+         if (count($buffer)) {
+            $obj->setBody(join("\n", $buffer));
+         }
+         return $obj;
       }
 
    }
