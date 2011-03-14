@@ -169,7 +169,7 @@ namespace TheSeer\phpDox {
          }
          $filename = $f->getAttribute('xml');
          $d = new fDomDocument();
-         $d->load($this->generator->getXMLDirectory() . $filename);
+         $d->load($this->generator->getXMLDirectory() . '/' . $filename);
          return $d;
       }
 
