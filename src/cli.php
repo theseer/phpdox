@@ -71,6 +71,13 @@ namespace TheSeer\phpDox {
             $input = new \ezcConsoleInput();
             $this->registerOptions($input);
             $input->process();
+            
+            //Display Help
+            if($input->getOption('help')->value) {
+                echo $input->getHelpText("PHPDox is an alternative to PHPDocumentor. It aim to generate API Documentation of PHP project, based on standard DocBlocks.");
+                exit(0);
+            }
+            
             $this->outputDir = $input->getOption('output')->value;
             $processor = new Processor(
                $this->outputDir,
