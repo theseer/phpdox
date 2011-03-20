@@ -37,48 +37,33 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class DocBlock {
+   class ReturnElement extends GenericElement {
 
-      protected $elements = array();
+      protected $description;
+      protected $type;
 
-      public function appendElement(GenericElement $element) {
-         $name = $element->getName();
-         if (isset($this->elements[$name])) {
-            if (!is_array($this->elements[$name])) {
-               $this->elements[$name] = array($this->elements[$name]);
-            }
-            $this->elements[$name][] = $element;
-            return;
+      public function setType($type) {
+         $this->type = $type;
+      }
+
+      public function setDescription($desc) {
+         $this->description = $desc;
+      }
+
+      public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
+         $node = $ctx->createElementNS('http://phpdox.de/xml#', $this->name);
+         $node->setAttribute('type', $this->type);
+
+         if ($this->description != '') {
+            $node->setAttribute('description', $this->description);
          }
-         $this->elements[$name] = $element;
-      }
-
-      public function hasElementByName($name) {
-         return isset($this->elements[$name]);
-      }
-
-      public function getEementByName($name) {
-         if (!isset($this->elements[$name])) {
-            throw new DocBlockException("No element with name '$name'", DocBlockException::NotFound);
-         }
-         return $this->elements[$name];
-      }
-
-      public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
-         $node = $doc->createElementNS('http://phpdox.de/xml#', 'docblock');
-         // add lines and such?
-         foreach($this->elements as $element) {
-            if (is_array($element)) {
-               foreach($element as $el) {
-                  $node->appendChild($el->asDom($doc));
-               }
-               continue;
-            }
-            $node->appendChild($element->asDom($doc));
+         if ($this->body != '') {
+            $node->appendChild($ctx->createTextnode($this->body));
          }
          return $node;
       }
 
    }
 
+   class VarElement extends ReturnElement {}
 }

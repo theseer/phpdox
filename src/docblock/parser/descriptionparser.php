@@ -37,24 +37,24 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class GenericContext {
+   class DescriptionParser extends GenericParser {
 
       protected $name;
-      protected $payload;
 
       public function __construct($name) {
          $this->name = $name;
       }
 
-      public function setPayload($payload) {
-         $this->payload = $payload;
-      }
-
       public function getObject(array $buffer) {
-         $obj = new GenericElement($this->name);
-         $obj->setVaue($this->payload);
+         $obj = new DescriptionElement($this->name);
          if (count($buffer)) {
-            $obj->setBody(join("\n", $buffer));
+            $compact = '';
+            do {
+               $line = array_shift($buffer);
+               $compact .= ' ' . $line;
+            } while ($line != '' && substr($line,-1)!='.');
+            $obj->setCompact(trim($compact));
+            $obj->setBody(trim(join("\n", $buffer)));
          }
          return $obj;
       }

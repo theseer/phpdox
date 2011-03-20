@@ -37,48 +37,39 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class DocBlock {
+   class GenericElement {
 
-      protected $elements = array();
+      protected $name;
+      protected $value;
+      protected $body;
 
-      public function appendElement(GenericElement $element) {
-         $name = $element->getName();
-         if (isset($this->elements[$name])) {
-            if (!is_array($this->elements[$name])) {
-               $this->elements[$name] = array($this->elements[$name]);
-            }
-            $this->elements[$name][] = $element;
-            return;
+      public function __construct($name) {
+         $this->name = $name;
+      }
+
+      public function getName() {
+         return $this->name;
+      }
+
+      public function setVaue($value) {
+         $this->value = $value;
+      }
+
+      public function setBody($body) {
+         $this->body = $body;
+      }
+
+      public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
+         $node = $ctx->createElementNS('http://phpdox.de/xml#', 'annotation');
+         $node->setAttribute('name', $this->name);
+         if ($this->value !== '') {
+            $node->setAttribute('value', $this->value);
          }
-         $this->elements[$name] = $element;
-      }
-
-      public function hasElementByName($name) {
-         return isset($this->elements[$name]);
-      }
-
-      public function getEementByName($name) {
-         if (!isset($this->elements[$name])) {
-            throw new DocBlockException("No element with name '$name'", DocBlockException::NotFound);
-         }
-         return $this->elements[$name];
-      }
-
-      public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
-         $node = $doc->createElementNS('http://phpdox.de/xml#', 'docblock');
-         // add lines and such?
-         foreach($this->elements as $element) {
-            if (is_array($element)) {
-               foreach($element as $el) {
-                  $node->appendChild($el->asDom($doc));
-               }
-               continue;
-            }
-            $node->appendChild($element->asDom($doc));
+         if ($this->body !== '') {
+            $node->appendChild($ctx->createTextnode($this->body));
          }
          return $node;
       }
 
    }
-
 }

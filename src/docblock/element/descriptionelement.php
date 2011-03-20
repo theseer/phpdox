@@ -37,36 +37,26 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class GenericElement {
+   class DescriptionElement extends GenericElement {
 
-      protected $name;
-      protected $value;
-      protected $body;
+      protected $compact;
 
-      public function __construct($name) {
-         $this->name = $name;
+      public function setCompact($text) {
+         $this->compact = $text;
       }
 
-      public function getName() {
-         return $this->name;
-      }
-
-      public function setVaue($value) {
-         $this->value = $value;
-      }
-
-      public function setBody($body) {
-         $this->body = $body;
+      public function setDescription($desc) {
+         $this->description = $desc;
       }
 
       public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-         $node = $ctx->createElementNS('http://phpdox.de/xml#', 'annotation');
-         $node->setAttribute('name', $this->name);
-         if ($this->value !== '') {
-            $node->setAttribute('value', $this->value);
+         if ($this->compact == '') {
+            return $ctx->createTextnode('');
          }
-         if ($this->body !== '') {
-            $node->appendElement($ctx->createTextnode($this->body));
+         $node = $ctx->createElementNS('http://phpdox.de/xml#', 'description');
+         $node->setAttribute('compact', $this->compact);
+         if ($this->body != '') {
+            $node->appendChild($ctx->createTextnode($this->body));
          }
          return $node;
       }

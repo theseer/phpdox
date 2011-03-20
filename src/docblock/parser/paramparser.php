@@ -37,59 +37,52 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class Parser {
+   class ParamParser extends GenericParser {
 
-      protected $map;
+      protected $name;
+      protected $payload;
 
-      protected $context;
-
-      public function __construct(array $map = array()) {
-         $this->map = $map;
+      public function __construct($name) {
+         $this->name = $name;
       }
 
-      public function parse($block) {
-         $docBlock = new DocBlock();
-         $lines = $this->prepare($block);
-         $this->startContext('description');
-         $buffer = array();
-         foreach($lines as $line) {
-            if ($line == '') continue;
+      public function setPayload($payload) {
+         $this->payload = $payload;
+      }
 
-            if ($line[0]=='@') {
-               $docBlock->appendElement(
-                  $this->context->getObject($buffer)
-               );
-               $buffer = array();
-               list($name, $payload) = explode(' ', ltrim($line,'@'), 2);
-               $this->startContext($name, $payload);
-               continue;
+      public function getObject(array $buffer) {
+         $obj = new ParamElement($this->name);
+
+         $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
+         switch(count($param)) {
+            case 3: {
+               $obj->setDescription($param[2]);
+               // no break!
             }
-            $buffer[] = $line;
+            case 2: {
+               if ($param[0][0]=='$') {
+                  $obj->setVariable($param[0]);
+                  $obj->setType($param[1]);
+               } else {
+                  $obj->setType($param[0]);
+                  $obj->setVariable($param[1]);
+               }
+               break;
+            }
+            case 1: {
+               if ($param[0][0]=='$') {
+                  $obj->setVariable($param[0]);
+               } else {
+                  $obj->setType($param[0]);
+               }
+               break;
+            }
          }
-         $docBlock->appendElement(
-            $this->context->getObject($buffer)
-         );
-         return $docBlock;
-      }
 
-      protected function prepare($block) {
-         $block = str_replace(array("\r\n","\r"), "\n", $block);
-         $raw = array();
-         foreach(explode("\n", $block) as $line) {
-            $raw[] = trim($line," *\n\t");
+         if (count($buffer)) {
+            $obj->setBody(join("\n", $buffer));
          }
-         return $raw;
-      }
-
-      protected function startContext($name, $payload = NULL) {
-         if (isset($this->map[$name])) {
-            $this->context = new $this->map[$name]($name);
-         } else {
-            $this->context = new GenericContext($name);
-         }
-         if ($payload !== NULL) {
-            $this->context->setPayload($payload);
-         }
+         return $obj;
       }
 
    }
