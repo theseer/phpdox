@@ -158,7 +158,15 @@ namespace TheSeer\phpDox {
       protected function cleanup($srcDir) {
          $worker = new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator($this->xmlDir), \RecursiveIteratorIterator::CHILD_FIRST );
          $len = strlen($this->xmlDir);
-         $srcPath = dirname(realpath($srcDir));
+         $srcPath = realpath($srcDir);
+
+         if (strpos($srcDir, $srcPath) === 0) {
+             $srcPath = '/';
+         }
+         else {
+             $srcPath = dirname($srcPath) . '/';
+         }
+
          $containers = array(
             $this->getContainerDocument('namespaces'),
             $this->getContainerDocument('classes'),
@@ -177,7 +185,7 @@ namespace TheSeer\phpDox {
                continue;
             }
             if ($file->isFile()) {
-               $srcFile = $srcPath . '/' . substr($fname,$len+1,-4);
+               $srcFile = $srcPath . substr($fname,$len+1,-4);
                if (!file_exists($srcFile)) {
                   unlink($fname);
                   foreach($containers as $dom) {
@@ -187,7 +195,7 @@ namespace TheSeer\phpDox {
                   }
                }
             } elseif ($file->isDir()) {
-               $srcDir = $srcPath . '/' . substr($file->getPathname(),$len+1);
+               $srcDir = $srcPath . substr($file->getPathname(),$len+1);
                if (!file_exists($srcDir)) {
                   rmdir($fname);
                }
