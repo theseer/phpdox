@@ -6,25 +6,37 @@ phpdox
 
 Requirements
 ------------
-In order to use phpdox, you'll need the ezcConsoleTools from components.ez.no:
-sudo pear channel-discover components.ez.no
-sudo pear install ezc/ConsoleTools 
 
-You also need to make sure you're using PHP 5.3+.
+You need to make sure you're using PHP 5.3+.
+
+Also, you'll need to install the following pear dependencies:
+    /var/www $ sudo pear channel-discover pear.netpirates.net
+    /var/www $ sudo pear install theseer/DirectoryScanner
+    /var/www $ sudo pear install theseer/fDOMDocument
+    /var/www $ sudo pear install theseer/fXSL
+
+Finally, you'll need the ezcConsoleTools from components.ez.no:
+    /var/www $ sudo pear channel-discover components.ez.no
+    /var/www $ sudo pear install ezc/ConsoleTools 
+
 
 Installation
 ------------
+
+Make sure you've installed all the requirements.
+
 Get the source code from GIT:
     ~ $ cd /var/www/
     /var/www/ $ git clone --recursive git@github.com:Username/phpdox.git
 
-_Note: If you've forgot the --recursive argument, you'll not have the submodule in lib/. So you might want to use:_
+_Note: If you've forgot the --recursive argument, you'll not have the staticReflection submodule in lib/. So you might want to use:_
     /var/www/ $ git submodule init
     /var/www/ $ git submodule update
 
 
 Usage Examples
 --------------
+
 You can run phpdox like this:
     /var/www/ $ phpdox/phpdox.php
 
@@ -40,12 +52,16 @@ Make sure that the ezc/ folder is located in one of the include_path of the erro
 
 
 * If you run phpdox.php and get the following error:
-    PHP Fatal error:  Uncaught exception 'LogicException' with message 'Passed array does not specify an existing static method (class '\ezcBase' not found)' in /var/www/phpdox/phpdox.php:65
+    PHP Warning:  require(TheSeer/DirectoryScanner/autoload.php): failed to open stream: No such file or directory in /var/www/phpdox/phpdox.php on line 44
+    
+Make sure you've installed the pear dependencies mentionned in the requirement section.
 
-Make sure you're using PHP 5.3+.
-If your setup is ok, you might want to try to edit the line 65 of the phpdox.php file to remove the \.
-Change this line:
-spl_autoload_register( array('\ezcBase','autoload'));
-To this:
-spl_autoload_register( array('ezcBase','autoload'));
+* If you try to install theseer/fXSL and get the following error:
+    theseer/fXSL requires PHP extension "xsl"
+    No valid packages found
+    install failed
+    
+Try to install the xsl extention of PHP. On Ubuntu, you can simply use:
+    sudo apt-get install php5-xsl
 
+Once the extention is installed, you can re-try to install the fXSL dependency.
