@@ -70,7 +70,11 @@ namespace TheSeer\phpDox\DocBlock {
                   $this->current->getObject($buffer)
                );
                $buffer = array();
-               list($name, $payload) = explode(' ', ltrim($line,'@'), 2);
+
+               $lineParts = explode(' ', ltrim($line,'@'), 2);
+               $name      = $lineParts[0];
+               $payload   = ( isset( $lineParts[1] ) ? $lineParts[1] : '' );
+
                $this->startParser($name, $payload);
                continue;
             }
