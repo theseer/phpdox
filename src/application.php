@@ -156,7 +156,10 @@ namespace TheSeer\phpDox {
        * @param string $srcDir Source directory to compare xml structure with
        */
       protected function cleanup($srcDir) {
-         $worker = new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator($this->xmlDir), \RecursiveIteratorIterator::CHILD_FIRST );
+         $worker = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($this->xmlDir, \FilesystemIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::CHILD_FIRST
+         );
          $len = strlen($this->xmlDir);
          $srcPath = realpath($srcDir);
 
