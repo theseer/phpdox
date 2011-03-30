@@ -26,7 +26,7 @@ Installation
 Make sure you've installed all the requirements.
 
 Get the source code from GIT:
-    git clone --recursive git@github.com:Username/phpdox.git
+    git clone --recursive git://github.com/theseer/phpdox.git
 
 _Note: If you've forgot the --recursive argument, you'll not have the staticReflection submodule in lib/. So you might want to use:_
     git submodule init
