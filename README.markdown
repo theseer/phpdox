@@ -10,14 +10,14 @@ Requirements
 You need to make sure you're using PHP 5.3+.
 
 Also, you'll need to install the following pear dependencies:
-    /var/www $ sudo pear channel-discover pear.netpirates.net
-    /var/www $ sudo pear install theseer/DirectoryScanner
-    /var/www $ sudo pear install theseer/fDOMDocument
-    /var/www $ sudo pear install theseer/fXSL
+    sudo pear channel-discover pear.netpirates.net
+    sudo pear install theseer/DirectoryScanner
+    sudo pear install theseer/fDOMDocument
+    sudo pear install theseer/fXSL
 
 Finally, you'll need the ezcConsoleTools from components.ez.no:
-    /var/www $ sudo pear channel-discover components.ez.no
-    /var/www $ sudo pear install ezc/ConsoleTools 
+    sudo pear channel-discover components.ez.no
+    sudo pear install ezc/ConsoleTools 
 
 
 Installation
@@ -26,19 +26,18 @@ Installation
 Make sure you've installed all the requirements.
 
 Get the source code from GIT:
-    ~ $ cd /var/www/
-    /var/www/ $ git clone --recursive git@github.com:Username/phpdox.git
+    git clone --recursive git@github.com:Username/phpdox.git
 
 _Note: If you've forgot the --recursive argument, you'll not have the staticReflection submodule in lib/. So you might want to use:_
-    /var/www/ $ git submodule init
-    /var/www/ $ git submodule update
+    git submodule init
+    git submodule update
 
 
 Usage Examples
 --------------
 
 You can run phpdox like this:
-    /var/www/ $ phpdox/phpdox.php
+    phpdox/phpdox.php
 
 
 trouble shooting
