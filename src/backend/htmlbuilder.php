@@ -43,14 +43,17 @@ namespace TheSeer\phpDox {
 
       public function build() {
          $tpl = new fDomDocument();
-         $tpl->load(__DIR__.'/htmlBuilder/class.xsl');
+         $tpl->load(__DIR__ . '/htmlBuilder/class.xsl');
+
          $xsl = $this->getXSLTProcessor($tpl);
 
          foreach($this->getClasses() as $class) {
             $html = $xsl->transformToDoc($this->getXMLByClassName($class));
-            $this->saveDomDocument($html, 'classes/'. $this->classNameToFileName($class,'xhtml'));
+            
+            $this->saveDomDocument($html, 'classes'. DIRECTORY_SEPARATOR
+                . $this->classNameToFileName($class, 'xhtml'));
          }
-
+         
       }
 
    }

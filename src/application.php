@@ -124,7 +124,7 @@ namespace TheSeer\phpDox {
        * @return \TheSeer\fDom\fDomDocument
        */
       protected function getContainerDocument($name) {
-         $fname = $this->xmlDir . '/' . $name .'.xml';
+         $fname = $this->xmlDir . DIRECTORY_SEPARATOR . $name . '.xml';
          if (isset($this->container[$fname])) {
             return $this->container[$fname];
          }
@@ -157,17 +157,20 @@ namespace TheSeer\phpDox {
        */
       protected function cleanup($srcDir) {
          $worker = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($this->xmlDir, \FilesystemIterator::SKIP_DOTS),
+            new \RecursiveDirectoryIterator($this->xmlDir,
+                \FilesystemIterator::SKIP_DOTS),
             \RecursiveIteratorIterator::CHILD_FIRST
          );
          $len = strlen($this->xmlDir);
          $srcPath = realpath($srcDir);
 
          if (strpos($srcDir, $srcPath) === 0) {
-             $srcPath = '/';
+             $srcPath = strpos(PHP_OS, 'WIN') === 0
+                      ? substr($srcDir, 0, 3)
+                      : DIRECTORY_SEPARATOR;
          }
          else {
-             $srcPath = dirname($srcPath) . '/';
+             $srcPath = dirname($srcPath) . DIRECTORY_SEPARATOR;
          }
 
          $containers = array(
@@ -177,9 +180,9 @@ namespace TheSeer\phpDox {
          );
 
          $whitelist = array(
-            $this->xmlDir . '/namespaces.xml',
-            $this->xmlDir . '/classes.xml',
-            $this->xmlDir . '/interfaces.xml'
+            $this->xmlDir . DIRECTORY_SEPARATOR . 'namespaces.xml',
+            $this->xmlDir . DIRECTORY_SEPARATOR . 'classes.xml',
+            $this->xmlDir . DIRECTORY_SEPARATOR . 'interfaces.xml'
          );
 
          foreach($worker as $fname => $file) {
@@ -188,7 +191,7 @@ namespace TheSeer\phpDox {
                continue;
             }
             if ($file->isFile()) {
-               $srcFile = $srcPath . substr($fname,$len+1,-4);
+               $srcFile = $srcPath . substr($fname, $len + 1, -4);
                if (!file_exists($srcFile)) {
                   unlink($fname);
                   foreach($containers as $dom) {

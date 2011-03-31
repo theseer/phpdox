@@ -169,12 +169,13 @@ namespace TheSeer\phpDox {
          }
          $filename = $f->getAttribute('xml');
          $d = new fDomDocument();
-         $d->load($this->generator->getXMLDirectory() . '/' . $filename);
+         $d->load($this->generator->getXMLDirectory() . DIRECTORY_SEPARATOR . $filename);
          return $d;
       }
 
       protected function saveDomDocument($dom, $filename) {
-         $filename = $this->generator->getDocumentationDirectory() . '/' . $filename;
+         $filename = $this->generator->getDocumentationDirectory()
+                   . DIRECTORY_SEPARATOR . $filename;
          $path = dirname($filename);
          clearstatcache();
          if (!file_exists($path)) {

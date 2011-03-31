@@ -153,16 +153,22 @@ namespace TheSeer\phpDox {
       }
 
       protected function setupTarget($file) {
+         $parts = explode(DIRECTORY_SEPARATOR, $file->getPathName());
+         if (0 === strpos(PHP_OS, 'WIN') && ':' == substr($parts[0], -1, 1)) {
+             // remove drive letter from Windows path
+             array_shift($parts);
+         }
          $path = array();
-         foreach(explode('/', $file->getPathName()) as $part) {
+         foreach($parts as $part) {
             if($part == '.' || $part == '') continue;
             $path[] = $part;
          }
-         $target = $this->xmlDir . '/' . join('/',$path).'.xml';
+         $target = $this->xmlDir . DIRECTORY_SEPARATOR
+                 . join(DIRECTORY_SEPARATOR, $path) . '.xml';
          $targetDir = dirname($target);
          clearstatcache();
          if (!file_exists($targetDir)) {
-            mkdir($targetDir,0755,true);
+            mkdir($targetDir, 0755, true);
          }
          return $target;
       }
