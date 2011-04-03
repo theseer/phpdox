@@ -53,7 +53,7 @@ namespace TheSeer\phpDox\DocBlock {
          if ($this->compact == '') {
             return $ctx->createTextnode('');
          }
-         $node = $ctx->createElementNS('http://phpdox.de/xml#', 'description');
+         $node = $ctx->createElementNS('http://xml.phpdox.de/src#', 'description');
          $node->setAttribute('compact', $this->compact);
          if ($this->body != '') {
             $node->appendChild($ctx->createTextnode($this->body));

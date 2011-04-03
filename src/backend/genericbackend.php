@@ -37,156 +37,156 @@
 
 namespace TheSeer\phpDox {
 
-   use \TheSeer\fDom\fDomDocument;
-   use \TheSeer\fXSL\fXSLTProcessor;
-   use \TheSeer\fXSL\fXSLCallback;
+    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fXSL\fXSLTProcessor;
+    use \TheSeer\fXSL\fXSLCallback;
 
-   abstract class genericBackend {
+    abstract class GenericBackend {
 
-      private $generator = NULL;
-      private $xsltproc = array();
+        private $generator = NULL;
+        private $xsltproc = array();
 
-      /**
-       * Internal kickof method from generator
-       *
-       * @param Generator $generator Reference to a generator instance for callbacks
-       *
-       */
-      final public function run(Generator $generator) {
-         $this->generator = $generator;
-         try {
-            $this->build();
-         } catch(\Exception $e) {
-            // TODO: do we need to do any cleanup or logging here?
-            throw $e;
-         }
-      }
+        /**
+         * Internal kickof method from generator
+         *
+         * @param Generator $generator Reference to a generator instance for callbacks
+         *
+         */
+        final public function run(Generator $generator) {
+            $this->generator = $generator;
+            try {
+                $this->build();
+            } catch(\Exception $e) {
+                // TODO: do we need to do any cleanup or logging here?
+                throw $e;
+            }
+        }
 
-      /**
-       * Entry point to main processing logic
-       *
-       */
-      abstract public function build();
+        /**
+         * Entry point to main processing logic
+         *
+         */
+        abstract public function build();
 
-      /**
-       * Helper to get XSLTProcessor instance
-       *
-       * This method also registers the public methods of
-       * the backend to be callable from within the xsl context
-       *
-       * @param \DomDocument $xsl A Stylesheet DOMDocument
-       *
-       * @return TheSeer\fXSL\fXSLTProcessor
-       */
-      protected function getXSLTProcessor(\DomDocument $xsl) {
-         $hash = spl_object_hash($xsl);
-         if (isset($this->xsltproc[$hash])) {
+        /**
+         * Helper to get XSLTProcessor instance
+         *
+         * This method also registers the public methods of
+         * the backend to be callable from within the xsl context
+         *
+         * @param \DomDocument $xsl A Stylesheet DOMDocument
+         *
+         * @return TheSeer\fXSL\fXSLTProcessor
+         */
+        protected function getXSLTProcessor(\DomDocument $xsl) {
+            $hash = spl_object_hash($xsl);
+            if (isset($this->xsltproc[$hash])) {
+                return $this->xsltproc[$hash];
+            }
+
+            $cb = new fXSLCallback('http://phpdox.de/callback', 'cb');
+            $cb->setObject($this);
+            $cb->setBlacklist(array('run','build'));
+
+            $this->xsltproc[$hash] = new fXSLTProcessor($xsl);
+            $this->xsltproc[$hash]->registerCallback($cb);
+
             return $this->xsltproc[$hash];
-         }
+        }
 
-         $cb = new fXSLCallback('http://phpdox.de/callback', 'cb');
-         $cb->setObject($this);
-         $cb->setBlacklist(array('run','build'));
+        /**
+         * Forwarder to get $generator->getClassesAsDOM
+         *
+         * @return TheSeer\fDom\fDomDocument
+         */
+        protected function getClassesAsDOM() {
+            return $this->generator->getClassesAsDOM();
+        }
 
-         $this->xsltproc[$hash] = new fXSLTProcessor($xsl);
-         $this->xsltproc[$hash]->registerCallback($cb);
+        /**
+         * Forwarder to get $generator->getNamespaces
+         *
+         * @return TheSeer\fDom\fDomDocument
+         */
+        protected function getNamespaceAsDOM() {
+            return $this->generator->getNamespacesAsDOM();
+        }
 
-         return $this->xsltproc[$hash];
-      }
-
-      /**
-       * Forwarder to get $generator->getClassesAsDOM
-       *
-       * @return TheSeer\fDom\fDomDocument
-       */
-      protected function getClassesAsDOM() {
-         return $this->generator->getClassesAsDOM();
-      }
-
-      /**
-       * Forwarder to get $generator->getNamespaces
-       *
-       * @return TheSeer\fDom\fDomDocument
-       */
-      protected function getNamespaceAsDOM() {
-         return $this->generator->getNamespacesAsDOM();
-      }
-
-      public function getClasses() {
-         static $classes = NULL;
-         if ($classes === NULL) {
-            foreach($this->getClassesAsDOM()->query('//phpdox:class/@full') as $f) {
-               $classes[] = $f->nodeValue;
+        public function getClasses() {
+            static $classes = NULL;
+            if ($classes === NULL) {
+                foreach($this->getClassesAsDOM()->query('//phpdox:class/@full') as $f) {
+                    $classes[] = $f->nodeValue;
+                }
             }
-         }
-         return $classes;
-      }
+            return $classes;
+        }
 
-      public function getNamespaces() {
-         static $namespaces = NULL;
-         if ($namespaces === NULL) {
-            foreach($this->getNamespacesAsDOM()->query('//phpdox:namespace/@name') as $n) {
-               $namespaces[] = $n->nodeValue;
+        public function getNamespaces() {
+            static $namespaces = NULL;
+            if ($namespaces === NULL) {
+                foreach($this->getNamespacesAsDOM()->query('//phpdox:namespace/@name') as $n) {
+                    $namespaces[] = $n->nodeValue;
+                }
             }
-         }
-         return $namespaces;
-      }
+            return $namespaces;
+        }
 
-      public function getInterfaces() {
-         static $interfaces = NULL;
-         if ($interfaces === NULL) {
-            foreach($this->getInterfacesAsDOM()->query('//phpdox:interface/@full') as $i) {
-               $interfaces[] = $i->nodeValue;
+        public function getInterfaces() {
+            static $interfaces = NULL;
+            if ($interfaces === NULL) {
+                foreach($this->getInterfacesAsDOM()->query('//phpdox:interface/@full') as $i) {
+                    $interfaces[] = $i->nodeValue;
+                }
             }
-         }
-         return $this->interfaces;
-      }
+            return $this->interfaces;
+        }
 
 
 
-      /**
-       * Forwarder to get $generator->getInterfaces
-       *
-       * @return TheSeer\fDom\fDomDocument
-       */
-      protected function getInterfacesAsDOM() {
-         return $this->generator->getInterfacesAsDOM();
-      }
+        /**
+         * Forwarder to get $generator->getInterfaces
+         *
+         * @return TheSeer\fDom\fDomDocument
+         */
+        protected function getInterfacesAsDOM() {
+            return $this->generator->getInterfacesAsDOM();
+        }
 
 
-      /**
-       * Helper to get the DomDocument for a given classname
-       *
-       * @param string $class Classname as string
-       *
-       * @return TheSeer\fDom\DomDocument
-       */
-      protected function getXMLByClassName($class) {
-         $f = $this->generator->getClassesAsDOM()->query("//phpdox:class[@full='$class']")->item(0);
-         if (!$f) {
-            // return empty warning dom?
-            throw new \Exception("Class '$class' not found");
-         }
-         $filename = $f->getAttribute('xml');
-         $d = new fDomDocument();
-         $d->load($this->generator->getXMLDirectory() . '/' . $filename);
-         return $d;
-      }
+        /**
+         * Helper to get the DomDocument for a given classname
+         *
+         * @param string $class Classname as string
+         *
+         * @return TheSeer\fDom\DomDocument
+         */
+        protected function getXMLByClassName($class) {
+            $f = $this->generator->getClassesAsDOM()->query("//phpdox:class[@full='$class']")->item(0);
+            if (!$f) {
+                // return empty warning dom?
+                throw new \Exception("Class '$class' not found");
+            }
+            $filename = $f->getAttribute('xml');
+            $d = new fDomDocument();
+            $d->load($this->generator->getXMLDirectory() . '/' . $filename);
+            return $d;
+        }
 
-      protected function saveDomDocument($dom, $filename) {
-         $filename = $this->generator->getDocumentationDirectory() . '/' . $filename;
-         $path = dirname($filename);
-         clearstatcache();
-         if (!file_exists($path)) {
-            mkdir($path, 0755, true);
-         }
-         $dom->save($filename);
-      }
+        protected function saveDomDocument($dom, $filename) {
+            $filename = $this->generator->getDocumentationDirectory() . '/' . $filename;
+            $path = dirname($filename);
+            clearstatcache();
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+            $dom->save($filename);
+        }
 
-      protected function classNameToFileName($class, $ext = 'xml') {
-         return str_replace('\\','_', $class) . '.' . $ext;
-      }
+        protected function classNameToFileName($class, $ext = 'xml') {
+            return str_replace('\\', '_', $class) . '.' . $ext;
+        }
 
-   }
+    }
 
 }

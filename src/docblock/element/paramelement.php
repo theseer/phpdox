@@ -56,7 +56,7 @@ namespace TheSeer\phpDox\DocBlock {
       }
 
       public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-         $node = $ctx->createElementNS('http://phpdox.de/xml#', 'param');
+         $node = $ctx->createElementNS('http://xml.phpdox.de/src#', 'param');
          $node->setAttribute('name', $this->varname);
 
          if ($this->type !== '') {

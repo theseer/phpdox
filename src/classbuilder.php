@@ -37,184 +37,184 @@
 
 namespace TheSeer\phpDox {
 
-   use \TheSeer\fDOM\fDOMDocument;
-   use \TheSeer\fDOM\fDOMElement;
-   use \TheSeer\phpDox\DocBlock\Parser;
+    use \TheSeer\fDOM\fDOMDocument;
+    use \TheSeer\fDOM\fDOMElement;
+    use \TheSeer\phpDox\DocBlock\Parser;
 
-   class ClassBuilder {
+    class ClassBuilder {
 
-      protected $ctx;
-      protected $publicOnly;
+        protected $ctx;
+        protected $publicOnly;
 
-      public function __construct(fDOMElement $ctx, $publicOnly = false) {
-         $this->ctx = $ctx;
-         $this->publicOnly = $publicOnly;
-      }
+        public function __construct(fDOMElement $ctx, $publicOnly = false) {
+            $this->ctx = $ctx;
+            $this->publicOnly = $publicOnly;
+        }
 
-      public function process(\ReflectionClass $class) {
+        public function process(\ReflectionClass $class) {
 
-         $node = $this->ctx->appendElementNS('http://phpdox.de/xml#', $class->isInterface() ? 'interface' : 'class' );
+            $node = $this->ctx->appendElementNS('http://xml.phpdox.de/src#', $class->isInterface() ? 'interface' : 'class' );
 
-         $node->setAttribute('full',     $class->getName());
-         $node->setAttribute('name',     $class->getShortName());
-         $node->setAttribute('final',    $class->isFinal() ? 'true' : 'false');
-         if ($node->nodeName === 'class') {
-            $node->setAttribute('abstract', $class->isAbstract() ? 'true' : 'false');
-         }
-
-         $node->setAttribute('start', $class->getStartLine());
-         $node->setAttribute('end', $class->getEndLine());
-
-         if ($docComment = $class->getDocComment()) {
-            $node->appendChild(
-               $this->processDocBlock($this->ctx->ownerDocument, $docComment)
-            );
-         }
-
-         if ($extends = $class->getParentClass()) {
-            $this->addReferenceNode($extends, $node, 'extends');
-         }
-
-         $implements = $class->getInterfaces();
-         if (count($implements)>0) {
-            foreach($implements as $i) {
-               $this->addReferenceNode($i, $node, 'implements');
-            }
-         }
-         //var_dump($class->getConstant('ABC'));
-         $this->processConstants($node, $class->getConstants());
-         $this->processMembers($node, $class->getProperties());
-         $this->processMethods($node, $class->getMethods());
-
-         return $node;
-
-      }
-
-      protected function addReferenceNode(\ReflectionClass $class, fDOMElement $context, $nodeName) {
-         $node = $context->appendElementNS('http://phpdox.de/xml#', $nodeName);
-         $node->setAttribute($nodeName == 'extends' ? 'class' : 'interface', $class->getShortName());
-         if ($class->inNamespace()) {
-            $node->setAttribute('namespace', $class->getNamespaceName());
-         }
-         return $node;
-      }
-
-      protected function addModifiers(fDOMElement $ctx, $src) {
-         $ctx->setAttribute('static', $src->isStatic() ? 'true' : 'false');
-         if ($src->isPrivate()) {
-            $ctx->setAttribute('visibility', 'private');
-         } else if ($src->isProtected()) {
-            $ctx->setAttribute('visibility', 'protected');
-         } else {
-            $ctx->setAttribute('visibility', 'public');
-         }
-      }
-
-      protected function processDocBlock(fDOMDocument $doc, $comment) {
-         try {
-            $parser = new Parser();
-            $docblock = $parser->parse($comment);
-            return $docblock->asDom($doc);
-         } catch (\Exception $e) {
-            // TODO: Error logger -> addWarning
-            //var_dump($comment);
-            //throw $e;
-         }
-      }
-
-      protected function processConstants(fDOMElement $ctx, Array $constants) {
-         foreach($constants as $constant => $value) {
-            $constNode = $ctx->appendElementNS('http://phpdox.de/xml#','constant');
-            $constNode->setAttribute('name',  $constant);
-            $constNode->setAttribute('value', $value);
-         }
-      }
-
-      protected function processMembers(fDOMElement $ctx, Array $members) {
-         foreach($members as $member) {
-            if ($this->publicOnly && ($member->isPrivate() || $member->isProtected())) {
-               continue;
-            }
-            $memberNode = $ctx->appendElementNS('http://phpdox.de/xml#','member');
-            $memberNode->setAttribute('name', $member->getName());
-            $this->addModifiers($memberNode, $member);
-            $this->processValue($memberNode, $member->getValue());
-            if ($docComment = $member->getDocComment()) {
-               $memberNode->appendChild(
-                  $this->processDocBlock($ctx->ownerDocument, $docComment)
-               );
-            }
-         }
-      }
-
-      protected function processMethods(fDOMElement $ctx, Array $methods) {
-         foreach($methods as $method) {
-            if ($this->publicOnly && ($method->isPrivate() || $method->isProtected())) {
-               continue;
+            $node->setAttribute('full', $class->getName());
+            $node->setAttribute('name', $class->getShortName());
+            $node->setAttribute('final', $class->isFinal() ? 'true' : 'false');
+            if ($node->nodeName === 'class') {
+                $node->setAttribute('abstract', $class->isAbstract() ? 'true' : 'false');
             }
 
-            if ($method->isConstructor()) {
-               $nodeName = 'constructor';
-            } elseif ($method->isDestructor()) {
-               $nodeName = 'destructor';
+            $node->setAttribute('start', $class->getStartLine());
+            $node->setAttribute('end', $class->getEndLine());
+
+            if ($docComment = $class->getDocComment()) {
+                $node->appendChild(
+                $this->processDocBlock($this->ctx->ownerDocument, $docComment)
+                );
+            }
+
+            if ($extends = $class->getParentClass()) {
+                $this->addReferenceNode($extends, $node, 'extends');
+            }
+
+            $implements = $class->getInterfaces();
+            if (count($implements)>0) {
+                foreach($implements as $i) {
+                    $this->addReferenceNode($i, $node, 'implements');
+                }
+            }
+            //var_dump($class->getConstant('ABC'));
+            $this->processConstants($node, $class->getConstants());
+            $this->processMembers($node, $class->getProperties());
+            $this->processMethods($node, $class->getMethods());
+
+            return $node;
+
+        }
+
+        protected function addReferenceNode(\ReflectionClass $class, fDOMElement $context, $nodeName) {
+            $node = $context->appendElementNS('http://xml.phpdox.de/src#', $nodeName);
+            $node->setAttribute($nodeName == 'extends' ? 'class' : 'interface', $class->getShortName());
+            if ($class->inNamespace()) {
+                $node->setAttribute('namespace', $class->getNamespaceName());
+            }
+            return $node;
+        }
+
+        protected function addModifiers(fDOMElement $ctx, $src) {
+            $ctx->setAttribute('static', $src->isStatic() ? 'true' : 'false');
+            if ($src->isPrivate()) {
+                $ctx->setAttribute('visibility', 'private');
+            } else if ($src->isProtected()) {
+                $ctx->setAttribute('visibility', 'protected');
             } else {
-               $nodeName = 'method';
+                $ctx->setAttribute('visibility', 'public');
             }
-            $methodNode = $ctx->appendElementNS('http://phpdox.de/xml#', $nodeName);
-            $methodNode->setAttribute('name',  $method->getName());
-            $methodNode->setAttribute('start', $method->getStartLine());
-            $methodNode->setAttribute('end',   $method->getEndLine());
-            $methodNode->setAttribute('abstract', $method->isAbstract() ? 'true' : 'false');
-            $methodNode->setAttribute('final',  $method->isFinal() ? 'true' : 'false');
+        }
 
-            $this->addModifiers($methodNode, $method);
-
-            $docBlock = null;
-            if ($docComment = $method->getDocComment()) {
-               $docBlock = $this->processDocBlock($ctx->ownerDocument, $docComment);
-               $methodNode->appendChild($docBlock);
+        protected function processDocBlock(fDOMDocument $doc, $comment) {
+            try {
+                $parser = new Parser();
+                $docblock = $parser->parse($comment);
+                return $docblock->asDom($doc);
+            } catch (\Exception $e) {
+                // TODO: Error logger -> addWarning
+                //var_dump($comment);
+                //throw $e;
             }
-            $this->processParameters($methodNode, $method->getParameters(), $docBlock);
+        }
 
-         }
-      }
+        protected function processConstants(fDOMElement $ctx, Array $constants) {
+            foreach($constants as $constant => $value) {
+                $constNode = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'constant');
+                $constNode->setAttribute('name', $constant);
+                $constNode->setAttribute('value', $value);
+            }
+        }
 
-      protected function processParameters(fDOMElement $ctx, Array $parameters, fDOMElement $docBlock = null) {
-         foreach($parameters as $idx => $param) {
-            $paramNode = $ctx->appendElementNS('http://phpdox.de/xml#', 'parameter');
-            $paramNode->setAttribute('name', $param->getName());
-            if ($class = $param->getClass()) {
-               $paramNode->setAttribute('type','object');
-               $paramNode->setAttribute('class', $class->getShortName());
-               if ($class->inNamespace()) {
-                  $paramNode->setAttribute('namespace', $class->getNamespaceName());
-               }
-            } elseif ($param->isArray()) {
-               $paramNode->setAttribute('type','array');
-            } else {
-               $paramNode->setAttribute('type', '{unknown}');
+        protected function processMembers(fDOMElement $ctx, Array $members) {
+            foreach($members as $member) {
+                if ($this->publicOnly && ($member->isPrivate() || $member->isProtected())) {
+                    continue;
+                }
+                $memberNode = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'member');
+                $memberNode->setAttribute('name', $member->getName());
+                $this->addModifiers($memberNode, $member);
+                $this->processValue($memberNode, $member->getValue());
+                if ($docComment = $member->getDocComment()) {
+                    $memberNode->appendChild(
+                    $this->processDocBlock($ctx->ownerDocument, $docComment)
+                    );
+                }
             }
-            $paramNode->setAttribute('optional', $param->isOptional() ? 'true' : 'false');
-            $paramNode->setAttribute('byreference', $param->isPassedByReference() ? 'true' : 'false');
-            if ($param->isDefaultValueAvailable()) {
-               $this->processValue($paramNode, $param->getDefaultValue());
-            }
-            /*
-            if ($docBlock !== null) {
-               $dpNode = $docBlock->query('//dox:parameter[@name="' . $param->getName() . '"]')->item(0);
-               if ($dpNode) {
-                  $paramNode->appendChild($dpNode);
-               }
-            }
-            */
-         }
-      }
+        }
 
-      protected function processValue(fDOMElement $ctx, $src) {
-         $value =  is_null($src) ? 'null' : var_export($src, true);
-         $default = $ctx->appendElementNS('http://phpdox.de/xml#', 'default');
-         $default->appendChild($ctx->ownerDocument->createTextnode($value));
-      }
-   }
+        protected function processMethods(fDOMElement $ctx, Array $methods) {
+            foreach($methods as $method) {
+                if ($this->publicOnly && ($method->isPrivate() || $method->isProtected())) {
+                    continue;
+                }
+
+                if ($method->isConstructor()) {
+                    $nodeName = 'constructor';
+                } elseif ($method->isDestructor()) {
+                    $nodeName = 'destructor';
+                } else {
+                    $nodeName = 'method';
+                }
+                $methodNode = $ctx->appendElementNS('http://xml.phpdox.de/src#', $nodeName);
+                $methodNode->setAttribute('name', $method->getName());
+                $methodNode->setAttribute('start', $method->getStartLine());
+                $methodNode->setAttribute('end', $method->getEndLine());
+                $methodNode->setAttribute('abstract', $method->isAbstract() ? 'true' : 'false');
+                $methodNode->setAttribute('final', $method->isFinal() ? 'true' : 'false');
+
+                $this->addModifiers($methodNode, $method);
+
+                $docBlock = null;
+                if ($docComment = $method->getDocComment()) {
+                    $docBlock = $this->processDocBlock($ctx->ownerDocument, $docComment);
+                    $methodNode->appendChild($docBlock);
+                }
+                $this->processParameters($methodNode, $method->getParameters(), $docBlock);
+
+            }
+        }
+
+        protected function processParameters(fDOMElement $ctx, Array $parameters, fDOMElement $docBlock = null) {
+            foreach($parameters as $idx => $param) {
+                $paramNode = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'parameter');
+                $paramNode->setAttribute('name', $param->getName());
+                if ($class = $param->getClass()) {
+                    $paramNode->setAttribute('type', 'object');
+                    $paramNode->setAttribute('class', $class->getShortName());
+                    if ($class->inNamespace()) {
+                        $paramNode->setAttribute('namespace', $class->getNamespaceName());
+                    }
+                } elseif ($param->isArray()) {
+                    $paramNode->setAttribute('type', 'array');
+                } else {
+                    $paramNode->setAttribute('type', '{unknown}');
+                }
+                $paramNode->setAttribute('optional', $param->isOptional() ? 'true' : 'false');
+                $paramNode->setAttribute('byreference', $param->isPassedByReference() ? 'true' : 'false');
+                if ($param->isDefaultValueAvailable()) {
+                    $this->processValue($paramNode, $param->getDefaultValue());
+                }
+                /*
+                 if ($docBlock !== null) {
+                 $dpNode = $docBlock->query('//dox:parameter[@name="' . $param->getName() . '"]')->item(0);
+                 if ($dpNode) {
+                 $paramNode->appendChild($dpNode);
+                 }
+                 }
+                 */
+            }
+        }
+
+        protected function processValue(fDOMElement $ctx, $src) {
+            $value =  is_null($src) ? 'null' : var_export($src, true);
+            $default = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'default');
+            $default->appendChild($ctx->ownerDocument->createTextnode($value));
+        }
+    }
 
 }

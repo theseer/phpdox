@@ -60,7 +60,7 @@ namespace TheSeer\phpDox\DocBlock {
       }
 
       public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-         $node = $ctx->createElementNS('http://phpdox.de/xml#', 'annotation');
+         $node = $ctx->createElementNS('http://xml.phpdox.de/src#', 'annotation');
          $node->setAttribute('name', $this->name);
          if ($this->value !== '') {
             $node->setAttribute('value', $this->value);

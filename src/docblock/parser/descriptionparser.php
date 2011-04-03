@@ -52,7 +52,7 @@ namespace TheSeer\phpDox\DocBlock {
             do {
                $line = array_shift($buffer);
                $compact .= ' ' . $line;
-            } while ($line != '' && substr($line,-1)!='.');
+            } while ($line != '' && substr($line, -1) != '.');
             $obj->setCompact(trim($compact));
             $obj->setBody(trim(join("\n", $buffer)));
          }

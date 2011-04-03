@@ -37,95 +37,95 @@
 
 namespace TheSeer\phpDox {
 
-   use \pdepend\reflection\ReflectionSession;
-   use \TheSeer\fDOM\fDOMDocument;
+    use \pdepend\reflection\ReflectionSession;
+    use \TheSeer\fDOM\fDOMDocument;
 
-   class Builder {
+    class Builder {
 
-      protected $publicOnly;
+        protected $publicOnly;
 
-      protected $namespaces;
-      protected $interfaces;
-      protected $classes;
+        protected $namespaces;
+        protected $interfaces;
+        protected $classes;
 
-      protected $file;
-      protected $dom;
+        protected $file;
+        protected $dom;
 
-      public function __construct($publicOnly = false) {
-         $this->publicOnly = $publicOnly;
-      }
+        public function __construct($publicOnly = false) {
+            $this->publicOnly = $publicOnly;
+        }
 
-      public function getClasses() {
-         return $this->classes;
-      }
+        public function getClasses() {
+            return $this->classes;
+        }
 
-      public function getInterfaces() {
-         return $this->interfaces;
-      }
+        public function getInterfaces() {
+            return $this->interfaces;
+        }
 
-      public function getNamespaces() {
-         return $this->namespaces;
-      }
+        public function getNamespaces() {
+            return $this->namespaces;
+        }
 
-      public function processFile(\SPLFileInfo $file) {
-         $this->namespaces = array();
-         $this->interfaces = array();
-         $this->classes    = array();
+        public function processFile(\SPLFileInfo $file) {
+            $this->namespaces = array();
+            $this->interfaces = array();
+            $this->classes    = array();
 
-         $this->file = $file;
+            $this->file = $file;
 
-         $this->dom = new fDOMDocument('1.0', 'UTF-8');
-         $this->dom->registerNamespace('dox', 'http://phpdox.de/xml#');
-         $root = $this->dom->createElementNS('http://phpdox.de/xml#', 'file');
-         $this->dom->appendChild($root);
+            $this->dom = new fDOMDocument('1.0', 'UTF-8');
+            $this->dom->registerNamespace('dox', 'http://xml.phpdox.de/src#');
+            $root = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'file');
+            $this->dom->appendChild($root);
 
-         $head = $root->appendElementNS('http://phpdox.de/xml#', 'head');
-         $head->setAttribute('path', $file->getPath());
-         $head->setAttribute('file', $file->getFilename());
-         $head->setAttribute('realpath', $file->getRealPath());
-         $head->setAttribute('size', $file->getSize());
-         $head->setAttribute('time', date('c', $file->getCTime()));
-         $head->setAttribute('unixtime', $file->getCTime());
-         $head->setAttribute('sha1', sha1_file($file->getPathname()));
+            $head = $root->appendElementNS('http://xml.phpdox.de/src#', 'head');
+            $head->setAttribute('path', $file->getPath());
+            $head->setAttribute('file', $file->getFilename());
+            $head->setAttribute('realpath', $file->getRealPath());
+            $head->setAttribute('size', $file->getSize());
+            $head->setAttribute('time', date('c', $file->getCTime()));
+            $head->setAttribute('unixtime', $file->getCTime());
+            $head->setAttribute('sha1', sha1_file($file->getPathname()));
 
-         $session = new ReflectionSession();
-         $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
-         $query = $session->createFileQuery();
-         foreach ( $query->find( $file->getPathname() ) as $class ) {
-            $this->handleClass($class);
-         }
+            $session = new ReflectionSession();
+            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
+            $query = $session->createFileQuery();
+            foreach ( $query->find( $file->getPathname() ) as $class ) {
+                $this->handleClass($class);
+            }
 
-         return $this->dom;
-      }
+            return $this->dom;
+        }
 
 
-      protected function handleClass(\ReflectionClass  $class) {
-         $context = $this->dom->documentElement;
-         if ($class->inNamespace()) {
-            $context = $this->handleNamespace($class);
-         }
+        protected function handleClass(\ReflectionClass  $class) {
+            $context = $this->dom->documentElement;
+            if ($class->inNamespace()) {
+                $context = $this->handleNamespace($class);
+            }
 
-         $classBuilder = new ClassBuilder($context, $this->publicOnly);
-         $classNode = $classBuilder->process($class);
+            $classBuilder = new ClassBuilder($context, $this->publicOnly);
+            $classNode = $classBuilder->process($class);
 
-         if ($class->isInterface()) {
-            $this->interfaces[$class->getName()] = $classNode;
-         } else {
-            $this->classes[$class->getName()] = $classNode;
-         }
-      }
+            if ($class->isInterface()) {
+                $this->interfaces[$class->getName()] = $classNode;
+            } else {
+                $this->classes[$class->getName()] = $classNode;
+            }
+        }
 
-      protected function handleNamespace(\ReflectionClass $class) {
-         $namespace = $class->getNamespaceName();
-         if (!isset($this->namespaces[$namespace])) {
-            $nsNode = $this->dom->createElementNS('http://phpdox.de/xml#','namespace');
-            $nsNode->setAttribute('name', $namespace);
-            $this->dom->documentElement->appendChild($nsNode);
-            $this->namespaces[$namespace] = $nsNode;
-         }
-         return $this->namespaces[$namespace];
-      }
+        protected function handleNamespace(\ReflectionClass $class) {
+            $namespace = $class->getNamespaceName();
+            if (!isset($this->namespaces[$namespace])) {
+                $nsNode = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'namespace');
+                $nsNode->setAttribute('name', $namespace);
+                $this->dom->documentElement->appendChild($nsNode);
+                $this->namespaces[$namespace] = $nsNode;
+            }
+            return $this->namespaces[$namespace];
+        }
 
-   }
+    }
 
 }

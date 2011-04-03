@@ -37,23 +37,23 @@
  */
 namespace TheSeer\phpDox {
 
-   class ShellProgressLogger extends ProgressLogger {
+    class ShellProgressLogger extends ProgressLogger {
 
-      public function progress($state) {
-         parent::progress($state);
+        public function progress($state) {
+            parent::progress($state);
 
-         echo $this->stateChars[$state];
-         if ($this->totalCount % 50 == 0) {
-            echo "\t[". $this->totalCount . "]\n";
-         }
+            echo $this->stateChars[$state];
+            if ($this->totalCount % 50 == 0) {
+                echo "\t[". $this->totalCount . "]\n";
+            }
 
-      }
+        }
 
-      public function buildSummary() {
-         echo "\n\n";
-      }
+        public function buildSummary() {
+            echo "\n\n";
+        }
 
 
-   }
+    }
 
 }

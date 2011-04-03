@@ -37,40 +37,40 @@
  */
 namespace TheSeer\phpDox {
 
-   class ProgressLogger {
+    class ProgressLogger {
 
-      protected $stateChars;
+        protected $stateChars;
 
-      protected $totalCount = 0;
-      protected $stateCount = array(
-         'processed' => 0,
-         'cached' => 0,
-         'failed' => 0
-      );
+        protected $totalCount = 0;
+        protected $stateCount = array(
+            'processed' => 0,
+            'cached' => 0,
+            'failed' => 0
+        );
 
-      public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
-         $this->stateChars = array(
-            'processed' => $processed,
-            'cached' => $cached,
-            'failed' => $failed
-         );
-      }
+        public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
+            $this->stateChars = array(
+                'processed' => $processed,
+                'cached' => $cached,
+                'failed' => $failed
+            );
+        }
 
-      public function progress($state) {
-         if (!isset($this->stateChars[$state])) {
-            throw new ProgressLoggerException("Unkown progress state '$state'", ShellLoggerException::UnkownState);
-         }
-         $this->stateCount[$state]++;
-         $this->totalCount++;
-      }
+        public function progress($state) {
+            if (!isset($this->stateChars[$state])) {
+                throw new ProgressLoggerException("Unkown progress state '$state'", ShellLoggerException::UnkownState);
+            }
+            $this->stateCount[$state]++;
+            $this->totalCount++;
+        }
 
-      public function buildSummary() {
-      }
+        public function buildSummary() {
+        }
 
-   }
+    }
 
-   class ProgressLoggerException extends \Exception {
-      const UnknownState = 1;
-   }
+    class ProgressLoggerException extends \Exception {
+        const UnknownState = 1;
+    }
 
 }
