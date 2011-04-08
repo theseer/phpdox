@@ -45,17 +45,31 @@ namespace TheSeer\phpDox {
 
         protected $publicOnly = false;
 
+        /**
+         * fDOMDocument used to register Namespaces in
+         * @var \TheSeer\fDOM\fDOMDocument
+         */
         protected $namespaces;
+
+        /**
+         * fDOMDocument used to register Interfaces in
+         * @var \TheSeer\fDOM\fDOMDocument
+         */
         protected $interfaces;
+
+        /**
+         * fDOMDocument used to register classes in
+         * @var \TheSeer\fDOM\fDOMDocument
+         */
         protected $classes;
 
         /**
          * Collector constructor
          *
-         * @param string 		 $xmlDir	Base path to store individual class files in
-         * @param fDomDocument $nsDom		DOM instance to register namespaces in
-         * @param fDomDocument $iDom		DOM instance to register interfaces in
-         * @param fDomDocument $cDom		DOM instance to register classes in
+         * @param string 	                 $xmlDir Base path to store individual class files in
+         * @param \TheSeer\fDOM\fDomDocument $nsDom	 DOM instance to register namespaces in
+         * @param \TheSeer\fDOM\fDomDocument $iDom	 DOM instance to register interfaces in
+         * @param \TheSeer\fDOM\fDomDocument $cDom	 DOM instance to register classes in
          */
         public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
             $this->xmlDir     = $xmlDir;
@@ -64,6 +78,11 @@ namespace TheSeer\phpDox {
             $this->classes    = $cDom;
         }
 
+        /**
+         * Setter to enable or disable handling of only public methods and members
+         *
+         * @param boolean $switch
+         */
         public function setPublicOnly($switch) {
             $this->publicOnly = $switch === true;
         }

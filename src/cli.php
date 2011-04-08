@@ -172,6 +172,11 @@ namespace TheSeer\phpDox {
             printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
         }
 
+        /**
+         * Helper to register supported CLI options into ezcConsoleInput
+         *
+         * @param \ezcConsoleInput $input ezcConsoleInput instance to register options in to
+         */
         protected function registerOptions(\ezcConsoleInput $input) {
             $versionOption = $input->registerOption( new \ezcConsoleOption( 'v', 'version' ) );
             $versionOption->shorthelp    = 'Prints the version and exits';
