@@ -59,7 +59,7 @@ namespace TheSeer\phpDox\DocBlock {
         protected function buildObject($classname, array $buffer) {
             $obj = new $classname($this->name);
             if (count($buffer)) {
-                $obj->setBody(join("\n", $buffer));
+                $obj->setBody(trim(join("\n", $buffer)));
             }
             return $obj;
         }
