@@ -37,54 +37,51 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class ParamParser extends GenericParser {
+    class ParamParser extends GenericParser {
 
-      protected $name;
-      protected $payload;
+        protected $name;
+        protected $payload;
 
-      public function __construct($name) {
-         $this->name = $name;
-      }
+        public function __construct($name) {
+            $this->name = $name;
+        }
 
-      public function setPayload($payload) {
-         $this->payload = $payload;
-      }
+        public function setPayload($payload) {
+            $this->payload = $payload;
+        }
 
-      public function getObject(array $buffer) {
-         $obj = new ParamElement($this->name);
+        public function getObject(array $buffer) {
+            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement',$buffer);
 
-         $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
-         switch(count($param)) {
-            case 3: {
-               $obj->setDescription($param[2]);
-               // no break!
+            $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
+            switch(count($param)) {
+                case 3: {
+                    $obj->setDescription($param[2]);
+                    // no break!
+                }
+                case 2: {
+                    if ($param[0][0]=='$') {
+                        $obj->setVariable($param[0]);
+                        $obj->setType($param[1]);
+                    } else {
+                        $obj->setType($param[0]);
+                        $obj->setVariable($param[1]);
+                    }
+                    break;
+                }
+                case 1: {
+                    if ($param[0][0]=='$') {
+                        $obj->setVariable($param[0]);
+                    } else {
+                        $obj->setType($param[0]);
+                    }
+                    break;
+                }
             }
-            case 2: {
-               if ($param[0][0]=='$') {
-                  $obj->setVariable($param[0]);
-                  $obj->setType($param[1]);
-               } else {
-                  $obj->setType($param[0]);
-                  $obj->setVariable($param[1]);
-               }
-               break;
-            }
-            case 1: {
-               if ($param[0][0]=='$') {
-                  $obj->setVariable($param[0]);
-               } else {
-                  $obj->setType($param[0]);
-               }
-               break;
-            }
-         }
 
-         if (count($buffer)) {
-            $obj->setBody(join("\n", $buffer));
-         }
-         return $obj;
-      }
+            return $obj;
+        }
 
-   }
+    }
 
 }

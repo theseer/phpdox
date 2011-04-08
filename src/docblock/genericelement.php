@@ -37,39 +37,48 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class GenericElement {
+    class GenericElement {
 
-      protected $name;
-      protected $value;
-      protected $body;
+        protected $name;
+        protected $value;
+        protected $body;
+        protected $attributes = array();
 
-      public function __construct($name) {
-         $this->name = $name;
-      }
+        public function __construct($name) {
+            $this->name = $name;
+        }
 
-      public function getName() {
-         return $this->name;
-      }
+        public function getAnnotationName() {
+            return $this->name;
+        }
 
-      public function setVaue($value) {
-         $this->value = $value;
-      }
+        public function __call($method, $value) {
+            if (strpos($method,'set')!==0) {
+                throw new GenericElementException("Method '$method' not defined", GenericElementException::NotDefined);
+            }
+            $attribute = strtolower(substr($method,3));
+            $this->attributes[$attribute] = $value[0];
 
-      public function setBody($body) {
-         $this->body = $body;
-      }
+        }
 
-      public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-         $node = $ctx->createElementNS('http://xml.phpdox.de/src#', 'annotation');
-         $node->setAttribute('name', $this->name);
-         if ($this->value !== '') {
-            $node->setAttribute('value', $this->value);
-         }
-         if ($this->body !== '') {
-            $node->appendChild($ctx->createTextnode($this->body));
-         }
-         return $node;
-      }
+        public function setBody($body) {
+            $this->body = $body;
+        }
 
-   }
+        public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
+            $node = $ctx->createElementNS('http://xml.phpdox.de/src#', $this->name);
+            foreach($this->attributes as $attribute => $value) {
+                $node->setAttribute($attribute, $value);
+            }
+            if ($this->body !== NULL && $this->body !== '') {
+                $node->appendChild($ctx->createTextnode($this->body));
+            }
+            return $node;
+        }
+
+    }
+
+    class GenericElementException extends \Exception {
+        const NotDefined = 1;
+    }
 }

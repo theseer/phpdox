@@ -34,7 +34,6 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
 namespace TheSeer\phpDox\DocBlock {
 
     class Parser {
@@ -42,8 +41,9 @@ namespace TheSeer\phpDox\DocBlock {
         protected $map = array(
             'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
             'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
-            'var' => 'TheSeer\\phpDox\\DocBlock\\ReturnParser',
-            'return' => 'TheSeer\\phpDox\\DocBlock\\ReturnParser'
+            'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser'
             );
 
         protected $current;

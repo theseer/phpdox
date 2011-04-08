@@ -37,28 +37,33 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class GenericParser {
+    class GenericParser {
 
-      protected $name;
-      protected $payload;
+        protected $name;
+        protected $payload;
 
-      public function __construct($name) {
-         $this->name = $name;
-      }
+        public function __construct($name) {
+            $this->name = $name;
+        }
 
-      public function setPayload($payload) {
-         $this->payload = $payload;
-      }
+        public function setPayload($payload) {
+            $this->payload = trim($payload);
+        }
 
-      public function getObject(array $buffer) {
-         $obj = new GenericElement($this->name);
-         $obj->setVaue($this->payload);
-         if (count($buffer)) {
-            $obj->setBody(join("\n", $buffer));
-         }
-         return $obj;
-      }
+        public function getObject(array $buffer) {
+            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement',$buffer);
+            $obj->setValue($this->payload);
+            return $obj;
+        }
 
-   }
+        protected function buildObject($classname, array $buffer) {
+            $obj = new $classname($this->name);
+            if (count($buffer)) {
+                $obj->setBody(join("\n", $buffer));
+            }
+            return $obj;
+        }
+
+    }
 
 }

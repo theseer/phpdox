@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\DocBlock {
       protected $elements = array();
 
       public function appendElement(GenericElement $element) {
-         $name = $element->getName();
+         $name = $element->getAnnotationName();
          if (isset($this->elements[$name])) {
             if (!is_array($this->elements[$name])) {
                $this->elements[$name] = array($this->elements[$name]);

@@ -37,28 +37,27 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class DescriptionParser extends GenericParser {
+    class DescriptionParser extends GenericParser {
 
-      protected $name;
+        protected $name;
 
-      public function __construct($name) {
-         $this->name = $name;
-      }
+        public function __construct($name) {
+            $this->name = $name;
+        }
 
-      public function getObject(array $buffer) {
-         $obj = new DescriptionElement($this->name);
-         if (count($buffer)) {
+        public function getObject(array $buffer) {
             $compact = '';
-            do {
-               $line = array_shift($buffer);
-               $compact .= ' ' . $line;
-            } while ($line != '' && substr($line, -1) != '.');
+            if (count($buffer)) {
+                do {
+                    $line = array_shift($buffer);
+                    $compact .= ' ' . $line;
+                } while ($line != '' && substr($line, -1) != '.');
+            }
+            $obj = $this->buildObject('TheSeer\\phpDox\\DocBlock\\GenericElement',$buffer);
             $obj->setCompact(trim($compact));
-            $obj->setBody(trim(join("\n", $buffer)));
-         }
-         return $obj;
-      }
+            return $obj;
+        }
 
-   }
+    }
 
 }
