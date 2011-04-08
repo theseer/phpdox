@@ -29,15 +29,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- *
  * Exit codes:
  *   0 - No error
  *   1 - Execution Error
  *   3 - Parameter Error
+ *
+ * @package    phpDox
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
  *
  */
 namespace TheSeer\phpDox {
@@ -250,12 +250,12 @@ Usage: phpdox [switches] <directory>
 
   -x, --xml        Output directory for collected data (default: ./xml)
   -d, --docs       Output directory for generated documentation (default: ./docs)
-  -b, --backend    Transformation/Processing backend to use (default: htmlBuilder)
 
-  -p, --public 	 Only process public member and methods
+  -p, --public 	   Only process public member and methods
 
   -c, --collect    Only collect data, do not generate docs
   -g, --generate   No collecting, generate documentation only
+  -b, --backend    Transformation/Processing backend to use for generation (default: htmlBuilder)
 
   -l, --log        Generate XML style logfile (not implemented yet)
   -s, --silent     Do not output anything to the console (not implemented yet)
