@@ -90,16 +90,16 @@ namespace TheSeer\phpDox {
                 if (!$input->getOption('generate')->value) {
                     $args = $input->getArguments();
                     $app->runCollector(
-                    $args[0],
-                    $this->getScanner($input),
-                    $input->getOption('public')->value
+                        $args[0],
+                        $this->getScanner($input),
+                        $input->getOption('public')->value
                     );
                 }
                 if (!$input->getOption('collect')->value) {
                     $app->runGenerator(
-                    $input->getOption('backend')->value,
-                    $input->getOption('docs')->value,
-                    $input->getOption('public')->value
+                        $input->getOption('backend')->value,
+                        $input->getOption('docs')->value,
+                        $input->getOption('public')->value
                     );
                 }
             } catch (\ezcConsoleException $e) {
