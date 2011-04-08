@@ -67,7 +67,7 @@ namespace TheSeer\phpDox\DocBlock {
 
                 if ($line[0]=='@') {
                     $docBlock->appendElement(
-                    $this->current->getObject($buffer)
+                        $this->current->getObject($buffer)
                     );
                     $buffer = array();
 
@@ -90,7 +90,7 @@ namespace TheSeer\phpDox\DocBlock {
             $block = str_replace(array("\r\n","\r"), "\n", $block);
             $raw = array();
             foreach(explode("\n", $block) as $line) {
-                $raw[] = trim($line, " *\n\t");
+                $raw[] = substr(trim($line, " \n\t"),2);
             }
             return $raw;
         }
