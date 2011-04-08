@@ -67,7 +67,7 @@ namespace TheSeer\phpDox {
 
             if ($docComment = $class->getDocComment()) {
                 $node->appendChild(
-                $this->processDocBlock($this->ctx->ownerDocument, $docComment)
+                    $this->processDocBlock($this->ctx->ownerDocument, $docComment)
                 );
             }
 
@@ -118,7 +118,7 @@ namespace TheSeer\phpDox {
             } catch (\Exception $e) {
                 // TODO: Error logger -> addWarning
                 //var_dump($comment);
-                //throw $e;
+                throw $e;
             }
         }
 
