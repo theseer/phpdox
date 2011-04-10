@@ -84,13 +84,15 @@ namespace TheSeer\phpDox {
          */
         public function runCollector($srcDir, $scanner, $publicOnly = false) {
             $collector = new Collector(
-            $this->xmlDir,
-            $this->getContainerDocument('namespaces'),
-            $this->getContainerDocument('interfaces'),
-            $this->getContainerDocument('classes')
+                $this->xmlDir,
+                $this->getContainerDocument('namespaces'),
+                $this->getContainerDocument('interfaces'),
+                $this->getContainerDocument('classes')
             );
             $collector->setPublicOnly($publicOnly);
+            $collector->setStartIndex(strlen(dirname($srcDir)));
             $collector->run($scanner, $this->logger);
+
             $this->cleanUp($srcDir);
             $this->saveContainer();
         }
@@ -106,11 +108,11 @@ namespace TheSeer\phpDox {
          */
         public function runGenerator($backend, $docDir, $publicOnly = false) {
             $generator = new Generator(
-            $this->xmlDir,
-            $docDir,
-            $this->getContainerDocument('namespaces'),
-            $this->getContainerDocument('interfaces'),
-            $this->getContainerDocument('classes')
+                $this->xmlDir,
+                $docDir,
+                $this->getContainerDocument('namespaces'),
+                $this->getContainerDocument('interfaces'),
+                $this->getContainerDocument('classes')
             );
             $generator->setPublicOnly($publicOnly);
             $generator->run($backend);
@@ -157,29 +159,22 @@ namespace TheSeer\phpDox {
          */
         protected function cleanup($srcDir) {
             $worker = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($this->xmlDir, \FilesystemIterator::SKIP_DOTS),
-            \RecursiveIteratorIterator::CHILD_FIRST
+                new \RecursiveDirectoryIterator($this->xmlDir, \FilesystemIterator::SKIP_DOTS),
+                \RecursiveIteratorIterator::CHILD_FIRST
             );
             $len = strlen($this->xmlDir);
-            $srcPath = realpath($srcDir);
-
-            if (strpos($srcDir, $srcPath) === 0) {
-                $srcPath = '/';
-            }
-            else {
-                $srcPath = dirname($srcPath) . '/';
-            }
+            $srcPath = dirname($srcDir);
 
             $containers = array(
-            $this->getContainerDocument('namespaces'),
-            $this->getContainerDocument('classes'),
-            $this->getContainerDocument('interfaces')
+                $this->getContainerDocument('namespaces'),
+                $this->getContainerDocument('classes'),
+                $this->getContainerDocument('interfaces')
             );
 
             $whitelist = array(
-            $this->xmlDir . '/namespaces.xml',
-            $this->xmlDir . '/classes.xml',
-            $this->xmlDir . '/interfaces.xml'
+                $this->xmlDir . '/namespaces.xml',
+                $this->xmlDir . '/classes.xml',
+                $this->xmlDir . '/interfaces.xml'
             );
 
             foreach($worker as $fname => $file) {
@@ -188,7 +183,7 @@ namespace TheSeer\phpDox {
                     continue;
                 }
                 if ($file->isFile()) {
-                    $srcFile = $srcPath . substr($fname, $len+1, -4);
+                    $srcFile = $srcPath . substr($fname, $len, -4);
                     if (!file_exists($srcFile)) {
                         unlink($fname);
                         foreach($containers as $dom) {
@@ -198,8 +193,8 @@ namespace TheSeer\phpDox {
                         }
                     }
                 } elseif ($file->isDir()) {
-                    $srcDir = $srcPath . substr($file->getPathname(), $len+1);
-                    if (!file_exists($srcDir)) {
+                    $rmDir = $srcPath . substr($fname, $len);
+                    if (!file_exists($rmDir)) {
                         rmdir($fname);
                     }
                 }

@@ -89,9 +89,10 @@ namespace TheSeer\phpDox {
 
                 if (!$input->getOption('generate')->value) {
                     $args = $input->getArguments();
+                    $path = realpath($args[0]);
                     $app->runCollector(
-                        $args[0],
-                        $this->getScanner($input),
+                        $path,
+                        $this->getScanner($path, $input),
                         $input->getOption('public')->value
                     );
                 }
@@ -137,11 +138,12 @@ namespace TheSeer\phpDox {
         /**
          * Helper to get instance of DirectoryScanner with cli options applied
          *
+         * @param string          $path  Path to get iterator scanner for
          * @param ezcConsoleInput $input CLI Options pased to app
          *
          * @return Theseer\Tools\IncludeExcludeFilterIterator
          */
-        protected function getScanner(\ezcConsoleInput $input) {
+        protected function getScanner($path, \ezcConsoleInput $input) {
             $scanner = new \TheSeer\Tools\DirectoryScanner;
 
             $include = $input->getOption('include');
@@ -161,7 +163,7 @@ namespace TheSeer\phpDox {
             }
 
             $args = $input->getArguments();
-            return $scanner($args[0]);
+            return $scanner($path);
         }
 
 

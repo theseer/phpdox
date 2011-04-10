@@ -41,8 +41,22 @@ namespace TheSeer\phpDox {
 
     class Collector {
 
+        /**
+         * Starting index position in src path string to use in store
+         * @var int
+         */
+        protected $srcIndex = 0;
+
+        /**
+         * Path to store xml work data in
+         * @var string
+         */
         protected $xmlDir;
 
+        /**
+         * Flag to enable or disable processing of non public methods and members
+         * @var boolean
+         */
         protected $publicOnly = false;
 
         /**
@@ -66,7 +80,6 @@ namespace TheSeer\phpDox {
         /**
          * Collector constructor
          *
-         * @param string 	                 $xmlDir Base path to store individual class files in
          * @param \TheSeer\fDOM\fDomDocument $nsDom	 DOM instance to register namespaces in
          * @param \TheSeer\fDOM\fDomDocument $iDom	 DOM instance to register interfaces in
          * @param \TheSeer\fDOM\fDomDocument $cDom	 DOM instance to register classes in
@@ -88,13 +101,21 @@ namespace TheSeer\phpDox {
         }
 
         /**
+         * Setter to overwrite the default source directory string index position
+         *
+         * @param string $dir Directory to change source directory to
+         */
+        public function setStartIndex($index) {
+            $this->srcIndex = $index;
+        }
+
+        /**
          * Main executer of the collector, looping over the iterator with found files
          *
-         * @param \Iterator $scanner
-         * @param Logger    $logger
+         * @param \Iterator $scanner    Iterator with splFileObjects
+         * @param Logger    $logger     A Logger instance to report progress and problems
          */
         public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner, $logger) {
-
             $worker  = new PHPFilterIterator($scanner);
             $builder = new Builder($this->publicOnly);
 
@@ -172,20 +193,14 @@ namespace TheSeer\phpDox {
         }
 
         protected function setupTarget($file) {
-            $path = array();
-            foreach(explode('/', $file->getPathName()) as $part) {
-                if (($part == '.') || ($part == '')) {
-                    continue;
-                }
-                $path[] = $part;
-            }
-            $target = $this->xmlDir . '/' . join('/', $path).'.xml';
+            $path = substr($file->getPathName(), $this->srcIndex);
+            $target = $this->xmlDir . $path . '.xml';
             $targetDir = dirname($target);
-            clearstatcache();
             if (!file_exists($targetDir)) {
                 mkdir($targetDir, 0755, true);
             }
             return $target;
         }
     }
+
 }
