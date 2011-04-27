@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
@@ -34,25 +33,24 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- * @exitcodes  0 No error
- *             1 Execution Error
- *             3 Parameter Error
- *             4 Lint Error
- *
  */
 
-require 'TheSeer/DirectoryScanner/autoload.php';
-require __DIR__ . '/../fDomDocument/autoload.php';
-require 'TheSeer/fXSL/autoload.php';
-require  'ezc/Base/base.php';
+namespace TheSeer\phpDox\DocBlock {
 
-require __DIR__ . '/lib/staticReflection/src/main/php/pdepend/reflection/Autoloader.php';
+    class InvalidElement extends GenericElement {
 
-require __DIR__ . '/src/autoload.php';
+        public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
+            $node = $ctx->createElementNS('http://xml.phpdox.de/src#', 'invalid');
+            $node->setAttribute('annotation', $this->name);
+            foreach($this->attributes as $attribute => $value) {
+                $node->setAttribute($attribute, $value);
+            }
+            if ($this->body !== NULL && $this->body !== '') {
+                $node->appendChild($ctx->createTextnode($this->body));
+            }
+            return $node;
+        }
 
-spl_autoload_register( array('ezcBase','autoload'));
-spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
+    }
 
-$exec = new \TheSeer\phpDox\CLI();
-$exec->run();
-exit(0);
+}

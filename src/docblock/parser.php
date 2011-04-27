@@ -96,10 +96,15 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function startParser($name, $payload = NULL) {
-            if (isset($this->map[$name])) {
-                $this->current = new $this->map[$name]($name);
+            if (!preg_match('/^[a-zA-Z0-9]*$/', $name)) {
+                // TODO: errorlog
+                $this->current = new InvalidParser($name);
             } else {
-                $this->current = new GenericParser($name);
+                if (isset($this->map[$name])) {
+                    $this->current = new $this->map[$name]($name);
+                } else {
+                    $this->current = new GenericParser($name);
+                }
             }
             if ($payload !== NULL) {
                 $this->current->setPayload($payload);

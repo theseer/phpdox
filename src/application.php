@@ -100,13 +100,13 @@ namespace TheSeer\phpDox {
         /**
          * Run Documentation generation process
          *
-         * @param string  $backend    Name of the backend to use for generation
+         * @param string  $config     configuration name to use on generation
          * @param string  $docDir     Output directory to store documentation in
          * @param boolean $publicOnly Flag to enable processing of only public methods and members
          *
          * @return void
          */
-        public function runGenerator($backend, $docDir, $publicOnly = false) {
+        public function runGenerator($config, $docDir, $publicOnly = false) {
             $generator = new Generator(
                 $this->xmlDir,
                 $docDir,
@@ -115,7 +115,7 @@ namespace TheSeer\phpDox {
                 $this->getContainerDocument('classes')
             );
             $generator->setPublicOnly($publicOnly);
-            $generator->run($backend);
+            $generator->run();
         }
 
         /**
@@ -151,6 +151,21 @@ namespace TheSeer\phpDox {
                 $dom->save($fname);
             }
         }
+
+        /**
+         * Helper to load requested require files
+         *
+         * @param Array $require Array of files to require
+         */
+        protected function processRequire(Array $require) {
+            foreach($require as $file) {
+                if (!file_exists($file) || !is_file($file)) {
+                    throw new ApplicationException("Require file '$file' not found or not a file", ApplicationException::RequireFailed);
+                }
+                require $file;
+            }
+        }
+
 
         /**
          * Helper to cleanup
@@ -201,5 +216,9 @@ namespace TheSeer\phpDox {
             }
         }
 
+    }
+
+    class ApplicationException extends \Exception {
+        const RequireFailed = 1;
     }
 }

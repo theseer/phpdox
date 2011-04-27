@@ -37,6 +37,7 @@
 namespace TheSeer\phpDox {
 
     use \TheSeer\fDOM\fDOMDocument;
+    use \TheSeer\fDOM\fDOMElement;
     use \TheSeer\fXSL\fXSLTProcessor;
 
     class Generator {
@@ -48,6 +49,29 @@ namespace TheSeer\phpDox {
         protected $namespaces;
         protected $interfaces;
         protected $classes;
+
+        protected $eventProcessors = array(
+            'phpdox.before' => array(),
+            'phpdox.after' => array(),
+
+            'namespace.before' => array(),
+            'namespace.classes.before' => array(),
+            'namespace.classes.after' => array(),
+            'namespace.interfaces.before' => array(),
+            'namespace.interfaces.after' => array(),
+            'namespace.after' => array(),
+
+            'class.before' => array(),
+            'class.constant' => array(),
+            'class.member' => array(),
+            'class.method' => array(),
+            'class.after' => array(),
+
+            'interface.before' => array(),
+            'interface.constant' => array(),
+            'interface.method' => array(),
+            'interface.after' => array()
+        );
 
         /**
          * Generator constructor
@@ -71,55 +95,107 @@ namespace TheSeer\phpDox {
             $this->publicOnly = $switch;
         }
 
-        public function isPublicOnly() {
-            return $this->publicOnly;
-        }
-
-        public function getNamespacesAsDOM() {
-            return $this->namespaces;
-        }
-
-        public function getInterfacesAsDOM() {
-            return $this->interfaces;
-        }
-
-        public function getClassesAsDOM() {
-            return $this->classes;
-        }
-
-        public function getXMLDirectory() {
-            return $this->xmlDir;
-        }
-
-        public function getDocumentationDirectory() {
-            return $this->docDir;
+        public function registerProcessor($event, Processor $processor) {
+            if (!array_key_exists($event, $this->eventProcessors)) {
+                throw GeneratorException("'$event' unknown", GeneratorException::UnkownEvent);
+            }
+            $hash = spl_object_hash($processor);
+            if (isset($this->eventProcessors[$event][$hash])) {
+                throw GeneratorException("Processor already registered for event '$event'", GeneratorException::AlreadyRegistered);
+            }
+            $this->eventProcessors[$event][] = $processor;
         }
 
         /**
          * Main executer of the generator
          *
-         * @param string $class Classname of the backend implementation to use
          */
-        public function run($class) {
-            if (strpos('\\', $class)===false) {
-                $class = 'TheSeer\\phpDox\\' . $class;
+        public function run() {
+            $this->handleEvent('phpdox.before');
+
+            foreach($this->namespaces->query('//phpdox:namespace') as $namespace) {
+                $this->handleEvent('namespace.before', $namespace);
+                $this->handleEvent('namespace.classes.before', $namespace);
+
+                $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:class', $namespace->getAttribute('name'));
+                foreach($this->classes->query($xpath) as $class) {
+                    $this->processClass($class);
+                }
+
+                $this->handleEvent('namespace.classes.after', $namespace);
+                $this->handleEvent('namespace.interfaces.before', $namespace);
+
+                $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:interface', $namespace->getAttribute('name'));
+                foreach($this->interfaces->query($xpath) as $interface) {
+                    $this->processInterface($interface);
+                }
+
+                $this->handleEvent('namespace.interfaces.after', $namespace);
+                $this->handleEvent('namespace.after', $namespace);
             }
 
-            if (!class_exists($class, true)) {
-                throw new GeneratorException("Backend class '$class' is not defined", GeneratorException::ClassNotDefined);
+            $this->handleEvent('phpdox.after');
+        }
+
+        protected function processClass(fDOMElement $class) {
+            $classDom = new fDomDocument();
+            $classDom->load($this->xmlDir . '/' . $class->getAttribute('xml'));
+            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+
+            foreach($classDom->query('//phpdox:class') as $classNode) {
+                $this->handleEvent('class.before', $classNode);
+
+                foreach($classNode->query('phpdox:constant') as $constant) {
+                    $this->handleEvent('class.constant', $constant);
+                }
+
+                foreach($classNode->query('phpdox:member') as $member) {
+                    if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
+                        continue;
+                    }
+                    $this->handleEvent('class.member', $member);
+                }
+
+                foreach($classNode->query('phpdox:method') as $method) {
+                    if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
+                        continue;
+                    }
+                    $this->handleEvent('class.method', $method);
+                }
+                $this->handleEvent('class.after', $classNode);
             }
-            $backend = new $class();
-            if (!$backend instanceof genericBackend) {
-                throw new GeneratorException("'$class' must implement the GeneratorBackendInterface to be used as backend", GeneratorException::UnsupportedBackend);
+        }
+
+        protected function processInterface(fDOMElement $interface) {
+            $interfaceDom = new fDomDocument();
+            $interfaceDom->load($this->xmlDir . '/' . $interface->getAttribute('xml'));
+            $interfaceDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+
+            foreach($interfaceDom->query('//phpdox:interface') as $interfaceNode) {
+                $this->handleEvent('interface.before', $interfaceNode);
+
+                foreach($interfaceNode->query('phpdox:constant') as $constant) {
+                    $this->handleEvent('interface.constant', $constant);
+                }
+
+                foreach($interfaceNode->query('phpdox:method') as $method) {
+                    $this->handleEvent('interface.method', $method);
+                }
+
+                $this->handleEvent('interface.after', $interfaceNode);
             }
-            $backend->run($this);
+        }
+
+        protected function handleEvent($event) {
+            $payload = func_get_args();
+            echo "$event\n";
         }
 
     }
 
     class GeneratorException extends \Exception {
-        const ClassNotDefined    = 1;
-        const UnsupportedBackend = 2;
-        const UnexepctedType     = 3;
+        const UnknownEvent = 1;
+        const AlreadyRegistered = 2;
     }
+
 }

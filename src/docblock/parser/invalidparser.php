@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
@@ -34,25 +33,18 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- * @exitcodes  0 No error
- *             1 Execution Error
- *             3 Parameter Error
- *             4 Lint Error
- *
  */
 
-require 'TheSeer/DirectoryScanner/autoload.php';
-require __DIR__ . '/../fDomDocument/autoload.php';
-require 'TheSeer/fXSL/autoload.php';
-require  'ezc/Base/base.php';
+namespace TheSeer\phpDox\DocBlock {
 
-require __DIR__ . '/lib/staticReflection/src/main/php/pdepend/reflection/Autoloader.php';
+    class InvalidParser extends GenericParser {
 
-require __DIR__ . '/src/autoload.php';
+        public function getObject(array $buffer) {
+            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\InvalidElement',$buffer);
+            $obj->setValue($this->payload);
+            return $obj;
+        }
 
-spl_autoload_register( array('ezcBase','autoload'));
-spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
+    }
 
-$exec = new \TheSeer\phpDox\CLI();
-$exec->run();
-exit(0);
+}

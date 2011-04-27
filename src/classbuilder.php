@@ -117,8 +117,9 @@ namespace TheSeer\phpDox {
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
                 // TODO: Error logger -> addWarning
-                //var_dump($comment);
-                throw $e;
+                var_dump($comment,$e);
+                //throw $e;
+                die();
             }
         }
 
