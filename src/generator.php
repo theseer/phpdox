@@ -38,7 +38,9 @@ namespace TheSeer\phpDox {
 
     use \TheSeer\fDOM\fDOMDocument;
     use \TheSeer\fDOM\fDOMElement;
+
     use \TheSeer\fXSL\fXSLTProcessor;
+    use \TheSeer\fXSL\fXSLCallback;
 
     class Generator {
         protected $xmlDir;
@@ -46,47 +48,63 @@ namespace TheSeer\phpDox {
 
         protected $publicOnly = false;
 
+        protected $logger;
+
         protected $namespaces;
+        protected $packages;
         protected $interfaces;
         protected $classes;
 
-        protected $eventProcessors = array(
-            'phpdox.before' => array(),
-            'phpdox.after' => array(),
+        /**
+         * Map of registered handler
+         *
+         * @var array
+         */
+        protected $eventHandler = array(
+            'phpdox.start' => array(),
+            'phpdox.end' => array(),
 
-            'namespace.before' => array(),
-            'namespace.classes.before' => array(),
-            'namespace.classes.after' => array(),
-            'namespace.interfaces.before' => array(),
-            'namespace.interfaces.after' => array(),
-            'namespace.after' => array(),
+            'phpdox.classes.start' => array(),
+            'phpdox.classes.end' => array(),
+            'phpdox.interfaces.start' => array(),
+            'phpdox.interfaces.end' => array(),
 
-            'class.before' => array(),
+            'namespace.start' => array(),
+            'namespace.classes.start' => array(),
+            'namespace.classes.end' => array(),
+            'namespace.interfaces.start' => array(),
+            'namespace.interfaces.end' => array(),
+            'namespace.end' => array(),
+
+            'class.start' => array(),
             'class.constant' => array(),
             'class.member' => array(),
             'class.method' => array(),
-            'class.after' => array(),
+            'class.end' => array(),
 
-            'interface.before' => array(),
+            'interface.start' => array(),
             'interface.constant' => array(),
             'interface.method' => array(),
-            'interface.after' => array()
+            'interface.end' => array()
         );
 
         /**
          * Generator constructor
          *
-         * @param string $xmlDir      Base path where class xml files are found
-         * @param string $docDir      Base directory to store documentation files in
-         * @param fDomDocument $nsDom DOM instance to register namespaces in
-         * @param fDomDocument $iDom  DOM instance to register interfaces in
-         * @param fDomDocument $cDom  DOM instance to register classes in
+         * @param string       $xmlDir Base path where class xml files are found
+         * @param string       $tplDir Base path for templates
+         * @param string       $docDir Base directory to store documentation files in
+         * @param fDomDocument $nsDom  DOM instance of namespaces.xml
+         * @param fDomDocument $iDom   DOM instance of interfaces.xml
+         * @param fDomDocument $cDom   DOM instance of classes.xml
          */
-        public function __construct($xmlDir, $docDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
-            $this->xmlDir  = $xmlDir;
-            $this->docDir  = $docDir;
+        public function __construct($xmlDir, $tplDir, $docDir, fDOMDocument $nsDom, fDOMDocument $pDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+            $this->xmlDir = $xmlDir;
+            $this->docDir = $docDir;
+            $this->tplDir = $tplDir;
 
             $this->namespaces = $nsDom;
+            $this->packages   = $pDom;
             $this->interfaces = $iDom;
             $this->classes    = $cDom;
         }
@@ -95,47 +113,86 @@ namespace TheSeer\phpDox {
             $this->publicOnly = $switch;
         }
 
-        public function registerProcessor($event, Processor $processor) {
-            if (!array_key_exists($event, $this->eventProcessors)) {
-                throw GeneratorException("'$event' unknown", GeneratorException::UnkownEvent);
+        public function registerHandler($event, EventHandler $handler) {
+            if (!array_key_exists($event, $this->eventHandler)) {
+                throw new GeneratorException("'$event' unknown", GeneratorException::UnknownEvent);
             }
-            $hash = spl_object_hash($processor);
-            if (isset($this->eventProcessors[$event][$hash])) {
-                throw GeneratorException("Processor already registered for event '$event'", GeneratorException::AlreadyRegistered);
+            $hash = spl_object_hash($handler);
+            if (isset($this->eventHandler[$event][$hash])) {
+                throw GeneratorException("Handler already registered for event '$event'", GeneratorException::AlreadyRegistered);
             }
-            $this->eventProcessors[$event][] = $processor;
+            $this->eventHandler[$event][] = $handler;
         }
 
         /**
          * Main executer of the generator
          *
+         * @param ProgressLogger $logger
          */
-        public function run() {
-            $this->handleEvent('phpdox.before');
+        public function run(ProgressLogger $logger) {
+            $this->logger = $logger;
+            $this->triggerEvent('phpdox.start');
+            if ($this->namespaces->documentElement->hasChildNodes()) {
+                $this->processWithNamespace();
+            } else {
+                $this->processGlobalOnly();
+            }
+            $this->triggerEvent('phpdox.end');
+            $logger->completed();
+        }
 
+        protected function processGlobalOnly() {
+            $this->triggerEvent('phpdox.classes.start');
+            foreach($this->classes->query('//phpdox:class') as $class) {
+                $this->processClass($class);
+            }
+            $this->triggerEvent('phpdox.classes.end');
+            $this->triggerEvent('phpdox.interfaces.start');
+            foreach($this->interfaces->query('//phpdox:interface') as $interface) {
+                $this->processInterface($interface);
+            }
+            $this->triggerEvent('phpdox.interfaces.end');
+        }
+
+        protected function processWithNamespace() {
             foreach($this->namespaces->query('//phpdox:namespace') as $namespace) {
-                $this->handleEvent('namespace.before', $namespace);
-                $this->handleEvent('namespace.classes.before', $namespace);
+                $this->triggerEvent('namespace.start', $namespace);
+                $this->triggerEvent('namespace.classes.start', $namespace);
 
                 $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:class', $namespace->getAttribute('name'));
                 foreach($this->classes->query($xpath) as $class) {
                     $this->processClass($class);
                 }
 
-                $this->handleEvent('namespace.classes.after', $namespace);
-                $this->handleEvent('namespace.interfaces.before', $namespace);
+                $this->triggerEvent('namespace.classes.end', $namespace);
+                $this->triggerEvent('namespace.interfaces.start', $namespace);
 
                 $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:interface', $namespace->getAttribute('name'));
                 foreach($this->interfaces->query($xpath) as $interface) {
                     $this->processInterface($interface);
                 }
 
-                $this->handleEvent('namespace.interfaces.after', $namespace);
-                $this->handleEvent('namespace.after', $namespace);
+                $this->triggerEvent('namespace.interfaces.end', $namespace);
+                $this->triggerEvent('namespace.end', $namespace);
             }
-
-            $this->handleEvent('phpdox.after');
         }
+
+        public function getXSLTProcessor($filename) {
+            $tpl = new fDomDocument();
+            $tpl->load($this->tplDir . '/' . $filename);
+            return new fXSLTProcessor($tpl);
+        }
+
+        public function saveDomDocument($dom, $filename) {
+            $filename = $this->docDir . '/' . $filename;
+            $path = dirname($filename);
+            clearstatcache();
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+            return $dom->save($filename);
+        }
+
 
         protected function processClass(fDOMElement $class) {
             $classDom = new fDomDocument();
@@ -143,26 +200,26 @@ namespace TheSeer\phpDox {
             $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
 
             foreach($classDom->query('//phpdox:class') as $classNode) {
-                $this->handleEvent('class.before', $classNode);
+                $this->triggerEvent('class.start', $classNode);
 
                 foreach($classNode->query('phpdox:constant') as $constant) {
-                    $this->handleEvent('class.constant', $constant);
+                    $this->triggerEvent('class.constant', $constant);
                 }
 
                 foreach($classNode->query('phpdox:member') as $member) {
                     if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->handleEvent('class.member', $member);
+                    $this->triggerEvent('class.member', $member);
                 }
 
                 foreach($classNode->query('phpdox:method') as $method) {
                     if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->handleEvent('class.method', $method);
+                    $this->triggerEvent('class.method', $method);
                 }
-                $this->handleEvent('class.after', $classNode);
+                $this->triggerEvent('class.end', $classNode);
             }
         }
 
@@ -172,24 +229,30 @@ namespace TheSeer\phpDox {
             $interfaceDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
 
             foreach($interfaceDom->query('//phpdox:interface') as $interfaceNode) {
-                $this->handleEvent('interface.before', $interfaceNode);
+                $this->triggerEvent('interface.start', $interfaceNode);
 
                 foreach($interfaceNode->query('phpdox:constant') as $constant) {
-                    $this->handleEvent('interface.constant', $constant);
+                    $this->triggerEvent('interface.constant', $constant);
                 }
 
                 foreach($interfaceNode->query('phpdox:method') as $method) {
-                    $this->handleEvent('interface.method', $method);
+                    $this->triggerEvent('interface.method', $method);
                 }
 
-                $this->handleEvent('interface.after', $interfaceNode);
+                $this->triggerEvent('interface.end', $interfaceNode);
             }
         }
 
-        protected function handleEvent($event) {
+        protected function triggerEvent($event) {
+            // echo "$event\n";
+            $this->logger->progress('processed');
             $payload = func_get_args();
-            echo "$event\n";
+            foreach($this->eventHandler[$event] as $proc) {
+                call_user_func_array(array($proc, 'handle'), $payload);
+            }
         }
+
+
 
     }
 

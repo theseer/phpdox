@@ -40,10 +40,12 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
     use \TheSeer\Tools\PHPFilterIterator;
-    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fDOM\fDOMDocument;
+    use \TheSeer\fDOM\fDOMException;
 
     class CLI {
 
@@ -53,6 +55,12 @@ namespace TheSeer\phpDox {
          * @var string
          */
         const VERSION = "%version%";
+
+        /**
+         * Instance of Logger class in use
+         * @var ProgressLogger
+         */
+        protected $logger;
 
         /**
          * Main executor for CLI process.
@@ -75,16 +83,18 @@ namespace TheSeer\phpDox {
                     exit(0);
                 }
 
-                //$config = $this->getConfig($input);
-
                 if ($input->getOption('silent')->value === true) {
-                    $logger = new ProgressLogger();
+                    $this->logger = new ProgressLogger();
                 } else {
                     $this->showVersion();
-                    $logger = new ShellProgressLogger();
+                    $this->logger = new ShellProgressLogger();
                 }
 
-                $app = new Application($logger, $input->getOption('xml')->value);
+                $app = new Application($this->logger, $input->getOption('xml')->value);
+
+                if ($require = $input->getOption('require')->value) {
+                    $this->processRequire($require, $app);
+                }
 
                 if ($path = $input->getOption('collect')->value) {
                     $path = realpath($path);
@@ -94,19 +104,25 @@ namespace TheSeer\phpDox {
                         $input->getOption('public')->value
                     );
                 }
-                if ($gen = $input->getOption('generate')->value) {
-                    foreach($gen as $target) {
-                        $app->runGenerator(
-                            $target,
-                            $input->getOption('docs')->value,
-                            $input->getOption('public')->value
-                        );
-                    }
+                if ($generate = $input->getOption('generate')->value) {
+                    $app->runGenerator(
+                        $generate,
+                        $input->getOption('templates')->value,
+                        $input->getOption('docs')->value,
+                        $input->getOption('public')->value
+                    );
                 }
+
+                $this->logger->buildSummary();
+
             } catch (\ezcConsoleException $e) {
                 $this->showVersion();
                 fwrite(STDERR, $e->getMessage()."\n\n");
                 $this->showUsage();
+                exit(3);
+            } catch (fDOMException $e) {
+                fwrite(STDERR, "Error while processing request:\n");
+                fwrite(STDERR, $e->getFullMessage()."\n" . $e->getTraceAsString());
                 exit(3);
             } catch (CLIException $e) {
                 $this->showVersion();
@@ -121,13 +137,20 @@ namespace TheSeer\phpDox {
             }
         }
 
-        protected function getConfig(\ezcConsoleInput $input) {
-            $config = new Configuration();
-            if (file_exists($input->getOption('file')->value)) {
-                $config->load($input->getOption('file')->value);
+        /**
+         * Helper to load requested require files
+         *
+         * @param Array         $require      Array of files to require
+         * @param Application   $application  Instance of Application
+         */
+        protected function processRequire(Array $require, Application $application) {
+            foreach($require as $file) {
+                if (!file_exists($file) || !is_file($file)) {
+                    throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
+                }
+                $this->logger->log("Loading additional bootstrap file '$file'");
+                require $file;
             }
-
-            return $config;
         }
 
         /**
@@ -226,7 +249,14 @@ namespace TheSeer\phpDox {
                 'f', 'file', \ezcConsoleInput::TYPE_STRING, './phpdox.xml', true,
                 'Configuration file to load'
             ));
-
+            $input->registerOption( new \ezcConsoleOption(
+                'r', 'require', \ezcConsoleInput::TYPE_STRING, null, true,
+                'Custom PHP Source file to load'
+            ));
+            $input->registerOption( new \ezcConsoleOption(
+                't', 'templates', \ezcConsoleInput::TYPE_STRING, __DIR__ . '/../templates', false,
+                'Output directory for collected data (default: ./xml)'
+            ));
         }
 
         /**
@@ -238,19 +268,22 @@ Usage: phpdox [switches]
 
   -f, --file       Configuration file to use (default: ./phpdox.xml)
 
+  -c, --collect    Scan directory and collect input (default: ./src)
+  -g, --generate   Generate documentation (default builder: html)
+
+  -p, --public     Only process public member and methods
+
   -x, --xml        Output directory for collected data (default: ./xml)
   -d, --docs       Output directory for generated documentation (default: ./docs)
-
-  -p, --public 	   Only process public member and methods
-
-  -c, --collect    scan directory and collect input (default: ./src)
-  -g, --generate   generate documentation (default backend: htmlBuilder)
+  -t, --templates  Overwrite directory to load templates from
 
   -l, --log        Generate XML style logfile (not implemented yet)
-  -s, --silent     Do not output anything to the console (not implemented yet)
+  -s, --silent     Do not output anything to the console
 
   -i, --include    File pattern to include (default: *.php)
   -e, --exclude    File pattern to exclude
+
+  -r, --require    Load additional bootstrap files
 
   -h, --help       Prints this usage information
   -v, --version    Prints the version and exits

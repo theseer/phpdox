@@ -40,7 +40,6 @@ namespace TheSeer\phpDox\DocBlock {
     class GenericElement {
 
         protected $name;
-        protected $value;
         protected $body;
         protected $attributes = array();
 
@@ -52,13 +51,23 @@ namespace TheSeer\phpDox\DocBlock {
             return $this->name;
         }
 
-        public function __call($method, $value) {
-            if (strpos($method,'set')!==0) {
-                throw new GenericElementException("Method '$method' not defined", GenericElementException::NotDefined);
-            }
-            $attribute = strtolower(substr($method,3));
-            $this->attributes[$attribute] = $value[0];
+        public function getBody() {
+            return $this->body;
+        }
 
+        public function __call($method, $value) {
+            if (!preg_match('/^[s|g]et/', $method)) {
+                throw new GenericElementException("Method '$method' not defined", GenericElementException::MethodNotDefined);
+            }
+            if ($method[0]=='s') {
+                $attribute = strtolower(substr($method,3));
+                $this->attributes[$attribute] = $value[0];
+            } else {
+                if (!isset($this->attributes[$value[0]])) {
+                    throw new GenericElementException("Property '{$value[0]}' not defined", GenericElementException::PropertyNotDefined);
+                }
+                return $this->attributes[$value[0]];
+            }
         }
 
         public function setBody($body) {
@@ -79,6 +88,7 @@ namespace TheSeer\phpDox\DocBlock {
     }
 
     class GenericElementException extends \Exception {
-        const NotDefined = 1;
+        const MethodNotDefined = 1;
+        const PropertyNotDefined = 2;
     }
 }

@@ -64,6 +64,21 @@ namespace TheSeer\phpDox {
             $this->totalCount++;
         }
 
+        public function reset() {
+            $this->totalCount = 0;
+            $this->stateCount = array(
+                'processed' => 0,
+                'cached' => 0,
+                'failed' => 0
+            );
+        }
+
+        public function completed() {
+        }
+
+        public function log($msg) {
+        }
+
         public function buildSummary() {
         }
 

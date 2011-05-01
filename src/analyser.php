@@ -40,13 +40,14 @@ namespace TheSeer\phpDox {
     use \pdepend\reflection\ReflectionSession;
     use \TheSeer\fDOM\fDOMDocument;
 
-    class Builder {
+    class Analyser {
 
         protected $publicOnly;
 
         protected $namespaces;
         protected $interfaces;
         protected $classes;
+        protected $packages;
 
         protected $file;
         protected $dom;
@@ -67,10 +68,15 @@ namespace TheSeer\phpDox {
             return $this->namespaces;
         }
 
+        public function getPackages() {
+            return $this->packages;
+        }
+
         public function processFile(\SPLFileInfo $file) {
             $this->namespaces = array();
             $this->interfaces = array();
             $this->classes    = array();
+            $this->packages   = array();
 
             $this->file = $file;
 
@@ -107,7 +113,9 @@ namespace TheSeer\phpDox {
 
             $classBuilder = new ClassBuilder($context, $this->publicOnly);
             $classNode = $classBuilder->process($class);
-
+            if ($package = $classBuilder->getPackage()) {
+                $this->packages[$package] = $classNode;
+            }
             if ($class->isInterface()) {
                 $this->interfaces[$class->getName()] = $classNode;
             } else {

@@ -66,6 +66,12 @@ namespace TheSeer\phpDox {
         protected $namespaces;
 
         /**
+         * fDOMDocument used to register Packages in
+         * @var \TheSeer\fDOM\fDOMDocument
+         */
+        protected $packages;
+
+        /**
          * fDOMDocument used to register Interfaces in
          * @var \TheSeer\fDOM\fDOMDocument
          */
@@ -81,12 +87,14 @@ namespace TheSeer\phpDox {
          * Collector constructor
          *
          * @param \TheSeer\fDOM\fDomDocument $nsDom	 DOM instance to register namespaces in
+         * @param \TheSeer\fDOM\fDomDocument $pDom   DOM instance to register packages in
          * @param \TheSeer\fDOM\fDomDocument $iDom	 DOM instance to register interfaces in
          * @param \TheSeer\fDOM\fDomDocument $cDom	 DOM instance to register classes in
          */
-        public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+        public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $pDom, fDOMDocument $iDom, fDOMDocument $cDom) {
             $this->xmlDir     = $xmlDir;
             $this->namespaces = $nsDom;
+            $this->packages   = $pDom;
             $this->interfaces = $iDom;
             $this->classes    = $cDom;
         }
@@ -112,12 +120,12 @@ namespace TheSeer\phpDox {
         /**
          * Main executer of the collector, looping over the iterator with found files
          *
-         * @param \Iterator $scanner    Iterator with splFileObjects
-         * @param Logger    $logger     A Logger instance to report progress and problems
+         * @param \Iterator      $scanner Iterator with splFileObjects
+         * @param ProgressLogger $logger  A Logger instance to report progress and problems
          */
         public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner, $logger) {
-            $worker  = new PHPFilterIterator($scanner);
-            $builder = new Builder($this->publicOnly);
+            $worker = new PHPFilterIterator($scanner);
+            $analyser = new Analyser($this->publicOnly);
 
             if (!file_exists($this->xmlDir)) {
                 mkdir($this->xmlDir);
@@ -130,16 +138,17 @@ namespace TheSeer\phpDox {
                     continue;
                 }
                 try {
-                    $xml = $builder->processFile($file);
+                    $xml = $analyser->processFile($file);
                     $xml->formatOutput= true;
                     $xml->save($target);
                     touch($target, $file->getMTime(), $file->getATime());
 
                     $src = realpath($file->getPathName());
 
-                    $this->registerNamespaces($target, $src, $builder->getNamespaces());
-                    $this->registerInContainer($this->interfaces, 'interface', $target, $src, $builder->getInterfaces());
-                    $this->registerInContainer($this->classes, 'class', $target, $src, $builder->getClasses());
+                    $this->registerNamespaces($target, $src, $analyser->getNamespaces());
+                    $this->registerInContainer($this->packages, 'package', $target, $src, $analyser->getPackages());
+                    $this->registerInContainer($this->interfaces, 'interface', $target, $src, $analyser->getInterfaces());
+                    $this->registerInContainer($this->classes, 'class', $target, $src, $analyser->getClasses());
                     $logger->progress('processed');
                 } catch (\Exception $e) {
                     $logger->progress('failed');
@@ -147,8 +156,7 @@ namespace TheSeer\phpDox {
                     // TODO: Report Exception ;)
                 }
             }
-
-            $logger->buildSummary();
+            $logger->completed();
         }
 
         protected function registerNamespaces($target, $src, array $list) {

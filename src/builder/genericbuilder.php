@@ -33,38 +33,42 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fXSL\fXSLTProcessor;
+    use \TheSeer\fXSL\fXSLCallback;
 
-        public function progress($state) {
-            parent::progress($state);
+    abstract class GenericBuilder {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        private $xsltproc = array();
+
+        /**
+         * Helper to get XSLTProcessor instance
+         *
+         * This method also registers the public methods of
+         * the backend to be callable from within the xsl context
+         *
+         * @param \DomDocument $xsl A Stylesheet DOMDocument
+         *
+         * @return TheSeer\fXSL\fXSLTProcessor
+         */
+        protected function getXSLTProcessor(\DomDocument $xsl) {
+            $hash = spl_object_hash($xsl);
+            if (isset($this->xsltproc[$hash])) {
+                return $this->xsltproc[$hash];
             }
 
-        }
+            $cb = new fXSLCallback('http://phpdox.de/callback', 'cb');
+            $cb->setObject($this);
+            $cb->setBlacklist(array('run','build'));
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
-        }
+            $this->xsltproc[$hash] = new fXSLTProcessor($xsl);
+            $this->xsltproc[$hash]->registerCallback($cb);
 
-        public function log($msg) {
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
+            return $this->xsltproc[$hash];
         }
 
 

@@ -44,10 +44,9 @@
 require 'TheSeer/DirectoryScanner/autoload.php';
 require __DIR__ . '/../fDomDocument/autoload.php';
 require 'TheSeer/fXSL/autoload.php';
-require  'ezc/Base/base.php';
-
+require 'ezc/Base/base.php';
+require 'PHP/Timer.php';
 require __DIR__ . '/lib/staticReflection/src/main/php/pdepend/reflection/Autoloader.php';
-
 require __DIR__ . '/src/autoload.php';
 
 spl_autoload_register( array('ezcBase','autoload'));

@@ -33,41 +33,56 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fDom\fDomElement;
 
-        public function progress($state) {
-            parent::progress($state);
+    class HtmlBuilder implements EventHandler {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        protected $xsl;
+        protected $generator;
+
+        protected $eventMap = array(
+            'class.start' => 'buildClass'
+        );
+
+        public function setUp(Generator $generator) {
+            $this->generator = $generator;
+            foreach(array_keys($this->eventMap) as $event) {
+                $generator->registerHandler($event, $this);
             }
-
+            $this->xsl = $generator->getXSLTProcessor('htmlBuilder/class.xsl');
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
+        public function handle($event) {
+            if (!isset($this->eventMap[$event])) {
+                throw new HtmlBuilderException("Don't know how to handle event '$event'", HtmlBuilderException::UnkownEvent);
             }
-            echo "\n\n";
+            $payload = func_get_args();
+            array_shift($payload);
+            call_user_func_array(array($this, $this->eventMap[$event]), $payload);
+
         }
 
-        public function log($msg) {
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+        protected function buildClass(fDOMElement $classNode) {
+            $full = $classNode->getAttribute('full');
+            $this->xsl->setParameter('', 'class', $full);
+            var_dump($full);
+            $html = $this->xsl->transformToDoc($classNode);
+            $this->generator->saveDomDocument($html, 'classes/'. $this->classNameToFileName($full, 'xhtml'));
         }
 
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
+        protected function classNameToFileName($class, $ext = 'xml') {
+            return str_replace('\\', '_', $class) . '.' . $ext;
         }
 
+    }
 
+    class HtmlBuilderException extends \Exception {
+        const UnkownEvent = 1;
     }
 
 }

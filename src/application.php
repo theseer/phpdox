@@ -63,6 +63,15 @@ namespace TheSeer\phpDox {
         protected $container = array();
 
         /**
+         * Map for builder names on actual classes to
+         *
+         * @var array
+         */
+        protected $builderMap = array(
+            'html' => '\\TheSeer\\phpDox\HtmlBuilder'
+        );
+
+        /**
          * Constructor of PHPDox Application
          *
          * @param ProgressLogger $logger Instance of the ProgressLogger class
@@ -83,9 +92,11 @@ namespace TheSeer\phpDox {
          * @return void
          */
         public function runCollector($srcDir, $scanner, $publicOnly = false) {
+            $this->logger->log("Starting collector\n");
             $collector = new Collector(
                 $this->xmlDir,
                 $this->getContainerDocument('namespaces'),
+                $this->getContainerDocument('packages'),
                 $this->getContainerDocument('interfaces'),
                 $this->getContainerDocument('classes')
             );
@@ -95,27 +106,45 @@ namespace TheSeer\phpDox {
 
             $this->cleanUp($srcDir);
             $this->saveContainer();
+            $this->logger->log('Collector process completed');
         }
 
         /**
          * Run Documentation generation process
          *
-         * @param string  $config     configuration name to use on generation
+         * @param string  $generate   array of generator backends to run
+         * @param string  $tplDir     base directory for templates
          * @param string  $docDir     Output directory to store documentation in
          * @param boolean $publicOnly Flag to enable processing of only public methods and members
          *
          * @return void
          */
-        public function runGenerator($config, $docDir, $publicOnly = false) {
+        public function runGenerator($generate, $tplDir, $docDir, $publicOnly = false) {
+            $this->logger->reset();
+
             $generator = new Generator(
                 $this->xmlDir,
+                $tplDir,
                 $docDir,
                 $this->getContainerDocument('namespaces'),
+                $this->getContainerDocument('packages'),
                 $this->getContainerDocument('interfaces'),
                 $this->getContainerDocument('classes')
             );
             $generator->setPublicOnly($publicOnly);
-            $generator->run();
+
+            foreach($generate as $name) {
+                if (!isset($this->builderMap[$name])) {
+                    throw new ApplicationException("'$name' is not a registered generation backend", ApplicationException::UnkownBackend);
+                }
+                $classname = $this->builderMap[$name];
+                $this->logger->log("Registering backend '$classname'");
+                $backend = new $classname();
+                $backend->setUp($generator);
+            }
+            $this->logger->log("Starting generator\n");
+            $generator->run($this->logger);
+            $this->logger->log('Generator process completed');
         }
 
         /**
@@ -151,21 +180,6 @@ namespace TheSeer\phpDox {
                 $dom->save($fname);
             }
         }
-
-        /**
-         * Helper to load requested require files
-         *
-         * @param Array $require Array of files to require
-         */
-        protected function processRequire(Array $require) {
-            foreach($require as $file) {
-                if (!file_exists($file) || !is_file($file)) {
-                    throw new ApplicationException("Require file '$file' not found or not a file", ApplicationException::RequireFailed);
-                }
-                require $file;
-            }
-        }
-
 
         /**
          * Helper to cleanup
@@ -219,6 +233,6 @@ namespace TheSeer\phpDox {
     }
 
     class ApplicationException extends \Exception {
-        const RequireFailed = 1;
+        const UnkownBackend = 1;
     }
 }
