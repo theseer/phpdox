@@ -15,6 +15,10 @@ Also, you'll need to install the following pear dependencies:
     sudo pear install theseer/fDOMDocument
     sudo pear install theseer/fXSL
 
+In case you do not use PHPUnit, you need to discover the pear channel for a dependency
+    sudo pear channel-discover pear.phpunit.de
+    sudo pear install phpunit/php_timer
+
 Finally, you'll need the ezcConsoleTools from components.ez.no:
     sudo pear channel-discover components.ez.no
     sudo pear install ezc/ConsoleTools 
@@ -37,7 +41,11 @@ Usage Examples
 --------------
 
 You can run phpdox like this:
-    phpdox/phpdox.php
+  ./phpdox.php --help
+    
+Sample invocation to parse and generate html output:
+
+ ./phpdox.php -x /tmp/xml1 -c ~/Downloads/ZendFramework-1.11.5/library/Zend -d /tmp/docs1 -g html
 
 
 trouble shooting
