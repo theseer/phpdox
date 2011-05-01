@@ -70,7 +70,7 @@ namespace TheSeer\phpDox {
         protected function buildClass(fDOMElement $classNode) {
             $full = $classNode->getAttribute('full');
             $this->xsl->setParameter('', 'class', $full);
-            var_dump($full);
+            //var_dump($full);
             $html = $this->xsl->transformToDoc($classNode);
             $this->generator->saveDomDocument($html, 'classes/'. $this->classNameToFileName($full, 'xhtml'));
         }
