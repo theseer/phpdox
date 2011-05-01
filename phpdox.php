@@ -42,7 +42,7 @@
  */
 
 require 'TheSeer/DirectoryScanner/autoload.php';
-require __DIR__ . '/../fDomDocument/autoload.php';
+require 'TheSeer/fDOMDocument/autoload.php';
 require 'TheSeer/fXSL/autoload.php';
 require 'ezc/Base/base.php';
 require 'PHP/Timer.php';
