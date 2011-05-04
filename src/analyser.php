@@ -49,7 +49,6 @@ namespace TheSeer\phpDox {
         protected $classes;
         protected $packages;
 
-        protected $file;
         protected $dom;
 
         public function __construct($publicOnly = false) {
@@ -78,8 +77,19 @@ namespace TheSeer\phpDox {
             $this->classes    = array();
             $this->packages   = array();
 
-            $this->file = $file;
+            $this->initWorkDocument($file);
 
+            $session = new ReflectionSession();
+            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
+            $query = $session->createFileQuery();
+            foreach ( $query->find( $file->getPathname() ) as $class ) {
+                $this->handleClass($class);
+            }
+
+            return $this->dom;
+        }
+
+        protected function initWorkDocument(\SPLFileInfo $file) {
             $this->dom = new fDOMDocument('1.0', 'UTF-8');
             $this->dom->registerNamespace('dox', 'http://xml.phpdox.de/src#');
             $root = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'file');
@@ -93,17 +103,7 @@ namespace TheSeer\phpDox {
             $head->setAttribute('time', date('c', $file->getCTime()));
             $head->setAttribute('unixtime', $file->getCTime());
             $head->setAttribute('sha1', sha1_file($file->getPathname()));
-
-            $session = new ReflectionSession();
-            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
-            $query = $session->createFileQuery();
-            foreach ( $query->find( $file->getPathname() ) as $class ) {
-                $this->handleClass($class);
-            }
-
-            return $this->dom;
         }
-
 
         protected function handleClass(\ReflectionClass  $class) {
             $context = $this->dom->documentElement;

@@ -244,15 +244,12 @@ namespace TheSeer\phpDox {
         }
 
         protected function triggerEvent($event) {
-            // echo "$event\n";
             $this->logger->progress('processed');
             $payload = func_get_args();
             foreach($this->eventHandler[$event] as $proc) {
                 call_user_func_array(array($proc, 'handle'), $payload);
             }
         }
-
-
 
     }
 
