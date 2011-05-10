@@ -34,44 +34,10 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDom\fDomDocument;
-    use \TheSeer\fXSL\fXSLTProcessor;
-    use \TheSeer\fXSL\fXSLCallback;
-
-    abstract class GenericBuilder {
-
-        private $xsltproc = array();
-
-        /**
-         * Helper to get XSLTProcessor instance
-         *
-         * This method also registers the public methods of
-         * the backend to be callable from within the xsl context
-         *
-         * @param \DomDocument $xsl A Stylesheet DOMDocument
-         *
-         * @return TheSeer\fXSL\fXSLTProcessor
-         */
-        protected function getXSLTProcessor(\DomDocument $xsl) {
-            $hash = spl_object_hash($xsl);
-            if (isset($this->xsltproc[$hash])) {
-                return $this->xsltproc[$hash];
-            }
-
-            $cb = new fXSLCallback('http://phpdox.de/callback', 'cb');
-            $cb->setObject($this);
-            $cb->setBlacklist(array('run','build'));
-
-            $this->xsltproc[$hash] = new fXSLTProcessor($xsl);
-            $this->xsltproc[$hash]->registerCallback($cb);
-
-            return $this->xsltproc[$hash];
-        }
-
-
-    }
+    $application->registerBuilderClass(
+        'html', '\\TheSeer\\phpDox\HtmlBuilder'
+    );
 
 }

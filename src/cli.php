@@ -92,9 +92,11 @@ namespace TheSeer\phpDox {
 
                 $app = $this->getApplication($input);
 
+                $bootstrap = $this->getBootstrapFiles();
                 if ($require = $input->getOption('require')->value) {
-                    $this->processRequire($require, $app);
+                    $bootstrap = array_merge($bootstrap, $require);
                 }
+                $this->processRequire($bootstrap, $app);
 
                 if ($path = $input->getOption('collect')->value) {
                     $path = realpath($path);
@@ -137,6 +139,10 @@ namespace TheSeer\phpDox {
                 fwrite(STDERR, "\n\nPlease file a bugreport for this!\n");
                 exit(1);
             }
+        }
+
+        protected function getBootstrapFiles() {
+            return glob(__DIR__ . '/builder/*.php');
         }
 
         /**

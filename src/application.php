@@ -67,9 +67,7 @@ namespace TheSeer\phpDox {
          *
          * @var array
          */
-        protected $builderMap = array(
-            'html' => '\\TheSeer\\phpDox\HtmlBuilder'
-        );
+        protected $builderMap = array();
 
         /**
          * Constructor of PHPDox Application
@@ -80,6 +78,10 @@ namespace TheSeer\phpDox {
         public function __construct(ProgressLogger $logger, $xmlDir) {
             $this->logger = $logger;
             $this->xmlDir = $xmlDir;
+        }
+
+        public function registerBuilderClass($name, $class) {
+            $this->builderMap[$name] = $class;
         }
 
         /**
