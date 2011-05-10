@@ -96,7 +96,6 @@ namespace TheSeer\phpDox {
             $collector = new Collector(
                 $this->xmlDir,
                 $this->getContainerDocument('namespaces'),
-                $this->getContainerDocument('packages'),
                 $this->getContainerDocument('interfaces'),
                 $this->getContainerDocument('classes')
             );
@@ -127,7 +126,6 @@ namespace TheSeer\phpDox {
                 $tplDir,
                 $docDir,
                 $this->getContainerDocument('namespaces'),
-                $this->getContainerDocument('packages'),
                 $this->getContainerDocument('interfaces'),
                 $this->getContainerDocument('classes')
             );

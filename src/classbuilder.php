@@ -45,15 +45,10 @@ namespace TheSeer\phpDox {
 
         protected $ctx;
         protected $publicOnly;
-        protected $package = 'global';
 
         public function __construct(fDOMElement $ctx, $publicOnly = false) {
             $this->ctx = $ctx;
             $this->publicOnly = $publicOnly;
-        }
-
-        public function getPackage() {
-            return $this->package;
         }
 
         public function process(\ReflectionClass $class) {
@@ -119,12 +114,6 @@ namespace TheSeer\phpDox {
             try {
                 $parser = new Parser();
                 $docblock = $parser->parse($comment);
-                /*
-                if ($docblock->hasElementByName('package')) {
-                    var_dump($docblock->getEementByName('package'));
-                    $this->package = $docblock->getEementByName('package')->getValue();
-                }
-                */
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
                 // TODO: Error logger -> addWarning

@@ -47,7 +47,6 @@ namespace TheSeer\phpDox {
         protected $namespaces;
         protected $interfaces;
         protected $classes;
-        protected $packages;
 
         protected $dom;
 
@@ -67,15 +66,10 @@ namespace TheSeer\phpDox {
             return $this->namespaces;
         }
 
-        public function getPackages() {
-            return $this->packages;
-        }
-
         public function processFile(\SPLFileInfo $file) {
             $this->namespaces = array();
             $this->interfaces = array();
             $this->classes    = array();
-            $this->packages   = array();
 
             $this->initWorkDocument($file);
 
@@ -113,9 +107,6 @@ namespace TheSeer\phpDox {
 
             $classBuilder = new ClassBuilder($context, $this->publicOnly);
             $classNode = $classBuilder->process($class);
-            if ($package = $classBuilder->getPackage()) {
-                $this->packages[$package] = $classNode;
-            }
             if ($class->isInterface()) {
                 $this->interfaces[$class->getName()] = $classNode;
             } else {

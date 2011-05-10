@@ -90,7 +90,7 @@ namespace TheSeer\phpDox {
                     $this->logger = new ShellProgressLogger();
                 }
 
-                $app = new Application($this->logger, $input->getOption('xml')->value);
+                $app = $this->getApplication($input);
 
                 if ($require = $input->getOption('require')->value) {
                     $this->processRequire($require, $app);
@@ -115,14 +115,15 @@ namespace TheSeer\phpDox {
 
                 $this->logger->buildSummary();
 
+            } catch (fDOMException $e) {
+                fwrite(STDERR, "XML Error while processing request:\n");
+                fwrite(STDERR, $e->getFullMessage()."\n" . $e->getTraceAsString());
+                fwrite(STDERR, "\n\nPlease file a bugreport for this!\n");
+                exit(1);
             } catch (\ezcConsoleException $e) {
                 $this->showVersion();
                 fwrite(STDERR, $e->getMessage()."\n\n");
                 $this->showUsage();
-                exit(3);
-            } catch (fDOMException $e) {
-                fwrite(STDERR, "Error while processing request:\n");
-                fwrite(STDERR, $e->getFullMessage()."\n" . $e->getTraceAsString());
                 exit(3);
             } catch (CLIException $e) {
                 $this->showVersion();
@@ -131,10 +132,21 @@ namespace TheSeer\phpDox {
                 exit(3);
             } catch (\Exception $e) {
                 $this->showVersion();
-                fwrite(STDERR, "Error while processing request:\n");
+                fwrite(STDERR, "Unexpected error while processing request:\n");
                 fwrite(STDERR, ' - ' . $e."\n");
+                fwrite(STDERR, "\n\nPlease file a bugreport for this!\n");
                 exit(1);
             }
+        }
+
+        /**
+         * Sinple helper to get instance for Application class
+         *
+         * @param \ezcConsoleInput $input CLI params
+         * @return Application
+         */
+        protected function getApplication(\ezcConsoleInput $input) {
+            return new Application($this->logger, $input->getOption('xml')->value);
         }
 
         /**

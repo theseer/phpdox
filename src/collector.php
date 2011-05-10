@@ -66,12 +66,6 @@ namespace TheSeer\phpDox {
         protected $namespaces;
 
         /**
-         * fDOMDocument used to register Packages in
-         * @var \TheSeer\fDOM\fDOMDocument
-         */
-        protected $packages;
-
-        /**
          * fDOMDocument used to register Interfaces in
          * @var \TheSeer\fDOM\fDOMDocument
          */
@@ -87,14 +81,12 @@ namespace TheSeer\phpDox {
          * Collector constructor
          *
          * @param \TheSeer\fDOM\fDomDocument $nsDom	 DOM instance to register namespaces in
-         * @param \TheSeer\fDOM\fDomDocument $pDom   DOM instance to register packages in
          * @param \TheSeer\fDOM\fDomDocument $iDom	 DOM instance to register interfaces in
          * @param \TheSeer\fDOM\fDomDocument $cDom	 DOM instance to register classes in
          */
-        public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $pDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+        public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
             $this->xmlDir     = $xmlDir;
             $this->namespaces = $nsDom;
-            $this->packages   = $pDom;
             $this->interfaces = $iDom;
             $this->classes    = $cDom;
         }
@@ -146,7 +138,6 @@ namespace TheSeer\phpDox {
                     $src = realpath($file->getPathName());
 
                     $this->registerNamespaces($target, $src, $analyser->getNamespaces());
-                    $this->registerInContainer($this->packages, 'package', $target, $src, $analyser->getPackages());
                     $this->registerInContainer($this->interfaces, 'interface', $target, $src, $analyser->getInterfaces());
                     $this->registerInContainer($this->classes, 'class', $target, $src, $analyser->getClasses());
                     $logger->progress('processed');

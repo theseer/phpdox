@@ -51,7 +51,6 @@ namespace TheSeer\phpDox {
         protected $logger;
 
         protected $namespaces;
-        protected $packages;
         protected $interfaces;
         protected $classes;
 
@@ -98,13 +97,12 @@ namespace TheSeer\phpDox {
          * @param fDomDocument $iDom   DOM instance of interfaces.xml
          * @param fDomDocument $cDom   DOM instance of classes.xml
          */
-        public function __construct($xmlDir, $tplDir, $docDir, fDOMDocument $nsDom, fDOMDocument $pDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+        public function __construct($xmlDir, $tplDir, $docDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
             $this->xmlDir = $xmlDir;
             $this->docDir = $docDir;
             $this->tplDir = $tplDir;
 
             $this->namespaces = $nsDom;
-            $this->packages   = $pDom;
             $this->interfaces = $iDom;
             $this->classes    = $cDom;
         }
