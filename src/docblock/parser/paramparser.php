@@ -51,7 +51,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement',$buffer);
+            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement', $buffer);
 
             $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
             switch(count($param)) {

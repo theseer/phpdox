@@ -51,7 +51,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement',$buffer);
+            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement', $buffer);
             $obj->setValue($this->payload);
             return $obj;
         }

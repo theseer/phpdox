@@ -53,8 +53,8 @@ namespace TheSeer\phpDox\DocBlock {
                     $compact .= ' ' . $line;
                 } while ($line != '' && substr($line, -1) != '.');
             }
-            $obj = $this->buildObject('TheSeer\\phpDox\\DocBlock\\GenericElement',$buffer);
-            $obj->setCompact(trim($compact," *\t"));
+            $obj = $this->buildObject('TheSeer\\phpDox\\DocBlock\\GenericElement', $buffer);
+            $obj->setCompact(trim($compact, " *\t"));
             return $obj;
         }
 

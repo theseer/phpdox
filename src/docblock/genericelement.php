@@ -60,7 +60,7 @@ namespace TheSeer\phpDox\DocBlock {
                 throw new GenericElementException("Method '$method' not defined", GenericElementException::MethodNotDefined);
             }
             if ($method[0]=='s') {
-                $attribute = strtolower(substr($method,3));
+                $attribute = strtolower(substr($method, 3));
                 $this->attributes[$attribute] = $value[0];
             } else {
                 if (!isset($this->attributes[$value[0]])) {

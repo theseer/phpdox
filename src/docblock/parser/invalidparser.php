@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\DocBlock {
     class InvalidParser extends GenericParser {
 
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\InvalidElement',$buffer);
+            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\InvalidElement', $buffer);
             $obj->setValue($this->payload);
             return $obj;
         }
