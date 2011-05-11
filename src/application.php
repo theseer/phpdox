@@ -56,11 +56,11 @@ namespace TheSeer\phpDox {
         protected $xmlDir;
 
         /**
-         * Array of Container DOM Documents
+         * Helper class wrapping container DOMDocuments
          *
-         * @var array
+         * @var Container
          */
-        protected $container = array();
+        protected $container = null;
 
         /**
          * Map for builder names on actual classes to
@@ -72,16 +72,43 @@ namespace TheSeer\phpDox {
         /**
          * Constructor of PHPDox Application
          *
-         * @param ProgressLogger $logger Instance of the ProgressLogger class
          * @param string         $xmlDir Directory where (generated) xml files are stored in
          */
-        public function __construct(ProgressLogger $logger, $xmlDir) {
-            $this->logger = $logger;
+        public function __construct($xmlDir, Container $container) {
             $this->xmlDir = $xmlDir;
+            $this->container = $container;
+        }
+
+        /**
+         * Set Logger instance to use
+         *
+         * @param ProgressLogger $logger Instance of the ProgressLogger class
+         */
+        public function setLogger(ProgressLogger $logger) {
+            $this->logger = $logger;
         }
 
         public function registerBuilderClass($name, $class) {
             $this->builderMap[$name] = $class;
+        }
+
+        /**
+         * Load bootstrap files to register components and builder
+         *
+         * @param Array $require Array of files to require
+         */
+        public function loadBootstrap(Array $require) {
+            $require = array_merge($require, glob(__DIR__ . '/builder/*.php'));
+
+            $application = $this;
+
+            foreach($require as $file) {
+                if (!file_exists($file) || !is_file($file)) {
+                    throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
+                }
+                $this->logger->log("Loading additional bootstrap file '$file'");
+                require $file;
+            }
         }
 
         /**
@@ -97,16 +124,14 @@ namespace TheSeer\phpDox {
             $this->logger->log("Starting collector\n");
             $collector = new Collector(
                 $this->xmlDir,
-                $this->getContainerDocument('namespaces'),
-                $this->getContainerDocument('interfaces'),
-                $this->getContainerDocument('classes')
+                $this->container
             );
             $collector->setPublicOnly($publicOnly);
             $collector->setStartIndex(strlen(dirname($srcDir)));
             $collector->run($scanner, $this->logger);
 
             $this->cleanUp($srcDir);
-            $this->saveContainer();
+            $this->container->save();
             $this->logger->log('Collector process completed');
         }
 
@@ -127,9 +152,7 @@ namespace TheSeer\phpDox {
                 $this->xmlDir,
                 $tplDir,
                 $docDir,
-                $this->getContainerDocument('namespaces'),
-                $this->getContainerDocument('interfaces'),
-                $this->getContainerDocument('classes')
+                $this->container
             );
             $generator->setPublicOnly($publicOnly);
 
@@ -147,39 +170,6 @@ namespace TheSeer\phpDox {
             $this->logger->log('Generator process completed');
         }
 
-        /**
-         * Helper to load or create Container DOM Documents for namespaces, classes, interfaces, ...
-         *
-         * @param string $name name of the file (identical to root node)
-         *
-         * @return \TheSeer\fDom\fDomDocument
-         */
-        protected function getContainerDocument($name) {
-            $fname = $this->xmlDir . '/' . $name .'.xml';
-            if (isset($this->container[$fname])) {
-                return $this->container[$fname];
-            }
-            $dom = new fDOMDocument('1.0', 'UTF-8');
-            if (file_exists($fname)) {
-                $dom->load($fname);
-            } else {
-                $rootNode = $dom->createElementNS('http://xml.phpdox.de/src#', $name);
-                $dom->appendChild($rootNode);
-            }
-            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-            $dom->formatOutput = true;
-            $this->container[$fname] = $dom;
-            return $dom;
-        }
-
-        /**
-         * Helper to save all known and (updated) container files.
-         */
-        protected function saveContainer() {
-            foreach($this->container as $fname => $dom) {
-                $dom->save($fname);
-            }
-        }
 
         /**
          * Helper to cleanup
@@ -195,9 +185,9 @@ namespace TheSeer\phpDox {
             $srcPath = dirname($srcDir);
 
             $containers = array(
-                $this->getContainerDocument('namespaces'),
-                $this->getContainerDocument('classes'),
-                $this->getContainerDocument('interfaces')
+                $this->container->getDocument('namespaces'),
+                $this->container->getDocument('classes'),
+                $this->container->getDocument('interfaces')
             );
 
             $whitelist = array(

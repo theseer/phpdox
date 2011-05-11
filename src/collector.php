@@ -80,15 +80,15 @@ namespace TheSeer\phpDox {
         /**
          * Collector constructor
          *
-         * @param \TheSeer\fDOM\fDomDocument $nsDom	 DOM instance to register namespaces in
-         * @param \TheSeer\fDOM\fDomDocument $iDom	 DOM instance to register interfaces in
-         * @param \TheSeer\fDOM\fDomDocument $cDom	 DOM instance to register classes in
+         * @param string    $xmlDir      Base path where class xml files are found
+         * @param Container $container   Collection of Container Documents
+         *
          */
-        public function __construct($xmlDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+        public function __construct($xmlDir, Container $container) {
             $this->xmlDir     = $xmlDir;
-            $this->namespaces = $nsDom;
-            $this->interfaces = $iDom;
-            $this->classes    = $cDom;
+            $this->namespaces = $container->getDocument('namespaces');
+            $this->interfaces = $container->getDocument('interfaces');
+            $this->classes    = $container->getDocument('classes');
         }
 
         /**

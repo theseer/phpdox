@@ -90,21 +90,19 @@ namespace TheSeer\phpDox {
         /**
          * Generator constructor
          *
-         * @param string       $xmlDir Base path where class xml files are found
-         * @param string       $tplDir Base path for templates
-         * @param string       $docDir Base directory to store documentation files in
-         * @param fDomDocument $nsDom  DOM instance of namespaces.xml
-         * @param fDomDocument $iDom   DOM instance of interfaces.xml
-         * @param fDomDocument $cDom   DOM instance of classes.xml
+         * @param string    $xmlDir Base path where class xml files are found
+         * @param string    $tplDir Base path for templates
+         * @param string    $docDir Base directory to store documentation files in
+         * @param Container $container   Collection of Container Documents
          */
-        public function __construct($xmlDir, $tplDir, $docDir, fDOMDocument $nsDom, fDOMDocument $iDom, fDOMDocument $cDom) {
+        public function __construct($xmlDir, $tplDir, $docDir, Container $container) {
             $this->xmlDir = $xmlDir;
             $this->docDir = $docDir;
             $this->tplDir = $tplDir;
 
-            $this->namespaces = $nsDom;
-            $this->interfaces = $iDom;
-            $this->classes    = $cDom;
+            $this->namespaces = $container->getDocument('namespaces');
+            $this->interfaces = $container->getDocument('interfaces');
+            $this->classes    = $container->getDocument('classes');
         }
 
         public function setPublicOnly($switch) {

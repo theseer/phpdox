@@ -43,8 +43,6 @@
 
 namespace TheSeer\phpDox {
 
-    use \TheSeer\Tools\PHPFilterIterator;
-    use \TheSeer\fDOM\fDOMDocument;
     use \TheSeer\fDOM\fDOMException;
 
     class CLI {
@@ -55,12 +53,6 @@ namespace TheSeer\phpDox {
          * @var string
          */
         const VERSION = "%version%";
-
-        /**
-         * Instance of Logger class in use
-         * @var ProgressLogger
-         */
-        protected $logger;
 
         /**
          * Main executor for CLI process.
@@ -84,19 +76,15 @@ namespace TheSeer\phpDox {
                 }
 
                 if ($input->getOption('silent')->value === true) {
-                    $this->logger = new ProgressLogger();
+                    $logger = new ProgressLogger();
                 } else {
                     $this->showVersion();
-                    $this->logger = new ShellProgressLogger();
+                    $logger = new ShellProgressLogger();
                 }
 
                 $app = $this->getApplication($input);
-
-                $bootstrap = $this->getBootstrapFiles();
-                if ($require = $input->getOption('require')->value) {
-                    $bootstrap = array_merge($bootstrap, $require);
-                }
-                $this->processRequire($bootstrap, $app);
+                $app->setLogger($logger);
+                $app->loadBootstrap($input->getOption('require')->value);
 
                 if ($path = $input->getOption('collect')->value) {
                     $path = realpath($path);
@@ -115,7 +103,7 @@ namespace TheSeer\phpDox {
                     );
                 }
 
-                $this->logger->buildSummary();
+                $logger->buildSummary();
 
             } catch (fDOMException $e) {
                 fwrite(STDERR, "XML Error while processing request:\n");
@@ -141,10 +129,6 @@ namespace TheSeer\phpDox {
             }
         }
 
-        protected function getBootstrapFiles() {
-            return glob(__DIR__ . '/builder/*.php');
-        }
-
         /**
          * Sinple helper to get instance for Application class
          *
@@ -152,23 +136,9 @@ namespace TheSeer\phpDox {
          * @return Application
          */
         protected function getApplication(\ezcConsoleInput $input) {
-            return new Application($this->logger, $input->getOption('xml')->value);
-        }
-
-        /**
-         * Helper to load requested require files
-         *
-         * @param Array         $require      Array of files to require
-         * @param Application   $application  Instance of Application
-         */
-        protected function processRequire(Array $require, Application $application) {
-            foreach($require as $file) {
-                if (!file_exists($file) || !is_file($file)) {
-                    throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
-                }
-                $this->logger->log("Loading additional bootstrap file '$file'");
-                require $file;
-            }
+            $xmlDir = $input->getOption('xml')->value;
+            $container = new Container($xmlDir);
+            return new Application($xmlDir, $container);
         }
 
         /**
@@ -268,7 +238,7 @@ namespace TheSeer\phpDox {
                 'Configuration file to load'
             ));
             $input->registerOption( new \ezcConsoleOption(
-                'r', 'require', \ezcConsoleInput::TYPE_STRING, null, true,
+                'r', 'require', \ezcConsoleInput::TYPE_STRING, array(), true,
                 'Custom PHP Source file to load'
             ));
             $input->registerOption( new \ezcConsoleOption(
