@@ -46,7 +46,9 @@ namespace TheSeer\phpDox {
         protected $generator;
 
         protected $eventMap = array(
-            'class.start' => 'buildClass'
+            'phpdox.start' => 'buildStart',
+            'class.start' => 'buildClass',
+            'phpdox.end' => 'buildFinish'
         );
 
         public function setUp(Generator $generator) {
@@ -64,13 +66,20 @@ namespace TheSeer\phpDox {
             $payload = func_get_args();
             array_shift($payload);
             call_user_func_array(array($this, $this->eventMap[$event]), $payload);
+        }
 
+        protected function buildStart(fDOMDocument $namespace, fDOMDocument $classes, fDOMDocument $interfaces) {
+            $html = $this->generator->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($classes);
+            $this->generator->saveDomDocument($html, 'list.xhtml');
+        }
+
+        protected function buildFinish() {
+            $this->generator->copyStatic('htmlBuilder/static', true);
         }
 
         protected function buildClass(fDOMElement $classNode) {
             $full = $classNode->getAttribute('full');
             $this->xsl->setParameter('', 'class', $full);
-            //var_dump($full);
             $html = $this->xsl->transformToDoc($classNode);
             $this->generator->saveDomDocument($html, 'classes/'. $this->classNameToFileName($full, 'xhtml'));
         }

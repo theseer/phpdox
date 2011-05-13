@@ -10,14 +10,9 @@
    <xsl:param name="class" />
 
    <xsl:template match="/">
-      <html>
-         <head>
-            <link type="text/css" href="media.css" rel="stylesheet" />
-         </head>
-         <body>
+      <div id="class">
             <xsl:apply-templates select="//file:class[@full=$class]" />
-         </body>
-      </html>
+      </div>
    </xsl:template>
 
    <xsl:template match="file:namespace">
