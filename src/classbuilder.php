@@ -45,10 +45,12 @@ namespace TheSeer\phpDox {
 
         protected $ctx;
         protected $publicOnly;
+        protected $encoding;
 
-        public function __construct(fDOMElement $ctx, $publicOnly = false) {
+        public function __construct(fDOMElement $ctx, $publicOnly = false, $encoding = 'ISO-8859-1') {
             $this->ctx = $ctx;
             $this->publicOnly = $publicOnly;
+            $this->encoding = $encoding;
         }
 
         public function process(\ReflectionClass $class) {
@@ -112,6 +114,9 @@ namespace TheSeer\phpDox {
 
         protected function processDocBlock(fDOMDocument $doc, $comment) {
             try {
+                if ($this->encoding != 'UTF-8') {
+                    $comment = iconv($this->encoding, 'UTF-8//IGNORE', $comment);
+                }
                 $parser = new Parser();
                 $docblock = $parser->parse($comment);
                 return $docblock->asDom($doc);

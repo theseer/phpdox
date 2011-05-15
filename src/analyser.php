@@ -71,13 +71,16 @@ namespace TheSeer\phpDox {
             $this->interfaces = array();
             $this->classes    = array();
 
+            $info = new \finfo();
+            $encoding = $info->file($file, FILEINFO_MIME_ENCODING);
+
             $this->initWorkDocument($file);
 
             $session = new ReflectionSession();
             $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
             $query = $session->createFileQuery();
             foreach ( $query->find( $file->getPathname() ) as $class ) {
-                $this->handleClass($class);
+                $this->handleClass($class, $encoding);
             }
 
             return $this->dom;
@@ -99,13 +102,13 @@ namespace TheSeer\phpDox {
             $head->setAttribute('sha1', sha1_file($file->getPathname()));
         }
 
-        protected function handleClass(\ReflectionClass  $class) {
+        protected function handleClass(\ReflectionClass $class, $encoding) {
             $context = $this->dom->documentElement;
             if ($class->inNamespace()) {
                 $context = $this->handleNamespace($class);
             }
 
-            $classBuilder = new ClassBuilder($context, $this->publicOnly);
+            $classBuilder = new ClassBuilder($context, $this->publicOnly, $encoding);
             $classNode = $classBuilder->process($class);
             if ($class->isInterface()) {
                 $this->interfaces[$class->getName()] = $classNode;
