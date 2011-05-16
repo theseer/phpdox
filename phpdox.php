@@ -52,6 +52,8 @@ require __DIR__ . '/src/autoload.php';
 spl_autoload_register( array('ezcBase','autoload'));
 spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
 
-$exec = new \TheSeer\phpDox\CLI();
+$factory = new \TheSeer\phpDox\Factory();
+
+$exec = new \TheSeer\phpDox\CLI($factory);
 $exec->run();
 exit(0);

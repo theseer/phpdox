@@ -46,7 +46,6 @@ namespace TheSeer\phpDox {
             if ($this->totalCount % 50 == 0) {
                 echo "\t[". $this->totalCount . "]\n";
             }
-
         }
 
         public function completed() {

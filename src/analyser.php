@@ -47,10 +47,12 @@ namespace TheSeer\phpDox {
         protected $namespaces;
         protected $interfaces;
         protected $classes;
+        protected $factory;
 
         protected $dom;
 
-        public function __construct($publicOnly = false) {
+        public function __construct(Factory $factory, $publicOnly = false) {
+            $this->factory = $factory;
             $this->publicOnly = $publicOnly;
         }
 
@@ -108,7 +110,7 @@ namespace TheSeer\phpDox {
                 $context = $this->handleNamespace($class);
             }
 
-            $classBuilder = new ClassBuilder($context, $this->publicOnly, $encoding);
+            $classBuilder = $this->factory->getClassBuilder($context, $this->publicOnly, $encoding);
             $classNode = $classBuilder->process($class);
             if ($class->isInterface()) {
                 $this->interfaces[$class->getName()] = $classNode;

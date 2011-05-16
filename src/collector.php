@@ -54,6 +54,12 @@ namespace TheSeer\phpDox {
         protected $xmlDir;
 
         /**
+         * Factory instance
+         * @var Factory
+         */
+        protected $factory;
+
+        /**
          * Flag to enable or disable processing of non public methods and members
          * @var boolean
          */
@@ -80,15 +86,16 @@ namespace TheSeer\phpDox {
         /**
          * Collector constructor
          *
-         * @param string    $xmlDir      Base path where class xml files are found
-         * @param Container $container   Collection of Container Documents
-         *
+         * @param Factory   $factory   Factory instance
+         * @param Container $container Container instance, holding coleection DOMs
+         * @param string    $xmlDir    Directory where (generated) xml files are stored in
          */
-        public function __construct($xmlDir, Container $container) {
-            $this->xmlDir     = $xmlDir;
+        public function __construct(Factory $factory, Container $container, $xmlDir) {
+            $this->factory    = $factory;
             $this->namespaces = $container->getDocument('namespaces');
             $this->interfaces = $container->getDocument('interfaces');
             $this->classes    = $container->getDocument('classes');
+            $this->xmlDir     = $xmlDir;
         }
 
         /**
@@ -117,7 +124,7 @@ namespace TheSeer\phpDox {
          */
         public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner, $logger) {
             $worker = new PHPFilterIterator($scanner);
-            $analyser = new Analyser($this->publicOnly);
+            $analyser = $this->factory->getAnalyser($this->publicOnly);
 
             if (!file_exists($this->xmlDir)) {
                 mkdir($this->xmlDir);
@@ -132,6 +139,8 @@ namespace TheSeer\phpDox {
                 try {
                     $xml = $analyser->processFile($file);
                     $xml->formatOutput= true;
+                    echo $xml->saveXML();
+
                     $xml->save($target);
                     touch($target, $file->getMTime(), $file->getATime());
 

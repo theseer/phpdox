@@ -39,6 +39,11 @@ namespace TheSeer\phpDox\DocBlock {
     class Parser {
 
         protected $map = array(
+            'docblock' => 'TheSeer\\phpDox\\DocBlock\\DocBlock',
+
+            'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
+            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
+
             'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
             'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
             'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
@@ -53,7 +58,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function parse($block) {
-            $docBlock = new DocBlock();
+            $docBlock = new $this->map['docblock']();
             $lines = $this->prepare($block);
             $this->startParser('description');
             $buffer = array();
@@ -98,12 +103,12 @@ namespace TheSeer\phpDox\DocBlock {
         protected function startParser($name, $payload = NULL) {
             if (!preg_match('/^[a-zA-Z0-9]*$/', $name)) {
                 // TODO: errorlog
-                $this->current = new InvalidParser($name);
+                $this->current = new $this->map['invalid']($name);
             } else {
                 if (isset($this->map[$name])) {
                     $this->current = new $this->map[$name]($name);
                 } else {
-                    $this->current = new GenericParser($name);
+                    $this->current = new $this->map['generic']($name);
                 }
             }
             if ($payload !== NULL) {

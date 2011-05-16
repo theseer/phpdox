@@ -46,8 +46,10 @@ namespace TheSeer\phpDox {
         protected $ctx;
         protected $publicOnly;
         protected $encoding;
+        protected $parser;
 
-        public function __construct(fDOMElement $ctx, $publicOnly = false, $encoding = 'ISO-8859-1') {
+        public function __construct(Parser $parser, fDOMElement $ctx, $publicOnly = false, $encoding = 'ISO-8859-1') {
+            $this->parser = $parser;
             $this->ctx = $ctx;
             $this->publicOnly = $publicOnly;
             $this->encoding = $encoding;
@@ -115,10 +117,9 @@ namespace TheSeer\phpDox {
         protected function processDocBlock(fDOMDocument $doc, $comment) {
             try {
                 if ($this->encoding != 'UTF-8') {
-                    $comment = iconv($this->encoding, 'UTF-8//IGNORE', $comment);
+                    $comment = iconv($this->encoding, 'UTF-8//TRANSLIT', $comment);
                 }
-                $parser = new Parser();
-                $docblock = $parser->parse($comment);
+                $docblock = $this->parser->parse($comment);
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
                 // TODO: Error logger -> addWarning
@@ -205,14 +206,6 @@ namespace TheSeer\phpDox {
                 if ($param->isDefaultValueAvailable()) {
                     $this->processValue($paramNode, $param->getDefaultValue());
                 }
-                /*
-                 if ($docBlock !== null) {
-                 $dpNode = $docBlock->query('//dox:parameter[@name="' . $param->getName() . '"]')->item(0);
-                 if ($dpNode) {
-                 $paramNode->appendChild($dpNode);
-                 }
-                 }
-                 */
             }
         }
 

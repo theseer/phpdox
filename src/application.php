@@ -63,6 +63,12 @@ namespace TheSeer\phpDox {
         protected $container = null;
 
         /**
+         * Factory instance
+         * @var Factory
+         */
+        protected $factory;
+
+        /**
          * Map for builder names on actual classes to
          *
          * @var array
@@ -72,9 +78,12 @@ namespace TheSeer\phpDox {
         /**
          * Constructor of PHPDox Application
          *
-         * @param string         $xmlDir Directory where (generated) xml files are stored in
+         * @param Factory   $factory   Factory instance
+         * @param Container $container Container instance, holding coleection DOMs
+         * @param string    $xmlDir    Directory where (generated) xml files are stored in
          */
-        public function __construct($xmlDir, Container $container) {
+        public function __construct(Factory $factory, Container $container, $xmlDir) {
+            $this->factory = $factory;
             $this->xmlDir = $xmlDir;
             $this->container = $container;
         }
@@ -122,10 +131,7 @@ namespace TheSeer\phpDox {
          */
         public function runCollector($srcDir, $scanner, $publicOnly = false) {
             $this->logger->log("Starting collector\n");
-            $collector = new Collector(
-                $this->xmlDir,
-                $this->container
-            );
+            $collector = $this->factory->getCollector();
             $collector->setPublicOnly($publicOnly);
             $collector->setStartIndex(strlen(dirname($srcDir)));
             $collector->run($scanner, $this->logger);
@@ -148,12 +154,7 @@ namespace TheSeer\phpDox {
         public function runGenerator($generate, $tplDir, $docDir, $publicOnly = false) {
             $this->logger->reset();
 
-            $generator = new Generator(
-                $this->xmlDir,
-                $tplDir,
-                $docDir,
-                $this->container
-            );
+            $generator = $this->factory->getGenerator($tplDir,$docDir);
             $generator->setPublicOnly($publicOnly);
 
             foreach($generate as $name) {

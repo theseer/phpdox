@@ -43,7 +43,7 @@
 
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDOM\fDOMException;
+    use TheSeer\fDOM\fDOMException;
 
     class CLI {
 
@@ -53,6 +53,18 @@ namespace TheSeer\phpDox {
          * @var string
          */
         const VERSION = "%version%";
+
+
+        /**
+         * Factory instance
+         *
+         * @var Factory
+         */
+        protected $factory;
+
+        public function __construct(Factory $factory) {
+            $this->factory = $factory;
+        }
 
         /**
          * Main executor for CLI process.
@@ -76,13 +88,15 @@ namespace TheSeer\phpDox {
                 }
 
                 if ($input->getOption('silent')->value === true) {
-                    $logger = new ProgressLogger();
+                    $logger = $this->factory->getLogger('silent');
                 } else {
                     $this->showVersion();
-                    $logger = new ShellProgressLogger();
+                    $logger = $this->factory->getLogger('shell');
                 }
 
-                $app = $this->getApplication($input);
+                $this->factory->setXMLDir($input->getOption('xml')->value);
+
+                $app = $this->factory->getApplication();
                 $app->setLogger($logger);
                 $app->loadBootstrap($input->getOption('require')->value);
 
@@ -130,18 +144,6 @@ namespace TheSeer\phpDox {
         }
 
         /**
-         * Sinple helper to get instance for Application class
-         *
-         * @param \ezcConsoleInput $input CLI params
-         * @return Application
-         */
-        protected function getApplication(\ezcConsoleInput $input) {
-            $xmlDir = $input->getOption('xml')->value;
-            $container = new Container($xmlDir);
-            return new Application($xmlDir, $container);
-        }
-
-        /**
          * Helper to get instance of DirectoryScanner with cli options applied
          *
          * @param string          $path  Path to get iterator scanner for
@@ -150,28 +152,12 @@ namespace TheSeer\phpDox {
          * @return Theseer\Tools\IncludeExcludeFilterIterator
          */
         protected function getScanner($path, \ezcConsoleInput $input) {
-            $scanner = new \TheSeer\Tools\DirectoryScanner;
-
-            $include = $input->getOption('include');
-            if (is_array($include->value)) {
-                $scanner->setIncludes($include->value);
-            } else {
-                $scanner->addInclude($include->value);
-            }
-
-            $exclude = $input->getOption('exclude');
-            if ($exclude->value) {
-                if (is_array($exclude->value)) {
-                    $scanner->setExcludes($exclude->value);
-                } else {
-                    $scanner->addExclude($exclude->value);
-                }
-            }
-
-            $args = $input->getArguments();
+            $scanner = $this->factory->getScanner(
+                $input->getOption('include')->value,
+                $input->getOption('exclude')->value
+            );
             return $scanner($path);
         }
-
 
         /**
          * Helper to output version information.
