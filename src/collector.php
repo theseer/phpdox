@@ -124,7 +124,7 @@ namespace TheSeer\phpDox {
          */
         public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner, $logger) {
             $worker = new PHPFilterIterator($scanner);
-            $analyser = $this->factory->getAnalyser($this->publicOnly);
+            $analyser = $this->factory->getInstanceFor('Analyser', $this->publicOnly);
 
             if (!file_exists($this->xmlDir)) {
                 mkdir($this->xmlDir);

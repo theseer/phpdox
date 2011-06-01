@@ -110,7 +110,7 @@ namespace TheSeer\phpDox {
                 $context = $this->handleNamespace($class);
             }
 
-            $classBuilder = $this->factory->getClassBuilder($context, $this->publicOnly, $encoding);
+            $classBuilder = $this->factory->getInstanceFor('ClassBuilder', $context, $this->publicOnly, $encoding);
             $classNode = $classBuilder->process($class);
             if ($class->isInterface()) {
                 $this->interfaces[$class->getName()] = $classNode;

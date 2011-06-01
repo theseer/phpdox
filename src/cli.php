@@ -54,7 +54,6 @@ namespace TheSeer\phpDox {
          */
         const VERSION = "%version%";
 
-
         /**
          * Factory instance
          *
@@ -96,7 +95,7 @@ namespace TheSeer\phpDox {
 
                 $this->factory->setXMLDir($input->getOption('xml')->value);
 
-                $app = $this->factory->getApplication();
+                $app = $this->factory->getInstanceFor('Application');
                 $app->setLogger($logger);
                 $app->loadBootstrap($input->getOption('require')->value);
 
@@ -152,7 +151,8 @@ namespace TheSeer\phpDox {
          * @return Theseer\Tools\IncludeExcludeFilterIterator
          */
         protected function getScanner($path, \ezcConsoleInput $input) {
-            $scanner = $this->factory->getScanner(
+            $scanner = $this->factory->getInstanceFor(
+                'Scanner',
                 $input->getOption('include')->value,
                 $input->getOption('exclude')->value
             );
@@ -163,6 +163,9 @@ namespace TheSeer\phpDox {
          * Helper to output version information.
          */
         protected function showVersion() {
+            static $shown = false;
+            if ($shown) return;
+            $shown = true;
             printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
         }
 

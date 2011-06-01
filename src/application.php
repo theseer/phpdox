@@ -97,8 +97,9 @@ namespace TheSeer\phpDox {
             $this->logger = $logger;
         }
 
-        public function registerBuilderClass($name, $class) {
-            $this->builderMap[$name] = $class;
+        public function registerBuilder($name, $title, FactoryInterface $factory) {
+            $this->factory->addFactory($name, $factory);
+            $this->builderMap[$name] = $title;
         }
 
         /**
@@ -131,7 +132,7 @@ namespace TheSeer\phpDox {
          */
         public function runCollector($srcDir, $scanner, $publicOnly = false) {
             $this->logger->log("Starting collector\n");
-            $collector = $this->factory->getCollector();
+            $collector = $this->factory->getInstanceFor('Collector');
             $collector->setPublicOnly($publicOnly);
             $collector->setStartIndex(strlen(dirname($srcDir)));
             $collector->run($scanner, $this->logger);
@@ -154,16 +155,16 @@ namespace TheSeer\phpDox {
         public function runGenerator($generate, $tplDir, $docDir, $publicOnly = false) {
             $this->logger->reset();
 
-            $generator = $this->factory->getGenerator($tplDir,$docDir);
+            $generator = $this->factory->getInstanceFor('Generator', $tplDir, $docDir);
             $generator->setPublicOnly($publicOnly);
 
             foreach($generate as $name) {
                 if (!isset($this->builderMap[$name])) {
                     throw new ApplicationException("'$name' is not a registered generation backend", ApplicationException::UnkownBackend);
                 }
-                $classname = $this->builderMap[$name];
-                $this->logger->log("Registering backend '$classname'");
-                $backend = new $classname();
+                $title = $this->builderMap[$name];
+                $this->logger->log("Registering backend '$title'");
+                $backend = $this->factory->getInstanceFor($name);
                 $backend->setUp($generator);
             }
             $this->logger->log("Starting generator\n");

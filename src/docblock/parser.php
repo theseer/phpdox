@@ -101,7 +101,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function startParser($name, $payload = NULL) {
-            if (!preg_match('/^[a-zA-Z0-9]*$/', $name)) {
+            if (!preg_match('/^[a-zA-Z0-9]*$/', $name) || empty($name)) {
                 // TODO: errorlog
                 $this->current = new $this->map['invalid']($name);
             } else {

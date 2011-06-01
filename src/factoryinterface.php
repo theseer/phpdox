@@ -33,24 +33,13 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
+ *
  */
 namespace TheSeer\phpDox {
 
-    class HtmlBuilderFactory implements FactoryInterface {
+    interface FactoryInterface {
 
-        public function getInstanceFor($name) {
-            if ($name != 'html') {
-                throw new HtmlBuilderFactoryException('Unsupported name');
-            }
-            return new HtmlBuilder();
-        }
-
+        public function getInstanceFor($name);
     }
-
-    class HtmlBuilderFactoryException extends \Exception {}
-
-    $application->registerBuilder(
-        'html', 'HtmlBuilder', new HtmlBuilderFactory()
-    );
 
 }

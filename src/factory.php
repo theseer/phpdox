@@ -39,7 +39,7 @@ namespace TheSeer\phpDox {
 
     use \TheSeer\fDOM\fDOMElement;
 
-    class Factory {
+    class Factory implements FactoryInterface {
 
         protected $map = array(
             'DirectoryScanner' => '\\TheSeer\\Tools\\DirectoryScanner'
@@ -58,14 +58,33 @@ namespace TheSeer\phpDox {
             $this->xmlDir = $path;
         }
 
-        public function getInstanceFor($name) {
-            if (!isset($this->map[$name])) {
-                throw new FactoryException("No class for '$name' in map found", FactoryException::NoClassDefined);
-            }
-            return new $this->map[$name]();
+        public function addFactory($name, FactoryInterface $factory) {
+            $this->map[$name] = $factory;
         }
 
-        public function getAnalyser($public) {
+        public function getInstanceFor($name) {
+            $params = func_get_args();
+            if (isset($this->map[$name])) {
+                if ($this->map[$name] instanceof FactoryInterface) {
+                    return call_user_func_array( array($this->map[$name], 'getInstanceFor'), $params);
+                }
+                if (is_string($this->map[$name])) {
+                    array_shift($params);
+                    if (count($params)==0) {
+                        return new $this->map[$name]();
+                    }
+                    return new $this->map[$name]($params);
+                }
+            }
+            $method = 'get'.$name;
+            array_shift($params);
+            if (method_exists($this, $method)) {
+                return call_user_func_array(array($this,$method), $params);
+            }
+            return new $name($params);
+        }
+
+        protected function getAnalyser($public) {
             return new Analyser($this, $public);
         }
 
@@ -80,11 +99,11 @@ namespace TheSeer\phpDox {
             }
         }
 
-        public function getApplication() {
+        protected function getApplication() {
             return new Application($this, $this->getContainer(), $this->xmlDir);
         }
 
-        public function getContainer() {
+        protected function getContainer() {
             if (!isset($this->instances['container'])) {
                 $this->instances['container'] = new Container($this->xmlDir);
             }
@@ -92,7 +111,7 @@ namespace TheSeer\phpDox {
 
         }
 
-        public function getScanner($include, $exclude) {
+        protected function getScanner($include, $exclude) {
             $scanner = $this->getInstanceFor('DirectoryScanner');
 
             if (is_array($include)) {
@@ -111,11 +130,15 @@ namespace TheSeer\phpDox {
             return $scanner;
         }
 
-        public function getCollector() {
+        protected function getCollector() {
             return new Collector($this, $this->getContainer(), $this->xmlDir);
         }
 
-        public function getClassBuilder(fDOMElement $ctx, $public, $encoding) {
+        protected function getGenerator($tplDir, $docDir) {
+            return new Generator($this->xmlDir, $tplDir, $docDir, $this->getContainer());
+        }
+
+        protected function getClassBuilder(fDOMElement $ctx, $public, $encoding) {
             return new ClassBuilder($this->getDocblockParser(), $ctx, $public, $encoding);
         }
 
