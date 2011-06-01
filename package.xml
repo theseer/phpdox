@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.10" version="2.0"
+  xmlns="http://pear.php.net/dtd/package-2.0"
+  xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+                      http://pear.php.net/dtd/tasks-1.0.xsd
+                      http://pear.php.net/dtd/package-2.0
+                      http://pear.php.net/dtd/package-2.0.xsd">
+    <name>phpDox</name>
+    <channel>pear.netpirates.net</channel>
+    <summary>A php Documentation generation framework and tool</summary>
+    <description>A fast Documentation generator for PHP Code using standard technology (SRC, DOCBLOCK, XML and XSLT) with event based processing</description>
+    <lead>
+	<name>Arne Blankerts</name>
+	<user>theseer</user>
+	<email>arne@blankerts.de</email>
+	<active>yes</active>
+    </lead>
+    <date>2011-06-01</date>
+    <version>
+	<release>0.1.0</release>
+	<api>0.1.0</api>
+    </version>
+    <stability>
+	<release>alpha</release>
+	<api>alpha</api>
+    </stability>
+    <license>BSD License</license>
+    <notes>http://github.com/theseer/phpdox/tree</notes>
+    <contents>
+	    <dir name="/">
+	        <dir name="TheSeer">
+		        <dir name="phpDox">
+                    <file baseinstalldir="/" name="cli.php" role="php">
+		                <tasks:replace from="%version%" to="version" type="package-info" />
+		            </file>
+                    <file baseinstalldir="/" name="analyser.php" role="php" />
+                    <file baseinstalldir="/" name="application.php" role="php" />
+                    <file baseinstalldir="/" name="autoload.php" role="php" />
+                    <file baseinstalldir="/" name="classbuilder.php" role="php" />
+                    <file baseinstalldir="/" name="collector.php" role="php" />
+                    <file baseinstalldir="/" name="config.php" role="php" />
+                    <file baseinstalldir="/" name="container.php" role="php" />
+                    <file baseinstalldir="/" name="eventhandler.php" role="php" />
+                    <file baseinstalldir="/" name="factoryinterface.php" role="php" />
+                    <file baseinstalldir="/" name="factory.php" role="php" />
+            		<file baseinstalldir="/" name="generator.php" role="php" />
+                    <dir name="docblock">
+                        <file baseinstalldir="/" name="docblock.php" role="php" />
+                        <file baseinstalldir="/" name="genericelement.php" role="php" />
+                        <file baseinstalldir="/" name="invalidelement.php" role="php" />
+                        <file baseinstalldir="/" name="parser.php" role="php" />
+                        <dir name="parser">
+                            <file baseinstalldir="/" name="descriptionparser.php" role="php" />
+                            <file baseinstalldir="/" name="genericparser.php" role="php" />
+                            <file baseinstalldir="/" name="invalidparser.php" role="php" />
+                            <file baseinstalldir="/" name="licenseparser.php" role="php" />
+                            <file baseinstalldir="/" name="paramparser.php" role="php" />
+                            <file baseinstalldir="/" name="varparser.php" role="php" />
+                        </dir>
+                    </dir>
+                    <dir name="builder">
+                        <file baseinstalldir="/" name="html.php" role="php" />
+                        <dir name="htmlbuilder">
+                            <file baseinstalldir="/" name="htmlbuilder.php" role="php" />
+                        </dir>                    
+                    </dir>
+                    <dir name="logger">
+                        <file baseinstalldir="/" name="progresslogger.php" role="php" />
+                        <file baseinstalldir="/" name="shellprogresslogger.php" role="php" />
+                    </dir>
+                    <dir name="templates">
+                        <dir name="htmlBuilder">
+                            <file baseinstalldir="/" name="class.xsl" role="php" />
+                            <file baseinstalldir="/" name="list.xsl" role="php" />
+                            <dir name="static">
+                                <file baseinstalldir="/" name="index.xhtml" role="php" />
+                                <dir name="js">
+                                    <file baseinstalldir="/" name="jquery-1.6.1.min.js" role="php" />
+                                    <file baseinstalldir="/" name="phpdox.js" role="php" />                        
+                                </dir>
+                                <dir name="css">
+                                    <file baseinstalldir="/" name="class.css" role="php" />
+                                    <file baseinstalldir="/" name="style.css" role="php" />                        
+                                </dir>
+                                <dir name="gfx">
+                                    <file baseinstalldir="/" name="bg.png" role="php" />
+                                </dir>
+                            </dir>                    
+                        </dir>
+                    </dir>
+                </dir>
+           </dir>
+           <file baseinstalldir="/" name="phpdox.php" role="script">
+                <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config"/>
+                <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
+           </file>
+           <file baseinstalldir="/" name="phpdox.bat" role="script">
+                <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
+                <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config" />
+           </file>
+        </dir>
+    </contents>
+    
+     <dependencies>
+      <required>
+       <php>
+        <min>5.3.0</min>
+       </php>
+       <pearinstaller>
+        <min>1.9.2</min>
+       </pearinstaller>
+       <package>
+        <name>DirectoryScanner</name>
+        <channel>pear.netpirates.net</channel>
+        <min>1.0.2</min>
+       </package>
+       <package>
+        <name>fDOMDocument</name>
+        <channel>pear.netpirates.net</channel>
+        <min>1.0.1</min>
+       </package>
+       <package>
+        <name>fXSL</name>
+        <channel>pear.netpirates.net</channel>
+        <min>1.0.0</min>
+       </package>
+       <package>
+        <name>ConsoleTools</name>
+        <channel>components.ez.no</channel>
+        <min>1.6</min>
+       </package>
+       <package>
+        <name>staticReflection</name>
+        <channel>pear.pdepend.org</channel>
+        <min>0.2.1snapshot201104151054</min>
+       </package>
+       <extension>
+        <name>tokenizer</name>
+       </extension>
+       <extension>
+        <name>dom</name>
+       </extension>
+       <extension>
+        <name>xsl</name>
+       </extension>
+       <extension>
+        <name>iconv</name>
+       </extension>
+      </required>
+     </dependencies>
+     <phprelease>
+      <installconditions>
+       <os>
+        <name>windows</name>
+       </os>
+      </installconditions>
+      <filelist>
+       <install as="phpdox" name="phpdox.php" />
+       <install as="phpdox.bat" name="phpdox.bat" />
+      </filelist>
+     </phprelease>
+     <phprelease>
+      <filelist>
+       <install as="phpdox" name="phpdox.php" />
+       <ignore name="phpdox.bat" />
+      </filelist>
+     </phprelease>
+</package>
