@@ -11,7 +11,7 @@ body {
 div.content {
     background: #333;
     margin: 190px auto;
-    width:920px;
+    width:1120px;
     height:200px;
     overflow:hidden;
     border-bottom-left-radius:5px;
@@ -21,7 +21,7 @@ div.content {
 div.list {
     background:#fff;
     border-radius:5px;
-    width:220px;
+    width:420px;
     margin:30px;
     margin-right:10px;
     float:left;
