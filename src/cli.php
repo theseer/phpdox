@@ -164,7 +164,9 @@ namespace TheSeer\phpDox {
          */
         protected function showVersion() {
             static $shown = false;
-            if ($shown) return;
+            if ($shown) {
+                return;
+            }
             $shown = true;
             printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
         }

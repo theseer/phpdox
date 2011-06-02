@@ -173,7 +173,7 @@ namespace TheSeer\phpDox {
                     $this->processInterface($interface);
                 }
 
-                $this->triggerEvent('namespace.interfaces.end',$this->interfaces, $namespace);
+                $this->triggerEvent('namespace.interfaces.end', $this->interfaces, $namespace);
                 $this->triggerEvent('namespace.end', $namespace);
             }
             $this->triggerEvent('phpdox.namespaces.end', $this->namespaces);
