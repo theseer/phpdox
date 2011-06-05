@@ -204,6 +204,9 @@ namespace TheSeer\phpDox {
                 $worker = new \DirectoryIterator($path);
             }
             foreach($worker as $x) {
+                if($x->isDir() && ($x->getFilename() == "." || $x->getFilename() == "..")) {
+                    continue;
+                }
                 $target = $this->docDir . substr($x->getPathname(), $len);
                 if (!file_exists(dirname($target))) {
                     mkdir(dirname($target), 0755, true);
