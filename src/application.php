@@ -97,11 +97,6 @@ namespace TheSeer\phpDox {
             $this->logger = $logger;
         }
 
-        public function registerBuilder($name, $title, FactoryInterface $factory) {
-            $this->factory->addFactory($name, $factory);
-            $this->builderMap[$name] = $title;
-        }
-
         /**
          * Load bootstrap files to register components and builder
          *
@@ -110,7 +105,7 @@ namespace TheSeer\phpDox {
         public function loadBootstrap(Array $require) {
             $require = array_merge($require, glob(__DIR__ . '/builder/*.php'));
 
-            $application = $this;
+            $phpDox = $this->factory->getInstanceFor('API', $this);
 
             foreach($require as $file) {
                 if (!file_exists($file) || !is_file($file)) {
@@ -119,6 +114,8 @@ namespace TheSeer\phpDox {
                 $this->logger->log("Loading additional bootstrap file '$file'");
                 require $file;
             }
+
+            $this->builderMap = $phpDox->getBuilderMap();
         }
 
         /**
