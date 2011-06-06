@@ -62,6 +62,10 @@ namespace TheSeer\phpDox {
             $this->map[$name] = $factory;
         }
 
+        public function addClass($name, $class) {
+            $this->map[$name] = $class;
+        }
+
         public function getInstanceFor($name) {
             $params = func_get_args();
             if (isset($this->map[$name])) {
@@ -86,6 +90,10 @@ namespace TheSeer\phpDox {
 
         protected function getAnalyser($public) {
             return new Analyser($this, $public);
+        }
+
+        protected function getAPI() {
+            return new API($this, $this->getDocblockFactory());
         }
 
         public function getLogger($name) {
@@ -142,11 +150,19 @@ namespace TheSeer\phpDox {
             return new ClassBuilder($this->getDocblockParser(), $ctx, $public, $encoding);
         }
 
-        protected function getDocblockParser() {
-            if (!isset($this->instances['parser'])) {
-                $this->instances['parser'] = new \TheSeer\phpDox\DocBlock\Parser();
+        protected function getDocblockFactory() {
+            if (!isset($this->instances['DocblockFactory'])) {
+                $this->instances['DocblockFactory'] = new \TheSeer\phpDox\DocBlock\Factory();
             }
-            return $this->instances['parser'];
+            return $this->instances['DocblockFactory'];
+        }
+
+
+        protected function getDocblockParser() {
+            if (!isset($this->instances['DocblockParser'])) {
+                $this->instances['DocblockParser'] = new \TheSeer\phpDox\DocBlock\Parser($this->getDocblockFactory());
+            }
+            return $this->instances['DocblockParser'];
         }
 
     }
