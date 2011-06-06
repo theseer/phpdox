@@ -38,27 +38,15 @@ namespace TheSeer\phpDox\DocBlock {
 
     class Parser {
 
-        protected $map = array(
-            'docblock' => 'TheSeer\\phpDox\\DocBlock\\DocBlock',
-
-            'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
-            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
-
-            'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
-            'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
-            'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser'
-            );
-
+        protected $factory;
         protected $current;
 
-        public function __construct(array $map = array()) {
-            $this->map = array_merge($this->map, $map);
+        public function __construct(\TheSeer\phpDox\FactoryInterface $factory) {
+            $this->factory = $factory;
         }
 
         public function parse($block) {
-            $docBlock = new $this->map['docblock']();
+            $docBlock = $this->factory->getInstanceFor('docblock');
             $lines = $this->prepare($block);
             $this->startParser('description');
             $buffer = array();
@@ -103,13 +91,9 @@ namespace TheSeer\phpDox\DocBlock {
         protected function startParser($name, $payload = NULL) {
             if (!preg_match('/^[a-zA-Z0-9]*$/', $name) || empty($name)) {
                 // TODO: errorlog
-                $this->current = new $this->map['invalid']($name);
+                $this->current = $this->factory->getInstanceFor('invalid', $name);
             } else {
-                if (isset($this->map[$name])) {
-                    $this->current = new $this->map[$name]($name);
-                } else {
-                    $this->current = new $this->map['generic']($name);
-                }
+                $this->current = $this->factory->getInstanceFor($name);
             }
             if ($payload !== NULL) {
                 $this->current->setPayload($payload);
