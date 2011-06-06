@@ -36,6 +36,8 @@
  */
 namespace TheSeer\phpDox {
 
+    /*
+
     class HtmlBuilderFactory implements FactoryInterface {
 
         public function getInstanceFor($name) {
@@ -49,8 +51,13 @@ namespace TheSeer\phpDox {
 
     class HtmlBuilderFactoryException extends \Exception {}
 
-    $application->registerBuilder(
+    // can be registered with a custom factory
+    $phpDox->registerBuilder(
         'html', 'HtmlBuilder', new HtmlBuilderFactory()
     );
+    */
+
+    // or by classname only and thus having the default factory instantiate it as needed
+    $phpDox->registerBuilderClass('html', 'htmlBuilderClass', '\\TheSeer\\phpDox\\htmlBuilder');
 
 }
