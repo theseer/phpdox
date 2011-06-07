@@ -89,7 +89,7 @@ namespace TheSeer\phpDox {
             if (count($params)==0) {
                 return new $class();
             }
-            $rfc = new ReflectionClass($class);
+            $rfc = new \ReflectionClass($class);
             if (!$rfc->isInstantiable()) {
                 throw new FactoryException("class '$class' is not instantiable", FactoryException::NotInstantiable);
             }
