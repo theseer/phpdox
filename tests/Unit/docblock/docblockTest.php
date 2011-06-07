@@ -57,7 +57,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @return TheSeer\phpDox\DocBlock\GenericElement
          */
         protected function getGenericElementFixture($name, array $methods) {
-            return $this->getMockBuilder('TheSeer\phpDox\DocBlock\GenericElement')
+            return $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\GenericElement')
                 ->setConstructorArgs(array($name))
                 ->setMethods($methods)
                 ->getMock();
@@ -84,7 +84,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
             $elements = $this->readAttribute($docBlock, 'elements');
             $this->assertArrayHasKey('Beastie', $elements);
-            $this->assertInstanceOf('TheSeer\phpDox\DocBlock\GenericElement', $elements['Beastie']);
+            $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\GenericElement', $elements['Beastie']);
         }
 
         /**
@@ -144,7 +144,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
             $node = new \stdClass;
 
-            $fDomDocument = $this->getMockBuilder('TheSeer\fDOM\fDOMDocument')
+            $fDomDocument = $this->getMockBuilder('TheSeer\\fDOM\\fDOMDocument')
                 ->disableOriginalConstructor()
                 ->setMethods(array('createElementNS'))
                 ->getMock();
