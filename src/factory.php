@@ -130,7 +130,7 @@ namespace TheSeer\phpDox {
 
         }
 
-        protected function getScanner($include, $exclude) {
+        protected function getScanner($include, $exclude = null) {
             $scanner = $this->getInstanceFor('DirectoryScanner');
 
             if (is_array($include)) {
