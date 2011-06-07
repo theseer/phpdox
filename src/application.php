@@ -107,12 +107,16 @@ namespace TheSeer\phpDox {
 
             $phpDox = $this->factory->getInstanceFor('API', $this);
 
+            $bootstrap = function($filename) use ($phpDox) {
+                require $filename;
+            };
+
             foreach($require as $file) {
                 if (!file_exists($file) || !is_file($file)) {
                     throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
                 }
                 $this->logger->log("Loading additional bootstrap file '$file'");
-                require $file;
+                $bootstrap($file);
             }
 
             $this->builderMap = $phpDox->getBuilderMap();
