@@ -37,48 +37,52 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class DocBlock {
+    class DocBlock {
 
-      protected $elements = array();
+        protected $elements = array();
 
-      public function appendElement(GenericElement $element) {
-         $name = $element->getAnnotationName();
-         if (isset($this->elements[$name])) {
-            if (!is_array($this->elements[$name])) {
-               $this->elements[$name] = array($this->elements[$name]);
+        public function appendElement(GenericElement $element) {
+            $name = $element->getAnnotationName();
+            if (isset($this->elements[$name])) {
+                if (!is_array($this->elements[$name])) {
+                    $this->elements[$name] = array($this->elements[$name]);
+                }
+                $this->elements[$name][] = $element;
+                return;
             }
-            $this->elements[$name][] = $element;
-            return;
-         }
-         $this->elements[$name] = $element;
-      }
+            $this->elements[$name] = $element;
+        }
 
-      public function hasElementByName($name) {
-         return isset($this->elements[$name]);
-      }
+        public function hasElementByName($name) {
+            return isset($this->elements[$name]);
+        }
 
-      public function getEementByName($name) {
-         if (!isset($this->elements[$name])) {
-            throw new DocBlockException("No element with name '$name'", DocBlockException::NotFound);
-         }
-         return $this->elements[$name];
-      }
-
-      public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
-         $node = $doc->createElementNS('http://xml.phpdox.de/src#', 'docblock');
-         // add lines and such?
-         foreach($this->elements as $element) {
-            if (is_array($element)) {
-               foreach($element as $el) {
-                  $node->appendChild($el->asDom($doc));
-               }
-               continue;
+        public function getElementByName($name) {
+            if (!isset($this->elements[$name])) {
+                throw new DocBlockException("No element with name '$name'", DocBlockException::NotFound);
             }
-            $node->appendChild($element->asDom($doc));
-         }
-         return $node;
-      }
+            return $this->elements[$name];
+        }
 
-   }
+        public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
+            $node = $doc->createElementNS('http://xml.phpdox.de/src#', 'docblock');
+            // add lines and such?
+            foreach($this->elements as $element) {
+                if (is_array($element)) {
+                    foreach($element as $el) {
+                        $node->appendChild($el->asDom($doc));
+                    }
+                    continue;
+                }
+                $node->appendChild($element->asDom($doc));
+            }
+            return $node;
+        }
+
+    }
+
+    class DocBlockException extends \Exception {
+        const NotFound = 404;
+    }
 
 }
