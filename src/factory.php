@@ -74,10 +74,7 @@ namespace TheSeer\phpDox {
                 }
                 if (is_string($this->map[$name])) {
                     array_shift($params);
-                    if (count($params)==0) {
-                        return new $this->map[$name]();
-                    }
-                    return new $this->map[$name]($params);
+                    return $this->getGenericInstance($this->map[$name], $params);
                 }
             }
             $method = 'get'.$name;
@@ -85,7 +82,21 @@ namespace TheSeer\phpDox {
             if (method_exists($this, $method)) {
                 return call_user_func_array(array($this,$method), $params);
             }
-            return new $name($params);
+            return $this->getGenericInstance($name, $params);
+        }
+
+        protected function getGenericInstance($class, array $params) {
+            if (count($params)==0) {
+                return new $class();
+            }
+            $rfc = new ReflectionClass($class);
+            if (!$rfc->isInstantiable()) {
+                throw new FactoryException("class '$class' is not instantiable", FactoryException::NotInstantiable);
+            }
+            if (!$rfc->getConstructor()) {
+               throw new FactoryException("class '$class' does not have a constructor but constructor parameters given", FactoryException::NotConstructor);
+            }
+            return $rfc->newInstanceArgs($params);
         }
 
         protected function getAnalyser($public) {
@@ -169,6 +180,8 @@ namespace TheSeer\phpDox {
 
     class FactoryException extends \Exception {
         const NoClassDefined = 1;
+        const NotInstantiable = 2;
+        const NoConstructor = 3;
     }
 
 }
