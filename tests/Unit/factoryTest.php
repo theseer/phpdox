@@ -36,7 +36,7 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests\Unit\DocBlock {
+namespace TheSeer\phpDox\Tests\Unit {
 
     use TheSeer\phpDox\Factory;
 
