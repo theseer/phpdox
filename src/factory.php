@@ -86,15 +86,15 @@ namespace TheSeer\phpDox {
         }
 
         protected function getGenericInstance($class, array $params) {
-            if (count($params)==0) {
-                return new $class();
-            }
             $rfc = new \ReflectionClass($class);
             if (!$rfc->isInstantiable()) {
                 throw new FactoryException("class '$class' is not instantiable", FactoryException::NotInstantiable);
             }
             if (!$rfc->getConstructor()) {
-               throw new FactoryException("class '$class' does not have a constructor but constructor parameters given", FactoryException::NotConstructor);
+               throw new FactoryException("class '$class' does not have a constructor but constructor parameters given", FactoryException::NoConstructor);
+            }
+            if (count($params)==0) {
+                return new $class();
             }
             return $rfc->newInstanceArgs($params);
         }

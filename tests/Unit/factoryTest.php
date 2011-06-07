@@ -43,13 +43,15 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
         /**
+         * @covers TheSeer\phpDox\Factory::__construct
          * @covers TheSeer\phpDox\Factory::setXMLDir
          */
         public function testSetXMLDir() {
-            $factory = new Factory();
+            $factory = new Factory(array('Tux' => 'Gnu'));
             $factory->setXMLDir('/os/mascott/Tux');
 
             $this->assertAttributeEquals('/os/mascott/Tux', 'xmlDir', $factory);
+            $this->assertAttributeEquals(array('Tux' => 'Gnu'), 'map', $factory);
         }
 
         /**
@@ -79,9 +81,9 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          */
         public function testGetInstanceForClass() {
             $factory = new Factory();
-            $factory->addClass('Gnu', 'stdClass');
+            $factory->addClass('Gnu', 'TheSeer\\phpDox\\Factory');
 
-            $this->assertInstanceOf('stdClass', $factory->getInstanceFor('Gnu'));
+            $this->assertInstanceOf('TheSeer\\phpDox\\Factory', $factory->getInstanceFor('Gnu'));
         }
 
         /**
@@ -109,9 +111,9 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          */
         public function testGetInstanceForFactory() {
             $factory = new Factory();
-            $factory->addClass('stdClass', new Factory());
+            $factory->addClass('TheSeer\\phpDox\\Factory', new Factory());
 
-            $this->assertInstanceOf('stdClass', $factory->getInstanceFor('stdClass'));
+            $this->assertInstanceOf('TheSeer\\phpDox\\Factory', $factory->getInstanceFor('TheSeer\\phpDox\\Factory'));
         }
 
         /**
@@ -121,6 +123,53 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
             $factory = new Factory();
 
             $this->assertInstanceOf('TheSeer\phpDox\ProgressLogger', $factory->getInstanceFor('Logger', 'silent'));
+        }
+
+        /**
+         * @dataProvider getGenericInstanceDataprovider
+         * @covers TheSeer\phpDox\Factory::getGenericInstance
+         */
+        public function testgetGenericInstance($expected, $classname, $arguments) {
+            $factory = new FactoryProxy();
+            $this->assertInstanceOf($expected, $factory->getGenericInstance($classname, $arguments));
+        }
+
+        /**
+         * @expectedException TheSeer\phpDox\FactoryException
+         * @dataProvider getGenericInstanceExpectionFactoryExceptionDataprovider
+         * @covers TheSeer\phpDox\Factory::getGenericInstance
+         */
+        public function testgetGenericInstanceExpectingFactoryException($classname, $argument) {
+            $factory = new FactoryProxy();
+            $factory->getGenericInstance($classname, $argument);
+
+        }
+
+
+        /*********************************************************************/
+        /* Dataprovider & Callbacks                                          */
+        /*********************************************************************/
+
+        public static function getGenericInstanceDataprovider() {
+            return array(
+                'class with no arguments' => array('TheSeer\\phpDox\\Factory', 'TheSeer\\phpDox\\Factory', array()),
+                'class with array as argument' => array('TheSeer\\phpDox\\Factory', 'TheSeer\\phpDox\\Factory', array(array())),
+            );
+        }
+
+        public static function getGenericInstanceExpectionFactoryExceptionDataprovider() {
+            return array(
+                'not instanciable' => array('Iterator', array()),
+                'no constructor' => array('stdClass', array(array())),
+            );
+        }
+    }
+
+
+    class FactoryProxy extends Factory {
+
+        public function getGenericInstance($class, array $params) {
+            return parent::getGenericInstance($class, $params);
         }
     }
 }
