@@ -103,16 +103,20 @@ namespace TheSeer\phpDox {
          * @param Array $require Array of files to require
          */
         public function loadBootstrap(Array $require) {
-            $require = array_merge($require, glob(__DIR__ . '/builder/*.php'));
+            $require = array_merge($require, glob(__DIR__ . '/bootstrap/*.php'));
 
             $phpDox = $this->factory->getInstanceFor('API', $this);
+
+            $bootstrap = function($filename) use ($phpDox) {
+                require $filename;
+            };
 
             foreach($require as $file) {
                 if (!file_exists($file) || !is_file($file)) {
                     throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
                 }
                 $this->logger->log("Loading additional bootstrap file '$file'");
-                require $file;
+                $bootstrap($file);
             }
 
             $this->builderMap = $phpDox->getBuilderMap();
