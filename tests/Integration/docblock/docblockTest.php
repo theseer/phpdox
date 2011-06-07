@@ -47,7 +47,15 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          * Contains a DOMDocument
          * @var \DOMDocument
          */
-        protected static $doc = null;
+        protected $doc = null;
+
+        /*********************************************************************/
+        /* Framework                                                         */
+        /*********************************************************************/
+
+        public function tearDown() {
+            unset($this->doc);
+        }
 
         /*********************************************************************/
         /* Fixtures                                                          */
@@ -58,11 +66,25 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          *
          * @return \DOMDocument
          */
-        protected static function getDomDocument($force = false) {
-            if ($force || !isset(self::$doc)) {
-                self::$doc = new \DOMDocument();
+        protected function getDomDocument() {
+            if (!isset($this->doc)) {
+                $this->doc = new \DOMDocument();
             }
-            return self::$doc;
+            return $this->doc;
+        }
+
+        /**
+         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         *
+         * @param array $methods
+         * @return TheSeer\fDOM\fDOMDocument
+         */
+        protected function getFDomDocumentFixture(array $methods) {
+
+            return $this->getMockBuilder('TheSeer\fDOM\fDOMDocument')
+                ->disableOriginalConstructor()
+                ->setMethods($methods)
+                ->getMock();
         }
 
         /*********************************************************************/
@@ -73,19 +95,16 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\DocBlock::asDom
          * @covers TheSeer\phpDox\DocBlock\DocBlock::appendElement
          */
-        public function testAsDom() {
+        public function testAsDomWithSingleElement() {
 
             // create fDomDocument stub
-            $doc = $this->getMockBuilder('TheSeer\fDOM\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods(array('createElementNS', 'createTextnode'))
-                ->getMock();
+            $doc = $this->getFDomDocumentFixture(array('createElementNS', 'createTextnode'));
             $doc
-                ->expects($this->exactly(3))
+                ->expects($this->exactly(2))
                 ->method('createElementNS')
                 ->will($this->returnCallback(array($this, 'asDomCallback')));
             $doc
-                ->expects($this->exactly(2))
+                ->expects($this->once())
                 ->method('createTextnode')
                 ->will($this->returnCallback(array($this, 'createTextnodeCallback')));
 
@@ -96,16 +115,55 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
             $docBlock = new DocBlock();
             $docBlock->appendElement($element);
+
+            $domElement = $docBlock->asDom($doc);
+
+            // attach generated DOMElement to a DOMDocument
+            $fdoc = $this->getDomDocument();
+            $fdoc->appendChild($domElement);
+
+            $this->assertXmlStringEqualsXmlFile(
+                __DIR__.'/../../data/documents/docBlockAsDom.xml',
+                $fdoc->saveXML()
+            );
+
+        }
+
+
+        /**
+         * @covers TheSeer\phpDox\DocBlock\DocBlock::asDom
+         * @covers TheSeer\phpDox\DocBlock\DocBlock::appendElement
+         */
+        public function testAsDomWithManyElements() {
+
+            // create fDomDocument stub
+            $doc = $this->getFDomDocumentFixture(array('createElementNS', 'createTextnode'));
+            $doc
+                ->expects($this->exactly(3))
+                ->method('createElementNS')
+                ->will($this->returnCallback(array($this, 'asDomCallback')));
+            $doc
+                ->expects($this->exactly(2))
+                ->method('createTextnode')
+                ->will($this->returnCallback(array($this, 'createTextnodeCallback')));
+
+            // setup GenericDocument
+            $element = new GenericElement('Beastie');
+            $element->setBody('Gnu');
+            $element->setLabel('Dolphin');
+
+            $docBlock = new DocBlock();
+            $docBlock->appendElement($element);
             $docBlock->appendElement($element);
 
             $domElement = $docBlock->asDom($doc);
 
             // attach generated DOMElement to a DOMDocument
-            $fdoc = self::getDomDocument();
+            $fdoc = $this->getDomDocument();
             $fdoc->appendChild($domElement);
 
             $this->assertXmlStringEqualsXmlFile(
-                __DIR__.'/../../data/documents/docBlockAsDom.xml',
+                __DIR__.'/../../data/documents/docBlockAsDomMultiple.xml',
                 $fdoc->saveXML()
             );
 
@@ -122,8 +180,8 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          * @param string $qualifiedName
          * @return \DOMElement
          */
-        public static function asDomCallback($namespaceURI , $qualifiedName) {
-            $doc = self::getDomDocument();
+        public function asDomCallback($namespaceURI , $qualifiedName) {
+            $doc = $this->getDomDocument();
             return $doc->createElementNS($namespaceURI , $qualifiedName);
         }
 
@@ -133,8 +191,8 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          * @param string $content
          * @return \DOMText
          */
-        public static function createTextnodeCallback($content) {
-            $doc = self::getDomDocument();
+        public function createTextnodeCallback($content) {
+            $doc = $this->getDomDocument();
             return $doc->createTextnode($content);
         }
     }
