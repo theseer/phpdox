@@ -87,6 +87,26 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         /**
          * @covers TheSeer\phpDox\Factory::getInstanceFor
          */
+        public function testGetInstanceForClassWithParameterArray() {
+            $factory = new Factory();
+            $factory->addClass('Gnu', 'TheSeer\\phpDox\\Factory');
+
+            $this->assertInstanceOf('TheSeer\\phpDox\\Factory', $factory->getInstanceFor('Gnu', array('Tux' =>200)));
+        }
+
+        /**
+         * @covers TheSeer\phpDox\Factory::getInstanceFor
+         */
+        public function testGetInstanceForClassWithParameterString() {
+            $factory = new Factory();
+            $factory->addClass('Gnu', 'Exception');
+
+            $this->assertInstanceOf('Exception', $factory->getInstanceFor('Gnu', 'Tux', 200));
+        }
+
+        /**
+         * @covers TheSeer\phpDox\Factory::getInstanceFor
+         */
         public function testGetInstanceForFactory() {
             $factory = new Factory();
             $factory->addClass('stdClass', new Factory());
