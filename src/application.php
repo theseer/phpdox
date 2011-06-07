@@ -103,7 +103,7 @@ namespace TheSeer\phpDox {
          * @param Array $require Array of files to require
          */
         public function loadBootstrap(Array $require) {
-            $require = array_merge($require, glob(__DIR__ . '/builder/*.php'));
+            $require = array_merge($require, glob(__DIR__ . '/bootstrap/*.php'));
 
             $phpDox = $this->factory->getInstanceFor('API', $this);
 

@@ -24,6 +24,9 @@
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">src</directory>
+      <exclude>
+        <directory suffix=".php">src/bootstrap</directory>
+      </exclude>
     </whitelist>
   </filter>
 </phpunit>
