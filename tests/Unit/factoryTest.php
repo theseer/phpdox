@@ -31,7 +31,7 @@
  *
  * @package    phpDox
  * @subpackage unitTests
- * @author     Bastian Feder <phpdox@bastina-feder.de>
+ * @author     Bastian Feder <phpdox@bastian-feder.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
