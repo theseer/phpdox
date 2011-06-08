@@ -30,13 +30,44 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    phpDox
- * @subpackage unitTests
+ * @subpackage Tests
  * @author     Bastian Feder <phpdox@bastian-feder.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
 
-require_once __DIR__ .'/../src/autoload.php';
+namespace TheSeer\phpDox\Tests {
 
-//  custom TestCase
-require_once __DIR__.'/phpDoxTestCase.php';
+    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
+
+        /*********************************************************************/
+        /* Fixtures                                                          */
+        /*********************************************************************/
+
+        /**
+         * Provides a DOMDocument
+         *
+         * @return \DOMDocument
+         */
+        protected function getDomDocument() {
+            if (!isset($this->doc)) {
+                $this->doc = new \DOMDocument();
+            }
+            return $this->doc;
+        }
+
+        /**
+         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         *
+         * @param array $methods
+         * @return TheSeer\fDOM\fDOMDocument
+         */
+        protected function getFDomDocumentFixture(array $methods) {
+
+            return $this->getMockBuilder('TheSeer\\fDOM\\fDOMDocument')
+                ->disableOriginalConstructor()
+                ->setMethods($methods)
+                ->getMock();
+        }
+    }
+}

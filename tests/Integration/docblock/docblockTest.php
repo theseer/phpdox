@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
     use TheSeer\phpDox\DocBlock\GenericElement;
     use TheSeer\phpDox\DocBlock\DocBlock;
 
-    class DocBlockTest extends \PHPUnit_Framework_TestCase {
+    class DocBlockTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
 
         /**
          * Contains a DOMDocument
@@ -55,36 +55,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
         public function tearDown() {
             unset($this->doc);
-        }
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
-
-        /**
-         * Provides a DOMDocument
-         *
-         * @return \DOMDocument
-         */
-        protected function getDomDocument() {
-            if (!isset($this->doc)) {
-                $this->doc = new \DOMDocument();
-            }
-            return $this->doc;
-        }
-
-        /**
-         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
-         *
-         * @param array $methods
-         * @return TheSeer\fDOM\fDOMDocument
-         */
-        protected function getFDomDocumentFixture(array $methods) {
-
-            return $this->getMockBuilder('TheSeer\fDOM\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods($methods)
-                ->getMock();
         }
 
         /*********************************************************************/

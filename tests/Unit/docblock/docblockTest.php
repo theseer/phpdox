@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
     use TheSeer\phpDox\DocBlock\GenericElement;
     use TheSeer\phpDox\DocBlock\DocBlock;
 
-    class DocBlockTest extends \PHPUnit_Framework_TestCase {
+    class DocBlockTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
 
 
         /*********************************************************************/
@@ -144,10 +144,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
             $node = new \stdClass;
 
-            $fDomDocument = $this->getMockBuilder('TheSeer\\fDOM\\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods(array('createElementNS'))
-                ->getMock();
+            $fDomDocument = $this->getFDomDocumentFixture(array('createElementNS'));
             $fDomDocument
                 ->expects($this->once())
                 ->method('createElementNS')
