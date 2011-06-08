@@ -30,7 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    phpDox
- * @subpackage unitTests
+ * @subpackage Tests
  * @author     Bastian Feder <phpdox@bastian-feder.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
