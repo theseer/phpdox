@@ -39,27 +39,57 @@ namespace TheSeer\phpDox {
 
     class API {
 
+        /**
+         * Refrence to the factory instance
+         *
+         * @var FactoryInterface
+         */
         protected $factory;
 
+        /**
+         * Internal map of registered Builders with their classname or factory instance
+         *
+         * @var array
+         */
         protected $builderMap = array();
 
+        /**
+         * Constructor
+         *
+         * @param FactoryInterface $factory
+         */
         public function __construct(FactoryInterface $factory) {
             $this->factory = $factory;
         }
 
+        /**
+         * Getter to receive the map of registered Builders
+         *
+         * @return array
+         */
         public function getBuilderMap() {
             return $this->builderMap;
         }
 
-        public function getParserMap() {
-            return $this->parserMap;
-        }
-
+        /**
+         * Register a new builder with its name, title and factory instance to use to instance it
+         *
+         * @param string           $name    Name of the builder
+         * @param string           $title   Internal title used on display
+         * @param FactoryInterface $factory Factory to instantiate the builder with
+         */
         public function registerBuilderFactory($name, $title, FactoryInterface $factory) {
             $this->factory->addFactory($name, $factory);
             $this->builderMap[$name] = $title;
         }
 
+        /**
+         * Register a new builder with its name, title and classname
+         *
+         * @param string $name  Name of the builder
+         * @param string $title Internal title used on display
+         * @param string $class Classname to instantiate
+         */
         public function registerBuilderClass($name, $title, $class) {
             $this->factory->addClass($name, $class);
             $this->builderMap[$name] = $title;
