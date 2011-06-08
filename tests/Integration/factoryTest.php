@@ -53,7 +53,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @return TheSeer\\phpDox\Container
          */
         protected function getContainerFixture(array $methods) {
-            return $this->getMockBuilder('TheSeer\\phpDox\Container')
+            return $this->getMockBuilder('TheSeer\\phpDox\\Container')
                 ->disableOriginalConstructor()
                 ->setMethods($methods)
                 ->getMock();
