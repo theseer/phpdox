@@ -90,11 +90,11 @@ namespace TheSeer\phpDox {
             if (!$rfc->isInstantiable()) {
                 throw new FactoryException("class '$class' is not instantiable", FactoryException::NotInstantiable);
             }
-            if (!$rfc->getConstructor()) {
-               throw new FactoryException("class '$class' does not have a constructor but constructor parameters given", FactoryException::NoConstructor);
-            }
             if (count($params)==0) {
                 return new $class();
+            }
+            if (!$rfc->getConstructor()) {
+               throw new FactoryException("class '$class' does not have a constructor but constructor parameters given", FactoryException::NoConstructor);
             }
             return $rfc->newInstanceArgs($params);
         }
