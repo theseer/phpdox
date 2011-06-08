@@ -45,7 +45,7 @@ namespace TheSeer\phpDox\DocBlock {
             foreach($this->attributes as $attribute => $value) {
                 $node->setAttribute($attribute, $value);
             }
-            if ($this->body !== NULL && $this->body !== '') {
+            if ($this->body !== null && $this->body !== '') {
                 $node->appendChild($ctx->createTextnode($this->body));
             }
             return $node;
