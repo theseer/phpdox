@@ -91,16 +91,14 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          */
         public function testAsDomNoRegisteredElments() {
 
-            $node = new \stdClass;
-
             $fDomDocument = $this->getFDomDocumentFixture(array('createElementNS'));
             $fDomDocument
                 ->expects($this->once())
                 ->method('createElementNS')
-                ->will($this->returnValue($node));
+                ->will($this->returnValue(new \stdClass));
 
             $docBlock = new GenericElement('Tux');
-            $this->assertEquals(new \stdClass, $docBlock->asDom($fDomDocument));
+            $this->assertInstanceOf('stdClass', $docBlock->asDom($fDomDocument));
 
         }
     }
