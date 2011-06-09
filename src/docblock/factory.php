@@ -117,7 +117,7 @@ namespace TheSeer\phpDox\DocBlock {
             }
 
             if ($map[$name] instanceof FactoryInterface) {
-                return $map[$name]->getInstanceOf($name, $this, $annotation);
+                return $map[$name]->getInstanceFor($name, $this, $annotation);
             }
             return new $map[$name]($this, $annotation);
 
