@@ -168,7 +168,6 @@ namespace TheSeer\phpDox {
             return $this->instances['DocblockFactory'];
         }
 
-
         protected function getDocblockParser() {
             if (!isset($this->instances['DocblockParser'])) {
                 $this->instances['DocblockParser'] = new \TheSeer\phpDox\DocBlock\Parser($this->getDocblockFactory());
