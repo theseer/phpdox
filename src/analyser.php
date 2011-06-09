@@ -90,6 +90,7 @@ namespace TheSeer\phpDox {
 
         protected function initWorkDocument(\SPLFileInfo $file) {
             $this->dom = new fDOMDocument('1.0', 'UTF-8');
+            $this->dom->preserveWhitespace = true;
             $this->dom->registerNamespace('dox', 'http://xml.phpdox.de/src#');
             $root = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'file');
             $this->dom->appendChild($root);
