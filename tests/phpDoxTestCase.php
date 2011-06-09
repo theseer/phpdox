@@ -30,59 +30,44 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
+ * @subpackage Tests
+ * @author     Bastian Feder <phpdox@bastian-feder.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox\Tests {
 
-    class GenericElement {
+    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
 
-        protected $name;
-        protected $body;
-        protected $attributes = array();
+        /*********************************************************************/
+        /* Fixtures                                                          */
+        /*********************************************************************/
 
-        public function __construct($name) {
-            $this->name = $name;
-        }
-
-        public function getAnnotationName() {
-            return $this->name;
-        }
-
-        public function getBody() {
-            return $this->body;
-        }
-
-        public function __call($method, $value) {
-            if (!preg_match('/^set/', $method)) {
-                throw new GenericElementException("Method '$method' not defined", GenericElementException::MethodNotDefined);
+        /**
+         * Provides a DOMDocument
+         *
+         * @return \DOMDocument
+         */
+        protected function getDomDocument() {
+            if (!isset($this->doc)) {
+                $this->doc = new \DOMDocument();
             }
-            // extract attribute name (remove 'set' or 'get' from string)
-            $attribute = strtolower(substr($method, 3));
-            $this->attributes[$attribute] = $value[0];
+            return $this->doc;
         }
 
-        public function setBody($body) {
-            $this->body = $body;
+        /**
+         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         *
+         * @param array $methods
+         * @return TheSeer\fDOM\fDOMDocument
+         */
+        protected function getFDomDocumentFixture(array $methods) {
+
+            return $this->getMockBuilder('TheSeer\\fDOM\\fDOMDocument')
+                ->disableOriginalConstructor()
+                ->setMethods($methods)
+                ->getMock();
         }
-
-        public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-            $node = $ctx->createElementNS('http://xml.phpdox.de/src#', $this->name);
-            foreach($this->attributes as $attribute => $value) {
-                $node->setAttribute($attribute, $value);
-            }
-            if ($this->body !== NULL && $this->body !== '') {
-                $node->appendChild($ctx->createTextnode($this->body));
-            }
-            return $node;
-        }
-
-    }
-
-    class GenericElementException extends \Exception {
-        const MethodNotDefined = 1;
-        const PropertyNotDefined = 2;
     }
 }
