@@ -151,11 +151,9 @@ namespace TheSeer\phpDox\DocBlock {
     }
 
     class FactoryException extends \Exception {
-        const InvalidType = 1;
-        const UnknownType = 2;
+        const UnkownClass = 1;
+        const InvalidType = 2;
+        const UnknownType = 3;
     }
 
-    class FactoryException extends \Exception {
-       const UnkownClass = 1;
-    }
 }
