@@ -39,12 +39,6 @@ namespace TheSeer\phpDox\DocBlock {
 
     class DescriptionParser extends GenericParser {
 
-        protected $name;
-
-        public function __construct($name) {
-            $this->name = $name;
-        }
-
         public function getObject(array $buffer) {
             $compact = '';
             if (count($buffer)) {
@@ -53,7 +47,7 @@ namespace TheSeer\phpDox\DocBlock {
                     $compact .= ' ' . $line;
                 } while ($line != '' && substr($line, -1) != '.');
             }
-            $obj = $this->buildObject('TheSeer\\phpDox\\DocBlock\\GenericElement', $buffer);
+            $obj = $this->buildObject('generic', $buffer);
             $obj->setCompact(trim($compact, " *\t"));
             return $obj;
         }

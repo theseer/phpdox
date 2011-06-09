@@ -139,8 +139,6 @@ namespace TheSeer\phpDox {
                 try {
                     $xml = $analyser->processFile($file);
                     $xml->formatOutput= true;
-                    echo $xml->saveXML();
-
                     $xml->save($target);
                     touch($target, $file->getMTime(), $file->getATime());
 

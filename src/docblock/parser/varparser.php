@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\DocBlock {
    class VarParser extends GenericParser {
 
       public function getObject(array $buffer) {
-         $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement', $buffer);
+         $obj = $this->buildObject('generic', $buffer);
 
          $parts = preg_split("/[\s,]+/", $this->payload, 2, PREG_SPLIT_NO_EMPTY);
          if (count($parts)==2) {

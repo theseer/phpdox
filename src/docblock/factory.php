@@ -48,8 +48,15 @@ namespace TheSeer\phpDox\DocBlock {
             'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
             'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
             'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser'
-            );
+            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
+
+            'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser'
+        );
+
+        protected $elementMap = array(
+            'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
+            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement'
+        );
 
         public function addParserFactory($annotation, FactoryInterface $factory) {
             $this->parserMap[$annotation] = $factory;
@@ -59,31 +66,49 @@ namespace TheSeer\phpDox\DocBlock {
             $this->parserMap[$annotation] = $class;
         }
 
-        public function getInstanceFor($name, $annotation = null) {
-            if ($name == 'docblock') {
-                return new DocBlock();
+        public function getInstanceFor($name) {
+            switch ($name) {
+                case 'DocBlock': {
+                    return new DocBlock();
+                }
+                case 'InlineProcessor': {
+                    $args = func_get_args();
+                    return new InlineProcessor($this, $args[1]);
+                }
+                default: {
+                    throw new FactoryException("No class defined for name '$name'", FactoryException::UnkownClass);
+                }
             }
+        }
 
-            if ($name == 'invalid') {
-                return new InvalidParser($annotation);
-            }
+        public function getElementInstanceFor($name, $annotation = null) {
+            return $this->getInstanceByMap($this->elementMap, $name, $annotation);
+        }
+
+        public function getParserInstanceFor($name, $annotation = null) {
+            return $this->getInstanceByMap($this->parserMap, $name, $annotation);
+        }
+
+        protected function getInstanceByMap($map, $name, $annotation = null) {
 
             if ($annotation === null) {
                 $annotation = $name;
             }
 
-            if (!isset($this->parserMap[$name])) {
+            if (!isset($map[$name])) {
                 $name = 'generic';
             }
 
-            if ($this->parserMap[$name] instanceof FactoryInterface) {
-                return $this->parserMap[$name]->getInstanceOf($name, $annotation);
+            if ($map[$name] instanceof FactoryInterface) {
+                return $map[$name]->getInstanceOf($name, $this, $annotation);
             }
-
-            return new $this->parserMap[$name]($annotation);
+            return new $map[$name]($this, $annotation);
 
         }
 
     }
 
+    class FactoryException extends \Exception {
+       const UnkownClass = 1;
+    }
 }

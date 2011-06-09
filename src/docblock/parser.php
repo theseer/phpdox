@@ -46,7 +46,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function parse($block) {
-            $docBlock = $this->factory->getInstanceFor('docblock');
+            $docBlock = $this->factory->getInstanceFor('DocBlock');
             $lines = $this->prepare($block);
             $this->startParser('description');
             $buffer = array();
@@ -91,9 +91,9 @@ namespace TheSeer\phpDox\DocBlock {
         protected function startParser($name, $payload = NULL) {
             if (!preg_match('/^[a-zA-Z0-9]*$/', $name) || empty($name)) {
                 // TODO: errorlog
-                $this->current = $this->factory->getInstanceFor('invalid', $name);
+                $this->current = $this->factory->getParserInstanceFor('invalid', $name);
             } else {
-                $this->current = $this->factory->getInstanceFor($name);
+                $this->current = $this->factory->getParserInstanceFor($name);
             }
             if ($payload !== NULL) {
                 $this->current->setPayload($payload);

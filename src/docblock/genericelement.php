@@ -39,11 +39,14 @@ namespace TheSeer\phpDox\DocBlock {
 
     class GenericElement {
 
+        protected $factory;
+
         protected $name;
         protected $body;
         protected $attributes = array();
 
-        public function __construct($name) {
+        public function __construct($factory, $name) {
+            $this->factory = $factory;
             $this->name = $name;
         }
 
@@ -79,8 +82,9 @@ namespace TheSeer\phpDox\DocBlock {
             foreach($this->attributes as $attribute => $value) {
                 $node->setAttribute($attribute, $value);
             }
-            if ($this->body !== NULL && $this->body !== '') {
-                $node->appendChild($ctx->createTextnode($this->body));
+            if ($this->body !== null && $this->body !== '') {
+                $parser = $this->factory->getInstanceFor('InlineProcessor', $ctx);
+                $node->appendChild($parser->transformToDom($this->body));
             }
             return $node;
         }

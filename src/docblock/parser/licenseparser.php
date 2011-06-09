@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\DocBlock {
    class LicenseParser extends GenericParser {
 
       public function getObject(array $buffer) {
-          $obj = parent::buildObject('TheSeer\\phpDox\\DocBlock\\GenericElement', $buffer);
+          $obj = $this->buildObject('generic', $buffer);
           $obj->setName($this->payload);
           return $obj;
       }

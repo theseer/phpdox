@@ -39,19 +39,8 @@ namespace TheSeer\phpDox\DocBlock {
 
     class ParamParser extends GenericParser {
 
-        protected $name;
-        protected $payload;
-
-        public function __construct($name) {
-            $this->name = $name;
-        }
-
-        public function setPayload($payload) {
-            $this->payload = $payload;
-        }
-
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement', $buffer);
+            $obj = $this->buildObject('generic', $buffer);
 
             $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
             switch(count($param)) {

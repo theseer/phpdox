@@ -39,10 +39,13 @@ namespace TheSeer\phpDox\DocBlock {
 
     class GenericParser {
 
+        protected $factory;
+
         protected $name;
         protected $payload;
 
-        public function __construct($name) {
+        public function __construct(Factory $factory, $name) {
+            $this->factory = $factory;
             $this->name = $name;
         }
 
@@ -51,13 +54,13 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('TheSeer\phpDox\DocBlock\GenericElement', $buffer);
+            $obj = $this->buildObject('generic', $buffer);
             $obj->setValue($this->payload);
             return $obj;
         }
 
         protected function buildObject($classname, array $buffer) {
-            $obj = new $classname($this->name);
+            $obj = $this->factory->getElementInstanceFor($classname, $this->name);
             if (count($buffer)) {
                 $obj->setBody(trim(join("\n", $buffer)));
             }
