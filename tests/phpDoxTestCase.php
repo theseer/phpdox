@@ -30,27 +30,44 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
+ * @subpackage Tests
+ * @author     Bastian Feder <phpdox@bastian-feder.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox\Tests {
 
-    class InvalidElement extends GenericElement {
+    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
 
-        public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-            $node = $ctx->createElementNS('http://xml.phpdox.de/src#', 'invalid');
-            $node->setAttribute('annotation', $this->name);
-            foreach($this->attributes as $attribute => $value) {
-                $node->setAttribute($attribute, $value);
+        /*********************************************************************/
+        /* Fixtures                                                          */
+        /*********************************************************************/
+
+        /**
+         * Provides a DOMDocument
+         *
+         * @return \DOMDocument
+         */
+        protected function getDomDocument() {
+            if (!isset($this->doc)) {
+                $this->doc = new \DOMDocument();
             }
-            if ($this->body !== null && $this->body !== '') {
-                $node->appendChild($ctx->createTextnode($this->body));
-            }
-            return $node;
+            return $this->doc;
         }
 
-    }
+        /**
+         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         *
+         * @param array $methods
+         * @return TheSeer\fDOM\fDOMDocument
+         */
+        protected function getFDomDocumentFixture(array $methods) {
 
+            return $this->getMockBuilder('TheSeer\\fDOM\\fDOMDocument')
+                ->disableOriginalConstructor()
+                ->setMethods($methods)
+                ->getMock();
+        }
+    }
 }

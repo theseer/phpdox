@@ -59,18 +59,12 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function __call($method, $value) {
-            if (!preg_match('/^[s|g]et/', $method)) {
+            if (!preg_match('/^set/', $method)) {
                 throw new GenericElementException("Method '$method' not defined", GenericElementException::MethodNotDefined);
             }
-            if ($method[0]=='s') {
-                $attribute = strtolower(substr($method, 3));
-                $this->attributes[$attribute] = $value[0];
-            } else {
-                if (!isset($this->attributes[$value[0]])) {
-                    throw new GenericElementException("Property '{$value[0]}' not defined", GenericElementException::PropertyNotDefined);
-                }
-                return $this->attributes[$value[0]];
-            }
+            // extract attribute name (remove 'set' or 'get' from string)
+            $attribute = strtolower(substr($method, 3));
+            $this->attributes[$attribute] = $value[0];
         }
 
         public function setBody($body) {

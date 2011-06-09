@@ -58,12 +58,29 @@ namespace TheSeer\phpDox\DocBlock {
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement'
         );
 
+        /**
+         * Register a parser factory.
+         *
+         * @param string $annotation Identifier of the parser within the registry.
+         * @param TheSeer\phpDox\FactoryInterface $factory Instance of the factory to be registered.
+         *
+         * @throws FactoryException in case either one or both arguments are not of type string.
+         */
         public function addParserFactory($annotation, FactoryInterface $factory) {
+            $this->verifyType($annotation);
             $this->parserMap[$annotation] = $factory;
         }
 
-        public function addParserClass($annotation, $class) {
-            $this->parserMap[$annotation] = $class;
+        /**
+         * Register a parser by its classname.
+         *
+         * @param string $annotation Identifier of the parser within the registry.
+         * @param string $classname  Name of the class representing the parser.
+         */
+        public function addParserClass($annotation, $classname) {
+            $this->verifyType($annotation);
+            $this->verifyType($classname);
+            $this->parserMap[$annotation] = $classname;
         }
 
         public function getInstanceFor($name) {
@@ -106,6 +123,36 @@ namespace TheSeer\phpDox\DocBlock {
 
         }
 
+        /**
+         * Verify the type of the given item matches the expected one.
+         *
+         * @param string $item
+         * @param string $type
+         * @throws FactoryException in case the item type and the expected type do not match.
+         */
+        protected function verifyType($item, $type = 'string') {
+            $match = true;
+            switch (strtolower($type)) {
+                case 'string':
+                    if (!is_string($item)) {
+                        $match = false;
+                    }
+                    break;
+                default:
+                    throw new FactoryException('Unknown type chosen for verification', FactoryException::UnknownType);
+                    break;
+            }
+
+            if (!$match) {
+                throw new FactoryException('Argument ('.$item.') must be a string.', FactoryException::InvalidType);
+            }
+        }
+
+    }
+
+    class FactoryException extends \Exception {
+        const InvalidType = 1;
+        const UnknownType = 2;
     }
 
     class FactoryException extends \Exception {
