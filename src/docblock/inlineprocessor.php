@@ -29,7 +29,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * You can also {@internal let's {@do something} about it.
+ * You can also {@internal let's {@do something}} about it.
  *
  * @package    phpDox
  * @author     Arne Blankerts <arne@blankerts.de>
@@ -44,7 +44,7 @@ namespace TheSeer\phpDox\DocBlock {
         protected $dom;
         protected $factory;
 
-        protected $regex = '/(.*?)\{(\@(?>[^{}]+|(?R))*)\}|(.*)/';
+        protected $regex = '/(.*?)\{(\@(?>[^{}]+|(?R))*)\}|(.*)/m';
 
         public function __construct(Factory $factory, \TheSeer\fDOM\fDOMDocument $ctx) {
             $this->factory = $factory;
@@ -56,8 +56,11 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function doParse($text) {
-            $fragment = $this->dom->createDocumentFragment();
             $count = preg_match_all($this->regex, $text, $matches);
+            if (join('',$matches[1]) == '') {
+                return $this->dom->createTextNode($text);
+            }
+            $fragment = $this->dom->createDocumentFragment();
             for($x=0; $x<$count; $x++) {
                 for($t=1; $t<=3; $t++) {
                     if ($matches[$t][$x] == '') {
@@ -67,7 +70,11 @@ namespace TheSeer\phpDox\DocBlock {
                         $fragment->appendChild($this->processMatch($matches[$t][$x]));
                         continue;
                     }
-                    $fragment->appendChild($this->dom->createTextNode($matches[$t][$x]));
+                    $part = $matches[$t][$x];
+                    if ($t==3 && $part != '') {
+                        $part .= "\n";
+                    }
+                    $fragment->appendChild($this->dom->createTextNode($part));
                 }
             }
             return $fragment;
