@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
     use TheSeer\phpDox\DocBlock\Factory;
 
-    class FactoryTest extends \PHPUnit_Framework_TestCase {
+    class FactoryTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::addParserFactory
@@ -80,22 +80,33 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         }
 
         /**
-         * @dataProvider getInstanceForClassDataprovider
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
          */
-        public function testGetInstanceFor($expected, $name, $annotation) {
+        public function testGetInstanceForDocBlock() {
             $factory = new Factory();
-            $this->assertInstanceOf($expected, $factory->getInstanceFor($name, $annotation));
+            $this->assertInstanceOf(
+                'TheSeer\\phpDox\\DocBlock\\DocBlock',
+                $factory->getInstanceFor('DocBlock')
+            );
         }
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
          */
-        public function testGetInstanceForRegisteredFactory() {
+        public function testGetInstanceForInlineProcessor() {
             $factory = new Factory();
-            $factory->addParserFactory('exception', new Factory());
+            $this->assertInstanceOf(
+                'TheSeer\\phpDox\\DocBlock\\InlineProcessor',
+                $factory->getInstanceFor('InlineProcessor', $this->getFDomDocumentFixture(array())));
+        }
 
-            $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\GenericParser', $factory->getInstanceFor('exception'));
+        /**
+         * @expectedException TheSeer\phpDox\DocBlock\FactoryException
+         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+         */
+        public function testGetInstanceForExpectingFactoryException() {
+            $factory = new Factory();
+            $factory->getInstanceFor('invalid Parser');
         }
 
         /**
@@ -124,23 +135,6 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
             return array(
                 'Invalid type' => array(42, 'string'),
                 'unknown type' => array(42, 'integer'),
-            );
-        }
-
-        public static function getInstanceForClassDataprovider() {
-            return array(
-                'get instance of DocBlock' => array(
-                    'TheSeer\\phpDox\\DocBlock\\DocBlock', 'docblock', null
-                ),
-                'get instance of InvalidParser' => array(
-                    'TheSeer\\phpDox\\DocBlock\\InvalidParser', 'invalid', null
-                ),
-                'get instance of GenericParser by unregistered  name' => array(
-                    'TheSeer\\phpDox\\DocBlock\\GenericParser', 'unregistered', null
-                ),
-                'get instance of GenericParser' => array(
-                    'TheSeer\\phpDox\\DocBlock\\GenericParser', 'generic', null
-                ),
             );
         }
 
