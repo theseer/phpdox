@@ -47,15 +47,15 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\GenericElement::__construct
          */
         public function testGetAnnotationname() {
-            $element = new GenericElement('Tux');
-            $this->assertEquals('Tux', $element->getAnnotationName());
+            $element = new GenericElement($this->getFactoryFixture(), 'Gnu');
+            $this->assertEquals('Gnu', $element->getAnnotationName());
         }
 
         /**
          * @covers TheSeer\phpDox\DocBlock\GenericElement::getBody
          */
         public function testGetBody() {
-            $element = new GenericElement('Tux');
+            $element = new GenericElement($this->getFactoryFixture(), 'Gnu');
             $this->assertNull($element->getBody());
         }
 
@@ -63,7 +63,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\GenericElement::setBody
          */
         public function testSetBody() {
-            $element = new GenericElement('Tux');
+            $element = new GenericElement($this->getFactoryFixture(), 'Gnu');
             $element->setBody('Linus');
             $this->assertAttributeEquals('Linus', 'body', $element);
         }
@@ -72,7 +72,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\GenericElement::__call
          */
         public function testMagicCall() {
-            $element = new GenericElement('Tux');
+            $element = new GenericElement($this->getFactoryFixture(), 'Gnu');
             $element->setGnu('Puffy');
             $this->assertAttributeContains('Puffy', 'attributes', $element);
         }
@@ -82,7 +82,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\GenericElement::__call
          */
         public function testMagicCallExpectingGenericElementException() {
-            $element = new GenericElement('Tux');
+            $element = new GenericElement($this->getFactoryFixture(), 'Gnu');
             $element->isGnu('Puffy');
         }
 
@@ -97,7 +97,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
                 ->method('createElementNS')
                 ->will($this->returnValue(new \stdClass));
 
-            $docBlock = new GenericElement('Tux');
+            $docBlock = new GenericElement($this->getFactoryFixture(), 'Gnu');
             $this->assertInstanceOf('stdClass', $docBlock->asDom($fDomDocument));
 
         }
