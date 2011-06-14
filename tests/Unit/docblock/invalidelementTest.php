@@ -57,7 +57,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
                 ->method('createElementNS')
                 ->will($this->returnValue($node));
 
-            $element = new InvalidElement('Tux');
+            $element = new InvalidElement($this->getFactoryFixture(), 'Tux');
             $this->assertInstanceOf('DOMElement', $element->asDom($fDomDocument));
         }
 
@@ -80,7 +80,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
                 ->method('createTextnode')
                 ->will($this->returnCallback(array($this, 'createTextNodeCallback')));
 
-            $element = new InvalidElement('Tux');
+            $element = new InvalidElement($this->getFactoryFixture(), 'Tux');
             $element->setBody('Linus');
             $element->setLabel('Gnu');
 

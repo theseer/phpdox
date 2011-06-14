@@ -58,7 +58,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          */
         protected function getGenericElementFixture($name, array $methods) {
             return $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\GenericElement')
-                ->setConstructorArgs(array($name))
+                ->setConstructorArgs(array($this->getFactoryFixture(), $name))
                 ->setMethods($methods)
                 ->getMock();
         }
