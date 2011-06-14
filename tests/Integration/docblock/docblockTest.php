@@ -50,6 +50,35 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
         protected $doc = null;
 
         /*********************************************************************/
+        /* Fixtures                                                          */
+        /*********************************************************************/
+
+        /**
+         * Provides an instance of the TheSeer\phpDox\DocBlock\GenericElement
+         *
+         * @param string $name
+         * @return TheSeer\phpDox\DocBlock\GenericElement
+         */
+        protected function getGenericElementObject($name) {
+
+            $processor = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\InlineProcessor')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $processor
+                ->expects($this->atLeastOnce())
+                ->method('transformToDom')
+                ->will($this->returnCallback(array($this, 'createTextnodeCallback')));
+
+            $factory = $this->getFactoryFixture(array('getInstanceFor'));
+            $factory
+                ->expects($this->atLeastOnce())
+                ->method('getInstanceFor')
+                ->will($this->returnValue($processor));
+
+            return new GenericElement($factory, $name);
+        }
+
+        /*********************************************************************/
         /* Framework                                                         */
         /*********************************************************************/
 
@@ -68,18 +97,14 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
         public function testAsDomWithSingleElement() {
 
             // create fDomDocument stub
-            $doc = $this->getFDomDocumentFixture(array('createElementNS', 'createTextnode'));
+            $doc = $this->getFDomDocumentFixture(array('createElementNS'));
             $doc
                 ->expects($this->exactly(2))
                 ->method('createElementNS')
                 ->will($this->returnCallback(array($this, 'asDomCallback')));
-            $doc
-                ->expects($this->once())
-                ->method('createTextnode')
-                ->will($this->returnCallback(array($this, 'createTextnodeCallback')));
 
             // setup GenericDocument
-            $element = new GenericElement('Tux');
+            $element = $this->getGenericElementObject('Tux');
             $element->setBody('Beastie');
             $element->setLabel('Linus');
 
@@ -87,7 +112,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
             $docBlock->appendElement($element);
 
             $domElement = $docBlock->asDom($doc);
-
             // attach generated DOMElement to a DOMDocument
             $fdoc = $this->getDomDocument();
             $fdoc->appendChild($domElement);
@@ -96,7 +120,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
                 __DIR__.'/../../data/documents/docBlockAsDom.xml',
                 $fdoc->saveXML()
             );
-
         }
 
 
@@ -107,18 +130,14 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
         public function testAsDomWithManyElements() {
 
             // create fDomDocument stub
-            $doc = $this->getFDomDocumentFixture(array('createElementNS', 'createTextnode'));
+            $doc = $this->getFDomDocumentFixture(array('createElementNS'));
             $doc
                 ->expects($this->exactly(3))
                 ->method('createElementNS')
                 ->will($this->returnCallback(array($this, 'asDomCallback')));
-            $doc
-                ->expects($this->exactly(2))
-                ->method('createTextnode')
-                ->will($this->returnCallback(array($this, 'createTextnodeCallback')));
 
             // setup GenericDocument
-            $element = new GenericElement('Beastie');
+            $element = $this->getGenericElementObject('Beastie');
             $element->setBody('Gnu');
             $element->setLabel('Dolphin');
 
