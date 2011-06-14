@@ -45,7 +45,7 @@ namespace TheSeer\phpDox\DocBlock {
         protected $body;
         protected $attributes = array();
 
-        public function __construct($factory, $name) {
+        public function __construct(\TheSeer\phpDox\FactoryInterface $factory, $name) {
             $this->factory = $factory;
             $this->name = $name;
         }

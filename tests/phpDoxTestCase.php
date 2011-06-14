@@ -69,5 +69,17 @@ namespace TheSeer\phpDox\Tests {
                 ->setMethods($methods)
                 ->getMock();
         }
+
+        /**
+         * Provides a stubbed instance of TheSeer\phpDox\DocBlock\Factory.
+         *
+         * @param array $methods
+         * @return TheSeer\phpDox\DocBlock\Factory
+         */
+        protected function getFactoryFixture(array $methods = array()) {
+            return $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\Factory')
+                ->setMethods($methods)
+                ->getMock();
+        }
     }
 }
