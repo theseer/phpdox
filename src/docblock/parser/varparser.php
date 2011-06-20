@@ -45,8 +45,8 @@ namespace TheSeer\phpDox\DocBlock {
          $parts = preg_split("/[\s,]+/", $this->payload, 2, PREG_SPLIT_NO_EMPTY);
          if (count($parts)==2) {
             $obj->setDescription($parts[1]);
+            $obj->setType($parts[0]);
          }
-         $obj->setType($parts[0]);
          return $obj;
       }
 
