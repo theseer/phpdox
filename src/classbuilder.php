@@ -211,6 +211,12 @@ namespace TheSeer\phpDox {
 
         protected function processValue(fDOMElement $ctx, $src) {
             $value =  is_null($src) ? 'null' : var_export($src, true);
+
+            // Temporary workaround due to an issue in pdepend staticReflection package.
+            if (strpos($value, '\'__StaticReflectionConstantValue(') !== false) {
+            	$value = preg_replace("#'__StaticReflectionConstantValue\((.*)\)'#", '$1', $value);
+            }
+
             $default = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'default');
             $default->appendChild($ctx->ownerDocument->createTextnode($value));
         }
