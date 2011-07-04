@@ -37,19 +37,17 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-   class VarParser extends GenericParser {
+    class VarParser extends GenericParser {
 
-      public function getObject(array $buffer) {
-         $obj = $this->buildObject('generic', $buffer);
-
-         $parts = preg_split("/[\s,]+/", $this->payload, 2, PREG_SPLIT_NO_EMPTY);
-         if (count($parts)==2) {
-            $obj->setDescription($parts[1]);
-            $obj->setType($parts[0]);
-         }
-         return $obj;
-      }
-
-   }
+        public function getObject(array $buffer) {
+            $obj = $this->buildObject('generic', $buffer);
+            $parts = preg_split("/[\s,]+/", $this->payload, 2, PREG_SPLIT_NO_EMPTY);
+            if (count($parts)==2) {
+                $obj->setDescription($parts[1]);
+            }
+            $obj->setType($this->lookupType($parts[0]));
+            return $obj;
+        }
+    }
 
 }

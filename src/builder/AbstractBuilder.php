@@ -35,42 +35,37 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox {
 
-    class ParamParser extends GenericParser {
+    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fDom\fDomElement;
 
-        public function getObject(array $buffer) {
-            $obj = $this->buildObject('generic', $buffer);
+    abstract class AbstractBuilder implements EventHandler {
 
-            $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
-            switch(count($param)) {
-                case 3: {
-                    $obj->setDescription($param[2]);
-                    // no break!
-                }
-                case 2: {
-                    if ($param[0][0]=='$') {
-                        $obj->setVariable($param[0]);
-                        $obj->setType($this->lookupType($param[1]));
-                    } else {
-                        $obj->setType($this->lookupType($param[0]));
-                        $obj->setVariable($param[1]);
-                    }
-                    break;
-                }
-                case 1: {
-                    if ($param[0][0]=='$') {
-                        $obj->setVariable($param[0]);
-                    } else {
-                        $obj->setType($this->lookupType($param[0]));
-                    }
-                    break;
-                }
+        protected $generator;
+        protected $eventMap = array();
+
+        public function setUp(Generator $generator) {
+            $this->generator = $generator;
+            foreach(array_keys($this->eventMap) as $event) {
+                $generator->registerHandler($event, $this);
             }
-
-            return $obj;
         }
 
+        public function handle($event) {
+            if (!isset($this->eventMap[$event])) {
+                throw new TodoBuilderException("Don't know how to handle event '$event'", BuilderException::UnkownEvent);
+            }
+            $payload = func_get_args();
+            array_shift($payload);
+            $this->doHandle($event, $payload);
+        }
+
+        abstract protected function doHandle($event, array $payload);
+    }
+
+    class BuilderException extends \Exception {
+        const UnkownEvent = 1;
     }
 
 }

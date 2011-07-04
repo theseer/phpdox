@@ -40,12 +40,15 @@ namespace TheSeer\phpDox\DocBlock {
 
         protected $factory;
         protected $current;
+        protected $aliasMap = array();
 
         public function __construct(\TheSeer\phpDox\FactoryInterface $factory) {
             $this->factory = $factory;
         }
 
-        public function parse($block) {
+        public function parse($block, array $aliasMap) {
+            $this->aliasMap = $aliasMap;
+
             $docBlock = $this->factory->getInstanceFor('DocBlock');
             $lines = $this->prepare($block);
             $this->startParser('description');
@@ -95,6 +98,7 @@ namespace TheSeer\phpDox\DocBlock {
             } else {
                 $this->current = $this->factory->getParserInstanceFor($name);
             }
+            $this->current->setAliasMap($this->aliasMap);
             if ($payload !== NULL) {
                 $this->current->setPayload($payload);
             }

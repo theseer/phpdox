@@ -35,42 +35,38 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox {
 
-    class ParamParser extends GenericParser {
+    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fDom\fDomElement;
 
-        public function getObject(array $buffer) {
-            $obj = $this->buildObject('generic', $buffer);
+    class Service {
 
-            $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
-            switch(count($param)) {
-                case 3: {
-                    $obj->setDescription($param[2]);
-                    // no break!
-                }
-                case 2: {
-                    if ($param[0][0]=='$') {
-                        $obj->setVariable($param[0]);
-                        $obj->setType($this->lookupType($param[1]));
-                    } else {
-                        $obj->setType($this->lookupType($param[0]));
-                        $obj->setVariable($param[1]);
-                    }
-                    break;
-                }
-                case 1: {
-                    if ($param[0][0]=='$') {
-                        $obj->setVariable($param[0]);
-                    } else {
-                        $obj->setType($this->lookupType($param[0]));
-                    }
-                    break;
-                }
-            }
+        protected $container;
 
-            return $obj;
+        public function __construct(Generator $generator, Container $container){
+            $this->namespaces = $container->getDocument('namespaces');
+            $this->interfaces = $container->getDocument('interfaces');
+            $this->classes    = $container->getDocument('classes');
+        }
+
+
+        public function getClass($classname) {
+            $q = "//phpdox:class[@full=" . $classname . '"]';
+            $node = $this->classes->queryOne($q);
+            $dom = $this->generator->loadDataFile($node->getAttribute('xml'));
+            return $dom->queryOne($q);
+        }
+
+        /**
+         * Resolve see annotation to mentioned class or method
+         *
+         * @param $see
+         *
+         * @todo Actually implement :)
+         */
+        public function resolveSee($see) {
         }
 
     }
-
 }

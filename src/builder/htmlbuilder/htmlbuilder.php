@@ -40,10 +40,9 @@ namespace TheSeer\phpDox {
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
 
-    class HtmlBuilder implements EventHandler {
+    class HtmlBuilder extends AbstractBuilder {
 
         protected $xsl;
-        protected $generator;
 
         protected $eventMap = array(
             'phpdox.start' => 'buildStart',
@@ -52,19 +51,11 @@ namespace TheSeer\phpDox {
         );
 
         public function setUp(Generator $generator) {
-            $this->generator = $generator;
-            foreach(array_keys($this->eventMap) as $event) {
-                $generator->registerHandler($event, $this);
-            }
+            parent::setUp($generator);
             $this->xsl = $generator->getXSLTProcessor('htmlBuilder/class.xsl');
         }
 
-        public function handle($event) {
-            if (!isset($this->eventMap[$event])) {
-                throw new HtmlBuilderException("Don't know how to handle event '$event'", HtmlBuilderException::UnkownEvent);
-            }
-            $payload = func_get_args();
-            array_shift($payload);
+        public function doHandle($event, array $payload) {
             call_user_func_array(array($this, $this->eventMap[$event]), $payload);
         }
 
@@ -88,10 +79,6 @@ namespace TheSeer\phpDox {
             return str_replace('\\', '_', $class) . '.' . $ext;
         }
 
-    }
-
-    class HtmlBuilderException extends \Exception {
-        const UnkownEvent = 1;
     }
 
 }
