@@ -108,6 +108,10 @@ namespace TheSeer\phpDox {
             $phpDox = $this->factory->getInstanceFor('API', $this);
 
             $bootstrap = function($filename) use ($phpDox) {
+                if (isset($this)) {
+                    // since PHP 5.4 is broken and magically injects $this, we have to unset it again manually...
+                    unset($this);
+                }
                 require $filename;
             };
 
