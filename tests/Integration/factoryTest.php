@@ -171,7 +171,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\ClassBuilder',
-                $factory->getInstanceFor('ClassBuilder', $doc, true, 'UTF-8')
+                $factory->getInstanceFor('ClassBuilder', $doc, array(), true, 'UTF-8')
             );
         }
 

@@ -66,7 +66,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
                 ->will($this->returnValue(new DocBlock()));
 
             $parser = new Parser($factory);
-            $actual = $parser->parse($block);
+            $actual = $parser->parse($block, array());
 
             //var_dump($this->readAttribute($parser, 'current'));
 
