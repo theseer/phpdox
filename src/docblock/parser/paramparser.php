@@ -51,9 +51,9 @@ namespace TheSeer\phpDox\DocBlock {
                 case 2: {
                     if ($param[0][0]=='$') {
                         $obj->setVariable($param[0]);
-                        $obj->setType($param[1]);
+                        $obj->setType($this->lookupType($param[1]));
                     } else {
-                        $obj->setType($param[0]);
+                        $obj->setType($this->lookupType($param[0]));
                         $obj->setVariable($param[1]);
                     }
                     break;
@@ -62,7 +62,7 @@ namespace TheSeer\phpDox\DocBlock {
                     if ($param[0][0]=='$') {
                         $obj->setVariable($param[0]);
                     } else {
-                        $obj->setType($param[0]);
+                        $obj->setType($this->lookupType($param[0]));
                     }
                     break;
                 }

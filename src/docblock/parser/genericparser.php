@@ -40,13 +40,17 @@ namespace TheSeer\phpDox\DocBlock {
     class GenericParser {
 
         protected $factory;
-
+        protected $aliasMap;
         protected $name;
         protected $payload;
 
         public function __construct(Factory $factory, $name) {
             $this->factory = $factory;
             $this->name = $name;
+        }
+
+        public function setAliasMap(array $map) {
+            $this->aliasMap = $map;
         }
 
         public function setPayload($payload) {
@@ -65,6 +69,10 @@ namespace TheSeer\phpDox\DocBlock {
                 $obj->setBody(trim(join("\n", $buffer)));
             }
             return $obj;
+        }
+
+        protected function lookupType($type) {
+            return isset($this->aliasMap[$type]) ? $this->aliasMap[$type] : $type;
         }
 
     }

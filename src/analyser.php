@@ -82,7 +82,7 @@ namespace TheSeer\phpDox {
             $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
             $query = $session->createFileQuery();
             foreach ( $query->find( $file->getPathname() ) as $class ) {
-                $this->handleClass($class, $encoding);
+                $this->handleClass($class, $query->getAliasMap(), $encoding);
             }
 
             return $this->dom;
@@ -105,13 +105,13 @@ namespace TheSeer\phpDox {
             $head->setAttribute('sha1', sha1_file($file->getPathname()));
         }
 
-        protected function handleClass(\ReflectionClass $class, $encoding) {
+        protected function handleClass(\ReflectionClass $class, array $aliasMap, $encoding) {
             $context = $this->dom->documentElement;
             if ($class->inNamespace()) {
                 $context = $this->handleNamespace($class);
             }
 
-            $classBuilder = $this->factory->getInstanceFor('ClassBuilder', $context, $this->publicOnly, $encoding);
+            $classBuilder = $this->factory->getInstanceFor('ClassBuilder', $context, $aliasMap, $this->publicOnly, $encoding);
             $classNode = $classBuilder->process($class);
             if ($class->isInterface()) {
                 $this->interfaces[$class->getName()] = $classNode;
