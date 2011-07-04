@@ -47,10 +47,12 @@ namespace TheSeer\phpDox {
         protected $publicOnly;
         protected $encoding;
         protected $parser;
+        protected $aliasMap;
 
-        public function __construct(Parser $parser, fDOMElement $ctx, $publicOnly = false, $encoding = 'ISO-8859-1') {
+        public function __construct(Parser $parser, fDOMElement $ctx, array $aliasMap, $publicOnly = false, $encoding = 'ISO-8859-1') {
             $this->parser = $parser;
             $this->ctx = $ctx;
+            $this->aliasMap = $aliasMap;
             $this->publicOnly = $publicOnly;
             $this->encoding = $encoding;
         }
@@ -119,7 +121,7 @@ namespace TheSeer\phpDox {
                 if ($this->encoding != 'UTF-8') {
                     $comment = iconv($this->encoding, 'UTF-8//TRANSLIT', $comment);
                 }
-                $docblock = $this->parser->parse($comment);
+                $docblock = $this->parser->parse($comment, $this->aliasMap);
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
                 // TODO: Error logger -> addWarning
