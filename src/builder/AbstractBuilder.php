@@ -40,45 +40,32 @@ namespace TheSeer\phpDox {
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
 
-    class HtmlBuilder extends AbstractBuilder {
+    abstract class AbstractBuilder implements EventHandler {
 
-        protected $xsl;
-
-        protected $eventMap = array(
-            'phpdox.start' => 'buildStart',
-            'class.start' => 'buildClass',
-            'phpdox.end' => 'buildFinish'
-        );
+        protected $generator;
+        protected $eventMap = array();
 
         public function setUp(Generator $generator) {
-            parent::setUp($generator);
-            $this->xsl = $generator->getXSLTProcessor('htmlBuilder/class.xsl');
+            $this->generator = $generator;
+            foreach(array_keys($this->eventMap) as $event) {
+                $generator->registerHandler($event, $this);
+            }
         }
 
-        public function doHandle($event, array $payload) {
-            call_user_func_array(array($this, $this->eventMap[$event]), $payload);
+        public function handle($event) {
+            if (!isset($this->eventMap[$event])) {
+                throw new TodoBuilderException("Don't know how to handle event '$event'", BuilderException::UnkownEvent);
+            }
+            $payload = func_get_args();
+            array_shift($payload);
+            $this->doHandle($event, $payload);
         }
 
-        protected function buildStart(fDOMDocument $namespace, fDOMDocument $classes, fDOMDocument $interfaces) {
-            $html = $this->generator->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($classes);
-            $this->generator->saveDomDocument($html, 'list.xhtml');
-        }
+        abstract protected function doHandle($event, array $payload);
+    }
 
-        protected function buildFinish() {
-            $this->generator->copyStatic('htmlBuilder/static', true);
-        }
-
-        protected function buildClass(fDOMElement $classNode) {
-            $full = $classNode->getAttribute('full');
-            $this->xsl->setParameter('', 'class', $full);
-            $html = $this->xsl->transformToDoc($classNode);
-            $this->generator->saveDomDocument($html, 'classes/'. $this->classNameToFileName($full, 'xhtml'));
-        }
-
-        protected function classNameToFileName($class, $ext = 'xml') {
-            return str_replace('\\', '_', $class) . '.' . $ext;
-        }
-
+    class BuilderException extends \Exception {
+        const UnkownEvent = 1;
     }
 
 }
