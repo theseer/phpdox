@@ -119,13 +119,6 @@ namespace TheSeer\phpDox\Tests\Integration {
         }
 
         /**
-         * @covers TheSeer\phpDox\Factory::getScanner
-         */
-        public function testGetScanner() {
-
-        }
-
-        /**
          * @covers TheSeer\phpDox\Factory::getCollector
          */
         public function testGetCollector() {

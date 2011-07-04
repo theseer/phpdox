@@ -145,10 +145,83 @@ namespace TheSeer\phpDox\Tests\Unit {
 
         }
 
+        /**
+         * @dataProvider getScannerDataproviderNoExclude
+         * @covers TheSeer\phpDox\Factory::getScanner
+         */
+        public function testGetScannerNoExclude($methodName, $include) {
+
+            $directoryScanner = $this->getMockBuilder('\\stdClass')
+                ->setMethods(array($methodName))
+                ->getMock();
+
+            $directoryScanner
+                ->expects($this->once())
+                ->method($methodName)
+                ->with($this->equalTo($include));
+
+            $factory = $this->getMockBuilder('\\TheSeer\\phpDox\\Tests\\Unit\\FactoryProxy')
+                ->setMethods(array('getInstanceFor'))
+                ->getMock();
+            $factory
+                ->expects($this->once())
+                ->method('getInstanceFor')
+                ->with($this->equalTo('DirectoryScanner'))
+                ->will($this->returnValue($directoryScanner));
+
+                $this->assertInstanceOf('\\stdClass', $factory->getScanner($include));
+        }
+
+        /**
+         * @dataProvider getScannerDataproviderWithExclude
+         * @covers TheSeer\phpDox\Factory::getScanner
+         */
+        public function testGetScannerWithExclude($methodName, $include, $exclude) {
+
+            $directoryScanner = $this->getMockBuilder('\\stdClass')
+                ->setMethods($methodName)
+                ->getMock();
+
+            $directoryScanner
+                ->expects($this->once())
+                ->method($methodName[0])
+                ->with($this->equalTo($include));
+
+            $directoryScanner
+                ->expects($this->once())
+                ->method($methodName[1])
+                ->with($this->equalTo($exclude));
+
+            $factory = $this->getMockBuilder('\\TheSeer\\phpDox\\Tests\\Unit\\FactoryProxy')
+                ->setMethods(array('getInstanceFor'))
+                ->getMock();
+            $factory
+                ->expects($this->once())
+                ->method('getInstanceFor')
+                ->with($this->equalTo('DirectoryScanner'))
+                ->will($this->returnValue($directoryScanner));
+
+                $this->assertInstanceOf('\\stdClass', $factory->getScanner($include, $exclude));
+        }
+
 
         /*********************************************************************/
         /* Dataprovider & Callbacks                                          */
         /*********************************************************************/
+
+        public static function getScannerDataproviderNoExclude() {
+            return array(
+                'include as string' => array('addInclude', 'myInclude'),
+                'include as array' => array('setIncludes', array('myInclude')),
+            );
+        }
+
+        public static function getScannerDataproviderWithExclude() {
+            return array(
+                'exclude as string' => array(array('addInclude', 'addExclude'), 'myInclude', 'myExclude'),
+                'exclude as array' => array(array('setIncludes', 'setExcludes'), array('myInclude'), array('myExclude')),
+            );
+        }
 
         public static function getGenericInstanceDataprovider() {
             return array(
@@ -167,6 +240,10 @@ namespace TheSeer\phpDox\Tests\Unit {
 
 
     class FactoryProxy extends Factory {
+
+        public function getScanner($include, $exclude = null) {
+            return parent::getScanner($include, $exclude);
+        }
 
         public function getGenericInstance($class, array $params) {
             return parent::getGenericInstance($class, $params);
