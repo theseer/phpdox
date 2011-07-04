@@ -87,7 +87,6 @@ namespace TheSeer\phpDox {
                     $this->addReferenceNode($i, $node, 'implements');
                 }
             }
-            //var_dump($class->getConstant('ABC'));
             $this->processConstants($node, $class->getConstants());
             $this->processMembers($node, $class->getProperties());
             $this->processMethods($node, $class->getMethods());

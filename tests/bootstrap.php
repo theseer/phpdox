@@ -40,3 +40,8 @@ require_once __DIR__ .'/../src/autoload.php';
 
 //  custom TestCase
 require_once __DIR__.'/phpDoxTestCase.php';
+
+// fixtures
+require_once __DIR__.'/data/classes/dummy.php';
+require_once __DIR__.'/data/classes/dummyExtendingParent.php';
+require_once __DIR__.'/data/classes/dummyImplementingInterface.php';

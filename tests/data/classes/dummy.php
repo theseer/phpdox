@@ -36,50 +36,32 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests {
+namespace TheSeer\phpDox\Tests\Fixtures {
 
-    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
-
-        /**
-         * Provides a DOMDocument
-         *
-         * @return \DOMDocument
-         */
-        protected function getDomDocument() {
-            if (!isset($this->doc)) {
-                $this->doc = new \DOMDocument();
-            }
-            return $this->doc;
-        }
+    /**
+     * Short description for Dummy class
+     *
+     * Long description:
+     * Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
+     * ordo eluo. Fluo fatua iste.
+     *
+     */
+    class Dummy {
 
         /**
-         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         * Short description of MyMethod
          *
-         * @param array $methods
-         * @return TheSeer\fDOM\fDOMDocument
-         */
-        protected function getFDomDocumentFixture(array $methods) {
-
-            return $this->getMockBuilder('\\TheSeer\\fDOM\\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods($methods)
-                ->getMock();
-        }
-
-        /**
-         * Provides a stubbed instance of TheSeer\phpDox\DocBlock\Factory.
+         * Long description:
+         * Dr Anno, h.c Akt Flaute ihr Bei Coma vergolde. Kontinent, des, Bzw
+         * Co ehedem, gegessenes, zuck ums Berta hake wo Fr ab to Rekruts emsigere.
+         * Alt kam Ball Au tatst leimen, Box Essigs
          *
-         * @param array $methods
-         * @return TheSeer\phpDox\DocBlock\Factory
+         * @param array $set               1st Argument
+         * @param string $name             2nd Argument
+         * @param integer|null $optional   3rd Argument
          */
-        protected function getFactoryFixture(array $methods = array()) {
-            return $this->getMockBuilder('\\TheSeer\\phpDox\\DocBlock\\Factory')
-                ->setMethods($methods)
-                ->getMock();
+        public function MyMethod(array $set, $name, $optional = null) {
+            // do something
         }
     }
 }
