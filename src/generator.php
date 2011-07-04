@@ -112,6 +112,10 @@ namespace TheSeer\phpDox {
             $this->publicOnly = $switch;
         }
 
+        public function getAllowedEvents() {
+            return array_keys($this->eventHandler);
+        }
+
         public function registerHandler($event, EventHandler $handler) {
             if (!array_key_exists($event, $this->eventHandler)) {
                 throw new GeneratorException("'$event' unknown", GeneratorException::UnknownEvent);
@@ -182,7 +186,9 @@ namespace TheSeer\phpDox {
         public function getXSLTProcessor($filename) {
             $tpl = new fDomDocument();
             $tpl->load($this->tplDir . '/' . $filename);
-            return new fXSLTProcessor($tpl);
+            $xsl = new fXSLTProcessor($tpl);
+            //$service = $this->
+            return $xsl;
         }
 
         public function saveDomDocument($dom, $filename) {
@@ -193,6 +199,16 @@ namespace TheSeer\phpDox {
                 mkdir($path, 0755, true);
             }
             return $dom->save($filename);
+        }
+
+        public function saveFile($content, $filename) {
+            $filename = $this->docDir . '/' . $filename;
+            $path = dirname($filename);
+            clearstatcache();
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+            return file_put_contents($filename, $content);
         }
 
         public function copyStatic($mask, $recursive = true) {
@@ -215,12 +231,15 @@ namespace TheSeer\phpDox {
             }
         }
 
+        public function loadDataFile($filename){
+            $classDom = new fDomDocument();
+            $classDom->load($this->xmlDir . '/' . $filename);
+            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            return $classDom;
+        }
 
         protected function processClass(fDOMElement $class) {
-            $classDom = new fDomDocument();
-            $classDom->load($this->xmlDir . '/' . $class->getAttribute('xml'));
-            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-
+            $classDom = $this->loadDataFile($class->getAttribute('xml'));
             foreach($classDom->query('//phpdox:class') as $classNode) {
                 $this->triggerEvent('class.start', $classNode);
 
