@@ -85,10 +85,13 @@ namespace TheSeer\phpDox\DocBlock {
                 return $this->dom->createTextNode('{');
             }
             $parts = preg_split("/[\s,]+/", $match, 2, PREG_SPLIT_NO_EMPTY);
-            if (!isset($parts[1])) {
-                $parser = $this->factory->getParserInstanceFor(substr($match,1));
+            $annotation = substr($parts[0],1);
+            if (preg_match('=a-Z0-9=', $annotation)) {
+                $parser = $this->factory->getParserInstanceFor($annotation);
             } else {
-                $parser = $this->factory->getParserInstanceFor(substr($parts[0],1));
+                $parser = $this->factory->getParserInstanceFor('invalid', $annotation);
+            }
+            if (isset($parts[1])) {
                 $parser->setPayload($parts[1]);
             }
 
