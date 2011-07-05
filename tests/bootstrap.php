@@ -41,6 +41,10 @@ require_once __DIR__ .'/../src/autoload.php';
 //  custom TestCase
 require_once __DIR__.'/phpDoxTestCase.php';
 
+// custom libraries
+require_once '/home/lapistano/development/github/fDOMDocument/autoload.php';
+require_once __DIR__.'/lib/proxyObject/bootstrap.php';
+
 // fixtures
 require_once __DIR__.'/data/classes/dummy.php';
 require_once __DIR__.'/data/classes/dummyExtendingParent.php';
