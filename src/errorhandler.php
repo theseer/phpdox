@@ -47,9 +47,9 @@ namespace TheSeer\phpDox {
          * @return void
          */
         public function register() {
-            register_shutdown_function(array($this, "shutdownHandler"));
-            set_exception_handler(array($this, 'exceptionHandler'));
-            set_error_handler(array($this, 'errorHandler'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);
+            register_shutdown_function(array($this, "handleShutdown"));
+            set_exception_handler(array($this, 'handleException'));
+            set_error_handler(array($this, 'handleError'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);
         }
 
         /**
@@ -74,7 +74,7 @@ namespace TheSeer\phpDox {
          *
          * @throws \ErrorException
          */
-        public function errorHandler($errno, $errstr, $errfile, $errline) {
+        public function handleError($errno, $errstr, $errfile, $errline) {
             if (ini_get('error_reporting')==0) {
                 return true;
             }
@@ -89,11 +89,11 @@ namespace TheSeer\phpDox {
          *
          * @return void
          */
-        public function shutdownHandler() {
+        public function handleShutdown() {
             $error = error_get_last();
             if ($error && in_array($error['type'], array(E_ERROR, E_PARSE, E_RECOVERABLE_ERROR))) {
                 $exception = new \ErrorException($error['message'], -1, $error['type'], $error['file'], $error['line']);
-                $this->exceptionHandler($exception);
+                $this->handleException($exception);
             }
         }
 
@@ -104,7 +104,7 @@ namespace TheSeer\phpDox {
          *
          * @return void
          */
-        public function exceptionHandler(\Exception $exception) {
+        public function handleException(\Exception $exception) {
             fwrite(STDERR, "\n\nOups... phpDox encountered a problem and has terminated!\n");
             fwrite(STDERR, "It most likely means you've found a bug, so please file a report for this and paste the stacktrace along!\n\n");
             fwrite(STDERR, sprintf("Exception: %s\n", get_class($exception)));

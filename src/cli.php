@@ -130,7 +130,7 @@ namespace TheSeer\phpDox {
                     $e->toggleFullMessage(true);
                 }
                 $this->showVersion();
-                $errorHandler->exceptionHandler($e);
+                $errorHandler->handleException($e);
             }
         }
 
