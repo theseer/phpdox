@@ -41,11 +41,13 @@ namespace TheSeer\phpDox\DocBlock {
 
         public function getObject(array $buffer) {
             $obj = $this->buildObject('generic', $buffer);
-            $parts = preg_split("/[\s,]+/", $this->payload, 2, PREG_SPLIT_NO_EMPTY);
-            if (count($parts)==2) {
-                $obj->setDescription($parts[1]);
+            if ($this->payload != '') {
+                $parts = preg_split("/[\s,]+/", $this->payload, 2, PREG_SPLIT_NO_EMPTY);
+                if (isset($parts[1])) {
+                    $obj->setDescription($parts[1]);
+                }
+                $obj->setType($this->lookupType($parts[0]));
             }
-            $obj->setType($this->lookupType($parts[0]));
             return $obj;
         }
     }
