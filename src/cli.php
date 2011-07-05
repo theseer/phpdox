@@ -69,6 +69,8 @@ namespace TheSeer\phpDox {
          * Main executor for CLI process.
          */
         public function run() {
+            $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
+            $errorHandler->register();
             try {
                 $input = new \ezcConsoleInput();
                 $this->registerOptions($input);
@@ -118,27 +120,17 @@ namespace TheSeer\phpDox {
 
                 $logger->buildSummary();
 
-            } catch (fDOMException $e) {
-                fwrite(STDERR, "XML Error while processing request:\n");
-                fwrite(STDERR, $e->getFullMessage()."\n" . $e->getTraceAsString());
-                fwrite(STDERR, "\n\nPlease file a bugreport for this!\n");
-                exit(1);
             } catch (\ezcConsoleException $e) {
                 $this->showVersion();
                 fwrite(STDERR, $e->getMessage()."\n\n");
                 $this->showUsage();
                 exit(3);
-            } catch (CLIException $e) {
-                $this->showVersion();
-                fwrite(STDERR, "Error while processing request:\n");
-                fwrite(STDERR, $e->getMessage()."\n");
-                exit(3);
             } catch (\Exception $e) {
+                if ($e instanceof fDOMException) {
+                    $e->toggleFullMessage(true);
+                }
                 $this->showVersion();
-                fwrite(STDERR, "Unexpected error while processing request:\n");
-                fwrite(STDERR, ' - ' . $e."\n");
-                fwrite(STDERR, "\n\nPlease file a bugreport for this!\n");
-                exit(1);
+                $errorHandler->exceptionHandler($e);
             }
         }
 
@@ -271,10 +263,6 @@ Usage: phpdox [switches]
 EOF;
         }
 
-    }
-
-    class CLIException extends \Exception {
-        const NoProcessing = 1;
     }
 
 }

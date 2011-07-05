@@ -150,8 +150,7 @@ namespace TheSeer\phpDox {
                     $logger->progress('processed');
                 } catch (\Exception $e) {
                     $logger->progress('failed');
-                    var_dump($e);
-                    // TODO: Report Exception ;)
+                    throw $e;
                 }
             }
             $logger->completed();

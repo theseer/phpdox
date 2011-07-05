@@ -87,7 +87,6 @@ namespace TheSeer\phpDox {
                     $this->addReferenceNode($i, $node, 'implements');
                 }
             }
-            //var_dump($class->getConstant('ABC'));
             $this->processConstants($node, $class->getConstants());
             $this->processMembers($node, $class->getProperties());
             $this->processMethods($node, $class->getMethods());
@@ -124,10 +123,7 @@ namespace TheSeer\phpDox {
                 $docblock = $this->parser->parse($comment, $this->aliasMap);
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
-                // TODO: Error logger -> addWarning
-                var_dump($comment, $e);
-                //throw $e;
-                die();
+                throw $e;
             }
         }
 
