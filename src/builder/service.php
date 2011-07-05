@@ -44,12 +44,11 @@ namespace TheSeer\phpDox {
 
         protected $container;
 
-        public function __construct(Generator $generator, Container $container){
+        public function __construct(Generator $generator, Container $container) {
             $this->namespaces = $container->getDocument('namespaces');
             $this->interfaces = $container->getDocument('interfaces');
             $this->classes    = $container->getDocument('classes');
         }
-
 
         public function getClass($classname) {
             $q = "//phpdox:class[@full=" . $classname . '"]';

@@ -231,7 +231,7 @@ namespace TheSeer\phpDox {
             }
         }
 
-        public function loadDataFile($filename){
+        public function loadDataFile($filename) {
             $classDom = new fDomDocument();
             $classDom->load($this->xmlDir . '/' . $filename);
             $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');

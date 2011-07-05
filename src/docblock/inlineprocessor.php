@@ -57,7 +57,7 @@ namespace TheSeer\phpDox\DocBlock {
 
         protected function doParse($text) {
             $count = preg_match_all($this->regex, $text, $matches);
-            if (join('',$matches[1]) == '') {
+            if (join('', $matches[1]) == '') {
                 return $this->dom->createTextNode($text);
             }
             $fragment = $this->dom->createDocumentFragment();
@@ -85,7 +85,7 @@ namespace TheSeer\phpDox\DocBlock {
                 return $this->dom->createTextNode('{');
             }
             $parts = preg_split("/[\s,]+/", $match, 2, PREG_SPLIT_NO_EMPTY);
-            $annotation = substr($parts[0],1);
+            $annotation = substr($parts[0], 1);
             if (preg_match('=a-Z0-9=', $annotation)) {
                 $parser = $this->factory->getParserInstanceFor($annotation);
             } else {

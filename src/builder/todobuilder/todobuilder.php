@@ -119,9 +119,6 @@ namespace TheSeer\phpDox {
                 if ($ctx->localName == 'namespace') {
                     $tmp->namespace = $ctx->getAttribute('name');
                 }
-
-
-
             }
         }
 

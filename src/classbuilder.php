@@ -212,7 +212,7 @@ namespace TheSeer\phpDox {
 
             // Temporary workaround due to an issue in pdepend staticReflection package.
             if (strpos($value, '\'__StaticReflectionConstantValue(') !== false) {
-            	$value = preg_replace("#'__StaticReflectionConstantValue\((.*)\)'#", '$1', $value);
+                $value = preg_replace("#'__StaticReflectionConstantValue\((.*)\)'#", '$1', $value);
             }
 
             $default = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'default');
