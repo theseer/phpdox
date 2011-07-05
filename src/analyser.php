@@ -84,7 +84,6 @@ namespace TheSeer\phpDox {
             foreach ( $query->find( $file->getPathname() ) as $class ) {
                 $this->handleClass($class, $query->getAliasMap(), $encoding);
             }
-
             return $this->dom;
         }
 
