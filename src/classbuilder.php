@@ -101,6 +101,7 @@ namespace TheSeer\phpDox {
             if ($class->inNamespace()) {
                 $node->setAttribute('namespace', $class->getNamespaceName());
             }
+            $node->setAttribute('full', $class->getName());
             return $node;
         }
 
