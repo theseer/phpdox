@@ -115,7 +115,7 @@ namespace TheSeer\phpDox {
             array_shift($trace);
             foreach($trace as $pos => $entry) {
                 array_unshift($entry, $pos);
-                fwrite(STDERR, vsprintf('#%1$d %2$s(%3$d): %5$s%6$s%4$s()'."\n", $entry));
+                fwrite(STDERR, @vsprintf('#%1$d %2$s(%3$d): %5$s%6$s%4$s()'."\n", $entry));
             }
             fwrite(STDERR, "\n\n\n");
             exit(1);
