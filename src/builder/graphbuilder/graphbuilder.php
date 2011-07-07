@@ -37,35 +37,48 @@
 
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
 
-    class Service {
+    class GraphBuilder extends AbstractBuilder {
 
-        protected $container;
+        protected $content = array();
 
-        public function __construct(Generator $generator, Container $container) {
-            $this->namespaces = $container->getDocument('namespaces');
-            $this->interfaces = $container->getDocument('interfaces');
-            $this->classes    = $container->getDocument('classes');
+        protected $eventMap = array(
+            'class.start' =>  1,
+            'interface.start' => 1,
+            'phpdox.end' => 1
+        );
+
+        public function doHandle($event, array $payload) {
+            if ($event == 'phpdox.end') {
+                $content = "digraph phpdox {\n".join("\n", $this->content)."\n}";
+                $this->generator->saveFile($content, 'graph.dot');
+                return;
+            }
+            $this->renderNode($payload[0], $payload[0]->localName == 'class' ? 'box' : 'oval');
         }
 
-        public function getClass($classname) {
-            $q = "//phpdox:class[@full=" . $classname . '"]';
-            $node = $this->classes->queryOne($q);
-            $dom = $this->generator->loadDataFile($node->getAttribute('xml'));
-            return $dom->queryOne($q);
+        protected function renderNode(fDOMElement $node, $shape = 'box') {
+            $class = '"' . addSlashes($node->getAttribute('full')) . '"';
+            $this->addContent("$class [shape=$shape]");
+            if ($extendsNode = $node->queryOne('phpdox:extends')) {
+                $extends = '"' . addSlashes($extendsNode->getAttribute('full')) . '"';
+                $this->addContent("$extends [shape=box]");
+                $this->addContent("$extends -> $class");
+            }
+            $implementNodes = $node->query('phpdox:implements');
+            foreach($implementNodes as $interfaceNode) {
+                $interface = '"' . addSlashes($interfaceNode->getAttribute('full')) . '"';
+                $this->addContent("$interface");
+                $this->addContent("$interface -> $class");
+            }
         }
 
-        /**
-         * Resolve see annotation to mentioned class or method
-         *
-         * @param $see
-         *
-         * @todo Actually implement :)
-         */
-        public function resolveSee($see) {
+        protected function addContent($line) {
+            if (!in_array($line, $this->content)) {
+                $this->content[] = $line;
+            }
         }
-
     }
+
 }

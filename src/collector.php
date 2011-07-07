@@ -148,10 +148,12 @@ namespace TheSeer\phpDox {
                     $this->registerInContainer($this->interfaces, 'interface', $target, $src, $analyser->getInterfaces());
                     $this->registerInContainer($this->classes, 'class', $target, $src, $analyser->getClasses());
                     $logger->progress('processed');
+                } catch (\pdepend\reflection\exceptions\ParserException $e) {
+                    // TODO: Add failed file to error list?
+                    $logger->progress('failed');
                 } catch (\Exception $e) {
                     $logger->progress('failed');
-                    var_dump($e);
-                    // TODO: Report Exception ;)
+                    throw $e;
                 }
             }
             $logger->completed();

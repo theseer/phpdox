@@ -34,38 +34,8 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDom\fDomDocument;
-    use \TheSeer\fDom\fDomElement;
+    $phpDox->registerBuilderClass('graph', 'GraphBuilderClass', '\\TheSeer\\phpDox\\graphBuilder');
 
-    class Service {
-
-        protected $container;
-
-        public function __construct(Generator $generator, Container $container) {
-            $this->namespaces = $container->getDocument('namespaces');
-            $this->interfaces = $container->getDocument('interfaces');
-            $this->classes    = $container->getDocument('classes');
-        }
-
-        public function getClass($classname) {
-            $q = "//phpdox:class[@full=" . $classname . '"]';
-            $node = $this->classes->queryOne($q);
-            $dom = $this->generator->loadDataFile($node->getAttribute('xml'));
-            return $dom->queryOne($q);
-        }
-
-        /**
-         * Resolve see annotation to mentioned class or method
-         *
-         * @param $see
-         *
-         * @todo Actually implement :)
-         */
-        public function resolveSee($see) {
-        }
-
-    }
 }

@@ -1,8 +1,7 @@
 .buildpath
 .project
 .settings
-build/
+build
 docs/
 xml/
 phpunit.xml
-phpdox.php

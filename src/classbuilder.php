@@ -101,6 +101,7 @@ namespace TheSeer\phpDox {
             if ($class->inNamespace()) {
                 $node->setAttribute('namespace', $class->getNamespaceName());
             }
+            $node->setAttribute('full', $class->getName());
             return $node;
         }
 
@@ -123,10 +124,7 @@ namespace TheSeer\phpDox {
                 $docblock = $this->parser->parse($comment, $this->aliasMap);
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
-                // TODO: Error logger -> addWarning
-                var_dump($comment, $e);
-                //throw $e;
-                die();
+                throw $e;
             }
         }
 
@@ -215,7 +213,7 @@ namespace TheSeer\phpDox {
 
             // Temporary workaround due to an issue in pdepend staticReflection package.
             if (strpos($value, '\'__StaticReflectionConstantValue(') !== false) {
-            	$value = preg_replace("#'__StaticReflectionConstantValue\((.*)\)'#", '$1', $value);
+                $value = preg_replace("#'__StaticReflectionConstantValue\((.*)\)'#", '$1', $value);
             }
 
             $default = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'default');

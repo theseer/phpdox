@@ -42,7 +42,8 @@ namespace TheSeer\phpDox {
     class Factory implements FactoryInterface {
 
         protected $map = array(
-            'DirectoryScanner' => '\\TheSeer\\Tools\\DirectoryScanner'
+            'DirectoryScanner' => '\\TheSeer\\Tools\\DirectoryScanner',
+            'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler'
         );
 
         protected $instances = array();
