@@ -97,8 +97,6 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @dataProvider processDataprovider
-         * @covers \TheSeer\phpDox\ClassBuilder::__construct
-         * @covers \TheSeer\phpDox\ClassBuilder::process
          */
         public function testProcess($expected, $classname) {
 
@@ -113,10 +111,22 @@ namespace TheSeer\phpDox\Tests\Integration {
         }
 
         /**
-         * @covers \TheSeer\phpDox\ClassBuilder::addReferenceNode
+         * @covers \TheSeer\phpDox\ClassBuilder::processMethods
+         * @group issue#0
          */
-        public function dtestAddReferenceNode() {
+        public function testProcessInterfaceTypeHintInConstructerArgs() {
 
+            $expected  = __DIR__.'/../data/issues/issue#0/parsedDummyClass.xml';
+            $classname = '\\TheSeer\\phpDox\\Tests\\Issues\\Fixtures\\Dummy';
+
+            $ctx = $this->getFDomElementFixture();
+            $aliasMap = array();
+            $class = new \ReflectionClass($classname);
+            $parser = $this->getParserFixture();
+
+            $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
+            $node = $classBuilder->process($class);
+            $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
         }
 
         /*********************************************************************/
