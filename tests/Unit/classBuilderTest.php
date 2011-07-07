@@ -38,10 +38,10 @@
 
 namespace TheSeer\phpDox\Tests\Unit {
 
-    use lapistano\ProxyObject\ProxyObject;
-    use TheSeer\phpDox\Tests\phpDox_TestCase;
-    use TheSeer\phpDox\ClassBuilder;
-    use TheSeer\fDOM\fDOMElement;
+    use \lapistano\ProxyObject\ProxyObject;
+    use \TheSeer\phpDox\Tests\phpDox_TestCase;
+    use \TheSeer\phpDox\ClassBuilder;
+    use \TheSeer\fDOM\fDOMElement;
     use \TheSeer\fDOM\fDOMDocument;
 
     class ClassBuilderTest extends phpDox_TestCase {
@@ -85,11 +85,7 @@ namespace TheSeer\phpDox\Tests\Unit {
         protected function getClassBuilderProxyFixture() {
             $parser = $this->getParserFixture();
             $ctx = $this->getFDomElementFixture(array());
-            $aliasMap = array();
-            $publicOnly = false;
-            $encoding = 'ISO-8859-1';
-
-            return new classBuilderProxy($parser, $ctx, $aliasMap, $publicOnly, $encoding);
+            return new classBuilderProxy($parser, $ctx, array());
         }
 
         /*********************************************************************/
@@ -224,7 +220,306 @@ namespace TheSeer\phpDox\Tests\Unit {
             ';
 
             $classBuilder = new classBuilderProxy($parser, $ctx, array());
-            $dom = $classBuilder->processDocBlock($this->getFDomDocumentFixture(array()), $comment);
+            $classBuilder->processDocBlock($this->getFDomDocumentFixture(array()), $comment);
+        }
+
+        /**
+         * @expectedException \Exception
+         * @covers \TheSeer\phpDox\ClassBuilder::processDocBlock
+         */
+        public function testProcessDocBlockExpectingException() {
+            $parser = $this->getParserFixture(array('parse'));
+            $parser
+                ->expects($this->once())
+                ->method('parse')
+                ->will($this->throwException(new \Exception()));
+            $ctx = $this->getFDomElementFixture(array());
+
+            $classBuilder = new classBuilderProxy($parser, $ctx, array());
+            $classBuilder->processDocBlock($this->getFDomDocumentFixture(array()), '');
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processConstants
+         */
+        public function testProcessConstants() {
+
+            $constants = array(
+                'TUX' => 'beastie'
+            );
+
+            $node = $this->getFDomElementFixture(array('setAttribute'));
+            $node
+                ->expects($this->exactly(2))
+                ->method('setAttribute')
+                ->with(
+                    $this->logicalOr(
+                        $this->equalTo('name'),
+                        $this->equalTo('value')
+                    ),
+                    $this->logicalOr(
+                        $this->equalTo('TUX'),
+                        $this->equalTo('beastie')
+                    )
+                );
+
+            $context = $this->getFDomElementFixture(array('appendElementNS'));
+            $context
+                ->expects($this->once())
+                ->method('appendElementNS')
+                ->will($this->returnValue($node));
+
+            $classBuilder = $this->getClassBuilderProxyFixture();
+            $classBuilder->processConstants($context, $constants);
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processMembers
+         */
+        public function testProcessMembers() {
+
+            $member = $this->getMockBuilder('\ReflectionProperty')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $member
+                ->expects($this->once())
+                ->method('isProtected')
+                ->will($this->returnValue(true));
+
+            $members = array(
+                'TUX' => $member
+            );
+
+            $parser = $this->getParserFixture();
+            $ctx = $this->getFDomElementFixture(array());
+            $classBuilder = new classBuilderProxy($parser, $ctx, array(), true);
+            $classBuilder->processMembers($ctx, $members);
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processMethods
+         */
+        public function testProcessMethods() {
+
+            $method = $this->getMockBuilder('\ReflectionMethod')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $method
+                ->expects($this->once())
+                ->method('isProtected')
+                ->will($this->returnValue(true));
+
+            $methods = array(
+                'TUX' => $method
+            );
+
+            $parser = $this->getParserFixture();
+            $ctx = $this->getFDomElementFixture(array());
+            $classBuilder = new classBuilderProxy($parser, $ctx, array(), true);
+            $classBuilder->processMethods($ctx, $methods);
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processParameters
+         */
+        public function testProcessParameters() {
+
+            $class = $this->getMockBuilder('\ReflectionClass')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $class
+                ->expects($this->once())
+                ->method('inNamespace')
+                ->will($this->returnValue(true));
+            $class
+                ->expects($this->once())
+                ->method('getShortName')
+                ->will($this->returnValue('Beastie'));
+            $class
+                ->expects($this->once())
+                ->method('getNamespaceName')
+                ->will($this->returnValue('\\TheSeer\\phpDox\\'));
+
+            $parameter = $this->getMockBuilder('\ReflectionParameter')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $parameter
+                ->expects($this->once())
+                ->method('getClass')
+                ->will($this->returnValue($class));
+            $parameter
+                ->expects($this->once())
+                ->method('getName')
+                ->will($this->returnValue('Beastie'));
+            $parameter
+                ->expects($this->once())
+                ->method('isOptional')
+                ->will($this->returnValue(false));
+            $parameter
+                ->expects($this->once())
+                ->method('isPassedByReference')
+                ->will($this->returnValue(false));
+            $parameter
+                ->expects($this->once())
+                ->method('isDefaultValueAvailable')
+                ->will($this->returnValue(false));
+
+            $parameters = array(
+                'Tux' => $parameter,
+            );
+
+            $node = $this->getFDomElementFixture(array('setAttribute'));
+            $node
+                ->expects($this->exactly(6))
+                ->method('setAttribute')
+                ->with(
+                    $this->logicalOr(
+                        $this->equalTo('name'),
+                        $this->equalTo('type'),
+                        $this->equalTo('class'),
+                        $this->equalTo('namespace'),
+                        $this->equalTo('optional'),
+                        $this->equalTo('byreference')
+                    ),
+                    $this->logicalOr(
+                        $this->equalTo('Beastie'),
+                        $this->equalTo('object'),
+                        $this->equalTo('Beastie'),
+                        $this->equalTo('\\TheSeer\\phpDox\\'),
+                        $this->equalTo('false')
+                    )
+                );
+
+            $context = $this->getFDomElementFixture(array('appendElementNS'));
+            $context
+                ->expects($this->once())
+                ->method('appendElementNS')
+                ->will($this->returnValue($node));
+
+            $classBuilder = new classBuilderProxy($this->getParserFixture(), $context, array());
+            $classBuilder->processParameters($context, $parameters);
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processValue
+         */
+        public function testProcessValues() {
+            $doc = new fDOMDocument();
+            $doc->loadXML('<tux/>');
+            $ctx = $doc->getElementsByTagName('tux')->item(0);
+
+            $classBuilder =
+                new classBuilderProxy($this->getParserFixture(), $this->getFDomElementFixture(array()), array());
+            $classBuilder->processValue($ctx, '\'__StaticReflectionConstantValue(');
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::getInstance
+         */
+        public function testGetInstance() {
+            $class =  $this->getMockBuilder('\ReflectionClass')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $class
+                ->expects($this->once())
+                ->method('getConstructor')
+                ->will($this->returnValue(false));
+            $class
+                ->expects($this->once())
+                ->method('newInstance')
+                ->will($this->returnValue(new \stdClass));
+
+            $classBuilder =
+                new classBuilderProxy($this->getParserFixture(), $this->getFDomElementFixture(array()), array());
+            $this->assertInstanceOf('\stdClass', $classBuilder->getInstance($class));
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::getInstance
+         */
+        public function testGetInstanceClassWithConstructor() {
+
+            $parameterOptional = $this->getMockBuilder('\ReflectionParameter')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $parameterOptional
+                ->expects($this->once())
+                ->method('isOptional')
+                ->will($this->returnValue(true));
+
+            $parameterArray = $this->getMockBuilder('\ReflectionParameter')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $parameterArray
+                ->expects($this->once())
+                ->method('isOptional')
+                ->will($this->returnValue(false));
+            $parameterArray
+                ->expects($this->once())
+                ->method('isArray')
+                ->will($this->returnValue(true));
+
+            $classParameter = $this->getMockBuilder('\ReflectionClass')
+                ->disableOriginalConstructor()
+                ->getMock();
+
+            $parameterClass = $this->getMockBuilder('\ReflectionParameter')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $parameterClass
+                ->expects($this->once())
+                ->method('getClass')
+                ->will($this->returnValue($classParameter));
+            $parameterClass
+                ->expects($this->once())
+                ->method('isOptional')
+                ->will($this->returnValue(false));
+            $parameterClass
+                ->expects($this->once())
+                ->method('isArray')
+                ->will($this->returnValue(false));
+
+            $parameter = $this->getMockBuilder('\ReflectionParameter')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $parameter
+                ->expects($this->once())
+                ->method('getClass')
+                ->will($this->returnValue(false));
+            $parameter
+                ->expects($this->once())
+                ->method('isOptional')
+                ->will($this->returnValue(false));
+            $parameter
+                ->expects($this->once())
+                ->method('isArray')
+                ->will($this->returnValue(false));
+
+            $parameters = array($parameterOptional, $parameterArray, $parameterClass, $parameter);
+
+            $method = $this->getMockBuilder('\ReflectionMethod')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $method
+                ->expects($this->atLeastOnce())
+                ->method('getParameters')
+                ->will($this->returnValue($parameters));
+
+            $class =  $this->getMockBuilder('\ReflectionClass')
+                ->disableOriginalConstructor()
+                ->getMock();
+            $class
+                ->expects($this->atLeastOnce())
+                ->method('getConstructor')
+                ->will($this->returnValue($method));
+            $class
+                ->expects($this->once())
+                ->method('newInstanceArgs')
+                ->will($this->returnValue(new \stdClass));
+
+            $classBuilder =
+                new classBuilderProxy($this->getParserFixture(), $this->getFDomElementFixture(array()), array());
+            $this->assertInstanceOf('\stdClass', $classBuilder->getInstance($class));
         }
 
         /*********************************************************************/
@@ -269,13 +564,29 @@ namespace TheSeer\phpDox\Tests\Unit {
         public function addReferenceNode(\ReflectionClass $class, fDOMElement $context, $nodeName) {
             return parent::addReferenceNode($class, $context, $nodeName);
         }
-
         public function addModifiers(fDOMElement $ctx, $src) {
             return parent::addModifiers($ctx, $src);
         }
-
         public function processDocBlock(fDOMDocument $doc, $comment) {
             return parent::processDocBlock($doc, $comment);
+        }
+        public function processConstants(fDOMElement $ctx, Array $constants) {
+            return parent::processConstants($ctx, $constants);
+        }
+        public function processMembers(fDOMElement $ctx, Array $members) {
+            return parent::processMembers($ctx, $members);
+        }
+        public function processMethods(fDOMElement $ctx, Array $methods) {
+            return parent::processMethods($ctx, $methods);
+        }
+        public function processParameters(fDOMElement $ctx, Array $parameters, fDOMElement $docBlock = null) {
+            return parent::processParameters($ctx, $parameters, $docBlock);
+        }
+        public function processValue(fDOMElement $ctx, $src) {
+            return parent::processValue($ctx, $src);
+        }
+        public function getInstance(\ReflectionClass $class) {
+            return parent::getInstance($class);
         }
     }
 }

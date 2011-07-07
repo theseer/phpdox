@@ -49,3 +49,6 @@ require_once __DIR__.'/lib/proxyObject/bootstrap.php';
 require_once __DIR__.'/data/classes/dummy.php';
 require_once __DIR__.'/data/classes/dummyExtendingParent.php';
 require_once __DIR__.'/data/classes/dummyImplementingInterface.php';
+
+// Issues
+require_once __DIR__.'/data/issues/issue#0/dummy.php';

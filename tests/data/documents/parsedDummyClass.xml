@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tux>
     <class xmlns="http://xml.phpdox.de/src#" full="TheSeer\phpDox\Tests\Fixtures\Dummy"
-        name="Dummy" final="false" abstract="false" start="49" end="66">
+        name="Dummy" final="false" abstract="false" start="49" end="101">
         <docblock>
             <description compact="Short description for Dummy class">Long description:
 Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
 ordo eluo. Fluo fatua iste.</description>
         </docblock>
-        <method name="MyMethod" start="63" end="65" abstract="false"
-            final="false" static="false" visibility="public">
+        <member name="myProtected" static="false" visibility="protected">
+          <default>''</default>
+          <docblock>
+            <description compact="A protected variable"/>
+            <var type="string"/>
+          </docblock>
+        </member>
+        <member name="myStaticProtected" static="true" visibility="protected">
+          <default>null</default>
+          <docblock>
+            <description compact=""/>
+            <var description="A static protected variable" type="string"/>
+          </docblock>
+        </member>
+        <member name="myPrivate" static="false" visibility="private">
+          <default>null</default>
+        </member>
+        <member name="myStaticPrivate" static="true" visibility="private">
+          <default>null</default>
+        </member>
+        <member name="myPublic" static="false" visibility="public">
+          <default>null</default>
+        </member>
+        <member name="myStaticPublic" static="true" visibility="public">
+          <default>null</default>
+        </member>
+        <constructor name="__construct" start="73" end="75" abstract="false" final="false" static="false" visibility="public">
+          <docblock>
+            <description compact="Constructor of the class."/>
+            <param type="integer" variable="$count"/>
+          </docblock>
+          <parameter name="count" type="{unknown}" optional="false" byreference="false"/>
+        </constructor>
+        <method name="MyMethod" start="89" end="91" abstract="false" final="false" static="false" visibility="public">
             <docblock>
                 <description compact="Short description of MyMethod">Long description:
 Dr Anno, h.c Akt Flaute ihr Bei Coma vergolde. Kontinent, des, Bzw
@@ -24,5 +56,11 @@ Alt kam Ball Au tatst leimen, Box Essigs</description>
                 <default>null</default>
             </parameter>
         </method>
+        <destructor name="__destruct" start="98" end="100" abstract="false" final="false" static="false" visibility="public">
+          <docblock>
+            <description compact="Destructor of the class."/>
+            <link value="http://www.php.net/manual/en/language.oop5.decon.php"/>
+          </docblock>
+      </destructor>
     </class>
 </tux>

@@ -141,10 +141,11 @@ namespace TheSeer\phpDox {
                 if ($this->publicOnly && ($member->isPrivate() || $member->isProtected())) {
                     continue;
                 }
+                $member->setAccessible(true);
                 $memberNode = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'member');
                 $memberNode->setAttribute('name', $member->getName());
                 $this->addModifiers($memberNode, $member);
-                $this->processValue($memberNode, $member->getValue());
+                $this->processValue($memberNode, $member->getValue($this->getInstance($member->getDeclaringClass())));
                 if ($docComment = $member->getDocComment()) {
                     $memberNode->appendChild(
                     $this->processDocBlock($ctx->ownerDocument, $docComment)
@@ -218,6 +219,42 @@ namespace TheSeer\phpDox {
 
             $default = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'default');
             $default->appendChild($ctx->ownerDocument->createTextnode($value));
+        }
+
+        /**
+         * Creates an instance of the current proxied class.
+         *
+         * @param \ReflectionClass $class
+         * @return object
+         */
+        protected function getInstance(\ReflectionClass $class)
+        {
+            if ($constructor = $class->getConstructor()) {
+                $parameters = $constructor->getParameters();
+
+                if (!empty($parameters)) {
+                    $args = array();
+
+                    foreach ($parameters as $parameter) {
+                        if ($parameter->isOptional()) {
+                            continue;
+                        }
+                        if ($parameter->isArray()) {
+                            $args[] = array();
+                            continue;
+                        }
+
+                        $classParameter = $parameter->getClass();
+                        if ($classParameter) {
+                            $args[] = self::getInstance($classParameter);
+                            continue;
+                        }
+                        $args[] = '';
+                    }
+                    return $class->newInstanceArgs($args);
+                }
+            }
+            return $class->newInstance(array());
         }
     }
 

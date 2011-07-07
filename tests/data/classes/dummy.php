@@ -48,7 +48,15 @@ namespace TheSeer\phpDox\Tests\Fixtures {
      */
     class Dummy {
 
+        /**
+         * A protected variable
+         * @var string
+         */
         protected $myProtected;
+
+        /**
+         * @var string   A static protected variable
+         */
         protected static $myStaticProtected;
 
         private $myPrivate;
@@ -56,6 +64,15 @@ namespace TheSeer\phpDox\Tests\Fixtures {
 
         public $myPublic;
         public static $myStaticPublic;
+
+        /**
+         * Constructor of the class.
+         *
+         * @param integer $count
+         */
+        public function __construct($count) {
+            $this->myProtected = $count;
+        }
 
         /**
          * Short description of MyMethod
@@ -71,6 +88,15 @@ namespace TheSeer\phpDox\Tests\Fixtures {
          */
         public function MyMethod(array $set, $name, $optional = null) {
             // do something
+        }
+
+        /**
+         * Destructor of the class.
+         *
+         * @link http://www.php.net/manual/en/language.oop5.decon.php
+         */
+        public function __destruct() {
+            return;
         }
     }
 }
