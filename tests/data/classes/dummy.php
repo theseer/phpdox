@@ -48,6 +48,15 @@ namespace TheSeer\phpDox\Tests\Fixtures {
      */
     class Dummy {
 
+        protected $myProtected;
+        protected static $myStaticProtected;
+
+        private $myPrivate;
+        private static $myStaticPrivate;
+
+        public $myPublic;
+        public static $myStaticPublic;
+
         /**
          * Short description of MyMethod
          *

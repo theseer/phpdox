@@ -42,6 +42,7 @@ namespace TheSeer\phpDox\Tests\Unit {
     use TheSeer\phpDox\Tests\phpDox_TestCase;
     use TheSeer\phpDox\ClassBuilder;
     use TheSeer\fDOM\fDOMElement;
+    use \TheSeer\fDOM\fDOMDocument;
 
     class ClassBuilderTest extends phpDox_TestCase {
 
@@ -82,8 +83,6 @@ namespace TheSeer\phpDox\Tests\Unit {
          * @return \TheSeer\phpDox\classBuilderProxy
          */
         protected function getClassBuilderProxyFixture() {
-
-            $node = $this->getFDomElementFixture(array('setAttribute'));
             $parser = $this->getParserFixture();
             $ctx = $this->getFDomElementFixture(array());
             $aliasMap = array();
@@ -161,9 +160,83 @@ namespace TheSeer\phpDox\Tests\Unit {
             $this->assertInstanceOf('\DomElement', $classBuilder->addReferenceNode($class, $context, $nodeName));
         }
 
+        /**
+         * @dataProvider addModifiersDataprovider
+         * @covers \TheSeer\phpDox\ClassBuilder::addModifiers
+         */
+        public function testAddModifiers($isStatic, $visibility, $src) {
+            $context = $this->getFDomElementFixture(array('setAttribute'));
+            $context
+                ->expects($this->exactly(2))
+                ->method('setAttribute')
+                ->with(
+                    $this->logicalOr(
+                        $this->equalTo('static'),
+                        $this->equalTo('visibility')
+                    ),
+                    $this->logicalOr(
+                        $this->equalTo($isStatic),
+                        $this->equalTo($visibility)
+                    )
+                );
+            $classBuilder = $this->getClassBuilderProxyFixture();
+            $classBuilder->addModifiers($context, $src);
+        }
+
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processDocBlock
+         */
+        public function testProcessDocBlock() {
+
+            $factory = $this->getFactoryFixture(array());
+
+            $docBlock = $this->getMockBuilder('\\TheSeer\\phpDox\\DocBlock\\DocBlock')
+                ->getMock();
+
+            $parser = $this->getMockBuilder('\\TheSeer\\phpDox\\DocBlock\\Parser')
+                ->setConstructorArgs(array($factory))
+                ->setMethods(array('parse'))
+                ->getMock();
+            $parser
+                ->expects($this->once())
+                ->method('parse')
+                ->will($this->returnValue($docBlock));
+            $ctx = $this->getFDomElementFixture(array());
+
+            $comment = '
+                /**
+                 * shortdescription
+                 *
+                 * longdescription
+                 * multiline
+                 *
+                 * @param  string   $tux  Description of tux.
+                 * @return boolean        Signals the success or failure.
+                 */
+            ';
+
+            $classBuilder = new classBuilderProxy($parser, $ctx, array());
+            $dom = $classBuilder->processDocBlock($this->getFDomDocumentFixture(array()), $comment);
+        }
+
         /*********************************************************************/
         /* Dataprovider & callbacks                                          */
         /*********************************************************************/
+
+        public static function addModifiersDataprovider() {
+
+            $class = new \ReflectionClass('\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy');
+            $members = $class->getProperties();
+
+            return array(
+                'protected' => array('false', 'protected', $members[0]),
+                'static protected' => array('true', 'protected', $members[1]),
+                'private' => array('false', 'private', $members[2]),
+                'static private' => array('true', 'private', $members[3]),
+                'public' => array('false', 'public', $members[4]),
+                'static public' => array('true', 'public', $members[5]),
+            );
+        }
 
         public static function addReferenceNodeWithNamspacedClassDataprovider() {
             return array(
@@ -187,6 +260,14 @@ namespace TheSeer\phpDox\Tests\Unit {
 
         public function addReferenceNode(\ReflectionClass $class, fDOMElement $context, $nodeName) {
             return parent::addReferenceNode($class, $context, $nodeName);
+        }
+
+        public function addModifiers(fDOMElement $ctx, $src) {
+            return parent::addModifiers($ctx, $src);
+        }
+
+        public function processDocBlock(fDOMDocument $doc, $comment) {
+            return parent::processDocBlock($doc, $comment);
         }
     }
 }
