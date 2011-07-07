@@ -103,11 +103,17 @@ namespace TheSeer\phpDox\Tests\Unit {
         public function testAddReferenceNode($nodeName, $inheritance, $classShortName, $classPath) {
             $node = $this->getFDomElementFixture(array('setAttribute'));
             $node
-                ->expects($this->once())
+                ->expects($this->exactly(2))
                 ->method('setAttribute')
                 ->with(
-                    $this->equalTo($inheritance),
-                    $this->equalTo($classShortName)
+                    $this->logicalOr (
+                        $this->equalTo($inheritance),
+                        $this->equalTo('full')
+                    ),
+                    $this->logicalOr (
+                        $this->equalTo($classShortName),
+                        $this->equalTo($classShortName)
+                    )
                 );
 
             $class = new \ReflectionClass($classPath);
@@ -132,16 +138,18 @@ namespace TheSeer\phpDox\Tests\Unit {
         public function testAddReferenceNodeWithNamspacedClass($nodeName, $inheritance, $classShortName, $classPath) {
             $node = $this->getFDomElementFixture(array('setAttribute'));
             $node
-                ->expects($this->exactly(2))
+                ->expects($this->exactly(3))
                 ->method('setAttribute')
                 ->with(
                     $this->logicalOr(
                         $this->equalTo($inheritance),
-                        $this->equalTo('namespace')
+                        $this->equalTo('namespace'),
+                        $this->equalTo('full')
                     ),
                     $this->logicalOr(
                         $this->equalTo($classShortName),
-                        $this->equalTo('TheSeer\phpDox')
+                        $this->equalTo('TheSeer\\phpDox'),
+                        $this->equalTo('TheSeer\\phpDox\\' . $classShortName)
                     )
                 );
 

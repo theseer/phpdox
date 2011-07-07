@@ -7,7 +7,7 @@
 Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
 ordo eluo. Fluo fatua iste.</description>
         </docblock>
-        <extends class="stdClass"/>
+        <extends class="stdClass" full="stdClass"/>
         <method name="MyMethod" start="63" end="65" abstract="false"
             final="false" static="false" visibility="public">
             <docblock>
