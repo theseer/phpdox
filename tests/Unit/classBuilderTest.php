@@ -414,117 +414,28 @@ namespace TheSeer\phpDox\Tests\Unit {
         }
 
         /**
+         * @dataProvider getInstanceDataprovider
          * @covers \TheSeer\phpDox\ClassBuilder::getInstance
          */
-        public function testGetInstance() {
-            $class =  $this->getMockBuilder('\ReflectionClass')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $class
-                ->expects($this->once())
-                ->method('getConstructor')
-                ->will($this->returnValue(false));
-            $class
-                ->expects($this->once())
-                ->method('newInstance')
-                ->will($this->returnValue(new \stdClass));
+        public function testGetInstance($expected, $classPath) {
+
+            $class = new \ReflectionClass($classPath);
 
             $classBuilder =
                 new classBuilderProxy($this->getParserFixture(), $this->getFDomElementFixture(array()), array());
-            $this->assertInstanceOf('\stdClass', $classBuilder->getInstance($class));
-        }
-
-        /**
-         * @covers \TheSeer\phpDox\ClassBuilder::getInstance
-         */
-        public function testGetInstanceClassWithConstructor() {
-
-            $parameterOptional = $this->getMockBuilder('\ReflectionParameter')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $parameterOptional
-                ->expects($this->once())
-                ->method('isOptional')
-                ->will($this->returnValue(true));
-
-            $parameterArray = $this->getMockBuilder('\ReflectionParameter')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $parameterArray
-                ->expects($this->once())
-                ->method('isOptional')
-                ->will($this->returnValue(false));
-            $parameterArray
-                ->expects($this->once())
-                ->method('isArray')
-                ->will($this->returnValue(true));
-
-            $classParameter = $this->getMockBuilder('\ReflectionClass')
-                ->disableOriginalConstructor()
-                ->getMock();
-
-            $parameterClass = $this->getMockBuilder('\ReflectionParameter')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $parameterClass
-                ->expects($this->once())
-                ->method('getClass')
-                ->will($this->returnValue($classParameter));
-            $parameterClass
-                ->expects($this->once())
-                ->method('isOptional')
-                ->will($this->returnValue(false));
-            $parameterClass
-                ->expects($this->once())
-                ->method('isArray')
-                ->will($this->returnValue(false));
-
-            $parameter = $this->getMockBuilder('\ReflectionParameter')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $parameter
-                ->expects($this->once())
-                ->method('getClass')
-                ->will($this->returnValue(false));
-            $parameter
-                ->expects($this->once())
-                ->method('isOptional')
-                ->will($this->returnValue(false));
-            $parameter
-                ->expects($this->once())
-                ->method('isArray')
-                ->will($this->returnValue(false));
-
-            $parameters = array($parameterOptional, $parameterArray, $parameterClass, $parameter);
-
-            $method = $this->getMockBuilder('\ReflectionMethod')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $method
-                ->expects($this->atLeastOnce())
-                ->method('getParameters')
-                ->will($this->returnValue($parameters));
-
-            $class =  $this->getMockBuilder('\ReflectionClass')
-                ->disableOriginalConstructor()
-                ->getMock();
-            $class
-                ->expects($this->atLeastOnce())
-                ->method('getConstructor')
-                ->will($this->returnValue($method));
-            $class
-                ->expects($this->once())
-                ->method('newInstanceArgs')
-                ->will($this->returnValue(new \stdClass));
-
-            $classBuilder =
-                new classBuilderProxy($this->getParserFixture(), $this->getFDomElementFixture(array()), array());
-            $this->assertInstanceOf('\stdClass', $classBuilder->getInstance($class));
+            $this->assertInstanceOf($expected, $classBuilder->getInstance($class));
         }
 
         /*********************************************************************/
         /* Dataprovider & callbacks                                          */
         /*********************************************************************/
+
+        public static function getInstanceDataprovider() {
+            return array(
+                'no constructor' => array('\stdClass', '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyExtendingParent'),
+                'no constructor' => array('\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy', '\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy'),
+            );
+        }
 
         public static function addModifiersDataprovider() {
 

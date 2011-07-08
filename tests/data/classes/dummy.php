@@ -68,9 +68,12 @@ namespace TheSeer\phpDox\Tests\Fixtures {
         /**
          * Constructor of the class.
          *
-         * @param integer $count
+         * @param integer   $count
+         * @param \stdClass $class
+         * @param array     $set
+         * @param string    $optional
          */
-        public function __construct($count) {
+        public function __construct($count, \stdClass $class, array $set, $optional = null) {
             $this->myProtected = $count;
         }
 
@@ -82,11 +85,12 @@ namespace TheSeer\phpDox\Tests\Fixtures {
          * Co ehedem, gegessenes, zuck ums Berta hake wo Fr ab to Rekruts emsigere.
          * Alt kam Ball Au tatst leimen, Box Essigs
          *
-         * @param array $set               1st Argument
-         * @param string $name             2nd Argument
-         * @param integer|null $optional   3rd Argument
+         * @param array         $set       1st Argument
+         * @param \Countable    $count     2nd Argument
+         * @param string        $name      3rd Argument
+         * @param integer|null  $optional  4th Argument
          */
-        public function MyMethod(array $set, $name, $optional = null) {
+        public function MyMethod(array $set, \Countable $count, $name, $optional = null) {
             // do something
         }
 
