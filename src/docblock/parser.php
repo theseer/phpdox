@@ -39,7 +39,7 @@ namespace TheSeer\phpDox\DocBlock {
     class Parser {
 
         protected $factory;
-        protected $current;
+        protected $current = null;
         protected $aliasMap = array();
 
         public function __construct(\TheSeer\phpDox\FactoryInterface $factory) {
@@ -51,7 +51,9 @@ namespace TheSeer\phpDox\DocBlock {
 
             $docBlock = $this->factory->getInstanceFor('DocBlock');
             $lines = $this->prepare($block);
-            $this->startParser('description');
+            if (count($lines)>1) {
+                $this->startParser('description');
+            }
             $buffer = array();
             foreach($lines as $line) {
                 if ($line == '' || $line == '/') {
@@ -62,9 +64,11 @@ namespace TheSeer\phpDox\DocBlock {
                 }
 
                 if ($line[0]=='@') {
-                    $docBlock->appendElement(
-                        $this->current->getObject($buffer)
-                    );
+                    if ($this->current !== null) {
+                        $docBlock->appendElement(
+                            $this->current->getObject($buffer)
+                        );
+                    }
                     $buffer = array();
 
                     $lineParts = explode(' ', ltrim($line, '@'), 2);
@@ -87,6 +91,13 @@ namespace TheSeer\phpDox\DocBlock {
             $raw = array();
             foreach(explode("\n", $block) as $line) {
                 $raw[] = substr(trim($line, " \n\t"), 2);
+            }
+            if ($raw[0][0]=='*') {
+                $raw[0] = ltrim(substr($raw[0],1));
+            }
+            $last = count($raw)-1;
+            if (substr($raw[$last],-2)=='*/') {
+               $raw[$last] = rtrim(substr($raw[$last],0,-2));
             }
             return $raw;
         }
