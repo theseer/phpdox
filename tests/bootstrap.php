@@ -52,3 +52,4 @@ require_once __DIR__.'/data/classes/dummyImplementingInterface.php';
 
 // Issues
 require_once __DIR__.'/data/issues/issue#0/dummy.php';
+require_once __DIR__.'/data/issues/issue#1/dummyAbstract.php';

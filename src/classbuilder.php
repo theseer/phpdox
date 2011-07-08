@@ -254,7 +254,7 @@ namespace TheSeer\phpDox {
                     return $class->newInstanceArgs($args);
                 }
             }
-            return $class->newInstance(array());
+            return $class->newInstance();
         }
     }
 

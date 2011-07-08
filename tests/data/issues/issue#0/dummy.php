@@ -49,6 +49,12 @@ namespace TheSeer\phpDox\Tests\Issues\Fixtures {
     class Dummy {
 
         /**
+         * A protected variable
+         * @var string
+         */
+        protected $myProtected = 'Puffy';
+
+        /**
          * Constructor of the class.
          *
          * @param \Countable $count

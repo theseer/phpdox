@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tux>
     <class xmlns="http://xml.phpdox.de/src#" full="TheSeer\phpDox\Tests\Issues\Fixtures\Dummy"
-        name="Dummy" final="false" abstract="false" start="49" end="59">
+        name="Dummy" final="false" abstract="false" start="49" end="68">
         <docblock>
             <description compact="Short description for Dummy class">Long description:
 Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.

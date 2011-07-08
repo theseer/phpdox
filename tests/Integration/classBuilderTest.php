@@ -111,7 +111,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         }
 
         /**
-         * @covers \TheSeer\phpDox\ClassBuilder::processMethods
+         * @covers \TheSeer\phpDox\ClassBuilder::processMembers
          * @group issue#0
          */
         public function testProcessInterfaceTypeHintInConstructerArgs() {
