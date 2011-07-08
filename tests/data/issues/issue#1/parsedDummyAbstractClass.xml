@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tux>
+    <class xmlns="http://xml.phpdox.de/src#" full="TheSeer\phpDox\Tests\Issues\Fixtures\DummyAbstract"
+        name="DummyAbstract" final="false" abstract="true" start="49" end="68">
+        <docblock>
+            <description compact="Short description for Dummy class">Long description:
+Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
+ordo eluo. Fluo fatua iste.</description>
+        </docblock>
+        <constructor name="__construct" start="56" end="58" abstract="false" final="false" static="false" visibility="public">
+          <docblock>
+            <description compact="Constructor of the class."/>
+            <param type="\Countable" variable="$count"/>
+          </docblock>
+          <parameter name="count" type="object" class="Countable" optional="false" byreference="false"/>
+        </constructor>
+        <method name="setCountable" start="65" end="67" abstract="false" final="false" static="false" visibility="public">
+          <docblock>
+            <description compact="Constructor of the class."/>
+            <param type="\Countable" variable="$count"/>
+          </docblock>
+          <parameter name="count" type="object" class="Countable" optional="false" byreference="false"/>
+        </method>
+    </class>
+</tux>

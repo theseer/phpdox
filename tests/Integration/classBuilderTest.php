@@ -129,6 +129,25 @@ namespace TheSeer\phpDox\Tests\Integration {
             $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
         }
 
+        /**
+         * @covers \TheSeer\phpDox\ClassBuilder::processMembers
+         * @group issue#1
+         */
+        public function testProcessUninstantiableClass() {
+
+            $expected  = __DIR__.'/../data/issues/issue#0/parsedDummyClass.xml';
+            $classname = '\\TheSeer\\phpDox\\Tests\\Issues\\Fixtures\\DummyAbstract';
+
+            $ctx = $this->getFDomElementFixture();
+            $aliasMap = array();
+            $class = new \ReflectionClass($classname);
+            $parser = $this->getParserFixture();
+
+            $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
+            $node = $classBuilder->process($class);
+            $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
+        }
+
         /*********************************************************************/
         /* Dataprovider & Callbacks                                          */
         /*********************************************************************/
