@@ -91,6 +91,19 @@ namespace TheSeer\phpDox\Tests\Integration {
             return new \TheSeer\phpDox\DocBlock\Parser($this->getFactoryInstanceFixture());
         }
 
+        /**
+         *
+         * Enter description here ...
+         * @param unknown_type $path
+         */
+        protected function getReflectedClass($path) {
+            $session = new \pdepend\reflection\ReflectionSession();
+            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
+            $query = $session->createFileQuery();
+            $class = $query->find($path);
+            return $class[0];
+        }
+
         /*********************************************************************/
         /* Tests                                                             */
         /*********************************************************************/
@@ -102,53 +115,9 @@ namespace TheSeer\phpDox\Tests\Integration {
 
             $ctx = $this->getFDomElementFixture();
             $aliasMap = array();
-
-            $session = new \pdepend\reflection\ReflectionSession();
-            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
-            $query = $session->createFileQuery();
-            $class = $query->find($classPath);
             $parser = $this->getParserFixture();
-
             $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
-            $node = $classBuilder->process($class[0]);
-            $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
-        }
-
-        /**
-         * @covers \TheSeer\phpDox\ClassBuilder::processMembers
-         * @group issue#0
-         */
-        public function dtestProcessInterfaceTypeHintInConstructerArgs() {
-
-            $expected  = __DIR__.'/../data/issues/issue#0/parsedDummyClass.xml';
-            $classname = '\\TheSeer\\phpDox\\Tests\\Issues\\Fixtures\\Dummy';
-
-            $ctx = $this->getFDomElementFixture();
-            $aliasMap = array();
-            $class = new \ReflectionClass($classname);
-            $parser = $this->getParserFixture();
-
-            $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
-            $node = $classBuilder->process($class);
-            $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
-        }
-
-        /**
-         * @covers \TheSeer\phpDox\ClassBuilder::processMembers
-         * @group issue#1
-         */
-        public function dtestProcessUninstantiableClass() {
-
-            $expected  = __DIR__.'/../data/issues/issue#0/parsedDummyClass.xml';
-            $classname = '\\TheSeer\\phpDox\\Tests\\Issues\\Fixtures\\DummyAbstract';
-
-            $ctx = $this->getFDomElementFixture();
-            $aliasMap = array();
-            $class = new \ReflectionClass($classname);
-            $parser = $this->getParserFixture();
-
-            $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
-            $node = $classBuilder->process($class);
+            $node = $classBuilder->process($this->getReflectedClass($classPath));
             $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
         }
 
@@ -161,17 +130,14 @@ namespace TheSeer\phpDox\Tests\Integration {
                 'simple class' => array(
                     __DIR__.'/../data/documents/parsedDummyClass.xml',
                     __DIR__.'/../data/classes/dummy.php',
-//                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy'
                 ),
                 'class extending \stdClass' => array(
                     __DIR__.'/../data/documents/parsedDummyExtendingParentClass.xml',
                     __DIR__.'/../data/classes/dummyExtendingParent.php',
-//                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyExtendingParent'
                 ),
                 'class implementing \Countable' => array(
                     __DIR__.'/../data/documents/parsedDummyImplementingInterfaceClass.xml',
                     __DIR__.'/../data/classes/dummyImplementingInterface.php',
-//                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyImplementingInterface'
                 ),
             );
         }
