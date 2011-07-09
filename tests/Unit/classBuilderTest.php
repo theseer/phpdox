@@ -413,29 +413,9 @@ namespace TheSeer\phpDox\Tests\Unit {
             $classBuilder->processValue($ctx, '\'__StaticReflectionConstantValue(');
         }
 
-        /**
-         * @dataProvider getInstanceDataprovider
-         * @covers \TheSeer\phpDox\ClassBuilder::getInstance
-         */
-        public function testGetInstance($expected, $classPath) {
-
-            $class = new \ReflectionClass($classPath);
-
-            $classBuilder =
-                new classBuilderProxy($this->getParserFixture(), $this->getFDomElementFixture(array()), array());
-            $this->assertInstanceOf($expected, $classBuilder->getInstance($class));
-        }
-
         /*********************************************************************/
         /* Dataprovider & callbacks                                          */
         /*********************************************************************/
-
-        public static function getInstanceDataprovider() {
-            return array(
-                'no constructor' => array('\stdClass', '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyExtendingParent'),
-                'no constructor' => array('\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy', '\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy'),
-            );
-        }
 
         public static function addModifiersDataprovider() {
 
@@ -495,9 +475,6 @@ namespace TheSeer\phpDox\Tests\Unit {
         }
         public function processValue(fDOMElement $ctx, $src) {
             return parent::processValue($ctx, $src);
-        }
-        public function getInstance(\ReflectionClass $class) {
-            return parent::getInstance($class);
         }
     }
 }
