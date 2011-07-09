@@ -39,10 +39,10 @@
 namespace TheSeer\phpDox\Tests\Integration {
 
     use \TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMElement;
+    use \TheSeer\fDOM\fDOMElement;
 
-    use TheSeer\phpDox\Tests\phpDox_TestCase;
-    use TheSeer\phpDox\ClassBuilder;
+    use \TheSeer\phpDox\Tests\phpDox_TestCase;
+    use \TheSeer\phpDox\ClassBuilder;
 
     class ClassBuilderTest extends phpDox_TestCase {
 
@@ -98,15 +98,19 @@ namespace TheSeer\phpDox\Tests\Integration {
         /**
          * @dataProvider processDataprovider
          */
-        public function testProcess($expected, $classname) {
+        public function testProcess($expected, $classPath) {
 
             $ctx = $this->getFDomElementFixture();
             $aliasMap = array();
-            $class = new \ReflectionClass($classname);
+
+            $session = new \pdepend\reflection\ReflectionSession();
+            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
+            $query = $session->createFileQuery();
+            $class = $query->find($classPath);
             $parser = $this->getParserFixture();
 
             $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
-            $node = $classBuilder->process($class);
+            $node = $classBuilder->process($class[0]);
             $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
         }
 
@@ -114,7 +118,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @covers \TheSeer\phpDox\ClassBuilder::processMembers
          * @group issue#0
          */
-        public function testProcessInterfaceTypeHintInConstructerArgs() {
+        public function dtestProcessInterfaceTypeHintInConstructerArgs() {
 
             $expected  = __DIR__.'/../data/issues/issue#0/parsedDummyClass.xml';
             $classname = '\\TheSeer\\phpDox\\Tests\\Issues\\Fixtures\\Dummy';
@@ -133,7 +137,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @covers \TheSeer\phpDox\ClassBuilder::processMembers
          * @group issue#1
          */
-        public function testProcessUninstantiableClass() {
+        public function dtestProcessUninstantiableClass() {
 
             $expected  = __DIR__.'/../data/issues/issue#0/parsedDummyClass.xml';
             $classname = '\\TheSeer\\phpDox\\Tests\\Issues\\Fixtures\\DummyAbstract';
@@ -156,15 +160,18 @@ namespace TheSeer\phpDox\Tests\Integration {
             return array(
                 'simple class' => array(
                     __DIR__.'/../data/documents/parsedDummyClass.xml',
-                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy'
+                    __DIR__.'/../data/classes/dummy.php',
+//                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\Dummy'
                 ),
                 'class extending \stdClass' => array(
                     __DIR__.'/../data/documents/parsedDummyExtendingParentClass.xml',
-                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyExtendingParent'
+                    __DIR__.'/../data/classes/dummyExtendingParent.php',
+//                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyExtendingParent'
                 ),
                 'class implementing \Countable' => array(
                     __DIR__.'/../data/documents/parsedDummyImplementingInterfaceClass.xml',
-                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyImplementingInterface'
+                    __DIR__.'/../data/classes/dummyImplementingInterface.php',
+//                    '\\TheSeer\\phpDox\\Tests\\Fixtures\\DummyImplementingInterface'
                 ),
             );
         }

@@ -8,7 +8,7 @@ Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
 ordo eluo. Fluo fatua iste.</description>
         </docblock>
         <member name="myProtected" static="false" visibility="protected">
-          <default>''</default>
+          <default>null</default>
           <docblock>
             <description compact="A protected variable"/>
             <var type="string"/>
