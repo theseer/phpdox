@@ -87,17 +87,10 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function prepare($block) {
-            $block = str_replace(array("\r\n","\r"), "\n", $block);
+            $block = str_replace(array("\r\n","\r"), "\n", substr($block,2,-2));
             $raw = array();
             foreach(explode("\n", $block) as $line) {
                 $raw[] = substr(trim($line, " \n\t"), 2);
-            }
-            if ($raw[0][0]=='*') {
-                $raw[0] = ltrim(substr($raw[0],1));
-            }
-            $last = count($raw)-1;
-            if (substr($raw[$last],-2)=='*/') {
-               $raw[$last] = rtrim(substr($raw[$last],0,-2));
             }
             return $raw;
         }
