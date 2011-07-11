@@ -9,7 +9,8 @@
 >
   <testsuites>
     <testsuite name="PHPDox">
-      <directory suffix="Test.php">tests</directory>
+      <directory suffix="Test.php">tests/Unit</directory>
+      <directory suffix="Test.php">tests/Integration</directory>
     </testsuite>
   </testsuites>
 
