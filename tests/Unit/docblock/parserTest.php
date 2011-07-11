@@ -51,7 +51,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
             $block = file_get_contents(__DIR__.'/../../data/docbock/heading');
 
-            $docBlock = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock')
+            $docBlock = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\DocBlock')
                 ->setMethods(array('appendElement'))
                 ->getMock();
             $docBlock
