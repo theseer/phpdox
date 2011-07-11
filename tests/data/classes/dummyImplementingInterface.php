@@ -36,50 +36,42 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests {
+namespace TheSeer\phpDox\Tests\Fixtures {
 
-    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
+    /**
+     * Short description for Dummy class
+     *
+     * Long description:
+     * Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
+     * ordo eluo. Fluo fatua iste.
+     *
+     */
+    class DummyImplementingInterface implements \Countable {
 
         /**
-         * Provides a DOMDocument
+         * Short description of MyMethod
          *
-         * @return \DOMDocument
+         * Long description:
+         * Dr Anno, h.c Akt Flaute ihr Bei Coma vergolde. Kontinent, des, Bzw
+         * Co ehedem, gegessenes, zuck ums Berta hake wo Fr ab to Rekruts emsigere.
+         * Alt kam Ball Au tatst leimen, Box Essigs
+         *
+         * @param array $set               1st Argument
+         * @param string $name             2nd Argument
+         * @param integer|null $optional   3rd Argument
          */
-        protected function getDomDocument() {
-            if (!isset($this->doc)) {
-                $this->doc = new \DOMDocument();
-            }
-            return $this->doc;
+        public function MyMethod(array $set, $name, $optional = null) {
+            // do something
         }
 
         /**
-         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         * Implementation of the Countable interface
          *
-         * @param array $methods
-         * @return TheSeer\fDOM\fDOMDocument
+         * @return integer 4
+         * @see Countable::count()
          */
-        protected function getFDomDocumentFixture(array $methods) {
-
-            return $this->getMockBuilder('\\TheSeer\\fDOM\\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods($methods)
-                ->getMock();
-        }
-
-        /**
-         * Provides a stubbed instance of TheSeer\phpDox\DocBlock\Factory.
-         *
-         * @param array $methods
-         * @return TheSeer\phpDox\DocBlock\Factory
-         */
-        protected function getFactoryFixture(array $methods = array()) {
-            return $this->getMockBuilder('\\TheSeer\\phpDox\\DocBlock\\Factory')
-                ->setMethods($methods)
-                ->getMock();
+        public function count() {
+            return 4;
         }
     }
 }

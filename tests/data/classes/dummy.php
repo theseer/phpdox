@@ -36,50 +36,71 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests {
+namespace TheSeer\phpDox\Tests\Fixtures {
 
-    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
+    /**
+     * Short description for Dummy class
+     *
+     * Long description:
+     * Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
+     * ordo eluo. Fluo fatua iste.
+     *
+     */
+    class Dummy {
 
         /**
-         * Provides a DOMDocument
-         *
-         * @return \DOMDocument
+         * A protected variable
+         * @var string
          */
-        protected function getDomDocument() {
-            if (!isset($this->doc)) {
-                $this->doc = new \DOMDocument();
-            }
-            return $this->doc;
+        protected $myProtected;
+
+        /**
+         * @var string   A static protected variable
+         */
+        protected static $myStaticProtected;
+
+        private $myPrivate;
+        private static $myStaticPrivate;
+
+        public $myPublic;
+        public static $myStaticPublic;
+
+        /**
+         * Constructor of the class.
+         *
+         * @param integer   $count
+         * @param \stdClass $class
+         * @param array     $set
+         * @param string    $optional
+         */
+        public function __construct($count, \stdClass $class, array $set, $optional = null) {
+            $this->myProtected = $count;
         }
 
         /**
-         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         * Short description of MyMethod
          *
-         * @param array $methods
-         * @return TheSeer\fDOM\fDOMDocument
+         * Long description:
+         * Dr Anno, h.c Akt Flaute ihr Bei Coma vergolde. Kontinent, des, Bzw
+         * Co ehedem, gegessenes, zuck ums Berta hake wo Fr ab to Rekruts emsigere.
+         * Alt kam Ball Au tatst leimen, Box Essigs
+         *
+         * @param array         $set       1st Argument
+         * @param \Countable    $count     2nd Argument
+         * @param string        $name      3rd Argument
+         * @param integer|null  $optional  4th Argument
          */
-        protected function getFDomDocumentFixture(array $methods) {
-
-            return $this->getMockBuilder('\\TheSeer\\fDOM\\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods($methods)
-                ->getMock();
+        public function MyMethod(array $set, \Countable $count, $name, $optional = null) {
+            // do something
         }
 
         /**
-         * Provides a stubbed instance of TheSeer\phpDox\DocBlock\Factory.
+         * Destructor of the class.
          *
-         * @param array $methods
-         * @return TheSeer\phpDox\DocBlock\Factory
+         * @link http://www.php.net/manual/en/language.oop5.decon.php
          */
-        protected function getFactoryFixture(array $methods = array()) {
-            return $this->getMockBuilder('\\TheSeer\\phpDox\\DocBlock\\Factory')
-                ->setMethods($methods)
-                ->getMock();
+        public function __destruct() {
+            return;
         }
     }
 }

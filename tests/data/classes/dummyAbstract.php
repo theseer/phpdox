@@ -36,50 +36,40 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests {
+namespace TheSeer\phpDox\Tests\Issues\Fixtures {
 
-    class phpDox_TestCase extends \PHPUnit_Framework_TestCase {
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
+    /**
+     * Short description for Dummy class
+     *
+     * Long description:
+     * Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
+     * ordo eluo. Fluo fatua iste.
+     *
+     */
+    abstract class DummyAbstract {
 
         /**
-         * Provides a DOMDocument
-         *
-         * @return \DOMDocument
+         * A protected variable
+         * @var string
          */
-        protected function getDomDocument() {
-            if (!isset($this->doc)) {
-                $this->doc = new \DOMDocument();
-            }
-            return $this->doc;
+        protected $myProtected = 'Puffy';
+
+        /**
+         * Constructor of the class.
+         *
+         * @param \Countable $count
+         */
+        public function __construct($count) {
+            $this->myProtected = $count;
         }
 
         /**
-         * Provides a stubbed instance of TheSeer\fDOM\fDOMDocument.
+         * Constructor of the class.
          *
-         * @param array $methods
-         * @return TheSeer\fDOM\fDOMDocument
+         * @param \Countable $count
          */
-        protected function getFDomDocumentFixture(array $methods) {
-
-            return $this->getMockBuilder('\\TheSeer\\fDOM\\fDOMDocument')
-                ->disableOriginalConstructor()
-                ->setMethods($methods)
-                ->getMock();
-        }
-
-        /**
-         * Provides a stubbed instance of TheSeer\phpDox\DocBlock\Factory.
-         *
-         * @param array $methods
-         * @return TheSeer\phpDox\DocBlock\Factory
-         */
-        protected function getFactoryFixture(array $methods = array()) {
-            return $this->getMockBuilder('\\TheSeer\\phpDox\\DocBlock\\Factory')
-                ->setMethods($methods)
-                ->getMock();
+        public function setCountable($count) {
+            $this->myProtected = $count;
         }
     }
 }
