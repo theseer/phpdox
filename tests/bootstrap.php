@@ -36,6 +36,7 @@
  * @license    BSD License
  */
 
+require_once 'TheSeer/fDOMDocument/autoload.php';
 require_once __DIR__ .'/../src/autoload.php';
 
 //  custom TestCase
