@@ -8,6 +8,9 @@ Requirements
 ------------
 
 You need to make sure you're using PHP 5.3+.
+Also there is a demand in some 3rd party tools:
+
+* iconv (version >= 2.12; http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
 
 Also, you'll need to install the following pear dependencies:
 

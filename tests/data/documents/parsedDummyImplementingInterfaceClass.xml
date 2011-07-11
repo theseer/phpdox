@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tux>
+    <class xmlns="http://xml.phpdox.de/src#" full="TheSeer\phpDox\Tests\Fixtures\DummyImplementingInterface" 
+           name="DummyImplementingInterface" final="false" abstract="false" start="49" end="76">
+        <docblock>
+            <description compact="Short description for Dummy class">Long description:
+Puto Nomine ambitus profor benevolentia Repecto acer Celeriter inritus.
+ordo eluo. Fluo fatua iste.</description>
+        </docblock>
+        <implements interface="Countable" full="Countable"/>
+        <method name="MyMethod" start="63" end="65" abstract="false"
+            final="false" static="false" visibility="public">
+            <docblock>
+                <description compact="Short description of MyMethod">Long description:
+Dr Anno, h.c Akt Flaute ihr Bei Coma vergolde. Kontinent, des, Bzw
+Co ehedem, gegessenes, zuck ums Berta hake wo Fr ab to Rekruts emsigere.
+Alt kam Ball Au tatst leimen, Box Essigs</description>
+                <param description="1st Argument" type="array" variable="$set" />
+                <param description="2nd Argument" type="string" variable="$name" />
+                <param description="3rd Argument" type="integer|null" variable="$optional" />
+            </docblock>
+            <parameter name="set" type="array" optional="false" byreference="false" />
+            <parameter name="name" type="{unknown}" optional="false" byreference="false" />
+            <parameter name="optional" type="{unknown}" optional="true" byreference="false">
+                <default>null</default>
+            </parameter>
+        </method>
+        <method name="count" start="73" end="75" abstract="false" final="false" static="false" visibility="public">
+            <docblock>
+                <description compact="Implementation of the Countable interface"/>
+                <return description="4" type="integer"/>
+                <see value="Countable::count()"/>
+            </docblock>
+        </method>
+    </class>
+</tux>

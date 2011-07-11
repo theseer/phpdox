@@ -220,5 +220,4 @@ namespace TheSeer\phpDox {
             $default->appendChild($ctx->ownerDocument->createTextnode($value));
         }
     }
-
 }
