@@ -1,6 +1,6 @@
 [submodule "lib/staticReflection"]
 	path = lib/staticReflection
-	url = git://github.com/manuelpichler/staticReflection.git
+	url = git://github.com/theseer/staticReflection.git
 [submodule "tests/lib/proxyObject"]
 	path = tests/lib/proxyObject
 	url = git://github.com/lapistano/proxy-object.git
