@@ -158,8 +158,8 @@ namespace TheSeer\phpDox {
             return new Generator($this->xmlDir, $tplDir, $docDir, $this->getContainer());
         }
 
-        protected function getClassBuilder(fDOMElement $ctx, $public, $encoding) {
-            return new ClassBuilder($this->getDocblockParser(), $ctx, $public, $encoding);
+        protected function getClassBuilder(fDOMElement $ctx, array $aliasMap, $public, $encoding) {
+            return new ClassBuilder($this->getDocblockParser(), $ctx, $aliasMap, $public, $encoding);
         }
 
         protected function getDocblockFactory() {
