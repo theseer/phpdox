@@ -4,6 +4,3 @@
 [submodule "tests/lib/proxyObject"]
 	path = tests/lib/proxyObject
 	url = git://github.com/lapistano/proxy-object.git
-[submodule "tests/lib/ProxyObject"]
-	path = tests/lib/ProxyObject
-	url = git://github.com/lapistano/proxy-object.git
