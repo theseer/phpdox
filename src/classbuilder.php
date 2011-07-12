@@ -118,7 +118,7 @@ namespace TheSeer\phpDox {
 
         protected function processDocBlock(fDOMDocument $doc, $comment) {
             try {
-                if ($this->encoding != 'UTF-8') {
+                if (strtolower($this->encoding) != 'utf-8') {
                     $comment = iconv($this->encoding, 'UTF-8//TRANSLIT', $comment);
                 }
                 $docblock = $this->parser->parse($comment, $this->aliasMap);
