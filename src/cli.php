@@ -69,6 +69,7 @@ namespace TheSeer\phpDox {
          * Main executor for CLI process.
          */
         public function run() {
+            error_reporting(-1);
             $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
             $errorHandler->register();
             try {
@@ -76,11 +77,7 @@ namespace TheSeer\phpDox {
                 $this->registerOptions($input);
                 $input->process();
 
-                if ($input->getOption('debug')->value === true) {
-                    error_reporting(-1);
-                } else {
-                    error_reporting(0);
-                }
+                $errorHandler->setDebug($input->getOption('debug')->value);
 
                 if ((!$input->getOption('collect')->value && !$input->getOption('generate')->value) ||
                     $input->getOption('help')->value === true) {
@@ -271,6 +268,7 @@ Usage: phpdox [switches]
   -v, --version    Prints the version and exits
 
       --debug      For plugin developers only, enable php error reporting
+
 
 EOF;
         }

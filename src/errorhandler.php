@@ -39,6 +39,8 @@ namespace TheSeer\phpDox {
 
     class ErrorHandler {
 
+        protected $debugMode = false;
+
         /**
          * Init method
          *
@@ -50,6 +52,10 @@ namespace TheSeer\phpDox {
             register_shutdown_function(array($this, "handleShutdown"));
             set_exception_handler(array($this, 'handleException'));
             set_error_handler(array($this, 'handleError'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);
+        }
+
+        public function setDebug($mode) {
+            $this->debugMode = ($mode === true);
         }
 
         /**
@@ -75,7 +81,7 @@ namespace TheSeer\phpDox {
          * @throws \ErrorException
          */
         public function handleError($errno, $errstr, $errfile, $errline) {
-            if (ini_get('error_reporting')==0) {
+            if (ini_get('error_reporting')==0 && !$this->debugMode) {
                 return true;
             }
             throw new \ErrorException($errstr, -1, $errno, $errfile, $errline);
@@ -115,7 +121,8 @@ namespace TheSeer\phpDox {
             array_shift($trace);
             foreach($trace as $pos => $entry) {
                 array_unshift($entry, $pos);
-                fwrite(STDERR, @vsprintf('#%1$d %2$s(%3$d): %5$s%6$s%4$s()'."\n", $entry));
+                $entry = array_pad($entry, 6, '');
+                fwrite(STDERR, vsprintf('#%1$d %2$s(%3$d): %5$s%6$s%4$s()'."\n", $entry));
             }
             fwrite(STDERR, "\n\n\n");
             exit(1);
