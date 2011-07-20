@@ -106,7 +106,7 @@ namespace TheSeer\phpDox {
          */
         public function handleException(\Exception $exception) {
             fwrite(STDERR, "\n\nOups... phpDox encountered a problem and has terminated!\n");
-            fwrite(STDERR, "It most likely means you've found a bug, so please file a report for this and paste the stacktrace along!\n\n");
+            fwrite(STDERR, "It most likely means you've found a bug, so please file a report for this and paste the stacktrace (if given) along!\n\n");
             fwrite(STDERR, sprintf("Exception: %s\n", get_class($exception)));
             fwrite(STDERR, sprintf("Location: %s (Line %d)\n\n", $exception->getFile(), $exception->getLine()));
             fwrite(STDERR, $exception->getMessage() . "\n\n");
