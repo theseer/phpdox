@@ -76,6 +76,12 @@ namespace TheSeer\phpDox {
                 $this->registerOptions($input);
                 $input->process();
 
+                if ($input->getOption('debug')->value === true) {
+                    error_reporting(-1);
+                } else {
+                    error_reporting(0);
+                }
+
                 if ((!$input->getOption('collect')->value && !$input->getOption('generate')->value) ||
                     $input->getOption('help')->value === true) {
                     $this->showVersion();
@@ -228,6 +234,11 @@ namespace TheSeer\phpDox {
                 't', 'templates', \ezcConsoleInput::TYPE_STRING, __DIR__ . '/../templates', false,
                 'Output directory for collected data (default: ./xml)'
             ));
+            $input->registerOption( new \ezcConsoleOption(
+                null, 'debug', \ezcConsoleInput::TYPE_NONE, null, false,
+                'For plugin developers only, enable php error reporting'
+            ));
+
         }
 
         /**
@@ -259,6 +270,7 @@ Usage: phpdox [switches]
   -h, --help       Prints this usage information
   -v, --version    Prints the version and exits
 
+      --debug      For plugin developers only, enable php error reporting
 
 EOF;
         }
