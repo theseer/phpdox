@@ -37,9 +37,9 @@
  */
 namespace TheSeer\phpDox {
 
-    interface EventHandler {
+    interface EventHandlerInterface {
 
         public function setUp(Generator $generator);
-        public function handle($event);
+        public function handle(Event $event);
     }
 }

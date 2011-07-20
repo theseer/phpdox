@@ -39,10 +39,12 @@ namespace TheSeer\phpDox {
 
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
+    use \TheSeer\fXSL\fXSLCallback;
 
     class HtmlBuilder extends AbstractBuilder {
 
         protected $xsl;
+        protected $generator;
 
         protected $eventMap = array(
             'phpdox.start' => 'buildStart',
@@ -51,27 +53,38 @@ namespace TheSeer\phpDox {
         );
 
         public function setUp(Generator $generator) {
+            $this->generator = $generator;
             parent::setUp($generator);
-            $this->xsl = $generator->getXSLTProcessor('htmlBuilder/class.xsl');
+            $this->xsl = $this->getXSLTProcessor('htmlBuilder/class.xsl');
         }
 
-        public function doHandle($event, array $payload) {
-            call_user_func_array(array($this, $this->eventMap[$event]), $payload);
+        public function doHandle(Event $event) {
+            $this->{$this->eventMap[$event->type]}($event);
         }
 
-        protected function buildStart(fDOMDocument $namespace, fDOMDocument $classes, fDOMDocument $interfaces) {
-            $html = $this->generator->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($classes);
+        protected function getXSLTProcessor($tpl) {
+            $xsl = $this->generator->getXSLTProcessor($tpl);
+
+            $builder = new fXSLCallback('phpdox:htmlBuilder','hb');
+            $builder->setObject($this->generator->getInstanceFor('TheSeer\phpDox\htmlBuilder\Functions'));
+            $xsl->registerCallback($builder);
+
+            return $xsl;
+        }
+
+        protected function buildStart(Event $event) {
+            $html = $this->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($event->classes);
             $this->generator->saveDomDocument($html, 'list.xhtml');
         }
 
-        protected function buildFinish() {
+        protected function buildFinish(Event $event) {
             $this->generator->copyStatic('htmlBuilder/static', true);
         }
 
-        protected function buildClass(fDOMElement $classNode) {
-            $full = $classNode->getAttribute('full');
+        protected function buildClass(Event $event) {
+            $full = $event->class->getAttribute('full');
             $this->xsl->setParameter('', 'class', $full);
-            $html = $this->xsl->transformToDoc($classNode);
+            $html = $this->xsl->transformToDoc($event->class);
             $this->generator->saveDomDocument($html, 'classes/'. $this->classNameToFileName($full, 'xhtml'));
         }
 

@@ -33,39 +33,36 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
+ *
  */
-
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDom\fDomDocument;
-    use \TheSeer\fDom\fDomElement;
+    class Event {
 
-    abstract class AbstractBuilder implements EventHandlerInterface {
+        protected $type;
+        protected $data;
 
-        protected $generator;
-        protected $eventMap = array();
-
-        public function setUp(Generator $generator) {
-            $this->generator = $generator;
-            foreach(array_keys($this->eventMap) as $event) {
-                $generator->registerHandler($event, $this);
-            }
+        public function __construct($type, array $data = array()) {
+            $this->type = $type;
+            $this->data = $data;
         }
 
-        public function handle(Event $event) {
-            if (!isset($this->eventMap[$event->type])) {
-                throw new TodoBuilderException("Don't know how to handle event '{$event->type}'", BuilderException::UnkownEvent);
-            }
-            $payload = func_get_args();
-            array_shift($payload);
-            $this->doHandle($event);
+        public function __isset($key) {
+            return isset($this->data[$key]);
         }
 
-        abstract protected function doHandle(Event $event);
+        public function __get($key) {
+            if ($key == 'type') {
+                return $this->type;
+            }
+            if (!isset($this->data[$key])) {
+                throw new EventException("No such key '$key' set.", EventException::NoSuchKey);
+            }
+            return $this->data[$key];
+        }
     }
 
-    class BuilderException extends \Exception {
-        const UnkownEvent = 1;
+    class EventException extends \Exception {
+        const NoSuchKey = 1;
     }
-
 }

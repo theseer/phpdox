@@ -163,6 +163,11 @@ namespace TheSeer\phpDox {
             $generator = $this->factory->getInstanceFor('Generator', $tplDir, $docDir);
             $generator->setPublicOnly($publicOnly);
 
+            $eventFactory = $this->factory->getInstanceFor('EventFactory');
+            foreach($generator->getAllowedEvents() as $event) {
+                $this->factory->addFactory($event, $eventFactory);
+            }
+
             foreach($generate as $name) {
                 if (!isset($this->builderMap[$name])) {
                     throw new ApplicationException("'$name' is not a registered generation backend", ApplicationException::UnkownBackend);

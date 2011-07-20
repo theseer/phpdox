@@ -43,7 +43,8 @@ namespace TheSeer\phpDox {
 
         protected $map = array(
             'DirectoryScanner' => '\\TheSeer\\Tools\\DirectoryScanner',
-            'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler'
+            'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
+            'EventFactory' => '\\TheSeer\\phpDox\\EventFactory'
         );
 
         protected $instances = array();
@@ -155,11 +156,18 @@ namespace TheSeer\phpDox {
         }
 
         protected function getGenerator($tplDir, $docDir) {
-            return new Generator($this->xmlDir, $tplDir, $docDir, $this->getContainer());
+            if (!isset($this->instances['generator'])) {
+                $this->instances['generator'] = new Generator($this, $this->xmlDir, $tplDir, $docDir, $this->getContainer());
+            }
+            return $this->instances['generator'];
         }
 
         protected function getClassBuilder(fDOMElement $ctx, array $aliasMap, $public, $encoding) {
             return new ClassBuilder($this->getDocblockParser(), $ctx, $aliasMap, $public, $encoding);
+        }
+
+        protected function getService(Generator $generator) {
+            return new Service($generator, $this->getContainer());
         }
 
         protected function getDocblockFactory() {

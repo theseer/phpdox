@@ -43,12 +43,13 @@ namespace TheSeer\phpDox {
     use \TheSeer\fXSL\fXSLCallback;
 
     class Generator {
+
+        protected $factory;
+        protected $logger;
+
         protected $xmlDir;
         protected $docDir;
-
         protected $publicOnly = false;
-
-        protected $logger;
 
         protected $namespaces;
         protected $interfaces;
@@ -93,12 +94,15 @@ namespace TheSeer\phpDox {
         /**
          * Generator constructor
          *
-         * @param string    $xmlDir Base path where class xml files are found
-         * @param string    $tplDir Base path for templates
-         * @param string    $docDir Base directory to store documentation files in
-         * @param Container $container   Collection of Container Documents
+         * @param Factory   $factroy   Instance of Factory
+         * @param string    $xmlDir    Base path where class xml files are found
+         * @param string    $tplDir    Base path for templates
+         * @param string    $docDir    Base directory to store documentation files in
+         * @param Container $container Collection of Container Documents
          */
-        public function __construct($xmlDir, $tplDir, $docDir, Container $container) {
+        public function __construct(Factory $factory, $xmlDir, $tplDir, $docDir, Container $container) {
+            $this->factory = $factory;
+
             $this->xmlDir = $xmlDir;
             $this->docDir = $docDir;
             $this->tplDir = $tplDir;
@@ -116,7 +120,7 @@ namespace TheSeer\phpDox {
             return array_keys($this->eventHandler);
         }
 
-        public function registerHandler($event, EventHandler $handler) {
+        public function registerHandler($event, EventHandlerInterface $handler) {
             if (!array_key_exists($event, $this->eventHandler)) {
                 throw new GeneratorException("'$event' unknown", GeneratorException::UnknownEvent);
             }
@@ -134,13 +138,14 @@ namespace TheSeer\phpDox {
          */
         public function run(ProgressLogger $logger) {
             $this->logger = $logger;
+
             $this->triggerEvent('phpdox.start', $this->namespaces, $this->classes, $this->interfaces);
             if ($this->namespaces->documentElement->hasChildNodes()) {
                 $this->processWithNamespace();
             } else {
                 $this->processGlobalOnly();
             }
-            $this->triggerEvent('phpdox.end');
+            $this->triggerEvent('phpdox.end', $this->namespaces, $this->classes, $this->interfaces);
             $logger->completed();
         }
 
@@ -183,11 +188,24 @@ namespace TheSeer\phpDox {
             $this->triggerEvent('phpdox.namespaces.end', $this->namespaces);
         }
 
+        /**
+         * Proxy function to forward instance requests from builder to factory
+         *
+         * @param $class
+         */
+        public function getInstanceFor($class) {
+            return call_user_func_array(array($this->factory,'getInstanceFor'), func_get_args());
+        }
+
         public function getXSLTProcessor($filename) {
             $tpl = new fDomDocument();
             $tpl->load($this->tplDir . '/' . $filename);
             $xsl = new fXSLTProcessor($tpl);
-            //$service = $this->
+
+            $service = new fXSLCallback('phpdox:service','ps');
+            $service->setObject($this->factory->getInstanceFor('Service', $this));
+            $xsl->registerCallback($service);
+
             return $xsl;
         }
 
@@ -244,21 +262,21 @@ namespace TheSeer\phpDox {
                 $this->triggerEvent('class.start', $classNode);
 
                 foreach($classNode->query('phpdox:constant') as $constant) {
-                    $this->triggerEvent('class.constant', $constant);
+                    $this->triggerEvent('class.constant', $constant, $classNode);
                 }
 
                 foreach($classNode->query('phpdox:member') as $member) {
                     if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->triggerEvent('class.member', $member);
+                    $this->triggerEvent('class.member', $member, $classNode);
                 }
 
                 foreach($classNode->query('phpdox:method') as $method) {
                     if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->triggerEvent('class.method', $method);
+                    $this->triggerEvent('class.method', $method, $classNode);
                 }
                 $this->triggerEvent('class.end', $classNode);
             }
@@ -273,22 +291,24 @@ namespace TheSeer\phpDox {
                 $this->triggerEvent('interface.start', $interfaceNode);
 
                 foreach($interfaceNode->query('phpdox:constant') as $constant) {
-                    $this->triggerEvent('interface.constant', $constant);
+                    $this->triggerEvent('interface.constant', $constant, $interfaceNode);
                 }
 
                 foreach($interfaceNode->query('phpdox:method') as $method) {
-                    $this->triggerEvent('interface.method', $method);
+                    $this->triggerEvent('interface.method', $method, $interfaceNode);
                 }
 
                 $this->triggerEvent('interface.end', $interfaceNode);
             }
         }
 
-        protected function triggerEvent($event) {
+        protected function triggerEvent($eventName) {
             $this->logger->progress('processed');
             $payload = func_get_args();
-            foreach($this->eventHandler[$event] as $proc) {
-                call_user_func_array(array($proc, 'handle'), $payload);
+            array_shift($payload);
+            $event = $this->factory->getInstanceFor($eventName, $payload);
+            foreach($this->eventHandler[$eventName] as $proc) {
+                $proc->handle($event);
             }
         }
 

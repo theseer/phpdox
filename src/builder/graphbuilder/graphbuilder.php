@@ -49,13 +49,17 @@ namespace TheSeer\phpDox {
             'phpdox.end' => 1
         );
 
-        public function doHandle($event, array $payload) {
-            if ($event == 'phpdox.end') {
+        public function doHandle(Event $event) {
+            if ($event->type == 'phpdox.end') {
                 $content = "digraph phpdox {\n".join("\n", $this->content)."\n}";
                 $this->generator->saveFile($content, 'graph.dot');
                 return;
             }
-            $this->renderNode($payload[0], $payload[0]->localName == 'class' ? 'box' : 'oval');
+            if (isset($event->class)) {
+                $this->renderNode($event->class, 'box');
+            } else {
+                $this->renderNode($event->interface, 'oval');
+            }
         }
 
         protected function renderNode(fDOMElement $node, $shape = 'box') {

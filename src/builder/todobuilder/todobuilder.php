@@ -57,11 +57,39 @@ namespace TheSeer\phpDox {
 
         protected $todoList = array();
 
-        public function doHandle($event, array $payload) {
-            if ($event == 'phpdox.end') {
+        public function doHandle(Event $event) {
+            if ($event->type == 'phpdox.end') {
                return $this->buildFinish();
             }
-            return $this->processItem($payload);
+            switch ($event->type) {
+                case 'namespace.start': {
+                    $node = $event->namespace;
+                    break;
+                }
+                case 'class.start': {
+                    $node = $event->class;
+                    break;
+                }
+                case 'interface.constant':
+                case 'class.constant': {
+                    $node = $event->constant;
+                    break;
+                }
+                case 'class.member': {
+                    $node = $event->member;
+                    break;
+                }
+                case 'interface.method':
+                case 'class.method': {
+                    $node = $event->method;
+                    break;
+                }
+                case 'interface.start': {
+                    $node = $event->interface;
+                    break;
+                }
+            }
+            return $this->processItem($node);
         }
 
         /**
@@ -91,8 +119,7 @@ namespace TheSeer\phpDox {
             $this->generator->saveFile($content, 'todo.txt');
         }
 
-        protected function processItem(array $payload) {
-            $ctx = $payload[count($payload)-1];
+        protected function processItem(fDOMElement $ctx) {
             $todoNode = $ctx->queryOne('phpdox:docblock/phpdox:todo');
             if ($todoNode) {
                 $tmp = new \StdClass;
