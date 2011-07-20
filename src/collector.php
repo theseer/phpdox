@@ -127,7 +127,7 @@ namespace TheSeer\phpDox {
             $analyser = $this->factory->getInstanceFor('Analyser', $this->publicOnly);
 
             if (!file_exists($this->xmlDir)) {
-                mkdir($this->xmlDir);
+                mkdir($this->xmlDir, 0755, true);
             }
 
             foreach($worker as $file) {
