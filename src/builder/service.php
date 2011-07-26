@@ -42,9 +42,11 @@ namespace TheSeer\phpDox {
 
     class Service {
 
+        protected $generator;
         protected $container;
 
         public function __construct(Generator $generator, Container $container) {
+            $this->generator  = $generator;
             $this->namespaces = $container->getDocument('namespaces');
             $this->interfaces = $container->getDocument('interfaces');
             $this->classes    = $container->getDocument('classes');
