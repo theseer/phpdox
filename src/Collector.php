@@ -197,6 +197,9 @@ namespace TheSeer\phpDox {
                 }
                 $workNode->setAttribute('xml', substr($target, strlen($this->xmlDir)+1));
                 $workNode->setAttribute('src', $src);
+                foreach($srcNode->query('.//dox:implements|.//dox:extends') as $node) {
+                    $workNode->appendChild($container->importNode($node, true));
+                }
             }
         }
 
