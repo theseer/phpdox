@@ -245,7 +245,7 @@ namespace TheSeer\phpDox {
             print <<<EOF
 Usage: phpdox [switches]
 
-  -f, --file       Configuration file to use (default: ./phpdox.xml)
+  -f, --file       Configuration file to use (default: ./phpdox.xml, not implemented yet)
 
   -c, --collect    Scan directory and collect input (default: ./src)
   -g, --generate   Generate documentation (default builder: html)
