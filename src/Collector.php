@@ -38,6 +38,7 @@ namespace TheSeer\phpDox {
 
     use \TheSeer\Tools\PHPFilterIterator;
     use \TheSeer\fDOM\fDOMDocument;
+    use \TheSeer\fDOM\fDOMException;
 
     class Collector {
 
@@ -139,6 +140,12 @@ namespace TheSeer\phpDox {
                 try {
                     $xml = $analyser->processFile($file);
                     $xml->formatOutput= true;
+
+                    // This is a workaround:
+                    // Try to reparse generated xml to catch invalid utf-8 byte ranges
+                    $tmp = new fDOMDocument();
+                    $tmp->loadXML($xml->saveXML());
+
                     $xml->save($target);
                     touch($target, $file->getMTime(), $file->getATime());
 
@@ -148,6 +155,8 @@ namespace TheSeer\phpDox {
                     $this->registerInContainer($this->interfaces, 'interface', $target, $src, $analyser->getInterfaces());
                     $this->registerInContainer($this->classes, 'class', $target, $src, $analyser->getClasses());
                     $logger->progress('processed');
+                } catch (fDOMException $e) {
+                    $logger->progress('failed');
                 } catch (\pdepend\reflection\exceptions\ParserException $e) {
                     // TODO: Add failed file to error list?
                     $logger->progress('failed');
