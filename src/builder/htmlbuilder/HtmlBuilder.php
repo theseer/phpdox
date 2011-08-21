@@ -43,38 +43,56 @@ namespace TheSeer\phpDox {
 
     class HtmlBuilder extends AbstractBuilder {
 
-        protected $xsl;
+        protected $xslClass;
+        protected $xslInterface;
         protected $generator;
+
+        protected $functions;
+        protected $classesDom;
+        protected $interfacesDom;
 
         protected $eventMap = array(
             'phpdox.start' => 'buildStart',
             'class.start' => 'buildClass',
+            'interface.start' => 'buildInterface',
             'phpdox.end' => 'buildFinish'
         );
 
         public function setUp(Generator $generator) {
             $this->generator = $generator;
             parent::setUp($generator);
-            $this->xsl = $this->getXSLTProcessor('htmlBuilder/class.xsl');
         }
 
         public function doHandle(Event $event) {
             $this->{$this->eventMap[$event->type]}($event);
         }
 
-        protected function getXSLTProcessor($tpl) {
-            $xsl = $this->generator->getXSLTProcessor($tpl);
+        protected function buildStart(Event $event) {
+
+            $this->classesDom = $this->generator->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($event->classes);
+            $this->interfacesDom = $this->generator->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($event->interfaces);
+
+            $this->functions = $this->generator->getInstanceFor('TheSeer\phpDox\htmlBuilder\Functions',
+                $this->classesDom,
+                $this->interfacesDom
+            );
 
             $builder = new fXSLCallback('phpdox:htmlBuilder','hb');
-            $builder->setObject($this->generator->getInstanceFor('TheSeer\phpDox\htmlBuilder\Functions'));
-            $xsl->registerCallback($builder);
+            $builder->setObject($this->functions);
 
-            return $xsl;
-        }
 
-        protected function buildStart(Event $event) {
-            $html = $this->getXSLTProcessor('htmlBuilder/list.xsl')->transformToDoc($event->classes);
-            $this->generator->saveDomDocument($html, 'list.xhtml');
+            $index = $this->generator->getXSLTProcessor('htmlBuilder/index.xsl');
+            $index->registerCallback($builder);
+            $html = $index->transformToDoc($event->classes);
+
+            $this->generator->saveDomDocument($html,'index.xhtml');
+
+            $this->xslClass = $this->generator->getXSLTProcessor('htmlBuilder/class.xsl');
+            $this->xslClass->registerCallback($builder);
+
+            $this->xslInterface = $this->generator->getXSLTProcessor('htmlBuilder/interface.xsl');
+            $this->xslInterface->registerCallback($builder);
+
         }
 
         protected function buildFinish(Event $event) {
@@ -83,13 +101,16 @@ namespace TheSeer\phpDox {
 
         protected function buildClass(Event $event) {
             $full = $event->class->getAttribute('full');
-            $this->xsl->setParameter('', 'class', $full);
-            $html = $this->xsl->transformToDoc($event->class);
-            $this->generator->saveDomDocument($html, 'classes/'. $this->classNameToFileName($full, 'xhtml'));
+            $this->xslClass->setParameter('', 'class', $full);
+            $html = $this->xslClass->transformToDoc($event->class);
+            $this->generator->saveDomDocument($html, $this->functions->classNameToFileName($full, 'xhtml'));
         }
 
-        protected function classNameToFileName($class, $ext = 'xml') {
-            return str_replace('\\', '_', $class) . '.' . $ext;
+        protected function buildInterface(Event $event) {
+            $full = $event->interface->getAttribute('full');
+            $this->xslInterface->setParameter('', 'interface', $full);
+            $html = $this->xslInterface->transformToDoc($event->interface);
+            $this->generator->saveDomDocument($html, $this->functions->classNameToFileName($full, 'xhtml'));
         }
 
     }

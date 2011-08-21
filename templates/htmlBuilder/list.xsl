@@ -6,14 +6,14 @@
     <xsl:output method="xml" indent="yes" encoding="utf-8" />
     <xsl:param name="class" />
     
-    <xsl:template match="/">
+    <xsl:template match="/">        
         <ul class="classlist">
         <xsl:choose>
             <xsl:when test="//file:namespace">
                 <xsl:apply-templates select="//file:namespace" />
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates select="//file:class" />
+                <xsl:apply-templates select="//file:class|//file:interface" />
             </xsl:otherwise>
         </xsl:choose>
         </ul>
@@ -21,20 +21,18 @@
     
     <xsl:template match="file:namespace">
         <li>
-            <a href="#" onclick="phpDox.toggleNamespace('namespace{position()}')">
-                <xsl:value-of select="@name" />
-            </a>
-            <xsl:if test="file:class">
+            <span class="namespace"><xsl:value-of select="@name" /></span>            
+            <xsl:if test="file:class|file:interface">
                 <ul id="namespace{position()}">
-                    <xsl:apply-templates select="file:class" />
+                    <xsl:apply-templates select="file:class|//file:interface" />
                 </ul>
             </xsl:if>
         </li>
     </xsl:template>
     
-    <xsl:template match="file:class">
+    <xsl:template match="file:class|file:interface">
         <li>
-            <a href="#" onclick="phpDox.loadClass('{translate(@full, '\', '_')}')">
+            <a href="{translate(@full, '\', '_')}.xhtml">
                 <xsl:value-of select="@name" />
             </a>
         </li>

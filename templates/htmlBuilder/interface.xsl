@@ -7,7 +7,7 @@
     
     <xsl:output method="xml" indent="yes" encoding="utf-8" />
 
-    <xsl:param name="class" />
+    <xsl:param name="interface" />
 
     <xsl:template match="/">
         <html>
@@ -18,7 +18,7 @@
                 <h1 class="project">Project title here</h1>
                 <div class="content">
                     <div class="class">                        
-                        <xsl:apply-templates select="//file:class[@full=$class]" />
+                        <xsl:apply-templates select="//file:interface[@full=$interface]" />
                     </div>
                     <div class="lists">
                         <h3>Classes:</h3>
@@ -40,7 +40,7 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="file:class">
+    <xsl:template match="file:interface">
         <h2 class="className" id="className">
             <xsl:value-of select="./@name" />
         </h2>
