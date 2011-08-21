@@ -19,8 +19,8 @@
     </lead>
     <date>2011-08-21</date>
     <version>
-	   <release>0.3.0</release>
-	   <api>0.3.0</api>
+	   <release>0.2.0</release>
+	   <api>0.2.0</api>
     </version>
     <stability>
 	   <release>alpha</release>
@@ -43,17 +43,20 @@
                     <file baseinstalldir="/" name="Collector.php" role="php" />
                     <file baseinstalldir="/" name="Config.php" role="php" />
                     <file baseinstalldir="/" name="Container.php" role="php" />
-                    <file baseinstalldir="/" name="EventHandlerInterface.php" role="php" />
-                    <file baseinstalldir="/" name="EventHandler.php" role="php" />
+                    <file baseinstalldir="/" name="ErrorHandler.php" role="php" />
+                    <file baseinstalldir="/" name="EventHandlerInterface.php" role="php" />                    
                     <file baseinstalldir="/" name="Event.php" role="php" />
+                    <file baseinstalldir="/" name="EventGenerator.php" role="php" />
                     <file baseinstalldir="/" name="FactoryInterface.php" role="php" />
                     <file baseinstalldir="/" name="Factory.php" role="php" />
-            		<file baseinstalldir="/" name="EventGenerator.php" role="php" />
+                    <file baseinstalldir="/" name="EventFactory.php" role="php" />
                     <dir name="docblock">
+                        <file baseinstalldir="/" name="Factory.php" role="php" />
                         <file baseinstalldir="/" name="DocBlock.php" role="php" />
                         <file baseinstalldir="/" name="GenericElement.php" role="php" />
                         <file baseinstalldir="/" name="InvalidElement.php" role="php" />
                         <file baseinstalldir="/" name="Parser.php" role="php" />
+                        <file baseinstalldir="/" name="InlineProcessor.php" role="php" />
                         <dir name="parser">
                             <file baseinstalldir="/" name="DescriptionParser.php" role="php" />
                             <file baseinstalldir="/" name="GenericParser.php" role="php" />
@@ -92,6 +95,7 @@
                             <file baseinstalldir="/" name="class.xsl" role="php" />
                             <file baseinstalldir="/" name="list.xsl" role="php" />
                             <file baseinstalldir="/" name="index.xsl" role="php" />
+                            <file baseinstalldir="/" name="interface.xsl" role="php" />
                             <dir name="static">
                                 <dir name="css">
                                     <file baseinstalldir="/" name="style.css" role="php" />                        
