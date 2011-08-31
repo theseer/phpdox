@@ -96,7 +96,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function startParser($name, $payload = NULL) {
-            if (!preg_match('/^[a-zA-Z0-9]*$/', $name) || empty($name)) {
+            if (!preg_match('/^[a-zA-Z0-9-_\.]*$/', $name) || empty($name)) {
                 // TODO: errorlog
                 $this->current = $this->factory->getParserInstanceFor('invalid', $name);
             } else {
