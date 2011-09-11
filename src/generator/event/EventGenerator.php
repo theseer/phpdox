@@ -39,28 +39,14 @@ namespace TheSeer\phpDox {
     use \TheSeer\fDOM\fDOMDocument;
     use \TheSeer\fDOM\fDOMElement;
 
-    use \TheSeer\fXSL\fXSLTProcessor;
-    use \TheSeer\fXSL\fXSLCallback;
-
-    class Generator {
-
-        protected $factory;
-        protected $logger;
-
-        protected $xmlDir;
-        protected $docDir;
-        protected $publicOnly = false;
-
-        protected $namespaces;
-        protected $interfaces;
-        protected $classes;
+    class EventGenerator extends AbstractGenerator {
 
         /**
-         * Map of registered handler
+         * Map of registered Builder
          *
          * @var array
          */
-        protected $eventHandler = array(
+        protected $eventBuilder = array(
             'phpdox.start' => array(),
             'phpdox.end' => array(),
 
@@ -91,53 +77,35 @@ namespace TheSeer\phpDox {
             'interface.end' => array()
         );
 
-        /**
-         * Generator constructor
-         *
-         * @param Factory   $factroy   Instance of Factory
-         * @param string    $xmlDir    Base path where class xml files are found
-         * @param string    $tplDir    Base path for templates
-         * @param string    $docDir    Base directory to store documentation files in
-         * @param Container $container Collection of Container Documents
-         */
-        public function __construct(Factory $factory, $xmlDir, $tplDir, $docDir, Container $container) {
-            $this->factory = $factory;
-
-            $this->xmlDir = $xmlDir;
-            $this->docDir = $docDir;
-            $this->tplDir = $tplDir;
-
-            $this->namespaces = $container->getDocument('namespaces');
-            $this->interfaces = $container->getDocument('interfaces');
-            $this->classes    = $container->getDocument('classes');
-        }
-
-        public function setPublicOnly($switch) {
-            $this->publicOnly = $switch;
-        }
-
-        public function getAllowedEvents() {
-            return array_keys($this->eventHandler);
-        }
-
-        public function registerHandler($event, EventHandlerInterface $handler) {
-            if (!array_key_exists($event, $this->eventHandler)) {
+        public function registerBuilder($event, EventBuilderInterface $builder) {
+            if (!array_key_exists($event, $this->eventBuilder)) {
                 throw new GeneratorException("'$event' unknown", GeneratorException::UnknownEvent);
             }
-            $hash = spl_object_hash($handler);
-            if (isset($this->eventHandler[$event][$hash])) {
-                throw GeneratorException("Handler already registered for event '$event'", GeneratorException::AlreadyRegistered);
+            $hash = spl_object_hash($builder);
+            if (isset($this->eventBuilder[$event][$hash])) {
+                throw GeneratorException("Builder already registered for event '$event'", GeneratorException::AlreadyRegistered);
             }
-            $this->eventHandler[$event][] = $handler;
+            $this->eventBuilder[$event][] = $builder;
         }
 
         /**
          * Main executer of the generator
          *
+         * @param Array          $builderMap
          * @param ProgressLogger $logger
          */
-        public function run(ProgressLogger $logger) {
+        public function run(Array $builderMap, ProgressLogger $logger) {
             $this->logger = $logger;
+
+            $eventFactory = $this->factory->getInstanceFor('EventFactory');
+            foreach(array_keys($this->eventBuilder) as $event) {
+                $this->factory->addFactory($event, $eventFactory);
+            }
+
+            foreach($builderMap as $name => $cfg) {
+                $this->logger->log("Activating builder '$name'");
+                $cfg->getBuilder()->setUp($this);
+            }
 
             $this->triggerEvent('phpdox.start', $this->namespaces, $this->classes, $this->interfaces);
             if ($this->namespaces->documentElement->hasChildNodes()) {
@@ -197,65 +165,6 @@ namespace TheSeer\phpDox {
             return call_user_func_array(array($this->factory,'getInstanceFor'), func_get_args());
         }
 
-        public function getXSLTProcessor($filename) {
-            $tpl = new fDomDocument();
-            $tpl->load($this->tplDir . '/' . $filename);
-            $xsl = new fXSLTProcessor($tpl);
-
-            $service = new fXSLCallback('phpdox:service','ps');
-            $service->setObject($this->factory->getInstanceFor('Service', $this));
-            $xsl->registerCallback($service);
-
-            return $xsl;
-        }
-
-        public function saveDomDocument($dom, $filename) {
-            $filename = $this->docDir . '/' . $filename;
-            $path = dirname($filename);
-            clearstatcache();
-            if (!file_exists($path)) {
-                mkdir($path, 0755, true);
-            }
-            return $dom->save($filename);
-        }
-
-        public function saveFile($content, $filename) {
-            $filename = $this->docDir . '/' . $filename;
-            $path = dirname($filename);
-            clearstatcache();
-            if (!file_exists($path)) {
-                mkdir($path, 0755, true);
-            }
-            return file_put_contents($filename, $content);
-        }
-
-        public function copyStatic($mask, $recursive = true) {
-            $path = $this->tplDir . '/' . $mask;
-            $len  = strlen($path);
-            if ($recursive) {
-                $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
-            } else {
-                $worker = new \DirectoryIterator($path);
-            }
-            foreach($worker as $x) {
-                if($x->isDir() && ($x->getFilename() == "." || $x->getFilename() == "..")) {
-                    continue;
-                }
-                $target = $this->docDir . substr($x->getPathname(), $len);
-                if (!file_exists(dirname($target))) {
-                    mkdir(dirname($target), 0755, true);
-                }
-                copy($x->getPathname(), $target);
-            }
-        }
-
-        public function loadDataFile($filename) {
-            $classDom = new fDomDocument();
-            $classDom->load($this->xmlDir . '/' . $filename);
-            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-            return $classDom;
-        }
-
         protected function processClass(fDOMElement $class) {
             $classDom = $this->loadDataFile($class->getAttribute('xml'));
             foreach($classDom->query('//phpdox:class') as $classNode) {
@@ -307,16 +216,11 @@ namespace TheSeer\phpDox {
             $payload = func_get_args();
             array_shift($payload);
             $event = $this->factory->getInstanceFor($eventName, $payload);
-            foreach($this->eventHandler[$eventName] as $proc) {
+            foreach($this->eventBuilder[$eventName] as $proc) {
                 $proc->handle($event);
             }
         }
 
-    }
-
-    class GeneratorException extends \Exception {
-        const UnknownEvent = 1;
-        const AlreadyRegistered = 2;
     }
 
 }

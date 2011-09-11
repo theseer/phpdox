@@ -33,56 +33,12 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
+ *
  */
-
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDom\fDomElement;
+    interface EventBuilderInterface extends BuilderInterface {
 
-    class GraphBuilder extends AbstractBuilder {
-
-        protected $content = array();
-
-        protected $eventMap = array(
-            'class.start' =>  1,
-            'interface.start' => 1,
-            'phpdox.end' => 1
-        );
-
-        public function doHandle(Event $event) {
-            if ($event->type == 'phpdox.end') {
-                $content = "digraph phpdox {\n".join("\n", $this->content)."\n}";
-                $this->generator->saveFile($content, 'graph.dot');
-                return;
-            }
-            if (isset($event->class)) {
-                $this->renderNode($event->class, 'box');
-            } else {
-                $this->renderNode($event->interface, 'oval');
-            }
-        }
-
-        protected function renderNode(fDOMElement $node, $shape = 'box') {
-            $class = '"' . addSlashes($node->getAttribute('full')) . '"';
-            $this->addContent("$class [shape=$shape]");
-            if ($extendsNode = $node->queryOne('phpdox:extends')) {
-                $extends = '"' . addSlashes($extendsNode->getAttribute('full')) . '"';
-                $this->addContent("$extends [shape=box]");
-                $this->addContent("$extends -> $class");
-            }
-            $implementNodes = $node->query('phpdox:implements');
-            foreach($implementNodes as $interfaceNode) {
-                $interface = '"' . addSlashes($interfaceNode->getAttribute('full')) . '"';
-                $this->addContent("$interface");
-                $this->addContent("$interface -> $class");
-            }
-        }
-
-        protected function addContent($line) {
-            if (!in_array($line, $this->content)) {
-                $this->content[] = $line;
-            }
-        }
+        public function handle(Event $event);
     }
-
 }

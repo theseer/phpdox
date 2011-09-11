@@ -41,7 +41,7 @@ namespace TheSeer\phpDox {
     use \TheSeer\fDom\fDomElement;
     use \TheSeer\fXSL\fXSLCallback;
 
-    class HtmlBuilder extends AbstractBuilder {
+    class HtmlBuilder extends AbstractEventBuilder {
 
         protected $xslClass;
         protected $xslInterface;
@@ -58,7 +58,7 @@ namespace TheSeer\phpDox {
             'phpdox.end' => 'buildFinish'
         );
 
-        public function setUp(Generator $generator) {
+        public function setUp(AbstractGenerator $generator) {
             $this->generator = $generator;
             parent::setUp($generator);
         }

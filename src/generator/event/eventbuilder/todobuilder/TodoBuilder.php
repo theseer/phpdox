@@ -40,7 +40,7 @@ namespace TheSeer\phpDox {
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
 
-    class TodoBuilder extends AbstractBuilder {
+    class TodoBuilder extends AbstractEventBuilder {
 
         protected $eventMap = array(
             'namespace.start' => 1,

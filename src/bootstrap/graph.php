@@ -36,6 +36,6 @@
  */
 namespace TheSeer\phpDox {
 
-    $phpDox->registerBuilderClass('graph', 'GraphBuilderClass', '\\TheSeer\\phpDox\\graphBuilder');
+    $phpDox->registerBuilder(new GraphBuilder(), 'graph', 'DOT output builder');
 
 }

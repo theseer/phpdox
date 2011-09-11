@@ -37,60 +37,9 @@
  */
 namespace TheSeer\phpDox {
 
-    class API {
+    interface BuilderInterface {
 
-        /**
-         * Refrence to the factory instance
-         *
-         * @var FactoryInterface
-         */
-        protected $factory;
-
-        /**
-         * Internal map of registered Builders with their names and instance config
-         *
-         * @var array
-         */
-        protected $builderMap = array(
-            'EventGenerator' => array(),
-            'RawGenerator' => array()
-        );
-
-        /**
-         * Constructor
-         *
-         * @param FactoryInterface $factory
-         */
-        public function __construct(FactoryInterface $factory) {
-            $this->factory = $factory;
-        }
-
-        /**
-         * Getter to receive the map of registered Builders
-         *
-         * @return array
-         */
-        public function getBuilderMap() {
-            return $this->builderMap;
-        }
-
-        /**
-         * Register a new builder with its name and instance
-         *
-         * @param BuilderInterface $builder     Builder instance to register
-         * @param string           $name        Name of the builder
-         * @param string           $description Descriptive title
-         */
-        public function registerBuilder(BuilderInterface $builder, $name, $description) {
-            $target = $builder instanceof EventBuilderInterface ? 'EventGenerator' : 'RawGenerator';
-            $cfg = new BuilderConfig($builder, $description);
-            $this->builderMap[$target][$name] = $cfg;
-        }
-
-        public function registerParser($annotation, ParserInterface $parser) {
-            $factory = $this->factory->getInstanceFor('DocblockFactory');
-            $factory->addParser($annotation, $parser);
-        }
+        public function setUp(AbstractGenerator $generator);
 
     }
 }

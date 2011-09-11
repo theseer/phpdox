@@ -34,38 +34,26 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDom\fDomDocument;
-    use \TheSeer\fDom\fDomElement;
+    class BuilderConfig {
 
-    abstract class AbstractBuilder implements EventHandlerInterface {
+        protected $description;
+        protected $builder;
 
-        protected $generator;
-        protected $eventMap = array();
-
-        public function setUp(Generator $generator) {
-            $this->generator = $generator;
-            foreach(array_keys($this->eventMap) as $event) {
-                $generator->registerHandler($event, $this);
-            }
+        public function __construct($builder, $description) {
+            $this->description = $description;
+            $this->builder = $builder;
         }
 
-        public function handle(Event $event) {
-            if (!isset($this->eventMap[$event->type])) {
-                throw new TodoBuilderException("Don't know how to handle event '{$event->type}'", BuilderException::UnkownEvent);
-            }
-            $payload = func_get_args();
-            array_shift($payload);
-            $this->doHandle($event);
+        public function getDescription() {
+            return $this->description;
         }
 
-        abstract protected function doHandle(Event $event);
-    }
+        public function getBuilder() {
+            return $this->builder;
+        }
 
-    class BuilderException extends \Exception {
-        const UnkownEvent = 1;
     }
 
 }

@@ -33,64 +33,39 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
+
 namespace TheSeer\phpDox {
 
-    class API {
+    use \TheSeer\fDom\fDomDocument;
+    use \TheSeer\fDom\fDomElement;
 
-        /**
-         * Refrence to the factory instance
-         *
-         * @var FactoryInterface
-         */
-        protected $factory;
+    abstract class AbstractEventBuilder implements EventBuilderInterface {
 
-        /**
-         * Internal map of registered Builders with their names and instance config
-         *
-         * @var array
-         */
-        protected $builderMap = array(
-            'EventGenerator' => array(),
-            'RawGenerator' => array()
-        );
+        protected $generator;
+        protected $eventMap = array();
 
-        /**
-         * Constructor
-         *
-         * @param FactoryInterface $factory
-         */
-        public function __construct(FactoryInterface $factory) {
-            $this->factory = $factory;
+        public function setUp(AbstractGenerator $generator) {
+            $this->generator = $generator;
+            foreach(array_keys($this->eventMap) as $event) {
+                $generator->registerBuilder($event, $this);
+            }
         }
 
-        /**
-         * Getter to receive the map of registered Builders
-         *
-         * @return array
-         */
-        public function getBuilderMap() {
-            return $this->builderMap;
+        public function handle(Event $event) {
+            if (!isset($this->eventMap[$event->type])) {
+                throw new TodoBuilderException("Don't know how to handle event '{$event->type}'", EventBuilderException::UnkownEvent);
+            }
+            $payload = func_get_args();
+            array_shift($payload);
+            $this->doHandle($event);
         }
 
-        /**
-         * Register a new builder with its name and instance
-         *
-         * @param BuilderInterface $builder     Builder instance to register
-         * @param string           $name        Name of the builder
-         * @param string           $description Descriptive title
-         */
-        public function registerBuilder(BuilderInterface $builder, $name, $description) {
-            $target = $builder instanceof EventBuilderInterface ? 'EventGenerator' : 'RawGenerator';
-            $cfg = new BuilderConfig($builder, $description);
-            $this->builderMap[$target][$name] = $cfg;
-        }
-
-        public function registerParser($annotation, ParserInterface $parser) {
-            $factory = $this->factory->getInstanceFor('DocblockFactory');
-            $factory->addParser($annotation, $parser);
-        }
-
+        abstract protected function doHandle(Event $event);
     }
+
+    class EventBuilderException extends \Exception {
+        const UnkownEvent = 1;
+    }
+
 }

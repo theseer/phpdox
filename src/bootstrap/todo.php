@@ -36,6 +36,6 @@
  */
 namespace TheSeer\phpDox {
 
-    $phpDox->registerBuilderClass('todo', 'TodoBuilderClass', '\\TheSeer\\phpDox\\todoBuilder');
+    $phpDox->registerBuilder(new TodoBuilder(), 'todo', 'Simple TODO list builder from @todo annotations');
 
 }

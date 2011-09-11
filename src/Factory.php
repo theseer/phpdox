@@ -155,18 +155,19 @@ namespace TheSeer\phpDox {
             return new Collector($this, $this->getContainer(), $this->xmlDir);
         }
 
-        protected function getGenerator($tplDir, $docDir) {
-            if (!isset($this->instances['generator'])) {
-                $this->instances['generator'] = new Generator($this, $this->xmlDir, $tplDir, $docDir, $this->getContainer());
-            }
-            return $this->instances['generator'];
+        protected function getEventGenerator($tplDir, $docDir) {
+            return new EventGenerator($this, $this->xmlDir, $tplDir, $docDir, $this->getContainer());
+        }
+
+        protected function getRawGenerator($tplDir, $docDir) {
+            return new RawGenerator($this, $this->xmlDir, $tplDir, $docDir, $this->getContainer());
         }
 
         protected function getClassBuilder(fDOMElement $ctx, array $aliasMap, $public, $encoding) {
             return new ClassBuilder($this->getDocblockParser(), $ctx, $aliasMap, $public, $encoding);
         }
 
-        protected function getService(Generator $generator) {
+        protected function getService(AbstractGenerator $generator) {
             return new Service($generator, $this->getContainer());
         }
 

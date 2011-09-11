@@ -79,7 +79,7 @@ namespace TheSeer\phpDox {
 
                 $errorHandler->setDebug($input->getOption('debug')->value);
 
-                if ((!$input->getOption('collect')->value && !$input->getOption('generate')->value) ||
+                if ((!$input->getOption('collect')->value && !$input->getOption('generate')->value && !$input->getOption('builder')->value) ||
                     $input->getOption('help')->value === true) {
                     $this->showVersion();
                     $this->showUsage();
@@ -103,6 +103,12 @@ namespace TheSeer\phpDox {
                 $app = $this->factory->getInstanceFor('Application');
                 $app->setLogger($logger);
                 $app->loadBootstrap($input->getOption('require')->value);
+
+                if ($input->getOption('builder')->value) {
+                    $this->showVersion();
+                    $this->showBuilders($app);
+                    exit(0);
+                }
 
                 if ($path = $input->getOption('collect')->value) {
                     $path = realpath($path);
@@ -164,6 +170,17 @@ namespace TheSeer\phpDox {
             }
             $shown = true;
             printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
+        }
+
+        protected function showBuilders(Application $app) {
+            $map = $app->getBuilderMap();
+            echo "\nThe following builder are registered:\n\n";
+            foreach($map as $generator) {
+                foreach($generator as $name => $obj) {
+                    printf("   %s \t %s\n", $name, $obj->getDescription());
+                }
+            }
+            echo "\n\n";
         }
 
         /**
@@ -235,6 +252,10 @@ namespace TheSeer\phpDox {
                 null, 'debug', \ezcConsoleInput::TYPE_NONE, null, false,
                 'For plugin developers only, enable php error reporting'
             ));
+            $input->registerOption( new \ezcConsoleOption(
+                null, 'builder', \ezcConsoleInput::TYPE_NONE, null, false,
+                'Show a list of available builders and exit'
+            ));
 
         }
 
@@ -269,6 +290,7 @@ Usage: phpdox [switches]
 
       --debug      For plugin developers only, enable php error reporting
 
+      --builder    Show a list of available builders and exit
 
 EOF;
         }

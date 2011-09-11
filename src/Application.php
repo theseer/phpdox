@@ -69,7 +69,7 @@ namespace TheSeer\phpDox {
         protected $factory;
 
         /**
-         * Map for builder names on actual classes to
+         * Map for builder names to generators and configs
          *
          * @var array
          */
@@ -108,10 +108,6 @@ namespace TheSeer\phpDox {
             $phpDox = $this->factory->getInstanceFor('API', $this);
 
             $bootstrap = function($filename) use ($phpDox) {
-                if (isset($this)) {
-                    // since PHP 5.4 is broken and magically injects $this, we have to unset it again manually...
-                    unset($this);
-                }
                 require $filename;
             };
 
@@ -124,6 +120,15 @@ namespace TheSeer\phpDox {
             }
 
             $this->builderMap = $phpDox->getBuilderMap();
+        }
+
+        /**
+         * Get BuilderMap array with registered builders
+         *
+         * @return Array
+         */
+        public function getBuilderMap() {
+            return $this->builderMap;
         }
 
         /**
@@ -160,26 +165,27 @@ namespace TheSeer\phpDox {
         public function runGenerator($generate, $tplDir, $docDir, $publicOnly = false) {
             $this->logger->reset();
 
-            $generator = $this->factory->getInstanceFor('Generator', $tplDir, $docDir);
-            $generator->setPublicOnly($publicOnly);
-
-            $eventFactory = $this->factory->getInstanceFor('EventFactory');
-            foreach($generator->getAllowedEvents() as $event) {
-                $this->factory->addFactory($event, $eventFactory);
+            /*
+            if (!isset($this->builderMap[$name])) {
+                throw new ApplicationException("'$name' is not a registered generation backend", ApplicationException::UnkownBackend);
             }
+            */
 
-            foreach($generate as $name) {
-                if (!isset($this->builderMap[$name])) {
-                    throw new ApplicationException("'$name' is not a registered generation backend", ApplicationException::UnkownBackend);
+            foreach($this->builderMap as $execGenerator => $builderList) {
+                $execList = array_intersect($generate, array_keys($builderList));
+                if (count($execList)) {
+                    $this->logger->log("Starting $execGenerator");
+                    $generator = $this->factory->getInstanceFor($execGenerator, $tplDir, $docDir);
+                    $generator->setPublicOnly($publicOnly);
+                    $list=array();
+                    foreach($execList as $exec) {
+                        $list[$exec] = $builderList[$exec];
+                    }
+                    $generator->run($list, $this->logger);
+                    $this->logger->log("$execGenerator process completed");
                 }
-                $title = $this->builderMap[$name];
-                $this->logger->log("Registering backend '$title'");
-                $backend = $this->factory->getInstanceFor($name);
-                $backend->setUp($generator);
             }
-            $this->logger->log("Starting generator\n");
-            $generator->run($this->logger);
-            $this->logger->log('Generator process completed');
+
         }
 
 
