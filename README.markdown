@@ -1,18 +1,28 @@
-﻿phpdox
+phpdox
 ======
 
-*PHPDox* is an alternative project to PHPDocumentor.
+**phpdox** is a documentation generator for generating API documentation from PHP source code.
 
 
 Requirements
 ------------
 
-You need to make sure you're using PHP 5.3+.
-Also there is a demand in some 3rd party tools:
+* PHP 5.3 with the [iconv](http://php.net/iconv) extension (version 2.12 or later of the iconv library is required)
 
-* iconv (version >= 2.12; http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
 
-Also, you'll need to install the following pear dependencies:
+Installation
+------------
+
+phpdox should be installed using the PEAR Installer, the backbone of the [PHP Extension and Application Repository](http://pear.php.net/) that provides a distribution system for PHP packages.
+
+Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. `sudo pear upgrade PEAR` usually suffices to upgrade an existing PEAR installation. The [PEAR Manual ](http://pear.php.net/manual/en/installation.getting.php) explains how to perform a fresh installation of PEAR.
+
+The following two commands are all that is required to install PHPUnit using the PEAR Installer:
+
+    sudo pear config-set auto_discover 1
+    sudo pear install pear.netpirates.net/phpdox
+
+The following dependencies need to be installed manually in case you want to use phpdox from a Git checkout:
 
     sudo pear channel-discover pear.netpirates.net
     sudo pear install theseer/DirectoryScanner
@@ -22,26 +32,11 @@ Also, you'll need to install the following pear dependencies:
     sudo pear channel-discover pear.pdepend.org
     sudo pear install pdepend/staticReflection-beta
 
-In case you do not use PHPUnit, you need to discover the pear channel for a dependency:
-
     sudo pear channel-discover pear.phpunit.de
-    sudo pear install phpunit/php_timer
-
-Finally, you'll need the ezcConsoleTools from components.ez.no:
+    sudo pear install phpunit/PHP_Timer
 
     sudo pear channel-discover components.ez.no
-    sudo pear install ezc/ConsoleTools 
-
-
-Installation
-------------
-
-Make sure you've installed all the requirements.
-
-Get the source code from GIT:
-
-    git clone git://github.com/theseer/phpdox.git
-
+    sudo pear install ezc/ConsoleTools
 
 Usage Examples
 --------------
@@ -49,36 +44,17 @@ Usage Examples
 You can run phpdox like this:
 
     ./phpdox.php --help
-    
+
 Sample invocation to parse and generate html output:
 
     ./phpdox.php -x /tmp/xml1 -c ~/Downloads/ZendFramework-1.11.5/library/Zend -d /tmp/docs1 -g html
 
 
-Trouble Shooting
-----------------
+Troubleshooting
+---------------
 
-* If you run phpdox.php and get the following error:
+* If you run `phpdox.php` and get an error like `PHP Fatal error:  require_once(): Failed opening required 'ezc/Base/base.php' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/phpdox/phpdox.php on line 58` make sure that you have installed `ezc/ConsoleTools` (see Installation) and that the `ezc` folder is located in your `include_path`.
 
-        PHP Fatal error:  require_once(): Failed opening required 'ezc/Base/base.php' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/phpdox/phpdox.php on line 58
+* If you run `phpdox.php` and get an error like `PHP Warning:  require(TheSeer/DirectoryScanner/autoload.php): failed to open stream: No such file or directory in /var/www/phpdox/phpdox.php on line 44` make sure you have installed the dependencies mentioned in the Installation section.
 
-    Make sure you've installed ezc/ConsoleTools (see requirements).
-    Make sure that the ezc/ folder is located in one of the include_path of the error. If not, create a symbolic link.
-
-* If you run phpdox.php and get the following error:
-
-        PHP Warning:  require(TheSeer/DirectoryScanner/autoload.php): failed to open stream: No such file or directory in /var/www/phpdox/phpdox.php on line 44
-    
-    Make sure you've installed the pear dependencies mentionned in the requirement section.
-
-* If you try to install theseer/fXSL and get the following error:
-
-        theseer/fXSL requires PHP extension "xsl"
-        No valid packages found
-        install failed
-    
-    Try to install the xsl extention of PHP. On Ubuntu, you can simply use:
-
-        sudo apt-get install php5-xsl
-
-    Once the extention is installed, you can re-try to install the fXSL dependency.
+* If you try to install `theseer/fXSL` and get an error like `theseer/fXSL requires PHP extension "xsl"` try to install the `xsl` extention of PHP. On Ubuntu, you can simply use `sudo apt-get install php5-xsl`. Once the extension is installed, you can re-try to install the fXSL dependency.
