@@ -19,6 +19,9 @@ Also, you'll need to install the following pear dependencies:
     sudo pear install theseer/fDOMDocument
     sudo pear install theseer/fXSL
 
+    sudo pear channel-discover pear.pdepend.org
+    sudo pear install pdepend/staticReflection-beta
+
 In case you do not use PHPUnit, you need to discover the pear channel for a dependency:
 
     sudo pear channel-discover pear.phpunit.de
@@ -37,12 +40,7 @@ Make sure you've installed all the requirements.
 
 Get the source code from GIT:
 
-    git clone --recursive git://github.com/theseer/phpdox.git
-
-_Note: If you've forgot the `--recursive` argument, you'll not have the staticReflection submodule in lib/. So you might want to use:_
-
-    git submodule init
-    git submodule update
+    git clone git://github.com/theseer/phpdox.git
 
 
 Usage Examples
