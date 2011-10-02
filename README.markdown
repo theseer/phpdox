@@ -1,25 +1,68 @@
-﻿phpdox
+﻿phDdox
 ======
 
-*PHPDox* is an alternative project to PHPDocumentor.
+*phpDox* is an alternative project to PHPDocumentor.
 
 
 Requirements
 ------------
 
-You need to make sure you're using PHP 5.3+.
-Also there is a demand in some 3rd party tools:
+PHP Version 5.3.2+ with ext/dom, ext/xsl, ext/iconv*
+                   + 
+- PHPDepend's staticReflection (https://github.com/manuelpichler/staticReflection)
+- fDOMDocument (https://github.com/theseer/fDOMDocument)
+- DirectoryScanner (https://github.com/theseer/DirectoryScanner)
+- fXSL (https://github.com/theseer/fXSL)
+- PHP-Timer (https://github.com/sebastianbergmann/php-timer) 
+- ezC / ZetaCompoents ConsoleTools (http://zeta-components.org/)
+
 
 * iconv (version >= 2.12; http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
 
-Also, you'll need to install the following pear dependencies:
+
+User Installation
+-----------------
+
+phpDox can be installed from pear. If you want to use phpDox and not develop its core, feel
+free to directly install it from pear:
+
+    sudo pear channel-discover pear.netpirates.net
+    sudo pear channel-discover pear.pdepend.org
+    sudo pear channel-discover pear.phpunit.de
+    sudo pear channel-discover components.ez.no
+    sudo pear install -a theseer/phpDox
+
+
+This should take care of installing all the required dependencies for you.
+
+
+Developer Installation
+----------------------
+
+In case you want to go bleeding edge or hack on the source, you'll have to clone this repository.
+
+ *NOTE*
+    The phpdox.php bootstrap file will assume that all depedencies have been installed from pear. In case
+    you do clone all the source repositories yourself, you have to adjust the include paths for them.
+
+
+To make things work, you now have to manually install the following pear dependencies (or clone their
+repositories and then adjust the paths in the phpdox.php bootstrap file):
 
     sudo pear channel-discover pear.netpirates.net
     sudo pear install theseer/DirectoryScanner
     sudo pear install theseer/fDOMDocument
     sudo pear install theseer/fXSL
 
-In case you do not use PHPUnit, you need to discover the pear channel for a dependency:
+phpDox makes heavy use of PDepend's staticReflection, which can either be installed via pear:
+
+    sudo pear channel-discover pear.pdepend.org
+    sudo pear install pdepend/staticReflection-beta
+
+In case that doesn't work for you, you may decide to use the staticReflection submodule linked
+with phpDox's repository.
+
+In case you do not use PHPUnit, you need to discover its pear channel for a dependency:
 
     sudo pear channel-discover pear.phpunit.de
     sudo pear install phpunit/php_timer
@@ -30,16 +73,12 @@ Finally, you'll need the ezcConsoleTools from components.ez.no:
     sudo pear install ezc/ConsoleTools 
 
 
-Installation
-------------
-
-Make sure you've installed all the requirements.
-
+Now you of course still need the source code of phpDox itself.
 Get the source code from GIT:
 
-    git clone --recursive git://github.com/theseer/phpdox.git
+    git clone git://github.com/theseer/phpdox.git
 
-_Note: If you've forgot the `--recursive` argument, you'll not have the staticReflection submodule in lib/. So you might want to use:_
+_Note: The following is only required if you did not install staticReflection from pear!_
 
     git submodule init
     git submodule update
