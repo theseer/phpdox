@@ -37,58 +37,9 @@
  */
 namespace TheSeer\phpDox {
 
-    class API {
+    interface RawBuilderInterface extends BuilderInterface {
 
-        /**
-         * Refrence to the factory instance
-         *
-         * @var FactoryInterface
-         */
-        protected $factory;
-
-        /**
-         * Internal map of registered Builders with their names and instance config
-         *
-         * @var array
-         */
-        protected $builderMap = array();
-
-        /**
-         * Constructor
-         *
-         * @param FactoryInterface $factory
-         */
-        public function __construct(FactoryInterface $factory) {
-            $this->factory = $factory;
-        }
-
-        /**
-         * Getter to receive the map of registered Builders
-         *
-         * @return array
-         */
-        public function getBuilderMap() {
-            return $this->builderMap;
-        }
-
-        /**
-         * Register a new builder with its name and instance
-         *
-         * @param string           $name        Public name of the builder
-         * @param BuilderInterface $builder     Builder instance to register
-         *
-         * @return BuilderConfig
-         */
-        public function registerBuilder($name, BuilderInterface $builder) {
-            $cfg = new BuilderConfig($builder);
-            $this->builderMap[$name] = $cfg;
-            return $cfg;
-        }
-
-        public function registerParser($annotation, ParserInterface $parser) {
-            $factory = $this->factory->getInstanceFor('DocblockFactory');
-            $factory->addParser($annotation, $parser);
-        }
+        public function run(Factory $factory,ProgressLogger $logger);
 
     }
 }

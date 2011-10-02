@@ -40,10 +40,25 @@ namespace TheSeer\phpDox {
 
         protected $description;
         protected $builder;
+        protected $generator = 'EventGenerator';
 
-        public function __construct($builder, $description) {
-            $this->description = $description;
+        public function __construct($builder) {
             $this->builder = $builder;
+        }
+
+        public function getGenerator() {
+            return $this->generator;
+        }
+
+        public function setGenerator($generator) {
+            //if (!class_exists($generator)) {
+            //    throw new BuilderConfigException("Generator '$generator' not defined.", BuilderConfigException::UnknownGenerator);
+            //}
+            $this->generator = $generator;
+        }
+
+        public function setDescription($description) {
+            $this->description = $description;
         }
 
         public function getDescription() {
@@ -54,6 +69,11 @@ namespace TheSeer\phpDox {
             return $this->builder;
         }
 
+    }
+
+    class BuilderConfigException extends \Exception {
+
+        const UnknownGenerator = 1;
     }
 
 }

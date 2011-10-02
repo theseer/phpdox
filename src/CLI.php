@@ -119,6 +119,7 @@ namespace TheSeer\phpDox {
                     );
                 }
                 if ($generate = $input->getOption('generate')->value) {
+
                     $app->runGenerator(
                         $generate,
                         $input->getOption('templates')->value,
@@ -174,11 +175,9 @@ namespace TheSeer\phpDox {
 
         protected function showBuilders(Application $app) {
             $map = $app->getBuilderMap();
-            echo "\nThe following builder are registered:\n\n";
-            foreach($map as $generator) {
-                foreach($generator as $name => $obj) {
-                    printf("   %s \t %s\n", $name, $obj->getDescription());
-                }
+            echo "\nThe following builders are registered:\n\n";
+            foreach($map as $name => $obj) {
+                printf("   %s \t %s\n", $name, $obj->getDescription());
             }
             echo "\n\n";
         }

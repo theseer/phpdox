@@ -165,29 +165,30 @@ namespace TheSeer\phpDox {
         public function runGenerator($generate, $tplDir, $docDir, $publicOnly = false) {
             $this->logger->reset();
 
-            /*
-            if (!isset($this->builderMap[$name])) {
-                throw new ApplicationException("'$name' is not a registered generation backend", ApplicationException::UnkownBackend);
+            $failed = array_diff($generate, array_keys($this->builderMap));
+            if (count($failed)) {
+               $list = join(',', $failed);
+               throw new ApplicationException("'$list' is/are not registered builder(s)", ApplicationException::UnknownBackend);
             }
-            */
 
-            foreach($this->builderMap as $execGenerator => $builderList) {
-                $execList = array_intersect($generate, array_keys($builderList));
-                if (count($execList)) {
-                    $this->logger->log("Starting $execGenerator");
-                    $generator = $this->factory->getInstanceFor($execGenerator, $tplDir, $docDir);
-                    $generator->setPublicOnly($publicOnly);
-                    $list=array();
-                    foreach($execList as $exec) {
-                        $list[$exec] = $builderList[$exec];
-                    }
-                    $generator->run($list, $this->logger);
-                    $this->logger->log("$execGenerator process completed");
+            $todo = array();
+            foreach($generate as $name) {
+                $cfg = $this->builderMap[$name];
+                $generator = $cfg->getGenerator();
+                if (!isset($todo[$generator])) {
+                    $todo[$generator]=array();
                 }
+                $todo[$generator][$name] = $cfg;
             }
 
+            foreach($todo as $execGenerator => $list) {
+                $this->logger->log("Starting $execGenerator");
+                $generator = $this->factory->getInstanceFor($execGenerator, $tplDir, $docDir);
+                $generator->setPublicOnly($publicOnly);
+                $generator->run($list, $this->logger);
+                $this->logger->log("$execGenerator process completed");
+            }
         }
-
 
         /**
          * Helper to cleanup
@@ -241,6 +242,6 @@ namespace TheSeer\phpDox {
     }
 
     class ApplicationException extends \Exception {
-        const UnkownBackend = 1;
+        const UnknownBackend = 1;
     }
 }
