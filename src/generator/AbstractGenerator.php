@@ -49,6 +49,8 @@ namespace TheSeer\phpDox {
 
         protected $xmlDir;
         protected $docDir;
+        protected $tplDir;
+
         protected $publicOnly = false;
 
         protected $namespaces;
@@ -79,6 +81,18 @@ namespace TheSeer\phpDox {
 
         public function setPublicOnly($switch) {
             $this->publicOnly = $switch;
+        }
+
+        public function getXMLDirectory() {
+            return $this->xmlDir;
+        }
+
+        public function getOutputDirectory() {
+            return $this->docDir;
+        }
+
+        public function getTemplateDirectory() {
+            return $this->tplDir;
         }
 
         /**
