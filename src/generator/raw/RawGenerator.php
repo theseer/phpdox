@@ -51,7 +51,9 @@ namespace TheSeer\phpDox {
             $this->logger = $logger;
             foreach($builderMap as $name => $cfg) {
                 $logger->log("Running $name");
-                $cfg->getBuilder()->run($this->factory, $logger);
+                $builder = $cfg->getBuilder();
+                $builder->setUp($this);
+                $builder->run($this->factory, $logger);
             }
             $logger->completed();
         }
