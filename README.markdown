@@ -8,12 +8,12 @@ Requirements
 ------------
 
 PHP Version 5.3.2+ with ext/dom, ext/xsl, ext/iconv*
-                   + 
+                   +
 - PHPDepend's staticReflection (https://github.com/manuelpichler/staticReflection)
 - fDOMDocument (https://github.com/theseer/fDOMDocument)
 - DirectoryScanner (https://github.com/theseer/DirectoryScanner)
 - fXSL (https://github.com/theseer/fXSL)
-- PHP-Timer (https://github.com/sebastianbergmann/php-timer) 
+- PHP-Timer (https://github.com/sebastianbergmann/php-timer)
 - ezC / ZetaCompoents ConsoleTools (http://zeta-components.org/)
 
 
@@ -70,7 +70,7 @@ In case you do not use PHPUnit, you need to discover its pear channel for a depe
 Finally, you'll need the ezcConsoleTools from components.ez.no:
 
     sudo pear channel-discover components.ez.no
-    sudo pear install ezc/ConsoleTools 
+    sudo pear install ezc/ConsoleTools
 
 
 Now you of course still need the source code of phpDox itself.
@@ -90,7 +90,7 @@ Usage Examples
 You can run phpdox like this:
 
     ./phpdox.php --help
-    
+
 Sample invocation to parse and generate html output:
 
     ./phpdox.php -x /tmp/xml1 -c ~/Downloads/ZendFramework-1.11.5/library/Zend -d /tmp/docs1 -g html
@@ -109,7 +109,7 @@ Trouble Shooting
 * If you run phpdox.php and get the following error:
 
         PHP Warning:  require(TheSeer/DirectoryScanner/autoload.php): failed to open stream: No such file or directory in /var/www/phpdox/phpdox.php on line 44
-    
+
     Make sure you've installed the pear dependencies mentionned in the requirement section.
 
 * If you try to install theseer/fXSL and get the following error:
@@ -117,7 +117,7 @@ Trouble Shooting
         theseer/fXSL requires PHP extension "xsl"
         No valid packages found
         install failed
-    
+
     Try to install the xsl extention of PHP. On Ubuntu, you can simply use:
 
         sudo apt-get install php5-xsl

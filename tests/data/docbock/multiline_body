@@ -3,7 +3,7 @@
  *
  * this body
  * spans multiple
- * lines 
+ * lines
  *
  * @param string $foo The foo parameter
  * @param int $bar Number of bars
