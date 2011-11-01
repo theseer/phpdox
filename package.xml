@@ -137,7 +137,7 @@
        <package>
         <name>fXSL</name>
         <channel>pear.netpirates.net</channel>
-        <min>1.0.2</min>
+        <min>1.0.4</min>
        </package>
        <package>
         <name>ConsoleTools</name>
