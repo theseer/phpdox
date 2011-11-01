@@ -79,22 +79,15 @@ namespace TheSeer\phpDox {
          * Constructor of PHPDox Application
          *
          * @param Factory   $factory   Factory instance
+         * @param ProgressLogger $logger Instance of the ProgressLogger class
          * @param Container $container Container instance, holding coleection DOMs
          * @param string    $xmlDir    Directory where (generated) xml files are stored in
          */
-        public function __construct(Factory $factory, Container $container, $xmlDir) {
+        public function __construct(Factory $factory, ProgressLogger $logger, Container $container, $xmlDir) {
             $this->factory = $factory;
+            $this->logger = $logger;
             $this->xmlDir = $xmlDir;
             $this->container = $container;
-        }
-
-        /**
-         * Set Logger instance to use
-         *
-         * @param ProgressLogger $logger Instance of the ProgressLogger class
-         */
-        public function setLogger(ProgressLogger $logger) {
-            $this->logger = $logger;
         }
 
         /**
@@ -105,7 +98,7 @@ namespace TheSeer\phpDox {
         public function loadBootstrap(Array $require) {
             $require = array_merge($require, glob(__DIR__ . '/bootstrap/*.php'));
 
-            $phpDox = $this->factory->getInstanceFor('API', $this);
+            $phpDox = $this->factory->getInstanceFor('API', $this, $this->logger);
 
             $bootstrap = function($filename) use ($phpDox) {
                 require $filename;

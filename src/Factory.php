@@ -47,13 +47,28 @@ namespace TheSeer\phpDox {
             'EventFactory' => '\\TheSeer\\phpDox\\EventFactory'
         );
 
+        protected $loggerMap = array(
+            'silent' => '\\TheSeer\\phpDox\\ProgressLogger',
+            'shell' => '\\TheSeer\\phpDox\\ShellProgressLogger'
+        );
+
         protected $instances = array();
         protected $xmlDir;
+
+        protected $loggerType = 'shell';
+        protected $logger;
 
         public function __construct(array $map = null) {
             if ($map !== null) {
                 $this->map = $map;
             }
+        }
+
+        public function setLoggerType($name) {
+            if (!isset($this->loggerMap[$name])) {
+                throw new FactoryException("No logger class for type '$name'", FactoryException::NoClassDefined);
+            }
+            $this->loggerType = $name;
         }
 
         public function setXMLDir($path) {
@@ -109,19 +124,15 @@ namespace TheSeer\phpDox {
             return new API($this, $this->getDocblockFactory());
         }
 
-        public function getLogger($name) {
-            switch ($name) {
-                case 'silent': {
-                    return new ProgressLogger();
-                }
-                case 'shell': {
-                    return new ShellProgressLogger();
-                }
+        public function getLogger() {
+            if (!$this->logger) {
+                $this->logger = new $this->loggerMap[$this->loggerType]();
             }
+            return $this->logger;
         }
 
         protected function getApplication() {
-            return new Application($this, $this->getContainer(), $this->xmlDir);
+            return new Application($this, $this->getLogger(), $this->getContainer(), $this->xmlDir);
         }
 
         protected function getContainer() {

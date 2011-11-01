@@ -92,16 +92,15 @@ namespace TheSeer\phpDox {
                 }
 
                 if ($input->getOption('silent')->value === true) {
-                    $logger = $this->factory->getLogger('silent');
+                    $this->factory->setLoggerType('silent');
                 } else {
                     $this->showVersion();
-                    $logger = $this->factory->getLogger('shell');
+                    $this->factory->setLoggerType('shell');
                 }
 
                 $this->factory->setXMLDir($input->getOption('xml')->value);
 
                 $app = $this->factory->getInstanceFor('Application');
-                $app->setLogger($logger);
                 $app->loadBootstrap($input->getOption('require')->value);
 
                 if ($input->getOption('builder')->value) {
@@ -128,7 +127,7 @@ namespace TheSeer\phpDox {
                     );
                 }
 
-                $logger->buildSummary();
+                $this->factory->getLogger()->buildSummary();
 
             } catch (\ezcConsoleException $e) {
                 $this->showVersion();
