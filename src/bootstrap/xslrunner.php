@@ -36,7 +36,7 @@
  */
 namespace TheSeer\phpDox {
 
-    $cfg = $phpDox->registerBuilder('test', new XSLRunnerBuilder());
+    $cfg = $phpDox->registerBuilder('xslrunner', new XSLRunnerBuilder());
     $cfg->setDescription('XSLRunner based html output');
     $cfg->setGenerator('RawGenerator');
 
