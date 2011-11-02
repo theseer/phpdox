@@ -85,9 +85,26 @@ namespace TheSeer\phpDox {
             return $cfg;
         }
 
-        public function registerParser($annotation, ParserInterface $parser) {
-            $factory = $this->factory->getInstanceFor('DocblockFactory');
-            $factory->addParser($annotation, $parser);
+        /**
+         * Register a new Annotation parser by its factory
+         *
+         * @param string           $annotation Annotation to be registered
+         * @param FactoryInterface $factory    Instance of factory to be asked for parser
+         */
+        public function registerParserFactory($annotation, FactoryInterface $factory) {
+            $this->factory->getInstanceFor('DocblockFactory')->addParserFactory($annotation, $factory);
+        }
+
+        /**
+         * Register a new Annotation parser by its classname
+         *
+         * The class will be instantiated by the DockblockFactory as need be
+         *
+         * @param string $annotation Annotation to be registered
+         * @param string $class      FQCN of class to be instantiated
+         */
+        public function registerParserClass($annotation, $class) {
+            $this->factory->getInstanceFor('DocblockFactory')->addParserClass($annotation, $class);
         }
 
     }
