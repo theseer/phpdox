@@ -36,7 +36,7 @@
  */
 namespace TheSeer\phpDox {
 
-    use \TheSeer\Tools\PHPFilterIterator;
+    use \TheSeer\DirectoryScanner\PHPFilterIterator;
     use \TheSeer\fDOM\fDOMDocument;
     use \TheSeer\fDOM\fDOMException;
 
@@ -123,7 +123,7 @@ namespace TheSeer\phpDox {
          * @param \Iterator      $scanner Iterator with splFileObjects
          * @param ProgressLogger $logger  A Logger instance to report progress and problems
          */
-        public function run(\Theseer\Tools\IncludeExcludeFilterIterator $scanner, $logger) {
+        public function run(\Theseer\DirectoryScanner\IncludeExcludeFilterIterator $scanner, $logger) {
             $worker = new PHPFilterIterator($scanner);
             $analyser = $this->factory->getInstanceFor('Analyser', $this->publicOnly);
 

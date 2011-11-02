@@ -42,7 +42,7 @@ namespace TheSeer\phpDox {
     class Factory implements FactoryInterface {
 
         protected $map = array(
-            'DirectoryScanner' => '\\TheSeer\\Tools\\DirectoryScanner',
+            'DirectoryScanner' => '\\TheSeer\\DirectoryScanner\\DirectoryScanner',
             'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
             'EventFactory' => '\\TheSeer\\phpDox\\EventFactory'
         );
