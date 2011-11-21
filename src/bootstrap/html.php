@@ -38,6 +38,5 @@ namespace TheSeer\phpDox {
 
     $cfg = $phpDox->registerBuilder('html', new HtmlBuilder());
     $cfg->setDescription('Simple HTML Output builder');
-    //$cfg->setGenerator('RawGenerator');
 
 }
