@@ -53,6 +53,8 @@ namespace TheSeer\phpDox {
             if ($event->type == 'phpdox.end') {
                 $content = "digraph phpdox {\n".join("\n", $this->content)."\n}";
                 $this->generator->saveFile($content, 'graph.dot');
+                $wd = $this->generator->getOutputDirectory();
+                exec("cd $wd && dot -ograph.png -x -Tpng graph.dot");
                 return;
             }
             if (isset($event->class)) {
