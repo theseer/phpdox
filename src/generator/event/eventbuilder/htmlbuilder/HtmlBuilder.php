@@ -58,11 +58,6 @@ namespace TheSeer\phpDox {
             'phpdox.end' => 'buildFinish'
         );
 
-        public function setUp(AbstractGenerator $generator) {
-            $this->generator = $generator;
-            parent::setUp($generator);
-        }
-
         public function doHandle(Event $event) {
             $this->{$this->eventMap[$event->type]}($event);
         }
