@@ -7,15 +7,15 @@ var phpDox = {
            success: function(data) {
               $('.classlist').append($(data).find('.classlist').children());
               $('.content').animate({height:$('.classlist').height()+100},200);
-           }        
-        });        
+           }
+        });
     },
-    
+
     toggleNamespace: function(id) {
     	$('#'+id).toggle('slow');
     	return false;
     },
-    
+
     loadClass: function(classname) {
         $.ajax({
             url: "classes/" + classname + '.xhtml',
@@ -24,11 +24,11 @@ var phpDox = {
                $('.main').html($(data).find('#class').children());
                var newHeight = $('.main').height();
                if ($('.classlist').height() < newHeight) {
-            	   $('.content').animate({height:newHeight+100},200);   
+            	   $('.content').animate({height:newHeight+100},200);
                } else {
             	   $('.content').animate({height:$('.classlist').height()+100},200);
                }
-            }     
+            }
          });
         return false;
     }

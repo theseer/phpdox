@@ -12,7 +12,7 @@ h1, h2, h3 {
 }
 
 .classNamespaceName{
-   
+
 }
 
 .className{
@@ -20,7 +20,7 @@ h1, h2, h3 {
 }
 
 .classConstants{
-   
+
 }
 
 .classConstantList{
@@ -35,11 +35,11 @@ h1, h2, h3 {
 }
 
 .classConstantItem{
-   
+
 }
 
 .classMembers{
-   
+
 }
 
 .classMemberList{
@@ -47,15 +47,15 @@ h1, h2, h3 {
 }
 
 .classMemberItem{
-   
+
 }
 
 .classMethods{
-   
+
 }
 
 .classMethod{
-   
+
 }
 
 .classMethodName{
@@ -72,11 +72,11 @@ h1, h2, h3 {
 }
 
 .classMethodParameters{
-   
+
 }
 
 .classMethodParameter{
-   
+
 }
 
 .classMethodParameterList{
@@ -98,7 +98,7 @@ h1, h2, h3 {
 
 .author{
    margin-top: 5px;
-   
+
 }
 
 .copyright:before{
@@ -106,7 +106,7 @@ h1, h2, h3 {
 }
 
 .copyright{
-   
+
 }
 
 .description{
@@ -120,7 +120,7 @@ h1, h2, h3 {
 }
 
 .longDescription{
-   
+
 }
 
 .inheritance {
