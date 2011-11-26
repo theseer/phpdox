@@ -1,4 +1,4 @@
-﻿phDdox
+﻿phpDox
 ======
 
 *phpDox* is an alternative project to PHPDocumentor.
@@ -7,17 +7,16 @@
 Requirements
 ------------
 
-PHP Version 5.3.2+ with ext/dom, ext/xsl, ext/iconv*
-                   + 
+- PHP Version 5.3.2+
+  - ext/dom
+  - ext/xsl
+  - ext/iconv (version >= 2.12; http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
 - PHPDepend's staticReflection (https://github.com/manuelpichler/staticReflection)
 - fDOMDocument (https://github.com/theseer/fDOMDocument)
 - DirectoryScanner (https://github.com/theseer/DirectoryScanner)
 - fXSL (https://github.com/theseer/fXSL)
 - PHP-Timer (https://github.com/sebastianbergmann/php-timer) 
-- ezC / ZetaCompoents ConsoleTools (http://zeta-components.org/)
-
-
-* iconv (version >= 2.12; http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
+- ezc / ZetaCompoents ConsoleTools (http://zeta-components.org/)
 
 
 User Installation
