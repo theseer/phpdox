@@ -48,6 +48,7 @@ namespace TheSeer\phpDox\DocBlock {
 
         public function parse($block, array $aliasMap) {
             $this->aliasMap = $aliasMap;
+            $this->current = null;
 
             $docBlock = $this->factory->getInstanceFor('DocBlock');
             $lines = $this->prepare($block);
@@ -71,9 +72,9 @@ namespace TheSeer\phpDox\DocBlock {
                     }
                     $buffer = array();
 
-                    $lineParts = explode(' ', ltrim($line, '@'), 2);
-                    $name      = $lineParts[0];
-                    $payload   = ( isset( $lineParts[1] ) ? $lineParts[1] : '' );
+                    preg_match('/^\@([a-zA-Z0-9_]+)(.*)$/', $line, $lineParts);
+                    $name      = $lineParts[1];
+                    $payload   = ( isset( $lineParts[2] ) ? trim($lineParts[2]) : '' );
 
                     $this->startParser($name, $payload);
                     continue;
@@ -90,7 +91,7 @@ namespace TheSeer\phpDox\DocBlock {
             $block = str_replace(array("\r\n","\r"), "\n", substr($block,2,-2));
             $raw = array();
             foreach(explode("\n", $block) as $line) {
-                $raw[] = substr(trim($line, " \n\t"), 2);
+                $raw[] = substr(trim($line, " \n\t"), 2) ?: '';
             }
             return $raw;
         }
