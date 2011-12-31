@@ -66,7 +66,7 @@ namespace TheSeer\phpDox {
 
         /** @todo Handle $this->dir for relative paths */
         public function getSourceDir() {
-            $src = $this->ctx->queryOne('../../cfg:collector')->getAttribute('src','src');
+            $src = $this->ctx->queryOne('../../cfg:collector')->getAttribute('source','src');
             if ($src[0]!='/') {
                 $src = $this->dir . '/' . $src;
             }
