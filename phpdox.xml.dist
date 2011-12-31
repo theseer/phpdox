@@ -9,7 +9,7 @@
     
         <collector source="src" publiconly="false">
             <include mask="*.php" />
-            <exclide mask="" />
+            <exclude mask="" />
         </collector>
     
         <generator output="/tmp/docs">
