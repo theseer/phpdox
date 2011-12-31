@@ -52,7 +52,7 @@ namespace TheSeer\phpDox {
         }
 
         public function getSourceDir() {
-            $src = $this->ctx->getAttribute('src','src');
+            $src = $this->ctx->getAttribute('source','src');
             if ($src[0]!='/') {
                 $src = $this->dir . '/' . $src;
             }
