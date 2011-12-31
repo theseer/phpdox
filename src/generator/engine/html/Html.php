@@ -45,7 +45,12 @@ namespace TheSeer\phpDox\Engine {
 
     class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
         public function getTemplateDir() {
-            return $this->ctx->queryOne('cfg:template')->getAttribute('dir','../../../templates');
+            $default = __DIR__ . '/../../../../templates';
+            $node = $this->ctx->queryOne('cfg:template');
+            if (!$node) {
+                return $default;
+            }
+            return $node->getAttribute('dir', $default);
         }
     }
 
