@@ -37,39 +37,32 @@
  */
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\phpDox\Engine\Factory as EngineFactory;
 
-        public function progress($state) {
-            parent::progress($state);
+    class EngineBootstrapApi {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
-            }
+        protected $name;
+        protected $factory;
+
+        public function __construct($name, EngineFactory $factory) {
+            $this->name = $name;
+            $this->factory = $factory;
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
+        public function implementedByClass($class) {
+            $this->factory->addEngineClass($this->name, $class);
+            return $this;
         }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+        public function instantiatedByFactory(FactoryInterface $factory) {
+            $this->factory->addEngineFactory($this->name, $factory);
+            return $this;
         }
 
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
+        public function withConfigClass($class) {
+            $this->factory->setConfigClass($this->name, $class);
+            return $this;
         }
-
 
     }
-
 }

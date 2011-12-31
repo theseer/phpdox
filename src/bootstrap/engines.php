@@ -33,43 +33,22 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    $phpDox->registerEngine('html', 'Simple HTML Output builder')
+            ->implementedByClass('TheSeer\\phpDox\\Engine\\Html')
+            ->withConfigClass('TheSeer\\phpDox\\Engine\\HtmlConfig');
 
-        public function progress($state) {
-            parent::progress($state);
+    $phpDox->registerEngine('graph','DOT output builder')
+            ->implementedByClass('TheSeer\\phpDox\\Engine\\Graph');
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
-            }
-        }
+    $phpDox->registerEngine('todo', 'Simple TODO list builder from @todo annotations')
+            ->implementedByClass('TheSeer\\phpDox\\Engine\\Todo');
+           // ->withConfigClass('TheSeer\\phpDox\\Engine\\TodoConfig');
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
-        }
-
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
-
-    }
+    $phpDox->registerEngine('xslrunner', 'XSLRunner based html output')
+            ->implementedByClass('TheSeer\\phpDox\\Engine\\XSLRunner')
+            ->withConfigClass('TheSeer\\phpDox\\Engine\\XSLRunnerConfig');
 
 }

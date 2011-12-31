@@ -35,41 +35,49 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\fDOM\fDOMDocument;
 
-        public function progress($state) {
-            parent::progress($state);
+    class ConfigLoader {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        public function load($fname) {
+           if (!file_exists($fname)) {
+               throw new ConfigLoaderException("Config file '$fname' not found", ConfigLoaderException::NotFound);
+           }
+           return $this->createInstanceFor($fname);
+        }
+
+        public function autodetect() {
+            $candidates = array(
+                    './phpdox.xml',
+                    './phpdox.xml.dist'
+            );
+            foreach($candidates as $fname) {
+                if (!file_exists($fname)) {
+                    continue;
+                }
+                return $this->createInstanceFor($fname);
+            }
+            throw new ConfigLoaderException("None of the candidate files found", ConfigLoaderException::NoCandidateExists);
+        }
+
+        protected function createInstanceFor($fname) {
+            try {
+                $dom = new fDOMDocument();
+                $dom->load($fname);
+                $dom->registerNamespace('cfg', 'http://phpdox.de/config');
+                return new GlobalConfig($dom, dirname(realpath($fname)));
+            } catch (fDOMException $e) {
+                throw new ConfigLoaderException("Parsing config file '$fname' failed.", ConfigLoaderException::ParseError, $e);
             }
         }
-
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
-        }
-
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
-
     }
 
+    class ConfigLoaderException extends \Exception {
+        const NotFound = 1;
+        const ParseError = 2;
+        const NoCandidateExists = 3;
+    }
 }

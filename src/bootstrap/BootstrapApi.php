@@ -37,39 +37,58 @@
  */
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
+    use TheSeer\phpDox\Engine\Factory as EngineFactory;
 
-        public function progress($state) {
-            parent::progress($state);
+    class BootstrapApi {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
-            }
+        /**
+         * Reference to the EngineFactory instance
+         *
+         * @var EngineFactory
+         */
+        protected $engineFactory;
+
+        /**
+         * Reference to the DocblockParserFactory instance
+         *
+         * @var DocBlockFactory
+         */
+        protected $parserFactory;
+
+
+        /**
+         * Array of registered engines
+         *
+         * @var array
+         */
+        protected $engines = array();
+
+        /**
+         * Constructor
+         *
+         * @param FactoryInterface $factory
+         */
+        public function __construct(EngineFactory $ef, DocBlockFactory $df, ProgressLogger $logger) {
+            $this->engineFactory = $ef;
+            $this->parserFactory = $df;
+            $this->logger = $logger;
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
+        public function getEngines() {
+            return $this->engines;
         }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+        public function registerEngine($name, $description) {
+            $this->logger->log("Registered output engine '$name'");
+            $this->engines[$name] = $description;
+            return new EngineBootstrapApi($name, $this->engineFactory);
         }
 
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
+        public function registerParser($annotation) {
+            $this->logger->log("Registered parser for '$annotation' annotation");
+            return new ParserBootstrapApi($annotation, $this->parserFactory);
         }
-
 
     }
-
 }

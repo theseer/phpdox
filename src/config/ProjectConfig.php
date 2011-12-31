@@ -35,40 +35,38 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\fDOM\fDOMElement;
 
-        public function progress($state) {
-            parent::progress($state);
+    abstract class ProjectConfig {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
-            }
+        /**
+         * @var fDOMElement
+         */
+        protected $ctx;
+
+        /**
+         * Base directory for relative path resolution
+         * @var string
+         */
+        protected $dir;
+
+        public function __construct(fDOMElement $ctx, $path = null) {
+            $this->ctx = $ctx;
+            $this->dir = $path;
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
+        public function getWorkDirectory() {
+            return $this->ctx->parentNode->getAttribute('workdir');
         }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+        public function isPublicOnlyMode() {
+            $global = $this->ctx->parentNode->getAttribute('publiconly','false') === 'true';
+            $local  = $this->ctx->getAttribute('publiconly','false') === 'true';
+            return  $global || $local;
         }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
 
     }
 

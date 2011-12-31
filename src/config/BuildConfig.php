@@ -35,40 +35,43 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
-        public function progress($state) {
-            parent::progress($state);
+    class BuildConfig extends ProjectConfig {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        public function getBuildNode() {
+            return $this->ctx;
+        }
+
+        public function getEngine() {
+            return $this->ctx->getAttribute('engine');
+        }
+
+        /** @todo Handle $this->dir for relative paths */
+        public function getOutputDir() {
+            $path = '';
+            if ($this->ctx->parentNode->hasAttribute('output')) {
+                $path = $this->ctx->parentNode->getAttribute('output','docs');
             }
-        }
-
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
+            if ($this->ctx->hasAttribute('output')) {
+                if ($path != '') { $path .= '/'; }
+                $path .= $this->ctx->getAttribute('output');
             }
-            echo "\n\n";
+            return $path;
         }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
+        /** @todo Handle $this->dir for relative paths */
+        public function getSourceDir() {
+            $src = $this->ctx->queryOne('../../cfg:collector')->getAttribute('src','src');
+            if ($src[0]!='/') {
+                $src = $this->dir . '/' . $src;
             }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+            return $src;
         }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
 
     }
 

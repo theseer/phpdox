@@ -35,41 +35,37 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
-        public function progress($state) {
-            parent::progress($state);
+    class CollectorConfig extends ProjectConfig {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        public function getIncludeMasks() {
+            return $this->getMasks('include') ?: '*.php';
+        }
+
+        public function getExcludeMasks() {
+            return $this->getMasks('exclude');
+        }
+
+        public function getSourceDir() {
+            $src = $this->ctx->getAttribute('src','src');
+            if ($src[0]!='/') {
+                $src = $this->dir . '/' . $src;
             }
+            return $src;
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
+        protected function getMasks($nodename) {
+            $list = array();
+            foreach($this->ctx->query('cfg:'.$nodename) as $node) {
+                $list[] = $node->getAttribute('mask');
             }
-            echo "\n\n";
+            return $list;
         }
-
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
-
     }
 
 }

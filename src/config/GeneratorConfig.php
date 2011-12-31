@@ -35,41 +35,34 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    class GeneratorConfig extends ProjectConfig {
 
-        public function progress($state) {
-            parent::progress($state);
+        protected $builds;
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        public function getActiveBuilds() {
+            if (!is_array($this->builds)) {
+                foreach($this->ctx->query('cfg:build[@engine and (not(@enabled) or @enabled="true")]') as $ctx) {
+                    $this->builds[] = new BuildConfig($ctx, $this->dir);
+                }
             }
+            return $this->builds;
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
+        public function getRequiredEngines() {
+            $engines = array();
+            foreach($this->getActiveBuilds() as $build) {
+                $engines[] = $build->getEngine();
             }
-            echo "\n\n";
+            return array_unique($engines);
         }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
+    }
 
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
-
+    class GeneratorConfigException extends ConfigException {
+        const BuilderNotFound = 1;
     }
 
 }

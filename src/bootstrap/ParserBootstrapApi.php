@@ -13,7 +13,7 @@
  *     this list of conditions and the following disclaimer in the documentation
  *     and/or other materials provided with the distribution.
  *
- *   * Neither the name of Arne Blankerts nor the names of contributors
+ *   * Neither the annotation of Arne Blankerts nor the annotations of contributors
  *     may be used to endorse or promote products derived from this software
  *     without specific prior written permission.
  *
@@ -37,39 +37,25 @@
  */
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
 
-        public function progress($state) {
-            parent::progress($state);
+    class ParserBootstrapApi {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
-            }
+        protected $annotation;
+        protected $factory;
+
+        public function __construct($annotation, DocBlockFactory $factory) {
+            $this->annotation = $annotation;
+            $this->factory = $factory;
         }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
+        public function implementedByClass($class) {
+            $this->factory->addParserClass($this->annotation, $class);
         }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+        public function instantiatedByFactory(FactoryInterface $factory) {
+            $this->factory->addParserFactory($this->annotation, $factory);
         }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
 
     }
-
 }

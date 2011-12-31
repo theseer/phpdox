@@ -35,41 +35,44 @@
  * @license    BSD License
  *
  */
+
 namespace TheSeer\phpDox {
 
-    class ShellProgressLogger extends ProgressLogger {
+    class Bootstrap {
 
-        public function progress($state) {
-            parent::progress($state);
+        public function __construct(ProgressLogger $logger, BootstrapApi $api) {
+            $this->logger = $logger;
+            $this->api = $api;
+        }
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        /**
+         * Load bootstrap files to register components and builder
+         *
+         * @param Array $require Array of files to require
+         *
+         * @return Array Map of BuilderConfig objects ([name => Config])
+         */
+        public function load(Array $require) {
+            $phpDox = $this->api;
+            $bootstrap = function($filename) use ($phpDox) {
+                require $filename;
+            };
+            $bootstrap( __DIR__ . '/engines.php');
+
+            foreach($require as $file) {
+                if (!file_exists($file) || !is_file($file)) {
+                    throw new BootstrapException("Require file '$file' not found or not a file", BootstrapException::RequireFailed);
+                }
+                $this->logger->log("Loading bootstrap file '$file'");
+                $bootstrap($file);
             }
+
+            return $this->api->getEngines();
         }
+    }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
-            }
-            echo "\n\n";
-        }
-
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
-
+    class BootstrapException extends \Exception {
+        const RequireFailed = 1;
     }
 
 }

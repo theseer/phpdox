@@ -35,41 +35,52 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Engine {
 
-    class ShellProgressLogger extends ProgressLogger {
+    use TheSeer\phpDox\BuildConfig;
 
-        public function progress($state) {
-            parent::progress($state);
+    class Factory {
 
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+        protected $engines = array();
+        protected $configs = array();
+
+        public function addEngineClass($name, $class) {
+            $this->engines[$name] = $class;
+        }
+
+        public function addEngineFactory($name, FactoryInterface $factory) {
+            $this->engines[$name] = $factory;
+        }
+
+        public function getEngineList() {
+            return array_keys($this->engines);
+        }
+
+        public function setConfigClass($name, $class) {
+            $this->configs[$name] = $class;
+        }
+
+        public function getInstanceFor(BuildConfig $buildCfg) {
+            $name = $buildCfg->getEngine();
+            if (!isset($this->engines[$name])) {
+                throw new FactoryException("Engine '$name' is not registered.", FactoryException::UnknownEngine);
             }
-        }
 
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
+            if (isset($this->configs[$name])) {
+                $cfg = new $this->configs[$name]($buildCfg->getBuildNode());
+            } else {
+                $cfg = $buildCfg;
             }
-            echo "\n\n";
-        }
 
-        public function log($msg) {
-            if (func_num_args()>1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
+            if ($this->engines[$name] instanceof FactoryInterface) {
+                return $this->engines[$name]->getInstanceFor($name, $cfg);
             }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+            return new $this->engines[$name]($cfg);
         }
-
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
 
     }
 
+    class FactoryException extends \Exception {
+        const UnknownEngine = 1;
+    }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.de/config" silent="false">
+
+    <bootstrap>
+        <!-- <require file="" /> -->
+    </bootstrap>    
+
+    <project name="phpdox" workdir="/tmp/xml">
+    
+        <collector source="src" publiconly="false">
+            <include mask="*.php" />
+            <exclide mask="" />
+        </collector>
+    
+        <generator output="/tmp/docs">
+            
+            <build engine="html" enabled="true" output="html">
+                <template dir="templates" />
+            </build>
+            
+            <build engine="todo" enabled="true" output="todo">
+                <file name="todolist.txt" encoding="utf-8" />
+            </build>
+            
+            <build engine="graph" enabled="true" output="graph">
+                <dot executable="/usr/bin/dot" render="true" format="png" />
+            </build>
+            
+            <build engine="xslrunner" enabled="true" output="html2">
+                <template dir="templates" />
+            </build>
+            
+        </generator>
+    </project>
+
+</phpdox>

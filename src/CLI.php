@@ -73,66 +73,76 @@ namespace TheSeer\phpDox {
             $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
             $errorHandler->register();
             try {
-                $input = new \ezcConsoleInput();
-                $this->registerOptions($input);
+                $input = $this->registerOptions();
                 $input->process();
-
-                $errorHandler->setDebug($input->getOption('debug')->value);
-
-                if ((!$input->getOption('collect')->value && !$input->getOption('generate')->value && !$input->getOption('builder')->value) ||
-                    $input->getOption('help')->value === true) {
-                    $this->showVersion();
-                    $this->showUsage();
-                    exit(0);
-                }
 
                 if ($input->getOption('version')->value === true) {
                     $this->showVersion();
                     exit(0);
                 }
 
-                if ($input->getOption('silent')->value === true) {
+                if ($input->getOption('help')->value === true) {
+                    $this->showVersion();
+                    $this->showUsage();
+                    exit(0);
+                }
+
+                $errorHandler->setDebug($input->getOption('debug')->value);
+
+                $cfgLoader = $this->factory->getInstanceFor('ConfigLoader');
+                $cfgFile = $input->getOption('file')->value;
+                if ($cfgFile) {
+                    $config = $cfgLoader->load($cfgFile);
+                } else {
+                    $config = $cfgLoader->autodetect();
+                }
+
+                if ($config->isSilentMode()) {
                     $this->factory->setLoggerType('silent');
                 } else {
                     $this->showVersion();
                     $this->factory->setLoggerType('shell');
                 }
 
-                $this->factory->setXMLDir($input->getOption('xml')->value);
-
                 $app = $this->factory->getInstanceFor('Application');
-                $app->loadBootstrap($input->getOption('require')->value);
+                $engines = $app->runBootstrap($config->getBootstrapFiles());
 
-                if ($input->getOption('builder')->value) {
+                if ($input->getOption('engines')->value) {
                     $this->showVersion();
-                    $this->showBuilders($app);
+                    $this->showEngines($engines);
                     exit(0);
                 }
 
-                if ($path = $input->getOption('collect')->value) {
-                    $path = realpath($path);
-                    $app->runCollector(
-                        $path,
-                        $this->getScanner($path, $input),
-                        $input->getOption('public')->value
-                    );
-                }
-                if ($generate = $input->getOption('generate')->value) {
+                $logger = $this->factory->getLogger();
 
-                    $app->runGenerator(
-                        $generate,
-                        $input->getOption('templates')->value,
-                        $input->getOption('docs')->value,
-                        $input->getOption('public')->value
-                    );
+                foreach($config->getAvailableProjects() as $project) {
+                    $logger->log("Starting to process project '$project'");
+
+                    if (!$input->getOption('generator')->value) {
+                        $app->runCollector( $config->getCollectorConfig($project) );
+                    }
+
+                    if (!$input->getOption('collector')->value) {
+                        $app->runGenerator( $config->getGeneratorConfig($project) );
+                    }
+
+                    $logger->log("Processing project '$project' completed.");
+
                 }
 
-                $this->factory->getLogger()->buildSummary();
+                $logger->buildSummary();
 
             } catch (\ezcConsoleException $e) {
                 $this->showVersion();
-                fwrite(STDERR, $e->getMessage()."\n\n");
+                fwrite(STDERR, "\n".$e->getMessage()."\n\n");
                 $this->showUsage();
+                exit(3);
+            } catch (ConfigLoaderException $e) {
+                $this->showVersion();
+                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n" . $e->getMessage()."\n\n");
+                exit(3);
+            } catch (ApplicationException $e) {
+                fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");
                 exit(3);
             } catch (\Exception $e) {
                 if ($e instanceof fDOMException) {
@@ -141,23 +151,6 @@ namespace TheSeer\phpDox {
                 $this->showVersion();
                 $errorHandler->handleException($e);
             }
-        }
-
-        /**
-         * Helper to get instance of DirectoryScanner with cli options applied
-         *
-         * @param string          $path  Path to get iterator scanner for
-         * @param ezcConsoleInput $input CLI Options pased to app
-         *
-         * @return Theseer\Tools\IncludeExcludeFilterIterator
-         */
-        protected function getScanner($path, \ezcConsoleInput $input) {
-            $scanner = $this->factory->getInstanceFor(
-                'Scanner',
-                $input->getOption('include')->value,
-                $input->getOption('exclude')->value
-            );
-            return $scanner($path);
         }
 
         /**
@@ -172,21 +165,21 @@ namespace TheSeer\phpDox {
             printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
         }
 
-        protected function showBuilders(Application $app) {
-            $map = $app->getBuilderMap();
-            echo "\nThe following builders are registered:\n\n";
-            foreach($map as $name => $obj) {
-                printf("   %s \t %s\n", $name, $obj->getDescription());
+        protected function showEngines(Array $list) {
+            echo "\nThe following engines are registered:\n\n";
+            foreach($list as $name => $desc) {
+                printf("   %s \t %s\n", $name, $desc);
             }
             echo "\n\n";
         }
 
         /**
-         * Helper to register supported CLI options into ezcConsoleInput
+         * Helper to register supported CLI options into an ezcConsoleInput
          *
-         * @param \ezcConsoleInput $input ezcConsoleInput instance to register options in to
+         * @return \ezcConsoleInput $input ezcConsoleInput instance options get registered in to
          */
-        protected function registerOptions(\ezcConsoleInput $input) {
+        protected function registerOptions() {
+            $input = new \ezcConsoleInput();
             $versionOption = $input->registerOption( new \ezcConsoleOption( 'v', 'version' ) );
             $versionOption->shorthelp    = 'Prints the version and exits';
             $versionOption->isHelpOption = true;
@@ -196,65 +189,33 @@ namespace TheSeer\phpDox {
             $helpOption->shorthelp    = 'Prints this usage information';
 
             $input->registerOption( new \ezcConsoleOption(
-                'i', 'include', \ezcConsoleInput::TYPE_STRING, '*.php', true,
-                'File pattern to include (default: *.php)'
-            ));
-            $input->registerOption( new \ezcConsoleOption(
-                'e', 'exclude', \ezcConsoleInput::TYPE_STRING, null, true,
-                'File pattern to exclude'
-            ));
-
-            $input->registerOption( new \ezcConsoleOption(
-                'x', 'xml', \ezcConsoleInput::TYPE_STRING, './xml', false,
-                'Output directory for collected data (default: ./xml)'
-            ));
-            $input->registerOption( new \ezcConsoleOption(
-                'd', 'docs', \ezcConsoleInput::TYPE_STRING, './docs', false,
-                'Output directory for generated documentation (default: ./docs)'
-            ));
-            $input->registerOption( new \ezcConsoleOption(
-                'p', 'public', \ezcConsoleInput::TYPE_NONE, null, false,
-                'Only show public member and methods'
-            ));
-
-            $input->registerOption( new \ezcConsoleOption(
-                'g', 'generate', \ezcConsoleInput::TYPE_STRING, null, true,
-                'generate documentation'
-            ));
-            $col = $input->registerOption( new \ezcConsoleOption(
-                'c', 'collect', \ezcConsoleInput::TYPE_STRING, null, false,
-                'collect data in given source directory'
-            ));
-
-            $input->registerOption( new \ezcConsoleOption(
-                's', 'silent', \ezcConsoleInput::TYPE_NONE, null, false,
-                'Do not output anything to the console'
-            ));
-            $input->registerOption( new \ezcConsoleOption(
-                'l', 'log', \ezcConsoleInput::TYPE_STRING, null, false,
-                'Generate XML style logfile'
-            ));
-            $input->registerOption( new \ezcConsoleOption(
-                'f', 'file', \ezcConsoleInput::TYPE_STRING, './phpdox.xml', true,
+                'f', 'file', \ezcConsoleInput::TYPE_STRING, null, true,
                 'Configuration file to load'
             ));
-            $input->registerOption( new \ezcConsoleOption(
-                'r', 'require', \ezcConsoleInput::TYPE_STRING, array(), true,
-                'Custom PHP Source file to load'
+
+            $c = $input->registerOption( new \ezcConsoleOption(
+                    'c', 'collector', \ezcConsoleInput::TYPE_NONE, null, false,
+                    'Run collector process only'
             ));
-            $input->registerOption( new \ezcConsoleOption(
-                't', 'templates', \ezcConsoleInput::TYPE_STRING, __DIR__ . '/../templates', false,
-                'Output directory for collected data (default: ./xml)'
+
+            $g = $input->registerOption( new \ezcConsoleOption(
+                    'g', 'generator', \ezcConsoleInput::TYPE_NONE, null, false,
+                    'Run generator process only'
             ));
+
+            $g->addExclusion(new \ezcConsoleOptionRule($c));
+            $c->addExclusion(new \ezcConsoleOptionRule($g));
+
             $input->registerOption( new \ezcConsoleOption(
                 null, 'debug', \ezcConsoleInput::TYPE_NONE, null, false,
                 'For plugin developers only, enable php error reporting'
             ));
             $input->registerOption( new \ezcConsoleOption(
-                null, 'builder', \ezcConsoleInput::TYPE_NONE, null, false,
-                'Show a list of available builders and exit'
+                null, 'engines', \ezcConsoleInput::TYPE_NONE, null, false,
+                'Show a list of available engines and exit'
             ));
 
+            return $input;
         }
 
         /**
@@ -264,31 +225,15 @@ namespace TheSeer\phpDox {
             print <<<EOF
 Usage: phpdox [switches]
 
-  -f, --file       Configuration file to use (default: ./phpdox.xml, not implemented yet)
-
-  -c, --collect    Scan directory and collect input (default: ./src)
-  -g, --generate   Generate documentation (default builder: html)
-
-  -p, --public     Only process public member and methods
-
-  -x, --xml        Output directory for collected data (default: ./xml)
-  -d, --docs       Output directory for generated documentation (default: ./docs)
-  -t, --templates  Overwrite directory to load templates from
-
-  -l, --log        Generate XML style logfile (not implemented yet)
-  -s, --silent     Do not output anything to the console
-
-  -i, --include    File pattern to include (default: *.php)
-  -e, --exclude    File pattern to exclude
-
-  -r, --require    Load additional bootstrap files
+  -f, --file       Configuration file to use (defaults to ./phpdox.xml[.dist])
 
   -h, --help       Prints this usage information
   -v, --version    Prints the version and exits
 
       --debug      For plugin developers only, enable php error reporting
 
-      --builder    Show a list of available builders and exit
+      --engines    Show a list of available output engines and exit
+
 
 EOF;
         }

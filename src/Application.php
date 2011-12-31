@@ -37,6 +37,7 @@
  */
 namespace TheSeer\phpDox {
 
+    use \Theseer\DirectoryScanner\IncludeExcludeFilterIterator as Scanner;
     use \TheSeer\fDom\fDomDocument;
 
     class Application {
@@ -47,13 +48,6 @@ namespace TheSeer\phpDox {
          * @var Logger
          */
         protected $logger;
-
-        /**
-         * Base path xml files are stored in
-         *
-         * @var string
-         */
-        protected $xmlDir;
 
         /**
          * Helper class wrapping container DOMDocuments
@@ -80,132 +74,102 @@ namespace TheSeer\phpDox {
          *
          * @param Factory   $factory   Factory instance
          * @param ProgressLogger $logger Instance of the ProgressLogger class
-         * @param Container $container Container instance, holding coleection DOMs
-         * @param string    $xmlDir    Directory where (generated) xml files are stored in
          */
-        public function __construct(Factory $factory, ProgressLogger $logger, Container $container, $xmlDir) {
+        public function __construct(Factory $factory, ProgressLogger $logger) {
             $this->factory = $factory;
             $this->logger = $logger;
-            $this->xmlDir = $xmlDir;
-            $this->container = $container;
         }
 
-        /**
-         * Load bootstrap files to register components and builder
-         *
-         * @param Array $require Array of files to require
-         */
-        public function loadBootstrap(Array $require) {
-            $require = array_merge($require, glob(__DIR__ . '/bootstrap/*.php'));
-
-            $phpDox = $this->factory->getInstanceFor('API', $this, $this->logger);
-
-            $bootstrap = function($filename) use ($phpDox) {
-                require $filename;
-            };
-
-            foreach($require as $file) {
-                if (!file_exists($file) || !is_file($file)) {
-                    throw new CLIException("Require file '$file' not found or not a file", CLIException::RequireFailed);
-                }
-                $this->logger->log("Loading additional bootstrap file '$file'");
-                $bootstrap($file);
-            }
-
-            $this->builderMap = $phpDox->getBuilderMap();
-        }
-
-        /**
-         * Get BuilderMap array with registered builders
-         *
-         * @return Array
-         */
-        public function getBuilderMap() {
-            return $this->builderMap;
+        public function runBootstrap(array $requires) {
+            $bootstrap = $this->factory->getInstanceFor('Bootstrap');
+            return $bootstrap->load($requires);
         }
 
         /**
          * Run collection process on given directory tree
          *
-         * @param string           $srcDir     Base path of source tree
-         * @param DirectoryScanner $scanner    A Directory scanner object to process
-         * @param boolean          $publicOnly Flag to enable processing of only public methods and members
+         * @param CollectorConfig  $config     Configuration options
+         * @param Scanner          $scanner    A Directory scanner iterator for files/dirs to process
          *
          * @return void
          */
-        public function runCollector($srcDir, $scanner, $publicOnly = false) {
+        public function runCollector(CollectorConfig $config) {
             $this->logger->log("Starting collector\n");
-            $collector = $this->factory->getInstanceFor('Collector');
-            $collector->setPublicOnly($publicOnly);
-            $collector->setStartIndex(strlen(dirname($srcDir)));
-            $collector->run($scanner, $this->logger);
 
-            $this->cleanUp($srcDir);
-            $this->container->save();
+            $srcDir = $config->getSourceDir();
+            $xmlDir = $config->getWorkDirectory();
+
+            $scanner = $this->factory->getInstanceFor(
+                    'Scanner',
+                    $config->getIncludeMasks(),
+                    $config->getExcludeMasks()
+            );
+            $container = $this->factory->getInstanceFor('container', $xmlDir);
+
+            $collector = $this->factory->getInstanceFor('Collector');
+            $collector->setStartIndex(strlen(dirname($srcDir)));
+            $collector->run(
+                $scanner($srcDir),
+                $container,
+                $this->factory->getInstanceFor('Analyser', $config->isPublicOnlyMode()),
+                $xmlDir
+            );
+
+            $this->cleanUp($container, $xmlDir, $srcDir);
+            $container->save();
             $this->logger->log('Collector process completed');
         }
 
         /**
          * Run Documentation generation process
          *
-         * @param string  $generate   array of generator backends to run
-         * @param string  $tplDir     base directory for templates
-         * @param string  $docDir     Output directory to store documentation in
-         * @param boolean $publicOnly Flag to enable processing of only public methods and members
-         *
          * @return void
          */
-        public function runGenerator($generate, $tplDir, $docDir, $publicOnly = false) {
+        public function runGenerator(GeneratorConfig $config) {
             $this->logger->reset();
+            $this->logger->log("Starting generator\n");
 
-            $failed = array_diff($generate, array_keys($this->builderMap));
+            $efactory = $this->factory->getInstanceFor('EngineFactory');
+
+            $failed = array_diff($config->getRequiredEngines(), $efactory->getEngineList());
             if (count($failed)) {
-               $list = join(',', $failed);
-               throw new ApplicationException("'$list' is/are not registered builder(s)", ApplicationException::UnknownBackend);
+               $list = join("', '", $failed);
+               throw new ApplicationException("The engine(s) '$list' is/are not registered", ApplicationException::UnknownEngine);
             }
 
-            $todo = array();
-            foreach($generate as $name) {
-                $cfg = $this->builderMap[$name];
-                $generator = $cfg->getGenerator();
-                if (!isset($todo[$generator])) {
-                    $todo[$generator]=array();
-                }
-                $todo[$generator][$name] = $cfg;
+            $generator = $this->factory->getInstanceFor('Generator');
+
+            foreach($config->getActiveBuilds() as $buildCfg) {
+                $generator->addEngine( $efactory->getInstanceFor($buildCfg) );
             }
 
-            foreach($todo as $execGenerator => $list) {
-                $this->logger->log("Starting $execGenerator");
-                $generator = $this->factory->getInstanceFor($execGenerator, $tplDir, $docDir);
-                $generator->setPublicOnly($publicOnly);
-                $generator->run($list, $this->logger);
-                $this->logger->log("$execGenerator process completed");
-            }
+            $generator->run($this->factory->getInstanceFor('Container', $config->getWorkDirectory()), $config->isPublicOnlyMode());
+            $this->logger->log("Generator process completed");
         }
 
         /**
          * Helper to cleanup
          *
-         * @param string $srcDir Source directory to compare xml structure with
+         * @todo  This should be moved into the collector class
+         *
+         * @param Container $container Container xml holding wrapper
+         * @param string    $xmlDir    XML work directory with previously collected xml data
+         * @param string    $srcDir    Source directory to compare xml structures with
          */
-        protected function cleanup($srcDir) {
+        protected function cleanup($container, $xmlDir, $srcDir) {
             $worker = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($this->xmlDir, \FilesystemIterator::SKIP_DOTS),
+                new \RecursiveDirectoryIterator($xmlDir, \FilesystemIterator::SKIP_DOTS),
                 \RecursiveIteratorIterator::CHILD_FIRST
             );
-            $len = strlen($this->xmlDir);
+            $len = strlen($xmlDir);
             $srcPath = dirname($srcDir);
 
-            $containers = array(
-                $this->container->getDocument('namespaces'),
-                $this->container->getDocument('classes'),
-                $this->container->getDocument('interfaces')
-            );
+            $containers = array('namespaces','classes','interfaces');
 
             $whitelist = array(
-                $this->xmlDir . '/namespaces.xml',
-                $this->xmlDir . '/classes.xml',
-                $this->xmlDir . '/interfaces.xml'
+                $xmlDir . '/namespaces.xml',
+                $xmlDir . '/classes.xml',
+                $xmlDir . '/interfaces.xml'
             );
 
             foreach($worker as $fname => $file) {
@@ -217,8 +181,8 @@ namespace TheSeer\phpDox {
                     $srcFile = $srcPath . substr($fname, $len, -4);
                     if (!file_exists($srcFile)) {
                         unlink($fname);
-                        foreach($containers as $dom) {
-                            foreach($dom->query("//phpdox:*[@src='{$srcFile}']") as $node) {
+                        foreach($containers as $name) {
+                            foreach($container->getDocument($name)->query("//phpdox:*[@src='{$srcFile}']") as $node) {
                                 $node->parentNode->removeChild($node);
                             }
                         }
@@ -235,6 +199,6 @@ namespace TheSeer\phpDox {
     }
 
     class ApplicationException extends \Exception {
-        const UnknownBackend = 1;
+        const UnknownEngine = 1;
     }
 }
