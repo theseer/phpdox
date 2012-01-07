@@ -95,7 +95,42 @@ namespace TheSeer\phpDox {
             if (!$ctx) {
                 throw new ConfigException("Project '$project' not found in configuration xml file", ConfigException::ProjectNotFound);
             }
-            return new ProjectConfig($ctx);
+            return new ProjectConfig($this->runResolver($ctx));
+        }
+
+        protected function runResolver($ctx) {
+            $vars = array(
+                'basedir' => $ctx->getAttribute('basedir', dirname($this->fname)),
+
+                'phpDox.home' => realpath(__DIR__.'/../../'),
+                'phpDox.file' => $this->fname,
+                'phpDox.version' => CLI::VERSION,
+
+                'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
+                'phpDox.project.source' => $ctx->getAttribute('source', 'src'),
+                'phpDox.project.workdir' => $ctx->getAttribute('workdir','xml'),
+
+                'phpDox.php.version' => PHP_VERSION,
+
+            );
+            $protected = array_keys($vars);
+
+            foreach($ctx->query('cfg:property') as $property) {
+                $name = $property->getAttribute('name');
+                if (!in_array($name, $protected)) {
+                    $vars[$name] =  $this->resolveValue($property->getAttribute('value'), $vars);
+                }
+            }
+
+            foreach($ctx->query('*[not(name()="property")]/@*') as $attr) {
+                $attr->nodeValue = $this->resolveValue($attr->nodeValue, $vars);
+            }
+
+            return $ctx;
+        }
+
+        protected function resolveValue($value, Array $vars) {
+            return preg_replace_callback('/\${(.*)}/', function($matches) use ($vars) { var_dump($matches); return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0]; }, $value);
         }
 
     }
