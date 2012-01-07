@@ -52,7 +52,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\engine\\graph' => '/generator/engine/graph/Graph.php',
                 'theseer\\phpdox\\engine\\html' => '/generator/engine/html/Html.php',
                 'theseer\\phpdox\\engine\\html\\functions' => '/generator/engine/html/functions.php',
-                'theseer\\phpdox\\engine\\htmlconfig' => '/generator/engine/html/Html.php',
+                'theseer\\phpdox\\engine\\htmlconfig' => '/generator/engine/html/HtmlConfig.php',
                 'theseer\\phpdox\\engine\\todo' => '/generator/engine/todo/Todo.php',
                 'theseer\\phpdox\\engine\\xslrunner' => '/generator/engine/XSLRunner/XSLRunner.php',
                 'theseer\\phpdox\\engine\\xslrunnerconfig' => '/generator/engine/XSLRunner/XSLRunner.php',
@@ -75,7 +75,9 @@ spl_autoload_register(
                 'theseer\\phpdox\\progressloggerexception' => '/logger/ProgressLogger.php',
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
                 'theseer\\phpdox\\service' => '/generator/Service.php',
-                'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php'
+                'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php',
+                'theseer\\phpdox\\variableexception' => '/shared/Variables.php',
+                'theseer\\phpdox\\variables' => '/shared/Variables.php'
             );
         }
         $cn = strtolower($class);
