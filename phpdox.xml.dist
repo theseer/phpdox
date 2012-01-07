@@ -5,9 +5,9 @@
         <!-- <require file="" /> -->
     </bootstrap>    
 
-    <project name="phpdox" workdir="/tmp/xml">
+    <project name="phpdox" source="src" workdir="/tmp/xml">
     
-        <collector source="src" publiconly="false">
+        <collector publiconly="false">
             <include mask="*.php" />
             <exclude mask="" />
         </collector>
@@ -15,7 +15,7 @@
         <generator output="/tmp/docs">
             
             <build engine="html" enabled="true" output="html">
-                <template dir="templates" />
+                <!--<template dir="templates" />-->
             </build>
             
             <build engine="todo" enabled="true" output="todo">
