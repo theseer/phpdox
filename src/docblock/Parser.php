@@ -81,6 +81,10 @@ namespace TheSeer\phpDox\DocBlock {
                 }
                 $buffer[] = $line;
             }
+            if (!$this->current) {
+                // A Single line docblock with no @ annotation is considered a description
+                $this->startParser('description');
+            }
             $docBlock->appendElement(
                 $this->current->getObject($buffer)
             );
