@@ -43,17 +43,6 @@ namespace TheSeer\phpDox\Engine {
 
     use \TheSeer\phpDox\Event;
 
-    class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
-        public function getTemplateDir() {
-            $default = __DIR__ . '/../../../../templates';
-            $node = $this->ctx->queryOne('cfg:template');
-            if (!$node) {
-                return $default;
-            }
-            return $node->getAttribute('dir', $default);
-        }
-    }
-
     class Html extends AbstractEngine {
 
         protected $eventMap = array(
@@ -71,8 +60,8 @@ namespace TheSeer\phpDox\Engine {
         protected $interfacesDom;
 
         public function __construct(HtmlConfig $config) {
-            $this->templateDir = $config->getTemplateDir();
-            $this->outputDir = $config->getOutputDir();
+            $this->templateDir = $config->getTemplateDirectory();
+            $this->outputDir = $config->getOutputDirectory();
         }
 
         public function getEvents() {

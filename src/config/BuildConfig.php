@@ -41,7 +41,21 @@ namespace TheSeer\phpDox {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
 
-    class BuildConfig extends ProjectConfig {
+    class BuildConfig {
+
+        protected $ctx;
+        protected $generator;
+        protected $project;
+
+        public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
+            $this->generator = $generator;
+            $this->project = $generator->getProjectConfig();
+            $this->ctx = $ctx;
+        }
+
+        public function getGeneratorConfig() {
+            return $this->generator;
+        }
 
         public function getBuildNode() {
             return $this->ctx;
@@ -51,8 +65,7 @@ namespace TheSeer\phpDox {
             return $this->ctx->getAttribute('engine');
         }
 
-        /** @todo Handle $this->dir for relative paths */
-        public function getOutputDir() {
+        public function getOutputDirectory() {
             $path = '';
             if ($this->ctx->parentNode->hasAttribute('output')) {
                 $path = $this->ctx->parentNode->getAttribute('output','docs');
@@ -64,13 +77,8 @@ namespace TheSeer\phpDox {
             return $path;
         }
 
-        /** @todo Handle $this->dir for relative paths */
-        public function getSourceDir() {
-            $src = $this->ctx->queryOne('../../cfg:collector')->getAttribute('source','src');
-            if ($src[0]!='/') {
-                $src = $this->dir . '/' . $src;
-            }
-            return $src;
+        public function getSourceDirectory() {
+            return $this->project->getSourceDirectory();
         }
 
     }

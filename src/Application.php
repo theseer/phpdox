@@ -96,7 +96,7 @@ namespace TheSeer\phpDox {
         public function runCollector(CollectorConfig $config) {
             $this->logger->log("Starting collector\n");
 
-            $srcDir = $config->getSourceDir();
+            $srcDir = $config->getSourceDirectory();
             $xmlDir = $config->getWorkDirectory();
 
             $scanner = $this->factory->getInstanceFor(
@@ -107,7 +107,7 @@ namespace TheSeer\phpDox {
             $container = $this->factory->getInstanceFor('container', $xmlDir);
 
             $collector = $this->factory->getInstanceFor('Collector');
-            $collector->setStartIndex(strlen(dirname($srcDir)));
+            $collector->setStartIndex(strlen(dirname(realpath($srcDir))));
             $collector->run(
                 $scanner($srcDir),
                 $container,
@@ -142,8 +142,9 @@ namespace TheSeer\phpDox {
             foreach($config->getActiveBuilds() as $buildCfg) {
                 $generator->addEngine( $efactory->getInstanceFor($buildCfg) );
             }
+            $pconfig = $config->getProjectConfig();
 
-            $generator->run($this->factory->getInstanceFor('Container', $config->getWorkDirectory()), $config->isPublicOnlyMode());
+            $generator->run($this->factory->getInstanceFor('Container', $pconfig->getWorkDirectory()), $pconfig->isPublicOnlyMode());
             $this->logger->log("Generator process completed");
         }
 

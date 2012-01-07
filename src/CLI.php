@@ -104,6 +104,9 @@ namespace TheSeer\phpDox {
                     $this->factory->setLoggerType('shell');
                 }
 
+                $logger = $this->factory->getLogger();
+                $logger->log("Using config file '". $config->getFilename(). "'");
+
                 $app = $this->factory->getInstanceFor('Application');
                 $engines = $app->runBootstrap($config->getBootstrapFiles());
 
@@ -113,17 +116,16 @@ namespace TheSeer\phpDox {
                     exit(0);
                 }
 
-                $logger = $this->factory->getLogger();
-
                 foreach($config->getAvailableProjects() as $project) {
                     $logger->log("Starting to process project '$project'");
+                    $pcfg = $config->getProjectConfig($project);
 
                     if (!$input->getOption('generator')->value) {
-                        $app->runCollector( $config->getCollectorConfig($project) );
+                        $app->runCollector( $pcfg->getCollectorConfig() );
                     }
 
                     if (!$input->getOption('collector')->value) {
-                        $app->runGenerator( $config->getGeneratorConfig($project) );
+                        $app->runGenerator( $pcfg->getGeneratorConfig() );
                     }
 
                     $logger->log("Processing project '$project' completed.");
@@ -140,6 +142,9 @@ namespace TheSeer\phpDox {
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
                 fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n" . $e->getMessage()."\n\n");
+                exit(3);
+            } catch (ConfigException $e) {
+                fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
                 exit(3);
             } catch (ApplicationException $e) {
                 fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");

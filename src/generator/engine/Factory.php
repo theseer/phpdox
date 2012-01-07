@@ -67,7 +67,7 @@ namespace TheSeer\phpDox\Engine {
             }
 
             if (isset($this->configs[$name])) {
-                $cfg = new $this->configs[$name]($buildCfg->getBuildNode());
+                $cfg = new $this->configs[$name]($buildCfg->getGeneratorConfig(), $buildCfg->getBuildNode());
             } else {
                 $cfg = $buildCfg;
             }

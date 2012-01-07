@@ -120,7 +120,7 @@ namespace TheSeer\phpDox {
         }
 
         protected function setupTarget($file, $xmlDir) {
-            $path = substr($file->getPathName(), $this->srcIndex);
+            $path = substr(realpath($file->getPathName()), $this->srcIndex);
             $target = $xmlDir . $path . '.xml';
             $targetDir = dirname($target);
             if (!file_exists($targetDir)) {

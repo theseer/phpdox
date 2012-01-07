@@ -33,50 +33,19 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
 
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Engine {
 
-    use TheSeer\fDOM\fDOMElement;
+    class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
 
-    class GeneratorConfig {
-
-        protected $builds;
-
-        protected $ctx;
-        protected $project;
-
-        public function __construct(ProjectConfig $project, fDOMElement $ctx) {
-            $this->project = $project;
-            $this->ctx = $ctx;
-        }
-
-        public function getProjectConfig() {
-            return $this->project;
-        }
-
-        public function getActiveBuilds() {
-            if (!is_array($this->builds)) {
-                foreach($this->ctx->query('cfg:build[@engine and (not(@enabled) or @enabled="true")]') as $ctx) {
-                    $this->builds[] = new BuildConfig($this, $ctx);
-                }
+        public function getTemplateDirectory() {
+            $default = __DIR__ . '/../../../../templates';
+            $node = $this->ctx->queryOne('cfg:template');
+            if (!$node) {
+                return $default;
             }
-            return $this->builds;
+            return $node->getAttribute('dir', $default);
         }
-
-        public function getRequiredEngines() {
-            $engines = array();
-            foreach($this->getActiveBuilds() as $build) {
-                $engines[] = $build->getEngine();
-            }
-            return array_unique($engines);
-        }
-
     }
-
-    class GeneratorConfigException extends ConfigException {
-        const BuilderNotFound = 1;
-    }
-
 }

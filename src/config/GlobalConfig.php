@@ -49,20 +49,24 @@ namespace TheSeer\phpDox {
         protected $cfg;
 
         /**
-         * Base directory for relative path resolution
+         * Filename this config is based on
          * @var string
          */
-        protected $dir;
+        protected $fname;
 
         /**
          * Constructor for global config
          *
-         * @param fDOMDocument $cfg  A configuration dom
-         * @param string       $path A base directory relative paths in config should resolve from
+         * @param fDOMDocument $cfg   A configuration dom
+         * @param string       $fname Filename
          */
-        public function __construct(fDOMDocument $cfg, $path) {
+        public function __construct(fDOMDocument $cfg, $fname) {
             $this->cfg = $cfg;
-            $this->dir = $path;
+            $this->fname = $fname;
+        }
+
+        public function getFilename() {
+            return $this->fname;
         }
 
         public function isSilentMode() {
@@ -85,21 +89,13 @@ namespace TheSeer\phpDox {
             return $list;
         }
 
-        public function getCollectorConfig($project) {
-            return new CollectorConfig($this->getProjectNode($project)->queryOne('cfg:collector'), $this->dir);
-        }
-
-        public function getGeneratorConfig($project) {
-            return new GeneratorConfig($this->getProjectNode($project)->queryOne('cfg:generator'), $this->dir);
-        }
-
-        protected function getProjectNode($project) {
+        public function getProjectConfig($project) {
             $filter = is_int($project) ? $project : "@name = '$project'";
             $ctx = $this->cfg->queryOne("//cfg:project[$filter]");
             if (!$ctx) {
                 throw new ConfigException("Project '$project' not found in configuration xml file", ConfigException::ProjectNotFound);
             }
-            return $ctx;
+            return new ProjectConfig($ctx);
         }
 
     }
@@ -107,6 +103,7 @@ namespace TheSeer\phpDox {
     class ConfigException extends \Exception {
 
         const ProjectNotFound = 1;
-        const NoProjectSelected = 2;
+        const NoCollectorSection = 2;
+        const NoGeneratorSection = 3;
     }
 }

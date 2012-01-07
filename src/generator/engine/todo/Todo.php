@@ -61,7 +61,7 @@ namespace TheSeer\phpDox\Engine {
         protected $outputDir;
 
         public function __construct(BuildConfig $config) {
-            $this->outputDir = $config->getOutputDir();
+            $this->outputDir = $config->getOutputDirectory();
         }
 
         public function getEvents() {

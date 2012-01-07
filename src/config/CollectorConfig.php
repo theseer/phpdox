@@ -38,10 +38,32 @@
 
 namespace TheSeer\phpDox {
 
-    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
 
-    class CollectorConfig extends ProjectConfig {
+    class CollectorConfig {
+
+        protected $ctx;
+        protected $project;
+
+        public function __construct(ProjectConfig $project, fDOMElement $ctx) {
+            $this->project = $project;
+            $this->ctx = $ctx;
+        }
+
+        public function getWorkDirectory() {
+            return $this->project->getWorkDirectory();
+        }
+
+        public function getSourceDirectory() {
+            return $this->project->getSourceDirectory();
+        }
+
+        public function isPublicOnlyMode() {
+            if ($this->ctx->hasAttribute('publiconly')) {
+                return $this->ctx->getAttribute('publiconly','false') === 'true';
+            }
+            return $this->project->isPublicOnlyMode();
+        }
 
         public function getIncludeMasks() {
             return $this->getMasks('include') ?: '*.php';
@@ -49,14 +71,6 @@ namespace TheSeer\phpDox {
 
         public function getExcludeMasks() {
             return $this->getMasks('exclude');
-        }
-
-        public function getSourceDir() {
-            $src = $this->ctx->getAttribute('source','src');
-            if ($src[0]!='/') {
-                $src = $this->dir . '/' . $src;
-            }
-            return $src;
         }
 
         protected function getMasks($nodename) {

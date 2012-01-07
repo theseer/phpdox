@@ -61,7 +61,7 @@ namespace TheSeer\phpDox\Engine {
         protected $xmlDir;
 
         public function __construct(BuildConfig $config) {
-            $this->outputDir   = $config->getOutputDir();
+            $this->outputDir   = $config->getOutputDirectory();
             $this->xmlDir      = $config->getWorkDirectory();
             $this->templateDir = $config->getBuildNode()->queryOne('cfg:template')->getAttribute('dir','../../../templates');
         }

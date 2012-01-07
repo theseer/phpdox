@@ -38,34 +38,51 @@
 
 namespace TheSeer\phpDox {
 
+    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
 
-    abstract class ProjectConfig {
+    class ProjectConfig {
 
         /**
-         * @var fDOMElement
+         * @var fDOMElement;
          */
         protected $ctx;
 
         /**
-         * Base directory for relative path resolution
-         * @var string
+         * Constructor for global config
+         *
+         * @param fDOMElement $ctx   Reference to <project> node
          */
-        protected $dir;
-
-        public function __construct(fDOMElement $ctx, $path = null) {
+        public function __construct(fDOMElement $ctx) {
             $this->ctx = $ctx;
-            $this->dir = $path;
         }
 
         public function getWorkDirectory() {
-            return $this->ctx->parentNode->getAttribute('workdir');
+            return $this->ctx->getAttribute('workdir', 'xml');
+        }
+
+        public function getSourceDirectory() {
+            return $this->ctx->getAttribute('source','src');
         }
 
         public function isPublicOnlyMode() {
-            $global = $this->ctx->parentNode->getAttribute('publiconly','false') === 'true';
-            $local  = $this->ctx->getAttribute('publiconly','false') === 'true';
-            return  $global || $local;
+            return $this->ctx->getAttribute('publiconly','false') === 'true';
+        }
+
+        public function getCollectorConfig() {
+            $colNode = $this->ctx->queryOne('cfg:collector');
+            if (!$colNode) {
+                throw new ConfigException("Project '$project' does not have a collector section", ConfigException::NoCollectorSection);
+            }
+            return new CollectorConfig($this, $colNode);
+        }
+
+        public function getGeneratorConfig() {
+            $genNode = $this->ctx->queryOne('cfg:generator');
+            if (!$genNode) {
+                throw new ConfigException("Project '$project' does not have a generator section", ConfigException::NoGeneratorSection);
+            }
+            return new GeneratorConfig($this, $genNode);
         }
 
     }
