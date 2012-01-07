@@ -112,10 +112,10 @@ namespace TheSeer\phpDox {
                 $scanner($srcDir),
                 $container,
                 $this->factory->getInstanceFor('Analyser', $config->isPublicOnlyMode()),
-                $xmlDir
+                $xmlDir,
+                $srcDir
             );
 
-            $this->cleanUp($container, $xmlDir, $srcDir);
             $container->save();
             $this->logger->log('Collector process completed');
         }
@@ -146,55 +146,6 @@ namespace TheSeer\phpDox {
 
             $generator->run($this->factory->getInstanceFor('Container', $pconfig->getWorkDirectory()), $pconfig->isPublicOnlyMode());
             $this->logger->log("Generator process completed");
-        }
-
-        /**
-         * Helper to cleanup
-         *
-         * @todo  This should be moved into the collector class
-         *
-         * @param Container $container Container xml holding wrapper
-         * @param string    $xmlDir    XML work directory with previously collected xml data
-         * @param string    $srcDir    Source directory to compare xml structures with
-         */
-        protected function cleanup($container, $xmlDir, $srcDir) {
-            $worker = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($xmlDir, \FilesystemIterator::SKIP_DOTS),
-                \RecursiveIteratorIterator::CHILD_FIRST
-            );
-            $len = strlen($xmlDir);
-            $srcPath = dirname($srcDir);
-
-            $containers = array('namespaces','classes','interfaces');
-
-            $whitelist = array(
-                $xmlDir . '/namespaces.xml',
-                $xmlDir . '/classes.xml',
-                $xmlDir . '/interfaces.xml'
-            );
-
-            foreach($worker as $fname => $file) {
-                $fname = $file->getPathname();
-                if (in_array($fname, $whitelist)) {
-                    continue;
-                }
-                if ($file->isFile()) {
-                    $srcFile = $srcPath . substr($fname, $len, -4);
-                    if (!file_exists($srcFile)) {
-                        unlink($fname);
-                        foreach($containers as $name) {
-                            foreach($container->getDocument($name)->query("//phpdox:*[@src='{$srcFile}']") as $node) {
-                                $node->parentNode->removeChild($node);
-                            }
-                        }
-                    }
-                } elseif ($file->isDir()) {
-                    $rmDir = $srcPath . substr($fname, $len);
-                    if (!file_exists($rmDir)) {
-                        rmdir($fname);
-                    }
-                }
-            }
         }
 
     }

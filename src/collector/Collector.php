@@ -72,7 +72,7 @@ namespace TheSeer\phpDox {
          * Main executer of the collector, looping over the iterator with found files
          *
          */
-        public function run(\Iterator $scanner, Container $container, Analyser $analyser, $xmlDir) {
+        public function run(\Iterator $scanner, Container $container, Analyser $analyser, $xmlDir, $srcDir) {
             $worker = new PHPFilterIterator($scanner);
 
             if (!file_exists($xmlDir)) {
@@ -103,6 +103,8 @@ namespace TheSeer\phpDox {
                     $container->registerInterfaces($analyser->getInterfaces(), $src, $target);
                     $container->registerClasses($analyser->getClasses(), $src, $target);
 
+                    $this->cleanUp($container, $xmlDir, $srcDir);
+
                     $this->logger->progress('processed');
 
                 } catch (fDOMException $e) {
@@ -128,6 +130,55 @@ namespace TheSeer\phpDox {
             }
             return $target;
         }
+
+        /**
+         * Helper to cleanup
+         *
+         * @param Container $container Container xml holding wrapper
+         * @param string    $xmlDir    XML work directory with previously collected xml data
+         * @param string    $srcDir    Source directory to compare xml structures with
+         */
+        protected function cleanup($container, $xmlDir, $srcDir) {
+            $worker = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($xmlDir, \FilesystemIterator::SKIP_DOTS),
+                    \RecursiveIteratorIterator::CHILD_FIRST
+            );
+            $len = strlen($xmlDir);
+            $srcPath = dirname($srcDir);
+
+            $containers = array('namespaces','classes','interfaces');
+
+            $whitelist = array(
+                    $xmlDir . '/namespaces.xml',
+                    $xmlDir . '/classes.xml',
+                    $xmlDir . '/interfaces.xml'
+            );
+
+            foreach($worker as $fname => $file) {
+                $fname = $file->getPathname();
+                if (in_array($fname, $whitelist)) {
+                    continue;
+                }
+                if ($file->isFile()) {
+                    $srcFile = $srcPath . substr($fname, $len, -4);
+                    if (!file_exists($srcFile)) {
+                        unlink($fname);
+                        $xml = substr($fname, $len+1);
+                        foreach($containers as $name) {
+                            foreach($container->getDocument($name)->query("//phpdox:*[@xml='{$xml}']") as $node) {
+                                $node->parentNode->removeChild($node);
+                            }
+                        }
+                    }
+                } elseif ($file->isDir()) {
+                    $rmDir = $srcPath . substr($fname, $len);
+                    if (!file_exists($rmDir)) {
+                        rmdir($fname);
+                    }
+                }
+            }
+        }
+
     }
 
 }
