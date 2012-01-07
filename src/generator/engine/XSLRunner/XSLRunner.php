@@ -44,7 +44,7 @@ namespace TheSeer\phpDox\Engine {
 
     use \Carica\Xsl\Runner\Streamwrapper\PathMapper;
 
-    require 'CallbackHandler.php';
+    require_once 'CallbackHandler.php';
 
     class XSLRunnerConfig extends \TheSeer\phpDox\BuildConfig {
         public function getWorkDirectory() {
