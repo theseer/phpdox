@@ -15,7 +15,7 @@
         <generator output="/tmp/docs">
             
             <build engine="html" enabled="true" output="html">
-                <!--<template dir="templates" />-->
+                <!--  <template dir="templates" /> -->
             </build>
             
             <build engine="todo" enabled="true" output="todo">
