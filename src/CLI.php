@@ -217,7 +217,7 @@ namespace TheSeer\phpDox {
             $helpOption->shorthelp    = 'Prints this usage information';
 
             $input->registerOption( new \ezcConsoleOption(
-                'f', 'file', \ezcConsoleInput::TYPE_STRING, null, true,
+                'f', 'file', \ezcConsoleInput::TYPE_STRING, null, false,
                 'Configuration file to load'
             ));
 
