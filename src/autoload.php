@@ -21,6 +21,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\bootstrapexception' => '/bootstrap/Bootstrap.php',
                 'theseer\\phpdox\\buildconfig' => '/config/BuildConfig.php',
                 'theseer\\phpdox\\classbuilder' => '/collector/ClassBuilder.php',
+                'theseer\\phpdox\\classbuilderexception' => '/collector/ClassBuilder.php',
                 'theseer\\phpdox\\cli' => '/CLI.php',
                 'theseer\\phpdox\\collector' => '/collector/Collector.php',
                 'theseer\\phpdox\\collectorconfig' => '/config/CollectorConfig.php',
@@ -75,9 +76,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\progressloggerexception' => '/logger/ProgressLogger.php',
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
                 'theseer\\phpdox\\service' => '/generator/Service.php',
-                'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php',
-                'theseer\\phpdox\\variableexception' => '/shared/Variables.php',
-                'theseer\\phpdox\\variables' => '/shared/Variables.php'
+                'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php'
             );
         }
         $cn = strtolower($class);

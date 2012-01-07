@@ -124,7 +124,7 @@ namespace TheSeer\phpDox {
                 $docblock = $this->parser->parse($comment, $this->aliasMap);
                 return $docblock->asDom($doc);
             } catch (\Exception $e) {
-                throw $e;
+                throw new ClassBuilderException('Processing DocBlock failed', ClassBuilderException::DocBlockFailed, $e);
             }
         }
 
@@ -219,5 +219,9 @@ namespace TheSeer\phpDox {
             $default = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'default');
             $default->appendChild($ctx->ownerDocument->createTextnode($value));
         }
+    }
+
+    class ClassBuilderException extends \Exception {
+        const DocBlockFailed = 1;
     }
 }

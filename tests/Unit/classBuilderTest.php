@@ -224,7 +224,7 @@ namespace TheSeer\phpDox\Tests\Unit {
         }
 
         /**
-         * @expectedException \Exception
+         * @expectedException \TheSeer\phpDox\ClassBuilderException
          * @covers \TheSeer\phpDox\ClassBuilder::processDocBlock
          */
         public function testProcessDocBlockExpectingException() {
