@@ -94,7 +94,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          */
         public function testGetApplication() {
             $factory = new Factory();
-            $factory->setXmlDir('/path');
+            //$factory->setXmlDir('/path');
 
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Application',
@@ -131,7 +131,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
             $factory = new FactoryProxy();
             $factory->instances['container'] = $container;
-            $factory->setXmlDir('/path');
+            //$factory->setXmlDir('/path');
 
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Collector',
@@ -151,7 +151,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
             $factory = new FactoryProxy();
             $factory->instances['container'] = $container;
-            $factory->setXmlDir('/path');
+            //$factory->setXmlDir('/path');
 
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Generator',

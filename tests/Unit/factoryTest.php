@@ -46,6 +46,7 @@ namespace TheSeer\phpDox\Tests\Unit {
          * @covers TheSeer\phpDox\Factory::__construct
          * @covers TheSeer\phpDox\Factory::setXMLDir
          */
+        /*
         public function testSetXMLDir() {
             $factory = new Factory(array('Tux' => 'Gnu'));
             $factory->setXMLDir('/os/mascott/Tux');
@@ -53,6 +54,7 @@ namespace TheSeer\phpDox\Tests\Unit {
             $this->assertAttributeEquals('/os/mascott/Tux', 'xmlDir', $factory);
             $this->assertAttributeEquals(array('Tux' => 'Gnu'), 'map', $factory);
         }
+        */
 
         /**
          * @covers TheSeer\phpDox\Factory::addFactory
