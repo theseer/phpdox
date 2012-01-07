@@ -110,10 +110,11 @@ namespace TheSeer\phpDox\Engine {
         protected function buildFinish() {
             $content = "TODO List:\n\n";
             usort($this->todoList, function($a,$b){
-                if ($a->namespace != $b->namespace) {
+                var_dump($a,$b);
+                if (isset($a->namespace) && isset($b->namespace) && ($a->namespace != $b->namespace)) {
                     return $a->namespace < $b->namespace ? -1 : 1;
                 }
-                if ($a->class != $b->class) {
+                if (isset($a->class) && isset($b->class) && ($a->class != $b->class)) {
                     return $a->class < $b->class ? -1 : 1;
                 }
                 if ($a->type != $b->type) {
@@ -125,7 +126,10 @@ namespace TheSeer\phpDox\Engine {
                 if (isset($todo->namespace)) {
                     $content .= $todo->namespace . '\\';
                 }
-                $content .= $todo->class . '::' . $todo->name . ": \n[  ]\t" . $todo->text . "\n\n";
+                if (isset($todo->class)) {
+                    $content .= $todo->class . '::';
+                }
+                $content .= $todo->name . ": \n[  ]\t" . $todo->text . "\n\n";
             }
             $this->saveFile($content, $this->outputDir . '/todo.txt');
         }
@@ -139,10 +143,8 @@ namespace TheSeer\phpDox\Engine {
 
                 if (in_array($ctx->localName, array('method','constructor','destructor'))) {
                     $tmp->type = 'method';
-                } else if ($ctx->localName == 'member') {
-                    $tmp->type = 'member';
-                } else if ($ctx->localName == 'constant') {
-                    $tmp->type = 'constant';
+                } else {
+                    $tmp->type = $ctx->localName;
                 }
                 if (isset($tmp->type)) {
                     $tmp->name = $ctx->getAttribute('name');
