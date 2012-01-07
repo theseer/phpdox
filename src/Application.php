@@ -116,6 +116,11 @@ namespace TheSeer\phpDox {
                 $srcDir
             );
 
+            // enforce existence of all container files, even if the code didn't trigger their creation
+            foreach(array('classes','interfaces','namespaces','traits') as $c) {
+                $container->getDocument($c);
+            }
+
             $container->save();
             $this->logger->log('Collector process completed');
         }
