@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -174,7 +174,7 @@ namespace TheSeer\phpDox {
                 return;
             }
             $shown = true;
-            printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
+            printf("phpdox %s - Copyright (C) 2010 - 2012 by Arne Blankerts\n\n", self::VERSION);
         }
 
         protected function showSkeletonConfig($strip) {
