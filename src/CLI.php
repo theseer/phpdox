@@ -43,6 +43,8 @@
 
 namespace TheSeer\phpDox {
 
+    use TheSeer\fDOM\fDOMDocument;
+
     use TheSeer\fDOM\fDOMException;
 
     class CLI {
@@ -78,6 +80,11 @@ namespace TheSeer\phpDox {
 
                 if ($input->getOption('version')->value === true) {
                     $this->showVersion();
+                    exit(0);
+                }
+
+                if ($input->getOption('skel')->value === true) {
+                    $this->showSkeletonConfig($input->getOption('strip')->value);
                     exit(0);
                 }
 
@@ -141,7 +148,7 @@ namespace TheSeer\phpDox {
                 exit(3);
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
-                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n" . $e->getMessage()."\n\n");
+                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\t" . $e->getMessage()."\n\nUsing --skel might get you started.\n\n");
                 exit(3);
             } catch (ConfigException $e) {
                 fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
@@ -168,6 +175,22 @@ namespace TheSeer\phpDox {
             }
             $shown = true;
             printf("phpdox %s - Copyright (C) 2010 - 2011 by Arne Blankerts\n\n", self::VERSION);
+        }
+
+        protected function showSkeletonConfig($strip) {
+            $config = file_get_contents(__DIR__ . '/config/skeleton.xml');
+            if ($strip) {
+                $dom = new fDOMDocument();
+                $dom->loadXML($config);
+                foreach($dom->query('//comment()') as $c) {
+                    $c->parentNode->removeChild($c);
+                }
+                $dom->preserveWhiteSpace = false;
+                $dom->formatOutput = true;
+                $dom->loadXML($dom->saveXML());
+                $config = $dom->saveXML();
+            }
+            echo $config;
         }
 
         protected function showEngines(Array $list) {
@@ -220,6 +243,17 @@ namespace TheSeer\phpDox {
                 'Show a list of available engines and exit'
             ));
 
+            $skel = $input->registerOption( new \ezcConsoleOption(
+                    null, 'skel', \ezcConsoleInput::TYPE_NONE, null, false,
+                    'Show a skeleton config xml file and exit'
+            ));
+
+            $strip = $input->registerOption( new \ezcConsoleOption(
+                    null, 'strip', \ezcConsoleInput::TYPE_NONE, null, false,
+                    'Strip xml config when showing'
+            ));
+            $strip->addDependency(new \ezcConsoleOptionRule($skel));
+
             return $input;
         }
 
@@ -238,6 +272,9 @@ Usage: phpdox [switches]
       --debug      For plugin developers only, enable php error reporting
 
       --engines    Show a list of available output engines and exit
+
+      --skel       Show an annotated skeleton config xml file and exit
+      --strip      Strip comments from skeleton config xml when showing
 
 
 EOF;
