@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\Engine {
     class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
 
         public function getTemplateDirectory() {
-            $default = __DIR__ . '/../../../../templates';
+            $default = __DIR__ . '/../../../../templates/html';
             $node = $this->ctx->queryOne('cfg:template');
             if (!$node) {
                 return $default;

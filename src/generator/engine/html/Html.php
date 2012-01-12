@@ -74,8 +74,8 @@ namespace TheSeer\phpDox\Engine {
 
         protected function buildStart(Event $event) {
 
-            $this->classesDom = $this->getXSLTProcessor($this->templateDir . '/htmlBuilder/list.xsl')->transformToDoc($event->classes);
-            $this->interfacesDom = $this->getXSLTProcessor($this->templateDir . '/htmlBuilder/list.xsl')->transformToDoc($event->interfaces);
+            $this->classesDom = $this->getXSLTProcessor($this->templateDir . '/list.xsl')->transformToDoc($event->classes);
+            $this->interfacesDom = $this->getXSLTProcessor($this->templateDir . '/list.xsl')->transformToDoc($event->interfaces);
 
             $this->functions = new Html\Functions(
                 $this->classesDom,
@@ -84,22 +84,22 @@ namespace TheSeer\phpDox\Engine {
             $builder = new fXSLCallback('phpdox:htmlBuilder','hb');
             $builder->setObject($this->functions);
 
-            $index = $this->getXSLTProcessor($this->templateDir . '/htmlBuilder/index.xsl');
+            $index = $this->getXSLTProcessor($this->templateDir . '/index.xsl');
             $index->registerCallback($builder);
             $html = $index->transformToDoc($event->classes);
 
             $this->saveDomDocument($html, $this->outputDir . '/index.xhtml');
 
-            $this->xslClass = $this->getXSLTProcessor($this->templateDir . '/htmlBuilder/class.xsl');
+            $this->xslClass = $this->getXSLTProcessor($this->templateDir . '/class.xsl');
             $this->xslClass->registerCallback($builder);
 
-            $this->xslInterface = $this->getXSLTProcessor($this->templateDir . '/htmlBuilder/interface.xsl');
+            $this->xslInterface = $this->getXSLTProcessor($this->templateDir . '/interface.xsl');
             $this->xslInterface->registerCallback($builder);
 
         }
 
         protected function buildFinish(Event $event) {
-            $this->copyStatic($this->templateDir . '/htmlBuilder/static', $this->outputDir, true);
+            $this->copyStatic($this->templateDir . '/static', $this->outputDir, true);
         }
 
         protected function buildClass(Event $event) {
