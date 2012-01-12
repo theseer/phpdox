@@ -17,10 +17,10 @@
 	   <email>arne@blankerts.de</email>
 	   <active>yes</active>
     </lead>
-    <date>2011-11-22</date>
+    <date>2012-01-12</date>
     <version>
-	   <release>0.3.0</release>
-	   <api>0.3.0</api>
+	   <release>0.4.0</release>
+	   <api>0.4.0</api>
     </version>
     <stability>
 	   <release>alpha</release>
@@ -29,161 +29,15 @@
     <license>BSD License</license>
     <notes>http://github.com/theseer/phpdox/tree</notes>
     <contents>
+        <!-- The main contents is dynamically added by the package builder task -->
         <dir name="/">
 	    <dir name="TheSeer">
 		<dir name="phpDox">
-                    <file baseinstalldir="/" name="CLI.php" role="php">
-		        <tasks:replace from="%version%" to="version" type="package-info" />
-		    </file>
-                    <file baseinstalldir="/" role="php" name="Analyser.php" />
-                    <file baseinstalldir="/" role="php" name="API.php" />
-                    <file baseinstalldir="/" role="php" name="Application.php" />
-                    <file baseinstalldir="/" role="php" name="autoload.php" />
-                    <file baseinstalldir="/" role="php" name="ClassBuilder.php" />
-                    <file baseinstalldir="/" role="php" name="CLI.php" />
-                    <file baseinstalldir="/" role="php" name="Collector.php" />
-                    <file baseinstalldir="/" role="php" name="Config.php" />
-                    <file baseinstalldir="/" role="php" name="Container.php" />
-                    <file baseinstalldir="/" role="php" name="ErrorHandler.php" />
-                    <file baseinstalldir="/" role="php" name="FactoryInterface.php" />
-                    <file baseinstalldir="/" role="php" name="Factory.php"/>
-                    
-                    <dir name="bootstrap">
-                        <file baseinstalldir="/" role="php" name="graph.php" />
-                        <file baseinstalldir="/" role="php" name="html.php" />
-                        <file baseinstalldir="/" role="php" name="todo.php" />
-                        <file baseinstalldir="/" role="php" name="xslrunner.php" />
-                    </dir>
-                    
-                    <dir name="docblock">
-                        <file baseinstalldir="/" role="php" name="DocBlock.php" />
-                        <file baseinstalldir="/" role="php" name="Factory.php" />
-                        <file baseinstalldir="/" role="php" name="GenericElement.php" />
-                        <file baseinstalldir="/" role="php" name="InlineProcessor.php" />
-                        <file baseinstalldir="/" role="php" name="InvalidElement.php" />
-                        <file baseinstalldir="/" role="php" name="Parser.php" />
-                        
-                        <dir name="parser">
-                            <file baseinstalldir="/" role="php" name="DescriptionParser.php" />
-                            <file baseinstalldir="/" role="php" name="GenericParser.php"/>
-                            <file baseinstalldir="/" role="php" name="InternalParser.php" />
-                            <file baseinstalldir="/" role="php" name="InvalidParser.php" />
-                            <file baseinstalldir="/" role="php" name="LicenseParser.php" />
-                            <file baseinstalldir="/" role="php" name="ParamParser.php" />
-                            <file baseinstalldir="/" role="php" name="VarParser.php" />
-                        </dir>
-                    </dir>
-                    
-                    <dir name="generator">
-                        <file baseinstalldir="/" role="php" name="AbstractGenerator.php" />
-                        <file baseinstalldir="/" role="php" name="BuilderConfig.php" />
-                        <file baseinstalldir="/" role="php" name="BuilderInterface.php" />
-                        
-                        <dir name="event">
-                            <file baseinstalldir="/" role="php" name="EventBuilderInterface.php" />
-                            <file baseinstalldir="/" role="php" name="EventFactory.php" />
-                            <file baseinstalldir="/" role="php" name="EventGenerator.php" />
-                            <file baseinstalldir="/" role="php" name="Event.php" />
-                            
-                            <dir name="eventbuilder">
-                                <file baseinstalldir="/" role="php" name="AbstractEventBuilder.php" />
-                                <file baseinstalldir="/" role="php" name="Service.php" />
-                                
-                                <dir name="graphbuilder">
-                                     <file baseinstalldir="/" role="php" name="GraphBuilder.php" />
-                                </dir>
-
-                                <dir name="htmlbuilder">
-                                     <file baseinstalldir="/" role="php" name="HtmlBuilder.php" />
-                                     <file baseinstalldir="/" role="php" name="functions.php" />
-                                </dir>
-
-                                <dir name="todobuilder">
-                                     <file baseinstalldir="/" role="php" name="TodoBuilder.php" />
-                                </dir>
-                            </dir>
-                        </dir>
-                        
-                        <dir name="raw">
-                            <file baseinstalldir="/" role="php" name="RawGenerator.php" />
-
-                            <dir name="rawbuilder">
-                                <file baseinstalldir="/" role="php" name="rawbuilderinterface.php" />
-                                <dir name="XSLRunner">
-                                    <file baseinstalldir="/" role="php" name="CallbackHandler.php" />
-                                    <file baseinstalldir="/" role="php" name="Callback.php" />
-                                    <file baseinstalldir="/" role="php" name="Directory.php" />
-                                    <file baseinstalldir="/" role="php" name="XSLRunnerBuilder.php" />
-                                    <dir name="Callback">
-                                        <file baseinstalldir="/" role="php" name="Console.php" />
-                                        <file baseinstalldir="/" role="php" name="LoadDocument.php" />
-                                        <file baseinstalldir="/" role="php" name="TypeString.php" />
-                                    </dir>
-                                    <dir name="Streamwrapper">
-                                        <file baseinstalldir="/" role="php" name="PathMapper.php" />
-                                    </dir>                                      
-                                </dir>
-                            </dir>
-                        </dir>
-                    </dir>
-
-                    <dir name="logger">
-                        <file baseinstalldir="/" role="php" name="ProgressLogger.php" />
-                        <file baseinstalldir="/" role="php" name="ShellProgressLogger.php" />
-                    </dir>
-                    <dir name="templates">
-                        <dir name="htmlBuilder">
-                            <file baseinstalldir="/" role="php" name="class.xsl" />
-                            <file baseinstalldir="/" role="php" name="index.xsl" />
-                            <file baseinstalldir="/" role="php" name="interface.xsl" />
-                            <file baseinstalldir="/" role="php" name="list.xsl" />
-                            <dir name="static">
-                                <dir name="css">
-                                    <file baseinstalldir="/" role="php" name="class.css" />
-                                    <file baseinstalldir="/" role="php" name="style.css" />
-                                </dir>
-                                <dir name="gfx">
-                                    <file baseinstalldir="/" role="php" name="bg.png" />
-                                </dir>
-                                <dir name="js">
-                                    <file baseinstalldir="/" role="php" name="jquery-1.6.1.min.js" />
-                                    <file baseinstalldir="/" role="php" name="phpdox.js" />
-                                </dir>
-                            </dir>
-                        </dir>
-                        
-                        <dir name="XSLBuilder">
-                            <file baseinstalldir="/" role="php" name="classes.xsl" />
-                            <file baseinstalldir="/" role="php" name="constants.xsl" />
-                            <file baseinstalldir="/" role="php" name="html.xsl" />
-                            <file baseinstalldir="/" role="php" name="index.xsl" />
-                            <file baseinstalldir="/" role="php" name="interfaces.xsl" />
-                            <file baseinstalldir="/" role="php" name="links.xsl" />
-                            <file baseinstalldir="/" role="php" name="methods.xsl" />
-                            <file baseinstalldir="/" role="php" name="navigation.xsl" />
-                            <file baseinstalldir="/" role="php" name="properties.xsl" />
-                            <file baseinstalldir="/" role="php" name="prototype.xsl" />
-                            <file baseinstalldir="/" role="php" name="start.xsl" />
-                            <file baseinstalldir="/" role="php" name="variable.xsl" />
-
-                            <dir name="library">
-                                <file baseinstalldir="/" role="php" name="aggregate.xsl" />
-                                <file baseinstalldir="/" role="php" name="callbacks.xsl" />
-                                <file baseinstalldir="/" role="php" name="library.xsl" />
-                                <file baseinstalldir="/" role="php" name="strings.xsl" />
-                            </dir>
-                            
-                            <dir name="static">
-                                <dir name="files">                    
-                                    <file baseinstalldir="/" role="php" name="background-title.png" />
-                                    <file baseinstalldir="/" role="php" name="style.css" />
-                                </dir>
-                            </dir>
-                        </dir>
-                    </dir>
-                </dir>
-            </dir>
+            <file baseinstalldir="/" name="CLI.php" role="php" />
+		</dir>
+	    </dir>
             <file baseinstalldir="/" name="phpdox.php" role="script">
+                <tasks:replace from="(development)" to="version" type="package-info" />
                 <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config"/>
                 <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
             </file>
