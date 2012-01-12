@@ -113,6 +113,10 @@ namespace TheSeer\phpDox {
             return $rfc->newInstanceArgs($params);
         }
 
+        protected function getCLI() {
+            return new CLI($this);
+        }
+
         protected function getAnalyser($public) {
             return new Analyser($this, $public);
         }

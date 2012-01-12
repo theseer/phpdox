@@ -104,7 +104,7 @@ namespace TheSeer\phpDox {
 
                 'phpDox.home' => realpath(__DIR__.'/../../'),
                 'phpDox.file' => $this->fname,
-                'phpDox.version' => CLI::VERSION,
+                'phpDox.version' => defined('PHPDOX_VERSION') ? PHPDOX_VERSION : '*UNKNOWN*',
 
                 'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
                 'phpDox.project.source' => $ctx->getAttribute('source', 'src'),

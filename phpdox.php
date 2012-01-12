@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,9 +37,10 @@
  * @exitcodes  0 No error
  *             1 Execution Error
  *             3 Parameter Error
- *             4 Lint Error
  *
  */
+
+define('PHPDOX_VERSION', '(development)');
 
 require 'TheSeer/DirectoryScanner/autoload.php';
 require 'TheSeer/fDOMDocument/autoload.php';
@@ -47,13 +48,17 @@ require 'TheSeer/fXSL/autoload.php';
 require 'ezc/Base/base.php';
 require 'PHP/Timer.php';
 require 'pdepend/reflection/Autoloader.php';
-require __DIR__ . '/src/autoload.php';
+
+if (PHPDOX_VERSION == '(development)') {
+    require __DIR__ . '/src/autoload.php';
+} else {
+    require 'TheSeer/phpDox/autoload.php';
+}
 
 spl_autoload_register( array('ezcBase','autoload'));
 spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
 
 $factory = new \TheSeer\phpDox\Factory();
+$factory->getInstanceFor('CLI')->run();
 
-$exec = new \TheSeer\phpDox\CLI($factory);
-$exec->run();
 exit(0);

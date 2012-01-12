@@ -50,13 +50,6 @@ namespace TheSeer\phpDox {
     class CLI {
 
         /**
-         * Version identifier
-         *
-         * @var string
-         */
-        const VERSION = "%version%";
-
-        /**
          * Factory instance
          *
          * @var Factory
@@ -155,7 +148,7 @@ namespace TheSeer\phpDox {
                 exit(3);
             } catch (ApplicationException $e) {
                 fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");
-                exit(3);
+                exit(1);
             } catch (\Exception $e) {
                 if ($e instanceof fDOMException) {
                     $e->toggleFullMessage(true);
@@ -174,7 +167,7 @@ namespace TheSeer\phpDox {
                 return;
             }
             $shown = true;
-            printf("phpdox %s - Copyright (C) 2010 - 2012 by Arne Blankerts\n\n", self::VERSION);
+            printf("phpdox %s - Copyright (C) 2010 - 2012 by Arne Blankerts\n\n", PHPDOX_VERSION);
         }
 
         protected function showSkeletonConfig($strip) {
