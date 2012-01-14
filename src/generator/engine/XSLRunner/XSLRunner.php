@@ -44,11 +44,25 @@ namespace TheSeer\phpDox\Engine {
 
     use \Carica\Xsl\Runner\Streamwrapper\PathMapper;
 
-    require_once 'CallbackHandler.php';
+    require 'CallbackHandler.php';
 
     class XSLRunnerConfig extends \TheSeer\phpDox\BuildConfig {
+
         public function getWorkDirectory() {
             return $this->ctx->parentNode->parentNode->getAttribute('workdir');
+        }
+
+        public function getTemplateDirectory() {
+            if (PHPDOX_VERSION=='%development%') {
+                $default = realpath(__DIR__ . '/../../../../templates/XSLRunner');
+            } else {
+                $default = realpath(__DIR__ . '/../../../templates/XSLRunner');
+            }
+            $node = $this->ctx->queryOne('cfg:template');
+            if (!$node) {
+                return $default;
+            }
+            return $node->getAttribute('dir', $default);
         }
 
     }
@@ -60,10 +74,10 @@ namespace TheSeer\phpDox\Engine {
         protected $templateDir;
         protected $xmlDir;
 
-        public function __construct(BuildConfig $config) {
+        public function __construct(XSLRunnerConfig $config) {
             $this->outputDir   = $config->getOutputDirectory();
             $this->xmlDir      = $config->getWorkDirectory();
-            $this->templateDir = $config->getBuildNode()->queryOne('cfg:template')->getAttribute('dir','../../../templates');
+            $this->templateDir = $config->getTemplateDirectory();
         }
 
         public function getEvents() {
@@ -74,7 +88,7 @@ namespace TheSeer\phpDox\Engine {
 
             PathMapper::register('source', $this->xmlDir.'/');
             PathMapper::register('target', $this->outputDir . '/', PathMapper::CREATE_DIRECTORIES | PathMapper::WRITE_FILES );
-            $xsl = $this->getXSLTProcessor($this->templateDir . '/XSLBuilder/start.xsl');
+            $xsl = $this->getXSLTProcessor($this->templateDir . '/start.xsl');
             $xsl->registerPHPfunctions(
                 array(
                     '\\Carica\\Xsl\\Runner\\XsltCallback'
@@ -85,7 +99,7 @@ namespace TheSeer\phpDox\Engine {
             $dom->appendChild($dom->createElement('project'));
 
             $res = $xsl->transformToDoc($dom);
-            $this->copyStatic($this->templateDir . '/XSLBuilder/static', $this->outputDir, true);
+            $this->copyStatic($this->templateDir . '/static', $this->outputDir, true);
 
         }
 
