@@ -5,10 +5,13 @@ namespace TheSeer\phpDox\Engine\Html {
 
     class Functions {
 
+        protected $projectNode;
+
         protected $classListDom;
         protected $interfaceListDom;
 
-        public function __construct(\DOMDocument $cdom, \DOMDocument $idom) {
+        public function __construct(\DOMElement $project, \DOMDocument $cdom, \DOMDocument $idom) {
+            $this->projectNode = $project;
             $this->classListDom = $cdom;
             $this->interfaceListDom = $idom;
         }
@@ -19,6 +22,10 @@ namespace TheSeer\phpDox\Engine\Html {
 
         public function classNameToFileName($class, $ext = 'xml') {
             return str_replace('\\', '_', $class) . '.' . $ext;
+        }
+
+        public function getProjectNode() {
+            return $this->projectNode;
         }
 
         public function getClassList() {

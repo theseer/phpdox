@@ -4,16 +4,20 @@
     xmlns:file="http://xml.phpdox.de/src#" exclude-result-prefixes="#default file">
     
     <xsl:output method="xml" indent="yes" encoding="utf-8" />
-    <xsl:param name="class" />
+    <xsl:param name="mode" select="'detail'" />
     
     <xsl:template match="/">        
-        <ul class="classlist">
+        <ul class="unstyled">
         <xsl:choose>
             <xsl:when test="//file:namespace">
-                <xsl:apply-templates select="//file:namespace" />
+                <xsl:apply-templates select="//file:namespace">
+                    <xsl:sort select="@name" order="ascending" />
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates select="//file:class|//file:interface" />
+                <xsl:apply-templates select="//file:class|//file:interface">
+                    <xsl:sort select="@name" order="ascending" />
+                </xsl:apply-templates>
             </xsl:otherwise>
         </xsl:choose>
         </ul>
@@ -21,18 +25,36 @@
     
     <xsl:template match="file:namespace">
         <li>
-            <span class="namespace"><xsl:value-of select="@name" /></span>            
-            <xsl:if test="file:class|file:interface">
-                <ul id="namespace{position()}">
-                    <xsl:apply-templates select="file:class|//file:interface" />
-                </ul>
-            </xsl:if>
+            <h3><xsl:value-of select="@name" /></h3>
+            <p>
+                <xsl:if test="file:class|file:interface">
+                    <ul>
+                        <xsl:apply-templates select="file:class|file:interface">
+                            <xsl:sort select="@name" order="ascending" />
+                        </xsl:apply-templates>
+                    </ul>
+                </xsl:if>
+            </p>
+            <!-- 
+            <p>
+                <a class="btn" href="#">View
+                    details
+                </a>
+            </p>-->
         </li>
     </xsl:template>
     
-    <xsl:template match="file:class|file:interface">
+    <xsl:template match="file:class|file:interface|file:trait">
         <li>
-            <a href="{translate(@full, '\', '_')}.xhtml">
+            <xsl:variable name="link">
+                <xsl:if test="$mode = 'detail'">../</xsl:if> 
+                <xsl:choose>
+                    <xsl:when test="local-name(.) = 'class'">classes</xsl:when>
+                    <xsl:when test="local-name(.) = 'interface'">interfaces</xsl:when>
+                    <xsl:otherwise>traits</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <a href="{$link}/{translate(@full, '\', '_')}.xhtml">
                 <xsl:value-of select="@name" />
             </a>
         </li>

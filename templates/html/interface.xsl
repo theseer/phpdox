@@ -22,9 +22,9 @@
                     </div>
                     <div class="lists">
                         <h3>Classes:</h3>
-                        <xsl:copy-of select="hb:getClassList()" />
+                        <xsl:copy-of select="phe:getClassList()" />
                         <h3>Interfaces:</h3>
-                        <xsl:copy-of select="hb:getInterfaceList()" />
+                        <xsl:copy-of select="phe:getInterfaceList()" />
                     </div>                    
                 </div>
             </body>
