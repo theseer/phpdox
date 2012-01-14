@@ -41,6 +41,12 @@ namespace TheSeer\phpDox {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
 
+    /**
+     * @package    phpDox
+     * @author     Arne Blankerts <arne@blankerts.de>
+     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+     * @license    BSD License
+     */
     class BuildConfig {
 
         protected $ctx;
@@ -59,6 +65,10 @@ namespace TheSeer\phpDox {
 
         public function getBuildNode() {
             return $this->ctx;
+        }
+
+        public function getProjectNode() {
+            return $this->ctx->parentNode->parentNode;
         }
 
         public function getEngine() {
