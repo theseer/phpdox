@@ -40,7 +40,7 @@
  *
  */
 
-define('PHPDOX_VERSION', '(development)');
+define('PHPDOX_VERSION', '%development%');
 
 require 'TheSeer/DirectoryScanner/autoload.php';
 require 'TheSeer/fDOMDocument/autoload.php';
@@ -49,7 +49,7 @@ require 'ezc/Base/base.php';
 require 'PHP/Timer.php';
 require 'pdepend/reflection/Autoloader.php';
 
-if (PHPDOX_VERSION == '(development)') {
+if (strpos(PHPDOX_VERSION, '%devel')===0) {
     require __DIR__ . '/src/autoload.php';
 } else {
     require 'TheSeer/phpDox/autoload.php';

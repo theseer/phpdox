@@ -31,13 +31,8 @@
     <contents>
         <!-- The main contents is dynamically added by the package builder task -->
         <dir name="/">
-	    <dir name="TheSeer">
-		<dir name="phpDox">
-            <file baseinstalldir="/" name="CLI.php" role="php" />
-		</dir>
-	    </dir>
             <file baseinstalldir="/" name="phpdox.php" role="script">
-                <tasks:replace from="(development)" to="version" type="package-info" />
+                <tasks:replace from="%development%" to="version" type="package-info" />
                 <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config"/>
                 <tasks:replace from="@php_bin@" to="php_bin" type="pear-config" />
             </file>
