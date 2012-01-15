@@ -57,8 +57,6 @@ namespace TheSeer\phpDox\Engine {
         protected $projectNode;
 
         protected $functions;
-        protected $classesDom;
-        protected $interfacesDom;
 
         public function __construct(HtmlConfig $config) {
             $this->templateDir = $config->getTemplateDirectory();
@@ -78,13 +76,12 @@ namespace TheSeer\phpDox\Engine {
 
             $list = $this->getXSLTProcessor($this->templateDir . '/list.xsl');
             $list->setParameter('', 'mode', 'index');
-            $this->classesDom = $list->transformToDoc($event->classes);
-            $this->interfacesDom = $list->transformToDoc($event->interfaces);
 
             $this->functions = new Html\Functions(
                 $this->projectNode,
-                $this->classesDom,
-                $this->interfacesDom
+                $event->classes,
+                $event->interfaces,
+                $list
             );
             $builder = new fXSLCallback('phpdox:html','phe');
             $builder->setObject($this->functions);
