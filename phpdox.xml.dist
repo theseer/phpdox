@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://phpdox.de/config" silent="false">
 
-    <project name="phpdox" source="src" workdir="/tmp/xml">
+    <project name="phpDox" source="src" workdir="/tmp/xml">
     
         <collector publiconly="false" />
     
         <generator output="/tmp/docs">
             
-            <build engine="html" enabled="true" output="html">
-                <!--  <template dir="templates" /> -->
-            </build>
+            <build engine="html" enabled="true" output="html" />
             
-            <build engine="todo" enabled="true" output="todo">
+            <build engine="todo" enabled="false" output="todo">
                 <file name="todolist.txt" encoding="utf-8" />
             </build>
             
-            <build engine="graph" enabled="true" output="graph">
+            <build engine="graph" enabled="false" output="graph">
                 <dot executable="/usr/bin/dot" render="true" format="png" />
             </build>
             
-            <build engine="xslrunner" enabled="true" output="html2">
-                <template dir="templates" />
-            </build>
+            <build engine="xslrunner" enabled="false" output="html2" />                
             
         </generator>
     </project>
