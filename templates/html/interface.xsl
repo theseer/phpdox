@@ -2,251 +2,246 @@
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:file="http://xml.phpdox.de/src#"
-    exclude-result-prefixes="#default file">
+    xmlns:src="http://xml.phpdox.de/src#"
+    exclude-result-prefixes="#default src">
     
-    <xsl:output method="xml" indent="yes" encoding="utf-8" />
+    <xsl:import href="topbar.xsl" />
 
-    <xsl:param name="interface" />
+    <xsl:output method="xml" indent="yes" encoding="utf-8" doctype-public="html" />
+    
+    <xsl:param name="interfacename" />
+
+    <xsl:variable name="project" select="phe:getProjectNode()"/>
+    <xsl:variable name="interface" select="//src:interface[@full=$interfacename]" />
 
     <xsl:template match="/">
-        <html>
+        <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
             <head>
-                <link type="text/css" href="css/style.css" rel="stylesheet" />
+                <meta charset="UTF-8" />
+                <link rel="stylesheet" href="../css/bootstrap.min.css" />
+                <title><xsl:value-of select="$project/@name" /> - <xsl:value-of select="$interfacename" /> - API Documentation</title>
+                <style type="text/css">
+                    body {
+                        padding-top: 60px;
+                    }
+                </style>                
             </head>
-            <body>                
-                <h1 class="project">Project title here</h1>
-                <div class="content">
-                    <div class="class">                        
-                        <xsl:apply-templates select="//file:interface[@full=$interface]" />
-                    </div>
-                    <div class="lists">
-                        <h3>Classes:</h3>
-                        <xsl:copy-of select="phe:getClassList()" />
-                        <h3>Interfaces:</h3>
-                        <xsl:copy-of select="phe:getInterfaceList()" />
-                    </div>                    
+            <body>
+                <xsl:call-template name="topbar">
+                    <xsl:with-param name="rel" select="'..'" />                    
+                </xsl:call-template>
+                
+                <div class="container-fluid">
+                
+                    <xsl:call-template name="sidebar" />
+                    
+                    <div class="content">
+                        <div class="well">
+                            <small><xsl:value-of select="$interface/../@name" /></small><h1><xsl:value-of select="$interface/@name" /></h1>
+                            
+                            <ul class="unstyled"> 
+                            <xsl:apply-templates select="$interface/src:docblock/*[local-name()!='description']">
+                                <xsl:sort select="local-name()" order="ascending" />
+                            </xsl:apply-templates>
+                            </ul>
+
+                            <xsl:for-each select="$interface/src:docblock/src:description">
+                                <p style="font-size:110%;">
+                                    <xsl:value-of select="@compact" />
+                                    <xsl:if test="text() != ''">
+                                        <pre><xsl:value-of select="." /></pre>
+                                    </xsl:if>
+                                </p>
+                            </xsl:for-each>
+                        </div>
+                    
+                        <xsl:if test="$interface/src:constant">
+                            <h2>Constants</h2>
+                            <section style="padding-left:1em;">    
+                                <ul class="unstyled">                                
+                                    <xsl:apply-templates select="$interface/src:constant" />
+                                </ul>
+                            </section>
+                        </xsl:if>
+                        <xsl:if test="$interface/src:member">
+                            <h2>Members</h2>
+                            <section style="padding-left:1em;">    
+                                <ul class="unstyled">
+                                    <xsl:apply-templates select="$interface/src:member" />
+                                </ul>
+                            </section>
+                        </xsl:if>
+                        <xsl:if test="$interface/src:constructor|$interface/src:destroctur|$interface/src:method">
+                            <h2>Methods</h2>
+                            <section style="padding-left:1em;">
+                            <ul class="unstyled">    
+                                <xsl:apply-templates select="$interface/src:constructor|$interface/src:destructor" />
+                                <xsl:apply-templates select="$interface/src:method">
+                                    <xsl:sort select="@visibility" order="descending" />
+                                    <xsl:sort select="@name" />
+                                </xsl:apply-templates>                                
+                            </ul>
+                            </section>
+                        </xsl:if>
+                        
+                        <footer>
+                            <p>Generated with phpDox 0.4</p>
+                        </footer>
+                    </div>            
+
                 </div>
             </body>
         </html>
 
     </xsl:template>
 
-    <xsl:template match="file:namespace">
-        <div class="classNamespace">
-            <p class="classNamespaceName">
-                <xsl:value-of select="./@name" />
-            </p>
+    <xsl:template name="sidebar">
+        <div class="sidebar">
+            <div class="well">
+                <xsl:if test="$interface/src:constant">
+                    <h5>Constants</h5>
+                    <ul>
+                        <xsl:for-each select="$interface/src:constant">
+                            <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
+                        </xsl:for-each>
+                    </ul>
+                </xsl:if>
+                <xsl:if test="$interface/src:member">
+                    <h5>Members</h5>
+                    <ul>
+                        <xsl:for-each select="$interface/src:member">
+                            <li><a href="#{@name}">$<xsl:value-of select="@name" /></a></li>
+                        </xsl:for-each>
+                    </ul>
+                </xsl:if>
+                <xsl:if test="$interface/src:method|$interface/src:constructor|$interface/src:destructor">
+                    <h5>Methods</h5>
+                    <ul>
+                        <xsl:for-each select="$interface/src:method|$interface/src:constructor|$interface/src:destructor">
+                            <xsl:sort select="@name" order="ascending" />
+                            <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
+                        </xsl:for-each>
+                    </ul>
+                </xsl:if>
+            </div>
         </div>
     </xsl:template>
+    
+    <!--  ## DOCBLOCK NODES ## -->
+    
+    <xsl:template match="src:description">
+        <li>
+            <xsl:value-of select="@compact" />
+            <xsl:if test="text() != ''">
+                <pre><xsl:value-of select="." /></pre>
+            </xsl:if>
+        </li>
+    </xsl:template>    
 
-    <xsl:template match="file:interface">
-        <h2 class="className" id="className">
-            <xsl:value-of select="./@name" />
-        </h2>
-        <xsl:apply-templates select="file:extends" />
-        <xsl:apply-templates select="file:docblock" />
-        <xsl:call-template name="classConstants" />
-        <xsl:call-template name="classMembers" />
-        <xsl:call-template name="classMethods" />
-    </xsl:template>
-
-    <xsl:template match="file:extends">
-        <div class="inheritance">
-            <p class="prefixes">extending </p>
-            <xsl:value-of select="./@class" />
-        </div>
-    </xsl:template>
-
-    <xsl:template match="file:constant">
-        <li class="classConstantItem">
-            <xsl:value-of select="./@name" />
-            <xsl:text> = </xsl:text>
-            <xsl:value-of select="./@value" />
+    <xsl:template match="src:author">
+        <li>
+            <b>Author: </b> <xsl:value-of select="@value" />
         </li>
     </xsl:template>
 
-    <xsl:template match="file:docblock">
-        <div class="classDocBlock">
-            <xsl:if test="./@author">
-                <div class="author">
-                    <xsl:value-of select="./@author" />
-                </div>
-            </xsl:if>
-            <xsl:if test="./@copyright">
-                <div class="copyright">
-                    <xsl:value-of select="./@copyright" />
-                </div>
-            </xsl:if>
-            <xsl:if test="file:description">
-                <xsl:call-template name="docBlockDescriptons" />
-            </xsl:if>
-        </div>
-    </xsl:template>
-
-    <xsl:template match="file:constructor">
-        <li class="constructor">
-            <p class="prefixes">
-                <xsl:call-template name="prefixAbstract" />
-                <xsl:call-template name="prefixVisibility" />
-                <xsl:call-template name="prefixStatic" />
-            </p>
-            <xsl:text>Constructor</xsl:text>
-            <xsl:call-template name="methodParameter" />
+    <xsl:template match="src:copyright">
+        <li>
+            <b>Copyright: </b> <xsl:value-of select="@value" />
         </li>
     </xsl:template>
 
-    <xsl:template match="file:member">
-        <li class="classMemberItem">
-            <p class="prefixes">
-                <xsl:call-template name="prefixVisibility" />
-                <xsl:call-template name="prefixStatic" />
-            </p>
-            <xsl:value-of select="./@name" />
-            <xsl:if test="file:default">
-                <xsl:text> = </xsl:text>
-                <xsl:value-of select="file:default" />
-            </xsl:if>
+    <xsl:template match="src:license">
+        <li>
+            <b>License: </b> <xsl:value-of select="@name" />
         </li>
     </xsl:template>
 
-    <xsl:template match="file:method">
-        <li class="classMethodItem">
-            <h3 class="classMethodName">
-                <xsl:value-of select="./@name" />
-            </h3>
-            <span class="prefixes">
-                <xsl:call-template name="prefixVisibility" />
-                <xsl:call-template name="prefixFinal" />
-                <xsl:call-template name="prefixStatic" />
-                <xsl:call-template name="prefixAbstract" />
+    <xsl:template match="src:var">    
+        <p><em><xsl:value-of select="src:docblock/src:var/@type" /></em></p>
+    </xsl:template>
+
+    <!--  ## CONSTANTS ## -->
+    
+    <!--  ## MEMBERS ## -->
+    <xsl:template match="src:member">
+        <li>
+            <a name="{@name}" />
+            <h3>$<xsl:value-of select="@name" /></h3>
+            <div style="padding-left:1em;">
+                <xsl:call-template name="modifiers">
+                    <xsl:with-param name="ctx" select="." />
+                </xsl:call-template>            
+                <strong>&#160;$<xsl:value-of select="@name" /></strong>
+                <xsl:for-each select="src:docblock">
+                    <em>&#160;<xsl:value-of select="src:var/@type" /></em>
+                    <p>
+                        <xsl:apply-templates select="src:description" />
+                    </p>                    
+                </xsl:for-each>
+                <xsl:if test="src:default">
+                    <p><b>Default:</b>&#160;<code><xsl:value-of select="src:default" /></code></p>
+                </xsl:if>
+            </div>
+            <hr />
+        </li>
+    </xsl:template>    
+    
+    <!--  ## METHODS ## -->
+    <xsl:template match="src:method|src:constructor|src:destructor">
+        <li>
+            <a name="{@name}" />
+            <h3><xsl:value-of select="@name" /><span style="font-size:90%;">( <xsl:apply-templates select="src:parameter[1]" /> )</span></h3>
+            <section style="padding-left:1em;">
+                <xsl:call-template name="modifiers">
+                    <xsl:with-param name="ctx" select="." />
+                </xsl:call-template>                            
+                <xsl:for-each select="src:docblock">
+                    <p style="font-size:110%; padding-top:5px;">
+                        <xsl:apply-templates select="src:description" />
+                    </p>                    
+                </xsl:for-each>
+            </section>
+            <hr />
+        </li>
+    </xsl:template>    
+    
+    <xsl:template match="src:parameter">
+        <xsl:if test="@optional = 'true'">[</xsl:if>
+        <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;<strong>$<xsl:value-of select="@name" /></strong>
+        <xsl:if test="src:default"><small> = <xsl:value-of select="src:default" /></small></xsl:if>
+        <xsl:if test="following-sibling::src:parameter">, <xsl:apply-templates select="following-sibling::src:parameter[1]" /></xsl:if>
+        <xsl:if test="@optional = 'true'">&#160;]</xsl:if>
+    </xsl:template>
+
+    <!--  ## shared ## -->
+    
+    <xsl:template name="modifiers">
+        <xsl:param name="ctx" />
+        
+        <xsl:for-each select="$ctx/@visibility">
+            <span>
+                <xsl:attribute name="class">label
+                    <xsl:choose>
+                        <xsl:when test=". = 'public'">success</xsl:when>
+                        <xsl:when test=". = 'protected'">warning</xsl:when>
+                        <xsl:when test=". = 'private'">important</xsl:when>
+                    </xsl:choose>
+                </xsl:attribute>
+                <xsl:value-of select="." />          
             </span>
-            <xsl:apply-templates select="file:docblock" />
-            <xsl:if test="file:parameter">
-                <xsl:call-template name="methodParameter" />
-            </xsl:if>
-        </li>
-    </xsl:template>
-
-    <xsl:template match="file:parameter">
-        <li class="classMethodParameter">
-            <xsl:call-template name="typeHint" />
-            <xsl:call-template name="prefixByReference" />
-            <xsl:value-of select="./@name" />
-            <xsl:text> </xsl:text>
-            <xsl:call-template name="postfixOptional" />
-        </li>
-    </xsl:template>
-
-
-
-    <xsl:template name="classConstants">
-        <xsl:if test="file:constant">
-            <div class="classConstants">
-                <h3 id="constants">Constants</h3>
-                <ul class="classConstantList">
-                    <xsl:apply-templates select="file:constant" />
-                </ul>
-            </div>
+        </xsl:for-each>
+        
+        <xsl:if test="$ctx/@static = 'true'">
+            <span class="label">static</span>
         </xsl:if>
-    </xsl:template>
 
-    <xsl:template name="classMembers">
-        <xsl:if test="file:member">
-            <div class="classMembers">
-                <h3 id="members">Members</h3>
-                <ul class="classMemberList">
-                    <xsl:apply-templates select="file:member" />
-                </ul>
-            </div>
+        <xsl:if test="$ctx/@final = 'true'">
+            <span class="label notice">final</span>
         </xsl:if>
-    </xsl:template>
 
-    <xsl:template name="classMethods">
-        <xsl:if test="file:method or file:constructor">
-            <div class="classMethods">
-                <h3 id="methods">Methods</h3>
-                <ul class="classMethodList">
-                    <xsl:apply-templates select="file:constructor" />
-                    <xsl:apply-templates select="file:method" />
-                </ul>
-            </div>
+        <xsl:if test="$ctx/@abstract = 'true'">
+            <span class="label">abstract</span>
         </xsl:if>
-    </xsl:template>
-
-    <xsl:template name="docBlockDescriptons">
-        <div class="description">
-            <xsl:if test="file:description/@compact">
-                <div class="shortDescription">
-                    <xsl:value-of select="file:description/@compact" />
-                </div>
-            </xsl:if>
-            <xsl:if test="file:description/text()">
-                <pre class="longDescription">
-                    <xsl:value-of select="file:description/text()" />
-                </pre>
-            </xsl:if>
-        </div>
-    </xsl:template>
-
-    <xsl:template name="methodParameter">
-        <div class="classMethodParameters">
-            <ul class="classMethodParameterList">
-                <xsl:apply-templates match="file:parameter" />
-            </ul>
-        </div>
-    </xsl:template>
-
-    <xsl:template name="typeHint">
-        <xsl:if test="./@type='object'">
-            <p class="typeHint">
-                <xsl:value-of select="./@class" />
-            </p>
-            <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:if test="./@type='array'">
-            <p class="typeHint">array</p>
-            <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:if test="./@type='{unknown}'">
-            <p class="typeHint">mixed</p>
-            <xsl:text> </xsl:text>
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template name="postfixOptional">
-        <xsl:if test="./@optional='true'">
-            <xsl:text>= </xsl:text>
-            <xsl:value-of select="file:default/text()" />
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template name="prefixByReference">
-        <xsl:if test="./@byreference='true'">
-            <xsl:text>&amp;</xsl:text>
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template name="prefixFinal">
-        <xsl:if test="./@final='true'">
-            <xsl:text>final </xsl:text>
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template name="prefixVisibility">
-        <xsl:value-of select="./@visibility" />
-        <xsl:text> </xsl:text>
-    </xsl:template>
-
-    <xsl:template name="prefixStatic">
-        <xsl:if test="./@static='true'">
-            <xsl:text>static </xsl:text>
-        </xsl:if>
-    </xsl:template>
-
-    <xsl:template name="prefixAbstract">
-        <xsl:if test="./@abstract='true'">
-            <xsl:text>abstract </xsl:text>
-        </xsl:if>
+        
     </xsl:template>
 </xsl:stylesheet>

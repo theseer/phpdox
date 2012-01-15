@@ -39,22 +39,41 @@
                         <div class="well">
                             <small><xsl:value-of select="$class/../@name" /></small><h1><xsl:value-of select="$class/@name" /></h1>
                             
-                            <xsl:apply-templates select="$class/src:docblock/*">
+                            <ul class="unstyled"> 
+                            <xsl:apply-templates select="$class/src:docblock/*[local-name()!='description']">
                                 <xsl:sort select="local-name()" order="ascending" />
                             </xsl:apply-templates>
+                            </ul>
+
+                            <xsl:for-each select="$class/src:docblock/src:description">
+                                <p style="font-size:110%;">
+                                    <xsl:value-of select="@compact" />
+                                    <xsl:if test="text() != ''">
+                                        <pre><xsl:value-of select="." /></pre>
+                                    </xsl:if>
+                                </p>
+                            </xsl:for-each>
                         </div>
                     
                         <xsl:if test="$class/src:constant">
-                            <h2>Constants</h2>    
-                            <xsl:apply-templates select="$class/src:constant" />
+                            <h2>Constants</h2>
+                            <section style="padding-left:1em;">    
+                                <ul class="unstyled">                                
+                                    <xsl:apply-templates select="$class/src:constant" />
+                                </ul>
+                            </section>
                         </xsl:if>
                         <xsl:if test="$class/src:member">
-                            <h2>Members</h2>    
-                            <xsl:apply-templates select="$class/src:member" />
+                            <h2>Members</h2>
+                            <section style="padding-left:1em;">    
+                                <ul class="unstyled">
+                                    <xsl:apply-templates select="$class/src:member" />
+                                </ul>
+                            </section>
                         </xsl:if>
                         <xsl:if test="$class/src:constructor|$class/src:destroctur|$class/src:method">
-                            <h2 class="well">Methods</h2>
-                            <div style="padding-left:1em;">
+                            <h2>Methods</h2>
+                            <section style="padding-left:1em;">
                             <ul class="unstyled">    
                                 <xsl:apply-templates select="$class/src:constructor|$class/src:destructor" />
                                 <xsl:apply-templates select="$class/src:method">
@@ -62,7 +81,7 @@
                                     <xsl:sort select="@name" />
                                 </xsl:apply-templates>                                
                             </ul>
-                            </div>
+                            </section>
                         </xsl:if>
                         
                         <footer>
@@ -111,64 +130,134 @@
     <!--  ## DOCBLOCK NODES ## -->
     
     <xsl:template match="src:description">
-        <p><xsl:value-of select="@compact" /></p>
-        <xsl:if test="text() != ''">
-            <pre><xsl:value-of select="." /></pre>
-        </xsl:if>
+        <li>
+            <xsl:value-of select="@compact" />
+            <xsl:if test="text() != ''">
+                <pre><xsl:value-of select="." /></pre>
+            </xsl:if>
+        </li>
     </xsl:template>    
 
     <xsl:template match="src:author">
-        <p><b>Author: </b> <xsl:value-of select="@value" /></p>
+        <li>
+            <b>Author: </b> <xsl:value-of select="@value" />
+        </li>
     </xsl:template>
 
     <xsl:template match="src:copyright">
-        <p><b>Copyright: </b> <xsl:value-of select="@value" /></p>
+        <li>
+            <b>Copyright: </b> <xsl:value-of select="@value" />
+        </li>
     </xsl:template>
 
     <xsl:template match="src:license">
-        <p><b>License: </b> <xsl:value-of select="@name" /></p>
+        <li>
+            <b>License: </b> <xsl:value-of select="@name" />
+        </li>
+    </xsl:template>
+
+    <xsl:template match="src:var">    
+        <p><em><xsl:value-of select="src:docblock/src:var/@type" /></em></p>
     </xsl:template>
 
     <!--  ## CONSTANTS ## -->
     
     <!--  ## MEMBERS ## -->
+    <xsl:template match="src:member">
+        <li>
+            <a name="{@name}" />
+            <h3>$<xsl:value-of select="@name" /></h3>
+            <div style="padding-left:1em;">
+                <xsl:call-template name="modifiers">
+                    <xsl:with-param name="ctx" select="." />
+                </xsl:call-template>            
+                <strong>&#160;$<xsl:value-of select="@name" /></strong>
+                <xsl:for-each select="src:docblock">
+                    <em>&#160;<xsl:value-of select="src:var/@type" /></em>
+                    <p>
+                        <xsl:apply-templates select="src:description" />
+                    </p>                    
+                </xsl:for-each>
+                <xsl:if test="src:default">
+                    <p><b>Default:</b>&#160;<code><xsl:value-of select="src:default" /></code></p>
+                </xsl:if>
+            </div>
+            <hr />
+        </li>
+    </xsl:template>    
     
     <!--  ## METHODS ## -->
     <xsl:template match="src:method|src:constructor|src:destructor">
         <li>
             <a name="{@name}" />
-            <h3><xsl:value-of select="@name" /></h3>
-            <p style="padding-left:1em;">
-                <xsl:call-template name="visibility">
-                    <xsl:with-param name="modifier" select="@visibility" />
-                </xsl:call-template>            
-                <span style="padding-left:5px;">function <strong><xsl:value-of select="@name" /></strong>(
-                    <xsl:apply-templates select="src:parameter[1]" />
-                )</span>
-            </p>
+            <h3><xsl:value-of select="@name" /><span style="font-size:90%;">( <xsl:apply-templates select="src:parameter[1]" /> )</span></h3>
+            <section style="padding-left:1em;">
+                <xsl:call-template name="modifiers">
+                    <xsl:with-param name="ctx" select="." />
+                </xsl:call-template>                            
+                <xsl:for-each select="src:docblock">
+                    <p style="font-size:110%; padding-top:5px;">
+                        <xsl:apply-templates select="src:description" />
+                    </p>                    
+                </xsl:for-each>
+            </section>
             <hr />
         </li>
     </xsl:template>    
     
     <xsl:template match="src:parameter">
         <xsl:if test="@optional = 'true'">[</xsl:if>
-        <em><xsl:value-of select="@class" /></em>&#160;<strong>$<xsl:value-of select="@name" /></strong>
+        <xsl:choose>
+            <xsl:when test="@type='object'">
+                <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;
+            </xsl:when>
+            <xsl:when test="@type='array'">
+                <em>Array</em>&#160;
+            </xsl:when>
+            <xsl:when test="@type='{unknown}'">
+                <xsl:variable name="name" select="@name" />
+                <xsl:for-each select="src:docblock/src:param[@name=$name]">
+                    <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;
+                </xsl:for-each>            
+            </xsl:when>            
+        </xsl:choose>
+        <strong>
+            <xsl:if test="@byreference = 'true'">&amp;</xsl:if>$<xsl:value-of select="@name" />
+        </strong>
+        <xsl:if test="src:default"><small> = <xsl:value-of select="src:default" /></small></xsl:if>
         <xsl:if test="following-sibling::src:parameter">, <xsl:apply-templates select="following-sibling::src:parameter[1]" /></xsl:if>
-        <xsl:if test="@optional = 'true'">]</xsl:if>
+        <xsl:if test="@optional = 'true'">&#160;]</xsl:if>
     </xsl:template>
 
     <!--  ## shared ## -->
-    <xsl:template name="visibility">
-        <xsl:param name="modifier" />
-        <span>
-            <xsl:attribute name="class">label
-                <xsl:choose>
-                    <xsl:when test="$modifier = 'public'">success</xsl:when>
-                    <xsl:when test="$modifier = 'protected'">warning</xsl:when>
-                    <xsl:when test="$modifier = 'private'">important</xsl:when>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:value-of select="$modifier" />          
-        </span>
+    
+    <xsl:template name="modifiers">
+        <xsl:param name="ctx" />
+        
+        <xsl:for-each select="$ctx/@visibility">
+            <span>
+                <xsl:attribute name="class">label
+                    <xsl:choose>
+                        <xsl:when test=". = 'public'">success</xsl:when>
+                        <xsl:when test=". = 'protected'">warning</xsl:when>
+                        <xsl:when test=". = 'private'">important</xsl:when>
+                    </xsl:choose>
+                </xsl:attribute>
+                <xsl:value-of select="." />          
+            </span>
+        </xsl:for-each>
+        
+        <xsl:if test="$ctx/@static = 'true'">
+            <span class="label">static</span>
+        </xsl:if>
+
+        <xsl:if test="$ctx/@final = 'true'">
+            <span class="label notice">final</span>
+        </xsl:if>
+
+        <xsl:if test="$ctx/@abstract = 'true'">
+            <span class="label">abstract</span>
+        </xsl:if>
+        
     </xsl:template>
 </xsl:stylesheet>

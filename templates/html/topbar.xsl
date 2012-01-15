@@ -16,6 +16,7 @@
                                     </xsl:if>
                                     <a href="{$rel}/index.xhtml">Overview</a>
                                 </li>
+                                <!-- 
                                 <li>
                                     <xsl:if test="$active = 'classes'">
                                         <xsl:attribute name="class">active</xsl:attribute>
@@ -34,6 +35,7 @@
                                     </xsl:if>
                                     <a href="{$rel}/traits.xhtml">Traits</a>
                                 </li>
+                                -->
                             </ul>                            
                         </div>
                     </div>
