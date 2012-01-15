@@ -57,31 +57,25 @@ Now you are ready to check out the source code of phpDox from its Git repository
 
 Usage Examples
 --------------
+(The examples assume you installed phpDox from pear. In case you use a developer checkout, you have to replace `phpdox` by `./phpdox.php` in the following paragraph.)
 
 You can run phpDox like this:
 
-    ./phpdox.php --help
+    phpdox --help
 
-Sample invocation to parse and generate HTML output:
+As of version 0.4 phpDox requires an xml configuration file. In case a project you want to generate documentation for does not come with one, you can create it by calling
 
-    ./phpdox.php -x /tmp/xml1 -c ~/Downloads/ZendFramework-1.11.5/library/Zend -d /tmp/docs1 -g html
+    phpdox.php --skel > phpdox.xml.dist
+        
+
+Sample invocation to parse and generate output based on the default phpdox.xml configuration file
+
+    ./phpdox.php
+    
 
 
 Trouble Shooting
 ----------------
-
-* If you run `phpdox.php` and get the following error:
-
-        PHP Fatal error:  require_once(): Failed opening required 'ezc/Base/base.php' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/phpdox/phpdox.php on line 58
-
-    Make sure you have installed ezc/ConsoleTools (see above).
-    Make sure that the `ezc/` folder is located in one of the `include_path? of the error. If not, create a symbolic link.
-
-* If you run `phpdox.php` and get the following error:
-
-        PHP Warning:  require(TheSeer/DirectoryScanner/autoload.php): failed to open stream: No such file or directory in /var/www/phpdox/phpdox.php on line 44
-
-    Make sure you have installed all the dependencies mentioned above.
 
 * If you try to install `theseer/fXSL` and get the following error:
 
@@ -92,5 +86,25 @@ Trouble Shooting
     Try to install the xsl extention of PHP. On Ubuntu, you can simply use:
 
         sudo apt-get install php5-xsl
+        
+    For Redhat based distributions:
+    
+        sudo yum install php-xsl
 
     Once the extension is installed, you can retry to install the fXSL package.
+
+The following problems should only occur in case you are on a developer checkout:
+
+* If you run `phpdox.php` and get the following error:
+
+        PHP Fatal error:  require_once(): Failed opening required 'ezc/Base/base.php' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/phpdox/phpdox.php ...
+
+    Make sure you have installed ezc/ConsoleTools (see above).
+    Make sure that the `ezc/` folder is located in one of the `include_path`. If not, create a symbolic link or fix your include_path setting.
+
+* If you run `phpdox.php` and get the following error:
+
+        PHP Warning:  require(TheSeer/DirectoryScanner/autoload.php): failed to open stream: No such file or directory in /var/www/phpdox/phpdox.php on line 44
+
+    Make sure you have installed all the dependencies mentioned above, or in case you have installed an older version upgrade accordingly.
+
