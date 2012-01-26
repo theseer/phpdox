@@ -188,7 +188,7 @@ namespace TheSeer\phpDox {
         protected function processParameters(fDOMElement $ctx, Array $parameters, fDOMElement $docBlock = null) {
             foreach($parameters as $idx => $param) {
                 $paramNode = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'parameter');
-                $paramNode->setAttribute('name', $param->getName());
+                $paramNode->setAttribute('name', '$'.$param->getName());
                 if ($class = $param->getClass()) {
                     $paramNode->setAttribute('type', 'object');
                     $paramNode->setAttribute('class', $class->getShortName());
