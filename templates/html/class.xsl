@@ -24,6 +24,14 @@
                     body {
                         padding-top: 60px;
                     }
+                    
+                    ul.inheritance {
+                        list-style-type: none;
+                    }
+                    
+                    ul.inheritance > li:before {
+                        content: "↪ ";
+                    }
                 </style>                
             </head>
             <body>
@@ -53,6 +61,25 @@
                                     </xsl:if>
                                 </p>
                             </xsl:for-each>
+                            
+                            <xsl:variable name="inheritance" select="phe:getInheritanceInfo($class)" />                            
+                            <xsl:if test="$inheritance/src:of/src:class">
+                                <h3>Inheritance:</h3>
+                                <ul class="unstyled">                                
+                                <xsl:call-template name="inherit">
+                                    <xsl:with-param name="ctx" select="$inheritance/src:of/src:class" />
+                                </xsl:call-template>
+                                </ul>
+                            </xsl:if>
+                            <xsl:if test="$inheritance/src:by/src:class">
+                                <h3>Extended by:</h3>
+                                <ul>
+                                <xsl:for-each select="$inheritance/src:by/src:class">
+                                    <li><xsl:copy-of select="phe:classLink(.)" /></li>
+                                </xsl:for-each>
+                                </ul>
+                            </xsl:if>
+                             
                         </div>
                     
                         <xsl:if test="$class/src:constant">
@@ -93,6 +120,27 @@
             </body>
         </html>
 
+    </xsl:template>
+
+    <xsl:template name="inherit">
+        <xsl:param name="ctx" />
+        <li>
+            <xsl:choose>
+                <xsl:when test="$ctx/@full != $class/@full">
+                    <xsl:copy-of select="phe:classLink($ctx)" />
+                </xsl:when>
+                <xsl:otherwise><strong><xsl:value-of select="$ctx/@full" /></strong></xsl:otherwise>
+            </xsl:choose>  
+                
+                
+            <xsl:if test="$ctx/src:class">
+                <ul class="inheritance">
+                <xsl:call-template name="inherit">
+                    <xsl:with-param name="ctx" select="$ctx/src:class" />
+                </xsl:call-template>
+                </ul>
+            </xsl:if>
+        </li>        
     </xsl:template>
 
     <xsl:template name="sidebar">

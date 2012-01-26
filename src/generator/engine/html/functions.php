@@ -63,10 +63,39 @@ namespace TheSeer\phpDox\Engine\Html {
             }
             $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml','a');
             $a->setAttribute('href','../'.$path.'/'. $this->classNameToFileName($full,'xhtml'));
-            $a->appendChild($this->dom->createTextNode($nodes[0]->getAttribute('class')));
+            $a->appendChild($this->dom->createTextNode($full));
             $this->links[$full] = $a;
             return $a;
         }
+
+        public function getInheritanceInfo(Array $nodes) {
+            if (count($nodes)!=1) {
+                return $this->dom->createTextNode('invalid method call');
+            }
+            $full = $nodes[0]->getAttribute('full');
+
+            $container = $this->dom->createElementNS('http://xml.phpdox.de/src#','extended');
+            $by = $this->dom->createElementNS('http://xml.phpdox.de/src#','by');
+            $container->appendChild($by);
+
+            $of = $this->dom->createElementNS('http://xml.phpdox.de/src#','of');
+            $container->appendChild($of);
+
+            $class = $this->classListDom->queryOne('//phpdox:class[@full="'.$full.'"]');
+            if (!$class) {
+                return $container;
+            }
+
+            $this->followInheritence($class, $of);
+
+            foreach($this->classListDom->query('//phpdox:class[phpdox:extends[@full="'.$full.'"]]') as $node) {
+                $by->appendChild($this->dom->importNode($node));
+            }
+
+            return $container;
+
+        }
+
 
         public function classNameToFileName($class, $ext = 'xml') {
             return str_replace('\\', '_', $class) . '.' . $ext;
@@ -90,6 +119,19 @@ namespace TheSeer\phpDox\Engine\Html {
                 $html = $this->listXSL->transformToDoc($this->interfaceListDom)->documentElement;;
             }
             return $html;
+        }
+
+        protected function followInheritence($class, $ctx) {
+            $node = $this->dom->importNode($class);
+            $extends = $class->queryOne('phpdox:extends');
+            if ($extends) {
+                $parent = $this->classListDom->queryOne('//phpdox:class[@full="'.$extends->getAttribute('full').'"]');
+                if ($parent) {
+                    $ctx = $this->followInheritence($parent, $ctx);
+                }
+            }
+            $ctx->appendChild($node);
+            return $node;
         }
     }
 }
