@@ -71,9 +71,6 @@
                 <dot executable="/usr/bin/dot" render="true" format="png" />
             </build>
             
-            <build engine="xslrunner" enabled="true" output="html2">
-                <template dir="${phpDox.home}/templates/xslrunner" />
-            </build>
             -->
             
         </generator>

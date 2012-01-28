@@ -47,8 +47,4 @@ namespace TheSeer\phpDox {
             ->implementedByClass('TheSeer\\phpDox\\Engine\\Todo');
            // ->withConfigClass('TheSeer\\phpDox\\Engine\\TodoConfig');
 
-    $phpDox->registerEngine('xslrunner', 'XSLRunner based html output')
-            ->implementedByClass('TheSeer\\phpDox\\Engine\\XSLRunner')
-            ->withConfigClass('TheSeer\\phpDox\\Engine\\XSLRunnerConfig');
-
 }
