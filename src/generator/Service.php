@@ -69,7 +69,7 @@ namespace TheSeer\phpDox {
 
         protected function resolveInheritance(fDOMDocument $source, $nodename, $name) {
             $dom = new fDOMDocument();
-            $fraq = $dom->createDocumentFragment();
+            $frag = $dom->createDocumentFragment();
             $q = '//phpdox:'.$nodename.'[@full=:name]';
             $ctx = $frag;
             $xp = $source->getDOMXPath();
