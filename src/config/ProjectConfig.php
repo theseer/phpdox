@@ -72,7 +72,7 @@ namespace TheSeer\phpDox {
         public function getCollectorConfig() {
             $colNode = $this->ctx->queryOne('cfg:collector');
             if (!$colNode) {
-                throw new ConfigException("Project '$project' does not have a collector section", ConfigException::NoCollectorSection);
+                throw new ConfigException("Project does not have a collector section", ConfigException::NoCollectorSection);
             }
             return new CollectorConfig($this, $colNode);
         }
@@ -80,7 +80,7 @@ namespace TheSeer\phpDox {
         public function getGeneratorConfig() {
             $genNode = $this->ctx->queryOne('cfg:generator');
             if (!$genNode) {
-                throw new ConfigException("Project '$project' does not have a generator section", ConfigException::NoGeneratorSection);
+                throw new ConfigException("Project does not have a generator section", ConfigException::NoGeneratorSection);
             }
             return new GeneratorConfig($this, $genNode);
         }
