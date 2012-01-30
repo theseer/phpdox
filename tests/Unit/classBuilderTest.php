@@ -382,7 +382,7 @@ namespace TheSeer\phpDox\Tests\Unit {
                         $this->equalTo('byreference')
                     ),
                     $this->logicalOr(
-                        $this->equalTo('Beastie'),
+                        $this->equalTo('$Beastie'),
                         $this->equalTo('object'),
                         $this->equalTo('Beastie'),
                         $this->equalTo('\\TheSeer\\phpDox\\'),

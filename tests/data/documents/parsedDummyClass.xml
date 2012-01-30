@@ -41,10 +41,10 @@ ordo eluo. Fluo fatua iste.</description>
             <param type="array" variable="$set"/>
             <param type="string" variable="$optional"/>
           </docblock>
-          <parameter name="count" type="{unknown}" optional="false" byreference="false"/>
-          <parameter name="class" type="object" class="stdClass" optional="false" byreference="false"/>
-          <parameter name="set" type="array" optional="false" byreference="false"/>
-          <parameter name="optional" type="{unknown}" optional="true" byreference="false">
+          <parameter name="$count" type="{unknown}" optional="false" byreference="false"/>
+          <parameter name="$class" type="object" class="stdClass" optional="false" byreference="false"/>
+          <parameter name="$set" type="array" optional="false" byreference="false"/>
+          <parameter name="$optional" type="{unknown}" optional="true" byreference="false">
              <default>null</default>
           </parameter>
         </constructor>
@@ -59,10 +59,10 @@ Alt kam Ball Au tatst leimen, Box Essigs</description>
                 <param description="3rd Argument" type="string" variable="$name" />
                 <param description="4th Argument" type="integer|null" variable="$optional" />
             </docblock>
-            <parameter name="set" type="array" optional="false" byreference="false" />
-            <parameter name="count" type="object" class="Countable" optional="false" byreference="false"/>
-            <parameter name="name" type="{unknown}" optional="false" byreference="false" />
-            <parameter name="optional" type="{unknown}" optional="true" byreference="false">
+            <parameter name="$set" type="array" optional="false" byreference="false" />
+            <parameter name="$count" type="object" class="Countable" optional="false" byreference="false"/>
+            <parameter name="$name" type="{unknown}" optional="false" byreference="false" />
+            <parameter name="$optional" type="{unknown}" optional="true" byreference="false">
                 <default>null</default>
             </parameter>
         </method>

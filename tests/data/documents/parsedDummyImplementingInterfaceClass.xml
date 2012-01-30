@@ -19,9 +19,9 @@ Alt kam Ball Au tatst leimen, Box Essigs</description>
                 <param description="2nd Argument" type="string" variable="$name" />
                 <param description="3rd Argument" type="integer|null" variable="$optional" />
             </docblock>
-            <parameter name="set" type="array" optional="false" byreference="false" />
-            <parameter name="name" type="{unknown}" optional="false" byreference="false" />
-            <parameter name="optional" type="{unknown}" optional="true" byreference="false">
+            <parameter name="$set" type="array" optional="false" byreference="false" />
+            <parameter name="$name" type="{unknown}" optional="false" byreference="false" />
+            <parameter name="$optional" type="{unknown}" optional="true" byreference="false">
                 <default>null</default>
             </parameter>
         </method>
