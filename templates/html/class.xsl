@@ -209,6 +209,19 @@
     </xsl:template>
 
     <!--  ## CONSTANTS ## -->
+    <xsl:template match="src:constant">
+        <li>
+            <a name="{@name}" />
+            <h3><xsl:value-of select="@name" /> = <xsl:value-of select="@value" /></h3>
+            <xsl:for-each select="src:docblock">
+                <em>&#160;<xsl:value-of select="src:var/@type" /></em>
+                <p>
+                    <xsl:apply-templates select="src:description" />
+                </p>                    
+            </xsl:for-each>
+            <hr />
+        </li>
+    </xsl:template>    
     
     <!--  ## MEMBERS ## -->
     <xsl:template match="src:member">
