@@ -122,7 +122,7 @@ namespace TheSeer\phpDox {
                 }
             }
 
-            foreach($ctx->query('//*[not(name()="property")]/@*') as $attr) {
+            foreach($ctx->query('.//*[not(name()="property")]/@*') as $attr) {
                 $attr->nodeValue = $this->resolveValue($attr->nodeValue, $vars);
             }
 
