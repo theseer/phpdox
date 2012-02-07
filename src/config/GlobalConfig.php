@@ -102,7 +102,7 @@ namespace TheSeer\phpDox {
             $vars = array(
                 'basedir' => $ctx->getAttribute('basedir', dirname($this->fname)),
 
-                'phpDox.home' => realpath(__DIR__.'/../'),
+                'phpDox.home' => realpath(__DIR__.'/../../'),
                 'phpDox.file' => $this->fname,
                 'phpDox.version' => defined('PHPDOX_VERSION') ? PHPDOX_VERSION : '*UNKNOWN*',
 
