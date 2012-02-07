@@ -102,7 +102,7 @@ namespace TheSeer\phpDox {
             $vars = array(
                 'basedir' => $ctx->getAttribute('basedir', dirname($this->fname)),
 
-                'phpDox.home' => realpath(__DIR__.'/../../'),
+                'phpDox.home' => realpath(__DIR__.'/../'),
                 'phpDox.file' => $this->fname,
                 'phpDox.version' => defined('PHPDOX_VERSION') ? PHPDOX_VERSION : '*UNKNOWN*',
 
@@ -122,7 +122,7 @@ namespace TheSeer\phpDox {
                 }
             }
 
-            foreach($ctx->query('*[not(name()="property")]/@*') as $attr) {
+            foreach($ctx->query('//*[not(name()="property")]/@*') as $attr) {
                 $attr->nodeValue = $this->resolveValue($attr->nodeValue, $vars);
             }
 
@@ -130,7 +130,7 @@ namespace TheSeer\phpDox {
         }
 
         protected function resolveValue($value, Array $vars) {
-            return preg_replace_callback('/\${(.*)}/', function($matches) use ($vars) { var_dump($matches); return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0]; }, $value);
+            return preg_replace_callback('/\${(.*?)}/', function($matches) use ($vars) { return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0]; }, $value);
         }
 
     }
