@@ -7,7 +7,6 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'theseer\\phpdox\\analyser' => '/collector/Analyser.php',
                 'theseer\\phpdox\\application' => '/Application.php',
                 'theseer\\phpdox\\applicationexception' => '/Application.php',
                 'theseer\\phpdox\\bootstrap' => '/bootstrap/Bootstrap.php',
@@ -19,6 +18,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\cli' => '/CLI.php',
                 'theseer\\phpdox\\collector' => '/collector/Collector.php',
                 'theseer\\phpdox\\collectorconfig' => '/config/CollectorConfig.php',
+                'theseer\\phpdox\\collectorexception' => '/collector/Collector.php',
                 'theseer\\phpdox\\configexception' => '/config/GlobalConfig.php',
                 'theseer\\phpdox\\configloader' => '/config/ConfigLoader.php',
                 'theseer\\phpdox\\configloaderexception' => '/config/ConfigLoader.php',
@@ -48,6 +48,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\engine\\html' => '/generator/engine/html/Html.php',
                 'theseer\\phpdox\\engine\\html\\functions' => '/generator/engine/html/functions.php',
                 'theseer\\phpdox\\engine\\htmlconfig' => '/generator/engine/html/HtmlConfig.php',
+                'theseer\\phpdox\\engine\\indexer' => '/generator/engine/indexer/Indexer.php',
                 'theseer\\phpdox\\engine\\todo' => '/generator/engine/todo/Todo.php',
                 'theseer\\phpdox\\enginebootstrapapi' => '/bootstrap/EngineBootstrapApi.php',
                 'theseer\\phpdox\\errorhandler' => '/shared/ErrorHandler.php',
@@ -63,10 +64,12 @@ spl_autoload_register(
                 'theseer\\phpdox\\generatorconfigexception' => '/config/GeneratorConfig.php',
                 'theseer\\phpdox\\generatorexception' => '/generator/Generator.php',
                 'theseer\\phpdox\\globalconfig' => '/config/GlobalConfig.php',
+                'theseer\\phpdox\\hasfileinfoexception' => '/shared/HasFileInfoException.php',
                 'theseer\\phpdox\\parserbootstrapapi' => '/bootstrap/ParserBootstrapApi.php',
                 'theseer\\phpdox\\progresslogger' => '/logger/ProgressLogger.php',
                 'theseer\\phpdox\\progressloggerexception' => '/logger/ProgressLogger.php',
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
+                'theseer\\phpdox\\resolver' => '/collector/Resolver.php',
                 'theseer\\phpdox\\service' => '/generator/Service.php',
                 'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php'
             );

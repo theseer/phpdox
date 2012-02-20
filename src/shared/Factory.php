@@ -117,10 +117,6 @@ namespace TheSeer\phpDox {
             return new CLI($this);
         }
 
-        protected function getAnalyser($public) {
-            return new Analyser($this, $public);
-        }
-
         protected function getBootstrapApi() {
             return new BootstrapApi($this->getEngineFactory(), $this->getDocblockFactory(), $this->getLogger());
         }
@@ -138,6 +134,10 @@ namespace TheSeer\phpDox {
 
         protected function getApplication() {
             return new Application($this, $this->getLogger());
+        }
+
+        protected function getResolver($xmlDir) {
+            return new Resolver($xmlDir);
         }
 
         protected function getContainer($xmlDir) {
@@ -170,16 +170,16 @@ namespace TheSeer\phpDox {
             return $scanner;
         }
 
-        protected function getCollector() {
-            return new Collector($this->getLogger());
+        protected function getCollector($xmlDir, $public) {
+            return new Collector($this->getLogger(), $this, $xmlDir, $public);
         }
 
         protected function getGenerator() {
             return new Generator($this->getInstanceFor('EventFactory'), $this->getLogger());
         }
 
-        protected function getClassBuilder(fDOMElement $ctx, array $aliasMap, $public, $encoding) {
-            return new ClassBuilder($this->getDocblockParser(), $ctx, $aliasMap, $public, $encoding);
+        protected function getClassBuilder(array $aliasMap, $public, $encoding) {
+            return new ClassBuilder($this->getDocblockParser(), $aliasMap, $public, $encoding);
         }
 
         protected function getService(AbstractGenerator $generator) {

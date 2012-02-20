@@ -43,37 +43,36 @@ namespace TheSeer\phpDox {
 
     class ClassBuilder {
 
-        protected $ctx;
         protected $publicOnly;
         protected $encoding;
         protected $parser;
         protected $aliasMap;
 
-        public function __construct(Parser $parser, fDOMElement $ctx, array $aliasMap, $publicOnly = false, $encoding = 'ISO-8859-1') {
+        public function __construct(Parser $parser, array $aliasMap, $publicOnly = false, $encoding = 'ISO-8859-1') {
             $this->parser = $parser;
-            $this->ctx = $ctx;
             $this->aliasMap = $aliasMap;
             $this->publicOnly = $publicOnly;
             $this->encoding = $encoding;
         }
 
-        public function process(\ReflectionClass $class) {
+        public function process(fDOMDocument $dom, \ReflectionClass $class) {
 
-            $node = $this->ctx->appendElementNS('http://xml.phpdox.de/src#', $class->isInterface() ? 'interface' : 'class' );
+            $node = $dom->createElementNS('http://xml.phpdox.de/src#', $class->isInterface() ? 'interface' : 'class');
+            $dom->documentElement->appendChild($node);
 
             $node->setAttribute('full', $class->getName());
             $node->setAttribute('name', $class->getShortName());
+            $node->setAttribute('namespace', $class->inNamespace() ? $class->getNamespaceName() : '\\');
             $node->setAttribute('final', $class->isFinal() ? 'true' : 'false');
             if ($node->nodeName === 'class') {
                 $node->setAttribute('abstract', $class->isAbstract() ? 'true' : 'false');
             }
-
             $node->setAttribute('start', $class->getStartLine());
             $node->setAttribute('end', $class->getEndLine());
 
             if ($docComment = $class->getDocComment()) {
                 $node->appendChild(
-                    $this->processDocBlock($this->ctx->ownerDocument, $docComment)
+                    $this->processDocBlock($dom, $docComment)
                 );
             }
 
@@ -90,8 +89,6 @@ namespace TheSeer\phpDox {
             $this->processConstants($node, $class->getConstants());
             $this->processMembers($node, $class->getProperties());
             $this->processMethods($node, $class->getMethods());
-
-            return $node;
 
         }
 

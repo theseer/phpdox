@@ -104,24 +104,27 @@ namespace TheSeer\phpDox {
                     $config->getIncludeMasks(),
                     $config->getExcludeMasks()
             );
-            $container = $this->factory->getInstanceFor('container', $xmlDir);
-
-            $collector = $this->factory->getInstanceFor('Collector');
-            $collector->setStartIndex(strlen(dirname(realpath($srcDir))));
+            $container = $this->factory->getInstanceFor('Container', $xmlDir, strlen(dirname(realpath($srcDir))));
+            $collector = $this->factory->getInstanceFor('Collector', $xmlDir, $config->isPublicOnlyMode());
             $collector->run(
                 $scanner($srcDir),
-                $container,
-                $this->factory->getInstanceFor('Analyser', $config->isPublicOnlyMode()),
-                $xmlDir,
-                $srcDir
+                $container
             );
+            $container->save();
+            $container->cleanup($srcDir);
 
-            // enforce existence of all container files, even if the code didn't trigger their creation
-            foreach(array('classes','interfaces','namespaces','traits') as $c) {
-                $container->getDocument($c);
-            }
+            $resolver = $this->factory->getInstanceFor('Resolver', $xmlDir);
+            $resolver->run($container);
 
             $container->save();
+
+            if ($collector->hasParseErrors()) {
+                $this->logger->log('Parse errors during processing:');
+                foreach($collector->getParseErrors() as $file) {
+                    $this->logger->log(' - ' . $file->getPathname());
+                }
+            }
+
             $this->logger->log('Collector process completed');
         }
 

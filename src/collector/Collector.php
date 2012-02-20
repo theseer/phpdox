@@ -38,7 +38,6 @@ namespace TheSeer\phpDox {
 
     use \TheSeer\DirectoryScanner\PHPFilterIterator;
     use \TheSeer\fDOM\fDOMDocument;
-    use \TheSeer\fDOM\fDOMException;
 
     class Collector {
 
@@ -55,8 +54,17 @@ namespace TheSeer\phpDox {
          */
         protected $logger;
 
-        public function __construct(ProgressLogger $logger) {
+        protected $factory;
+        protected $xmlDir;
+        protected $publicOnly;
+
+        protected $parseErrors = array();
+
+        public function __construct(ProgressLogger $logger, FactoryInterface $factory, $xmlDir, $publicOnly) {
             $this->logger = $logger;
+            $this->xmlDir = $xmlDir;
+            $this->factory = $factory;
+            $this->publicOnly = $publicOnly;
         }
 
         /**
@@ -68,117 +76,103 @@ namespace TheSeer\phpDox {
             $this->srcIndex = $index;
         }
 
+
+        public function hasParseErrors() {
+            return count($this->parseErrors) > 0;
+        }
+
+        public function getParseErrors() {
+            return $this->parseErrors;
+        }
+
         /**
          * Main executer of the collector, looping over the iterator with found files
          *
          */
-        public function run(\Iterator $scanner, Container $container, Analyser $analyser, $xmlDir, $srcDir) {
-            $worker = new PHPFilterIterator($scanner);
-
-            if (!file_exists($xmlDir)) {
-                mkdir($xmlDir, 0755, true);
-            }
-
+        public function run(\Iterator $dirIterator, Container $container) {
+            $worker = new PHPFilterIterator($dirIterator);
             foreach($worker as $file) {
-                $target = $this->setupTarget($file, $xmlDir);
-                if (file_exists($target) && filemtime($target)==$file->getMTime()) {
-                    $this->logger->progress('cached');
-                    continue;
-                }
                 try {
-                    $xml = $analyser->processFile($file);
-                    $xml->formatOutput= true;
-
-                    // This is a workaround:
-                    // Try to reparse generated xml to catch invalid utf-8 byte ranges
-                    $tmp = new fDOMDocument();
-                    $tmp->loadXML($xml->saveXML());
-
-                    $xml->save($target);
-                    touch($target, $file->getMTime(), $file->getATime());
-
-                    $src = realpath($file->getPathName());
-
-                    $container->registerNamespaces($analyser->getNamespaces(), $src, $target);
-                    $container->registerInterfaces($analyser->getInterfaces(), $src, $target);
-                    $container->registerClasses($analyser->getClasses(), $src, $target);
-
-                    $this->cleanUp($container, $xmlDir, $srcDir);
-
-                    $this->logger->progress('processed');
-
-                } catch (fDOMException $e) {
-                    $this->logger->progress('failed');
+                    if ($container->needsUpdate($this->srcIndex, $file)) {
+                        $this->processFile($file, $container);
+                        $container->registerFile($this->srcIndex, $file);
+                        $this->logger->progress('processed');
+                    } else {
+                        $this->logger->progress('cached');
+                    }
                 } catch (\pdepend\reflection\exceptions\ParserException $e) {
-                    // TODO: Add failed file to error list?
+                    $this->parseErrors[] = $file;
                     $this->logger->progress('failed');
                 } catch (\Exception $e) {
-                    $this->logger->progress('failed');
-                    throw $e;
+                    throw new CollectorException(
+                        "Exception processing '" . $file->getPathname() . '."',
+                        CollectorException::ProcessingError,
+                        $e,
+                        $file
+                     );
                 }
             }
             $this->logger->completed();
-
         }
 
-        protected function setupTarget($file, $xmlDir) {
-            $path = substr(realpath($file->getPathName()), $this->srcIndex);
-            $target = $xmlDir . $path . '.xml';
-            $targetDir = dirname($target);
-            if (!file_exists($targetDir)) {
-                mkdir($targetDir, 0755, true);
-            }
-            return $target;
-        }
 
-        /**
-         * Helper to cleanup
-         *
-         * @param Container $container Container xml holding wrapper
-         * @param string    $xmlDir    XML work directory with previously collected xml data
-         * @param string    $srcDir    Source directory to compare xml structures with
-         */
-        protected function cleanup($container, $xmlDir, $srcDir) {
-            $worker = new \RecursiveIteratorIterator(
-                    new \RecursiveDirectoryIterator($xmlDir, \FilesystemIterator::SKIP_DOTS),
-                    \RecursiveIteratorIterator::CHILD_FIRST
-            );
-            $len = strlen($xmlDir);
-            $srcPath = dirname($srcDir);
+        protected function processFile(\SPLFileInfo $file, Container $container) {
+            $info = new \finfo();
+            $encoding = $info->file($file, FILEINFO_MIME_ENCODING);
 
-            $containers = array('namespaces','classes','interfaces');
+            $session = new \pdepend\reflection\ReflectionSession();
+            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
+            $query = $session->createFileQuery();
+            $matches = $query->find( $file->getPathname() );
+            $aliasMap = $query->getAliasMap();
+            $classBuilder = $this->factory->getInstanceFor('ClassBuilder', $aliasMap, $this->publicOnly, $encoding);
 
-            $whitelist = array(
-                    $xmlDir . '/namespaces.xml',
-                    $xmlDir . '/classes.xml',
-                    $xmlDir . '/interfaces.xml'
-            );
-
-            foreach($worker as $fname => $file) {
-                $fname = $file->getPathname();
-                if (in_array($fname, $whitelist)) {
-                    continue;
-                }
-                if ($file->isFile()) {
-                    $srcFile = $srcPath . substr($fname, $len, -4);
-                    if (!file_exists($srcFile)) {
-                        unlink($fname);
-                        $xml = substr($fname, $len+1);
-                        foreach($containers as $name) {
-                            foreach($container->getDocument($name)->query("//phpdox:*[@xml='{$xml}']") as $node) {
-                                $node->parentNode->removeChild($node);
-                            }
-                        }
-                    }
-                } elseif ($file->isDir()) {
-                    $rmDir = $srcPath . substr($fname, $len);
-                    if (!file_exists($rmDir)) {
-                        rmdir($fname);
-                    }
-                }
+            foreach ( $matches as $class ) {
+                $dom = $this->getWorkDocument($file);
+                $classBuilder->process($dom, $class);
+                $fname = $this->saveWorkDocument($dom, $class);
+                $container->registerUnit($dom, $fname);
             }
         }
 
+        protected function getWorkDocument(\SPLFileInfo $file) {
+            $dom = new fDOMDocument('1.0', 'UTF-8');
+            $dom->preserveWhitespace = true;
+            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $root = $dom->createElementNS('http://xml.phpdox.de/src#', 'file');
+            $dom->appendChild($root);
+
+            $head = $root->appendElementNS('http://xml.phpdox.de/src#', 'head');
+            $head->setAttribute('path', $file->getPath());
+            $head->setAttribute('file', $file->getFilename());
+            $head->setAttribute('realpath', $file->getRealPath());
+            $head->setAttribute('size', $file->getSize());
+            $head->setAttribute('time', date('c', $file->getCTime()));
+            $head->setAttribute('unixtime', $file->getCTime());
+            $head->setAttribute('sha1', sha1_file($file->getPathname()));
+
+            return $dom;
+        }
+
+        protected function saveWorkDocument(fDOMDocument $dom, $class) {
+            $path = $this->xmlDir;
+            $path .= $class->isInterface() ? '/interfaces' : '/classes';
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+            $name = str_replace('\\','_', $dom->queryOne('//phpdox:class|//phpdox:interface|//phpdox:trait')->getAttribute('full'));
+
+            $fname = $path . '/' . $name . '.xml';
+            $dom->formatOutput = true;
+            $dom->preserveWhiteSpace = true;
+            $dom->save($fname);
+            return $fname;
+        }
+
+    }
+
+    class CollectorException extends HasFileInfoException {
+        const ProcessingError = 1;
     }
 
 }

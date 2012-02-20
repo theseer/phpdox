@@ -117,6 +117,10 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, sprintf("Location: %s (Line %d)\n\n", $exception->getFile(), $exception->getLine()));
             fwrite(STDERR, $exception->getMessage() . "\n\n");
 
+            if ($exception instanceof HasFileInfoException) {
+                fwrite(STDERR, "\nException occured while processing file: " .  $exception->getFile());
+            }
+
             $trace = $exception->getTrace();
             array_shift($trace);
             foreach($trace as $pos => $entry) {
