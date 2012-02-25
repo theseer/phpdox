@@ -113,6 +113,14 @@ namespace TheSeer\phpDox {
         public function handleException(\Exception $exception) {
             fwrite(STDERR, "\n\nOups... phpDox encountered a problem and has terminated!\n");
             fwrite(STDERR, "It most likely means you've found a bug, so please file a report for this and paste the stacktrace (if given) along!\n\n");
+
+            $this->renderException($exception);
+
+            fwrite(STDERR, "\n\n\n");
+            exit(1);
+        }
+
+        protected function renderException(\Exception $exception) {
             fwrite(STDERR, sprintf("Exception: %s\n", get_class($exception)));
             fwrite(STDERR, sprintf("Location: %s (Line %d)\n\n", $exception->getFile(), $exception->getLine()));
             fwrite(STDERR, $exception->getMessage() . "\n\n");
@@ -128,8 +136,12 @@ namespace TheSeer\phpDox {
                 $entry = array_pad($entry, 6, '');
                 fwrite(STDERR, vsprintf('#%1$d %2$s(%3$d): %5$s%6$s%4$s()'."\n", $entry));
             }
-            fwrite(STDERR, "\n\n\n");
-            exit(1);
+
+            $nested = $exception->getPrevious();
+            if ($nested !== NULL) {
+                $this->renderException($nested);
+            }
+
         }
     }
 
