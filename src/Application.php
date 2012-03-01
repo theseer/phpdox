@@ -111,6 +111,8 @@ namespace TheSeer\phpDox {
                 $container
             );
             $container->save();
+
+            $this->logger->log('Scanning workdir and index for removed classes and files');
             $container->cleanup($srcDir);
 
             $resolver = $this->factory->getInstanceFor('Resolver', $xmlDir);
