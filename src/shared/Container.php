@@ -106,6 +106,9 @@ namespace TheSeer\phpDox {
             $path = dirname(substr($file->getPathname(),$srcIndex));
             $ctx = $dom->documentElement;
             foreach(explode('/', $path) as $dir) {
+                if ($dir === '') {
+                    continue;
+                }
                 $d = $ctx->queryOne('phpdox:dir[@name="'.$dir.'"]');
                 if (!$d) {
                     return true;
@@ -188,6 +191,7 @@ namespace TheSeer\phpDox {
             $ctx = $this->getDocument('source');
             $parts = explode('/', $srcDir);
             foreach($parts as $part) {
+                if ($part==='') continue;
                 $ctx = $ctx->queryOne('phpdox:dir[@name="'.$part.'"]');
             }
             $base = dirname($srcDir);
