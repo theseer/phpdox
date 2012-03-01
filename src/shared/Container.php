@@ -185,7 +185,11 @@ namespace TheSeer\phpDox {
         }
 
         public function cleanup($srcDir) {
-            $ctx = $this->getDocument('source')->queryOne('/phpdox:source/phpdox:dir[1]');
+            $ctx = $this->getDocument('source');
+            $parts = explode('/', $srcDir);
+            foreach($parts as $part) {
+                $ctx = $ctx->queryOne('phpdox:dir[@name="'.$part.'"]');
+            }
             $base = dirname($srcDir);
             $this->checkDir(strlen($base)+1, $base, $ctx);
         }
