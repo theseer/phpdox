@@ -99,10 +99,16 @@ namespace TheSeer\phpDox {
         }
 
         protected function runResolver($ctx) {
+            if (defined('PHPDOX_VERSION') && constant('PHPDOX_VERSION')=='%development%') {
+                $home = realpath(__DIR__.'/../../');
+            } else {
+                $home = realpath(__DIR__.'/../');
+            }
+
             $vars = array(
                 'basedir' => $ctx->getAttribute('basedir', dirname($this->fname)),
 
-                'phpDox.home' => realpath(__DIR__.'/../../'),
+                'phpDox.home' => $home,
                 'phpDox.file' => $this->fname,
                 'phpDox.version' => defined('PHPDOX_VERSION') ? PHPDOX_VERSION : '*UNKNOWN*',
 
