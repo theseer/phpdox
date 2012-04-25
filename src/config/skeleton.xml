@@ -60,6 +60,7 @@
             <!--  default engine "html" -->            
             <build engine="html" enabled="true" output="html">
                 <template dir="${phpDox.home}/templates/html" />
+                <file extension="xhtml" />
             </build>
             
             <!-- 

@@ -55,6 +55,7 @@ namespace TheSeer\phpDox\Engine {
         protected $templateDir;
         protected $outputDir;
         protected $projectNode;
+        protected $extension;
 
         protected $functions;
 
@@ -62,6 +63,7 @@ namespace TheSeer\phpDox\Engine {
             $this->templateDir = $config->getTemplateDirectory();
             $this->outputDir = $config->getOutputDirectory();
             $this->projectNode = $config->getProjectNode();
+            $this->extension = $config->getFileExtension();
         }
 
         public function getEvents() {
@@ -70,6 +72,12 @@ namespace TheSeer\phpDox\Engine {
 
         public function handle(Event $event) {
             $this->{$this->eventMap[$event->type]}($event);
+        }
+
+        protected function getXSLTProcessor($template) {
+            $xsl = parent::getXSLTProcessor($template);
+            $xsl->setParameter('','extension', $this->extension);
+            return $xsl;
         }
 
         protected function buildStart(Event $event) {
@@ -81,7 +89,8 @@ namespace TheSeer\phpDox\Engine {
                 $this->projectNode,
                 $event->classes,
                 $event->interfaces,
-                $list
+                $list,
+                $this->extension
             );
             $builder = new fXSLCallback('phpdox:html','phe');
             $builder->setObject($this->functions);
@@ -90,7 +99,7 @@ namespace TheSeer\phpDox\Engine {
             $index->registerCallback($builder);
             $html = $index->transformToDoc($event->classes);
 
-            $this->saveDomDocument($html, $this->outputDir . '/index.xhtml');
+            $this->saveDomDocument($html, $this->outputDir . '/index.'. $this->extension);
 
             $this->xslClass = $this->getXSLTProcessor($this->templateDir . '/class.xsl');
             $this->xslClass->registerCallback($builder);
@@ -108,14 +117,14 @@ namespace TheSeer\phpDox\Engine {
             $full = $event->class->getAttribute('full');
             $this->xslClass->setParameter('', 'classname', $full);
             $html = $this->xslClass->transformToDoc($event->class);
-            $this->saveDomDocument($html, $this->outputDir . '/classes/' . $this->functions->classNameToFileName($full, 'xhtml'));
+            $this->saveDomDocument($html, $this->outputDir . '/classes/' . $this->functions->classNameToFileName($full));
         }
 
         protected function buildInterface(Event $event) {
             $full = $event->interface->getAttribute('full');
             $this->xslInterface->setParameter('', 'interfacename', $full);
             $html = $this->xslInterface->transformToDoc($event->interface);
-            $this->saveDomDocument($html, $this->outputDir . '/interfaces/' . $this->functions->classNameToFileName($full, 'xhtml'));
+            $this->saveDomDocument($html, $this->outputDir . '/interfaces/' . $this->functions->classNameToFileName($full));
         }
 
     }
