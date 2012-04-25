@@ -170,8 +170,12 @@ namespace TheSeer\phpDox {
             return $scanner;
         }
 
-        protected function getCollector($xmlDir, $public) {
-            return new Collector($this->getLogger(), $this, $xmlDir, $public);
+        protected function getStaticCollector($xmlDir, $public) {
+            return new StaticCollector($this->getLogger(), $this, $xmlDir, $public);
+        }
+
+        protected function getReflectionCollector($xmlDir, $public) {
+            return new ReflectionCollector($this->getLogger(), $this, $xmlDir, $public);
         }
 
         protected function getGenerator() {
