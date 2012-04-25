@@ -70,7 +70,11 @@ namespace TheSeer\phpDox {
         }
 
         public function isSilentMode() {
-            return $this->cfg->queryOne('/cfg:phpdox')->getAttribute('silent', 'false') === 'true';
+            $root = $this->cfg->queryOne('/cfg:phpdox');
+            if (!$root instanceOf \DomNode) {
+                return false;
+            }
+            return $root->getAttribute('silent', 'false') === 'true';
         }
 
         public function getBootstrapFiles() {

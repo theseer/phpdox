@@ -67,7 +67,15 @@ namespace TheSeer\phpDox {
             try {
                 $dom = new fDOMDocument();
                 $dom->load($fname);
+
+                $root = $dom->documentElement;
+                if ($root->namespaceURI != 'http://phpdox.de/config' ||
+                    $root->localName != 'phpdox') {
+                    throw new ConfigLoaderException("File '$fname' is not a valid phpDox configuration.", ConfigLoaderException::WrongType);
+                }
                 $dom->registerNamespace('cfg', 'http://phpdox.de/config');
+
+
                 return new GlobalConfig($dom, realpath($fname));
             } catch (fDOMException $e) {
                 throw new ConfigLoaderException("Parsing config file '$fname' failed.", ConfigLoaderException::ParseError, $e);
@@ -79,5 +87,6 @@ namespace TheSeer\phpDox {
         const NotFound = 1;
         const ParseError = 2;
         const NoCandidateExists = 3;
+        const Wrongtype = 4;
     }
 }
