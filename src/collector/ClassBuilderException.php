@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -33,60 +33,11 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
 
 namespace TheSeer\phpDox {
 
-    use TheSeer\fDOM\fDOMElement;
-
-    class CollectorConfig {
-
-        protected $ctx;
-        protected $project;
-
-        public function __construct(ProjectConfig $project, fDOMElement $ctx) {
-            $this->project = $project;
-            $this->ctx = $ctx;
-        }
-
-        public function getBackend() {
-            if ($this->ctx->hasAttribute('backend')) {
-                return $this->ctx->getAttribute('backend','Static');
-            }
-            return 'Static';
-        }
-
-        public function getWorkDirectory() {
-            return $this->project->getWorkDirectory();
-        }
-
-        public function getSourceDirectory() {
-            return $this->project->getSourceDirectory();
-        }
-
-        public function isPublicOnlyMode() {
-            if ($this->ctx->hasAttribute('publiconly')) {
-                return $this->ctx->getAttribute('publiconly','false') === 'true';
-            }
-            return $this->project->isPublicOnlyMode();
-        }
-
-        public function getIncludeMasks() {
-            return $this->getMasks('include') ?: '*.php';
-        }
-
-        public function getExcludeMasks() {
-            return $this->getMasks('exclude');
-        }
-
-        protected function getMasks($nodename) {
-            $list = array();
-            foreach($this->ctx->query('cfg:'.$nodename) as $node) {
-                $list[] = $node->getAttribute('mask');
-            }
-            return $list;
-        }
+    class ClassBuilderException extends \Exception {
+        const DocBlockFailed = 1;
     }
-
 }

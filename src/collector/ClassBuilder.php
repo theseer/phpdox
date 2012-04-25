@@ -218,7 +218,4 @@ namespace TheSeer\phpDox {
         }
     }
 
-    class ClassBuilderException extends \Exception {
-        const DocBlockFailed = 1;
-    }
 }

@@ -105,7 +105,9 @@ namespace TheSeer\phpDox {
                     $config->getExcludeMasks()
             );
             $container = $this->factory->getInstanceFor('Container', $xmlDir, strlen(dirname(realpath($srcDir))));
-            $collector = $this->factory->getInstanceFor('Collector', $xmlDir, $config->isPublicOnlyMode());
+
+            $backend = $config->getBackend();
+            $collector = $this->factory->getInstanceFor($backend . 'Collector', $xmlDir, $config->isPublicOnlyMode());
             $collector->run(
                 $scanner($srcDir),
                 $container
@@ -115,8 +117,6 @@ namespace TheSeer\phpDox {
             $this->logger->log('Scanning workdir and index for removed classes and files');
             $container->cleanup($srcDir);
 
-            $resolver = $this->factory->getInstanceFor('Resolver', $xmlDir);
-            $resolver->run($container);
 
             $container->save();
 
