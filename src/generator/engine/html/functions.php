@@ -13,16 +13,22 @@ namespace TheSeer\phpDox\Engine\Html {
         protected $listXSL;
 
         protected $dom;
+        protected $extension;
         protected $links = array();
 
-        public function __construct(\DOMElement $project, \DOMDocument $cdom, \DOMDocument $idom, fXSLTProcessor $list) {
+        public function __construct(\DOMElement $project, \DOMDocument $cdom, \DOMDocument $idom, fXSLTProcessor $list, $extension = 'xhtml') {
             $this->projectNode = $project;
             $this->classListDom = $cdom;
             $this->interfaceListDom = $idom;
             $this->listXSL = $list;
+            $this->extension = $extension;
 
             // Helper to create Nodes with
             $this->dom = new fDOMDocument();
+        }
+
+        public function version() {
+            return PHPDOX_VERSION;
         }
 
         public function classLink(Array $nodes) {
@@ -62,7 +68,7 @@ namespace TheSeer\phpDox\Engine\Html {
                 }
             }
             $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml','a');
-            $a->setAttribute('href','../'.$path.'/'. $this->classNameToFileName($full,'xhtml'));
+            $a->setAttribute('href','../'.$path.'/'. $this->classNameToFileName($full));
             $a->appendChild($this->dom->createTextNode($full));
             $this->links[$full] = $a;
             return $a;
@@ -97,8 +103,8 @@ namespace TheSeer\phpDox\Engine\Html {
         }
 
 
-        public function classNameToFileName($class, $ext = 'xml') {
-            return str_replace('\\', '_', $class) . '.' . $ext;
+        public function classNameToFileName($class) {
+            return str_replace('\\', '_', $class) . '.' . $this->extension;
         }
 
         public function getProjectNode() {
@@ -108,7 +114,7 @@ namespace TheSeer\phpDox\Engine\Html {
         public function getClassList() {
             static $html = null;
             if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->classListDom)->documentElement;;
+                $html = $this->listXSL->transformToDoc($this->classListDom)->documentElement;
             }
             return $html;
         }
@@ -116,7 +122,7 @@ namespace TheSeer\phpDox\Engine\Html {
         public function getInterfaceList() {
             static $html = null;
             if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->interfaceListDom)->documentElement;;
+                $html = $this->listXSL->transformToDoc($this->interfaceListDom)->documentElement;
             }
             return $html;
         }

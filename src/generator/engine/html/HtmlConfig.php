@@ -51,5 +51,10 @@ namespace TheSeer\phpDox\Engine {
             }
             return $node->getAttribute('dir', $default);
         }
+
+        public function getFileExtension() {
+            $res = $this->ctx->queryOne('cfg:file/@extension');
+            return $res === NULL ? 'xhtml' : $res->nodeValue;
+        }
     }
 }

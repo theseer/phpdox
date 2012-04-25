@@ -5,6 +5,7 @@
     
     <xsl:output method="xml" indent="yes" encoding="utf-8" />
     <xsl:param name="mode" select="'detail'" />
+    <xsl:param name="extension" select="'xhtml'" />
     
     <xsl:template match="/">        
         <ul class="unstyled">
@@ -54,7 +55,7 @@
                     <xsl:otherwise>traits</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <a href="{$link}/{translate(@full, '\', '_')}.xhtml">
+            <a href="{$link}/{translate(@full, '\', '_')}.{$extension}">
                 <xsl:value-of select="@name" />
             </a>
         </li>
