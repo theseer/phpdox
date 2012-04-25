@@ -106,8 +106,4 @@ namespace TheSeer\phpDox\Engine {
 
     }
 
-    class EventBuilderException extends \Exception {
-        const UnkownEvent = 1;
-    }
-
 }
