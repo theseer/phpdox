@@ -73,7 +73,7 @@ namespace TheSeer\phpDox\DocBlock {
                     $buffer = array();
 
                     preg_match('/^\@([a-zA-Z0-9_]+)(.*)$/', $line, $lineParts);
-                    $name      = ( isset($lineParts[1]) ) ? $lineParts[1] : "(nothing)";
+                    $name      = ( isset( $lineParts[1] ) ? $lineParts[1] : '(undefined)');
                     $payload   = ( isset( $lineParts[2] ) ? trim($lineParts[2]) : '' );
 
                     $this->startParser($name, $payload);
