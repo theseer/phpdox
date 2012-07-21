@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator\Engine {
     use \TheSeer\phpDox\Generator\Event;
     use \TheSeer\phpDox\BuildConfig;
 
-    class Todo extends AbstractEngine {
+    class Indexer extends AbstractEngine {
 
         protected $eventMap = array(
             'namespace.start' => 1,
@@ -109,7 +109,7 @@ namespace TheSeer\phpDox\Generator\Engine {
          */
         protected function buildFinish() {
             $content = "TODO List:\n\n";
-            usort($this->todoList, function($a, $b){
+            usort($this->todoList, function($a,$b){
                 //var_dump($a,$b);
                 if (isset($a->namespace) && isset($b->namespace) && ($a->namespace != $b->namespace)) {
                     return $a->namespace < $b->namespace ? -1 : 1;

@@ -103,7 +103,7 @@ namespace TheSeer\phpDox {
 
         public function needsUpdate($srcIndex, \SplFileInfo $file) {
             $dom = $this->getDocument('source');
-            $path = dirname(substr($file->getPathname(),$srcIndex));
+            $path = dirname(substr($file->getPathname(), $srcIndex));
             $ctx = $dom->documentElement;
             foreach(explode('/', $path) as $dir) {
                 if ($dir === '') {
@@ -124,7 +124,7 @@ namespace TheSeer\phpDox {
 
         public function registerFile($srcIndex, \SplFileInfo $file) {
             $dom = $this->getDocument('source');
-            $path = dirname(substr($file->getPathname(),$srcIndex));
+            $path = dirname(substr($file->getPathname(), $srcIndex));
             $ctx = $dom->documentElement;
             foreach(explode('/', $path) as $dir) {
                 if ($dir=='') {
@@ -140,7 +140,7 @@ namespace TheSeer\phpDox {
             $f = $ctx->queryOne('phpdox:file[@name="' . $file->getBasename() . '"]');
             if (!$f) {
                 $f = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'file');
-                $f->setAttribute('name',  $file->getBasename());
+                $f->setAttribute('name', $file->getBasename());
             }
             $update = $file->getCTime() != $f->getAttribute('unixtime');
             if ($update) {
@@ -165,7 +165,7 @@ namespace TheSeer\phpDox {
             $namespace = $ctx->getAttribute('namespace');
             $target = $container->queryOne('//phpdox:namespace[@name="' . $namespace . '"]');
             if (!$target) {
-                $target = $container->documentElement->appendElementNS('http://xml.phpdox.de/src#','namespace');
+                $target = $container->documentElement->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
                 $target->setAttribute('name', $namespace);
             }
 
@@ -191,7 +191,9 @@ namespace TheSeer\phpDox {
             $ctx = $this->getDocument('source');
             $parts = explode('/', $srcDir);
             foreach($parts as $part) {
-                if ($part==='') continue;
+                if ($part==='') {
+                    continue;
+                }
                 $ctx = $ctx->queryOne('phpdox:dir[@name="'.$part.'"]');
             }
             $base = dirname($srcDir);

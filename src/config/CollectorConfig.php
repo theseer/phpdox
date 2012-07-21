@@ -52,7 +52,7 @@ namespace TheSeer\phpDox {
 
         public function getBackend() {
             if ($this->ctx->hasAttribute('backend')) {
-                return $this->ctx->getAttribute('backend','Static');
+                return $this->ctx->getAttribute('backend', 'Static');
             }
             return 'Static';
         }
@@ -67,7 +67,7 @@ namespace TheSeer\phpDox {
 
         public function isPublicOnlyMode() {
             if ($this->ctx->hasAttribute('publiconly')) {
-                return $this->ctx->getAttribute('publiconly','false') === 'true';
+                return $this->ctx->getAttribute('publiconly', 'false') === 'true';
             }
             return $this->project->isPublicOnlyMode();
         }

@@ -1,5 +1,5 @@
 <?php
-namespace TheSeer\phpDox\Engine\Html {
+namespace TheSeer\phpDox\Generator\Engine\Html {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fXSL\fXSLTProcessor;
@@ -31,6 +31,14 @@ namespace TheSeer\phpDox\Engine\Html {
             return PHPDOX_VERSION;
         }
 
+        public function info() {
+            $version = $this->version();
+            if ($version == '%development%') {
+                $version = '(development snapshot)';
+            }
+            return "Generated using phpDox " . $version . " - Copyright (C) 2010 - 2012 by Arne Blankerts";
+        }
+
         public function classLink(Array $nodes) {
             if (count($nodes)!=1) {
                 return $this->dom->createTextNode('invalid method call');
@@ -57,7 +65,7 @@ namespace TheSeer\phpDox\Engine\Html {
             if (!$node) {
                 $text = $this->dom->createTextNode($nodes[0]->getAttribute('class'));
                 if ($nodes[0]->hasAttribute('namespace')) {
-                    $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml','span');
+                    $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'span');
                     $span->setAttribute('title', $full);
                     $span->appendChild($text);
                     $this->links[$full] = $span;
@@ -67,8 +75,8 @@ namespace TheSeer\phpDox\Engine\Html {
                     return $text;
                 }
             }
-            $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml','a');
-            $a->setAttribute('href','../'.$path.'/'. $this->classNameToFileName($full));
+            $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            $a->setAttribute('href', '../'.$path.'/'. $this->classNameToFileName($full));
             $a->appendChild($this->dom->createTextNode($full));
             $this->links[$full] = $a;
             return $a;
@@ -80,11 +88,11 @@ namespace TheSeer\phpDox\Engine\Html {
             }
             $full = $nodes[0]->getAttribute('full');
 
-            $container = $this->dom->createElementNS('http://xml.phpdox.de/src#','extended');
-            $by = $this->dom->createElementNS('http://xml.phpdox.de/src#','by');
+            $container = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'extended');
+            $by = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'by');
             $container->appendChild($by);
 
-            $of = $this->dom->createElementNS('http://xml.phpdox.de/src#','of');
+            $of = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'of');
             $container->appendChild($of);
 
             $class = $this->classListDom->queryOne('//phpdox:class[@full="'.$full.'"]');

@@ -35,9 +35,9 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Generator {
 
-    class EventFactory implements FactoryInterface {
+    class EventFactory implements \TheSeer\phpDox\FactoryInterface {
 
         protected $eventTypes = array(
             'phpdox.raw' => array(),

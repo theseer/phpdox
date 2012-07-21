@@ -47,7 +47,6 @@ require 'TheSeer/fDOMDocument/autoload.php';
 require 'TheSeer/fXSL/autoload.php';
 require 'ezc/Base/base.php';
 require 'PHP/Timer.php';
-require 'pdepend/reflection/Autoloader.php';
 
 if (strpos(PHPDOX_VERSION, '%devel')===0) {
     require __DIR__ . '/src/autoload.php';
@@ -56,7 +55,6 @@ if (strpos(PHPDOX_VERSION, '%devel')===0) {
 }
 
 spl_autoload_register( array('ezcBase','autoload'));
-spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
 
 $factory = new \TheSeer\phpDox\Factory();
 $factory->getInstanceFor('CLI')->run();

@@ -62,11 +62,11 @@ namespace TheSeer\phpDox {
         }
 
         public function getSourceDirectory() {
-            return $this->ctx->getAttribute('source','src');
+            return $this->ctx->getAttribute('source', 'src');
         }
 
         public function isPublicOnlyMode() {
-            return $this->ctx->getAttribute('publiconly','false') === 'true';
+            return $this->ctx->getAttribute('publiconly', 'false') === 'true';
         }
 
         public function getCollectorConfig() {

@@ -3,11 +3,13 @@
 
     <project name="phpDox" source="src" workdir="build/api/xml">
 
-        <collector publiconly="false" />
+        <collector publiconly="false" backend="parser" />
 
         <generator output="build/api/docs">
 
-            <build engine="html" enabled="true" output="html" />
+            <build engine="html" enabled="true" output="html">
+                <file extension="html" />
+            </build>
 
             <build engine="todo" enabled="false" output="todo">
                 <file name="todolist.txt" encoding="utf-8" />

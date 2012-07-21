@@ -62,7 +62,7 @@
                     </div>
                         
                     <footer>
-                        <p>Generated using phpDox <xsl:value-of select="phe:version()" /></p>
+                        <p><xsl:value-of select="phe:info()" /></p>
                     </footer>
                 </div>
             </body>

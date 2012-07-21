@@ -132,9 +132,14 @@ namespace TheSeer\phpDox {
             $trace = $exception->getTrace();
             array_shift($trace);
             foreach($trace as $pos => $entry) {
-                array_unshift($entry, $pos);
-                $entry = array_pad($entry, 6, '');
-                fwrite(STDERR, vsprintf('#%1$d %2$s(%3$d): %5$s%6$s%4$s()'."\n", $entry));
+                fwrite(STDERR,
+                    sprintf('#%1$d %2$s(%3$d): %4$s%5$s%6$s()'."\n",
+                        $pos, $entry['file'], $entry['line'],
+                        isset($entry['class']) ? $entry['class'] : '',
+                        isset($entry['type']) ? $entry['type'] : '',
+                        $entry['function']
+                    )
+                );
             }
 
             $nested = $exception->getPrevious();

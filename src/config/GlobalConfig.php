@@ -118,7 +118,7 @@ namespace TheSeer\phpDox {
 
                 'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
                 'phpDox.project.source' => $ctx->getAttribute('source', 'src'),
-                'phpDox.project.workdir' => $ctx->getAttribute('workdir','xml'),
+                'phpDox.project.workdir' => $ctx->getAttribute('workdir', 'xml'),
 
                 'phpDox.php.version' => PHP_VERSION,
 
@@ -140,7 +140,10 @@ namespace TheSeer\phpDox {
         }
 
         protected function resolveValue($value, Array $vars) {
-            return preg_replace_callback('/\${(.*?)}/', function($matches) use ($vars) { return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0]; }, $value);
+            return preg_replace_callback('/\${(.*?)}/',
+                function($matches) use ($vars) {
+                    return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0];
+                }, $value);
         }
 
     }

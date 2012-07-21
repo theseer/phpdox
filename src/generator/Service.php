@@ -34,8 +34,7 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Generator {
 
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;

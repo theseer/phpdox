@@ -53,21 +53,31 @@ namespace TheSeer\phpDox {
          * @return Array Map of BuilderConfig objects ([name => Config])
          */
         public function load(Array $require) {
-            $phpDox = $this->api;
-            $bootstrap = function($filename) use ($phpDox) {
-                require $filename;
-            };
-            $bootstrap( __DIR__ . '/engines.php');
+            $this->loadBootstrap( __DIR__ . '/backends.php');
+            $this->loadBootstrap( __DIR__ . '/engines.php');
 
             foreach($require as $file) {
                 if (!file_exists($file) || !is_file($file)) {
                     throw new BootstrapException("Require file '$file' not found or not a file", BootstrapException::RequireFailed);
                 }
                 $this->logger->log("Loading bootstrap file '$file'");
-                $bootstrap($file);
+                $this->loadBootstrap($file);
             }
 
             return $this->api->getEngines();
+        }
+
+        public function getBackends() {
+            return $this->api->getBackends();
+        }
+
+        public function getEngines() {
+            return $this->api->getEngines();
+        }
+
+        private function loadBootstrap($filename) {
+            $phpDox = $this->api;
+            require $filename;
         }
     }
 

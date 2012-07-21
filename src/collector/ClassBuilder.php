@@ -35,11 +35,11 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Collector {
 
-    use \TheSeer\fDOM\fDOMDocument;
-    use \TheSeer\fDOM\fDOMElement;
-    use \TheSeer\phpDox\DocBlock\Parser;
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\DocBlock\Parser;
 
     class ClassBuilder {
 
