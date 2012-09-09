@@ -7,7 +7,7 @@ phpDox
 Requirements
 ------------
 
-- PHP Version 5.3.2+
+- PHP Version 5.3.3+
   - ext/dom
   - ext/xsl
   - ext/iconv and [libiconv version >= 2.12](http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
