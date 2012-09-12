@@ -6,3 +6,4 @@ docs/
 xml/
 phpunit.xml
 phpdoc
+.idea
