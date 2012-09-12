@@ -64,6 +64,10 @@ namespace TheSeer\phpDox\DocBlock {
             return $this->elements[$name];
         }
 
+        /**
+         * @param \TheSeer\fDOM\fDOMDocument $doc
+         * @return \TheSeer\fDOM\fDOMElement
+         */
         public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
             $node = $doc->createElementNS('http://xml.phpdox.de/src#', 'docblock');
             // add lines and such?
