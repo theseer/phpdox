@@ -36,7 +36,113 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use TheSeer\phpDox\Project\TraitObject;
+    use TheSeer\phpDox\Project\InterfaceObject;
+    use TheSeer\phpDox\Project\ClassObject;
+
+    /**
+     *
+     */
     class ParseResult {
+
+        /**
+         * @var \SplFileInfo
+         */
+        private $file;
+
+        /**
+         * @var array
+         */
+        private $classes = array();
+
+        /**
+         * @var array
+         */
+        private $interfaces  = array();
+
+        /**
+         * @var array
+         */
+        private $traits  = array();
+
+        /**
+         * @param \SplFileInfo $file
+         */
+        public function __construct(\SplFileInfo $file) {
+            $this->file = $file;
+        }
+
+        /**
+         * @param $name
+         * @return ClassObject
+         */
+        public function addClass($name) {
+            $obj = new ClassObject($this->file, $name);
+            $this->classes[$name] = $obj;
+            return $obj;
+        }
+
+        /**
+         * @param $name
+         * @return InterfaceObject
+         */
+        public function addInterface($name) {
+            $obj = new InterfaceObject($this->file, $name);
+            $this->interfaces[$name] = $obj;
+            return $obj;
+        }
+
+        /**
+         * @param $name
+         * @return TraitObject
+         */
+        public function addTrait($name) {
+            $obj = new TraitObject($this->file, $name);
+            $this->traits[$name] = $obj;
+            return $obj;
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasClasses() {
+            return count($this->classes) > 0;
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasInterfaces() {
+            return count($this->interfaces) > 0;
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasTraits() {
+            return count($this->traits) > 0;
+        }
+
+        /**
+         * @return array
+         */
+        public function getClasses() {
+            return $this->classes;
+        }
+
+        /**
+         * @return array
+         */
+        public function getInterfaces() {
+            return $this->interfaces;
+        }
+
+        /**
+         * @return array
+         */
+        public function getTraits() {
+            return $this->traits;
+        }
     }
 
 }

@@ -54,8 +54,8 @@ namespace TheSeer\phpDox {
     }
 
     // PHP Reflection
-    if (class_exists('Reflection', false)) {
-        $phpDox->registerBackend('reflection', 'PHP Reflection');
-    }
+    //if (class_exists('Reflection', false)) {
+    //    $phpDox->registerBackend('reflection', 'PHP Reflection');
+    //}
 
 }

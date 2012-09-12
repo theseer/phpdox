@@ -50,7 +50,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         public function getInstanceFor($type) {
             switch ($type) {
                 case 'parser': {
-                    return new PHPParser();
+                    return new PHPParser($this->master->getInstanceFor('DocblockParser'));
                 }
                 default: {
                     throw new FactoryException("'$type' is not a known backend.");

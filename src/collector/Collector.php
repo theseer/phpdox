@@ -61,14 +61,14 @@ namespace TheSeer\phpDox\Collector {
          */
         private $parseErrors = array();
 
-
+        /**
+         * @var
+         */
         private $backend;
 
         /**
-         * @param \TheSeer\phpDox\ProgressLogger $logger
-         * @param string                         $srcDir
-         * @param string                         $xmlDir
-         * @param bool                           $publicOnly
+         * @param \TheSeer\phpDox\ProgressLogger  $logger
+         * @param Project $project
          */
         public function __construct(ProgressLogger $logger, Project $project) {
             $this->logger = $logger;
@@ -96,15 +96,11 @@ namespace TheSeer\phpDox\Collector {
             $this->logger->completed();
 
             $vanished = $this->project->cleanVanishedFiles();
-            $this->logger->log("Removed $vanished vanished files from project");
+            if ($vanished > 0) {
+                $this->logger->log("Removed $vanished vanished files from project");
+            }
 
-            /*
-            $d = $sources->export();
-            $d->formatOutput = TRUE;
-            $d->preserveWhiteSpace = TRUE;
-
-            echo $d->saveXML();
-            */
+            $this->project->complete();
 
         }
 
@@ -122,6 +118,9 @@ namespace TheSeer\phpDox\Collector {
             return $this->parseErrors;
         }
 
+        /**
+         *
+         */
         private function initCollections() {
 
         }
@@ -142,7 +141,7 @@ namespace TheSeer\phpDox\Collector {
                         $this->project->addInterface($interface);
                     }
                 }
-                if ($result->hasTrait()) {
+                if ($result->hasTraits()) {
                     foreach($result->getTraits() as $trait) {
                         $this->project->addTrait($trait);
                     }

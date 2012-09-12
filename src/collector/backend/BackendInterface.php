@@ -36,14 +36,17 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    /**
+     *
+     */
     interface BackendInterface {
 
         /**
          * @abstract
-         * @param string $fname Filename to parse
+         * @param \SplFileInfo $file
          * @return ParseResult
          */
-        public function parse($fname);
+        public function parse(\SplFileInfo $file);
 
     }
 }
