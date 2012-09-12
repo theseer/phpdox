@@ -36,7 +36,17 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    class InterfaceCollection {
+    class InterfaceCollection extends AbstractUnitCollection {
+
+        protected $collectionName = 'interfaces';
+
+        /**
+         * @param InterfaceObject $interface
+         */
+        public function addInterface(InterfaceObject $interface) {
+            $this->addUnit($interface);
+        }
+
     }
 
 }

@@ -34,23 +34,12 @@
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\fDOM\fDOMDocument;
+    class UnitCollectingVisitor extends \PHPParser_NodeVisitorAbstract {
 
-    /**
-     *
-     */
-    class ClassCollection extends AbstractUnitCollection {
-
-        protected $collectionName = 'classes';
-
-        /**
-         * @param ClassObject $class
-         */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
+        public function leaveNode(\PHPParser_Node $node) {
+            var_dump($node);
         }
     }
-
 }

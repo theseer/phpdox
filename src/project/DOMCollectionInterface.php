@@ -52,9 +52,11 @@ namespace TheSeer\phpDox\Project {
 
         /**
          * @abstract
+         * @param string $xmlDir
+         *
          * @return \TheSeer\fDOM\fDOMDocument
          */
-        public function export();
+        public function export($xmlDir);
 
     }
 

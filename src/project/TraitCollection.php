@@ -36,7 +36,17 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    class TraitCollection {
+    class TraitCollection extends AbstractUnitCollection {
+
+        protected $collectionName = 'traits';
+
+        /**
+         * @param TraitObject $trait
+         */
+        public function addTrait(TraitObject $trait) {
+            $this->addUnit($trait);
+        }
+
     }
 
 }

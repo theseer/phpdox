@@ -36,21 +36,33 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\DocBlock\DocBlock;
 
-    /**
-     *
-     */
-    class ClassCollection extends AbstractUnitCollection {
+    class ConstantObject {
 
-        protected $collectionName = 'classes';
+        protected  $ctx;
 
-        /**
-         * @param ClassObject $class
-         */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
+        public function __construct(fDOMElement $ctx) {
+            $this->ctx = $ctx;
         }
-    }
 
+        public function setName($name) {
+            $this->ctx->setAttribute('name', $name);
+        }
+
+        public function setValue($value) {
+            $this->ctx->setAttribute('value', $value);
+        }
+
+        public function setDocBlock(DocBlock $docblock) {
+            $docNode = $docblock->asDom($this->ctx->ownerDocument);
+            if ($this->ctx->hasChildNodes()) {
+                $this->ctx->insertBefore($docblock, $this->ctx->firstChild);
+                return;
+            }
+            $this->ctx->appendChild($docNode);
+        }
+
+    }
 }

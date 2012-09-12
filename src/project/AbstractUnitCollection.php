@@ -41,15 +41,54 @@ namespace TheSeer\phpDox\Project {
     /**
      *
      */
-    class ClassCollection extends AbstractUnitCollection {
-
-        protected $collectionName = 'classes';
+    abstract class AbstractUnitCollection implements DOMCollectionInterface {
 
         /**
-         * @param ClassObject $class
+         * @var array
          */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
+        private $units = array();
+
+        /**
+         * @var string
+         */
+        protected $collectionName;
+
+        /**
+         * @param \TheSeer\fDOM\fDOMDocument $dom
+         * @return void
+         */
+        public function import(fDOMDocument $dom) {
+            // TODO: Implement import() method.
+        }
+
+        /**
+         * @return \TheSeer\fDOM\fDOMDocument
+         */
+        public function export($xmlDir) {
+            $dom = new fDOMDocument();
+            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $root = $dom->createElementNS('http://xml.phpdox.de/src#', $this->collectionName);
+            $dom->appendChild($root);
+            foreach($this->units as $unit) {
+                $unitNode = $dom->importNode($unit->export($xmlDir . '/' . $this->collectionName));
+                $ctx = $root->queryOne('phpdox:namespace[@name="' . $unitNode->getAttribute('namespace') . '"]');
+                if (!$ctx) {
+                    $ctx = $root->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
+                    $ctx->setAttribute('name', $unitNode->getAttribute('namespace'));
+                }
+                $ctx->appendChild($unitNode);
+            }
+            $dom->formatOutput = true;
+            $dom->preserveWhiteSpace = true;
+            $dom->save($xmlDir . '/' . $this->collectionName . '.xml');
+            return $dom;
+        }
+
+        /**
+         * @param AbstractUnitObject $unit
+         */
+        protected function addUnit(AbstractUnitObject $unit) {
+            $this->units[$unit->getName()] = $unit;
         }
     }
 

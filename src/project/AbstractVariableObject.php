@@ -36,21 +36,31 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
-    /**
-     *
-     */
-    class ClassCollection extends AbstractUnitCollection {
+    abstract class AbstractVariableObject {
 
-        protected $collectionName = 'classes';
+        protected  $ctx;
 
-        /**
-         * @param ClassObject $class
-         */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
+        public function __construct(fDOMElement $ctx) {
+            $this->ctx = $ctx;
         }
-    }
 
+        public function setName($name) {
+            $this->ctx->setAttribute('name', $name);
+        }
+
+        public function setDefault($value) {
+            $this->ctx->setAttribute('default', $value);
+        }
+
+        public function setType($type) {
+            $this->ctx->setAttribute('type', $type);
+        }
+
+        public function getType() {
+            return $this->ctx->getAttribute('type');
+        }
+
+    }
 }

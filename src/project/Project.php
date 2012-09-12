@@ -36,12 +36,11 @@
  */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\phpDox\Project\SourceCollection;
-    use TheSeer\phpDox\Project\ClassCollection;
-    use TheSeer\phpDox\Project\TraitCollection;
-    use TheSeer\phpDox\Project\InterfaceCollection;
     use TheSeer\fDOM\fDOMDocument;
 
+    /**
+     *
+     */
     class Project {
 
         /**
@@ -57,22 +56,22 @@ namespace TheSeer\phpDox\Project {
         /**
          * @var SourceCollection
          */
-        private $source = null;
+        private $source = NULL;
 
         /**
          * @var ClassCollection
          */
-        private $classes = null;
+        private $classes = NULL;
 
         /**
          * @var InterfaceCollection
          */
-        private $interfaces = null;
+        private $interfaces = NULL;
 
         /**
          * @var TraitCollection
          */
-        private $traits = null;
+        private $traits = NULL;
 
         /**
          * @param $srcDir
@@ -104,6 +103,27 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
+         * @param ClassObject $class
+         */
+        public function addClass(ClassObject $class) {
+            $this->classes->addClass($class);
+        }
+
+        /**
+         *
+         */
+        public function addInterface(InterfaceObject $interface) {
+            $this->interfaces->addInterface($interface);
+        }
+
+        /**
+         *
+         */
+        public function addTrait(TraitObject $trait) {
+            $this->traits->addTrait($trait);
+        }
+
+        /**
          * @return integer
          */
         public function cleanVanishedFiles() {
@@ -115,6 +135,15 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
+         *
+         */
+        public function complete() {
+            foreach (array('source', 'classes', 'traits', 'interfaces') as $col) {
+                $this->$col->export($this->xmlDir);
+            }
+        }
+
+        /**
          * @return void
          */
         private function initCollections() {
@@ -123,7 +152,7 @@ namespace TheSeer\phpDox\Project {
             $this->traits = new TraitCollection();
             $this->interfaces = new InterfaceCollection();
             foreach (array('source', 'classes', 'traits', 'interfaces') as $col) {
-                $srcFile = $this->xmlDir . $col . '.xml';
+                $srcFile = $this->xmlDir . '/' . $col . '.xml';
                 if (file_exists($srcFile)) {
                     $dom = new fDOMDocument();
                     $dom->load($srcFile);

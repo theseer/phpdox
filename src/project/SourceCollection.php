@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\Project {
     use \TheSeer\fDOM\fDOMDocument;
     use \TheSeer\fDOM\fDOMElement;
 
-    class SourceCollection {
+    class SourceCollection implements DOMCollectionInterface {
 
         private $srcDir;
 
@@ -96,7 +96,7 @@ namespace TheSeer\phpDox\Project {
             return $list;
         }
 
-        public function export() {
+        public function export($xmlDir) {
             $dom = $this->workDom;
             if ($dom->documentElement instanceOf fDOMElement) {
                 $dom->removeChild($dom->documentElement);
@@ -114,9 +114,15 @@ namespace TheSeer\phpDox\Project {
                     }
                     $ctx = $node;
                 }
-                $ctx->appendChild($file);
+                $ctx->appendChild($this->workDom->importNode($file, true));
             }
-            return $this->workDom;
+            $dom->formatOutput = true;
+            $dom->preserveWhiteSpace = false;
+            if (!file_exists($xmlDir)) {
+                mkdir($xmlDir, 0755, true);
+            }
+            $dom->save($xmlDir . '/source.xml');
+            return $dom;
         }
 
 

@@ -36,21 +36,36 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\DocBlock\DocBlock;
 
-    /**
-     *
-     */
-    class ClassCollection extends AbstractUnitCollection {
-
-        protected $collectionName = 'classes';
+    class MemberObject extends AbstractVariableObject {
 
         /**
-         * @param ClassObject $class
+         * @param boolean $isStatic
          */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
+        public function setStatic($isStatic) {
+            $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
         }
-    }
 
+        /**
+         * @param string $visibility
+         */
+        public function setVisibility($visibility) {
+            if (!in_array($visibility, array('public','private','protected'))) {
+                throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
+            }
+            $this->ctx->setAttribute('visibility', $visibility);
+        }
+
+        public function setDocBlock(DocBlock $docblock) {
+            $docNode = $docblock->asDom($this->ctx->ownerDocument);
+            if ($this->ctx->hasChildNodes()) {
+                $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
+                return;
+            }
+            $this->ctx->appendChild($docNode);
+        }
+
+    }
 }

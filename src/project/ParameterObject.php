@@ -36,20 +36,15 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
     /**
      *
      */
-    class ClassCollection extends AbstractUnitCollection {
+    class ParameterObject extends AbstractVariableObject {
 
-        protected $collectionName = 'classes';
-
-        /**
-         * @param ClassObject $class
-         */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
+        public function setByReference($isRef) {
+            $this->ctx->setAttribute('byreference', $isRef ? 'true' : 'false');
         }
     }
 

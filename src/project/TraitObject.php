@@ -36,21 +36,10 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\fDOM\fDOMDocument;
+    use \TheSeer\fDOM\fDOMDocument;
 
-    /**
-     *
-     */
-    class ClassCollection extends AbstractUnitCollection {
-
-        protected $collectionName = 'classes';
-
-        /**
-         * @param ClassObject $class
-         */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class);
-        }
+    class TraitObject extends AbstractUnitObject {
+        protected $rootName = 'trait';
     }
 
 }
