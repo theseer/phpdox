@@ -36,14 +36,66 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use \TheSeer\phpDox\DocBlock\Parser as DocblockParser;
+
+    /**
+     *
+     */
     class PHPParser implements BackendInterface {
 
         /**
-         * @param string $fname Filename to parse
-         * @return ParseResult
+         * @var \PHPParser_Parser
          */
-        public function parse($fname) {
-            // TODO: Implement parse() method.
+        private $parser = NULL;
+
+        /**
+         * @var \TheSeer\phpDox\DocBlock\Parser
+         */
+        private $docblockParser = NULL;
+
+        private $traverser = NULL;
+
+
+        public function __construct(DocblockParser $parser) {
+            $this->docblockParser = $parser;
+        }
+
+        /**
+         * @param \SplFileInfo $fname
+         * @return ParseResult
+         * @throws ParseErrorException
+         */
+        public function parse(\SplFileInfo $file) {
+            try {
+                $result = new ParseResult($file);
+                $parser = $this->getParserInstance();
+                $code = file_get_contents($file->getPathname());
+                $nodes = $parser->parse($code);
+                $this->getTraverserInstance($result)->traverse($nodes);
+                return $result;
+            } catch (\Exception $e) {
+                throw new ParseErrorException('Something went wrwong', 1, $e);
+            }
+        }
+
+        /**
+         * @return \PHPParser_Parser
+         */
+        private function getParserInstance() {
+            if ($this->parser === NULL) {
+                $this->parser = new \PHPParser_Parser(new \PHPParser_Lexer_Emulative());
+            }
+            return $this->parser;
+        }
+
+        /**
+         * @return \PHPParser_NodeTraverser
+         */
+        private function getTraverserInstance(ParseResult $result) {
+            $traverser = new \PHPParser_NodeTraverser();
+            $traverser->addVisitor(new \PHPParser_NodeVisitor_NameResolver());
+            $traverser->addVisitor(new UnitCollectingVisitor($this->docblockParser, $result));
+            return $traverser;
         }
     }
 
