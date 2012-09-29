@@ -54,7 +54,7 @@ namespace TheSeer\phpDox {
          *
          * @var Container
          */
-        protected $container = null;
+        protected $container = NULL;
 
         /**
          * Factory instance
@@ -80,9 +80,17 @@ namespace TheSeer\phpDox {
             $this->logger = $logger;
         }
 
+        /**
+         * Run Bootstrap code for given list of bootstrap files
+         *
+         * @param array $requires
+         *
+         * @return Bootstrap
+         */
         public function runBootstrap(array $requires) {
             $bootstrap = $this->factory->getInstanceFor('Bootstrap');
-            return $bootstrap->load($requires);
+            $bootstrap->load($requires);
+            return $bootstrap;
         }
 
         /**
@@ -94,31 +102,26 @@ namespace TheSeer\phpDox {
          * @return void
          */
         public function runCollector(CollectorConfig $config) {
-            $this->logger->log("Starting collector\n");
+            $this->logger->log("Starting collector");
 
             $srcDir = $config->getSourceDirectory();
             $xmlDir = $config->getWorkDirectory();
 
+            /** @var $scanner DirectoryScanner */
             $scanner = $this->factory->getInstanceFor(
                     'Scanner',
                     $config->getIncludeMasks(),
                     $config->getExcludeMasks()
             );
-            $container = $this->factory->getInstanceFor('Container', $xmlDir, strlen(dirname(realpath($srcDir))));
 
-            $backend = $config->getBackend();
-            $collector = $this->factory->getInstanceFor($backend . 'Collector', $xmlDir, $config->isPublicOnlyMode());
-            $collector->run(
-                $scanner($srcDir),
-                $container
+            $collector = $this->factory->getInstanceFor('Collector',
+                $srcDir,
+                $xmlDir,
+                $config->isPublicOnlyMode()
             );
-            $container->save();
 
-            $this->logger->log('Scanning workdir and index for removed classes and files');
-            $container->cleanup($srcDir);
-
-
-            $container->save();
+            $backend =  $this->factory->getInstanceFor('BackendFactory')->getInstanceFor($config->getBackend());
+            $collector->run($scanner, $backend);
 
             if ($collector->hasParseErrors()) {
                 $this->logger->log('Parse errors during processing:');

@@ -34,7 +34,7 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Generator {
 
     use \TheSeer\fXSL\fXSLTProcessor;
     use \TheSeer\fXSL\fXSLCallback;
@@ -42,7 +42,9 @@ namespace TheSeer\phpDox {
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
 
-    use \TheSeer\phpDox\Engine\EngineInterface;
+    use \TheSeer\phpDox\Generator\Engine\EngineInterface;
+    use \TheSeer\phpDox\ProgressLogger;
+    use \TheSeer\phpDox\Container;
 
     class Generator {
 
@@ -137,7 +139,7 @@ namespace TheSeer\phpDox {
         }
 
         protected function triggerEvent($eventName, $progress = true) {
-            $payload = array_slice(func_get_args(),1);
+            $payload = array_slice(func_get_args(), 1);
             $event = $this->factory->getInstanceFor($eventName, $payload);
             foreach($this->events[$eventName] as $engine) {
                 $engine->handle($event);

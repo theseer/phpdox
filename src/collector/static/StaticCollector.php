@@ -34,145 +34,124 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Collector {
 
-    use \TheSeer\DirectoryScanner\PHPFilterIterator;
-    use \TheSeer\fDOM\fDOMDocument;
+    use TheSeer\DirectoryScanner\DirectoryScanner;
+    use TheSeer\phpDox\ProgressLogger;
 
-    class StaticCollector implements CollectorInterface {
+    use TheSeer\phpDox\Project\Project;
+
+    /**
+     * Collector processing class
+     */
+    class Collector {
 
         /**
-         * Starting index position in src path string to use in store
-         * @var int
+         * @var \TheSeer\phpDox\ProgressLogger
          */
-        protected $srcIndex = 0;
+        private $logger;
 
         /**
-         * Logger for progress and error reporting
-         *
-         * @var Logger
+         * @var \TheSeer\phpDox\Project\Project
          */
-        protected $logger;
+        private $project;
 
-        protected $factory;
-        protected $xmlDir;
-        protected $publicOnly;
+        /**
+         * @var array
+         */
+        private $parseErrors = array();
 
-        protected $parseErrors = array();
+        /**
+         * @var
+         */
+        private $backend;
 
-        public function __construct(ProgressLogger $logger, FactoryInterface $factory, $xmlDir, $publicOnly) {
+        /**
+         * @param \TheSeer\phpDox\ProgressLogger  $logger
+         * @param Project $project
+         */
+        public function __construct(ProgressLogger $logger, Project $project) {
             $this->logger = $logger;
-            $this->xmlDir = $xmlDir;
-            $this->factory = $factory;
-            $this->publicOnly = $publicOnly;
+            $this->project = $project;
         }
 
         /**
-         * Setter to overwrite the default source directory string index position
-         *
-         * @param string $dir Directory to change source directory to
+         * @param \TheSeer\DirectoryScanner\DirectoryScanner $scanner
+         * @param                                            $backend
          */
-        public function setStartIndex($index) {
-            $this->srcIndex = $index;
+        public function run(DirectoryScanner $scanner, $backend) {
+            $this->backend = $backend;
+
+            $srcDir = $this->project->getSourceDir();
+
+            $this->logger->log("Scanning directory '{$srcDir}' for files to process:\n");
+            foreach($scanner($srcDir) as $file) {
+                $nedsProcessing = $this->project->addFile($file);
+                if (!$nedsProcessing) {
+                    $this->logger->progress('cached');
+                    continue;
+                }
+                $this->processFile($file);
+            }
+            $this->logger->completed();
+
+            $vanished = $this->project->cleanVanishedFiles();
+            if ($vanished > 0) {
+                $this->logger->log("Removed $vanished vanished files from project");
+            }
+
+            $this->project->complete();
+
         }
 
-
+        /**
+         * @return bool
+         */
         public function hasParseErrors() {
             return count($this->parseErrors) > 0;
         }
 
+        /**
+         * @return array
+         */
         public function getParseErrors() {
             return $this->parseErrors;
         }
 
         /**
-         * Main executer of the collector, looping over the iterator with found files
          *
          */
-        public function run(\Iterator $dirIterator, Container $container) {
-            $worker = new PHPFilterIterator($dirIterator);
-            foreach($worker as $file) {
-                try {
-                    if ($container->needsUpdate($this->srcIndex, $file)) {
-                        $this->processFile($file, $container);
-                        $container->registerFile($this->srcIndex, $file);
-                        $this->logger->progress('processed');
-                    } else {
-                        $this->logger->progress('cached');
+        private function initCollections() {
+
+        }
+
+        /**
+         * @param \SplFileInfo $file
+         */
+        private function processFile(\SplFileInfo $file) {
+            try {
+                $result = $this->backend->parse($file);
+                if ($result->hasClasses()) {
+                    foreach($result->getClasses() as $class) {
+                        $this->project->addClass($class);
                     }
-                } catch (\pdepend\reflection\exceptions\ParserException $e) {
-                    $this->parseErrors[] = $file;
-                    $this->logger->progress('failed');
-                } catch (\Exception $e) {
-                    throw new CollectorException(
-                        "Exception processing '" . $file->getPathname() . '."',
-                        CollectorException::ProcessingError,
-                        $e,
-                        $file
-                     );
                 }
+                if ($result->hasInterfaces()) {
+                    foreach($result->getInterfaces() as $interface) {
+                        $this->project->addInterface($interface);
+                    }
+                }
+                if ($result->hasTraits()) {
+                    foreach($result->getTraits() as $trait) {
+                        $this->project->addTrait($trait);
+                    }
+                }
+                $this->logger->progress('processed');
+            } catch (ParseError $e) {
+                $this->parseErrors[$file->getPathname()] = $e;
+                $this->logger->progress('failed');
             }
-
-            $resolver = $this->factory->getInstanceFor('Resolver', $this->xmlDir);
-            $resolver->run($container);
-
-            $this->logger->completed();
-        }
-
-
-        protected function processFile(\SPLFileInfo $file, Container $container) {
-            $info = new \finfo();
-            $encoding = $info->file($file, FILEINFO_MIME_ENCODING);
-
-            $session = new \pdepend\reflection\ReflectionSession();
-            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
-            $query = $session->createFileQuery();
-            $matches = $query->find( $file->getPathname() );
-            $aliasMap = $query->getAliasMap();
-            $classBuilder = $this->factory->getInstanceFor('ClassBuilder', $aliasMap, $this->publicOnly, $encoding);
-
-            foreach ( $matches as $class ) {
-                $dom = $this->getWorkDocument($file);
-                $classBuilder->process($dom, $class);
-                $fname = $this->saveWorkDocument($dom, $class);
-                $container->registerUnit($dom, $fname);
-            }
-        }
-
-        protected function getWorkDocument(\SPLFileInfo $file) {
-            $dom = new fDOMDocument('1.0', 'UTF-8');
-            $dom->preserveWhitespace = true;
-            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-            $root = $dom->createElementNS('http://xml.phpdox.de/src#', 'file');
-            $dom->appendChild($root);
-
-            $head = $root->appendElementNS('http://xml.phpdox.de/src#', 'head');
-            $head->setAttribute('path', $file->getPath());
-            $head->setAttribute('file', $file->getFilename());
-            $head->setAttribute('realpath', $file->getRealPath());
-            $head->setAttribute('size', $file->getSize());
-            $head->setAttribute('time', date('c', $file->getCTime()));
-            $head->setAttribute('unixtime', $file->getCTime());
-            $head->setAttribute('sha1', sha1_file($file->getPathname()));
-
-            return $dom;
-        }
-
-        protected function saveWorkDocument(fDOMDocument $dom, $class) {
-            $path = $this->xmlDir;
-            $path .= $class->isInterface() ? '/interfaces' : '/classes';
-            if (!file_exists($path)) {
-                mkdir($path, 0755, true);
-            }
-            $name = str_replace('\\','_', $dom->queryOne('//phpdox:class|//phpdox:interface|//phpdox:trait')->getAttribute('full'));
-
-            $fname = $path . '/' . $name . '.xml';
-            $dom->formatOutput = true;
-            $dom->preserveWhiteSpace = true;
-            $dom->save($fname);
-            return $fname;
         }
 
     }
-
 }

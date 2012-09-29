@@ -17,10 +17,10 @@
 	   <email>arne@blankerts.de</email>
 	   <active>yes</active>
     </lead>
-    <date>2012-01-12</date>
+    <date>2012-02-28</date>
     <version>
-	   <release>0.4.0</release>
-	   <api>0.4.0</api>
+	   <release>0.4.99</release>
+	   <api>0.4.99</api>
     </version>
     <stability>
 	   <release>alpha</release>

@@ -37,10 +37,18 @@
  */
 namespace TheSeer\phpDox {
 
-    use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
-    use TheSeer\phpDox\Engine\Factory as EngineFactory;
+    use \TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
+    use \TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
+    use \TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
 
     class BootstrapApi {
+
+        /**
+         * Reference to the BackendFactory instance
+         *
+         * @var BackendFactory
+         */
+        protected $backendFactory;
 
         /**
          * Reference to the EngineFactory instance
@@ -65,11 +73,19 @@ namespace TheSeer\phpDox {
         protected $engines = array();
 
         /**
+         * Array of registered backends
+         *
+         * @var array
+         */
+        protected $backends = array();
+
+        /**
          * Constructor
          *
          * @param FactoryInterface $factory
          */
-        public function __construct(EngineFactory $ef, DocBlockFactory $df, ProgressLogger $logger) {
+        public function __construct(BackendFactory $bf, DocBlockFactory $df, EngineFactory $ef, ProgressLogger $logger) {
+            $this->backendFactory = $bf;
             $this->engineFactory = $ef;
             $this->parserFactory = $df;
             $this->logger = $logger;
@@ -77,6 +93,16 @@ namespace TheSeer\phpDox {
 
         public function getEngines() {
             return $this->engines;
+        }
+
+        public function getBackends() {
+            return $this->backends;
+        }
+
+        public function registerBackend($name, $description) {
+            $this->logger->log("Registered collector backend '$name'");
+            $this->backends[$name] = $description;
+            return new BackendBootstrapApi($name, $this->backendFactory);
         }
 
         public function registerEngine($name, $description) {

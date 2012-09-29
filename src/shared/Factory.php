@@ -37,14 +37,17 @@
  */
 namespace TheSeer\phpDox {
 
-    use \TheSeer\fDOM\fDOMElement;
+    use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\Generator\Generator;
+    use TheSeer\phpDox\Collector\Collector;
+    use TheSeer\phpDox\Collector\ClassBuilder;
 
     class Factory implements FactoryInterface {
 
         protected $map = array(
             'DirectoryScanner' => '\\TheSeer\\DirectoryScanner\\DirectoryScanner',
             'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
-            'EventFactory' => '\\TheSeer\\phpDox\\EventFactory',
+            'EventFactory' => '\\TheSeer\\phpDox\\Generator\EventFactory',
             'ConfigLoader' => '\\TheSeer\\phpDox\\ConfigLoader'
         );
 
@@ -94,7 +97,7 @@ namespace TheSeer\phpDox {
             $method = 'get'.$name;
             array_shift($params);
             if (method_exists($this, $method)) {
-                return call_user_func_array(array($this,$method), $params);
+                return call_user_func_array(array($this, $method), $params);
             }
             return $this->getGenericInstance($name, $params);
         }
@@ -118,10 +121,10 @@ namespace TheSeer\phpDox {
         }
 
         protected function getBootstrapApi() {
-            return new BootstrapApi($this->getEngineFactory(), $this->getDocblockFactory(), $this->getLogger());
+            return new BootstrapApi($this->getBackendFactory(), $this->getDocblockFactory(), $this->getEngineFactory(), $this->getLogger());
         }
 
-        public function getLogger() {
+        protected function getLogger() {
             if (!$this->logger) {
                 $this->logger = new $this->loggerMap[$this->loggerType]();
             }
@@ -170,12 +173,8 @@ namespace TheSeer\phpDox {
             return $scanner;
         }
 
-        protected function getStaticCollector($xmlDir, $public) {
-            return new StaticCollector($this->getLogger(), $this, $xmlDir, $public);
-        }
-
-        protected function getReflectionCollector($xmlDir, $public) {
-            return new ReflectionCollector($this->getLogger(), $this, $xmlDir, $public);
+        protected function getCollector($srcDir, $xmlDir) {
+            return new Collector($this->getLogger(), new \TheSeer\phpDox\Project\Project($srcDir, $xmlDir));
         }
 
         protected function getGenerator() {
@@ -197,9 +196,16 @@ namespace TheSeer\phpDox {
             return $this->instances['DocblockFactory'];
         }
 
+        protected function getBackendFactory() {
+            if (!isset($this->instances['BackendFactory'])) {
+                $this->instances['BackendFactory'] = new \TheSeer\phpDox\Collector\Backend\Factory($this);
+            }
+            return $this->instances['BackendFactory'];
+        }
+
         protected function getEngineFactory() {
             if (!isset($this->instances['EngineFactory'])) {
-                $this->instances['EngineFactory'] = new \TheSeer\phpDox\Engine\Factory();
+                $this->instances['EngineFactory'] = new \TheSeer\phpDox\Generator\Engine\Factory();
             }
             return $this->instances['EngineFactory'];
         }

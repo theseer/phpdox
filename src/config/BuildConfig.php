@@ -78,7 +78,7 @@ namespace TheSeer\phpDox {
         public function getOutputDirectory() {
             $path = '';
             if ($this->ctx->parentNode->hasAttribute('output')) {
-                $path = $this->ctx->parentNode->getAttribute('output','docs');
+                $path = $this->ctx->parentNode->getAttribute('output', 'docs');
             }
             if ($this->ctx->hasAttribute('output')) {
                 if ($path != '') { $path .= '/'; }

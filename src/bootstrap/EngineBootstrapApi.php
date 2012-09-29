@@ -37,7 +37,7 @@
  */
 namespace TheSeer\phpDox {
 
-    use TheSeer\phpDox\Engine\Factory as EngineFactory;
+    use TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
 
     class EngineBootstrapApi {
 

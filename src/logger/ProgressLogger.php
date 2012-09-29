@@ -37,17 +37,34 @@
  */
 namespace TheSeer\phpDox {
 
+    /**
+     * Generic progress logger
+     */
     class ProgressLogger {
 
+        /**
+         * @var array
+         */
         protected $stateChars;
 
+        /**
+         * @var int
+         */
         protected $totalCount = 0;
+        /**
+         * @var array
+         */
         protected $stateCount = array(
             'processed' => 0,
             'cached' => 0,
             'failed' => 0
         );
 
+        /**
+         * @param string $processed
+         * @param string $cached
+         * @param string $failed
+         */
         public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
             $this->stateChars = array(
                 'processed' => $processed,
@@ -56,6 +73,10 @@ namespace TheSeer\phpDox {
             );
         }
 
+        /**
+         * @param $state
+         * @throws ProgressLoggerException
+         */
         public function progress($state) {
             if (!isset($this->stateChars[$state])) {
                 throw new ProgressLoggerException("Unkown progress state '$state'", ShellLoggerException::UnkownState);
@@ -64,6 +85,9 @@ namespace TheSeer\phpDox {
             $this->totalCount++;
         }
 
+        /**
+         *
+         */
         public function reset() {
             $this->totalCount = 0;
             $this->stateCount = array(
@@ -73,18 +97,34 @@ namespace TheSeer\phpDox {
             );
         }
 
+        /**
+         *
+         */
         public function completed() {
         }
 
+        /**
+         * @param $msg
+         */
         public function log($msg) {
         }
 
+        /**
+         *
+         */
         public function buildSummary() {
         }
 
     }
 
+    /**
+     *
+     */
     class ProgressLoggerException extends \Exception {
+
+        /**
+         *
+         */
         const UnknownState = 1;
     }
 

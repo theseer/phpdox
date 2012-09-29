@@ -35,13 +35,13 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Engine {
+namespace TheSeer\phpDox\Generator\Engine {
 
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
     use \TheSeer\fXSL\fXSLCallback;
 
-    use \TheSeer\phpDox\Event;
+    use \TheSeer\phpDox\Generator\Event;
 
     class Html extends AbstractEngine {
 
@@ -76,7 +76,7 @@ namespace TheSeer\phpDox\Engine {
 
         protected function getXSLTProcessor($template) {
             $xsl = parent::getXSLTProcessor($template);
-            $xsl->setParameter('','extension', $this->extension);
+            $xsl->setParameter('', 'extension', $this->extension);
             return $xsl;
         }
 
@@ -92,7 +92,7 @@ namespace TheSeer\phpDox\Engine {
                 $list,
                 $this->extension
             );
-            $builder = new fXSLCallback('phpdox:html','phe');
+            $builder = new fXSLCallback('phpdox:html', 'phe');
             $builder->setObject($this->functions);
 
             $index = $this->getXSLTProcessor($this->templateDir . '/index.xsl');

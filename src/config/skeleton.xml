@@ -14,17 +14,16 @@
         <!--  @source  - The source directory of the application to process -->
         <!--  @workdir - The directory to store the xml data files in -->
     
-    
         <!--  A phpDox config file can define additional variables (properties) per project -->
         <!--  <property name="some.name" value="the.value" /> -->
         <!--  Values can make use of previously defined properties -->
         <!--  The following are defined by default:
         
-                ${basedir}      Directory of the loaded config file is in
+                ${basedir}                Directory the loaded config file is in
 
                 ${phpDox.home}            Directory of the phpDox installation
                 ${phpDox.file}            The current config file
-                ${phpDox.version}         phpDox' Version number
+                ${phpDox.version}         phpDox' version number
 
                 ${phpDox.project.name}    The value of project/@name if set, otherwise 'unnamed'
                 ${phpDox.project.source}  The value of project/@source if set, otherwise '${basedir}/src'
@@ -35,27 +34,72 @@
          -->
     
         <!--  Additional configuration for the collecting process (parse of php code, generation of xml data) -->
-        <collector publiconly="false">
+        <collector publiconly="false" backend="static">
             <!--  @publiconly - Flag to disable/enable processing of non public methods and members -->
+            <!--  @backend    - The collector backend to use, currently 'static', 'reflection' or 'php-parser' -->
         
-            <!--  <include / exclude filter for filelist generator -->
+            <!--  <include / exclude filter for filelist generator, mask must follow fnmatch() requirements  -->
             <include mask="*.php" />
             <exclude mask="" />
             
+            <!--  How to handle inheritance -->
+            <inheritance resolve="true">
+                <!--  @resolve - Flag to enable/disable resolving of inheritance -->
+            
+                <!--  You can define multiple (external) sources to be included -->
+                <!--  <source id="" type="" path="" -->
+                <!--    @id    - unique identifier for internal use -->
+                <!--    @type  - format type of source: 'src' or 'xml' -->
+                <!--    @path  - directory or filename of source -->
+                            
+                <source id="php" type="xml" path="${phpDox.home}/phpdoc/php/xml" />                
+                
+            </inheritance>
+
         </collector>
     
         <!--  Configuration of generation process -->
         <generator output="${basedir}/docs">
             <!-- @output - (Base-)Directory to store output data in -->
+
+            <!-- A generation process consists of one or more build tasks and of (optional) enrich sources -->
+
+            <enrich path="${basedir}/build/logs">
+                <!-- @path - (Base-)Directory of datafiles used for enrich process -->
+
+                <!-- enrichment source -->
+                <source type="checkstyle">
+                    <!-- @type - the handler for the enrichment -->
+                    <!--         known types by default are: checkstyle, pmd, clover, phpunit -->
+
+                    <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
+                    <!-- <file name="checkstyle.xml" /> -->
+
+                </source>
+
+                <!--
+                <source type="pmd">
+                    <file name="pmd.xml" />
+                </source>
             
-            <!-- A generation process consists of one or more build tasks -->
+                <source type="clover">
+                    <file name="clover.xml" />
+                </source>
+                
+                <source type="phpunit">
+                    <file name="junit.xml" />
+                </source>
+                -->
+
+            </enrich>
+
+
             <!-- <build engine="..." enabled="true" output="..." /> -->
             <!--   @engine  - The name of the engine this build task uses, use ./phpDox - -engines to get a list of available engines -->
             <!--   @enabled - Flag to enable/disable this engine, default: enabled=true -->
             <!--   @output  - (optional) Output directory; if relative (no / as first char) it is interpreted as relative to generator/@output -->
-                
-            <!-- An engine and thus build node can have additional configuration child nodes, 
-                 please check the documentation for the engine to find out more -->
+
+            <!-- An engine and thus build node can have additional configuration child nodes, please check the documentation for the engine to find out more -->
 
             <!--  default engine "html" -->            
             <build engine="html" enabled="true" output="html">

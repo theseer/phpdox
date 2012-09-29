@@ -75,7 +75,6 @@ namespace TheSeer\phpDox {
                 }
                 $dom->registerNamespace('cfg', 'http://phpdox.de/config');
 
-
                 return new GlobalConfig($dom, realpath($fname));
             } catch (fDOMException $e) {
                 throw new ConfigLoaderException("Parsing config file '$fname' failed.", ConfigLoaderException::ParseError, $e);

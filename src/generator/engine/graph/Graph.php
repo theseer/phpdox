@@ -35,10 +35,10 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Engine {
+namespace TheSeer\phpDox\Generator\Engine {
 
     use \TheSeer\fDom\fDomElement;
-    use \TheSeer\phpDox\Event;
+    use \TheSeer\phpDox\Generator\Event;
     use \TheSeer\phpDox\BuildConfig;
 
     class Graph extends AbstractEngine {

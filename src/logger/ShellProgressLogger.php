@@ -37,8 +37,14 @@
  */
 namespace TheSeer\phpDox {
 
+    /**
+     * Shell output based logger
+     */
     class ShellProgressLogger extends ProgressLogger {
 
+        /**
+         * @param $state
+         */
         public function progress($state) {
             parent::progress($state);
 
@@ -48,6 +54,9 @@ namespace TheSeer\phpDox {
             }
         }
 
+        /**
+         *
+         */
         public function completed() {
             $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
             if ($pad !=0) {
@@ -56,6 +65,9 @@ namespace TheSeer\phpDox {
             echo "\n\n";
         }
 
+        /**
+         * @param $msg
+         */
         public function log($msg) {
             if (func_num_args()>1) {
                 $msg = vsprintf($msg, array_slice(func_get_args(), 1));
@@ -63,6 +75,9 @@ namespace TheSeer\phpDox {
             echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
         }
 
+        /**
+         *
+         */
         public function buildSummary() {
             echo "\n\n";
             echo \PHP_Timer::resourceUsage();

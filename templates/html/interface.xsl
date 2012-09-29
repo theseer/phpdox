@@ -85,7 +85,7 @@
                         </xsl:if>
                         
                         <footer>
-                            <p>Generated with phpDox 0.4</p>
+                            <p><xsl:value-of select="phe:info()" /></p>
                         </footer>
                     </div>            
 
@@ -110,7 +110,7 @@
                     <h5>Members</h5>
                     <ul>
                         <xsl:for-each select="$interface/src:member">
-                            <li><a href="#{@name}">$<xsl:value-of select="@name" /></a></li>
+                            <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
                         </xsl:for-each>
                     </ul>
                 </xsl:if>
@@ -166,12 +166,12 @@
     <xsl:template match="src:member">
         <li>
             <a name="{@name}" />
-            <h3>$<xsl:value-of select="@name" /></h3>
+            <h3><xsl:value-of select="@name" /></h3>
             <div style="padding-left:1em;">
                 <xsl:call-template name="modifiers">
                     <xsl:with-param name="ctx" select="." />
                 </xsl:call-template>            
-                <strong>&#160;$<xsl:value-of select="@name" /></strong>
+                <strong>&#160;<xsl:value-of select="@name" /></strong>
                 <xsl:for-each select="src:docblock">
                     <em>&#160;<xsl:value-of select="src:var/@type" /></em>
                     <p>
@@ -207,7 +207,7 @@
     
     <xsl:template match="src:parameter">
         <xsl:if test="@optional = 'true'">[</xsl:if>
-        <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;<strong>$<xsl:value-of select="@name" /></strong>
+        <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;<strong><xsl:value-of select="@name" /></strong>
         <xsl:if test="src:default"><small> = <xsl:value-of select="src:default" /></small></xsl:if>
         <xsl:if test="following-sibling::src:parameter">, <xsl:apply-templates select="following-sibling::src:parameter[1]" /></xsl:if>
         <xsl:if test="@optional = 'true'">&#160;]</xsl:if>

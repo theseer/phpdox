@@ -35,7 +35,7 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Generator {
 
     class Event {
 

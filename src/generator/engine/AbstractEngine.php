@@ -35,7 +35,7 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Engine {
+namespace TheSeer\phpDox\Generator\Engine {
 
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
