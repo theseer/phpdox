@@ -125,23 +125,34 @@ namespace TheSeer\phpDox {
             );
             $protected = array_keys($vars);
 
-            foreach($ctx->query('cfg:property') as $property) {
+            foreach($ctx->query('cfg:property|/cfg:phpdox/cfg:property') as $property) {
+                /** @var $property \DOMElement */
                 $name = $property->getAttribute('name');
-                if (!in_array($name, $protected)) {
-                    $vars[$name] =  $this->resolveValue($property->getAttribute('value'), $vars);
+                $line = $property->getLineNo();
+
+                if (in_array($name, $protected)) {
+                    throw new ConfigException("Cannot overwrite system property in line $line", ConfigException::OverrideNotAllowed);
                 }
+                if (isset($vars[$name])) {
+                    throw new ConfigException("Cannot overwrite existing property '$name' in line $line", ConfigException::OverrideNotAllowed);
+                }
+                $vars[$name] =  $this->resolveValue($property->getAttribute('value'), $vars, $line);
+
             }
 
-            foreach($ctx->query('.//*[not(name()="property")]/@*') as $attr) {
-                $attr->nodeValue = $this->resolveValue($attr->nodeValue, $vars);
+            foreach($ctx->query('.//*[not(name()="property")]/@*|@*') as $attr) {
+                $attr->nodeValue = $this->resolveValue($attr->nodeValue, $vars, $attr->getLineNo());
             }
 
             return $ctx;
         }
 
-        protected function resolveValue($value, Array $vars) {
+        protected function resolveValue($value, Array $vars, $line) {
             return preg_replace_callback('/\${(.*?)}/',
-                function($matches) use ($vars) {
+                function($matches) use ($vars, $line) {
+                    if (!isset($vars[$matches[1]])) {
+                        throw new ConfigException("No value for property '{$matches[1]} found in line $line", ConfigException::PropertyNotFound);
+                    }
                     return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0];
                 }, $value);
         }
@@ -153,5 +164,8 @@ namespace TheSeer\phpDox {
         const ProjectNotFound = 1;
         const NoCollectorSection = 2;
         const NoGeneratorSection = 3;
+        const OverrideNotAllowed = 4;
+        const PropertyNotFound = 5;
+
     }
 }

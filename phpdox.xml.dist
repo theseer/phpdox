@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://phpdox.de/config" silent="false">
 
-    <project name="phpDox" source="src" workdir="build/api/xml">
+    <project name="phpDox" source="src" workdir="${basedir}/build/api/xml">
 
         <collector publiconly="false" backend="parser" />
 
-        <generator output="build/api/docs">
+        <generator output="${basedir}/build/api/docs">
 
             <build engine="html" enabled="true" output="html">
                 <file extension="html" />
