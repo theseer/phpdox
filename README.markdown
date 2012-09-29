@@ -11,7 +11,7 @@ Requirements
   - ext/dom
   - ext/xsl
   - ext/iconv and [libiconv version >= 2.12](http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
-- PHP_Depend's [Static Reflection API](http://github.com/manuelpichler/staticReflection)
+- PHPParser [PHP Parser API](https://github.com/nikic/PHP-Parser)
 - [fDOMDocument](http://github.com/theseer/fDOMDocument)
 - [DirectoryScanner](http://github.com/theseer/DirectoryScanner)
 - [fXSL](http://github.com/theseer/fXSL)
@@ -43,12 +43,13 @@ _Note: The `phpdox.php` bootstrap file assumes that all depedencies have been in
 
 To make things work, you now have to manually install the following dependencies using the PEAR Installer (or clone their repositories and then adjust the paths in the `phpdox.php` bootstrap file):
 
+    pear channel-discover nikic.github.com/pear
+    pear install channel://nikic.github.com/pear/PHPParser-0.9.2
+    sudo pear install phpunit/PHP_Timer
+    sudo pear install ezc/ConsoleTools
     sudo pear install theseer/DirectoryScanner
     sudo pear install theseer/fDOMDocument
     sudo pear install theseer/fXSL
-    sudo pear install pdepend/staticReflection-beta
-    sudo pear install phpunit/PHP_Timer
-    sudo pear install ezc/ConsoleTools
 
 Now you are ready to check out the source code of phpDox from its Git repository:
 
