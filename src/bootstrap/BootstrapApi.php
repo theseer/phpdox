@@ -41,6 +41,14 @@ namespace TheSeer\phpDox {
     use \TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
     use \TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
 
+    /**
+     * Bootstrapping API for registering backends, generator engines and parsers
+     *
+     * This class provides the API for use within the bootstrap process to register
+     * collecting backends, additional parsers for annotations, generator engines for
+     * additional output formats as well as enrichment plugins
+     *
+     */
     class BootstrapApi {
 
         /**
@@ -91,26 +99,46 @@ namespace TheSeer\phpDox {
             $this->logger = $logger;
         }
 
+        /**
+         * @return array
+         */
         public function getEngines() {
             return $this->engines;
         }
 
+        /**
+         * @return array
+         */
         public function getBackends() {
             return $this->backends;
         }
 
+        /**
+         * @param $name
+         * @param $description
+         * @return BackendBootstrapApi
+         */
         public function registerBackend($name, $description) {
             $this->logger->log("Registered collector backend '$name'");
             $this->backends[$name] = $description;
             return new BackendBootstrapApi($name, $this->backendFactory);
         }
 
+        /**
+         * @param $name
+         * @param $description
+         * @return EngineBootstrapApi
+         */
         public function registerEngine($name, $description) {
             $this->logger->log("Registered output engine '$name'");
             $this->engines[$name] = $description;
             return new EngineBootstrapApi($name, $this->engineFactory);
         }
 
+        /**
+         * @param $annotation
+         * @return ParserBootstrapApi
+         */
         public function registerParser($annotation) {
             $this->logger->log("Registered parser for '$annotation' annotation");
             return new ParserBootstrapApi($annotation, $this->parserFactory);
