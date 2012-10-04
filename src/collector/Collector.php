@@ -119,13 +119,6 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         *
-         */
-        private function initCollections() {
-
-        }
-
-        /**
          * @param \SplFileInfo $file
          */
         private function processFile(\SplFileInfo $file) {
