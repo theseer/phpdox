@@ -188,8 +188,12 @@ namespace TheSeer\phpDox\Project {
             $this->dom->preserveWhiteSpace = false;
             $this->dom->save( $fileName);
 
-            $this->rootNode->setAttribute('xml', basename($xmlDir) . '/' . basename($fileName));
-            return $this->rootNode;
+            $export = $this->rootNode->cloneNode();
+            $export->setAttribute('xml', basename($xmlDir) . '/' . basename($fileName));
+            if ($extends = $this->rootNode->queryOne('phpdox:extends')) {
+                $export->appendChild($extends->cloneNode());
+            }
+            return $export;
         }
 
     }

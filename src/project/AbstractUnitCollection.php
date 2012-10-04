@@ -48,6 +48,9 @@ namespace TheSeer\phpDox\Project {
          */
         private $units = array();
 
+
+        private $dom;
+
         /**
          * @var string
          */
@@ -58,30 +61,44 @@ namespace TheSeer\phpDox\Project {
          * @return void
          */
         public function import(fDOMDocument $dom) {
-            // TODO: Implement import() method.
+            $this->dom = $dom;
+            $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
         }
 
         /**
+         * This method exports all newly registered units into their respective files
+         * and updates the collection file accordingly
+         *
+         * @param string $xmlDir
+         *
          * @return \TheSeer\fDOM\fDOMDocument
          */
         public function export($xmlDir) {
-            $dom = new fDOMDocument();
-            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-            $root = $dom->createElementNS('http://xml.phpdox.de/src#', $this->collectionName);
-            $dom->appendChild($root);
+            if ($this->dom instanceof fDOMDocument) {
+                $root = $this->dom->documentElement;
+            } else {
+                $this->dom = new fDOMDocument();
+                $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+                $root = $this->dom->appendElementNS('http://xml.phpdox.de/src#', $this->collectionName);
+            }
             foreach($this->units as $unit) {
-                $unitNode = $dom->importNode($unit->export($xmlDir . '/' . $this->collectionName));
+                $unitNode = $this->dom->importNode($unit->export($xmlDir . '/' . $this->collectionName), true);
                 $ctx = $root->queryOne('phpdox:namespace[@name="' . $unitNode->getAttribute('namespace') . '"]');
                 if (!$ctx) {
                     $ctx = $root->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
                     $ctx->setAttribute('name', $unitNode->getAttribute('namespace'));
                 }
-                $ctx->appendChild($unitNode);
+                $full = $unitNode->getAttribute('full');
+                if ($old = $ctx->queryOne("*[@full = '{$full}']")) {
+                    $ctx->replaceChild($unitNode, $old);
+                } else {
+                    $ctx->appendChild($unitNode);
+                }
             }
-            $dom->formatOutput = true;
-            $dom->preserveWhiteSpace = true;
-            $dom->save($xmlDir . '/' . $this->collectionName . '.xml');
-            return $dom;
+            $this->dom->formatOutput = TRUE;
+            $this->dom->preserveWhiteSpace = TRUE;
+            $this->dom->save($xmlDir . '/' . $this->collectionName . '.xml');
+            return $this->dom;
         }
 
         /**
