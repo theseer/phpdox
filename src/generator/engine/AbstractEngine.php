@@ -65,6 +65,8 @@ namespace TheSeer\phpDox\Generator\Engine {
             if (!file_exists($path)) {
                 mkdir($path, 0755, true);
             }
+            $dom->formatOutput = true;
+            $dom->preserveWhiteSpace = false;
             return $dom->save($filename);
         }
 
