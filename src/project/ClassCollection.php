@@ -36,8 +36,6 @@
      */
 namespace TheSeer\phpDox\Project {
 
-    use TheSeer\fDOM\fDOMDocument;
-
     /**
      *
      */
