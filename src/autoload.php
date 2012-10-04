@@ -26,7 +26,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\collector\\backend\\unitcollectingvisitor' => '/collector/backend/parser/UnitCollectingVisitor.php',
                 'theseer\\phpdox\\collector\\classbuilder' => '/collector/ClassBuilder.php',
                 'theseer\\phpdox\\collector\\classbuilderexception' => '/collector/ClassBuilderException.php',
-                'theseer\\phpdox\\collector\\collector' => '/collector/static/StaticCollector.php',
+                'theseer\\phpdox\\collector\\collector' => '/collector/Collector.php',
                 'theseer\\phpdox\\collectorconfig' => '/config/CollectorConfig.php',
                 'theseer\\phpdox\\collectorexception' => '/collector/CollectorException.php',
                 'theseer\\phpdox\\collectorinterface' => '/collector/CollectorInterface.php',
@@ -98,7 +98,6 @@ spl_autoload_register(
                 'theseer\\phpdox\\project\\traitobject' => '/project/TraitObject.php',
                 'theseer\\phpdox\\project\\unitobjectexception' => '/project/AbstractUnitObject.php',
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
-                'theseer\\phpdox\\resolver' => '/collector/static/Resolver.php',
                 'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php'
             );
         }
