@@ -39,12 +39,12 @@ namespace TheSeer\phpDox {
     /** @var $phpDox BootstrapApi */
 
     // StaticReflection
-    $staticReflection = stream_resolve_include_path('pdepend/reflection/Autoloader.php');
-    if ($staticReflection !== false) {
-        require $staticReflection;
-        spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload') );
-        $phpDox->registerBackend('static','StaticReflection');
-    }
+    //$staticReflection = stream_resolve_include_path('pdepend/reflection/Autoloader.php');
+    //if ($staticReflection !== false) {
+    //    require $staticReflection;
+    //    spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload') );
+    //    $phpDox->registerBackend('static','StaticReflection');
+    //}
 
     // nikic's PHPParser
     $phpParser = stream_resolve_include_path('PHPParser/bootstrap.php');
