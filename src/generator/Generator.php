@@ -59,6 +59,7 @@ namespace TheSeer\phpDox\Generator {
         protected $namespaces;
         protected $classes;
         protected $interfaces;
+        protected $traits;
 
         /**
          * Map of events with engines
@@ -75,12 +76,16 @@ namespace TheSeer\phpDox\Generator {
 
             'phpdox.classes.start' => array(),
             'phpdox.classes.end' => array(),
+            'phpdox.traits.start' => array(),
+            'phpdox.traits.end' => array(),
             'phpdox.interfaces.start' => array(),
             'phpdox.interfaces.end' => array(),
 
             'namespace.start' => array(),
             'namespace.classes.start' => array(),
             'namespace.classes.end' => array(),
+            'namespace.traits.start' => array(),
+            'namespace.traits.end' => array(),
             'namespace.interfaces.start' => array(),
             'namespace.interfaces.end' => array(),
             'namespace.end' => array(),
@@ -90,6 +95,12 @@ namespace TheSeer\phpDox\Generator {
             'class.member' => array(),
             'class.method' => array(),
             'class.end' => array(),
+
+            'trait.start' => array(),
+            'trait.constant' => array(),
+            'trait.member' => array(),
+            'trait.method' => array(),
+            'trait.end' => array(),
 
             'interface.start' => array(),
             'interface.constant' => array(),
@@ -123,14 +134,15 @@ namespace TheSeer\phpDox\Generator {
             $this->namespaces = $container->getDocument('namespaces');
             $this->classes    = $container->getDocument('classes');
             $this->interfaces = $container->getDocument('interfaces');
+            $this->traits     = $container->getDocument('traits');
 
-            $this->triggerEvent('phpdox.start', $this->namespaces, $this->classes, $this->interfaces);
+            $this->triggerEvent('phpdox.start', $this->namespaces, $this->classes, $this->interfaces, $this->traits);
             if ($this->namespaces->documentElement->hasChildNodes()) {
                 $this->processWithNamespace();
             } else {
                 $this->processGlobalOnly();
             }
-            $this->triggerEvent('phpdox.end', $this->namespaces, $this->classes, $this->interfaces);
+            $this->triggerEvent('phpdox.end', $this->namespaces, $this->classes, $this->interfaces, $this->traits);
             $this->logger->completed();
 
             $this->logger->log("Triggering raw engines\n");
@@ -155,6 +167,13 @@ namespace TheSeer\phpDox\Generator {
                 $this->processClass($class);
             }
             $this->triggerEvent('phpdox.classes.end', $this->classes);
+
+            $this->triggerEvent('phpdox.traits.start', $this->traits);
+            foreach($this->traits->query('//phpdox:trait') as $trait) {
+                $this->processTrait($trait);
+            }
+            $this->triggerEvent('phpdox.traits.end', $this->traits);
+
             $this->triggerEvent('phpdox.interfaces.start', $this->interfaces);
             foreach($this->interfaces->query('//phpdox:interface') as $interface) {
                 $this->processInterface($interface);
@@ -167,14 +186,20 @@ namespace TheSeer\phpDox\Generator {
 
             foreach($this->namespaces->query('//phpdox:namespace') as $namespace) {
                 $this->triggerEvent('namespace.start', $namespace);
-                $this->triggerEvent('namespace.classes.start', $this->classes, $namespace);
 
+                $this->triggerEvent('namespace.classes.start', $this->classes, $namespace);
                 $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:class', $namespace->getAttribute('name'));
                 foreach($this->classes->query($xpath) as $class) {
                     $this->processClass($class);
                 }
 
-                $this->triggerEvent('namespace.classes.end', $this->classes, $namespace);
+                $this->triggerEvent('namespace.traits.start', $this->traits, $namespace);
+                $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:trait', $namespace->getAttribute('name'));
+                foreach($this->traits->query($xpath) as $trait) {
+                    $this->processTrait($trait);
+                }
+                $this->triggerEvent('namespace.traits.end', $this->traits, $namespace);
+
                 $this->triggerEvent('namespace.interfaces.start', $this->interfaces, $namespace);
 
                 $xpath = sprintf('//phpdox:namespace[@name="%s"]/phpdox:interface', $namespace->getAttribute('name'));
@@ -217,6 +242,35 @@ namespace TheSeer\phpDox\Generator {
             }
         }
 
+        protected function processTrait(fDOMElement $trait) {
+            $traitDom = new fDomDocument();
+            $traitDom->load($this->xmlDir . '/' . $trait->getAttribute('xml'));
+            $traitDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+
+            foreach($traitDom->query('//phpdox:trait') as $traitNode) {
+                $this->triggerEvent('trait.start', $traitNode);
+
+                foreach($traitNode->query('phpdox:constant') as $constant) {
+                    $this->triggerEvent('trait.constant', $constant, $traitNode);
+                }
+
+                foreach($traitNode->query('phpdox:member') as $member) {
+                    if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
+                        continue;
+                    }
+                    $this->triggerEvent('trait.member', $member, $traitNode);
+                }
+
+                foreach($traitNode->query('phpdox:method') as $method) {
+                    if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
+                        continue;
+                    }
+                    $this->triggerEvent('trait.method', $method, $traitNode);
+                }
+                $this->triggerEvent('trait.end', $traitNode);
+            }
+        }
+        
         protected function processInterface(fDOMElement $interface) {
             $interfaceDom = new fDomDocument();
             $interfaceDom->load($this->xmlDir . '/' . $interface->getAttribute('xml'));

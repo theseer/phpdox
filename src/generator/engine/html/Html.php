@@ -89,6 +89,7 @@ namespace TheSeer\phpDox\Generator\Engine {
                 $this->projectNode,
                 $event->classes,
                 $event->interfaces,
+                $event->traits,
                 $list,
                 $this->extension
             );

@@ -41,20 +41,24 @@ namespace TheSeer\phpDox\Generator {
 
         protected $eventTypes = array(
             'phpdox.raw' => array(),
-            'phpdox.start' => array('namespaces', 'classes', 'interfaces'),
-            'phpdox.end' => array('namespaces', 'classes', 'interfaces'),
+            'phpdox.start' => array('namespaces', 'classes', 'interfaces', 'traits'),
+            'phpdox.end' => array('namespaces', 'classes', 'interfaces', 'traits'),
 
             'phpdox.namespaces.start' => array('namespaces'),
             'phpdox.namespaces.end' => array('namespaces'),
 
             'phpdox.classes.start' => array('classes'),
             'phpdox.classes.end' => array('classes'),
+            'phpdox.traits.start' => array('traits'),
+            'phpdox.traits.end' => array('traits'),
             'phpdox.interfaces.start' => array('interfaces'),
             'phpdox.interfaces.end' => array('interfaces'),
 
             'namespace.start' => array('namespace'),
             'namespace.classes.start' => array('classes', 'namespace'),
             'namespace.classes.end' => array('classes', 'namespace'),
+            'namespace.traits.start' => array('traits', 'namespace'),
+            'namespace.traits.end' => array('traits', 'namespace'),
             'namespace.interfaces.start' => array('interfaces', 'namespace'),
             'namespace.interfaces.end' => array('interfaces', 'namespace'),
             'namespace.end' => array('namespace'),
@@ -65,6 +69,12 @@ namespace TheSeer\phpDox\Generator {
             'class.method' => array('method', 'class'),
             'class.end' => array('class'),
 
+            'trait.start' => array('trait'),
+            'trait.constant' => array('constant', 'trait'),
+            'trait.member' => array('member', 'trait'),
+            'trait.method' => array('method', 'trait'),
+            'trait.end' => array('trait'),
+            
             'interface.start' => array('interface'),
             'interface.constant' => array('constant', 'interface'),
             'interface.method' => array('method', 'interface'),

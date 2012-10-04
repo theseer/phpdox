@@ -10,16 +10,18 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
 
         protected $classListDom;
         protected $interfaceListDom;
+        protected $traitListDom;
         protected $listXSL;
 
         protected $dom;
         protected $extension;
         protected $links = array();
 
-        public function __construct(\DOMElement $project, \DOMDocument $cdom, \DOMDocument $idom, fXSLTProcessor $list, $extension = 'xhtml') {
+        public function __construct(\DOMElement $project, \DOMDocument $cdom, \DOMDocument $idom, \DOMDocument $tdom, fXSLTProcessor $list, $extension = 'xhtml') {
             $this->projectNode = $project;
             $this->classListDom = $cdom;
             $this->interfaceListDom = $idom;
+            $this->traitListDom = $tdom;
             $this->listXSL = $list;
             $this->extension = $extension;
 
@@ -127,6 +129,14 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             return $html;
         }
 
+        public function getTraitList() {
+            static $html = null;
+            if ($html === null) {
+                $html = $this->listXSL->transformToDoc($this->traitListDom)->documentElement;
+            }
+            return $html;
+        }
+
         public function getInterfaceList() {
             static $html = null;
             if ($html === null) {
@@ -137,11 +147,18 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
 
         protected function followInheritence($class, $ctx) {
             $node = $this->dom->importNode($class);
+
+            /** @var $extends \DOMElement */
             $extends = $class->queryOne('phpdox:extends');
             if ($extends) {
                 $parent = $this->classListDom->queryOne('//phpdox:class[@full="'.$extends->getAttribute('full').'"]');
                 if ($parent) {
                     $ctx = $this->followInheritence($parent, $ctx);
+                } else {
+                    $ctx = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'class');
+                    foreach($extends->attributes as $attr) {
+                        $ctx->appendChild($this->dom->importNode($attr));
+                    }
                 }
             }
             $ctx->appendChild($node);
