@@ -29,17 +29,20 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- *
  */
 namespace TheSeer\phpDox {
 
     use \Theseer\DirectoryScanner\IncludeExcludeFilterIterator as Scanner;
     use \TheSeer\fDom\fDomDocument;
 
+    /**
+     * The main Application class
+     *
+     * @author     Arne Blankerts <arne@blankerts.de>
+     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+     * @license    BSD License
+     * @link       http://phpDox.de
+     */
     class Application {
 
         /**
