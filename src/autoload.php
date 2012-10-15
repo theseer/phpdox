@@ -20,6 +20,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\collector\\backend\\backendinterface' => '/collector/backend/BackendInterface.php',
                 'theseer\\phpdox\\collector\\backend\\factory' => '/collector/backend/Factory.php',
                 'theseer\\phpdox\\collector\\backend\\factoryexception' => '/collector/backend/Factory.php',
+                'theseer\\phpdox\\collector\\backend\\originalvaluelexer' => '/collector/backend/parser/OriginalValueLexer.php',
                 'theseer\\phpdox\\collector\\backend\\parseerrorexception' => '/collector/backend/ParseErrorException.php',
                 'theseer\\phpdox\\collector\\backend\\parseresult' => '/collector/backend/ParseResult.php',
                 'theseer\\phpdox\\collector\\backend\\phpparser' => '/collector/backend/parser/PHPParser.php',
