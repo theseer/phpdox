@@ -72,6 +72,10 @@ namespace TheSeer\phpDox\Collector\Backend {
             $this->file = $file;
         }
 
+        public function getFileName() {
+            return $this->file->getRealPath();
+        }
+
         /**
          * @param $name
          * @return ClassObject
