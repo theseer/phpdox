@@ -77,11 +77,11 @@ namespace TheSeer\phpDox\Project {
             if ($this->dom instanceof fDOMDocument) {
                 $root = $this->dom->documentElement;
             } else {
-                $this->dom = new fDOMDocument();
+                $this->dom = new fDOMDocument('1.0', 'UTF-8');
                 $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
                 $root = $this->dom->appendElementNS('http://xml.phpdox.de/src#', $this->collectionName);
             }
-            foreach($this->units as $unit) {
+            foreach($this->units as $x => $unit) {
                 $unitNode = $this->dom->importNode($unit->export($xmlDir . '/' . $this->collectionName), true);
                 $ctx = $root->queryOne('phpdox:namespace[@name="' . $unitNode->getAttribute('namespace') . '"]');
                 if (!$ctx) {

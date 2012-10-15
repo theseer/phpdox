@@ -144,7 +144,12 @@ namespace TheSeer\phpDox\Collector\Backend {
 
             /** @var \PHPParser_Node_Stmt_Class $node */
             if (count($node->extends) === 1) {
-                $this->unit->setExtends(join('\\', $node->extends->parts));
+                if (is_array($node->extends)) {
+                    $extends = $node->extends[0];
+                } else {
+                    $extends = $node->extends;
+                }
+                $this->unit->setExtends(join('\\', $extends->parts));
             }
 
             if (count($node->implements) > 0) {
@@ -202,7 +207,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         private function processClassConstant(\PHPParser_Node_Stmt_ClassConst $node) {
             $constNode = $node->consts[0];
             $const = $this->unit->addConstant($constNode->name);
-            $const->setValue($constNode->value->value);
+            $const->setValue($constNode->value->originalValue);
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
                 $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
@@ -253,21 +258,23 @@ namespace TheSeer\phpDox\Collector\Backend {
                 return;
             }
             if ($default instanceof \PHPParser_Node_Scalar_String) {
-                $variable->setDefault($default->value);
+                $variable->setDefault($default->originalValue);
                 if ($variable->getType() == '{unknown}') {
                     $variable->setType('string');
                 }
                 return;
             }
-            if ($default instanceof \PHPParser_Node_Scalar_LNumber) {
-                $variable->setDefault($default->value);
+            if ($default instanceof \PHPParser_Node_Scalar_LNumber ||
+                $default instanceof \PHPParser_Node_Expr_UnaryMinus ||
+                $default instanceof \PHPParser_Node_Expr_UnaryPlus) {
+                $variable->setDefault($default->originalValue);
                 if ($variable->getType() == '{unknown}') {
                     $variable->setType('integer');
                 }
                 return;
             }
             if ($default instanceof \PHPParser_Node_Scalar_DNumber) {
-                $variable->setDefault($default->value);
+                $variable->setDefault($default->originalValue);
                 if ($variable->getType() == '{unknown}') {
                     $variable->setType('float');
                 }
@@ -289,7 +296,15 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $variable->setDefault(join('\\', $default->name->parts));
                 return;
             }
-            var_dump($default);
+            if ($default instanceof \PHPParser_Node_Scalar_ClassConst) {
+                $variable->setDefault('__CLASS__');
+                return;
+            }
+
+            $type = get_class($default);
+            $line = $default->startLine;
+            $file = $this->result->getFileName();
+            throw new ParseErrorException("Unexpected expression type '$type' for default value in line $line of file '$file'", ParseErrorException::UnexpectedExpr);
         }
 
     }

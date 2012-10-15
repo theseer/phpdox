@@ -69,7 +69,7 @@ namespace TheSeer\phpDox\Project {
             if ($this->rootName === NULL) {
                 throw new UnitObjectException('No or invalid rootname set', UnitObjectException::InvalidRootname);
             }
-            $this->dom = new fDOMDocument();
+            $this->dom = new fDOMDocument('1.0', 'UTF-8');
             $this->dom->registerNamespace('phpdox', self::XMLNS);
             $this->rootNode = $this->dom->createElementNS(self::XMLNS, $this->rootName);
             $this->dom->appendChild($this->rootNode);
@@ -186,7 +186,7 @@ namespace TheSeer\phpDox\Project {
             $fileName = $xmlDir . '/' . str_replace('\\', '_', $this->rootNode->getAttribute('full')) . '.xml';
             $this->dom->formatOutput = true;
             $this->dom->preserveWhiteSpace = false;
-            $this->dom->save( $fileName);
+            $this->dom->save($fileName);
 
             $export = $this->rootNode->cloneNode();
             $export->setAttribute('xml', basename($xmlDir) . '/' . basename($fileName));

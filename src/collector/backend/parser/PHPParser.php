@@ -61,7 +61,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
-         * @param \SplFileInfo $fname
+         * @param \SplFileInfo $file
          * @return ParseResult
          * @throws ParseErrorException
          */
@@ -69,7 +69,14 @@ namespace TheSeer\phpDox\Collector\Backend {
             try {
                 $result = new ParseResult($file);
                 $parser = $this->getParserInstance();
+
                 $code = file_get_contents($file->getPathname());
+
+                $info = new \finfo();
+                $encoding = $info->file($file, FILEINFO_MIME_ENCODING);
+                if (strtolower($encoding) != 'utf-8') {
+                    $code = iconv($encoding, 'UTF-8//TRANSLIT', $code);
+                }
                 $nodes = $parser->parse($code);
                 $this->getTraverserInstance($result)->traverse($nodes);
                 return $result;
@@ -83,7 +90,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         private function getParserInstance() {
             if ($this->parser === NULL) {
-                $this->parser = new \PHPParser_Parser(new \PHPParser_Lexer_Emulative());
+                $this->parser = new \PHPParser_Parser(new OriginalValueLexer());
             }
             return $this->parser;
         }
