@@ -37,38 +37,28 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-    class ParamParser extends GenericParser {
+    class ParamElement extends GenericElement {
 
-        public function getObject(array $buffer) {
-            $obj = $this->buildObject('param', $buffer);
+        const XMLNS = 'http://xml.phpdox.de/src#';
 
-            $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
-            switch(count($param)) {
-                case 3: {
-                    $obj->setDescription($param[2]);
-                    // no break!
-                }
-                case 2: {
-                    if ($param[0][0]=='$') {
-                        $obj->setVariable($param[0]);
-                        $obj->setType($this->lookupType($param[1]));
-                    } else {
-                        $obj->setType($this->lookupType($param[0]));
-                        $obj->setVariable($param[1]);
-                    }
-                    break;
-                }
-                case 1: {
-                    if ($param[0][0]=='$') {
-                        $obj->setVariable($param[0]);
-                    } else {
-                        $obj->setType($this->lookupType($param[0]));
-                    }
-                    break;
-                }
+        private $types = array('{unknown}', 'object','array','integer','int','float','string','boolean','resource');
+
+        public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
+            $node = parent::asDom($ctx);
+
+            $type = $node->getAttribute('type');
+            if (!in_array($type, $this->types)) {
+                $parts = explode('\\', $type);
+                $local = array_pop($parts);
+                $namespace = join('\\', $parts);
+
+                $class = $node->appendElementNS(self::XMLNS, 'class');
+                $class->setAttribute('full', $type);
+                $class->setAttribute('namespace', $namespace);
+                $class->setAttribute('class', $local);
+                $node->setAttribute('type', 'object');
             }
-
-            return $obj;
+            return $node;
         }
 
     }

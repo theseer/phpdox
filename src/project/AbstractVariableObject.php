@@ -40,7 +40,11 @@ namespace TheSeer\phpDox\Project {
 
     abstract class AbstractVariableObject {
 
+        const XMLNS = 'http://xml.phpdox.de/src#';
+
         protected  $ctx;
+
+        private $types = array('{unknown}', 'object','array','integer','float','string','boolean','resource');
 
         public function __construct(fDOMElement $ctx) {
             $this->ctx = $ctx;
@@ -55,6 +59,17 @@ namespace TheSeer\phpDox\Project {
         }
 
         public function setType($type) {
+            if (!in_array($type, $this->types)) {
+                $parts = explode('\\', $type);
+                $local = array_pop($parts);
+                $namespace = join('\\', $parts);
+
+                $class = $this->ctx->appendElementNS(self::XMLNS, 'class');
+                $class->setAttribute('full', $type);
+                $class->setAttribute('namespace', $namespace);
+                $class->setAttribute('class', $local);
+                $type = 'object';
+            }
             $this->ctx->setAttribute('type', $type);
         }
 
