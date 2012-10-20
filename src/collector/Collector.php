@@ -83,8 +83,7 @@ namespace TheSeer\phpDox\Collector {
             $this->backend = $backend;
 
             $srcDir = $this->project->getSourceDir();
-
-            $this->logger->log("Scanning directory '{$srcDir}' for files to process:\n");
+            $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
             foreach($scanner($srcDir) as $file) {
                 $nedsProcessing = $this->project->addFile($file);
                 if (!$nedsProcessing) {
@@ -95,6 +94,8 @@ namespace TheSeer\phpDox\Collector {
             }
             $this->logger->completed();
 
+            $xmlDir = $this->project->getXmlDir();
+            $this->logger->log("Saving results to directory '{$xmlDir}'");
             $vanished = $this->project->cleanVanishedFiles();
             if ($vanished > 0) {
                 $this->logger->log("Removed $vanished vanished files from project");
