@@ -91,6 +91,13 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
+         * @return string
+         */
+        public function getXmlDir() {
+            return $this->xmlDir;
+        }
+
+        /**
          * @param \SplFileInfo $file
          * @return bool
          */
