@@ -55,14 +55,15 @@ namespace TheSeer\phpDox\DocBlock {
 
         protected $elementMap = array(
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
-            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement'
+            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement',
+            'param' => 'TheSeer\\phpDox\\DocBlock\\ParamElement'
         );
 
         /**
          * Register a parser factory.
          *
          * @param string $annotation Identifier of the parser within the registry.
-         * @param TheSeer\phpDox\FactoryInterface $factory Instance of the factory to be registered.
+         * @param \TheSeer\phpDox\FactoryInterface $factory Instance of the factory to be registered.
          *
          * @throws FactoryException in case either one or both arguments are not of type string.
          */
