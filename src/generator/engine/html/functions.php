@@ -66,16 +66,13 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             }
             if (!$node) {
                 $text = $this->dom->createTextNode($nodes[0]->getAttribute('class'));
+                $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'span');
                 if ($nodes[0]->hasAttribute('namespace')) {
-                    $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'span');
                     $span->setAttribute('title', $full);
-                    $span->appendChild($text);
-                    $this->links[$full] = $span;
-                    return $span;
-                } else {
-                    $this->links[$full] = $text;
-                    return $text;
                 }
+                $span->appendChild($text);
+                $this->links[$full] = $span;
+                return $span;
             }
             $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'a');
             $a->setAttribute('href', '../'.$path.'/'. $this->classNameToFileName($full));
