@@ -109,7 +109,7 @@
                             </ul>
                         </xsl:if>
 
-
+                        <div class="footer"><xsl:value-of select="phe:info()" /></div>
                     </div>
                 </div>
             </body>
@@ -255,23 +255,22 @@
     
     <xsl:template match="src:parameter">
         <xsl:if test="@optional = 'true'">[</xsl:if>
+        <span class="param-type">
         <xsl:choose>
             <xsl:when test="@type='object'">
-                <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;
+                <xsl:copy-of select="phe:classLink(src:class)" />
             </xsl:when>
-            <xsl:when test="@type='array'">
-                <em>Array</em>&#160;
-            </xsl:when>
+            <xsl:when test="@type='integer' or @type='float' or @type='string' or @type='resource'"><xsl:value-of select="@type" /></xsl:when>
+            <xsl:when test="@type='array'">Array</xsl:when>
             <xsl:when test="@type='{unknown}'">
                 <xsl:variable name="name" select="@name" />
-                <xsl:for-each select="src:docblock/src:param[@name=$name]">
-                    <em><xsl:copy-of select="phe:classLink(.)" /></em>&#160;
+                <xsl:for-each select="../src:docblock/src:param[@variable=concat('$', $name) and @type='object']">
+                    <xsl:copy-of select="phe:classLink(src:class)" />
                 </xsl:for-each>            
-            </xsl:when>            
+            </xsl:when>
         </xsl:choose>
-        <strong>
-            <xsl:if test="@byreference = 'true'">&amp;</xsl:if>$<xsl:value-of select="@name" />
-        </strong>
+        </span>
+        <strong>&#160;<xsl:if test="@byreference = 'true'">&amp;</xsl:if>$<xsl:value-of select="@name" /></strong>
         <xsl:if test="src:default"><small> = <xsl:value-of select="src:default" /></small></xsl:if>
         <xsl:if test="following-sibling::src:parameter">, <xsl:apply-templates select="following-sibling::src:parameter[1]" /></xsl:if>
         <xsl:if test="@optional = 'true'">&#160;]</xsl:if>

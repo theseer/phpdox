@@ -42,6 +42,11 @@ h1, h2, h3, h4, h5, h6 {font-family: Verdana, Arial, Helvetica, sans-serif; }
     padding: 0.5em 0;
     text-decoration: none;
     color: inherit;
+    word-wrap: break-word;
+}
+
+.navigation h3 {
+    clear: both;
 }
 
 .navigation a:hover, .navigation a:focus {
@@ -234,3 +239,6 @@ h1, h2, h3 {color: rgba(255,147,30,1);}
 .linklist a:hover, .linklist a:focus,
 .var-member a:hover, .var-member a:focus {color: #5c7340;}
 
+.param-type {
+    font-weight:normal;
+}
