@@ -34,9 +34,9 @@
          -->
     
         <!--  Additional configuration for the collecting process (parse of php code, generation of xml data) -->
-        <collector publiconly="false" backend="static">
+        <collector publiconly="false" backend="parser">
             <!--  @publiconly - Flag to disable/enable processing of non public methods and members -->
-            <!--  @backend    - The collector backend to use, currently 'static', 'reflection' or 'php-parser' -->
+            <!--  @backend    - The collector backend to use, currently only shipping with 'parser' -->
         
             <!--  <include / exclude filter for filelist generator, mask must follow fnmatch() requirements  -->
             <include mask="*.php" />
