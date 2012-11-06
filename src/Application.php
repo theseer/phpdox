@@ -124,7 +124,7 @@ namespace TheSeer\phpDox {
             );
 
             $backend =  $this->factory->getInstanceFor('BackendFactory')->getInstanceFor($config->getBackend());
-            $collector->run($scanner, $backend);
+            $project = $collector->run($scanner, $backend);
 
             if ($collector->hasParseErrors()) {
                 $this->logger->log('Parse errors during processing:');
@@ -133,6 +133,17 @@ namespace TheSeer\phpDox {
                 }
             }
 
+            $this->logger->log("Saving results to directory '{$xmlDir}'");
+            $vanished = $project->cleanVanishedFiles();
+            if ($vanished > 0) {
+                $this->logger->log("Removed $vanished vanished files from project");
+            }
+
+            if ($config->doResolveInheritance()) {
+                $this->factory->getInstanceFor('InheritanceResolver')->resolve($project, $config->getInheritanceConfig());
+            }
+
+            $project->complete();
             $this->logger->log('Collector process completed');
         }
 
