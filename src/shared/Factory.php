@@ -177,6 +177,10 @@ namespace TheSeer\phpDox {
             return new Collector($this->getLogger(), new \TheSeer\phpDox\Project\Project($srcDir, $xmlDir));
         }
 
+        protected function getInheritanceResolver() {
+            return new \TheSeer\phpDox\Collector\InheritanceResolver($this->getLogger());
+        }
+
         protected function getGenerator() {
             return new Generator($this->getInstanceFor('EventFactory'), $this->getLogger());
         }
