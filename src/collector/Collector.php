@@ -78,6 +78,8 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @param \TheSeer\DirectoryScanner\DirectoryScanner $scanner
          * @param                                            $backend
+         *
+         *
          */
         public function run(DirectoryScanner $scanner, $backend) {
             $this->backend = $backend;
@@ -93,16 +95,7 @@ namespace TheSeer\phpDox\Collector {
                 $this->processFile($file);
             }
             $this->logger->completed();
-
-            $xmlDir = $this->project->getXmlDir();
-            $this->logger->log("Saving results to directory '{$xmlDir}'");
-            $vanished = $this->project->cleanVanishedFiles();
-            if ($vanished > 0) {
-                $this->logger->log("Removed $vanished vanished files from project");
-            }
-
-            $this->project->complete();
-
+            return $this->project;
         }
 
         /**
@@ -144,6 +137,8 @@ namespace TheSeer\phpDox\Collector {
             } catch (ParseError $e) {
                 $this->parseErrors[$file->getPathname()] = $e;
                 $this->logger->progress('failed');
+            } catch (\Exception $e) {
+                throw new CollectorException('Error while processing source file', CollectorException::ProcessingError, $e, $file);
             }
         }
 
