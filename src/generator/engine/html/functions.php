@@ -58,10 +58,12 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
                 return $this->links[$full];
             }
 
-            $node = $this->classListDom->queryOne('//phpdox:class[@full="'. $full. '"]');
+            $xp = $this->classListDom->getDOMXPath();
+            $prepared = $xp->quote($full);
+            $node = $this->classListDom->queryOne('//phpdox:class[@full='. $prepared. ']');
             $path = 'classes';
             if (!$node) {
-                $node = $this->interfaceListDom->queryOne('//phpdox:interface[@full="'. $full. '"]');
+                $node = $this->interfaceListDom->queryOne('//phpdox:interface[@full='. $prepared. ']');
                 $path = 'interfaces';
             }
             if (!$node) {
@@ -94,7 +96,9 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             $of = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'of');
             $container->appendChild($of);
 
-            $class = $this->classListDom->queryOne('//phpdox:class[@full="'.$full.'"]');
+            $xp = $this->classListDom->getDOMXPath();
+            $prepared = $xp->quote($full);
+            $class = $this->classListDom->queryOne('//phpdox:class[@full='.$prepared.']');
             if (!$class) {
                 return $container;
             }
