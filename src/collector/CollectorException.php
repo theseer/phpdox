@@ -34,9 +34,9 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox\Collector {
 
-    class CollectorException extends HasFileInfoException {
+    class CollectorException extends \TheSeer\phpDox\HasFileInfoException {
         const ProcessingError = 1;
     }
 
