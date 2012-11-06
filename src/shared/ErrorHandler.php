@@ -126,7 +126,7 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, $exception->getMessage() . "\n\n");
 
             if ($exception instanceof HasFileInfoException) {
-                fwrite(STDERR, "\nException occured while processing file: " .  $exception->getFile());
+                fwrite(STDERR, "\nException occured while processing file: " .  $exception->getFile()."\n\n");
             }
 
             $trace = $exception->getTrace();
@@ -144,6 +144,7 @@ namespace TheSeer\phpDox {
 
             $nested = $exception->getPrevious();
             if ($nested !== NULL) {
+                fwrite(STDERR, "\n\n");
                 $this->renderException($nested);
             }
 
