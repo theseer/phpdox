@@ -143,7 +143,7 @@ namespace TheSeer\phpDox {
                 $this->factory->getInstanceFor('InheritanceResolver')->resolve($project, $config->getInheritanceConfig());
             }
 
-            $project->complete();
+            $project->save();
             $this->logger->log('Collector process completed');
         }
 
@@ -171,7 +171,7 @@ namespace TheSeer\phpDox {
             }
             $pconfig = $config->getProjectConfig();
 
-            $generator->run($this->factory->getInstanceFor('Container', $pconfig->getWorkDirectory()), $pconfig->isPublicOnlyMode());
+            $generator->run( new \TheSeer\phpDox\Project\Project($pconfig->getSourceDirectory(), $pconfig->getWorkDirectory()) );
             $this->logger->log("Generator process completed");
         }
 
