@@ -224,7 +224,11 @@ namespace TheSeer\phpDox\Project {
          * @param string $path
          */
         private function removeFileReferences($path) {
-            // Iterate over c/i/t collections, remove unit files, remove entries
+            foreach($this->index->getUnitsBySrcFile($path) as $node) {
+                /** @var $node \DOMElement */
+                unlink($this->xmlDir . '/' . $node->getAttribute('xml'));
+                $node->parentNode->removeChild($node);
+            }
         }
 
     }

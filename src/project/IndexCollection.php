@@ -119,6 +119,14 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
+         * @param $path
+         * @return \DOMNodeList
+         */
+        public function getUnitsBySrcFile($path) {
+            return $this->dom->query(sprintf('//*[@src="%s"]',$path));
+        }
+
+        /**
          * @param AbstractUnitObject $unit
          */
         protected function addUnit(AbstractUnitObject $unit, $type) {
