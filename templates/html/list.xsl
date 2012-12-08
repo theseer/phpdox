@@ -85,7 +85,7 @@
                     <xsl:otherwise>traits</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <a href="{$link}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@name" /></a>
+            <a href="{$link}/{translate(../@name, '\', '_')}_{@name}.{$extension}"><xsl:value-of select="@name" /></a>
         </li>
     </xsl:template>
 
