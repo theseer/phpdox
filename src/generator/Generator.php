@@ -213,7 +213,6 @@ namespace TheSeer\phpDox\Generator {
 
         protected function processClass(fDOMElement $class) {
             $classDom = new fDomDocument();
-            var_dump($class->ownerDocument->saveXML($class));
             $classDom->load($this->xmlDir . '/' . $class->getAttribute('xml'));
             $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
 
