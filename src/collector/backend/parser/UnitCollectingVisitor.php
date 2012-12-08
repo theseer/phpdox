@@ -239,6 +239,14 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $variable->setType('{unknown}');
                 return;
             }
+            if ($type === 'array') {
+                $variable->setType('array');
+                return;
+            }
+            if ($type instanceof \PHPParser_Node_Name_FullyQualified) {
+                $variable->setType( (string)$type);
+                return;
+            }
             $type = (string)$type;
             if (isset($this->aliasMap[$type])) {
                 $type = $this->aliasMap[$type];
