@@ -41,8 +41,8 @@ namespace TheSeer\phpDox\Generator {
 
         protected $eventTypes = array(
             'phpdox.raw' => array(),
-            'phpdox.start' => array('namespaces', 'classes', 'interfaces', 'traits'),
-            'phpdox.end' => array('namespaces', 'classes', 'interfaces', 'traits'),
+            'phpdox.start' => array('index','tree'),
+            'phpdox.end' => array('index','tree'),
 
             'phpdox.namespaces.start' => array('namespaces'),
             'phpdox.namespaces.end' => array('namespaces'),
