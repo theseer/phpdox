@@ -96,7 +96,7 @@ namespace TheSeer\phpDox\Project {
             return $list;
         }
 
-        public function export($xmlDir) {
+        public function export() {
             $dom = $this->workDom;
             if ($dom->documentElement instanceOf fDOMElement) {
                 $dom->removeChild($dom->documentElement);
@@ -116,12 +116,6 @@ namespace TheSeer\phpDox\Project {
                 }
                 $ctx->appendChild($this->workDom->importNode($file, true));
             }
-            $dom->formatOutput = true;
-            $dom->preserveWhiteSpace = false;
-            if (!file_exists($xmlDir)) {
-                mkdir($xmlDir, 0755, true);
-            }
-            $dom->save($xmlDir . '/source.xml');
             return $dom;
         }
 

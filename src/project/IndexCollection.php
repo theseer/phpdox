@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Project {
     /**
      *
      */
-    class IndexCollection {
+    class IndexCollection implements DOMCollectionInterface {
 
         /**
          * @var array
