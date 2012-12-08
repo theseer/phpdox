@@ -87,9 +87,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
             $this->functions = new Html\Functions(
                 $this->projectNode,
-                $event->classes,
-                $event->interfaces,
-                $event->traits,
+                $event->index,
                 $list,
                 $this->extension
             );
@@ -98,7 +96,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
             $index = $this->getXSLTProcessor($this->templateDir . '/index.xsl');
             $index->registerCallback($builder);
-            $html = $index->transformToDoc($event->classes);
+            $html = $index->transformToDoc($event->index);
 
             $this->saveDomDocument($html, $this->outputDir . '/index.'. $this->extension);
 

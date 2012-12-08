@@ -2,26 +2,23 @@
 namespace TheSeer\phpDox\Generator\Engine\Html {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
     use TheSeer\fXSL\fXSLTProcessor;
 
     class Functions {
 
         protected $projectNode;
 
-        protected $classListDom;
-        protected $interfaceListDom;
-        protected $traitListDom;
+        protected $indexDom;
         protected $listXSL;
 
         protected $dom;
         protected $extension;
         protected $links = array();
 
-        public function __construct(\DOMElement $project, \DOMDocument $cdom, \DOMDocument $idom, \DOMDocument $tdom, fXSLTProcessor $list, $extension = 'xhtml') {
+        public function __construct(fDOMElement $project, fDOMDocument $index, fXSLTProcessor $list, $extension = 'xhtml') {
             $this->projectNode = $project;
-            $this->classListDom = $cdom;
-            $this->interfaceListDom = $idom;
-            $this->traitListDom = $tdom;
+            $this->indexDom = $index;
             $this->listXSL = $list;
             $this->extension = $extension;
 
@@ -45,29 +42,22 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             if (count($nodes)!=1) {
                 return $this->dom->createTextNode('invalid method call');
             }
-            $full = $nodes[0]->getAttribute('full');
-            if (!$full) {
-                $full = '';
-                if ($nodes[0]->hasAttribute('namespace')) {
-                    $full = $nodes[0]->getAttribute('namespace').'\\';
-                }
-                $full .= $nodes[0]->getAttribute('class');
-            }
-
-            if (isset($this->links[$full])) {
+            $workNode = $nodes[0];
+            $full = $workNode->getAttribute('full');
+            if (($full != '') && isset($this->links[$full])) {
                 return $this->links[$full];
             }
 
-            $xp = $this->classListDom->getDOMXPath();
-            $prepared = $xp->quote($full);
-            $node = $this->classListDom->queryOne('//phpdox:class[@full='. $prepared. ']');
-            $path = 'classes';
+            $xp = $this->indexDom->getDOMXPath();
+            $node = $this->indexDom->queryOne(
+                sprintf('//phpdox:namespace[@name=%s]/phpdox:*[@name=%s]',
+                    $xp->quote($workNode->getAttribute('namespace')),
+                    $xp->quote($workNode->getAttribute('class'))
+                )
+            );
+
             if (!$node) {
-                $node = $this->interfaceListDom->queryOne('//phpdox:interface[@full='. $prepared. ']');
-                $path = 'interfaces';
-            }
-            if (!$node) {
-                $text = $this->dom->createTextNode($nodes[0]->getAttribute('class'));
+                $text = $this->dom->createTextNode($workNode->getAttribute('class'));
                 $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'span');
                 if ($nodes[0]->hasAttribute('namespace')) {
                     $span->setAttribute('title', $full);
@@ -76,6 +66,14 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
                 $this->links[$full] = $span;
                 return $span;
             }
+
+            $map = array(
+                'class' => 'classes',
+                'interface' => 'interfaces',
+                'trait'  => 'traits'
+            );
+            $path = $map[$node->localName];
+
             $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'a');
             $a->setAttribute('href', '../'.$path.'/'. $this->classNameToFileName($full));
             $a->appendChild($this->dom->createTextNode($full));
@@ -96,16 +94,16 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             $of = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'of');
             $container->appendChild($of);
 
-            $xp = $this->classListDom->getDOMXPath();
+            $xp = $this->indexDom->getDOMXPath();
             $prepared = $xp->quote($full);
-            $class = $this->classListDom->queryOne('//phpdox:class[@full='.$prepared.']');
+            $class = $this->indexDom->queryOne('//phpdox:class[@full='.$prepared.']');
             if (!$class) {
                 return $container;
             }
 
             $this->followInheritence($class, $of);
 
-            foreach($this->classListDom->query('//phpdox:class[phpdox:extends[@full="'.$full.'"]]') as $node) {
+            foreach($this->indexDom->query('//phpdox:class[phpdox:extends[@full="'.$full.'"]]') as $node) {
                 $by->appendChild($this->dom->importNode($node));
             }
 
@@ -125,7 +123,7 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
         public function getClassList() {
             static $html = null;
             if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->classListDom)->documentElement;
+                $html = $this->listXSL->transformToDoc($this->indexDom)->documentElement;
             }
             return $html;
         }
@@ -133,7 +131,7 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
         public function getTraitList() {
             static $html = null;
             if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->traitListDom)->documentElement;
+                $html = $this->listXSL->transformToDoc($this->indexDom)->documentElement;
             }
             return $html;
         }
@@ -141,7 +139,7 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
         public function getInterfaceList() {
             static $html = null;
             if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->interfaceListDom)->documentElement;
+                $html = $this->listXSL->transformToDoc($this->indexDom)->documentElement;
             }
             return $html;
         }
@@ -152,7 +150,7 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             /** @var $extends \DOMElement */
             $extends = $class->queryOne('phpdox:extends');
             if ($extends) {
-                $parent = $this->classListDom->queryOne('//phpdox:class[@full="'.$extends->getAttribute('full').'"]');
+                $parent = $this->indexDom->queryOne('//phpdox:class[@full="'.$extends->getAttribute('full').'"]');
                 if ($parent) {
                     $ctx = $this->followInheritence($parent, $ctx);
                 } else {
