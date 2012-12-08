@@ -143,17 +143,6 @@ namespace TheSeer\phpDox {
             return new Resolver($xmlDir);
         }
 
-        protected function getContainer($xmlDir) {
-            if (!isset($this->instances['container'])) {
-                $this->instances['container'] = array();
-            }
-            if (!isset($this->instances['container'][$xmlDir])) {
-                $this->instances['container'][$xmlDir] = new Container($xmlDir);
-            }
-            return $this->instances['container'][$xmlDir];
-
-        }
-
         protected function getScanner($include, $exclude = null) {
             $scanner = $this->getInstanceFor('DirectoryScanner');
 
