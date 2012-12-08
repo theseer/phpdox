@@ -59,19 +59,9 @@ namespace TheSeer\phpDox\Project {
         private $source = NULL;
 
         /**
-         * @var ClassCollection
+         * @var IndexCollection
          */
-        private $classes = NULL;
-
-        /**
-         * @var InterfaceCollection
-         */
-        private $interfaces = NULL;
-
-        /**
-         * @var TraitCollection
-         */
-        private $traits = NULL;
+        private $index = NULL;
 
         /**
          * @param $srcDir
@@ -113,21 +103,52 @@ namespace TheSeer\phpDox\Project {
          * @param ClassObject $class
          */
         public function addClass(ClassObject $class) {
-            $this->classes->addClass($class);
+            $this->index->addClass($class);
         }
 
         /**
          *
          */
         public function addInterface(InterfaceObject $interface) {
-            $this->interfaces->addInterface($interface);
+            $this->index->addInterface($interface);
         }
 
         /**
          *
          */
         public function addTrait(TraitObject $trait) {
-            $this->traits->addTrait($trait);
+            $this->index->addTrait($trait);
+        }
+
+        public function getIndex() {
+            return $this->index->export();
+        }
+
+        public function getSourceTree() {
+            return $this->source->export();
+        }
+
+        public function hasNamespaces() {
+            return $this->index->export()->query('count(//phpdox:namespace[not(@name="/")])') > 0;
+        }
+
+        public function getNamespaces() {
+            return $this->index->export()->query('//phpdox:namespace');
+        }
+
+        public function getClasses($namespace = NULL) {
+            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+            return $this->index->export()->query($root . 'phpdox:class');
+        }
+
+        public function getTraits($namespace = NULL) {
+            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+            return $this->index->export()->query($root . 'phpdox:trait');
+        }
+
+        public function getInterfaces($namespace = NULL) {
+            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+            return $this->index->export()->query($root . 'phpdox:interface');
         }
 
         /**
@@ -144,10 +165,37 @@ namespace TheSeer\phpDox\Project {
         /**
          *
          */
-        public function complete() {
-            foreach (array('source', 'classes', 'traits', 'interfaces') as $col) {
-                $this->$col->export($this->xmlDir);
+        public function save() {
+            $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
+            foreach ($map as $col) {
+                $path = $this->xmlDir . '/' . $col;
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, TRUE);
+                }
             }
+            $indexDom = $this->index->export();
+            $newUnits = $this->index->getAddedUnits();
+            foreach($newUnits as $unit) {
+                $name = str_replace('\\', '_', $unit->getFullName());
+                $dom = $unit->export();
+                $dom->formatOutput = TRUE;
+                $dom->preserveWhiteSpace = FALSE;
+                $fname = $map[$dom->documentElement->localName] . '/' . $name . '.xml';
+                $dom->save($this->xmlDir . '/' . $fname);
+
+                $indexDom->queryOne(sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]',
+                        $unit->getNamespace(),
+                        $unit->getName())
+                    )->setAttribute('xml', $fname);
+            }
+            $indexDom->formatOutput = TRUE;
+            $indexDom->preserveWhiteSpace = FALSE;
+            $indexDom->save($this->xmlDir . '/index.xml');
+
+            $sourceDom = $this->source->export();
+            $sourceDom->formatOutput = TRUE;
+            $sourceDom->preserveWhiteSpace = FALSE;
+            $sourceDom->save($this->xmlDir . '/source.xml');
         }
 
         /**
@@ -155,17 +203,21 @@ namespace TheSeer\phpDox\Project {
          */
         private function initCollections() {
             $this->source = new SourceCollection($this->srcDir);
-            $this->classes = new ClassCollection();
-            $this->traits = new TraitCollection();
-            $this->interfaces = new InterfaceCollection();
-            foreach (array('source', 'classes', 'traits', 'interfaces') as $col) {
-                $srcFile = $this->xmlDir . '/' . $col . '.xml';
-                if (file_exists($srcFile)) {
-                    $dom = new fDOMDocument();
-                    $dom->load($srcFile);
-                    $this->$col->import($dom);
-                }
+            $srcFile = $this->xmlDir . '/source.xml';
+            if (file_exists($srcFile)) {
+                $dom = new fDOMDocument();
+                $dom->load($srcFile);
+                $this->source->import($dom);
             }
+
+            $this->index = new IndexCollection();
+            $srcFile = $this->xmlDir . '/index.xml';
+            if (file_exists($srcFile)) {
+                $dom = new fDOMDocument();
+                $dom->load($srcFile);
+                $this->index->import($dom);
+            }
+
         }
 
         /**
