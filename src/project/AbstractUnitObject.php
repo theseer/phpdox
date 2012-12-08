@@ -45,6 +45,9 @@ namespace TheSeer\phpDox\Project {
      */
     abstract class AbstractUnitObject {
 
+        /**
+         * PHPDOX Namespace
+         */
         const XMLNS = 'http://xml.phpdox.de/src#';
 
         /**
@@ -53,7 +56,9 @@ namespace TheSeer\phpDox\Project {
         private $dom;
 
 
-        /** @var fDOMElement */
+        /**
+         * @var fDOMElement
+         */
         private $rootNode;
 
         /**
@@ -75,10 +80,13 @@ namespace TheSeer\phpDox\Project {
             $this->dom->appendChild($this->rootNode);
             $this->setFileHeader($file);
             $this->setName($name);
-            $this->setAbstract(false);
-            $this->setFinal(false);
+            $this->setAbstract(FALSE);
+            $this->setFinal(FALSE);
         }
 
+        /**
+         * @param \SplFileInfo $file
+         */
         private function setFileHeader(\SplFileInfo $file) {
             $fileNode = $this->rootNode->appendElementNS(self::XMLNS, 'file');
             $fileNode->setAttribute('path', $file->getPath());
@@ -91,6 +99,9 @@ namespace TheSeer\phpDox\Project {
 
         }
 
+        /**
+         * @param $name
+         */
         private function setName($name) {
             $parts = explode('\\', $name);
             $local = array_pop($parts);
@@ -100,8 +111,40 @@ namespace TheSeer\phpDox\Project {
             $this->rootNode->setAttribute('name', $local);
         }
 
+        /**
+         * @return \TheSeer\fDOM\fDOMDocument
+         */
+        public function export() {
+            return $this->dom;
+        }
+
+        /**
+         * @return string
+         */
         public function getName() {
+            return $this->rootNode->getAttribute('name');
+        }
+
+        /**
+         * @return string
+         */
+        public function getFullName() {
             return $this->rootNode->getAttribute('full');
+        }
+
+        /**
+         * @return string
+         */
+        public function getNamespace() {
+            return $this->rootNode->getAttribute('namespace');
+        }
+
+        /**
+         * @return string
+         */
+        public function getSourceFilename() {
+            $file = $this->rootNode->queryOne('phpdox:file');
+            return $file->getAttribute('path') . '/' . $file->getAttribute('file');
         }
 
         /**
@@ -132,11 +175,17 @@ namespace TheSeer\phpDox\Project {
             $this->rootNode->setAttribute('final', $isFinal ? 'true' : 'false');
         }
 
+        /**
+         * @param \TheSeer\phpDox\DocBlock\DocBlock $docblock
+         */
         public function setDocBlock(DocBlock $docblock) {
             $docNode = $docblock->asDom($this->dom);
             $this->rootNode->appendChild($docNode);
         }
 
+        /**
+         * @param $name
+         */
         public function setExtends($name) {
             $extends = $this->rootNode->queryOne('phpdox:extends');
             if (!$extends) {
@@ -149,6 +198,9 @@ namespace TheSeer\phpDox\Project {
             $extends->setAttribute('namespace', join('\\', $parts));
         }
 
+        /**
+         * @param $name
+         */
         public function addImplements($name) {
             $implements = $this->rootNode->appendElementNS(self::XMLNS, 'implements');
             $implements->setAttribute('full', $name);
@@ -162,44 +214,51 @@ namespace TheSeer\phpDox\Project {
          *
          */
         public function addMethod($name) {
-            $method = new MethodObject($this->rootNode->appendElementNS(self::XMLNS, 'method'));
+            switch($name) {
+                case '__construct': {
+                    $nodeName = 'constructor';
+                    break;
+                }
+                case '__destruct': {
+                    $nodeName = 'destructor';
+                    break;
+                }
+                default: $nodeName = 'method';
+            }
+            $method = new MethodObject($this->rootNode->appendElementNS(self::XMLNS, $nodeName));
             $method->setName($name);
             return $method;
         }
 
+        /**
+         * @param $name
+         * @return MemberObject
+         */
         public function addMember($name) {
             $member = new MemberObject($this->rootNode->appendElementNS(self::XMLNS, 'member'));
             $member->setName($name);
             return $member;
         }
 
+        /**
+         * @param $name
+         * @return ConstantObject
+         */
         public function addConstant($name) {
             $const = new ConstantObject($this->rootNode->appendElementNS(self::XMLNS, 'constant'));
             $const->setName($name);
             return $const;
         }
 
-        public function export($xmlDir) {
-            if (!file_exists($xmlDir)) {
-                mkdir($xmlDir, 0755, true);
-            }
-            $fileName = $xmlDir . '/' . str_replace('\\', '_', $this->rootNode->getAttribute('full')) . '.xml';
-            $this->dom->formatOutput = true;
-            $this->dom->preserveWhiteSpace = false;
-            $this->dom->save($fileName);
-
-            $export = $this->rootNode->cloneNode();
-            $export->setAttribute('xml', basename($xmlDir) . '/' . basename($fileName));
-            if ($extends = $this->rootNode->queryOne('phpdox:extends')) {
-                $export->appendChild($extends->cloneNode());
-            }
-            return $export;
-        }
-
     }
 
+    /**
+     *
+     */
     class UnitObjectException extends \Exception {
+
         const InvalidRootname = 1;
+
     }
 
 
