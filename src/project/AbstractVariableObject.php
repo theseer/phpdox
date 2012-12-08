@@ -44,7 +44,7 @@ namespace TheSeer\phpDox\Project {
 
         protected  $ctx;
 
-        private $types = array('{unknown}', 'object','array','integer','float','string','boolean','resource');
+        private $types = array('{unknown}', 'object', 'array','integer','float','string','boolean','resource');
 
         public function __construct(fDOMElement $ctx) {
             $this->ctx = $ctx;
@@ -59,7 +59,7 @@ namespace TheSeer\phpDox\Project {
         }
 
         public function setType($type) {
-            if (!in_array($type, $this->types)) {
+            if (!in_array(strtolower($type), $this->types)) {
                 $parts = explode('\\', $type);
                 $local = array_pop($parts);
                 $namespace = join('\\', $parts);
