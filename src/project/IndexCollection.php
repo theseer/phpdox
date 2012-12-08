@@ -41,13 +41,12 @@ namespace TheSeer\phpDox\Project {
     /**
      *
      */
-    abstract class AbstractUnitCollection implements DOMCollectionInterface {
+    class IndexCollection {
 
         /**
          * @var array
          */
-        private $units = array();
-
+        private $addedUnits = array();
 
         private $dom;
 
@@ -55,6 +54,20 @@ namespace TheSeer\phpDox\Project {
          * @var string
          */
         protected $collectionName;
+
+
+        private function getRootElement() {
+            if (!$this->dom instanceof fDOMDocument) {
+                $this->initDomDocument();
+            }
+            return $this->dom->documentElement;
+        }
+
+        private function initDomDocument() {
+            $this->dom = new fDOMDocument('1.0', 'UTF-8');
+            $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $this->dom->appendElementNS('http://xml.phpdox.de/src#', 'index');
+        }
 
         /**
          * @param \TheSeer\fDOM\fDOMDocument $dom
@@ -73,40 +86,63 @@ namespace TheSeer\phpDox\Project {
          *
          * @return \TheSeer\fDOM\fDOMDocument
          */
-        public function export($xmlDir) {
-            if ($this->dom instanceof fDOMDocument) {
-                $root = $this->dom->documentElement;
-            } else {
-                $this->dom = new fDOMDocument('1.0', 'UTF-8');
-                $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-                $root = $this->dom->appendElementNS('http://xml.phpdox.de/src#', $this->collectionName);
+        public function export() {
+            if (!$this->dom instanceof fDOMDocument) {
+                $this->initDomDocument();
             }
-            foreach($this->units as $x => $unit) {
-                $unitNode = $this->dom->importNode($unit->export($xmlDir . '/' . $this->collectionName), true);
-                $ctx = $root->queryOne('phpdox:namespace[@name="' . $unitNode->getAttribute('namespace') . '"]');
-                if (!$ctx) {
-                    $ctx = $root->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
-                    $ctx->setAttribute('name', $unitNode->getAttribute('namespace'));
-                }
-                $full = $unitNode->getAttribute('full');
-                if ($old = $ctx->queryOne("*[@full = '{$full}']")) {
-                    $ctx->replaceChild($unitNode, $old);
-                } else {
-                    $ctx->appendChild($unitNode);
-                }
-            }
-            $this->dom->formatOutput = TRUE;
-            $this->dom->preserveWhiteSpace = TRUE;
-            $this->dom->save($xmlDir . '/' . $this->collectionName . '.xml');
             return $this->dom;
+        }
+
+        /**
+         * @param ClassObject $class
+         */
+        public function addClass(ClassObject $class) {
+            $this->addUnit($class,'class');
+        }
+
+        /**
+         * @param InterfaceObject $interface
+         */
+        public function addInterface(InterfaceObject $interface) {
+            $this->addUnit($interface, 'interface');
+        }
+
+        /**
+         * @param TraitObject $trait
+         */
+        public function addTrait(TraitObject $trait) {
+            $this->addUnit($trait, 'trait');
+        }
+
+        public function getAddedUnits() {
+            return $this->addedUnits;
         }
 
         /**
          * @param AbstractUnitObject $unit
          */
-        protected function addUnit(AbstractUnitObject $unit) {
-            $this->units[$unit->getName()] = $unit;
+        protected function addUnit(AbstractUnitObject $unit, $type) {
+            $root = $this->getRootElement();
+            $this->addedUnits[$unit->getFullName()] = $unit;
+
+            $unitNode = $root->appendElementNS('http://xml.phpdox.de/src#', $type);
+            $unitNode->setAttribute('name', $unit->getName());
+            $unitNode->setAttribute('src', $unit->getSourceFilename());
+
+            $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
+            $ctx = $root->queryOne($xpath);
+            if (!$ctx) {
+                $ctx = $root->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
+                $ctx->setAttribute('name', $unit->getNamespace());
+            }
+            $name = $unit->getName();
+            if ($old = $ctx->queryOne("*[@name = '{$name}']")) {
+                $ctx->replaceChild($unitNode, $old);
+            } else {
+                $ctx->appendChild($unitNode);
+            }
         }
+
     }
 
 }
