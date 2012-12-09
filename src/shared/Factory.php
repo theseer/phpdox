@@ -37,7 +37,6 @@
  */
 namespace TheSeer\phpDox {
 
-    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\Generator\Generator;
     use TheSeer\phpDox\Collector\Collector;
     use TheSeer\phpDox\Collector\ClassBuilder;
