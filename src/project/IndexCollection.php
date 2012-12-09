@@ -123,7 +123,7 @@ namespace TheSeer\phpDox\Project {
          * @return \DOMNodeList
          */
         public function getUnitsBySrcFile($path) {
-            return $this->dom->query(sprintf('//*[@src="%s"]',$path));
+            return $this->getRootElement()->query(sprintf('//*[@src="%s"]',$path));
         }
 
         /**
