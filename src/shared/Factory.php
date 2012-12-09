@@ -42,8 +42,14 @@ namespace TheSeer\phpDox {
     use TheSeer\phpDox\Collector\Collector;
     use TheSeer\phpDox\Collector\ClassBuilder;
 
+    /**
+     *
+     */
     class Factory implements FactoryInterface {
 
+        /**
+         * @var array
+         */
         protected $map = array(
             'DirectoryScanner' => '\\TheSeer\\DirectoryScanner\\DirectoryScanner',
             'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
@@ -51,23 +57,47 @@ namespace TheSeer\phpDox {
             'ConfigLoader' => '\\TheSeer\\phpDox\\ConfigLoader'
         );
 
+        /**
+         * @var array
+         */
         protected $loggerMap = array(
             'silent' => '\\TheSeer\\phpDox\\ProgressLogger',
             'shell' => '\\TheSeer\\phpDox\\ShellProgressLogger'
         );
 
+        /**
+         * @var array
+         */
         protected $instances = array();
+
+        /**
+         * @var
+         */
         protected $config;
 
+        /**
+         * @var string
+         */
         protected $loggerType = 'shell';
+
+        /**
+         * @var
+         */
         protected $logger;
 
-        public function __construct(array $map = null) {
-            if ($map !== null) {
+        /**
+         * @param array $map
+         */
+        public function __construct(array $map = NULL) {
+            if ($map !== NULL) {
                 $this->map = $map;
             }
         }
 
+        /**
+         * @param string $name
+         * @throws FactoryException
+         */
         public function setLoggerType($name) {
             if (!isset($this->loggerMap[$name])) {
                 throw new FactoryException("No logger class for type '$name'", FactoryException::NoClassDefined);
@@ -75,14 +105,26 @@ namespace TheSeer\phpDox {
             $this->loggerType = $name;
         }
 
+        /**
+         * @param string           $name
+         * @param FactoryInterface $factory
+         */
         public function addFactory($name, FactoryInterface $factory) {
             $this->map[$name] = $factory;
         }
 
+        /**
+         * @param string $name
+         * @param string $class
+         */
         public function addClass($name, $class) {
             $this->map[$name] = $class;
         }
 
+        /**
+         * @param string $name
+         * @return mixed|object
+         */
         public function getInstanceFor($name) {
             $params = func_get_args();
             if (isset($this->map[$name])) {
@@ -102,6 +144,12 @@ namespace TheSeer\phpDox {
             return $this->getGenericInstance($name, $params);
         }
 
+        /**
+         * @param string $class
+         * @param array $params
+         * @return object
+         * @throws FactoryException
+         */
         protected function getGenericInstance($class, array $params) {
             $rfc = new \ReflectionClass($class);
             if (!$rfc->isInstantiable()) {
@@ -116,14 +164,23 @@ namespace TheSeer\phpDox {
             return $rfc->newInstanceArgs($params);
         }
 
+        /**
+         * @return CLI
+         */
         protected function getCLI() {
             return new CLI($this);
         }
 
+        /**
+         * @return BootstrapApi
+         */
         protected function getBootstrapApi() {
             return new BootstrapApi($this->getBackendFactory(), $this->getDocblockFactory(), $this->getEngineFactory(), $this->getLogger());
         }
 
+        /**
+         * @return mixed
+         */
         protected function getLogger() {
             if (!$this->logger) {
                 $this->logger = new $this->loggerMap[$this->loggerType]();
@@ -131,19 +188,34 @@ namespace TheSeer\phpDox {
             return $this->logger;
         }
 
+        /**
+         * @return Bootstrap
+         */
         protected function getBootstrap() {
             return new Bootstrap($this->getLogger(), $this->getBootstrapApi());
         }
 
+        /**
+         * @return Application
+         */
         protected function getApplication() {
             return new Application($this, $this->getLogger());
         }
 
+        /**
+         * @param $xmlDir
+         * @return Resolver
+         */
         protected function getResolver($xmlDir) {
             return new Resolver($xmlDir);
         }
 
-        protected function getScanner($include, $exclude = null) {
+        /**
+         * @param string|array $include
+         * @param string|array $exclude
+         * @return mixed|object
+         */
+        protected function getScanner($include, $exclude = NULL) {
             $scanner = $this->getInstanceFor('DirectoryScanner');
 
             if (is_array($include)) {
@@ -152,7 +224,7 @@ namespace TheSeer\phpDox {
                 $scanner->addInclude($include);
             }
 
-            if ($exclude != null) {
+            if ($exclude != NULL) {
                 if (is_array($exclude)) {
                     $scanner->setExcludes($exclude);
                 } else {
@@ -162,26 +234,50 @@ namespace TheSeer\phpDox {
             return $scanner;
         }
 
+        /**
+         * @param string $srcDir
+         * @param string $xmlDir
+         * @return Collector\Collector
+         */
         protected function getCollector($srcDir, $xmlDir) {
             return new Collector($this->getLogger(), new \TheSeer\phpDox\Project\Project($srcDir, $xmlDir));
         }
 
+        /**
+         * @return Collector\InheritanceResolver
+         */
         protected function getInheritanceResolver() {
             return new \TheSeer\phpDox\Collector\InheritanceResolver($this->getLogger());
         }
 
+        /**
+         * @return Generator\Generator
+         */
         protected function getGenerator() {
             return new Generator($this->getInstanceFor('EventFactory'), $this->getLogger());
         }
 
+        /**
+         * @param array $aliasMap
+         * @param boolean $public
+         * @param string $encoding
+         * @return Collector\ClassBuilder
+         */
         protected function getClassBuilder(array $aliasMap, $public, $encoding) {
             return new ClassBuilder($this->getDocblockParser(), $aliasMap, $public, $encoding);
         }
 
+        /**
+         * @param AbstractGenerator $generator
+         * @return Service
+         */
         protected function getService(AbstractGenerator $generator) {
             return new Service($generator, $this->getContainer($generator->getXMLDirectory()));
         }
 
+        /**
+         * @return mixed
+         */
         protected function getDocblockFactory() {
             if (!isset($this->instances['DocblockFactory'])) {
                 $this->instances['DocblockFactory'] = new \TheSeer\phpDox\DocBlock\Factory();
@@ -189,6 +285,9 @@ namespace TheSeer\phpDox {
             return $this->instances['DocblockFactory'];
         }
 
+        /**
+         * @return mixed
+         */
         protected function getBackendFactory() {
             if (!isset($this->instances['BackendFactory'])) {
                 $this->instances['BackendFactory'] = new \TheSeer\phpDox\Collector\Backend\Factory($this);
@@ -196,6 +295,9 @@ namespace TheSeer\phpDox {
             return $this->instances['BackendFactory'];
         }
 
+        /**
+         * @return mixed
+         */
         protected function getEngineFactory() {
             if (!isset($this->instances['EngineFactory'])) {
                 $this->instances['EngineFactory'] = new \TheSeer\phpDox\Generator\Engine\Factory();
@@ -203,6 +305,9 @@ namespace TheSeer\phpDox {
             return $this->instances['EngineFactory'];
         }
 
+        /**
+         * @return mixed
+         */
         protected function getDocblockParser() {
             if (!isset($this->instances['DocblockParser'])) {
                 $this->instances['DocblockParser'] = new \TheSeer\phpDox\DocBlock\Parser($this->getDocblockFactory());
@@ -212,9 +317,22 @@ namespace TheSeer\phpDox {
 
     }
 
+    /**
+     *
+     */
     class FactoryException extends \Exception {
+
+        /**
+         *
+         */
         const NoClassDefined = 1;
+        /**
+         *
+         */
         const NotInstantiable = 2;
+        /**
+         *
+         */
         const NoConstructor = 3;
     }
 
