@@ -44,7 +44,10 @@ namespace TheSeer\phpDox {
         public static function getVersion() {
             if (self::$version === NULL) {
                 self::$version = PHPDOX_VERSION;
+                $cwd = getcwd();
+                chdir(__DIR__);
                 $git = exec('command -p git describe --always --dirty', $foo, $rc);
+                chdir($cwd);
                 if ($rc === 0) {
                     self::$version = $git;
                 }
