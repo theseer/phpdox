@@ -10,6 +10,7 @@
     <xsl:output method="xml" indent="yes" encoding="utf-8" doctype-public="html" />
     
     <xsl:param name="classname" />
+    <xsl:param name="extension" select="'xhtml'" />
 
     <xsl:variable name="project" select="phe:getProjectNode()"/>
     <xsl:variable name="class" select="//src:class[@full=$classname]" />
@@ -29,9 +30,9 @@
 
                 <div class="wrapper clearfix">
                     <div class="topbar clearfix">
-                        <h1><a class="brand" href="../index.html"><xsl:value-of select="$project/@name" /> - API Documentation</a></h1>
+                        <h1><a class="brand" href="../index.{$extension}"><xsl:value-of select="$project/@name" /> - API Documentation</a></h1>
                         <ul class="nav">
-                            <li class="active"><a href="../index.html">Overview</a></li>
+                            <li class="active"><a href="../index.{$extension}">Overview</a></li>
                         </ul>
                     </div>
 
@@ -258,15 +259,21 @@
         <span class="param-type">
         <xsl:choose>
             <xsl:when test="@type='object'">
-                <xsl:copy-of select="phe:classLink(src:class)" />
+                <xsl:copy-of select="phe:classLink(src:type)" />
             </xsl:when>
             <xsl:when test="@type='integer' or @type='float' or @type='string' or @type='resource'"><xsl:value-of select="@type" /></xsl:when>
             <xsl:when test="@type='array'">Array</xsl:when>
             <xsl:when test="@type='{unknown}'">
                 <xsl:variable name="name" select="@name" />
-                <xsl:for-each select="../src:docblock/src:param[@variable=concat('$', $name) and @type='object']">
-                    <xsl:copy-of select="phe:classLink(src:class)" />
-                </xsl:for-each>            
+                <xsl:variable name="param" select="../src:docblock/src:param[@variable=concat('$', $name)]" />
+                <xsl:if test="$param">
+                    <xsl:choose>
+                        <xsl:when test="$param/@type = 'object'">
+                            <xsl:copy-of select="phe:classLink($param/src:type)" />
+                        </xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$param/@type" /></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:if>
             </xsl:when>
         </xsl:choose>
         </span>
