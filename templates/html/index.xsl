@@ -34,45 +34,43 @@
                         <h2><xsl:value-of select="$project/@name" /></h2>
                         <p>Welcome to the API documentation page. Please select one of the listed classes, interfaces or traits to learn more about the indivdual item. You can navigate back to this page by use of the top navigation bar.</p>
 
+                        <h3>Classes</h3>
+                        <xsl:choose>
+                            <xsl:when test="//file:class">
+                                <xsl:apply-templates select="//file:namespace[file:class]" mode="class">
+                                    <xsl:sort select="@name" order="ascending" />
+                                </xsl:apply-templates>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <span style="color:#aaa">No classes defined</span>
+                            </xsl:otherwise>
+                        </xsl:choose>
 
-                            <h3>Classes</h3>
-                            <xsl:choose>
-                                <xsl:when test="//file:class">
-                                    <xsl:apply-templates select="//file:namespace[file:class]" mode="class">
-                                        <xsl:sort select="@name" order="ascending" />
-                                    </xsl:apply-templates>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <span style="color:#aaa">No classes defined</span>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                        <div class="clearfix" />
+                        <h3>Interfaces</h3>
+                        <xsl:choose>
+                            <xsl:when test="//file:interface">
+                                <xsl:apply-templates select="//file:namespace[file:interface]" mode="interface">
+                                    <xsl:sort select="@name" order="ascending" />
+                                </xsl:apply-templates>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <span style="color:#aaa">No interfaces defined</span>
+                            </xsl:otherwise>
+                        </xsl:choose>
 
-                            <div class="clearfix" />
-                            <h3>Interfaces</h3>
-                            <xsl:choose>
-                                <xsl:when test="//file:interface">
-                                    <xsl:apply-templates select="//file:namespace[file:interface]" mode="interface">
-                                        <xsl:sort select="@name" order="ascending" />
-                                    </xsl:apply-templates>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <span style="color:#aaa">No interfaces defined</span>
-                                </xsl:otherwise>
-                            </xsl:choose>
-
-                            <div class="clearfix" />
-                            <h3>Traits</h3>
-                            <xsl:choose>
-                                <xsl:when test="//file:trait">
-                                    <xsl:apply-templates select="//file:namespace[file:trait]" mode="trait">
-                                        <xsl:sort select="@name" order="ascending" />
-                                    </xsl:apply-templates>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <span style="color:#aaa">No traits defined</span>
-                                </xsl:otherwise>
-                            </xsl:choose>
-
+                        <div class="clearfix" />
+                        <h3>Traits</h3>
+                        <xsl:choose>
+                            <xsl:when test="//file:trait">
+                                <xsl:apply-templates select="//file:namespace[file:trait]" mode="trait">
+                                    <xsl:sort select="@name" order="ascending" />
+                                </xsl:apply-templates>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <span style="color:#aaa">No traits defined</span>
+                            </xsl:otherwise>
+                        </xsl:choose>
 
                         <div class="footer"><xsl:value-of select="phe:info()" /></div>
                     </div>
