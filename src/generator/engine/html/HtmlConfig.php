@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\Generator\Engine {
     class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
 
         public function getTemplateDirectory() {
-            if (PHPDOX_VERSION=='%development%') {
+            if (PHPDOX_VERSION == '%development%') {
                 $default = realpath(__DIR__ . '/../../../../templates/html');
             } else {
                 $default = realpath(__DIR__ . '/../../../templates/html');
