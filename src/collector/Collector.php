@@ -38,7 +38,7 @@ namespace TheSeer\phpDox\Collector {
 
     use TheSeer\DirectoryScanner\DirectoryScanner;
     use TheSeer\phpDox\ProgressLogger;
-
+    use TheSeer\phpDox\Collector\Backend\BackendInterface;
     use TheSeer\phpDox\Project\Project;
 
     /**
@@ -81,7 +81,7 @@ namespace TheSeer\phpDox\Collector {
          *
          *
          */
-        public function run(DirectoryScanner $scanner, $backend) {
+        public function run(DirectoryScanner $scanner, BackendInterface $backend) {
             $this->backend = $backend;
 
             $srcDir = $this->project->getSourceDir();
