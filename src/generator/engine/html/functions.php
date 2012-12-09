@@ -52,12 +52,12 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             $node = $this->indexDom->queryOne(
                 sprintf('//phpdox:namespace[@name=%s]/phpdox:*[@name=%s]',
                     $xp->quote($workNode->getAttribute('namespace')),
-                    $xp->quote($workNode->getAttribute('class'))
+                    $xp->quote($workNode->getAttribute('name'))
                 )
             );
 
             if (!$node) {
-                $text = $this->dom->createTextNode($workNode->getAttribute('class'));
+                $text = $this->dom->createTextNode($workNode->getAttribute('name'));
                 $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'span');
                 if ($nodes[0]->hasAttribute('namespace')) {
                     $span->setAttribute('title', $full);

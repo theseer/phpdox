@@ -64,10 +64,10 @@ namespace TheSeer\phpDox\Project {
                 $local = array_pop($parts);
                 $namespace = join('\\', $parts);
 
-                $class = $this->ctx->appendElementNS(self::XMLNS, 'class');
-                $class->setAttribute('full', $type);
-                $class->setAttribute('namespace', $namespace);
-                $class->setAttribute('class', $local);
+                $unit = $this->ctx->appendElementNS(self::XMLNS, 'type');
+                $unit->setAttribute('full', $type);
+                $unit->setAttribute('namespace', $namespace);
+                $unit->setAttribute('name', $local);
                 $type = 'object';
             }
             $this->ctx->setAttribute('type', $type);

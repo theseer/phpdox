@@ -52,10 +52,10 @@ namespace TheSeer\phpDox\DocBlock {
                 $local = array_pop($parts);
                 $namespace = join('\\', $parts);
 
-                $class = $node->appendElementNS(self::XMLNS, 'class');
+                $class = $node->appendElementNS(self::XMLNS, 'type');
                 $class->setAttribute('full', $type);
                 $class->setAttribute('namespace', $namespace);
-                $class->setAttribute('class', $local);
+                $class->setAttribute('name', $local);
                 $node->setAttribute('type', 'object');
             }
             return $node;
