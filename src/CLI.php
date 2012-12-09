@@ -173,7 +173,7 @@ namespace TheSeer\phpDox {
                 return;
             }
             $shown = TRUE;
-            printf("phpdox %s - Copyright (C) 2010 - 2012 by Arne Blankerts\n\n", PHPDOX_VERSION);
+            echo Version::getInfoString() . "\n\n";
         }
 
         protected function showSkeletonConfig($strip) {

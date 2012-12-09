@@ -27,15 +27,11 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
         }
 
         public function version() {
-            return PHPDOX_VERSION;
+            return \TheSeer\phpDox\Version::getVersion();
         }
 
         public function info() {
-            $version = $this->version();
-            if ($version == '%development%') {
-                $version = '(development snapshot)';
-            }
-            return "Generated using phpDox " . $version . " - Copyright (C) 2010 - 2012 by Arne Blankerts";
+            return \TheSeer\phpDox\Version::getGeneratedByString();
         }
 
         public function classLink(Array $nodes) {

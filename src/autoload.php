@@ -96,7 +96,8 @@ spl_autoload_register(
                 'theseer\\phpdox\\project\\traitobject' => '/project/TraitObject.php',
                 'theseer\\phpdox\\project\\unitobjectexception' => '/project/AbstractUnitObject.php',
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
-                'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php'
+                'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php',
+                'theseer\\phpdox\\version' => '/shared/Version.php'
             );
         }
         $cn = strtolower($class);

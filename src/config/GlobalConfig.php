@@ -39,7 +39,6 @@
 namespace TheSeer\phpDox {
 
     use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMElement;
 
     class GlobalConfig {
 
@@ -114,7 +113,7 @@ namespace TheSeer\phpDox {
 
                 'phpDox.home' => $home,
                 'phpDox.file' => $this->fname,
-                'phpDox.version' => defined('PHPDOX_VERSION') ? PHPDOX_VERSION : '*UNKNOWN*',
+                'phpDox.version' => Version::getVersion(),
 
                 'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
                 'phpDox.project.source' => $ctx->getAttribute('source', 'src'),
