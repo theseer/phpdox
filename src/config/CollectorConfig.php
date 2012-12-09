@@ -52,9 +52,9 @@ namespace TheSeer\phpDox {
 
         public function getBackend() {
             if ($this->ctx->hasAttribute('backend')) {
-                return $this->ctx->getAttribute('backend', 'Static');
+                return $this->ctx->getAttribute('backend', 'parser');
             }
-            return 'Static';
+            return 'parser';
         }
 
         public function getWorkDirectory() {
