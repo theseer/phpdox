@@ -10,16 +10,14 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
         protected $projectNode;
 
         protected $indexDom;
-        protected $listXSL;
 
         protected $dom;
         protected $extension;
         protected $links = array();
 
-        public function __construct(fDOMElement $project, fDOMDocument $index, fXSLTProcessor $list, $extension = 'xhtml') {
+        public function __construct(fDOMElement $project, fDOMDocument $index, $extension = 'xhtml') {
             $this->projectNode = $project;
             $this->indexDom = $index;
-            $this->listXSL = $list;
             $this->extension = $extension;
 
             // Helper to create Nodes with
@@ -114,30 +112,6 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
 
         public function getProjectNode() {
             return $this->projectNode;
-        }
-
-        public function getClassList() {
-            static $html = null;
-            if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->indexDom)->documentElement;
-            }
-            return $html;
-        }
-
-        public function getTraitList() {
-            static $html = null;
-            if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->indexDom)->documentElement;
-            }
-            return $html;
-        }
-
-        public function getInterfaceList() {
-            static $html = null;
-            if ($html === null) {
-                $html = $this->listXSL->transformToDoc($this->indexDom)->documentElement;
-            }
-            return $html;
         }
 
         protected function followInheritence($class, $ctx) {

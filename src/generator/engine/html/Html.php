@@ -81,14 +81,9 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         protected function buildStart(Event $event) {
-
-            $list = $this->getXSLTProcessor($this->templateDir . '/list.xsl');
-            $list->setParameter('', 'mode', 'index');
-
             $this->functions = new Html\Functions(
                 $this->projectNode,
                 $event->index,
-                $list,
                 $this->extension
             );
             $builder = new fXSLCallback('phpdox:html', 'phe');
