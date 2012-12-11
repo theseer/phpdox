@@ -8,18 +8,17 @@
     <xsl:import href="topbar.xsl" />
 
     <xsl:output method="xml" indent="yes" encoding="utf-8" doctype-public="html" />
-    
-    <xsl:param name="classname" />
+
     <xsl:param name="extension" select="'xhtml'" />
 
     <xsl:variable name="project" select="phe:getProjectNode()"/>
-    <xsl:variable name="class" select="//src:class[@full=$classname]" />
+    <xsl:variable name="unit" select="/*[1]" />
 
     <xsl:template match="/">
         <html class="no-js" lang="en">
             <head>
                 <meta charset="utf-8" />
-                <title><xsl:value-of select="$project/@name" /> - <xsl:value-of select="$classname" /> - API Documentation</title>
+                <title><xsl:value-of select="$project/@name" /> - <xsl:value-of select="$unit/@full" /> - API Documentation</title>
                 <link href="../css/normalize.css" rel="stylesheet" type="text/css" media="all" />
                 <link href="../css/styles.css" rel="stylesheet" type="text/css" media="all" />
                 <!-- next comment for IE-performance -->
@@ -39,9 +38,9 @@
                     <xsl:call-template name="sidebar" />
 
                     <div class="content">
-                        <h2><span style="font-size:60%"><xsl:value-of select="$class/@namespace" />\</span><xsl:value-of select="$class/@name" /></h2>
+                        <h2><span style="font-size:60%"><xsl:value-of select="$unit/@namespace" />\</span><xsl:value-of select="$unit/@name" /></h2>
 
-                        <xsl:for-each select="$class/src:docblock/src:description">
+                        <xsl:for-each select="$unit/src:docblock/src:description">
                             <div class="file-notice">
                                 <p><xsl:value-of select="@compact" /></p>
                                 <xsl:if test="text() != ''">
@@ -51,12 +50,12 @@
                         </xsl:for-each>
 
                         <ul class="fileinfos">
-                            <xsl:apply-templates select="$class/src:docblock/*[local-name()!='description']">
+                            <xsl:apply-templates select="$unit/src:docblock/*[local-name()!='description']">
                                 <xsl:sort select="local-name()" order="ascending" />
                             </xsl:apply-templates>
                         </ul>
 
-                        <xsl:variable name="inheritance" select="phe:getInheritanceInfo($class)" />
+                        <xsl:variable name="inheritance" select="phe:getInheritanceInfo($unit)" />
                         <xsl:if test="count($inheritance/src:of//src:class) &gt; 1">
                             <h3>Inheritance</h3>
                             <ul class="inheritance">
@@ -76,34 +75,34 @@
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$class/src:implements">
+                        <xsl:if test="$unit/src:implements">
                             <h3>Implements</h3>
                             <ul class="varlist">
-                            <xsl:for-each select="$class/src:implements">
+                            <xsl:for-each select="$unit/src:implements">
                                 <li><xsl:copy-of select="phe:classLink(.)" /></li>
                             </xsl:for-each>
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$class/src:constant">
+                        <xsl:if test="$unit/src:constant">
                             <h3>Constants</h3>
                             <ul class="varlist">
-                                <xsl:apply-templates select="$class/src:constant" />
+                                <xsl:apply-templates select="$unit/src:constant" />
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$class/src:member">
+                        <xsl:if test="$unit/src:member">
                             <h3>Members</h3>
                             <ul class="varlist">
-                                <xsl:apply-templates select="$class/src:member" />
+                                <xsl:apply-templates select="$unit/src:member" />
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$class/src:constructor|$class/src:destroctur|$class/src:method">
+                        <xsl:if test="$unit/src:constructor|$unit/src:destroctur|$unit/src:method">
                             <h3>Methods</h3>
                             <ul class="varlist">
-                                <xsl:apply-templates select="$class/src:constructor|$class/src:destructor" />
-                                <xsl:apply-templates select="$class/src:method">
+                                <xsl:apply-templates select="$unit/src:constructor|$unit/src:destructor" />
+                                <xsl:apply-templates select="$unit/src:method">
                                     <xsl:sort select="@visibility" order="descending" />
                                     <xsl:sort select="@name" />
                                 </xsl:apply-templates>
@@ -121,7 +120,7 @@
         <xsl:param name="ctx" />
         <li>
             <xsl:choose>
-                <xsl:when test="$ctx/@full != $class/@full">
+                <xsl:when test="$ctx/@full != $unit/@full">
                     <xsl:copy-of select="phe:classLink($ctx)" />
                 </xsl:when>
                 <xsl:otherwise><strong><xsl:value-of select="$ctx/@full" /></strong></xsl:otherwise>
@@ -131,26 +130,26 @@
 
     <xsl:template name="sidebar">
         <div class="navigation">
-            <xsl:if test="$class/src:constant">
+            <xsl:if test="$unit/src:constant">
                 <h3>Constants</h3>
                 <ul>
-                    <xsl:for-each select="$class/src:constant">
+                    <xsl:for-each select="$unit/src:constant">
                         <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
-            <xsl:if test="$class/src:member">
+            <xsl:if test="$unit/src:member">
                 <h3>Members</h3>
                 <ul>
-                    <xsl:for-each select="$class/src:member">
-                        <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
+                    <xsl:for-each select="$unit/src:member">
+                        <li><a href="#{@name}">$<xsl:value-of select="@name" /></a></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
-            <xsl:if test="$class/src:method|$class/src:constructor|$class/src:destructor">
+            <xsl:if test="$unit/src:method|$unit/src:constructor|$unit/src:destructor">
                 <h3>Methods</h3>
                 <ul>
-                    <xsl:for-each select="$class/src:method|$class/src:constructor|$class/src:destructor">
+                    <xsl:for-each select="$unit/src:method|$unit/src:constructor|$unit/src:destructor">
                         <xsl:sort select="@name" order="ascending" />
                         <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
                     </xsl:for-each>

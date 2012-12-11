@@ -48,10 +48,12 @@ namespace TheSeer\phpDox\Generator\Engine {
         protected $eventMap = array(
                 'phpdox.start' => 'buildStart',
                 'class.start' => 'buildClass',
+                'trait.start' => 'buildTrait',
                 'interface.start' => 'buildInterface',
                 'phpdox.end' => 'buildFinish'
         );
 
+        protected $xslUnit;
         protected $templateDir;
         protected $outputDir;
         protected $projectNode;
@@ -95,30 +97,33 @@ namespace TheSeer\phpDox\Generator\Engine {
 
             $this->saveDomDocument($html, $this->outputDir . '/index.'. $this->extension);
 
-            $this->xslClass = $this->getXSLTProcessor($this->templateDir . '/class.xsl');
-            $this->xslClass->registerCallback($builder);
-
-            $this->xslInterface = $this->getXSLTProcessor($this->templateDir . '/interface.xsl');
-            $this->xslInterface->registerCallback($builder);
-
+            $this->xslUnit = $this->getXSLTProcessor($this->templateDir . '/unit.xsl');
+            $this->xslUnit->registerCallback($builder);
         }
 
         protected function buildFinish(Event $event) {
-            $this->copyStatic($this->templateDir . '/static', $this->outputDir, true);
+            $this->copyStatic($this->templateDir . '/static', $this->outputDir, TRUE);
         }
 
         protected function buildClass(Event $event) {
-            $full = $event->class->getAttribute('full');
-            $this->xslClass->setParameter('', 'classname', $full);
-            $html = $this->xslClass->transformToDoc($event->class);
-            $this->saveDomDocument($html, $this->outputDir . '/classes/' . $this->functions->classNameToFileName($full));
+            $html = $this->xslUnit->transformToDoc($event->class);
+            $this->saveDomDocument($html, $this->outputDir . '/classes/' .
+                    $this->functions->classNameToFileName($event->class->getAttribute('full'))
+            );
+        }
+
+        protected function buildTrait(Event $event) {
+            $html = $this->xslUnit->transformToDoc($event->trait);
+            $this->saveDomDocument($html, $this->outputDir . '/traitss/' .
+                $this->functions->classNameToFileName($event->trait->getAttribute('full'))
+            );
         }
 
         protected function buildInterface(Event $event) {
-            $full = $event->interface->getAttribute('full');
-            $this->xslInterface->setParameter('', 'interfacename', $full);
-            $html = $this->xslInterface->transformToDoc($event->interface);
-            $this->saveDomDocument($html, $this->outputDir . '/interfaces/' . $this->functions->classNameToFileName($full));
+            $html = $this->xslUnit->transformToDoc($event->interface);
+            $this->saveDomDocument($html, $this->outputDir . '/interfaces/' .
+                $this->functions->classNameToFileName($event->interface->getAttribute('full'))
+            );
         }
 
     }
