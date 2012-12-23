@@ -120,32 +120,56 @@ namespace TheSeer\phpDox\Project {
             $this->index->addTrait($trait);
         }
 
+        /**
+         * @return fDOMDocument
+         */
         public function getIndex() {
             return $this->index->export();
         }
 
+        /**
+         * @return fDOMDocument
+         */
         public function getSourceTree() {
             return $this->source->export();
         }
 
+        /**
+         * @return bool
+         */
         public function hasNamespaces() {
             return $this->index->export()->query('count(//phpdox:namespace[not(@name="/")])') > 0;
         }
 
+        /**
+         * @return \DOMNodeList
+         */
         public function getNamespaces() {
             return $this->index->export()->query('//phpdox:namespace');
         }
 
+        /**
+         * @param string $namespace
+         * @return \DOMNodeList
+         */
         public function getClasses($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
             return $this->index->export()->query($root . 'phpdox:class');
         }
 
+        /**
+         * @param string $namespace
+         * @return \DOMNodeList
+         */
         public function getTraits($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
             return $this->index->export()->query($root . 'phpdox:trait');
         }
 
+        /**
+         * @param string $namespace
+         * @return \DOMNodeList
+         */
         public function getInterfaces($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
             return $this->index->export()->query($root . 'phpdox:interface');
@@ -163,7 +187,7 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
-         *
+         * @return void
          */
         public function save() {
             $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
@@ -226,7 +250,10 @@ namespace TheSeer\phpDox\Project {
         private function removeFileReferences($path) {
             foreach($this->index->getUnitsBySrcFile($path) as $node) {
                 /** @var $node \DOMElement */
-                unlink($this->xmlDir . '/' . $node->getAttribute('xml'));
+                $fname = $this->xmlDir . '/' . $node->getAttribute('xml');
+                if (file_exists($fname)) {
+                    unlink($fname);
+                }
                 $node->parentNode->removeChild($node);
             }
         }
