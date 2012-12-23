@@ -198,6 +198,11 @@ namespace TheSeer\phpDox\Project {
             $extends->setAttribute('namespace', join('\\', $parts));
         }
 
+        public function getExtends() {
+            return $this->rootNode->queryOne('phpdox:extends');
+
+        }
+
         /**
          * @param $name
          */
@@ -208,6 +213,10 @@ namespace TheSeer\phpDox\Project {
             $local = array_pop($parts);
             $implements->setAttribute('class', $local);
             $implements->setAttribute('namespace', join('\\', $parts));
+        }
+
+        public function getImplements() {
+            return $this->rootNode->query('phpdox:implements');
         }
 
         /**
