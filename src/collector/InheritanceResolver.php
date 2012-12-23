@@ -54,6 +54,7 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function resolve(Project $project, \TheSeer\phpDox\InheritanceConfig $config) {
+            $this->logger->reset();
             $this->logger->log("Resolving inheritance\n");
 
 
