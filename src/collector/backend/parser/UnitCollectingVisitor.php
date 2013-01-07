@@ -207,7 +207,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         private function processClassConstant(\PHPParser_Node_Stmt_ClassConst $node) {
             $constNode = $node->consts[0];
             $const = $this->unit->addConstant($constNode->name);
-            $const->setValue($constNode->value->originalValue);
+            $const->setValue($constNode->getAttribute('originalValue'));
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
                 $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
