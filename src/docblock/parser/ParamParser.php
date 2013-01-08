@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\DocBlock {
     class ParamParser extends GenericParser {
 
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('param', $buffer);
+            $obj = $this->buildObject('var', $buffer);
 
             $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
             switch(count($param)) {

@@ -56,7 +56,7 @@ namespace TheSeer\phpDox\DocBlock {
         protected $elementMap = array(
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement',
-            'param' => 'TheSeer\\phpDox\\DocBlock\\ParamElement'
+            'var' => 'TheSeer\\phpDox\\DocBlock\\VarElement'
         );
 
         /**

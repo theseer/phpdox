@@ -37,17 +37,33 @@
 
 namespace TheSeer\phpDox\DocBlock {
 
-    class ParamElement extends GenericElement {
+    class VarElement extends GenericElement {
 
         const XMLNS = 'http://xml.phpdox.de/src#';
 
-        private $types = array('{unknown}', 'object','array','integer','int','float','string','boolean','resource');
+        /**
+         * @var string[]
+         */
+        private $types = array(
+            '', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int', 'float', 'string', 'boolean', 'resource'
+        );
 
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
             $node = parent::asDom($ctx);
-
             $type = $node->getAttribute('type');
+
+            if (strpos($type, '[]')) {
+                $type = substr($type, 0, -2);
+                $node->setAttribute('type', 'array');
+                $node->setAttribute('of', $type);
+            }
+
             if (!in_array($type, $this->types)) {
+                if (!$node->hasAttribute('of')) {
+                    $node->setAttribute('type', 'object');
+                } else {
+                    $node->setAttribute('of', 'object');
+                }
                 $parts = explode('\\', $type);
                 $local = array_pop($parts);
                 $namespace = join('\\', $parts);
@@ -56,11 +72,10 @@ namespace TheSeer\phpDox\DocBlock {
                 $class->setAttribute('full', $type);
                 $class->setAttribute('namespace', $namespace);
                 $class->setAttribute('name', $local);
-                $node->setAttribute('type', 'object');
+
             }
             return $node;
         }
-
     }
 
 }
