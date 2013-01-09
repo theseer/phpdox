@@ -114,7 +114,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
         protected function buildTrait(Event $event) {
             $html = $this->xslUnit->transformToDoc($event->trait);
-            $this->saveDomDocument($html, $this->outputDir . '/traitss/' .
+            $this->saveDomDocument($html, $this->outputDir . '/traits/' .
                 $this->functions->classNameToFileName($event->trait->getAttribute('full'))
             );
         }
