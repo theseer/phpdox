@@ -81,7 +81,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @return ClassObject
          */
         public function addClass($name) {
-            $obj = new ClassObject($this->file, $name);
+            $obj = new ClassObject($name, $this->file);
             $this->classes[$name] = $obj;
             return $obj;
         }
@@ -91,7 +91,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @return InterfaceObject
          */
         public function addInterface($name) {
-            $obj = new InterfaceObject($this->file, $name);
+            $obj = new InterfaceObject($name, $this->file);
             $this->interfaces[$name] = $obj;
             return $obj;
         }
@@ -101,7 +101,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @return TraitObject
          */
         public function addTrait($name) {
-            $obj = new TraitObject($this->file, $name);
+            $obj = new TraitObject($name, $this->file);
             $this->traits[$name] = $obj;
             return $obj;
         }

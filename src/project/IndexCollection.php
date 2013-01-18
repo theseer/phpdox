@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Project {
     /**
      *
      */
-    class IndexCollection implements DOMCollectionInterface {
+    class IndexCollection {
 
         /**
          * @var array
@@ -122,34 +122,47 @@ namespace TheSeer\phpDox\Project {
          * @param $path
          * @return \DOMNodeList
          */
-        public function getUnitsBySrcFile($path) {
+        public function findUnitNodesBySrcFile($path) {
             return $this->getRootElement()->query(sprintf('//*[@src="%s"]',$path));
+        }
+
+        /**
+         * @param $namespace
+         * @param $name
+         *
+         * @return fDOMElement
+         * @throws IndexCollectionException
+         */
+        public function findUnitNodeByName($namespace, $name) {
+            return $this->getRootElement()->queryOne(
+                sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $name));
         }
 
         /**
          * @param AbstractUnitObject $unit
          */
-        protected function addUnit(AbstractUnitObject $unit, $type) {
+        private function addUnit(AbstractUnitObject $unit, $type) {
             $root = $this->getRootElement();
             $this->addedUnits[$unit->getFullName()] = $unit;
 
-            $unitNode = $root->appendElementNS('http://xml.phpdox.de/src#', $type);
-            $unitNode->setAttribute('name', $unit->getName());
-            $unitNode->setAttribute('src', $unit->getSourceFilename());
+            if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getName())) {
+                $unitNode = $root->appendElementNS('http://xml.phpdox.de/src#', $type);
+                $unitNode->setAttribute('name', $unit->getName());
+                $unitNode->setAttribute('src', $unit->getSourceFilename());
 
-            $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
-            $ctx = $root->queryOne($xpath);
-            if (!$ctx) {
-                $ctx = $root->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
-                $ctx->setAttribute('name', $unit->getNamespace());
-            }
-            $name = $unit->getName();
-            if ($old = $ctx->queryOne("*[@name = '{$name}']")) {
-                $ctx->replaceChild($unitNode, $old);
-            } else {
+                $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
+                $ctx = $root->queryOne($xpath);
+                if (!$ctx) {
+                    $ctx = $root->appendElementNS('http://xml.phpdox.de/src#', 'namespace');
+                    $ctx->setAttribute('name', $unit->getNamespace());
+                }
                 $ctx->appendChild($unitNode);
             }
         }
+
+    }
+
+    class IndexCollectionException extends \Exception {
 
     }
 

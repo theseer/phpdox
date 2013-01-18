@@ -127,9 +127,9 @@ namespace TheSeer\phpDox {
             $project = $collector->run($scanner, $backend);
 
             if ($collector->hasParseErrors()) {
-                $this->logger->log('Parse errors during processing:');
-                foreach($collector->getParseErrors() as $file) {
-                    $this->logger->log(' - ' . $file->getPathname());
+                $this->logger->log('The following file(s) had errors during processing and were excluded:');
+                foreach($collector->getParseErrors() as $file => $message) {
+                    $this->logger->log(' - ' . $file . ' (' . $message . ')');
                 }
             }
 
@@ -138,12 +138,12 @@ namespace TheSeer\phpDox {
             if ($vanished > 0) {
                 $this->logger->log("Removed $vanished vanished file(s) from project");
             }
-
+            $changed = $project->save();
             if ($config->doResolveInheritance()) {
-                $this->factory->getInstanceFor('InheritanceResolver')->resolve($project, $config->getInheritanceConfig());
+                $this->factory->getInstanceFor('InheritanceResolver')->resolve($changed, $project, $config->getInheritanceConfig());
             }
 
-            $project->save();
+
             $this->logger->log('Collector process completed');
         }
 

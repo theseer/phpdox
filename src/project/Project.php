@@ -37,11 +37,12 @@
 namespace TheSeer\phpDox\Project {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
     /**
      *
      */
-    class Project {
+    class Project extends \TheSeer\phpDox\Application {
 
         /**
          * @var string
@@ -97,6 +98,12 @@ namespace TheSeer\phpDox\Project {
                 $this->removeFileReferences($file->getPathname());
             }
             return $isNew;
+        }
+
+
+        public function removeFile(\SplFileInfo $file) {
+            $this->removeFileReferences($file->getPathname());
+            $this->source->removeFile($file);
         }
 
         /**
@@ -199,18 +206,24 @@ namespace TheSeer\phpDox\Project {
             }
             $indexDom = $this->index->export();
             $newUnits = $this->index->getAddedUnits();
+            $reportUnits = $newUnits;
             foreach($newUnits as $unit) {
+                $indexNode = $indexDom->queryOne(
+                        sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]',
+                        $unit->getNamespace(),
+                        $unit->getName())
+                );
                 $name = str_replace('\\', '_', $unit->getFullName());
                 $dom = $unit->export();
                 $dom->formatOutput = TRUE;
                 $dom->preserveWhiteSpace = FALSE;
                 $fname = $map[$dom->documentElement->localName] . '/' . $name . '.xml';
+                if ($indexNode->hasAttribute('xml')) {
+                     $reportUnits = array_merge($reportUnits, $this->findAffectedUnits($fname));
+                } else {
+                    $indexNode->setAttribute('xml', $fname);
+                }
                 $dom->save($this->xmlDir . '/' . $fname);
-
-                $indexDom->queryOne(sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]',
-                        $unit->getNamespace(),
-                        $unit->getName())
-                    )->setAttribute('xml', $fname);
             }
             $indexDom->formatOutput = TRUE;
             $indexDom->preserveWhiteSpace = FALSE;
@@ -220,6 +233,52 @@ namespace TheSeer\phpDox\Project {
             $sourceDom->formatOutput = TRUE;
             $sourceDom->preserveWhiteSpace = FALSE;
             $sourceDom->save($this->xmlDir . '/source.xml');
+
+            return $reportUnits;
+        }
+
+        /**
+         * @param $fname
+         *
+         * @return array
+         */
+        private function findAffectedUnits($fname) {
+            $affected = array();
+            $dom = new fDOMDocument();
+            $dom->load($this->xmlDir . '/' . $fname);
+            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $extends = $dom->queryOne('//phpdox:extends');
+            if ($extends instanceof fDOMElement) {
+                $unitNode = $this->index->findUnitNodeByName(
+                    $extends->getAttribute('namespace'), $extends->getAttribute('class')
+                );
+                if ($unitNode) {
+                    $unitDom = new fDOMDocument();
+                    $unitDom->load($this->xmlDir . '/' . $unitNode->getAttribute('xml'));
+                    $unitDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+                    if ($unitDom->documentElement->nodeName == 'class') {
+                        $unit = new ClassObject();
+                    } else {
+                        $unit = new TraitObject();
+                    }
+                    $unit->import($unitDom);
+                    $affected[$extends->getAttribute('full')] = $unit;
+                }
+            }
+            $implements = $dom->query('//phpdox:implements');
+            foreach($implements as $implement) {
+                $unitNode = $this->index->findUnitNodeByName(
+                    $implement->getAttribute('namespace'), $implement->getAttribute('class')
+                );
+                if ($unitNode) {
+                    $unitDom = new fDOMDocument();
+                    $unitDom->load($this->xmlDir . '/' . $unitNode->getAttribute('xml'));
+                    $unit = new InterfaceObject();
+                    $unit->import($unitDom);
+                    $affected[$implement->getAttribute('full')] = $unit;
+                }
+            }
+            return $affected;
         }
 
         /**
@@ -248,7 +307,7 @@ namespace TheSeer\phpDox\Project {
          * @param string $path
          */
         private function removeFileReferences($path) {
-            foreach($this->index->getUnitsBySrcFile($path) as $node) {
+            foreach($this->index->findUnitNodesBySrcFile($path) as $node) {
                 /** @var $node \DOMElement */
                 $fname = $this->xmlDir . '/' . $node->getAttribute('xml');
                 if (file_exists($fname)) {

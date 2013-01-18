@@ -39,6 +39,7 @@ namespace TheSeer\phpDox\Collector {
     use TheSeer\DirectoryScanner\DirectoryScanner;
     use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Collector\Backend\BackendInterface;
+    use TheSeer\phpDox\Collector\Backend\ParseErrorException;
     use TheSeer\phpDox\Project\Project;
 
     /**
@@ -92,7 +93,9 @@ namespace TheSeer\phpDox\Collector {
                     $this->logger->progress('cached');
                     continue;
                 }
-                $this->processFile($file);
+                if (!$this->processFile($file)) {
+                    $this->project->removeFile($file);
+                }
             }
             $this->logger->completed();
             return $this->project;
@@ -134,9 +137,11 @@ namespace TheSeer\phpDox\Collector {
                     }
                 }
                 $this->logger->progress('processed');
-            } catch (ParseError $e) {
-                $this->parseErrors[$file->getPathname()] = $e;
+                return true;
+            } catch (ParseErrorException $e) {
+                $this->parseErrors[$file->getPathname()] = $e->getPrevious()->getMessage();
                 $this->logger->progress('failed');
+                return false;
             } catch (\Exception $e) {
                 throw new CollectorException('Error while processing source file', CollectorException::ProcessingError, $e, $file);
             }

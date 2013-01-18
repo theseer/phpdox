@@ -53,14 +53,13 @@ namespace TheSeer\phpDox\Collector {
             $this->logger = $logger;
         }
 
-        public function resolve(Project $project, \TheSeer\phpDox\InheritanceConfig $config) {
+        public function resolve(Array $changed, Project $project, \TheSeer\phpDox\InheritanceConfig $config) {
+            if (count($changed) == 0) {
+                return;
+            }
             $this->logger->reset();
             $this->logger->log("Resolving inheritance\n");
-
-
-
             $this->logger->completed();
-
         }
 
     }

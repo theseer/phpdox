@@ -76,6 +76,12 @@ namespace TheSeer\phpDox\Project {
             return $this->isChanged($relPath);
         }
 
+        public function removeFile(\SplFileInfo $file) {
+            $relPath = realpath($file->getPathname());
+            $relPath = substr($relPath, strlen(dirname($this->srcDir))+1);
+            unset($this->collection[$relPath]);
+        }
+
         public function getChangedFiles() {
             $list = array();
             foreach(array_keys($this->collection) as $path) {

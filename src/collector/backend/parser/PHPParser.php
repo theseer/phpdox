@@ -81,7 +81,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $this->getTraverserInstance($result)->traverse($nodes);
                 return $result;
             } catch (\Exception $e) {
-                throw new ParseErrorException('Something went wrwong', 1, $e);
+                throw new ParseErrorException('Something went wrwong', ParseErrorException::GeneralParseError, $e);
             }
         }
 

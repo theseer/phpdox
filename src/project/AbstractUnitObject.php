@@ -67,10 +67,10 @@ namespace TheSeer\phpDox\Project {
         protected $rootName = NULL;
 
         /**
-         * @param \SplFileInfo $file
          * @param string       $name
+         * @param \SplFileInfo $file
          */
-        public function __construct(\SplFileInfo $file, $name) {
+        public function __construct($name = NULL, \SplFileInfo $file = NULL) {
             if ($this->rootName === NULL) {
                 throw new UnitObjectException('No or invalid rootname set', UnitObjectException::InvalidRootname);
             }
@@ -78,8 +78,12 @@ namespace TheSeer\phpDox\Project {
             $this->dom->registerNamespace('phpdox', self::XMLNS);
             $this->rootNode = $this->dom->createElementNS(self::XMLNS, $this->rootName);
             $this->dom->appendChild($this->rootNode);
-            $this->setFileHeader($file);
-            $this->setName($name);
+            if ($name !== NULL) {
+                $this->setName($name);
+            }
+            if ($file !== NULL) {
+                $this->setFileHeader($file);
+            }
             $this->setAbstract(FALSE);
             $this->setFinal(FALSE);
         }
@@ -96,7 +100,6 @@ namespace TheSeer\phpDox\Project {
             $fileNode->setAttribute('time', date('c',$file->getMTime()));
             $fileNode->setAttribute('unixtime', $file->getMTime());
             $fileNode->setAttribute('sha1', sha1_file($file->getRealPath()));
-
         }
 
         /**
@@ -116,6 +119,13 @@ namespace TheSeer\phpDox\Project {
          */
         public function export() {
             return $this->dom;
+        }
+
+        /**
+         * @param \TheSeer\fDOM\fDOMDocument $dom
+         */
+        public function import(fDOMDocument $dom) {
+            $this->dom = $dom;
         }
 
         /**
