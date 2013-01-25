@@ -72,9 +72,9 @@
         <min>1.6</min>
        </package>
        <package>
-        <name>staticReflection</name>
-        <channel>pear.pdepend.org</channel>
-        <min>0.2.1</min>
+        <name>PHPParser</name>
+        <channel>nikic.github.com/pear</channel>
+        <min>0.9.3</min>
        </package>
        <extension>
         <name>tokenizer</name>
