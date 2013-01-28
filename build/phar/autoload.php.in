@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+spl_autoload_register(
+  function ($class)
+  {
+      static $classes = NULL;
+
+      if ($classes === NULL) {
+          $classes = array(
+            ___CLASSLIST___
+          );
+      }
+
+      $class = strtolower($class);
+
+      if (isset($classes[$class])) {
+          require 'phar://___PHAR___' . $classes[$class];
+      }
+  }
+);
+
+Phar::mapPhar('___PHAR___');
+define('PHPDOX_VERSION', '___VERSION___');
+define('PHPDOX_PHAR', true);
+$factory = new \TheSeer\phpDox\Factory();
+$factory->getInstanceFor('CLI')->run();
+exit(0);
+
+__HALT_COMPILER();
