@@ -169,6 +169,24 @@
         </li>
     </xsl:template>    
 
+    <xsl:template match="src:param">
+        <li>
+            <code><xsl:value-of select="@variable" /></code> - <xsl:value-of select="@description" />
+        </li>
+    </xsl:template>
+
+    <xsl:template match="src:return">
+        <li>
+            <xsl:value-of select="@description" />
+        </li>
+    </xsl:template>
+
+    <xsl:template match="src:throws">
+        <li>
+            <code><xsl:value-of select="@value" /></code>
+        </li>
+    </xsl:template>
+
     <xsl:template match="src:author">
         <li>
             <b>Author: </b> <xsl:value-of select="@value" />
@@ -249,6 +267,30 @@
                 <p style="font-size:110%; padding-top:5px;">
                     <xsl:apply-templates select="src:description" />
                 </p>
+                <xsl:if test="count(src:param)>0">
+                    <ul>
+                        <h4 class="param">Parameters:</h4>
+                        <ul class="param">
+                            <xsl:apply-templates select="src:param" />
+                        </ul>
+                    </ul>
+                </xsl:if>
+                <xsl:if test="count(src:return)>0">
+                    <ul>
+                        <h4 class="return">Returns:</h4>
+                        <ul class="return">
+                            <xsl:apply-templates select="src:return" />
+                        </ul>
+                    </ul>
+                </xsl:if>
+                <xsl:if test="count(src:throws)>0">
+                    <ul>
+                        <h4 class="throws">Throws:</h4>
+                        <ul class="throws">
+                            <xsl:apply-templates select="src:throws" />
+                        </ul>
+                    </ul>
+                </xsl:if>
             </xsl:for-each>
         </li>
     </xsl:template>    
