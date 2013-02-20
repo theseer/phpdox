@@ -139,6 +139,13 @@ ul.inheritance li + li + li + li + li {margin-left: 2em;}
 ul.inheritance li + li + li + li + li + li {margin-left: 2.5em;}
 ul.inheritance li + li + li + li + li + li + li {margin-left: 3em;}
 
+/* ======== method:param, method:return, method:trows  */
+ul.param, ul.return, ul.throws {list-style-type:none;}
+h4.param {margin-bottom: 0px;}
+
+/* ======== method:return, method:trows  */
+h4.return, h4.throws {margin-top: 0px; margin-bottom: 0px;}
+
 /*  ========= Footer */
 .footer	{clear:both;margin:2em 0 1em 0;padding:0.5em 1em;border-top:2px solid #cecece;font-size: 0.85em;}
 
