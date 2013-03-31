@@ -1,39 +1,39 @@
 <?php
-    /**
-     * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
-     * All rights reserved.
-     *
-     * Redistribution and use in source and binary forms, with or without modification,
-     * are permitted provided that the following conditions are met:
-     *
-     *   * Redistributions of source code must retain the above copyright notice,
-     *     this list of conditions and the following disclaimer.
-     *
-     *   * Redistributions in binary form must reproduce the above copyright notice,
-     *     this list of conditions and the following disclaimer in the documentation
-     *     and/or other materials provided with the distribution.
-     *
-     *   * Neither the name of Arne Blankerts nor the names of contributors
-     *     may be used to endorse or promote products derived from this software
-     *     without specific prior written permission.
-     *
-     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-     * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
-     * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-     * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
-     * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
-     * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-     * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-     * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-     * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-     * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-     * POSSIBILITY OF SUCH DAMAGE.
-     *
-     * @package    phpDox
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
-     */
+/**
+ * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ *   * Redistributions of source code must retain the above copyright notice,
+ *     this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright notice,
+ *     this list of conditions and the following disclaimer in the documentation
+ *     and/or other materials provided with the distribution.
+ *
+ *   * Neither the name of Arne Blankerts nor the names of contributors
+ *     may be used to endorse or promote products derived from this software
+ *     without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+ * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package    phpDox
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ */
 namespace TheSeer\phpDox\Project {
 
     use TheSeer\fDOM\fDOMDocument;
@@ -54,7 +54,6 @@ namespace TheSeer\phpDox\Project {
          * @var fDOMDocument
          */
         private $dom;
-
 
         /**
          * @var fDOMElement
@@ -79,7 +78,7 @@ namespace TheSeer\phpDox\Project {
             $this->rootNode = $this->dom->createElementNS(self::XMLNS, $this->rootName);
             $this->dom->appendChild($this->rootNode);
             if ($name !== NULL) {
-                $this->setName($name);
+                $this->setName($name, $this->rootNode);
             }
             if ($file !== NULL) {
                 $this->setFileHeader($file);
@@ -97,7 +96,7 @@ namespace TheSeer\phpDox\Project {
             $fileNode->setAttribute('file', $file->getBasename());
             $fileNode->setAttribute('realpath', $file->getRealPath());
             $fileNode->setAttribute('size', $file->getSize());
-            $fileNode->setAttribute('time', date('c',$file->getMTime()));
+            $fileNode->setAttribute('time', date('c', $file->getMTime()));
             $fileNode->setAttribute('unixtime', $file->getMTime());
             $fileNode->setAttribute('sha1', sha1_file($file->getRealPath()));
         }
@@ -105,13 +104,13 @@ namespace TheSeer\phpDox\Project {
         /**
          * @param $name
          */
-        private function setName($name) {
+        private function setName($name, fDOMElement $ctx) {
             $parts = explode('\\', $name);
             $local = array_pop($parts);
             $namespace = join('\\', $parts);
-            $this->rootNode->setAttribute('full', $name);
-            $this->rootNode->setAttribute('namespace', $namespace);
-            $this->rootNode->setAttribute('name', $local);
+            $ctx->setAttribute('full', $name);
+            $ctx->setAttribute('namespace', $namespace);
+            $ctx->setAttribute('name', $local);
         }
 
         /**
@@ -131,14 +130,14 @@ namespace TheSeer\phpDox\Project {
         /**
          * @return string
          */
-        public function getName() {
+        public function getLocalName() {
             return $this->rootNode->getAttribute('name');
         }
 
         /**
          * @return string
          */
-        public function getFullName() {
+        public function getName() {
             return $this->rootNode->getAttribute('full');
         }
 
@@ -201,16 +200,24 @@ namespace TheSeer\phpDox\Project {
             if (!$extends) {
                 $extends = $this->rootNode->appendElementNS(self::XMLNS, 'extends');
             }
-            $extends->setAttribute('full', $name);
-            $parts = explode('\\', $name);
-            $local = array_pop($parts);
-            $extends->setAttribute('class', $local);
-            $extends->setAttribute('namespace', join('\\', $parts));
+            $this->setName($name, $extends);
+        }
+
+        public function hasExtends() {
+            return $this->rootNode->queryOne('phpdox:extends') !== NULL;
         }
 
         public function getExtends() {
-            return $this->rootNode->queryOne('phpdox:extends');
+            if(!$this->hasExtends()) {
+                throw new UnitObjectException('This unit does not extend any unit', UnitObjectException::NoExtends);
+            }
+            return $this->rootNode->queryOne('phpdox:extends')->getAttribute('full');
 
+        }
+
+        public function addExtender(AbstractUnitObject $unit) {
+            $extender = $this->rootNode->appendElementNS(self::XMLNS, 'extender');
+            $this->setName($unit->getName(), $extender);
         }
 
         /**
@@ -218,31 +225,42 @@ namespace TheSeer\phpDox\Project {
          */
         public function addImplements($name) {
             $implements = $this->rootNode->appendElementNS(self::XMLNS, 'implements');
-            $implements->setAttribute('full', $name);
-            $parts = explode('\\', $name);
-            $local = array_pop($parts);
-            $implements->setAttribute('class', $local);
-            $implements->setAttribute('namespace', join('\\', $parts));
+            $this->setName($name, $implements);
+        }
+
+
+        public function hasImplements() {
+            return $this->rootNode->query('phpdox:implements')->length > 0;
         }
 
         public function getImplements() {
-            return $this->rootNode->query('phpdox:implements');
+            if (!$this->hasImplements()) {
+                throw new UnitObjectException('This unit does not implement any interfaces', UnitObjectException::NoImplements);
+            }
+            $result = array();
+            foreach($this->rootNode->query('phpdox:implements') as $impl) {
+                $result[] = $impl->getAttribute('full');
+            }
+            return $result;
         }
 
         /**
          *
          */
         public function addMethod($name) {
-            switch($name) {
-                case '__construct': {
+            switch ($name) {
+                case '__construct':
+                {
                     $nodeName = 'constructor';
                     break;
                 }
-                case '__destruct': {
+                case '__destruct':
+                {
                     $nodeName = 'destructor';
                     break;
                 }
-                default: $nodeName = 'method';
+                default:
+                    $nodeName = 'method';
             }
             $method = new MethodObject($this->rootNode->appendElementNS(self::XMLNS, $nodeName));
             $method->setName($name);
@@ -250,7 +268,47 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
+         * @return array MethodObject
+         */
+        public function getExportedMethods() {
+            $result = array();
+            $xpath = '(phpdox:constructor|phpdox:destructor|phpdox:method)[@visibility="public" or @visibility="protected"]';
+            foreach($this->rootNode->query($xpath) as $node) {
+                $result[] = new MethodObject($node);
+            }
+            return $result;
+        }
+
+        public function markInterfaceMethods() {
+
+        }
+
+        public function importExports(AbstractUnitObject $unit) {
+
+            $inherited = $this->rootNode->queryOne(sprintf('//phpdox:inherited[@full="%s"]', $unit->getName()));
+            if ($inherited instanceof fDOMElement) {
+                $inherited->parentNode->removeChild($inherited);
+            }
+
+            $inherited = $this->rootNode->appendElementNS( self::XMLNS, 'inherited');
+            $inherited->setAttribute('full', $unit->getName());
+            $inherited->setAttribute('namepsace', $unit->getNamespace());
+            $inherited->setAttribute('name', $unit->getLocalName());
+
+            if ($unit->hasExtends()) {
+                $extends = $inherited->appendElementNS( self::XMLNS, 'extends');
+                $this->setName($unit->getExtends(), $extends);
+            }
+
+            foreach($unit->getExportedMethods() as $method) {
+                $inherited->appendChild( $this->dom->importNode($method->export(), true) );
+            }
+
+        }
+
+        /**
          * @param $name
+         *
          * @return MemberObject
          */
         public function addMember($name) {
@@ -261,6 +319,7 @@ namespace TheSeer\phpDox\Project {
 
         /**
          * @param $name
+         *
          * @return ConstantObject
          */
         public function addConstant($name) {
@@ -277,8 +336,9 @@ namespace TheSeer\phpDox\Project {
     class UnitObjectException extends \Exception {
 
         const InvalidRootname = 1;
+        const NoExtends = 2;
+        const NoImplements = 3;
 
     }
-
 
 }

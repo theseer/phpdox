@@ -4,7 +4,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:src="http://xml.phpdox.de/src#"
     exclude-result-prefixes="#default src">
-    
+
     <xsl:import href="topbar.xsl" />
 
     <xsl:output method="xml" indent="yes" encoding="utf-8" doctype-public="html" />
@@ -84,25 +84,38 @@
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$unit/src:constant">
+                        <xsl:if test="$unit//src:constant">
                             <h3>Constants</h3>
                             <ul class="varlist">
                                 <xsl:apply-templates select="$unit/src:constant" />
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$unit/src:member">
+                        <xsl:if test="$unit//src:member">
                             <h3>Members</h3>
                             <ul class="varlist">
                                 <xsl:apply-templates select="$unit/src:member" />
                             </ul>
                         </xsl:if>
 
-                        <xsl:if test="$unit/src:constructor|$unit/src:destroctur|$unit/src:method">
+                        <xsl:if test="($unit//src:constructor)[1]">
+                            <h3>Constructor</h3>
+                            <ul class="varlist">
+                                <xsl:apply-templates select="($unit//src:constructor)[1]" />
+                            </ul>
+                        </xsl:if>
+
+                        <xsl:if test="($unit//src:destructor)[1]">
+                            <h3>Destructor</h3>
+                            <ul class="varlist">
+                                <xsl:apply-templates select="($unit//src:destructor)[1]" />
+                            </ul>
+                        </xsl:if>
+
+                        <xsl:if test="$unit//src:method">
                             <h3>Methods</h3>
                             <ul class="varlist">
-                                <xsl:apply-templates select="$unit/src:constructor|$unit/src:destructor" />
-                                <xsl:apply-templates select="$unit/src:method">
+                                <xsl:apply-templates select="$unit//src:method">
                                     <xsl:sort select="@visibility" order="descending" />
                                     <xsl:sort select="@name" />
                                 </xsl:apply-templates>
@@ -125,7 +138,7 @@
                 </xsl:when>
                 <xsl:otherwise><strong><xsl:value-of select="$ctx/@full" /></strong></xsl:otherwise>
             </xsl:choose>
-        </li>        
+        </li>
     </xsl:template>
 
     <xsl:template name="sidebar">
@@ -133,7 +146,7 @@
             <xsl:if test="$unit/src:constant">
                 <h3>Constants</h3>
                 <ul>
-                    <xsl:for-each select="$unit/src:constant">
+                    <xsl:for-each select="$unit//src:constant">
                         <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
                     </xsl:for-each>
                 </ul>
@@ -141,15 +154,15 @@
             <xsl:if test="$unit/src:member">
                 <h3>Members</h3>
                 <ul>
-                    <xsl:for-each select="$unit/src:member">
+                    <xsl:for-each select="$unit//src:member">
                         <li><a href="#{@name}">$<xsl:value-of select="@name" /></a></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
-            <xsl:if test="$unit/src:method|$unit/src:constructor|$unit/src:destructor">
+            <xsl:if test="$unit//src:method|($unit//src:constructor)[1]|($unit/src:destructor)[1]">
                 <h3>Methods</h3>
                 <ul>
-                    <xsl:for-each select="$unit/src:method|$unit/src:constructor|$unit/src:destructor">
+                    <xsl:for-each select="$unit//src:method|($unit//src:constructor)[1]|($unit/src:destructor)[1]">
                         <xsl:sort select="@name" order="ascending" />
                         <li><a href="#{@name}"><xsl:value-of select="@name" /></a></li>
                     </xsl:for-each>
@@ -157,9 +170,9 @@
             </xsl:if>
         </div>
     </xsl:template>
-    
+
     <!--  ## DOCBLOCK NODES ## -->
-    
+
     <xsl:template match="src:description">
         <li>
             <xsl:value-of select="@compact" />
@@ -167,7 +180,7 @@
                 <pre><xsl:value-of select="." /></pre>
             </xsl:if>
         </li>
-    </xsl:template>    
+    </xsl:template>
 
     <xsl:template match="src:param">
         <li>
@@ -205,7 +218,7 @@
         </li>
     </xsl:template>
 
-    <xsl:template match="src:var">    
+    <xsl:template match="src:var">
         <p><em><xsl:value-of select="@type" /></em></p>
     </xsl:template>
 
@@ -218,12 +231,12 @@
                 <em>&#160;<xsl:value-of select="src:var/@type" /></em>
                 <p>
                     <xsl:apply-templates select="src:description" />
-                </p>                    
+                </p>
             </xsl:for-each>
             <hr />
         </li>
-    </xsl:template>    
-    
+    </xsl:template>
+
     <!--  ## MEMBERS ## -->
     <xsl:template match="src:member">
         <li>
@@ -251,8 +264,8 @@
             </xsl:if>
             -->
         </li>
-    </xsl:template>    
-    
+    </xsl:template>
+
     <!--  ## METHODS ## -->
     <xsl:template match="src:method|src:constructor|src:destructor">
         <li>
@@ -293,8 +306,8 @@
                 </xsl:if>
             </xsl:for-each>
         </li>
-    </xsl:template>    
-    
+    </xsl:template>
+
     <xsl:template match="src:parameter">
         <xsl:if test="@optional = 'true'">[</xsl:if>
         <span class="param-type">
@@ -325,7 +338,7 @@
     </xsl:template>
 
     <!--  ## shared ## -->
-    
+
     <xsl:template name="modifiers">
         <xsl:param name="ctx" />
         <xsl:for-each select="$ctx/@visibility|$ctx/@static|$ctx/@final|$ctx/@abstract">

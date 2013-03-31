@@ -105,7 +105,6 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
 
         }
 
-
         public function classNameToFileName($class) {
             return str_replace('\\', '_', $class) . '.' . $this->extension;
         }

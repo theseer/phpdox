@@ -114,8 +114,9 @@ namespace TheSeer\phpDox {
         }
 
         /**
-         * @param $name
-         * @param $description
+         * @param string $name        Name of the collector backend
+         * @param string $description A describing text
+         *
          * @return BackendBootstrapApi
          */
         public function registerBackend($name, $description) {

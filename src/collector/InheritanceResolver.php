@@ -36,8 +36,12 @@
      */
 namespace TheSeer\phpDox\Collector {
 
+    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Project\Project;
+    use TheSeer\phpDox\Project\AbstractUnitObject;
+    use TheSeer\phpDox\InheritanceConfig;
+    use TheSeer\phpDox\Project\ProjectException;
 
     /**
      * Inheritance resolving class
@@ -49,17 +53,86 @@ namespace TheSeer\phpDox\Collector {
          */
         private $logger;
 
+        /**
+         * @var Project
+         */
+        private $project;
+
+        /**
+         * @var InheritanceConfig
+         */
+        private $config;
+
         public function __construct(ProgressLogger $logger) {
             $this->logger = $logger;
         }
 
-        public function resolve(Array $changed, Project $project, \TheSeer\phpDox\InheritanceConfig $config) {
+        public function resolve(Array $changed, Project $project, InheritanceConfig $config) {
+            //return;
+
             if (count($changed) == 0) {
                 return;
             }
             $this->logger->reset();
             $this->logger->log("Resolving inheritance\n");
+
+            $this->project = $project;
+            $this->config = $config;
+
+            foreach($changed as $unit) {
+                /** @var AbstractUnitObject $unit */
+                if ($unit->hasExtends()) {
+                    try {
+                        $extends = $unit->getExtends();
+                        $extendedUnit = $this->project->getUnitByName($extends);
+                        $this->processExtends($unit, $extendedUnit);
+                    } catch (ProjectException $e) {
+                        $this->logger->log(
+                            sprintf(
+                                "Unit '%s' extends '%s' but definition not found.",
+                                $unit->getName(), $extends
+                            )
+                        );
+                    }
+                }
+/*
+                $implements = $unit->getImplements();
+                foreach($implements as $implement) {
+                    $interface = $this->project->findUnitByName($implement->getAttribute('namespace'), $implement->getAttribute('name'));
+                    $unit->markInterfaceMethods($interface);
+                    $interface->addImplementor($unit);
+                }
+*/
+            }
+
+            $this->project->save();
             $this->logger->completed();
+        }
+
+        private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends, AbstractUnitObject $reference = null) {
+            $this->project->registerForSaving($unit);
+            $this->project->registerForSaving($extends);
+
+            $unit->importExports($extends, $reference !== NULL ? $reference : $unit);
+
+            if ($extends->hasExtends()) {
+                $extendedUnit = $this->project->getUnitByName($extends->getExtends());
+                $this->processExtends($unit, $extendedUnit, $extendedUnit);
+            }
+
+            //var_dump('processExtends');
+            /*
+            $parent = $this->project->findUnitByName($extends->getAttribute('namespace'), $extends->getAttribute('name'));
+            if (!$parent) {
+                return;
+            }
+            $parent->addExtender($unit);
+            $unit->importClassMethods($parent);
+            $extends = $parent->getExtends();
+            if ($extends) {
+                $this->processExtends($unit, $extends);
+            }
+            */
         }
 
     }

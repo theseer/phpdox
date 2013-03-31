@@ -40,6 +40,10 @@ namespace TheSeer\phpDox\Project {
 
     class InterfaceObject extends AbstractUnitObject {
         protected $rootName = 'interface';
+
+        public function addImplementor() {
+
+        }
     }
 
 }

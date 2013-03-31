@@ -54,6 +54,10 @@ namespace TheSeer\phpDox\Project {
             $this->ctx->setAttribute('name', $name);
         }
 
+        public function getName() {
+            return $this->ctx->getAttributeNode('name');
+        }
+
         public function setDefault($value) {
             $this->ctx->setAttribute('default', $value);
         }

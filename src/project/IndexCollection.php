@@ -37,16 +37,12 @@
 namespace TheSeer\phpDox\Project {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
     /**
      *
      */
     class IndexCollection {
-
-        /**
-         * @var array
-         */
-        private $addedUnits = array();
 
         private $dom;
 
@@ -114,10 +110,6 @@ namespace TheSeer\phpDox\Project {
             $this->addUnit($trait, 'trait');
         }
 
-        public function getAddedUnits() {
-            return $this->addedUnits;
-        }
-
         /**
          * @param $path
          * @return \DOMNodeList
@@ -143,11 +135,10 @@ namespace TheSeer\phpDox\Project {
          */
         private function addUnit(AbstractUnitObject $unit, $type) {
             $root = $this->getRootElement();
-            $this->addedUnits[$unit->getFullName()] = $unit;
 
-            if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getName())) {
+            if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName())) {
                 $unitNode = $root->appendElementNS('http://xml.phpdox.de/src#', $type);
-                $unitNode->setAttribute('name', $unit->getName());
+                $unitNode->setAttribute('name', $unit->getLocalName());
                 $unitNode->setAttribute('src', $unit->getSourceFilename());
 
                 $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';

@@ -34,18 +34,18 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox {
 
-    $phpDox->registerEngine('html', 'Simple HTML Output builder')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Html')
-        ->withConfigClass('TheSeer\\phpDox\\Generator\\Engine\\HtmlConfig');
+namespace TheSeer\phpDox\Generator\Engine {
 
-    $phpDox->registerEngine('graph', 'DOT output builder')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Graph')
-        ->withConfigClass('TheSeer\\phpDox\\Generator\\Engine\\GraphConfig');
+    class GraphConfig extends \TheSeer\phpDox\BuildConfig {
 
-    $phpDox->registerEngine('todo', 'Simple TODO list builder from @todo annotations')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Todo');
-    // ->withConfigClass('TheSeer\\phpDox\\Engine\\TodoConfig');
-
+        public function getDotExecutable() {
+            $default = 'dot';
+            $node = $this->ctx->queryOne('cfg:dot');
+            if (!$node) {
+                return $default;
+            }
+            return $node->getAttribute('executable', $default);
+        }
+    }
 }

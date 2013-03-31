@@ -64,6 +64,10 @@ namespace TheSeer\phpDox\Project {
          */
         private $index = NULL;
 
+
+        private $saveUnits = array();
+        private $loadedUnits = array();
+
         /**
          * @param $srcDir
          * @param $xmlDir
@@ -110,6 +114,8 @@ namespace TheSeer\phpDox\Project {
          * @param ClassObject $class
          */
         public function addClass(ClassObject $class) {
+            $this->loadedUnits[$class->getName()] = $class;
+            $this->registerForSaving($class);
             $this->index->addClass($class);
         }
 
@@ -117,6 +123,8 @@ namespace TheSeer\phpDox\Project {
          *
          */
         public function addInterface(InterfaceObject $interface) {
+            $this->loadedUnits[$interface->getName()] = $interface;
+            $this->registerForSaving($interface);
             $this->index->addInterface($interface);
         }
 
@@ -124,6 +132,8 @@ namespace TheSeer\phpDox\Project {
          *
          */
         public function addTrait(TraitObject $trait) {
+            $this->loadedUnits[$trait->getName()] = $trait;
+            $this->registerForSaving($trait);
             $this->index->addTrait($trait);
         }
 
@@ -183,6 +193,46 @@ namespace TheSeer\phpDox\Project {
         }
 
         /**
+         * @param $namespace
+         * @param $name
+         * @return fDOMElement
+         */
+        public function getUnitByName($name) {
+            if (isset($this->loadedUnits[$name])) {
+                return $this->loadedUnits[$name];
+            }
+
+            $parts = explode('\\', $name);
+            $local = array_pop($parts);
+            $namespace = join('\\', $parts);
+            $indexNode = $this->index->findUnitNodeByName($namespace, $local);
+            if (!$indexNode) {
+                throw new ProjectException("No unit with name '$name' found");
+            }
+
+            switch ($indexNode->localName) {
+                case 'interface': {
+                    $unit = new InterfaceObject();
+                    break;
+                }
+                case 'trait': {
+                    $unit = new TraitObject();
+                    break;
+                }
+                case 'class': {
+                    $unit = new ClassObject();
+                    break;
+                }
+            }
+
+            $dom = new fDOMDocument();
+            $dom->load($this->xmlDir . '/' . $indexNode->getAttribute('xml'));
+            $unit->import($dom);
+
+            return $unit;
+        }
+
+        /**
          * @return integer
          */
         public function cleanVanishedFiles() {
@@ -191,6 +241,11 @@ namespace TheSeer\phpDox\Project {
                 $this->removeFileReferences($path);
             }
             return count($files);
+        }
+
+
+        public function registerForSaving(AbstractUnitObject $unit) {
+            $this->saveUnits[$unit->getName()] = $unit;
         }
 
         /**
@@ -205,15 +260,14 @@ namespace TheSeer\phpDox\Project {
                 }
             }
             $indexDom = $this->index->export();
-            $newUnits = $this->index->getAddedUnits();
-            $reportUnits = $newUnits;
-            foreach($newUnits as $unit) {
+            $reportUnits = $this->saveUnits;
+            foreach($this->saveUnits as $unit) {
                 $indexNode = $indexDom->queryOne(
                         sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]',
                         $unit->getNamespace(),
-                        $unit->getName())
+                        $unit->getLocalName())
                 );
-                $name = str_replace('\\', '_', $unit->getFullName());
+                $name = str_replace('\\', '_', $unit->getName());
                 $dom = $unit->export();
                 $dom->formatOutput = TRUE;
                 $dom->preserveWhiteSpace = FALSE;
@@ -234,6 +288,8 @@ namespace TheSeer\phpDox\Project {
             $sourceDom->preserveWhiteSpace = FALSE;
             $sourceDom->save($this->xmlDir . '/source.xml');
 
+            $this->saveUnits = array();
+
             return $reportUnits;
         }
 
@@ -250,7 +306,7 @@ namespace TheSeer\phpDox\Project {
             $extends = $dom->queryOne('//phpdox:extends');
             if ($extends instanceof fDOMElement) {
                 $unitNode = $this->index->findUnitNodeByName(
-                    $extends->getAttribute('namespace'), $extends->getAttribute('class')
+                    $extends->getAttribute('namespace'), $extends->getAttribute('name')
                 );
                 if ($unitNode) {
                     $unitDom = new fDOMDocument();
@@ -268,7 +324,7 @@ namespace TheSeer\phpDox\Project {
             $implements = $dom->query('//phpdox:implements');
             foreach($implements as $implement) {
                 $unitNode = $this->index->findUnitNodeByName(
-                    $implement->getAttribute('namespace'), $implement->getAttribute('class')
+                    $implement->getAttribute('namespace'), $implement->getAttribute('name')
                 );
                 if ($unitNode) {
                     $unitDom = new fDOMDocument();
@@ -319,4 +375,6 @@ namespace TheSeer\phpDox\Project {
 
     }
 
+
+    class ProjectException extends \Exception {}
 }

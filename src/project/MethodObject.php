@@ -58,6 +58,11 @@ namespace TheSeer\phpDox\Project {
             $this->ctx = $ctx;
         }
 
+
+        public function export() {
+            return $this->ctx;
+        }
+
         /**
          * @param string $name
          */
@@ -65,6 +70,9 @@ namespace TheSeer\phpDox\Project {
             $this->ctx->setAttribute('name', $name);
         }
 
+        public function getName() {
+            return $this->ctx->getAttribute('name');
+        }
         /**
          * @param int $startLine
          */
