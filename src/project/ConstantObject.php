@@ -47,6 +47,10 @@ namespace TheSeer\phpDox\Project {
             $this->ctx = $ctx;
         }
 
+        public function export() {
+            return $this->ctx;
+        }
+
         public function setName($name) {
             $this->ctx->setAttribute('name', $name);
         }
