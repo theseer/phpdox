@@ -125,6 +125,8 @@ namespace TheSeer\phpDox\Project {
          */
         public function import(fDOMDocument $dom) {
             $this->dom = $dom;
+            $this->rootNode = $dom->documentElement;
+            $this->dom->registerNamespace('phpdox', self::XMLNS);
         }
 
         /**
@@ -203,10 +205,17 @@ namespace TheSeer\phpDox\Project {
             $this->setName($name, $extends);
         }
 
+        /**
+         * @return bool
+         */
         public function hasExtends() {
             return $this->rootNode->queryOne('phpdox:extends') !== NULL;
         }
 
+        /**
+         * @return mixed
+         * @throws UnitObjectException
+         */
         public function getExtends() {
             if(!$this->hasExtends()) {
                 throw new UnitObjectException('This unit does not extend any unit', UnitObjectException::NoExtends);
@@ -215,7 +224,13 @@ namespace TheSeer\phpDox\Project {
 
         }
 
+        /**
+         * @param AbstractUnitObject $unit
+         */
         public function addExtender(AbstractUnitObject $unit) {
+            if ($this->rootNode->queryOne(sprintf('phpdox:extender[@full = "%s"]', $unit->getName())) !== NULL) {
+                return;
+            }
             $extender = $this->rootNode->appendElementNS(self::XMLNS, 'extender');
             $this->setName($unit->getName(), $extender);
         }
@@ -228,11 +243,17 @@ namespace TheSeer\phpDox\Project {
             $this->setName($name, $implements);
         }
 
-
+        /**
+         * @return bool
+         */
         public function hasImplements() {
             return $this->rootNode->query('phpdox:implements')->length > 0;
         }
 
+        /**
+         * @return array
+         * @throws UnitObjectException
+         */
         public function getImplements() {
             if (!$this->hasImplements()) {
                 throw new UnitObjectException('This unit does not implement any interfaces', UnitObjectException::NoImplements);
@@ -279,33 +300,6 @@ namespace TheSeer\phpDox\Project {
             return $result;
         }
 
-        public function markInterfaceMethods() {
-
-        }
-
-        public function importExports(AbstractUnitObject $unit) {
-
-            $inherited = $this->rootNode->queryOne(sprintf('//phpdox:inherited[@full="%s"]', $unit->getName()));
-            if ($inherited instanceof fDOMElement) {
-                $inherited->parentNode->removeChild($inherited);
-            }
-
-            $inherited = $this->rootNode->appendElementNS( self::XMLNS, 'inherited');
-            $inherited->setAttribute('full', $unit->getName());
-            $inherited->setAttribute('namepsace', $unit->getNamespace());
-            $inherited->setAttribute('name', $unit->getLocalName());
-
-            if ($unit->hasExtends()) {
-                $extends = $inherited->appendElementNS( self::XMLNS, 'extends');
-                $this->setName($unit->getExtends(), $extends);
-            }
-
-            foreach($unit->getExportedMethods() as $method) {
-                $inherited->appendChild( $this->dom->importNode($method->export(), true) );
-            }
-
-        }
-
         /**
          * @param $name
          *
@@ -315,6 +309,18 @@ namespace TheSeer\phpDox\Project {
             $member = new MemberObject($this->rootNode->appendElementNS(self::XMLNS, 'member'));
             $member->setName($name);
             return $member;
+        }
+
+        /**
+         * @return array
+         */
+        public function getExportedMembers() {
+            $result = array();
+            $xpath = 'phpdox:member[@visibility="public" or @visibility="protected"]';
+            foreach($this->rootNode->query($xpath) as $node) {
+                $result[] = new MemberObject($node);
+            }
+            return $result;
         }
 
         /**
@@ -328,6 +334,59 @@ namespace TheSeer\phpDox\Project {
             return $const;
         }
 
+        /**
+         * @return array
+         */
+        public function getConstants() {
+            $result = array();
+            $xpath = 'phpdox:constant';
+            foreach($this->rootNode->query($xpath) as $node) {
+                $result[] = new ConstantObject($node);
+            }
+            return $result;
+        }
+
+        /**
+         *
+         */
+        public function markInterfaceMethods() {
+
+        }
+
+        /**
+         * @param AbstractUnitObject $unit
+         */
+        public function importExports(AbstractUnitObject $unit) {
+
+            $parent = $this->rootNode->queryOne(sprintf('//phpdox:parent[@full="%s"]', $unit->getName()));
+            if ($parent instanceof fDOMElement) {
+                $parent->parentNode->removeChild($parent);
+            }
+
+            $parent = $this->rootNode->appendElementNS( self::XMLNS, 'parent');
+            $parent->setAttribute('full', $unit->getName());
+            $parent->setAttribute('namepsace', $unit->getNamespace());
+            $parent->setAttribute('name', $unit->getLocalName());
+
+            if ($unit->hasExtends()) {
+                $extends = $parent->appendElementNS( self::XMLNS, 'extends');
+                $this->setName($unit->getExtends(), $extends);
+            }
+
+            foreach($unit->getConstants() as $constant) {
+                $parent->appendChild( $this->dom->importNode($constant->export(), TRUE) );
+            }
+
+            foreach($unit->getExportedMembers() as $member) {
+                $parent->appendChild( $this->dom->importNode($member->export(), TRUE) );
+            }
+
+            foreach($unit->getExportedMethods() as $method) {
+                $parent->appendChild( $this->dom->importNode($method->export(), TRUE) );
+            }
+
+        }
+
     }
 
     /**
@@ -335,8 +394,19 @@ namespace TheSeer\phpDox\Project {
      */
     class UnitObjectException extends \Exception {
 
+        /**
+         *
+         */
         const InvalidRootname = 1;
+
+        /**
+         *
+         */
         const NoExtends = 2;
+
+        /**
+         *
+         */
         const NoImplements = 3;
 
     }
