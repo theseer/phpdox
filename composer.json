@@ -18,12 +18,12 @@
     "ext-dom" : "*", 
     "ext-xsl" : "*", 
     "ext-iconv" : "*", 
+    "theseer/fdomdocument": "1.*", 
+    "theseer/directoryscanner" : "1.*", 
+    "theseer/fxsl" : "1.*", 
     "phpunit/php-timer" : ">=1.0.4", 
-    "theseer/fdomdocument": "1.4.*", 
-    "theseer/directory-scanner" : "dev-master", 
-    "theseer/fxsl" : "dev-master", 
     "zetacomponents/console-tools" : ">=1.6.0", 
-    "nikic/php-parser" : "0.9.3"
+    "nikic/php-parser" : ">=0.9.3"
   }, 
   "autoload": {
     "classmap": [
