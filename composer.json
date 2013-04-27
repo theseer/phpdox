@@ -18,9 +18,9 @@
     "ext-dom" : "*", 
     "ext-xsl" : "*", 
     "ext-iconv" : "*", 
-    "theseer/fdomdocument": "1.*", 
-    "theseer/directoryscanner" : "1.*", 
-    "theseer/fxsl" : "1.*", 
+    "theseer/fdomdocument": ">=1.4.1", 
+    "theseer/directoryscanner" : ">=1.1.0", 
+    "theseer/fxsl" : ">=1.0", 
     "phpunit/php-timer" : ">=1.0.4", 
     "zetacomponents/console-tools" : ">=1.6.0", 
     "nikic/php-parser" : ">=0.9.3"
