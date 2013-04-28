@@ -36,111 +36,111 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests\Integration {
-
-    use \TheSeer\fDOM\fDOMDocument;
-    use \TheSeer\fDOM\fDOMElement;
-
-    use \TheSeer\phpDox\Tests\phpDox_TestCase;
-    use \TheSeer\phpDox\ClassBuilder;
-
-    class ClassBuilderTest extends phpDox_TestCase {
-
-        public function setUp() {
-
-            if (!class_exists('\\TheSeer\\fDOM\\fDOMDocument')) {
-                $this->markTestSkipped('Mandatory dependency (TheSeer\FDom\fDOMDocument) not available.');
-            }
-        }
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
-
-        /**
-         * Provides an instance ot the \TheSeer\fDOM\fDOMElement class.
-         *
-         * @return \TheSeer\fDOM\fDOMElement
-         */
-        protected function getFDomElementFixture() {
-            $dom = new fDOMDocument();
-            $dom->formatOutput = true;
-            $element = $dom->createElement('tux');
-            $dom->appendChild($element);
-            return $dom->getElementsByTagName('tux')->item(0);
-        }
-
-        /**
-         * Provides an instance of \TheSeer\phpDox\DocBlock\Factory
-         *
-         * @return \TheSeer\phpDox\DocBlock\Factory
-         */
-        protected function getFactoryInstanceFixture() {
-            $map = array(
-            'DocBlock' => '\\TheSeer\\phpDox\\DocBlock\\DocBlock'
-        );
-            return new \TheSeer\phpDox\DocBlock\Factory($map);
-        }
-
-        /**
-         * Provides an instance of \TheSeer\phpDox\DocBlock\Parser
-         *
-         * @return \TheSeer\phpDox\DocBlock\Parser
-         */
-        protected function getParserFixture() {
-            return new \TheSeer\phpDox\DocBlock\Parser($this->getFactoryInstanceFixture());
-        }
-
-        /**
-         *
-         * Enter description here ...
-         * @param unknown_type $path
-         */
-        protected function getReflectedClass($path) {
-            $session = new \pdepend\reflection\ReflectionSession();
-            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
-            $query = $session->createFileQuery();
-            $class = $query->find($path);
-            return $class[0];
-        }
-
-        /*********************************************************************/
-        /* Tests                                                             */
-        /*********************************************************************/
-
-        /**
-         * @dataProvider processDataprovider
-         */
-        public function testProcess($expected, $classPath) {
-
-            $ctx = $this->getFDomElementFixture();
-            $aliasMap = array();
-            $parser = $this->getParserFixture();
-            $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
-            $node = $classBuilder->process($this->getReflectedClass($classPath));
-            $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
-        }
-
-        /*********************************************************************/
-        /* Dataprovider & Callbacks                                          */
-        /*********************************************************************/
-
-        public static function processDataprovider() {
-            return array(
-                'simple class' => array(
-                    __DIR__.'/../data/documents/parsedDummyClass.xml',
-                    __DIR__.'/../data/classes/dummy.php',
-                ),
-                'class extending \stdClass' => array(
-                    __DIR__.'/../data/documents/parsedDummyExtendingParentClass.xml',
-                    __DIR__.'/../data/classes/dummyExtendingParent.php',
-                ),
-                'class implementing \Countable' => array(
-                    __DIR__.'/../data/documents/parsedDummyImplementingInterfaceClass.xml',
-                    __DIR__.'/../data/classes/dummyImplementingInterface.php',
-                ),
-            );
-        }
-
-    }
-}
+//namespace TheSeer\phpDox\Tests\Integration {
+//
+//    use \TheSeer\fDOM\fDOMDocument;
+//    use \TheSeer\fDOM\fDOMElement;
+//
+//    use \TheSeer\phpDox\Tests\phpDox_TestCase;
+//    use \TheSeer\phpDox\ClassBuilder;
+//
+//    class ClassBuilderTest extends phpDox_TestCase {
+//
+//        public function setUp() {
+//
+//            if (!class_exists('\\TheSeer\\fDOM\\fDOMDocument')) {
+//                $this->markTestSkipped('Mandatory dependency (TheSeer\FDom\fDOMDocument) not available.');
+//            }
+//        }
+//
+//        /*********************************************************************/
+//        /* Fixtures                                                          */
+//        /*********************************************************************/
+//
+//        /**
+//         * Provides an instance ot the \TheSeer\fDOM\fDOMElement class.
+//         *
+//         * @return \TheSeer\fDOM\fDOMElement
+//         */
+//        protected function getFDomElementFixture() {
+//            $dom = new fDOMDocument();
+//            $dom->formatOutput = true;
+//            $element = $dom->createElement('tux');
+//            $dom->appendChild($element);
+//            return $dom->getElementsByTagName('tux')->item(0);
+//        }
+//
+//        /**
+//         * Provides an instance of \TheSeer\phpDox\DocBlock\Factory
+//         *
+//         * @return \TheSeer\phpDox\DocBlock\Factory
+//         */
+//        protected function getFactoryInstanceFixture() {
+//            $map = array(
+//            'DocBlock' => '\\TheSeer\\phpDox\\DocBlock\\DocBlock'
+//        );
+//            return new \TheSeer\phpDox\DocBlock\Factory($map);
+//        }
+//
+//        /**
+//         * Provides an instance of \TheSeer\phpDox\DocBlock\Parser
+//         *
+//         * @return \TheSeer\phpDox\DocBlock\Parser
+//         */
+//        protected function getParserFixture() {
+//            return new \TheSeer\phpDox\DocBlock\Parser($this->getFactoryInstanceFixture());
+//        }
+//
+//        /**
+//         *
+//         * Enter description here ...
+//         * @param unknown_type $path
+//         */
+//        protected function getReflectedClass($path) {
+//            $session = new \pdepend\reflection\ReflectionSession();
+//            $session->addClassFactory( new \pdepend\reflection\factories\NullReflectionClassFactory() );
+//            $query = $session->createFileQuery();
+//            $class = $query->find($path);
+//            return $class[0];
+//        }
+//
+//        /*********************************************************************/
+//        /* Tests                                                             */
+//        /*********************************************************************/
+//
+//        /**
+//         * @dataProvider processDataprovider
+//         */
+//        public function testProcess($expected, $classPath) {
+//
+//            $ctx = $this->getFDomElementFixture();
+//            $aliasMap = array();
+//            $parser = $this->getParserFixture();
+//            $classBuilder = new ClassBuilder($parser, $ctx, $aliasMap, false, 'UTF-8');
+//            $node = $classBuilder->process($this->getReflectedClass($classPath));
+//            $this->assertXmlStringEqualsXmlFile($expected, $node->ownerDocument->saveXML());
+//        }
+//
+//        /*********************************************************************/
+//        /* Dataprovider & Callbacks                                          */
+//        /*********************************************************************/
+//
+//        public static function processDataprovider() {
+//            return array(
+//                'simple class' => array(
+//                    __DIR__.'/../data/documents/parsedDummyClass.xml',
+//                    __DIR__.'/../data/classes/dummy.php',
+//                ),
+//                'class extending \stdClass' => array(
+//                    __DIR__.'/../data/documents/parsedDummyExtendingParentClass.xml',
+//                    __DIR__.'/../data/classes/dummyExtendingParent.php',
+//                ),
+//                'class implementing \Countable' => array(
+//                    __DIR__.'/../data/documents/parsedDummyImplementingInterfaceClass.xml',
+//                    __DIR__.'/../data/classes/dummyImplementingInterface.php',
+//                ),
+//            );
+//        }
+//
+//    }
+//}
