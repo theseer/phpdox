@@ -85,8 +85,13 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @covers TheSeer\phpDox\Factory::getLogger
          */
         public function testGetLogger($expected, $argument) {
+            $factoryReflection = new \ReflectionClass("TheSeer\\phpDox\\Factory");
+            $getLogger = $factoryReflection->getMethod("getLogger");
+            $getLogger->setAccessible(true);
+            
             $factory = new Factory();
-            $this->assertInstanceOf($expected, $factory->getLogger($argument));
+            
+            $this->assertInstanceOf($expected, $getLogger->invoke($factory, $argument));
         }
 
         /**

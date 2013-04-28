@@ -1,3 +1,0 @@
-[submodule "tests/lib/proxyObject"]
-	path = tests/lib/proxyObject
-	url = git://github.com/lapistano/proxy-object.git
