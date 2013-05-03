@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Project {
     /**
      *
      */
-    class Project extends \TheSeer\phpDox\Application {
+    class Project {
 
         /**
          * @var string
@@ -262,11 +262,19 @@ namespace TheSeer\phpDox\Project {
             $indexDom = $this->index->export();
             $reportUnits = $this->saveUnits;
             foreach($this->saveUnits as $unit) {
-                $indexNode = $indexDom->queryOne(
-                        sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]',
-                        $unit->getNamespace(),
-                        $unit->getLocalName())
-                );
+                /** @var AbstractUnitObject $unit  */
+                $indexNode = $this->index->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName());
+                if (!$indexNode) {
+                    throw new ProjectException(
+                        sprintf(
+                            "Internal Error: Unit '%s' not found in index (ns: %s, n: %s).",
+                            $unit->getName(),
+                            $unit->getNamespace(),
+                            $unit->getLocalName()
+                        ),
+                        ProjectException::UnitNotFoundInIndex
+                    );
+                }
                 $name = str_replace('\\', '_', $unit->getName());
                 $dom = $unit->export();
                 $dom->formatOutput = TRUE;
@@ -305,34 +313,15 @@ namespace TheSeer\phpDox\Project {
             $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
             $extends = $dom->queryOne('//phpdox:extends');
             if ($extends instanceof fDOMElement) {
-                $unitNode = $this->index->findUnitNodeByName(
-                    $extends->getAttribute('namespace'), $extends->getAttribute('name')
-                );
-                if ($unitNode) {
-                    $unitDom = new fDOMDocument();
-                    $unitDom->load($this->xmlDir . '/' . $unitNode->getAttribute('xml'));
-                    $unitDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-                    if ($unitDom->documentElement->nodeName == 'class') {
-                        $unit = new ClassObject();
-                    } else {
-                        $unit = new TraitObject();
-                    }
-                    $unit->import($unitDom);
-                    $affected[$extends->getAttribute('full')] = $unit;
-                }
+                try {
+                    $affected[$extends->getAttribute('full')] = $this->getUnitByName($extends->getAttribute('full'));
+                } catch (ProjectException $e) {}
             }
             $implements = $dom->query('//phpdox:implements');
             foreach($implements as $implement) {
-                $unitNode = $this->index->findUnitNodeByName(
-                    $implement->getAttribute('namespace'), $implement->getAttribute('name')
-                );
-                if ($unitNode) {
-                    $unitDom = new fDOMDocument();
-                    $unitDom->load($this->xmlDir . '/' . $unitNode->getAttribute('xml'));
-                    $unit = new InterfaceObject();
-                    $unit->import($unitDom);
-                    $affected[$implement->getAttribute('full')] = $unit;
-                }
+                try {
+                    $affected[$implement->getAttribute('full')] = $this->getUnitByName($implement->getAttribute('full'));
+                } catch (ProjectException $e) {}
             }
             return $affected;
         }
@@ -376,5 +365,9 @@ namespace TheSeer\phpDox\Project {
     }
 
 
-    class ProjectException extends \Exception {}
+    class ProjectException extends \Exception {
+
+        const UnitNotFoundInIndex = 1;
+
+    }
 }
