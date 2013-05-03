@@ -85,6 +85,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\project\\abstractvariableobject' => '/project/AbstractVariableObject.php',
                 'theseer\\phpdox\\project\\classobject' => '/project/ClassObject.php',
                 'theseer\\phpdox\\project\\constantobject' => '/project/ConstantObject.php',
+                'theseer\\phpdox\\project\\dependency' => '/project/Dependency.php',
                 'theseer\\phpdox\\project\\domcollectioninterface' => '/project/DOMCollectionInterface.php',
                 'theseer\\phpdox\\project\\indexcollection' => '/project/IndexCollection.php',
                 'theseer\\phpdox\\project\\indexcollectionexception' => '/project/IndexCollection.php',

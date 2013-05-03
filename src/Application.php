@@ -32,6 +32,7 @@
  */
 namespace TheSeer\phpDox {
 
+    use TheSeer\phpDox\Collector\InheritanceResolver;
     use \Theseer\DirectoryScanner\IncludeExcludeFilterIterator as Scanner;
     use \TheSeer\fDom\fDomDocument;
 
@@ -140,10 +141,17 @@ namespace TheSeer\phpDox {
             }
             $changed = $project->save();
             if ($config->doResolveInheritance()) {
-                $this->factory->getInstanceFor('InheritanceResolver')->resolve($changed, $project, $config->getInheritanceConfig());
+                /** @var $resolver InheritanceResolver */
+                $resolver = $this->factory->getInstanceFor('InheritanceResolver');
+                $resolver->resolve($changed, $project, $config->getInheritanceConfig());
+
+                if ($resolver->hasUnresolved()) {
+                    $this->logger->log('The following unit(s) had missing dependencies during inheritance resolution:');
+                    foreach($resolver->getUnresolved() as $class => $missing) {
+                        $this->logger->log(' - ' . $class . ' (missing ' . $missing . ')');
+                    }
+                }
             }
-
-
             $this->logger->log('Collector process completed');
         }
 

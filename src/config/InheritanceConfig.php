@@ -50,6 +50,21 @@ namespace TheSeer\phpDox {
             $this->ctx = $ctx;
         }
 
+        public function getDependencies() {
+            if (!$this->ctx) {
+                return array();
+            }
+            $list = array();
+            if (!$this->ctx->hasAttribute('php')) {
+                $list[] = 'php.phpdox.phar';
+            } else {
+                $list[] = $this->ctx->getAttribute('php');
+            }
+            foreach($this->ctx->query('cfg:dependency[@type="phar"]') as $node) {
+                $list[] = $node->getAttribute('path');
+            }
+            return $list;
+        }
     }
 
 }

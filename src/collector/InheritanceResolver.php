@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\ProgressLogger;
+    use TheSeer\phpDox\Project\Dependency;
     use TheSeer\phpDox\Project\Project;
     use TheSeer\phpDox\Project\AbstractUnitObject;
     use TheSeer\phpDox\InheritanceConfig;
@@ -63,6 +64,13 @@ namespace TheSeer\phpDox\Collector {
          */
         private $config;
 
+        private $dependencyStack = array();
+
+        /**
+         * @var array
+         */
+        private $unresolved = array();
+
         public function __construct(ProgressLogger $logger) {
             $this->logger = $logger;
         }
@@ -79,60 +87,73 @@ namespace TheSeer\phpDox\Collector {
             $this->project = $project;
             $this->config = $config;
 
+            $this->setupDependencies();
+
             foreach($changed as $unit) {
+                $this->logger->progress('processed');
                 /** @var AbstractUnitObject $unit */
                 if ($unit->hasExtends()) {
                     try {
                         $extends = $unit->getExtends();
-                        $extendedUnit = $this->project->getUnitByName($extends);
+                        $extendedUnit = $this->getUnitByName($extends);
                         $this->processExtends($unit, $extendedUnit);
                     } catch (ProjectException $e) {
-                        $this->logger->log(
-                            sprintf(
-                                "Unit '%s' extends '%s' but definition not found.",
-                                $unit->getName(), $extends
-                            )
-                        );
+                        $this->unresolved[$unit->getName()] = $extends;
                     }
                 }
-/*
-                $implements = $unit->getImplements();
-                foreach($implements as $implement) {
-                    $interface = $this->project->findUnitByName($implement->getAttribute('namespace'), $implement->getAttribute('name'));
-                    $unit->markInterfaceMethods($interface);
-                    $interface->addImplementor($unit);
-                }
-*/
             }
 
             $this->project->save();
             $this->logger->completed();
         }
 
-        private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends, AbstractUnitObject $reference = null) {
+        public function hasUnresolved() {
+            return count($this->unresolved) > 0;
+        }
+
+        public function getUnresolved() {
+            return $this->unresolved;
+        }
+
+        private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends) {
             $this->project->registerForSaving($unit);
             $this->project->registerForSaving($extends);
 
-            $unit->importExports($extends, $reference !== NULL ? $reference : $unit);
+            $extends->addExtender($unit);
+            $unit->importExports($extends);
 
             if ($extends->hasExtends()) {
-                $extendedUnit = $this->project->getUnitByName($extends->getExtends());
-                $this->processExtends($unit, $extendedUnit, $extendedUnit);
+                try {
+                    $extendedUnit = $this->getUnitByName($extends->getExtends());
+                    $this->processExtends($unit, $extendedUnit, $extendedUnit);
+                } catch (ProjectException $e) {
+                    $this->unresolved[$unit->getName()] = $extends->getExtends();
+                }
             }
+        }
 
-            //var_dump('processExtends');
-            /*
-            $parent = $this->project->findUnitByName($extends->getAttribute('namespace'), $extends->getAttribute('name'));
-            if (!$parent) {
-                return;
+        private function setupDependencies() {
+            $php = require $this->config->getPHPPharPath();
+
+            $this->dependencyStack = array(
+                $this->project,
+                new Dependency($dom, $this->project)
+            );
+            if ($this->config->hasDependencies()) {
+                // add others
             }
-            $parent->addExtender($unit);
-            $unit->importClassMethods($parent);
-            $extends = $parent->getExtends();
-            if ($extends) {
-                $this->processExtends($unit, $extends);
+        }
+
+        private function getUnitByName($name) {
+            foreach($this->dependencyStack as $dependency) {
+                try {
+                    $res = $dependency->getUnitByName($name);
+                    if ($res) {
+                        return $res;
+                    }
+                } catch (\Exception $e) {}
             }
-            */
+            throw new ProjectException("No unit with name '$name' found");
         }
 
     }

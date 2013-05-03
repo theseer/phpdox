@@ -37,6 +37,7 @@
  */
 namespace TheSeer\phpDox {
 
+    use TheSeer\phpDox\Collector\InheritanceResolver;
     use TheSeer\phpDox\Generator\Generator;
     use TheSeer\phpDox\Collector\Collector;
     use TheSeer\phpDox\Collector\ClassBuilder;
@@ -202,14 +203,6 @@ namespace TheSeer\phpDox {
         }
 
         /**
-         * @param $xmlDir
-         * @return Resolver
-         */
-        protected function getResolver($xmlDir) {
-            return new Resolver($xmlDir);
-        }
-
-        /**
          * @param string|array $include
          * @param string|array $exclude
          * @return mixed|object
@@ -243,35 +236,17 @@ namespace TheSeer\phpDox {
         }
 
         /**
-         * @return Collector\InheritanceResolver
+         * @return InheritanceResolver
          */
         protected function getInheritanceResolver() {
             return new \TheSeer\phpDox\Collector\InheritanceResolver($this->getLogger());
         }
 
         /**
-         * @return Generator\Generator
+         * @return Generator
          */
         protected function getGenerator() {
             return new Generator($this->getInstanceFor('EventFactory'), $this->getLogger());
-        }
-
-        /**
-         * @param array $aliasMap
-         * @param boolean $public
-         * @param string $encoding
-         * @return Collector\ClassBuilder
-         */
-        protected function getClassBuilder(array $aliasMap, $public, $encoding) {
-            return new ClassBuilder($this->getDocblockParser(), $aliasMap, $public, $encoding);
-        }
-
-        /**
-         * @param AbstractGenerator $generator
-         * @return Service
-         */
-        protected function getService(AbstractGenerator $generator) {
-            return new Service($generator, $this->getContainer($generator->getXMLDirectory()));
         }
 
         /**

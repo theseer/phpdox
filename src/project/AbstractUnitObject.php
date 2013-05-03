@@ -155,6 +155,9 @@ namespace TheSeer\phpDox\Project {
          */
         public function getSourceFilename() {
             $file = $this->rootNode->queryOne('phpdox:file');
+            if (!$file) {
+                return '';
+            }
             return $file->getAttribute('path') . '/' . $file->getAttribute('file');
         }
 
