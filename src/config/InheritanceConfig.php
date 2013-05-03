@@ -50,9 +50,22 @@ namespace TheSeer\phpDox {
             $this->ctx = $ctx;
         }
 
+        public function getDependencyDirectory() {
+            if (PHPDOX_VERSION == '%development%' || defined('PHPDOX_PHAR')) {
+                $default = __DIR__ . '/../../dependencies';
+            } else {
+                $default = __DIR__ . '/../../../dependencies';
+            }
+            if (!$this->ctx) {
+                return $default;
+            }
+            return $this->ctx->getAttribute('basedir', $default);
+        }
+
+
         public function getDependencies() {
             if (!$this->ctx) {
-                return array();
+                return array('php.phpdox.phar');
             }
             $list = array();
             if (!$this->ctx->hasAttribute('php')) {

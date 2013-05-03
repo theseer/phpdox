@@ -133,14 +133,13 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function setupDependencies() {
-            $php = require $this->config->getPHPPharPath();
-
             $this->dependencyStack = array(
                 $this->project,
-                new Dependency($dom, $this->project)
             );
-            if ($this->config->hasDependencies()) {
-                // add others
+            $baseDir = $this->config->getDependencyDirectory();
+            foreach($this->config->getDependencies() as $dependency) {
+                $dom = require $baseDir . '/' . $dependency;
+                $this->dependencyStack[] = new Dependency($dom, $this->project);
             }
         }
 
