@@ -81,15 +81,6 @@ namespace TheSeer\phpDox\Tests\Integration {
         }
 
         /**
-         * @dataProvider getLoggerDataprovider
-         * @covers TheSeer\phpDox\Factory::getLogger
-         */
-        public function testGetLogger($expected, $argument) {
-            $factory = new Factory();
-            $this->assertInstanceOf($expected, $factory->getLogger($argument));
-        }
-
-        /**
          * @covers TheSeer\phpDox\Factory::getApplication
          */
         public function testGetApplication() {

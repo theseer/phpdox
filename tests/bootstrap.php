@@ -44,8 +44,6 @@ require_once __DIR__.'/phpDoxTestCase.php';
 
 // custom libraries
 require_once __DIR__.'/lib/proxyObject/bootstrap.php';
-require_once __DIR__ . '/../lib/staticReflection/src/main/php/pdepend/reflection/Autoloader.php';
-spl_autoload_register( array(new \pdepend\reflection\Autoloader(),'autoload'));
 
 // fixtures
 require_once __DIR__.'/data/classes/dummy.php';
