@@ -3,6 +3,7 @@ rm -f phpDox*.tgz
 mkdir -p tmp/TheSeer/phpDox/templates
 cp -r src/* tmp/TheSeer/phpDox
 cp -r templates/* tmp/TheSeer/phpDox/templates
+cp -r dependencies/* tmp/TheSeer/phpDox/dependencies
 cp phpdox.bat tmp
 cp phpdox.php tmp
 cd tmp
