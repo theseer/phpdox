@@ -115,6 +115,9 @@
         <copy todir="${basedir}/build/phar/_tmp/templates">
             <fileset dir="${basedir}/templates" />
         </copy>
+        <copy todir="${basedir}/build/phar/_tmp/dependencies">
+            <fileset dir="${basedir}/dependencies" />
+        </copy>
 
         <delete>
             <fileset dir="${basedir}/build/phar/_tmp">
