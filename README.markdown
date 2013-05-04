@@ -22,14 +22,18 @@ Requirements
 User Installation
 -----------------
 
-phpDox should be installed using the PEAR Installer, the backbone of the [PHP Extension and Application Repository](http://pear.php.net/) that provides a distribution system for PHP packages.
+phpDox is shipping as a selfcontained executable phar archive. You can grab your copy here:
+
+- [Release 0.5.0](http://phpdox.de/phpdox-0.5.phar)
+
+Alternativly, phpDox can be installed using the PEAR Installer, the backbone of the [PHP Extension and Application Repository](http://pear.php.net/) that provides a distribution system for PHP packages.
 
 Depending on your OS distribution and/or your PHP environment, you may need to install PEAR or update your existing PEAR installation before you can proceed with the following instructions. `sudo pear upgrade PEAR` usually suffices to upgrade an existing PEAR installation. The [PEAR Manual ](http://pear.php.net/manual/en/installation.getting.php) explains how to perform a fresh installation of PEAR.
 
 The following two commands (which you may have to run as `root`) are all that is required to install phpDox using the PEAR Installer:
 
     sudo pear config-set auto_discover 1
-    sudo pear install pear.netpirates.net/phpDox-0.4.0
+    sudo pear install pear.netpirates.net/phpDox-0.5.0
 
 This should take care of installing all the required dependencies for you.
 
