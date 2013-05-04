@@ -142,7 +142,7 @@ namespace TheSeer\phpDox\Collector {
                 if (!file_exists($idxName)) {
                     $this->logger->log("'$idxName' not found - skipping dependency");
                     continue;
-                }
+                }   
                 $dom = new fDOMDocument();
                 $dom->load($idxName);
                 $this->dependencyStack[] = new Dependency($dom, $this->project);
