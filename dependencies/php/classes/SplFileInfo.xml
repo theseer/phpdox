@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplFileInfo" namespace="" name="SplFileInfo">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new SplFileInfo object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file_name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="getATime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets last access time of the file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getBasename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the base name of the file"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="suffix" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getCTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the inode change time"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getExtension" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the file extension"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFileInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets an SplFileInfo object for the file"/>
+      <return type="SplFileInfo"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the filename"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getGroup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the file group"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getInode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the inode for the file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLinkTarget" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the target of a link">Gets the target of a filesystem link.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the last modified time"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getOwner" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the owner of the file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the path without filename"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPathInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets an SplFileInfo object for the path"/>
+      <return type="SplFileInfo"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getPathname" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the path to the file"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPerms" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets file permissions"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getRealPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets absolute path to file"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets file size"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets file type"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="isDir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if the file is a directory"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isExecutable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if the file is executable"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if the object references a regular file"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isLink" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if the file is a link"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isReadable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if file is readable"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isWritable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if the entry is writable"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="openFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets an SplFileObject object for the file"/>
+      <return type="SplFileObject"/>
+    </docblock>
+    <parameter name="open_mode" optional="true" byreference="false" type="string"/>
+    <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
+  </method>
+  <method name="setFileClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the class name used with SplFileInfo::openFile"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setInfoClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the class used with getFileInfo and getPathInfo"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the path to the file as a string"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

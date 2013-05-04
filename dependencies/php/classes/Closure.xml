@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Closure" namespace="" name="Closure">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructor that disallows instantiation"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Duplicates a closure with a specific bound object and class scope&#10;  "/>
+      <return type="Closure"/>
+    </docblock>
+    <parameter name="closure" optional="false" byreference="false" type="object" class="Closure"/>
+    <parameter name="newthis" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="newscope" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="bindTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Duplicates the closure with a new bound object and class scope&#10;  ">Create and return a new anonymous function with the same body and bound variables as this one, but possibly with a different bound object and a new class scope.</description>
+      <return type="Closure"/>
+    </docblock>
+    <parameter name="newthis" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="newscope" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

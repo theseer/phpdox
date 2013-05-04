@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SoapClient" namespace="" name="SoapClient">
+  <method name="__call" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calls a SOAP function (deprecated)"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="arguments" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="SoapClient" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="SoapClient constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="wsdl" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="__doRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Performs a SOAP request">Performs SOAP request over HTTP.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="string"/>
+    <parameter name="location" optional="false" byreference="false" type="string"/>
+    <parameter name="action" optional="false" byreference="false" type="string"/>
+    <parameter name="version" optional="false" byreference="false" type="int"/>
+    <parameter name="one_way" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="__getFunctions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns list of available SOAP functions">Returns an array of functions described in the WSDL for the Web service.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="__getLastRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns last SOAP request">Returns the XML sent in the last SOAP request.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__getLastRequestHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the SOAP headers from the last request">Returns the SOAP headers from the last request.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__getLastResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns last SOAP response">Returns the XML received in the last SOAP response.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__getLastResponseHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the SOAP headers from the last response">Returns the SOAP headers from the last response.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__getTypes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a list of SOAP types">Returns an array of types described in the WSDL for the Web service.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="__setCookie" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __setCookie purpose">Defines a cookie to be sent along with the SOAP requests.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="__setLocation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the location of the Web service to use">Sets the endpoint URL that will be touched by following SOAP requests. This is equivalent to specifying the location option when constructing the SoapClient.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="new_location" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="__setSoapHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets SOAP headers for subsequent calls">Defines headers to be sent along with the SOAP requests.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="soapheaders" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="__soapCall" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calls a SOAP function">This is a low level API function that is used to make a SOAP call. Usually, in WSDL mode, SOAP functions can be called as methods of the SoapClient object. This method is useful in non-WSDL mode when soapaction is unknown, uri differs from the default or when sending and/or receiving SOAP Headers.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="arguments" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="input_headers" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="output_headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="SoapClient" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="SoapClient constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="wsdl" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

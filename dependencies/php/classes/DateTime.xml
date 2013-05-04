@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DateTime" namespace="" name="DateTime">
+  <constant name="ATOM" value="&quot;Y-m-d\TH:i:sP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="COOKIE" value="&quot;l, d-M-y H:i:s T&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="ISO8601" value="&quot;Y-m-d\TH:i:sO&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC822" value="&quot;D, d M y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC850" value="&quot;l, d-M-y H:i:s T&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC1036" value="&quot;D, d M y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC1123" value="&quot;D, d M Y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC2822" value="&quot;D, d M Y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC3339" value="&quot;Y-m-d\TH:i:sP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RSS" value="&quot;D, d M Y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="W3C" value="&quot;Y-m-d\TH:i:sP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns new DateTime object">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="time" optional="true" byreference="false" type="string"/>
+    <parameter name="timezone" optional="true" byreference="false" type="object" class="DateTimeZone"/>
+  </constructor>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Adds an amount of days, months, years, hours, minutes and seconds to a&#10;   DateTime object&#10;  ">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
+  </method>
+  <method name="createFromFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns new DateTime object formatted according to the specified format">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+    <parameter name="time" optional="false" byreference="false" type="string"/>
+    <parameter name="timezone" optional="true" byreference="false" type="object" class="DateTimeZone"/>
+  </method>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the difference between two DateTime objects">Object oriented style</description>
+      <return type="DateInterval"/>
+    </docblock>
+    <parameter name="datetime2" optional="false" byreference="false" type="object" class="DateTime"/>
+    <parameter name="absolute" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="format" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns date formatted according to given format">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getLastErrors" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the warnings and errors">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the timezone offset">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the Unix timestamp">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimezone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return time zone relative to given DateTime">Object oriented style</description>
+      <return type="DateTimeZone"/>
+    </docblock>
+  </method>
+  <method name="modify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alters the timestamp">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="modify" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__set_state" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __set_state handler"/>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="array" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setDate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the date">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="month" optional="false" byreference="false" type="int"/>
+    <parameter name="day" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setISODate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the ISO date">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="week" optional="false" byreference="false" type="int"/>
+    <parameter name="day" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the time">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="hour" optional="false" byreference="false" type="int"/>
+    <parameter name="minute" optional="false" byreference="false" type="int"/>
+    <parameter name="second" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the date and time based on an Unix timestamp">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="unixtimestamp" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimezone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the time zone for the DateTime object">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="timezone" optional="false" byreference="false" type="object" class="DateTimeZone"/>
+  </method>
+  <method name="sub" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Subtracts an amount of days, months, years, hours, minutes and seconds from&#10;   a DateTime object&#10;  ">Object oriented style</description>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __wakeup handler"/>
+      <return type="DateTime"/>
+    </docblock>
+  </method>
+</class>

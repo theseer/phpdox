@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.de/src#" full="Serializable" namespace="" name="Serializable">
+  <method name="serialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="String representation of object">Should return the string representation of the object.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs the object">Called during unserialization of the object.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+</interface>

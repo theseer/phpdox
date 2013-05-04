@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="TokyoTyrantIterator" namespace="" name="TokyoTyrantIterator">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct an iterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the current value"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current key"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to next key"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewinds the iterator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewinds the iterator"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="number"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="increment" optional="false" byreference="false" type="object" class="number"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="connectUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="uri" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="ext" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="fwmKeys" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+    <parameter name="max_recs" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrantIterator"/>
+    </docblock>
+  </method>
+  <method name="num" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="out" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="put" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putCat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putKeep" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putNr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putShl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="restore" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="log_dir" optional="false" byreference="false" type="string"/>
+    <parameter name="timestamp" optional="false" byreference="false" type="int"/>
+    <parameter name="check_consistency" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setMaster" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+    <parameter name="timestamp" optional="false" byreference="false" type="int"/>
+    <parameter name="check_consistency" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="size" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="sync" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="tune" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="vanish" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+</class>

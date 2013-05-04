@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFText" namespace="" name="SWFText">
+  <method name="addString" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a string"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addUTF8String" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Writes the given text into this SWFText object at the current pen position,&#10; using the current font, height, spacing, and color"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a new SWFText object"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getAscent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the ascent of the current font at its current size, or 0 if not available"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getDescent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the descent of the current font at its current size, or 0 if not available"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getLeading" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the leading of the current font at its current size, or 0 if not available"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getUTF8Width" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="calculates the width of the given string in this text objects current font and size"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Computes string's width"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="moveTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves the pen"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the current text color"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="red" optional="false" byreference="false" type="int"/>
+    <parameter name="green" optional="false" byreference="false" type="int"/>
+    <parameter name="blue" optional="false" byreference="false" type="int"/>
+    <parameter name="a" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the current font"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="font" optional="false" byreference="false" type="object" class="SWFFont"/>
+  </method>
+  <method name="setHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the current font height"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setSpacing" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the current font spacing"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="spacing" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

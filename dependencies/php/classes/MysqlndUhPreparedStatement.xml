@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MysqlndUhPreparedStatement" namespace="" name="MysqlndUhPreparedStatement">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Executes a prepared Query"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="statement" optional="false" byreference="false" type="object" class="mysqlnd_prepared_statement"/>
+  </method>
+  <method name="prepare" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepare an SQL statement for execution"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="statement" optional="false" byreference="false" type="object" class="mysqlnd_prepared_statement"/>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFFont" namespace="" name="SWFFont">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Loads a font definition">If filename is the name of an FDB file (i.e., it ends in ".fdb"), load the font definition found in said file. Otherwise, create a browser-defined font reference.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="getAscent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the ascent of the font, or 0 if not available"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getDescent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the descent of the font, or 0 if not available"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getLeading" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the leading of the font, or 0 if not available"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getShape" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the glyph shape of a char as a text string"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="code" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getUTF8Width" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Calculates the width of the given string in this font at full height"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the string's width"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

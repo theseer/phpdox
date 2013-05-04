@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MysqlndUhConnection" namespace="" name="MysqlndUhConnection">
+  <method name="changeUser" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Changes the user of the specified mysqlnd database connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_onnection"/>
+    <parameter name="user" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="false" byreference="false" type="string"/>
+    <parameter name="database" optional="false" byreference="false" type="string"/>
+    <parameter name="silent" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="passwd_len" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="charsetName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the default character set for the database connection"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes a previously opened database connection">Closes a previously opened database connection.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="close_type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Open a new connection to the MySQL server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="use&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="false" byreference="false" type="string"/>
+    <parameter name="database" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+    <parameter name="socket" optional="false" byreference="false" type="string"/>
+    <parameter name="mysql_flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="endPSession" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="End a persistent connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="escapeString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Escapes special characters in a string for use in an SQL statement,&#10;   taking into account the current charset of the connection&#10;  "/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="escape_string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAffectedRows" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the number of affected rows in a previous MySQL operation"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getErrorNumber" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the error code for the most recent function call"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getErrorString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a string description of the last error"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getFieldCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of columns for the most recent query"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getHostInformation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a string representing the type of connection used"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getLastInsertId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the auto generated id used in the last query."/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getLastMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves information about the most recently executed query"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getProtocolInformation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the version of the MySQL protocol used"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getServerInformation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the version of the MySQL server"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getServerStatistics" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the current system status"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getServerVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the version of the MySQL server as an integer"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getSqlstate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the SQLSTATE error from previous MySQL operation"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getStatistics" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns statistics about the client connection."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getThreadId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the thread ID for the current connection"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="getWarningCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of warnings from the last query for the given link"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="init" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initialize mysqlnd connection">Initialize mysqlnd connection. This is an mysqlnd internal call to initialize the connection object.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="killConnection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Asks the server to kill a MySQL thread"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="pid" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="listFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="List MySQL table fields"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="table" optional="false" byreference="false" type="string"/>
+    <parameter name="achtung_wild" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="listMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Wrapper for assorted list commands"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+    <parameter name="achtung_wild" optional="false" byreference="false" type="string"/>
+    <parameter name="par1" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="moreResults" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if there are any more query results from a multi query"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="nextResult" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepare next result from multi_query"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="ping" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pings a server connection, or tries to reconnect if the connection has gone down"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Performs a query on the database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="queryReadResultsetHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read a result set header"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="mysqlnd_stmt" optional="false" byreference="false" type="object" class="mysqlnd_statement"/>
+  </method>
+  <method name="reapQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get result from async query"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="refreshServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Flush or reset tables and caches"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="restartPSession" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Restart a persistent mysqlnd connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="selectDb" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Selects the default database for database queries"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="database" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendClose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a close command to MySQL"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="sendQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a query to MySQL"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="serverDumpDebugInformation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Dump debugging information into the log for the MySQL server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="setAutocommit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turns on or off auto-commiting database modifications"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setCharset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the default client character set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="charset" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setClientOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a client option"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setServerOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a server option"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="shutdownServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The shutdownServer purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="MYSQLND_UH_RES_MYSQLND_NAME" optional="false" byreference="false" type="string"/>
+    <parameter name="&quot;level&quot;" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="simpleCommand" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a basic COM_* command"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="command" optional="false" byreference="false" type="int"/>
+    <parameter name="arg" optional="false" byreference="false" type="string"/>
+    <parameter name="ok_packet" optional="false" byreference="false" type="int"/>
+    <parameter name="silent" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="ignore_upsert_status" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="simpleCommandHandleResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Process a response for a basic COM_* command send to the client"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="ok_packet" optional="false" byreference="false" type="int"/>
+    <parameter name="silent" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="command" optional="false" byreference="false" type="int"/>
+    <parameter name="ignore_upsert_status" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="sslSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Used for establishing secure connections using SSL"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="cert" optional="false" byreference="false" type="string"/>
+    <parameter name="ca" optional="false" byreference="false" type="string"/>
+    <parameter name="capath" optional="false" byreference="false" type="string"/>
+    <parameter name="cipher" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stmtInit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initializes a statement and returns a resource for use with mysqli_statement::prepare"/>
+      <return type="resource"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="storeResult" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Transfers a result set from the last query"/>
+      <return type="resource"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="txCommit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Commits the current transaction"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="txRollback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rolls back current transaction"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+  <method name="useResult" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initiate a result set retrieval"/>
+      <return type="resource"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
+  </method>
+</class>

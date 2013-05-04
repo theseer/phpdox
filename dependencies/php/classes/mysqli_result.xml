@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="mysqli_result" namespace="" name="mysqli_result">
+  <implements name="Traversable" full="Traversable"/>
+  <member name="mysqli_result-&gt;current_field" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_result-&gt;field_count" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_result-&gt;lengths" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <member name="mysqli_result-&gt;num_rows" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <method name="data_seek" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adjusts the result pointer to an arbitary row in the result">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="fetch_all" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetches all result rows as an associative array, a numeric array, or both">Object oriented style</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="resulttype" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fetch_array" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch a result row as an associative, a numeric array, or both">Object oriented style</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="resulttype" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fetch_assoc" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch a result row as an associative array">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="fetch_field_direct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch meta-data for a single field">Object oriented style</description>
+      <return type="object"/>
+    </docblock>
+    <parameter name="fieldnr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="fetch_field" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the next field in the result set">Object oriented style</description>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="fetch_fields" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an array of objects representing the fields in a result set">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="fetch_object" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current row of a result set as an object">Object oriented style</description>
+      <return type="object"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+    <parameter name="params" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="fetch_row" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get a result row as an enumerated array">Object oriented style</description>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="field_seek" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set result pointer to a specified field offset">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldnr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="free" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Frees the memory associated with a result">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

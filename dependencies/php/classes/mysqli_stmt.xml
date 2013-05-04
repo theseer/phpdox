@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="mysqli_stmt" namespace="" name="mysqli_stmt">
+  <member name="mysqli_stmt-&gt;affected_rows" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;errno" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;error_list" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;error" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;field_count" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;insert_id" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;num_rows" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;param_count" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli_stmt-&gt;sqlstate" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <method name="attr_get" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Used to get the current value of a statement attribute">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="attr_set" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Used to modify the behavior of a prepared statement">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="bind_param" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Binds variables to a prepared statement as parameters">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="types" optional="false" byreference="false" type="string"/>
+    <parameter name="var1" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="bind_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Binds variables to a prepared statement for result storage">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="var1" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="close" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Closes a prepared statement">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="data_seek" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Seeks to an arbitrary row in statement result set">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="execute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Executes a prepared Query">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="fetch" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch results from a prepared statement into the bound variables">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="free_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Frees stored result memory for the given statement handle">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="get_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets a result set from a prepared statement">Object oriented style</description>
+      <return type="mysqli_result"/>
+    </docblock>
+  </method>
+  <method name="get_warnings" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get result of SHOW WARNINGS">Object oriented style</description>
+      <return type="object"/>
+    </docblock>
+    <parameter name="stmt" optional="false" byreference="false" type="object" class="mysqli_stmt"/>
+  </method>
+  <method name="prepare" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Prepare an SQL statement for execution">Object oriented style</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="reset" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Resets a prepared statement">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="result_metadata" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns result set metadata from a prepared statement">Object oriented style</description>
+      <return type="mysqli_result"/>
+    </docblock>
+  </method>
+  <method name="send_long_data" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Send data in blocks">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="param_nr" optional="false" byreference="false" type="int"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="store_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Transfers a result set from a prepared statement">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

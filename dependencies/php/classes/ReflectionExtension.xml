@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ReflectionExtension" namespace="" name="ReflectionExtension">
+  <implements name="Reflector" full="Reflector"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the extension, same as calling the &#10;       ReflectionExtension::getName &#10;       method.&#10;      "/>
+    </docblock>
+  </member>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Clones"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructs a ReflectionExtension"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="export" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Export"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="return" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getClasses" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets classes"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getClassNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets class names"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getConstants" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets constants"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getDependencies" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets dependencies"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFunctions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets extension functions"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getINIEntries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets extension ini entries"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets extension name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets extension version"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="info" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Print extension info"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isPersistent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether this extension is persistent"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isTemporary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether this extension is temporary"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="To string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="GearmanJob" namespace="" name="GearmanJob">
+  <method name="complete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send the result and complete status (deprecated)">Sends result data and the complete status update for this job.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="result" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a GearmanJob instance"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="data" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data for a running job (deprecated)">Sends data to the job server (and any listening clients) for this job.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="exception" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send exception for running job (deprecated)">Sends the supplied exception when this job is running.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="exception" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="fail" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send fail status (deprecated)">Sends failure status for this job, indicating that the job failed in a known way (as opposed to failing due to a thrown exception).</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="functionName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get function name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="handle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the job handle"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="returnCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last return code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="sendComplete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send the result and complete status"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="result" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data for a running job"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendException" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send exception for running job (exception)"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="exception" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendFail" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send fail status"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="sendStatus" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send status"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="numerator" optional="false" byreference="false" type="int"/>
+    <parameter name="denominator" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="sendWarning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send a warning"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="warning" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setReturn" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a return value"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="gearman_return_t" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send status (deprecated)">Sends status information to the job server and any listening clients. Use this to specify what percentage of the job has been completed.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="numerator" optional="false" byreference="false" type="int"/>
+    <parameter name="denominator" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="unique" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the unique identifier"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="warning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send a warning (deprecated)">Sends a warning for this job while it is running.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="warning" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="workload" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get workload"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="workloadSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get size of work load"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

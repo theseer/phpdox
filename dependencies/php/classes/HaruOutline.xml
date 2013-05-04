@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruOutline" namespace="" name="HaruOutline">
+  <method name="setDestination" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the destination for the outline"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="destination" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="setOpened" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the initial state of the outline"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="opened" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

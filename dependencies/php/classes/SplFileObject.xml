@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplFileObject" namespace="" name="SplFileObject">
+  <implements name="RecursiveIterator" full="RecursiveIterator"/>
+  <constant name="DROP_NEW_LINE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="READ_AHEAD" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP_EMPTY" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="READ_CSV" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new file object."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="open_mode" optional="true" byreference="false" type="string"/>
+    <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve current line of file"/>
+      <return type="string|array"/>
+    </docblock>
+  </method>
+  <method name="eof" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reached end of file"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="fflush" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Flushes the output to the file"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="fgetc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets character from file"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="fgetcsv" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets line from file and parse as CSV fields"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="delimiter" optional="true" byreference="false" type="string"/>
+    <parameter name="enclosure" optional="true" byreference="false" type="string"/>
+    <parameter name="escape" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="fgets" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets line from file"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="fgetss" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets line from file and strip HTML tags"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="allowable_tags" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="flock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Portable file locking"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="operation" optional="false" byreference="false" type="int"/>
+    <parameter name="wouldblock" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fpassthru" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Output all remaining data on a file pointer">Reads to EOF on the given file pointer from the current position and writes the results to the output buffer.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="fputcsv" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Output a field array as a CSV line"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="fields" optional="false" byreference="false" type="string"/>
+    <parameter name="delimiter" optional="true" byreference="false" type="string"/>
+    <parameter name="enclosure" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="fscanf" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Parses input from file according to a format">Reads a line from the file and interprets it according to the specified format, which is described in the documentation for sprintf.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="fseek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Seek to a position"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+    <parameter name="whence" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fstat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets information about the file"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="ftell" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return current file position"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="ftruncate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Truncates the file to a given length"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="fwrite" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write to file"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="str" optional="false" byreference="false" type="string"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="No purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getCsvControl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the delimiter and enclosure character for CSV"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets flags for the SplFileObject"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMaxLineLen" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get maximum line length"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="SplFileObject does not have children"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get line number">Gets the current line number.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read next line"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind the file to the first line"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="seek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Seek to specified line"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="line_pos" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setCsvControl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the delimiter and enclosure character for CSV"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="delimiter" optional="true" byreference="false" type="string"/>
+    <parameter name="enclosure" optional="true" byreference="false" type="string"/>
+    <parameter name="escape" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets flags for the SplFileObject"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaxLineLen" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set maximum line length"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="max_len" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Not at EOF"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file_name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="getATime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getBasename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="suffix" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getCTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getExtension" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFileInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SplFileInfo"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getGroup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getInode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLinkTarget" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getOwner" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPathInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SplFileInfo"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getPathname" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPerms" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getRealPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="isDir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isExecutable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isLink" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isReadable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isWritable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="openFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SplFileObject"/>
+    </docblock>
+    <parameter name="open_mode" optional="true" byreference="false" type="string"/>
+    <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
+  </method>
+  <method name="setFileClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setInfoClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

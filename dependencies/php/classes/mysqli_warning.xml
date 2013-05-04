@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="mysqli_warning" namespace="" name="mysqli_warning">
+  <member name="message" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Message string"/>
+    </docblock>
+  </member>
+  <member name="sqlstate" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="SQL state"/>
+    </docblock>
+  </member>
+  <member name="errno" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Error number"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The next purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

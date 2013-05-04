@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplFixedArray" namespace="" name="SplFixedArray">
+  <implements name="Iterator" full="Iterator"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new fixed array"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the size of the array"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return current array entry"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="fromArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Import a PHP array in a SplFixedArray instance"/>
+      <return type="SplFixedArray"/>
+    </docblock>
+    <parameter name="array" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="save_indexes" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the size of the array"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return current array index"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to next entry"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the requested index exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value at the specified index"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a new value at a specified index"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="newval" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unsets the value at the specified $index"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind iterator back to the start"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change the size of an array"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a PHP array from the fixed array"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether the array contains more elements"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

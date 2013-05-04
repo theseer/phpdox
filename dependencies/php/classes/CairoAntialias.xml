@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoAntialias" namespace="" name="CairoAntialias">
+  <constant name="MODE_DEFAULT" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MODE_NONE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MODE_GRAY" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MODE_SUBPIXEL" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

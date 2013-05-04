@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Response_Abstract" namespace="" name="Yaf_Response_Abstract">
+  <member name="_header" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_body" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_sendheader" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="appendBody" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The appendBody purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="clearBody" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The clearBody purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="clearHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The clearHeaders purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __clone purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __destruct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="getBody" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getBody purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getHeader purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="prependBody" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The prependBody purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="response" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The response purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setAllHeaders" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="The setAllHeaders purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setBody" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setBody purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setHeader purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setRedirect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setRedirect purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __toString purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

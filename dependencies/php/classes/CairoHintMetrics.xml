@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoHintMetrics" namespace="" name="CairoHintMetrics">
+  <constant name="METRICS_DEFAULT" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="METRICS_OFF" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="METRICS_ON" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

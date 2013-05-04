@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SimpleXMLElement" namespace="" name="SimpleXMLElement">
+  <implements name="Traversable" full="Traversable"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="&#10;   Creates a new SimpleXMLElement object&#10;  "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+    <parameter name="data_is_url" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="ns" optional="true" byreference="false" type="string"/>
+    <parameter name="is_prefix" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+  <method name="addAttribute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Adds an attribute to the SimpleXML element&#10;  "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="namespace" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Adds a child element to the XML node&#10;  "/>
+      <return type="SimpleXMLElement"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="namespace" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="asXML" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Return a well-formed XML string based on SimpleXML element&#10;  "/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="attributes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Identifies an element's attributes"/>
+      <return type="SimpleXMLElement"/>
+    </docblock>
+    <parameter name="ns" optional="true" byreference="false" type="string"/>
+    <parameter name="is_prefix" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="children" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Finds children of given node"/>
+      <return type="SimpleXMLElement"/>
+    </docblock>
+    <parameter name="ns" optional="true" byreference="false" type="string"/>
+    <parameter name="is_prefix" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Counts the children of an element"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getDocNamespaces" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns namespaces declared in document&#10;  "/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="recursive" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the name of the XML element"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNamespaces" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns namespaces used in document&#10;  "/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="recursive" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="registerXPathNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Creates a prefix/ns context for the next XPath query&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+    <parameter name="ns" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="xpath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Runs XPath query on XML data"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

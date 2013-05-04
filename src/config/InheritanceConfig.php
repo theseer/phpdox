@@ -45,39 +45,32 @@ namespace TheSeer\phpDox {
         protected $ctx;
         protected $config;
 
-        public function __construct(CollectorConfig $config, fDOMElement $ctx = null) {
+        public function __construct(CollectorConfig $config, fDOMElement $ctx = NULL) {
             $this->config = $config;
             $this->ctx = $ctx;
         }
 
-        public function getDependencyDirectory() {
+        /**
+         * @return array
+         */
+        public function getDependencyDirectories() {
             if (PHPDOX_VERSION == '%development%' || defined('PHPDOX_PHAR')) {
-                $default = __DIR__ . '/../../dependencies';
+                $default = __DIR__ . '/../../dependencies/php';
             } else {
-                $default = __DIR__ . '/../../../dependencies';
+                $default = __DIR__ . '/../dependencies/php';
             }
+            $list = array($default);
             if (!$this->ctx) {
-                return $default;
+                return $list;
             }
-            return $this->ctx->getAttribute('basedir', $default);
-        }
-
-
-        public function getDependencies() {
-            if (!$this->ctx) {
-                return array('php.phpdox.phar');
-            }
-            $list = array();
-            if (!$this->ctx->hasAttribute('php')) {
-                $list[] = 'php.phpdox.phar';
-            } else {
-                $list[] = $this->ctx->getAttribute('php');
-            }
-            foreach($this->ctx->query('cfg:dependency[@type="phar"]') as $node) {
-                $list[] = $node->getAttribute('path');
+            foreach($this->ctx->query('cfg:dependency') as $dep) {
+                if ($dep->hasAttribute('path')) {
+                    $list[] = $dep->getAttribute('path');
+                }
             }
             return $list;
         }
+
     }
 
 }

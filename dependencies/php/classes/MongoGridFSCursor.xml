@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoGridFSCursor" namespace="" name="MongoGridFSCursor">
+  <extends name="MongoCursor" full="MongoCursor"/>
+  <member name="gridfs" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="MongoGridFS"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new cursor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="gridfs" optional="false" byreference="false" type="object" class="MongoGridFS"/>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="ns" optional="false" byreference="false" type="string"/>
+    <parameter name="query" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="fields" optional="false" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current file"/>
+      <return type="MongoGridFSFile"/>
+    </docblock>
+  </method>
+  <method name="getNext" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return the next file to which this cursor points, and advance the cursor"/>
+      <return type="MongoGridFSFile"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current result's filename"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

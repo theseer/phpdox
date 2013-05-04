@@ -36,6 +36,7 @@
      */
 namespace TheSeer\phpDox\Collector {
 
+    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Project\Dependency;
@@ -136,9 +137,14 @@ namespace TheSeer\phpDox\Collector {
             $this->dependencyStack = array(
                 $this->project,
             );
-            $baseDir = $this->config->getDependencyDirectory();
-            foreach($this->config->getDependencies() as $dependency) {
-                $dom = require $baseDir . '/' . $dependency;
+            foreach($this->config->getDependencyDirectories() as $depDir) {
+                $idxName = $depDir . '/index.xml';
+                if (!file_exists($idxName)) {
+                    $this->logger->log("'$idxName' not found - skipping dependency");
+                    continue;
+                }
+                $dom = new fDOMDocument();
+                $dom->load($idxName);
                 $this->dependencyStack[] = new Dependency($dom, $this->project);
             }
         }

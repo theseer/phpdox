@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrClient" namespace="" name="SolrClient">
+  <constant name="SEARCH_SERVLET_TYPE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UPDATE_SERVLET_TYPE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="THREADS_SERVLET_TYPE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PING_SERVLET_TYPE" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TERMS_SERVLET_TYPE" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_SEARCH_SERVLET" value="select">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_UPDATE_SERVLET" value="update">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_THREADS_SERVLET" value="admin/threads">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_PING_SERVLET" value="admin/ping">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_TERMS_SERVLET" value="terms">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <method name="addDocument" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a document to the index"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="doc" optional="false" byreference="false" type="object" class="SolrInputDocument"/>
+    <parameter name="allowDups" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="commitWithin" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addDocuments" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a collection of SolrInputDocument instances to the index"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="docs" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="allowDups" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="commitWithin" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="commit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Finalizes all add/deletes made to the index"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="maxSegments" optional="true" byreference="false" type="int"/>
+    <parameter name="waitFlush" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="waitSearcher" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructor for the SolrClient object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="clientOptions" optional="false" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="deleteById" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete by Id"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="deleteByIds" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Deletes by Ids"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="ids" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="deleteByQueries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all documents matching any of the queries"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="queries" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="deleteByQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Deletes all documents matching the given query"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destructor for SolrClient"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="getDebug" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the debug data for the last connection attempt"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the client options set internally"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="optimize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Defragments the index"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+    <parameter name="maxSegments" optional="true" byreference="false" type="int"/>
+    <parameter name="waitFlush" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="waitSearcher" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="ping" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if Solr server is still up"/>
+      <return type="SolrPingResponse"/>
+    </docblock>
+  </method>
+  <method name="query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a query to the server"/>
+      <return type="SolrQueryResponse"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="object" class="SolrParams"/>
+  </method>
+  <method name="request" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a raw update request"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="raw_request" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="rollback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rollbacks all add/deletes made to the index since the last commit"/>
+      <return type="SolrUpdateResponse"/>
+    </docblock>
+  </method>
+  <method name="setResponseWriter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the response writer used to prepare the response from Solr"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="responseWriter" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setServlet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Changes the specified servlet type to a new value"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="threads" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks the threads status"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

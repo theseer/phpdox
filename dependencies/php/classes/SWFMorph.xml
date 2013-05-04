@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFMorph" namespace="" name="SWFMorph">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a new SWFMorph object">Creates a new SWFMorph object.</description>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getShape1" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets a handle to the starting shape"/>
+      <return type="SWFShape"/>
+    </docblock>
+  </method>
+  <method name="getShape2" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets a handle to the ending shape"/>
+      <return type="SWFShape"/>
+    </docblock>
+  </method>
+</class>

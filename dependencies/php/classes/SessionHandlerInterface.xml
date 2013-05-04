@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SessionHandlerInterface" namespace="" name="SessionHandlerInterface">
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the session"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destroy a session"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="gc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Cleanup old sessions"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="maxlifetime" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initialize session"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="save_path" optional="false" byreference="false" type="string"/>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read session data">Reads the session data from the session storage, and returns the results. Called right after the session starts or when session_start is called. Please note that before this method is called SessionHandlerInterface::open is invoked.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write session data">Writes the session data to the session storage. Called by session_write_close, when session_register_shutdown fails, or during a normal shutdown. Note: SessionHandlerInterface::close is called immediately after this function.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+    <parameter name="session_data" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

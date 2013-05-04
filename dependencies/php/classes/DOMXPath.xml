@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DOMXPath" namespace="" name="DOMXPath">
+  <member name="document" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Prop description"/>
+      <var type="DOMDocument"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Creates a new DOMXPath object&#10;  "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="doc" optional="false" byreference="false" type="object" class="DOMDocument"/>
+  </constructor>
+  <method name="evaluate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Evaluates the given XPath expression and returns a typed result if possible&#10;  "/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="expression" optional="false" byreference="false" type="string"/>
+    <parameter name="contextnode" optional="true" byreference="false" type="object" class="DOMNode"/>
+    <parameter name="registerNodeNS" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Evaluates the given XPath expression &#10;  "/>
+      <return type="DOMNodeList"/>
+    </docblock>
+    <parameter name="expression" optional="false" byreference="false" type="string"/>
+    <parameter name="contextnode" optional="true" byreference="false" type="object" class="DOMNode"/>
+    <parameter name="registerNodeNS" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="registerNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Registers the namespace with the DOMXPath object&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="registerPhpFunctions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register PHP functions as XPath functions"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="restrict" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoSvgVersion" namespace="" name="CairoSvgVersion">
+  <constant name="VERSION_1_1" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="VERSION_1_2" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

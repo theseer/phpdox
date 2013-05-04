@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="NumberFormatter" namespace="" name="NumberFormatter">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create a number formatter">Object oriented style (method)</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+    <parameter name="pattern" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="create" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create a number formatter">Object oriented style (method)</description>
+      <return type="NumberFormatter"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+    <parameter name="pattern" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="formatCurrency" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Format a currency value">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="currency" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="format" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Format a number">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="number"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get an attribute">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get formatter's last error code.">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get formatter's last error message.">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLocale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get formatter locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getPattern" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get formatter pattern">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSymbol" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get a symbol value">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getTextAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get a text attribute">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="parseCurrency" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Parse a currency number">Object oriented style</description>
+      <return type="float"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="currency" optional="false" byreference="false" type="string"/>
+    <parameter name="position" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="parse" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Parse a number">Object oriented style</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+    <parameter name="position" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set an attribute">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setPattern" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set formatter pattern">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="pattern" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSymbol" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set a symbol value">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTextAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set a text attribute">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

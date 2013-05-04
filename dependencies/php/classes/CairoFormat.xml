@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoFormat" namespace="" name="CairoFormat">
+  <constant name="ARGB32" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RGB24" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="A8" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="A1" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="strideForWidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Provides an appropiate stride to use"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="int"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

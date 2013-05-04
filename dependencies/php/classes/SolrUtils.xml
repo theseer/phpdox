@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrUtils" namespace="" name="SolrUtils">
+  <method name="digestXmlResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Parses an response XML string into a SolrObject"/>
+      <return type="SolrObject"/>
+    </docblock>
+    <parameter name="xmlresponse" optional="false" byreference="false" type="string"/>
+    <parameter name="parse_mode" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="escapeQueryChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Escapes a lucene query string">Lucene supports escaping special characters that are part of the query syntax.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="str" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getSolrVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current version of the Solr extension"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="queryPhrase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepares a phrase from an unescaped lucene string"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="str" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

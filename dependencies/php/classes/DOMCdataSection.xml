@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DOMCdataSection" namespace="" name="DOMCdataSection">
+  <extends name="DOMText" full="DOMText"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new DOMCdataSection object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="isWhitespaceInElementContent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="splitText" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DOMText"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

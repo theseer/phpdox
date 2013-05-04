@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Route_Simple" namespace="" name="Yaf_Route_Simple">
+  <implements name="Yaf_Route_Interface" full="Yaf_Route_Interface"/>
+  <member name="controller" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="module" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="action" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Yaf_Route_Simple constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="module_name" optional="false" byreference="false" type="string"/>
+    <parameter name="controller_name" optional="false" byreference="false" type="string"/>
+    <parameter name="action_name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="route" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Route a request"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+  </method>
+</class>

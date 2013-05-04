@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoSurface" namespace="" name="CairoSurface">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="copyPage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The copyPage purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="createSimilar" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The createSimilar purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="CairoSurface"/>
+    <parameter name="content" optional="false" byreference="false" type="int"/>
+    <parameter name="width" optional="false" byreference="false" type="string"/>
+    <parameter name="height" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="finish" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The finish purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="flush" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The flush purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getContent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getContent purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getDeviceOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getDeviceOffset purpose"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFontOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getFontOptions purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getType purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="markDirty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The markDirty purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="markDirtyRectangle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The markDirtyRectangle purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="string"/>
+    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="string"/>
+    <parameter name="height" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDeviceOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setDeviceOffset purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="string"/>
+    <parameter name="y" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setFallbackResolution" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setFallbackResolution purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="string"/>
+    <parameter name="y" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="showPage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The showPage purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The status purpose">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="writeToPng" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The writeToPng purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

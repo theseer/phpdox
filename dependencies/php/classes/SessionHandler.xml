@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SessionHandler" namespace="" name="SessionHandler">
+  <implements name="SessionHandlerInterface" full="SessionHandlerInterface"/>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the session">Closes the current session. This method is automaticaly executed internally by PHP when closing the session, or explicitly via session_write_close (which first calls the SessionHandler::write).</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destroy a session">Destroys a session. Called by internally by PHP with session_regenerate_id (assuming the $destory is set to TRUE, by session_destroy or when session_decode fails.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="gc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Cleanup old sessions">Cleans up expired sessions. Called randomly by PHP internally when a sessio starts or when session_start is invoked. The frequency this is called is based on the session.gc_divisor and session.gc_probability configuration directives.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="maxlifetime" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initialize session">Create new session, or re-initialize existing session. Called internally by PHP when a session starts either automatically or when session_start is invoked.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="save_path" optional="false" byreference="false" type="string"/>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read session data">Reads the session data from the session storage, and returns the result back to PHP for internal processing. This method is called automatically by PHP when a session is started (either automatically or explicity with session_start and is preceeded by an internal call to the SessionHandler::open.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write session data">Writes the session data to the session storage. Called by normal PHP shutdown, by session_write_close, or when session_register_shutdown fails. PHP will call SessionHandler::close immediately after this method returns.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+    <parameter name="session_data" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

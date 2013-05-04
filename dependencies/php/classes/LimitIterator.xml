@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="LimitIterator" namespace="" name="LimitIterator">
+  <implements name="OuterIterator" full="OuterIterator"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a LimitIterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+    <parameter name="count" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get current element"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get inner iterator"/>
+      <return type="Iterator"/>
+    </docblock>
+  </method>
+  <method name="getPosition" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return the current position"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get current key"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move the iterator forward"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind the iterator to the specified starting offset"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="seek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Seek to the given position"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether the current element is valid"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

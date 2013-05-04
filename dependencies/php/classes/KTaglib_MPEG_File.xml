@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="KTaglib_MPEG_File" namespace="" name="KTaglib_MPEG_File">
+  <method name="getAudioProperties" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an object that provides access to the audio properties"/>
+      <return type="KTaglib_MPEG_File"/>
+    </docblock>
+  </method>
+  <method name="getID3v1Tag" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an object representing an ID3v1 tag"/>
+      <return type="KTaglib_ID3v1_Tag"/>
+    </docblock>
+    <parameter name="create" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getID3v2Tag" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a ID3v2 object"/>
+      <return type="KTaglib_ID3v2_Tag"/>
+    </docblock>
+    <parameter name="create" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

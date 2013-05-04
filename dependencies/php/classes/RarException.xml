@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RarException" namespace="" name="RarException">
+  <extends name="RarException" full="RarException"/>
+  <method name="isUsingExceptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether error handling with exceptions is in use"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setUsingExceptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Activate and deactivate error handling with exceptions">If and only if the argument is TRUE, then, instead of emitting warnings and returning a special value indicating error when the UnRAR library encounters an error, an exception of type RarException will be thrown.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="using_exceptions" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="Exception"/>
+    </docblock>
+  </method>
+  <method name="getCode" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getFile" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLine" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTrace" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getTraceAsString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

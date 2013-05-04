@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SoapServer" namespace="" name="SoapServer">
+  <method name="addFunction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds one or more functions to handle SOAP requests"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="functions" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="addSoapHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a SOAP header to the response"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="SoapHeader"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="SoapServer constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="wsdl" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="fault" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Issue SoapServer fault indicating an error">Sends a response to the client of the current request indicating an error.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="code" optional="false" byreference="false" type="string"/>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+    <parameter name="actor" optional="true" byreference="false" type="string"/>
+    <parameter name="details" optional="true" byreference="false" type="string"/>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFunctions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns list of defined functions"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="handle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Handles a SOAP request"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="soap_request" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the class which handles SOAP requests">Exports all methods from specified class.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class_name" optional="false" byreference="false" type="string"/>
+    <parameter name="args" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setObject" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the object which will be used to handle SOAP requests"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="setPersistence" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets SoapServer persistence mode">This function allows changing the persistence state of a SoapServer object between requests. This function allows saving data between requests utilizing PHP sessions. This method only has an affect on a SoapServer after it has exported functions utilizing SoapServer::setClass.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="SoapServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="SoapServer constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="wsdl" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

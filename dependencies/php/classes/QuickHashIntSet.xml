@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="QuickHashIntSet" namespace="" name="QuickHashIntSet">
+  <constant name="CHECK_FOR_DUPES" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DO_NOT_USE_ZEND_ALLOC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HASHER_NO_HASH" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HASHER_JENKINS1" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HASHER_JENKINS2" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method adds a new entry to the set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new QuickHashIntSet object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method deletes an entry from the set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="exists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method checks whether a key is part of the set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of elements in the set"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="loadFromFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This factory method creates a set from a file"/>
+      <return type="QuickHashIntSet"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="loadFromString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This factory method creates a set from a string"/>
+      <return type="QuickHashIntSet"/>
+    </docblock>
+    <parameter name="contents" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="saveToFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method stores an in-memory set to disk"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="saveToString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method returns a serialized version of the set"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

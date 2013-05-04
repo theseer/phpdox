@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RecursiveTreeIterator" namespace="" name="RecursiveTreeIterator">
+  <implements name="OuterIterator" full="OuterIterator"/>
+  <constant name="BYPASS_CURRENT" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BYPASS_KEY" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREFIX_LEFT" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREFIX_MID_HAS_NEXT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREFIX_MID_LAST" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREFIX_END_HAS_NEXT" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREFIX_END_LAST" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREFIX_RIGHT" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="beginChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Begin children"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="beginIteration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Begin iteration"/>
+      <return type="RecursiveIterator"/>
+    </docblock>
+  </method>
+  <method name="callGetChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get children"/>
+      <return type="RecursiveIterator"/>
+    </docblock>
+  </method>
+  <method name="callHasChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Has children"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a RecursiveTreeIterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="it" optional="false" byreference="false" type="object" class="RecursiveIterator|IteratorAggregate"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="cit_flags" optional="true" byreference="false" type="int"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get current element"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="endChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="End children"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="endIteration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="End iteration"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getEntry" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get current entry"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPostfix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the postfix"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getPrefix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the prefix"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the key of the current element"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to next element"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="nextElement" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Next element"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind iterator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setPrefixPart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a part of the prefix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="part" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check validity"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="beginChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="beginIteration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="callGetChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="RecursiveIterator"/>
+    </docblock>
+  </method>
+  <method name="callHasChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Traversable"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="endChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="endIteration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getDepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="iterator"/>
+    </docblock>
+  </method>
+  <method name="getMaxDepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getSubIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="RecursiveIterator"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="nextElement" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setMaxDepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="max_depth" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

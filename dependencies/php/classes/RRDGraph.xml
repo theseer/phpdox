@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RRDGraph" namespace="" name="RRDGraph">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates new RRDGraph instance"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="save" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Saves the result of query into image"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="saveVerbose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Saves the RRD database query into image and returns the verbose&#10;   information about generated graph.&#10;  "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="setOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the options for rrd graph export"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

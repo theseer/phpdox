@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RarArchive" namespace="" name="RarArchive">
+  <implements name="Traversable" full="Traversable"/>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close RAR archive and free all resources">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get comment text from the RAR archive">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getEntries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get full list of entries from the RAR archive">Object oriented style (method):</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getEntry" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get entry object from the RAR archive">Object oriented style (method):</description>
+      <return type="RarEntry"/>
+    </docblock>
+    <parameter name="entryname" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="isBroken" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Test whether an archive is broken (incomplete)">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isSolid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether the RAR archive is solid">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Open RAR archive">Object oriented style (method):</description>
+      <return type="RarArchive"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+    <parameter name="volume_callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setAllowBroken" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether opening broken archives is allowed">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="allow_broken" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get text representation">Provides a string representation for this RarArchive object. It currently shows the full path name of the archive volume that was opened and whether the resource is valid or was already closed through a call to RarArchive::close.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

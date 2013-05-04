@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_View_Interface" namespace="" name="Yaf_View_Interface">
+  <method name="assign" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assign value to View engine"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="display" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Render and output a template"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="tpl" optional="false" byreference="false" type="string"/>
+    <parameter name="tpl_vars" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getScriptPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getScriptPath purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="render" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Render a template"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="tpl" optional="false" byreference="false" type="string"/>
+    <parameter name="tpl_vars" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setScriptPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setScriptPath purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="template_dir" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

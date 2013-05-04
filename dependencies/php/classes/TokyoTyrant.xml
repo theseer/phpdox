@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="TokyoTyrant" namespace="" name="TokyoTyrant">
+  <constant name="RDBDEF_PORT" value="1978">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STREQ" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STRINC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STRBW" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STREW" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STRAND" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STROR" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STROREQ" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_STRRX" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMEQ" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMGT" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMGE" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMLT" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMLE" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMBT" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NUMOREQ" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NEGATE" value="16777216">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQC_NOIDX" value="33554432">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQO_STRASC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQO_STRDESC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQO_NUMASC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQO_NUMDESC" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_LEXICAL" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_DECIMAL" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_TOKEN" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_QGRAM" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_OPT" value="9998">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_VOID" value="9999">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBIT_KEEP" value="16777216">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQCFTS_PH" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQCFTS_AND" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQCFTS_OR" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBQCFTS_EX" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBXO_LCKREC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBXOLCK_GLB" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBREC_INT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBREC_DBL" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBMS_UNION" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBMS_ISECT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBMS_DIFF" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RDBT_RECON" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds to a numeric key"/>
+      <return type="number"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="increment" optional="false" byreference="false" type="object" class="number"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect to a database"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="connectUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connects to a database"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="uri" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new TokyoTyrant object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Copies the database"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="ext" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute a remote script"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="fwmKeys" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the forward matching keys"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+    <parameter name="max_recs" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The get purpose"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get an iterator"/>
+      <return type="TokyoTyrantIterator"/>
+    </docblock>
+  </method>
+  <method name="num" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Number of records in the database"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="out" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes records"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="put" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Puts values"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putCat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Concatenates to a record"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putKeep" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Puts a record"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putNr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Puts value"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="putShl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Concatenates to a record"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="restore" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Restore the database"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="log_dir" optional="false" byreference="false" type="string"/>
+    <parameter name="timestamp" optional="false" byreference="false" type="int"/>
+    <parameter name="check_consistency" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setMaster" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the replication master"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+    <parameter name="timestamp" optional="false" byreference="false" type="int"/>
+    <parameter name="check_consistency" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="size" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the size of the value"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get statistics"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="sync" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Synchronize the database"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="tune" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tunes connection values"/>
+      <return type="TokyoTyrant"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="vanish" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Empties the database"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+</class>

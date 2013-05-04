@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFPrebuiltClip" namespace="" name="SWFPrebuiltClip">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a SWFPrebuiltClip object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="object" class="mixed"/>
+  </constructor>
+</class>

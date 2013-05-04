@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoSurfacePattern" namespace="" name="CairoSurfacePattern">
+  <extends name="CairoPattern" full="CairoPattern"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="surface" optional="false" byreference="false" type="object" class="CairoSurface"/>
+  </constructor>
+  <method name="getExtend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getExtend purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFilter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getFilter purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSurface" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getSurface purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setExtend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setExtend purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="extend" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setFilter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setFilter purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filter" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

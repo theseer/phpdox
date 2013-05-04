@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="GearmanClient" namespace="" name="GearmanClient">
+  <method name="addOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add client options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="addServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a job server to the client"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addServers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a list of job servers to the client"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="servers" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTask" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a task to be run in parallel"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTaskBackground" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a background task to be run in parallel"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTaskHigh" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a high priority task to run in parallel"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTaskHighBackground" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a high priority background task to be run in parallel"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTaskLow" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a low priority task to run in parallel"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTaskLowBackground" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a low priority background task to be run in parallel"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTaskStatus" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a task to get status"/>
+      <return type="GearmanTask"/>
+    </docblock>
+    <parameter name="job_handle" optional="false" byreference="false" type="string"/>
+    <parameter name="context" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="clearCallbacks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear all task callback functions"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="clone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a copy of a GearmanClient object"/>
+      <return type="GearmanClient"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a GearmanClient instance"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="context" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the application context"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="data" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the application data (deprecated)">Get the application data previously set with GearmanClient::setData.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="do" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a single task and return a result [deprecated]"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doBackground" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a task in the background"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doHigh" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a single high priority task"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doHighBackground" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a high priority task in the background"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doJobHandle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the job handle for the running task"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="doLow" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a single low priority task"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doLowBackground" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a low priority task in the background"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doNormal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a single task and return a result"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+    <parameter name="unique" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="doStatus" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the status for the running task"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="echo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data to all job servers to see if they echo it back [deprecated]"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="error" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an error string for the last error encountered."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getErrno" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get an errno value"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="jobStatus" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the status of a background job">Object oriented style (method):</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="job_handle" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="ping" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data to all job servers to see if they echo it back"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove client options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="returnCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last Gearman return code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="runTasks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a list of tasks in parallel"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setClientCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Callback function when there is a data packet for a task (deprecated)">Sets the callback function for accepting data packets for a task. The callback function should take a single argument, a GearmanTask object.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setCompleteCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a function to be called on task completion"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setContext" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set application context"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="context" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setCreatedCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a callback for when a task is queued"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set application data (deprecated)">Sets some arbitrary application data that can later be retrieved by GearmanClient::data.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDataCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Callback function when there is a data packet for a task"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setExceptionCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a callback for worker exceptions"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setFailCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set callback for job failure"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set client options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStatusCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a callback for collecting task status"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set socket I/O activity timeout"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setWarningCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a callback for worker warnings"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="setWorkloadCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a callback for accepting incremental data updates"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="timeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get current socket I/O activity timeout value"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

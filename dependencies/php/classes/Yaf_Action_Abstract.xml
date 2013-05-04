@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Action_Abstract" namespace="" name="Yaf_Action_Abstract">
+  <extends name="Yaf_Controller_Abstract" full="Yaf_Controller_Abstract"/>
+  <member name="_controller" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute the action">Yaf_Action_Abstract::execute may have agruments. The value retrived from the request is not safe. you should do some filtering work before you use it.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getController" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="get controller instance"/>
+      <return type="Yaf_Controller_Abstract"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="display" abstract="false" static="false" visibility="protected" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tpl" optional="false" byreference="false" type="string"/>
+    <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="forward" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="module" optional="false" byreference="false" type="string"/>
+    <parameter name="controller" optional="true" byreference="false" type="string"/>
+    <parameter name="action" optional="true" byreference="false" type="string"/>
+    <parameter name="paramters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getInvokeArg" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getInvokeArgs" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getModuleName" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getRequest" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getResponse" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getView" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getViewpath" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="initView" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="redirect" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="url" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="render" abstract="false" static="false" visibility="protected" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tpl" optional="false" byreference="false" type="string"/>
+    <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setViewpath" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="view_directory" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

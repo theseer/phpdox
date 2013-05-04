@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFMovie" namespace="" name="SWFMovie">
+  <method name="add" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds any type of data to a movie"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="instance" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="addExport" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="char" optional="false" byreference="false" type="object" class="SWFCharacter"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="font" optional="false" byreference="false" type="object" class="SWFFont"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a new movie object, representing an SWF version 4 movie"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="version" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="importChar" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SWFSprite"/>
+    </docblock>
+    <parameter name="libswf" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="importFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SWFFontChar"/>
+    </docblock>
+    <parameter name="libswf" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="labelFrame" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Labels a frame"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="label" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="nextFrame" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves to the next frame of the animation"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="output" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Dumps your lovingly prepared movie out">Dumps the SWFMovie.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="compression" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="remove" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Removes the object instance from the display list"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="instance" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="save" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Saves the SWF movie in a file"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="compression" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="saveToFile" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="compression" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setbackground" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the background color">Sets the background color.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="red" optional="false" byreference="false" type="int"/>
+    <parameter name="green" optional="false" byreference="false" type="int"/>
+    <parameter name="blue" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setDimension" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the movie's width and height"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFrames" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the total number of frames in the animation"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="number" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setRate" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the animation's frame rate">Sets the frame rate to the specified rate.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="rate" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="startSound" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SWFSoundInstance"/>
+    </docblock>
+    <parameter name="sound" optional="false" byreference="false" type="object" class="SWFSound"/>
+  </method>
+  <method name="stopSound" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sound" optional="false" byreference="false" type="object" class="SWFSound"/>
+  </method>
+  <method name="streamMP3" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Streams a MP3 file">Streams the given MP3 file mp3file.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="mp3file" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="skip" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="writeExports" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

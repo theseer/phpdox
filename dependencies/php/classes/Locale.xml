@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Locale" namespace="" name="Locale">
+  <method name="acceptFromHttp" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Tries to find out best available locale based on HTTP &quot;Accept-Language&quot; header">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="header" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="composeLocale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a correctly ordered and delimited locale ID">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="subtags" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="filterMatches" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Checks if a language tag filter matches with locale">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="langtag" optional="false" byreference="false" type="string"/>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="canonicalize" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getAllVariants" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the variants for the input locale">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getDefault" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the default locale value from the INTL global 'default_locale'">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getDisplayLanguage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an appropriately localized display name for language of the inputlocale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="in_locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getDisplayName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an appropriately localized display name for the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="in_locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getDisplayRegion" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an appropriately localized display name for region of the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="in_locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getDisplayScript" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an appropriately localized display name for script of the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="in_locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getDisplayVariant" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an appropriately localized display name for variants of the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="in_locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getKeywords" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the keywords for the input locale">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getPrimaryLanguage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the primary language for the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getRegion" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the region for the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getScript" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the script for the input locale">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="lookup" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Searches the language tag list for the best match to the language">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="langtag" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="canonicalize" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="parseLocale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a key-value array of locale ID subtag elements.">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDefault" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="sets the default runtime locale">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

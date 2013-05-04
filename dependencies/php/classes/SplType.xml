@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplType" namespace="" name="SplType">
+  <constant name="__default" value="null">
+    <docblock>
+      <var type="NULL"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a new value of some type"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="initial_value" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="strict" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+</class>

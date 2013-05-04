@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Plugin_Abstract" namespace="" name="Yaf_Plugin_Abstract">
+  <method name="dispatchLoopShutdown" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The dispatchLoopShutdown purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+  <method name="dispatchLoopStartup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The dispatchLoopStartup purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+  <method name="postDispatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The postDispatch purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+  <method name="preDispatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The preDispatch purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+  <method name="preResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The preResponse purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+  <method name="routerShutdown" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The routerShutdown purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+  <method name="routerStartup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="RouterStartup hook"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+    <parameter name="response" optional="false" byreference="false" type="object" class="Yaf_Response_Abstract"/>
+  </method>
+</class>

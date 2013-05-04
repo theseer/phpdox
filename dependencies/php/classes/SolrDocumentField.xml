@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrDocumentField" namespace="" name="SolrDocumentField">
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The name of the field."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="boost" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The boost value for the field"/>
+      <var type="float"/>
+    </docblock>
+  </member>
+  <member name="values" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="An array of values for this field"/>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destructor"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+</class>

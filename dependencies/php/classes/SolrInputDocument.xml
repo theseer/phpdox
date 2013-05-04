@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrInputDocument" namespace="" name="SolrInputDocument">
+  <constant name="SORT_DEFAULT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_ASC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_DESC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_FIELD_NAME" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_FIELD_VALUE_COUNT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_FIELD_BOOST_VALUE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="addField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a field to the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+    <parameter name="fieldValue" optional="false" byreference="false" type="string"/>
+    <parameter name="fieldBoostValue" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resets the input document"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a copy of a SolrDocument"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="deleteField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a field from the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destructor"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="fieldExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if a field exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getBoost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the current boost value for the document"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves a field by name"/>
+      <return type="SolrDocumentField"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getFieldBoost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the boost value for a particular field"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getFieldCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of fields in the document"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFieldNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array containing all the fields in the document"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Merges one input document into another"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sourceDoc" optional="false" byreference="false" type="object" class="SolrInputDocument"/>
+    <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This is an alias of SolrInputDocument::clear"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setBoost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the boost value for this document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="documentBoostValue" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFieldBoost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the index-time boost value for a field"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+    <parameter name="fieldBoostValue" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sorts the fields within the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sortOrderBy" optional="false" byreference="false" type="int"/>
+    <parameter name="sortDirection" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array representation of the input document"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

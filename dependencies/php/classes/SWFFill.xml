@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFFill" namespace="" name="SWFFill">
+  <method name="moveTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves fill origin"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="rotateTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets fill's rotation"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scaleTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets fill's scale"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewXTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets fill x-skew"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewYTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets fill y-skew"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

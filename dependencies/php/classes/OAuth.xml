@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="OAuth" namespace="" name="OAuth">
+  <member name="debug" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="sslChecks" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="debugInfo" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new OAuth object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="consumer_key" optional="false" byreference="false" type="string"/>
+    <parameter name="consumer_secret" optional="false" byreference="false" type="string"/>
+    <parameter name="signature_method" optional="true" byreference="false" type="string"/>
+    <parameter name="auth_type" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The destructor"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="disableDebug" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turn off verbose debugging"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="disableRedirects" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turn off redirects"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="disableSSLChecks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turn off SSL checks"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="enableDebug" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turn on verbose debugging"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="enableRedirects" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turn on redirects"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="enableSSLChecks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Turn on SSL checks"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="fetch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetch an OAuth protected resource"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="protected_resource_url" optional="false" byreference="false" type="string"/>
+    <parameter name="extra_parameters" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="http_method" optional="true" byreference="false" type="string"/>
+    <parameter name="http_headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="generateSignature" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Generate a signature"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="http_method" optional="false" byreference="false" type="string"/>
+    <parameter name="url" optional="false" byreference="false" type="string"/>
+    <parameter name="extra_parameters" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getAccessToken" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetch an access token"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="access_token_url" optional="false" byreference="false" type="string"/>
+    <parameter name="auth_session_handle" optional="true" byreference="false" type="string"/>
+    <parameter name="verifier_token" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getCAPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets CA information"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getLastResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last response"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLastResponseHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get headers for last response"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLastResponseInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get HTTP information about the last response"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getRequestHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Generate OAuth header string signature"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="http_method" optional="false" byreference="false" type="string"/>
+    <parameter name="url" optional="false" byreference="false" type="string"/>
+    <parameter name="extra_parameters" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getRequestToken" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetch a request token"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="request_token_url" optional="false" byreference="false" type="string"/>
+    <parameter name="callback_url" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setAuthType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set authorization type"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="auth_type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setCAPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set CA path and info"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="ca_path" optional="true" byreference="false" type="string"/>
+    <parameter name="ca_info" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setNonce" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the nonce for subsequent requests"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="nonce" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRequestEngine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setRequestEngine purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="reqengine" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setRSACertificate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the RSA certificate"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="cert" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSSLChecks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tweak specific SSL checks for requests."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sslcheck" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the timestamp"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="timestamp" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setToken" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the token and secret"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="token" optional="false" byreference="false" type="string"/>
+    <parameter name="token_secret" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the OAuth version"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="version" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

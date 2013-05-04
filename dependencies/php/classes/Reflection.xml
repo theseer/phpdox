@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Reflection" namespace="" name="Reflection">
+  <method name="export" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Exports"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="reflector" optional="false" byreference="false" type="object" class="Reflector"/>
+    <parameter name="return" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getModifierNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets modifier names"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="modifiers" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

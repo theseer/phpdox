@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SphinxClient" namespace="" name="SphinxClient">
+  <method name="addQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add query to multi-query batch"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="true" byreference="false" type="string"/>
+    <parameter name="comment" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="buildExcerpts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Build text snippets"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="docs" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="words" optional="false" byreference="false" type="string"/>
+    <parameter name="opts" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="buildKeywords" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Extract keywords from query"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="hits" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes previously opened persistent connection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new SphinxClient object"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="escapeString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Escape special characters"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getLastError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last error message"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLastWarning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last warning"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Opens persistent connection to the server"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute search query"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="true" byreference="false" type="string"/>
+    <parameter name="comment" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="resetFilters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear all filters"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="resetGroupBy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear all group-by settings"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="runQueries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run a batch of search queries"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="setArrayResult" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change the format of result set array"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="array_result" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setConnectTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set connection timeout"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFieldWeights" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set field weights">Binds per-field weights by name.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="weights" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setFilter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add new integer values set filter"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="string"/>
+    <parameter name="values" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="exclude" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setFilterFloatRange" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add new float range filter"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="string"/>
+    <parameter name="min" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="max" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="exclude" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setFilterRange" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add new integer range filter"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="string"/>
+    <parameter name="min" optional="false" byreference="false" type="int"/>
+    <parameter name="max" optional="false" byreference="false" type="int"/>
+    <parameter name="exclude" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setGeoAnchor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set anchor point for a geosphere distance calculations">Sets anchor point for a geosphere distance (geodistance) calculations and enables them.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attrlat" optional="false" byreference="false" type="string"/>
+    <parameter name="attrlong" optional="false" byreference="false" type="string"/>
+    <parameter name="latitude" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="longitude" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setGroupBy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set grouping attribute">Sets grouping attribute, function, and group sorting mode, and enables grouping.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="string"/>
+    <parameter name="func" optional="false" byreference="false" type="int"/>
+    <parameter name="groupsort" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setGroupDistinct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set attribute name for per-group distinct values count calculations"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setIDRange" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a range of accepted document IDs"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="min" optional="false" byreference="false" type="int"/>
+    <parameter name="max" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setIndexWeights" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set per-index weights"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="weights" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setLimits" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set offset and limit of the result set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+    <parameter name="limit" optional="false" byreference="false" type="int"/>
+    <parameter name="max_matches" optional="true" byreference="false" type="int"/>
+    <parameter name="cutoff" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setMatchMode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set full-text query matching mode"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaxQueryTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set maximum query time"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="qtime" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setOverride" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets temporary per-document attribute value&#10;   overrides"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="values" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setRankingMode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set ranking mode"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ranker" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setRetries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set retry count and delay">Sets distributed retry count and delay.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="count" optional="false" byreference="false" type="int"/>
+    <parameter name="delay" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setSelect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set select clause"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="clause" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set searchd host and port"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSortMode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set matches sorting mode"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+    <parameter name="sortby" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Queries searchd status"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="updateAttributes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update document attributes"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="attributes" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="values" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="mva" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

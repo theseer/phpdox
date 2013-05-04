@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="mysqli" namespace="" name="mysqli">
+  <member name="mysqli-&gt;affected_rows" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;client_info" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;client_version" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;connect_errno" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;connect_error" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;errno" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;error_list" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;error" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;field_count" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;client_version" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;host_info" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;protocol_version" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;server_info" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;server_version" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;info" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;insert_id" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="mixed"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;sqlstate" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;thread_id" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;warning_count" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Open a new connection to the MySQL server">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="username" optional="true" byreference="false" type="string"/>
+    <parameter name="passwd" optional="true" byreference="false" type="string"/>
+    <parameter name="dbname" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="socket" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="autocommit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Turns on or off auto-commiting database modifications">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="change_user" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Changes the user of the specified database connection">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="user" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="false" byreference="false" type="string"/>
+    <parameter name="database" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="character_set_name" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the default character set for the database connection">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="close" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Closes a previously opened database connection">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="commit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Commits the current transaction">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="debug" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Performs debugging operations">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="disable_reads_from_master" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Disable reads from master">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="dump_debug_info" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Dump debugging information into the log">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="get_charset" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a character set object">Object oriented style</description>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="get_client_info" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the MySQL client version as a string">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="get_connection_stats" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns statistics about the client connection">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="get_warnings" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get result of SHOW WARNINGS">Object oriented style</description>
+      <return type="mysqli_warning"/>
+    </docblock>
+  </method>
+  <method name="init" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Initializes MySQLi and returns a resource for use with mysqli_real_connect()">Object oriented style</description>
+      <return type="mysqli"/>
+    </docblock>
+  </method>
+  <method name="kill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Asks the server to kill a MySQL thread">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="processid" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="more_results" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Check if there are any more query results from a multi query">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="multi_query" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Performs a query on the database">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="next_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Prepare next result from multi_query">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="options" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set options">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="ping" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Pings a server connection, or tries to reconnect if the connection has gone down">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="poll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Poll connections">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="read" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="error" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="reject" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="sec" optional="false" byreference="false" type="int"/>
+    <parameter name="usec" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="prepare" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Prepare an SQL statement for execution">Object oriented style</description>
+      <return type="mysqli_stmt"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="query" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Performs a query on the database">Object oriented style</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+    <parameter name="resultmode" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="real_connect" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Opens a connection to a mysql server">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="username" optional="true" byreference="false" type="string"/>
+    <parameter name="passwd" optional="true" byreference="false" type="string"/>
+    <parameter name="dbname" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="socket" optional="true" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="escape_string" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="escapestr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="real_query" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Execute an SQL query">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="reap_async_query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get result from async query">Object oriented style</description>
+      <return type="mysqli_result"/>
+    </docblock>
+  </method>
+  <method name="refresh" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Refreshes">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="rollback" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Rolls back current transaction">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="rpl_query_type" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns RPL query type">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="select_db" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Selects the default database for database queries">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dbname" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="send_query" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Send the query and return">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="set_charset" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the default client character set">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="charset" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="set_local_infile_handler" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set callback function for LOAD DATA LOCAL INFILE command">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="link" optional="false" byreference="false" type="object" class="mysqli"/>
+    <parameter name="read_func" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="ssl_set" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Used for establishing secure connections using SSL">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="cert" optional="false" byreference="false" type="string"/>
+    <parameter name="ca" optional="false" byreference="false" type="string"/>
+    <parameter name="capath" optional="false" byreference="false" type="string"/>
+    <parameter name="cipher" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stat" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the current system status">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="stmt_init" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Initializes a statement and returns an object for use with mysqli_stmt_prepare">Object oriented style</description>
+      <return type="mysqli_stmt"/>
+    </docblock>
+  </method>
+  <method name="store_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Transfers a result set from the last query">Object oriented style</description>
+      <return type="mysqli_result"/>
+    </docblock>
+  </method>
+  <method name="use_result" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Initiate a result set retrieval">Object oriented style</description>
+      <return type="mysqli_result"/>
+    </docblock>
+  </method>
+</class>

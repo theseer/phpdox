@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ArrayObject" namespace="" name="ArrayObject">
+  <implements name="IteratorAggregate" full="IteratorAggregate"/>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new array object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="input" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="iterator_class" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Appends the value">Appends a new value as the last element.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="asort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort the entries by value"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the number of public properties in the ArrayObject"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="exchangeArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Exchange the array for another one."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="input" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getArrayCopy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a copy of the ArrayObject."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the behavior flags."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new iterator from an ArrayObject instance"/>
+      <return type="ArrayIterator"/>
+    </docblock>
+  </method>
+  <method name="getIteratorClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the iterator classname for the ArrayObject."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="ksort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort the entries by key"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="natcasesort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort an array using a case insensitive &quot;natural order&quot; algorithm">This method is a case insensitive version of ArrayObject::natsort.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="natsort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort entries using a &quot;natural order&quot; algorithm"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the requested index exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value at the specified index"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the value at the specified index to newval"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="newval" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unsets the value at the specified index"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Serialize an ArrayObject"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the behavior flags."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setIteratorClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the iterator classname for the ArrayObject."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator_class" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="uasort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort the entries with a user-defined comparison function and maintain key association">This function sorts the entries such that keys maintain their correlation with the entry that they are associated with, using a user-defined comparison function.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cmp_function" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="uksort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort the entries by keys using a user-defined comparison function"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cmp_function" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unserialize an ArrayObject"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

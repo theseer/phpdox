@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="V8JsException" namespace="" name="V8JsException">
+  <extends name="Exception" full="Exception"/>
+  <member name="JsFileName" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="JsLineNumber" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="JsSourceLine" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="JsTrace" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="getJsFileName" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getJsFileName purpose"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getJsLineNumber" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getJsLineNumber purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getJsSourceLine" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getJsSourceLine purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getJsTrace" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getJsTrace purpose"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="Exception"/>
+    </docblock>
+  </method>
+  <method name="getCode" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getFile" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLine" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTrace" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getTraceAsString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

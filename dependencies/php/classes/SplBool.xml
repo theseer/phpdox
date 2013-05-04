@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplBool" namespace="" name="SplBool">
+  <extends name="SplEnum" full="SplEnum"/>
+  <constant name="__default" value="false">
+    <docblock>
+      <var type="boolean"/>
+    </docblock>
+  </constant>
+  <constant name="false" value="false">
+    <docblock>
+      <var type="boolean"/>
+    </docblock>
+  </constant>
+  <constant name="true" value="true">
+    <docblock>
+      <var type="boolean"/>
+    </docblock>
+  </constant>
+  <method name="getConstList" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="include_default" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

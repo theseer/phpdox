@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoLog" namespace="" name="MongoLog">
+  <constant name="NONE" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="ALL" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="WARNING" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="INFO" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FINE" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="RS" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="POOL" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="IO" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="SERVER" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="PARSE" value="">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <member name="level" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="module" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sec" optional="true" byreference="false" type="int"/>
+    <parameter name="usec" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

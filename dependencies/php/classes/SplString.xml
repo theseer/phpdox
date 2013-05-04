@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplString" namespace="" name="SplString">
+  <extends name="SplType" full="SplType"/>
+  <constant name="__default" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="initial_value" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="strict" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+</class>

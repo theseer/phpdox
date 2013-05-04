@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFTextField" namespace="" name="SWFTextField">
+  <method name="addChars" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="adds characters to a font that will be available within a textfield"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="chars" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addString" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Concatenates the given string to the text field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="align" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the text field alignment"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="alignement" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a text field object">swftextfield creates a new text field object. Text Fields are less flexible than swftext objects- they can't be rotated, scaled non-proportionally, or skewed, but they can be used as form entries, and they can use browser-defined fonts.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="setBounds" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the text field width and height"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the color of the text field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="red" optional="false" byreference="false" type="int"/>
+    <parameter name="green" optional="false" byreference="false" type="int"/>
+    <parameter name="blue" optional="false" byreference="false" type="int"/>
+    <parameter name="a" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the text field font"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="font" optional="false" byreference="false" type="object" class="SWFFont"/>
+  </method>
+  <method name="setHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the font height of this text field font"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setIndentation" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the indentation of the first line"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setLeftMargin" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the left margin width of the text field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setLineSpacing" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the line spacing of the text field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setMargins" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the margins width of the text field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="left" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="right" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the variable name"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPadding" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the padding of this textfield"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="padding" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setRightMargin" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the right margin width of the text field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

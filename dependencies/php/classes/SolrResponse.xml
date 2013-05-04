@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrResponse" namespace="" name="SolrResponse">
+  <constant name="PARSE_SOLR_OBJ" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PARSE_SOLR_DOC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="http_status" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The http status of the response."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="parser_mode" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Whether to parse the solr documents as SolrObject or SolrDocument instances."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="success" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Was there an error during the request"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="http_status_message" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Detailed message on http status"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_request_url" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The request URL"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_request_headers" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="A string of raw headers sent during the request."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_request" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The raw request sent to the server"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_response_headers" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Response headers from the Solr server."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_response" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The response message from the server."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_digested_response" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The response in PHP serialized format."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <method name="getDigestedResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the XML response as serialized PHP data"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getHttpStatus" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the HTTP status of the response"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getHttpStatusMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns more details on the HTTP status"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRawRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the raw request sent to the Solr server"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRawRequestHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the raw request headers sent to the Solr server"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRawResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the raw response from the server"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRawResponseHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the raw response headers from the server"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRequestUrl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the full URL the request was sent to"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a SolrObject representing the XML response from the server"/>
+      <return type="SolrObject"/>
+    </docblock>
+  </method>
+  <method name="setParseMode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the parse mode"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="parser_mode" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="success" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Was the request a success"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

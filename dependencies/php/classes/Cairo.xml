@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Cairo" namespace="" name="Cairo">
+  <method name="availableFonts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the availables font types">Object oriented style:</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="availableSurfaces" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves all available surfaces">Object oriented style (method):</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="statusToString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the current status as string">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="status" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="version" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrives cairo's library version">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="versionString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves cairo version as string">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

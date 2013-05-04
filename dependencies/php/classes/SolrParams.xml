@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrParams" namespace="" name="SolrParams">
+  <implements name="Serializable" full="Serializable"/>
+  <method name="add" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="This is an alias for SolrParams::addParam"/>
+      <return type="SolrParams"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addParam" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a parameter to the object"/>
+      <return type="SolrParams"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="This is an alias for SolrParams::getParam"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="param_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getParam" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=" Returns a parameter value"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="param_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getParams" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an array of non URL-encoded parameters"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getPreparedParams" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an array of URL-encoded parameters"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Used for custom serialization"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="An alias of SolrParams::setParam"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setParam" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the parameter to the specified value"/>
+      <return type="SolrParams"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns all the name-value pair parameters in the object"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="url_encode" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Used for custom serialization"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

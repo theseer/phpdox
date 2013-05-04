@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruPage" namespace="" name="HaruPage">
+  <method name="arc" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append an arc to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ray" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ang1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ang2" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="beginText" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Begin a text object and set the current text position to (0,0)"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="circle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append a circle to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ray" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="closePath" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append a straight line from the current point to the start point of the path"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="concat" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Concatenate current transformation matrix of the page and the specified matrix"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="c" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="d" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="createDestination" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create new HaruDestination instance"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="createLinkAnnotation" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create new HaruAnnotation instance"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="rectangle" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="destination" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="createTextAnnotation" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create new HaruAnnotation instance"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="rectangle" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="encoder" optional="true" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="createURLAnnotation" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create and return new HaruAnnotation instance"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="rectangle" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="url" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="curveTo2" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append a Bezier curve to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x3" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y3" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="curveTo3" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append a Bezier curve to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x3" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y3" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="curveTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append a Bezier curve to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x3" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y3" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="drawImage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Show image at the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="image" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="ellipse" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append an ellipse to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="xray" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="yray" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="endPath" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="End current path object without filling and painting operations"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="endText" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="End current text object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="eofill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fill current path using even-odd rule"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="eoFillStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fill current path using even-odd rule, then paint the path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="close_path" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="fill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fill current path using nonzero winding number rule"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="fillStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fill current path using nonzero winding number rule, then paint the path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="close_path" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getCharSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current value of character spacing"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getCMYKFill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current filling color"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getCMYKStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current stroking color"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getCurrentFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the currently used font"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getCurrentFontSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current font size"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getCurrentPos" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current position for path painting"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getCurrentTextPos" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current position for text printing"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getDash" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current dash pattern"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFillingColorSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current filling color space"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFlatness" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the flatness of the page"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getGMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current graphics mode"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getGrayFill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current filling color"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getGrayStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current stroking color"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the height of the page"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getHorizontalScaling" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current value of horizontal scaling"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getLineCap" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current line cap style"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLineJoin" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current line join style"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLineWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current line width"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getMiterLimit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the value of miter limit"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getRGBFill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current filling color"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getRGBStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current stroking color"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getStrokingColorSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current stroking color space"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTextLeading" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current value of line spacing"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getTextMatrix" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current text transformation matrix of the page"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getTextRenderingMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current text rendering mode"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTextRise" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current value of text rising"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getTextWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the width of the text using current fontsize, character spacing and word spacing"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getTransMatrix" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current transformation matrix of the page"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the width of the page"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getWordSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the current value of word spacing"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="lineTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draw a line from the current point to the specified point"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="measureText" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Calculate the number of characters which can be included within the specified width"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="wordwrap" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="moveTextPos" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move text position to the specified offset"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="set_leading" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="moveTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set starting point for new drawing path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="moveToNextLine" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move text position to the start of the next line"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="rectangle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Append a rectangle to the current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setCharSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set character spacing for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="char_space" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setCMYKFill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set filling color for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="c" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="m" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="k" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setCMYKStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set stroking color for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="c" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="m" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="k" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setDash" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the dash pattern for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="pattern" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="phase" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setFlatness" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set flatness for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="flatness" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFontAndSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set font and fontsize for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="font" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setGrayFill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set filling color for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setGrayStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets stroking color for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set height of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setHorizontalScaling" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set horizontal scaling for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="scaling" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setLineCap" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the shape to be used at the ends of lines"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cap" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setLineJoin" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set line join style for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="join" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setLineWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set line width for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setMiterLimit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the current value of the miter limit of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="limit" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setRGBFill" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set filling color for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="r" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="g" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setRGBStroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set stroking color for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="r" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="g" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setRotate" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set rotation angle of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="angle" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set size and direction of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="direction" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSlideShow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set transition style for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="disp_time" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="trans_time" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTextLeading" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set text leading (line spacing) for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="text_leading" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTextMatrix" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the current text transformation matrix of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="c" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="d" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTextRenderingMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set text rendering mode for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTextRise" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the current value of text rising"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="rise" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set width of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setWordSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set word spacing for the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="word_space" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="showText" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Print text at the current position of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="showTextNextLine" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move the current position to the start of the next line and print the text"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="word_space" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="char_space" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="stroke" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Paint current path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="close_path" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="textOut" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Print the text on the specified position"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="textRect" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Print the text inside the specified region"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="left" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="top" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="right" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="bottom" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="align" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruEncoder" namespace="" name="HaruEncoder">
+  <method name="getByteType" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the type of the byte in the text"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getType" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the type of the encoder"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getUnicode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Convert the specified character to unicode"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="character" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getWritingMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the writing mode of the encoder"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

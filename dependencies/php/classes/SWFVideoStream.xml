@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFVideoStream" namespace="" name="SWFVideoStream">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a SWFVideoStream object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getNumFrames" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the number of frames in the video"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setDimension" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets video dimension"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

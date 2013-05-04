@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Memcached" namespace="" name="Memcached">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a Memcached instance"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="persistent_id" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add an item under a new key"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add an item under a new key on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a server to the server pool">Memcached::addServer adds the specified server to the server pool. No connection is established to the server at this time, but if you are using consistent key distribution option (via Memcached::DISTRIBUTION_CONSISTENT or Memcached::OPT_LIBKETAMA_COMPATIBLE), some of the internal data structures will have to be updated. Thus, if you need to add multiple servers, it is better to use Memcached::addServers as the update then happens only once.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+    <parameter name="weight" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addServers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add multiple servers to the server pool">Memcached::addServers adds servers to the server pool. Each entry in servers is supposed to be an array containing hostname, port, and, optionally, weight of the server. No connection is established to the servers at this time.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="servers" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append data to an existing item">Memcached::append appends the given value string to the value of an existing item. The reason that value is forced to be a string is that appending mixed types is not well-defined.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="appendByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append data to an existing item on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="cas" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Compare and swap an item"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cas_token" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="casByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Compare and swap an item on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cas_token" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="decrement" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Decrement numeric item's value"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete an item"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="time" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="deleteByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete an item from a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="time" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fetch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetch the next result"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="fetchAll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetch all the remaining results"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="flush" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Invalidate all items in the cache"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="delay" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve an item">Memcached::get returns the item that was previously stored under the key. If the item is found and cas_token variable is provided, it will contain the CAS token value for the item. See Memcached::cas for how to use CAS tokens. Read-through caching callback may be specified via cache_cb parameter.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="cache_cb" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="cas_token" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="getByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve an item from a specific server"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="cache_cb" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="cas_token" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="getDelayed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Request multiple items">Memcached::getDelayed issues a request to memcache for multiple items the keys of which are specified in the keys array. The method does not wait for response and returns right away. When you are ready to collect the items, call either Memcached::fetch or Memcached::fetchAll. If with_cas is true, the CAS token values will also be requested.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="with_cas" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="value_cb" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="getDelayedByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Request multiple items from a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="with_cas" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="value_cb" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="getMulti" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve multiple items">Memcached::getMulti is similar to Memcached::get, but instead of a single key item, it retrieves multiple items the keys of which are specified in the keys array. If cas_tokens variable is provided, it is filled with the CAS token values for the found items. Unlike Memcached::get it is not possible to specify a read-through cache callback for Memcached::getMulti, because the memcache protocol does not provide information on which keys were not found in the multi-key request.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="cas_tokens" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getMultiByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve multiple items from a specific server"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="cas_tokens" optional="true" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve a Memcached option value"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getResultCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return the result code of the last operation"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getResultMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return the message describing the result of the last operation"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getServerByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Map a key to a server"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getServerList" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the list of the servers in the pool"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getStats" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get server pool statistics"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get server pool version info"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="increment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Increment numeric item's value"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="prepend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepend data to an existing item">Memcached::prepend prepends the given value string to the value of an existing item. The reason that value is forced to be a string is that prepending mixed types is not well-defined.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="prependByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepend data to an existing item on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="replace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Replace the item under an existing key"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="replaceByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Replace the item under an existing key on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Store an item">Memcached::set stores the value on a memcache server under the specified key. The expiration parameter can be used to control when the value is considered expired.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Store an item on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setMulti" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Store multiple items"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="items" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setMultiByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Store multiple items on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="items" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a Memcached option">This method sets the value of a Memcached option. Some options correspond to the ones defined by libmemcached, and some are specific to the extension. See Memcached Constants for more information.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

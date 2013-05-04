@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ImagickDraw" namespace="" name="ImagickDraw">
+  <method name="affine" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adjusts the current affine transformation matrix"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="affine" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="annotation" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws text on the image"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="arc" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws an arc"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ex" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ey" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sd" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ed" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="bezier" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="coordinates" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="circle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a circle"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ox" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="oy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="px" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="py" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="clear" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Clears the ImagickDraw"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="clone" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Makes an exact copy of the specified ImagickDraw object"/>
+      <return type="ImagickDraw"/>
+    </docblock>
+  </method>
+  <method name="color" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws color on image"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="paintMethod" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="comment" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds a comment"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="comment" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="composite" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Composites an image onto the current image"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="compose" optional="false" byreference="false" type="int"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="compositeWand" optional="false" byreference="false" type="object" class="Imagick"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The ImagickDraw constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="destroy" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Frees all associated resources"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="ellipse" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws an ellipse on the image"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ox" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="oy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="rx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ry" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="start" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="end" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="getClipPath" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Obtains the current clipping path ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getClipRule" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current polygon fill rule"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getClipUnits" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the interpretation of clip path units"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFillColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the fill color"/>
+      <return type="ImagickPixel"/>
+    </docblock>
+  </method>
+  <method name="getFillOpacity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the opacity used when drawing"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getFillRule" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the fill rule"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the font"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFontFamily" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the font family"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFontSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the font pointsize"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getFontStyle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the font style"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFontWeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the font weight"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getGravity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the text placement gravity"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStrokeAntialias" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current stroke antialias setting"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getStrokeColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the color used for stroking object outlines"/>
+      <return type="ImagickPixel"/>
+    </docblock>
+  </method>
+  <method name="getStrokeDashArray" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns an array representing the pattern of dashes and gaps used to stroke paths"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getStrokeDashOffset" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the offset into the dash pattern to start the dash"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getStrokeLineCap" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the shape to be used at the end of open subpaths when they are stroked"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStrokeLineJoin" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the shape to be used at the corners of paths when they are stroked"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStrokeMiterLimit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the stroke miter limit"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStrokeOpacity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the opacity of stroked object outlines"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getStrokeWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the width of the stroke used to draw object outlines"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getTextAlignment" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the text alignment"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTextAntialias" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current text antialias setting"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getTextDecoration" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the text decoration"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTextEncoding" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the code set used for text annotations"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTextUnderColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the text under color"/>
+      <return type="ImagickPixel"/>
+    </docblock>
+  </method>
+  <method name="getVectorGraphics" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a string containing vector graphics"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="line" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a line"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ex" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ey" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="matte" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Paints on the image's opacity channel"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="paintMethod" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="pathClose" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds a path element to the current path"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="pathCurveToAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a cubic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToQuadraticBezierAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a quadratic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToQuadraticBezierRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a quadratic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToQuadraticBezierSmoothAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a quadratic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToQuadraticBezierSmoothRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a quadratic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a cubic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToSmoothAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a cubic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathCurveToSmoothRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a cubic Bezier curve"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathEllipticArcAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws an elliptical arc"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="rx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ry" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x_axis_rotation" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="large_arc_flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="sweep_flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathEllipticArcRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws an elliptical arc"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="rx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ry" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x_axis_rotation" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="large_arc_flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="sweep_flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathFinish" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Terminates the current path"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="pathLineToAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a line path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathLineToHorizontalAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a horizontal line path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathLineToHorizontalRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a horizontal line"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathLineToRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a line path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathLineToVerticalAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a vertical line"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathLineToVerticalRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a vertical line path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathMoveToAbsolute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Starts a new sub-path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathMoveToRelative" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Starts a new sub-path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="pathStart" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Declares the start of a path drawing list"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="point" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a point"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="polygon" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a polygon"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="coordinates" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="polyline" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a polyline"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="coordinates" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="pop" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Destroys the current ImagickDraw in the stack, and returns to the previously pushed ImagickDraw"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="popClipPath" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Terminates a clip path definition"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="popDefs" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Terminates a definition list"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="popPattern" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Terminates a pattern definition"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Clones the current ImagickDraw and pushes it to the stack"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="pushClipPath" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Starts a clip path definition"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="clip_mask_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="pushDefs" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Indicates that following commands create named elements for early processing"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="pushPattern" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Indicates that subsequent commands up to a ImagickDraw::opPattern() command comprise the definition of a named pattern"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="pattern_id" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="rectangle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a rectangle"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="render" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Renders all preceding drawing commands onto the image"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="rotate" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Applies the specified rotation to the current coordinate space"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="roundRectangle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Draws a rounded rectangle"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="rx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ry" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adjusts the scaling factor"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setClipPath" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Associates a named clipping path with the image"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="clip_mask" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setClipRule" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the polygon fill rule to be used by the clipping path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fill_rule" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setClipUnits" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the interpretation of clip path units"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="clip_units" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setFillAlpha" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the opacity to use when drawing using the fill color or fill texture"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="opacity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFillColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the fill color to be used for drawing filled objects"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fill_pixel" optional="false" byreference="false" type="object" class="ImagickPixel"/>
+  </method>
+  <method name="setFillOpacity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the opacity to use when drawing using the fill color or fill texture"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fillOpacity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFillPatternURL" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the URL to use as a fill pattern for filling objects"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fill_url" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setFillRule" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the fill rule to use while drawing polygons"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fill_rule" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the fully-specified font to use when annotating with text"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="font_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setFontFamily" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the font family to use when annotating with text"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="font_family" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setFontSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the font pointsize to use when annotating with text"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="pointsize" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFontStretch" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the font stretch to use when annotating with text"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fontStretch" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setFontStyle" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the font style to use when annotating with text"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setFontWeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the font weight"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="font_weight" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setGravity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the text placement gravity"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="gravity" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStrokeAlpha" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the opacity of stroked object outlines"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="opacity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setStrokeAntialias" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Controls whether stroked outlines are antialiased"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="stroke_antialias" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setStrokeColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the color used for stroking object outlines"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="stroke_pixel" optional="false" byreference="false" type="object" class="ImagickPixel"/>
+  </method>
+  <method name="setStrokeDashArray" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the pattern of dashes and gaps used to stroke paths"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dashArray" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setStrokeDashOffset" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the offset into the dash pattern to start the dash"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dash_offset" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setStrokeLineCap" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the shape to be used at the end of open subpaths when they are stroked"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="linecap" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStrokeLineJoin" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the shape to be used at the corners of paths when they are stroked"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="linejoin" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStrokeMiterLimit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the miter limit"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="miterlimit" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStrokeOpacity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the opacity of stroked object outlines"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="stroke_opacity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setStrokePatternURL" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the pattern used for stroking object outlines"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="stroke_url" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setStrokeWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the width of the stroke used to draw object outlines"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="stroke_width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTextAlignment" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies a text alignment"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="alignment" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTextAntialias" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Controls whether text is antialiased"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="antiAlias" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setTextDecoration" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies a decoration"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="decoration" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTextEncoding" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies specifies the text code set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTextUnderColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Specifies the color of a background rectangle"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="under_color" optional="false" byreference="false" type="object" class="ImagickPixel"/>
+  </method>
+  <method name="setVectorGraphics" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the vector graphics"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="xml" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setViewbox" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the overall canvas size"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="int"/>
+    <parameter name="y1" optional="false" byreference="false" type="int"/>
+    <parameter name="x2" optional="false" byreference="false" type="int"/>
+    <parameter name="y2" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="skewX" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Skews the current coordinate system in the horizontal direction"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewY" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Skews the current coordinate system in the vertical direction"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="translate" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Applies a translation to the current coordinate system"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

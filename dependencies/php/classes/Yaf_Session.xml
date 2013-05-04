@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Session" namespace="" name="Yaf_Session">
+  <implements name="Iterator" full="Iterator"/>
+  <member name="_instance" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_session" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_started" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="__clone" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __clone purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The count purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The current purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="del" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The del purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __get purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getInstance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getInstance purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="has" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The has purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__isset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __isset purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The key purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The next purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The offsetExists purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The offsetGet purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The offsetSet purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The offsetUnset purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The rewind purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __set purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__sleep" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __sleep purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The start purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__unset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __unset purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The valid purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __wakeup purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

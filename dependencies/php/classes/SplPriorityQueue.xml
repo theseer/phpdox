@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplPriorityQueue" namespace="" name="SplPriorityQueue">
+  <implements name="Iterator" full="Iterator"/>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructs a new empty queue"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="compare" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Compare priorities in order to place elements correctly in the heap while sifting up."/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="priority1" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority2" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="count" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Counts the number of elements in the queue."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Return current node pointed by the iterator"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="extract" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Extracts a node from top of the heap and sift up."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="insert" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Inserts an element in the queue by sifting it up."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Checks whether the queue is empty."/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Return current node index"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move to the next node"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="recoverFromCorruption" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Recover from the corrupted state and allow further actions on the queue."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Rewind iterator back to the start (no-op)"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setExtractFlags" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the mode of extraction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="top" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Peeks at the node from the top of the queue"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Check whether the queue contains more nodes"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

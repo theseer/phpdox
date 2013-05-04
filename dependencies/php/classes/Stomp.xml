@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Stomp" namespace="" name="Stomp">
+  <method name="abort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rolls back a transaction in progress">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="transaction_id" optional="false" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="ack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acknowledges consumption of a message">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="msg" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="begin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Starts a transaction">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="transaction_id" optional="false" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="commit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Commits a transaction in progress">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="transaction_id" optional="false" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Opens a connection">Object oriented style (constructor):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="broker" optional="true" byreference="false" type="string"/>
+    <parameter name="username" optional="true" byreference="false" type="string"/>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes stomp connection">Object oriented style (destructor):</description>
+      <return type="bool"/>
+    </docblock>
+  </destructor>
+  <method name="error" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the last stomp error">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getReadTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets read timeout">Object oriented style (method):</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getSessionId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the current stomp session ID">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="hasFrame" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Indicates whether or not there is a frame ready to read">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="readFrame" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reads the next frame">Object oriented style (method):</description>
+      <return type="stompframe"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="send" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a message">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="destination" optional="false" byreference="false" type="string"/>
+    <parameter name="msg" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setReadTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets read timeout">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="seconds" optional="false" byreference="false" type="int"/>
+    <parameter name="microseconds" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="subscribe" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Registers to listen to a given destination">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="destination" optional="false" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="unsubscribe" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes an existing subscription">Object oriented style (method):</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="destination" optional="false" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

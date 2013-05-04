@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoImageSurface" namespace="" name="CairoImageSurface">
+  <extends name="CairoSurface" full="CairoSurface"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new CairoImageSurface"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="int"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+  </constructor>
+  <method name="createForData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The createForData purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="format" optional="false" byreference="false" type="int"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="stride" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="createFromPng" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new CairoImageSurface form a png image file">Creates a new CairoImageSurface form a png image file</description>
+      <return type="CairoImageSurface"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image data as string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the image format"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getHeight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the height of the CairoImageSurface"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStride" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getStride purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getWidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the width of the CairoImageSurface"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="copyPage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="createSimilar" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="CairoSurface"/>
+    <parameter name="content" optional="false" byreference="false" type="int"/>
+    <parameter name="width" optional="false" byreference="false" type="string"/>
+    <parameter name="height" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="finish" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="flush" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getContent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getDeviceOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFontOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="markDirty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="markDirtyRectangle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="string"/>
+    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="string"/>
+    <parameter name="height" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDeviceOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="string"/>
+    <parameter name="y" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setFallbackResolution" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="string"/>
+    <parameter name="y" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="showPage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="writeToPng" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

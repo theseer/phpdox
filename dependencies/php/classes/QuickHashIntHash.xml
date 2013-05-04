@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="QuickHashIntHash" namespace="" name="QuickHashIntHash">
+  <constant name="CHECK_FOR_DUPES" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DO_NOT_USE_ZEND_ALLOC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HASHER_NO_HASH" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HASHER_JENKINS1" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HASHER_JENKINS2" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method adds a new entry to the hash"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="true" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new QuickHashIntHash object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method deletes am entry from the hash">This method deletes an entry from the hash, and returns whether the entry was deleted or not. Associated memory structures will not be freed immediately, but rather when the hash itself is freed.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="exists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method checks whether a key is part of the hash"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method retrieves a value from the hash by its key"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of elements in the hash"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="loadFromFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This factory method creates a hash from a file">This factory method creates a new hash from a definition file on disk. The file format consists of a signature 'QH\0x11\0', the number of elements as a 32 bit signed integer in system Endianness, followed by 32 bit signed integers packed together in the Endianness that the system that the code runs on uses. For each hash element there are two 32 bit signed integers stored. The first of each element is the key, and the second is the value belonging to the key. An example could be:</description>
+      <return type="QuickHashIntHash"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="loadFromString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This factory method creates a hash from a string"/>
+      <return type="QuickHashIntHash"/>
+    </docblock>
+    <parameter name="contents" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="saveToFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method stores an in-memory hash to disk"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="saveToString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method returns a serialized version of the hash"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method updates an entry in the hash with a new value, or&#10;  adds a new one if the entry doesn't exist"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="update" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This method updates an entry in the hash with a new value"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

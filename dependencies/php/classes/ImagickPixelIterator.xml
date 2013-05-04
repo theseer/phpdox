@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ImagickPixelIterator" namespace="" name="ImagickPixelIterator">
+  <method name="clear" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Clear resources associated with a PixelIterator"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The ImagickPixelIterator constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="wand" optional="false" byreference="false" type="object" class="Imagick"/>
+  </constructor>
+  <method name="destroy" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Deallocates resources associated with a PixelIterator"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getCurrentIteratorRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current row of ImagickPixel objects"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getIteratorRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current pixel iterator row"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getNextIteratorRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the next row of the pixel iterator"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getPreviousIteratorRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the previous row"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="newPixelIterator" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a new pixel iterator"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wand" optional="false" byreference="false" type="object" class="Imagick"/>
+  </method>
+  <method name="newPixelRegionIterator" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a new pixel iterator"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wand" optional="false" byreference="false" type="object" class="Imagick"/>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+    <parameter name="columns" optional="false" byreference="false" type="int"/>
+    <parameter name="rows" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="resetIterator" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Resets the pixel iterator"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setIteratorFirstRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the pixel iterator to the first pixel row"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setIteratorLastRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the pixel iterator to the last pixel row"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setIteratorRow" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the pixel iterator row"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="row" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="syncIterator" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Syncs the pixel iterator"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplObjectStorage" namespace="" name="SplObjectStorage">
+  <implements name="Countable" full="Countable"/>
+  <method name="addAll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds all objects from another storage"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="storage" optional="false" byreference="false" type="object" class="SplObjectStorage"/>
+  </method>
+  <method name="attach" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds an object in the storage"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="contains" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the storage contains a specific object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of objects in the storage"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current storage entry"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="detach" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes an object from the storage"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="getHash" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Calculate a unique identifier for the contained objects&#10;  ">The function calculates an identifier for the objects added to this SplObjectStorage object.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the data associated with the current iterator entry"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the index at which the iterator currently is"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to the next entry"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks whether an object exists in the storage"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the data associated with an object"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Associates data to an object in the storage">Associate data to an object in the storage.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes an object from the storage">Removes an object from the storage.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="removeAll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes objects contained in another storage from the current storage"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="storage" optional="false" byreference="false" type="object" class="SplObjectStorage"/>
+  </method>
+  <method name="removeAllExcept" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all objects except for those contained in another storage from the current storage"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="storage" optional="false" byreference="false" type="object" class="SplObjectStorage"/>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind the iterator to the first storage element"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Serializes the storage"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="setInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the data associated with the current iterator entry"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unserializes a storage from its string representation"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns if the current iterator entry is valid"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

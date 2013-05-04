@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Lua" namespace="" name="Lua">
+  <constant name="LUA_VERSION" value="Lua 5.1.4">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <method name="assign" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assign a PHP variable to Lua"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="call" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Call Lua functions"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="lua_func" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="use_self" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="__call" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Call Lua functions"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="lua_func" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="use_self" optional="true" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Lua constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="lua_script_file" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="eval" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Evaluate a string as Lua code"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="statements" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getversion purpose"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="include" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Parse a Lua script file"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="registerCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register a PHP function to Lua"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="function" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+</class>

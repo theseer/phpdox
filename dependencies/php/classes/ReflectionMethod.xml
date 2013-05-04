@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ReflectionMethod" namespace="" name="ReflectionMethod">
+  <implements name="Reflector" full="Reflector"/>
+  <constant name="IS_STATIC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_PUBLIC" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_PROTECTED" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_PRIVATE" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_ABSTRACT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_FINAL" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Method name"/>
+    </docblock>
+  </member>
+  <member name="class" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Class name"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a ReflectionMethod"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="export" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Export a reflection method."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="return" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getClosure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a dynamically created closure for the method"/>
+      <return type="Closure"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getDeclaringClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets declaring class for the reflected method."/>
+      <return type="ReflectionClass"/>
+    </docblock>
+  </method>
+  <method name="getModifiers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the method modifiers"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getPrototype" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the method prototype (if there is one)."/>
+      <return type="ReflectionMethod"/>
+    </docblock>
+  </method>
+  <method name="invoke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Invoke"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="parameter" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="invokeArgs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Invoke args"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="args" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="isAbstract" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is abstract"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isConstructor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is a constructor"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isDestructor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is a destructor"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isFinal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is final"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPrivate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is private"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isProtected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is protected"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPublic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is public"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isStatic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if method is static"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setAccessible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set method accessibility"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="accessible" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the string representation of the Reflection method object."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getClosureThis" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getDocComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getEndLine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getExtension" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReflectionExtension"/>
+    </docblock>
+  </method>
+  <method name="getExtensionName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFileName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNamespaceName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNumberOfParameters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getNumberOfRequiredParameters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getParameters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getShortName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getStartLine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStaticVariables" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="inNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isClosure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isDeprecated" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isInternal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isUserDefined" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="returnsReference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

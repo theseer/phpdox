@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SVM" namespace="" name="SVM">
+  <constant name="C_SVC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NU_SVC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ONE_CLASS" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EPSILON_SVR" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NU_SVR" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KERNEL_LINEAR" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KERNEL_POLY" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KERNEL_RBF" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KERNEL_SIGMOID" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KERNEL_PRECOMPUTED" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_TYPE" value="101">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_KERNEL_TYPE" value="102">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_DEGREE" value="103">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_SHRINKING" value="104">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_PROPABILITY" value="105">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_GAMMA" value="201">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_NU" value="202">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_EPS" value="203">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_P" value="204">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_COEF_ZERO" value="205">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_C" value="206">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CACHE_SIZE" value="207">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new SVM object"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="crossvalidate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="problem" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="number_of_folds" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return the current training parameters"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="setOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set training parameters"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="params" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="train" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SVMModel"/>
+    </docblock>
+    <parameter name="problem" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="weights" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

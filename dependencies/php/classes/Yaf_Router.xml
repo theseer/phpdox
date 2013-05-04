@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Router" namespace="" name="Yaf_Router">
+  <member name="_routes" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_current" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="addConfig" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add config-defined routes into Router"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="config" optional="false" byreference="false" type="object" class="Yaf_Config_Abstract"/>
+  </method>
+  <method name="addRoute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add new Route into Router">defaultly, Yaf_Router using a Yaf_Route_Static as its defualt route. you can add new routes into Router's route stack by calling this method.</description>
+      <return type="Yaf_Router"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="route" optional="false" byreference="false" type="object" class="Yaf_Route_Abstract"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Yaf_Router constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getCurrentRoute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the effective route name">Get the name of the route which is effective in the route process. You should call this method after the route process finished, since before that, this method will always return NULL.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRoute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getRoute purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getRoutes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getRoutes purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="route" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The route purpose"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+  </method>
+</class>

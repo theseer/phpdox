@@ -44,14 +44,12 @@
             <exclude mask="" />
 
             <!--  How to handle inheritance -->
-            <inheritance resolve="true" php="php.phpdox.phar">
+            <inheritance resolve="true">
                 <!--  @resolve - Flag to enable/disable resolving of inheritance -->
-                <!--  @php     - Path to php.phpdox.phar archive
 
                 <!--  You can define multiple (external) dependencies to be included -->
-                <!--  <dependency  type="" path="" -->
-                <!--    @type  - format type of dependency: currently limited to phar, later xml or src -->
-                <!--    @path  - path to name.phpdox.phar, index.xml or src directory -->
+                <!--  <dependency  path="" -->
+                <!--    @path  - path to a directory containing an index.xml for a dependency project -->
 
             </inheritance>
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.de/src#" full="SplSubject" namespace="" name="SplSubject">
+  <method name="attach" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Attach an SplObserver"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="observer" optional="false" byreference="false" type="object" class="SplObserver"/>
+  </method>
+  <method name="detach" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Detach an observer"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="observer" optional="false" byreference="false" type="object" class="SplObserver"/>
+  </method>
+  <method name="notify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Notify an observer"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</interface>

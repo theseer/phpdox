@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Application" namespace="" name="Yaf_Application">
+  <member name="config" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="dispatcher" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_app" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_modules" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_running" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_environ" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="app" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive an Application instance"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="bootstrap" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Call bootstrap"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="bootstrap" optional="true" byreference="false" type="object" class="Yaf_Bootstrap_Abstract"/>
+  </method>
+  <method name="clearLastError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear the last error info"/>
+      <return type="Yaf_Application"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Yaf_Application can not be cloned"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Yaf_Application constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="config" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="envrion" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __destruct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="environ" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive environ"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute a callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="entry" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="..." optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAppDirectory" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the application directory"/>
+      <return type="Yaf_Application"/>
+    </docblock>
+  </method>
+  <method name="getConfig" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive the config instance"/>
+      <return type="Yaf_Config_Abstract"/>
+    </docblock>
+  </method>
+  <method name="getDispatcher" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Yaf_Dispatcher instance"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+  </method>
+  <method name="getLastErrorMsg" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get message of the last occurred error"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLastErrorNo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get code of last occurred error"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getModules" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get defined module names"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="run" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Start Yaf_Application"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setAppDirectory" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change the application directory"/>
+      <return type="Yaf_Application"/>
+    </docblock>
+    <parameter name="directory" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__sleep" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Yaf_Application can not be serialized"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Yaf_Application can not be unserialized"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

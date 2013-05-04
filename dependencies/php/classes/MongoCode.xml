@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoCode" namespace="" name="MongoCode">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new code object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="code" optional="false" byreference="false" type="string"/>
+    <parameter name="scope" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns this code as a string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

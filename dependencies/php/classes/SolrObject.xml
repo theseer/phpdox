@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrObject" namespace="" name="SolrObject">
+  <implements name="ArrayAccess" full="ArrayAccess"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates Solr object"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destructor"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="getPropertyNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array of all the names of the properties"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the property exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="property_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Used to retrieve a property"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="property_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the value for a property"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="property_name" optional="false" byreference="false" type="string"/>
+    <parameter name="property_value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the value for the property"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="property_name" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

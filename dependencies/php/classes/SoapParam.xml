@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SoapParam" namespace="" name="SoapParam">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="SoapParam constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="SoapParam" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="SoapParam constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RRDCreator" namespace="" name="RRDCreator">
+  <method name="addArchive" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds RRA - archive of data values for each data source."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="description" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addDataSource" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds data source definition for RRD database."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="description" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates new RRDCreator instance"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="startTime" optional="true" byreference="false" type="string"/>
+    <parameter name="step" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="save" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Saves the RRD database to a file"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

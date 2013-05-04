@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoFontOptions" namespace="" name="CairoFontOptions">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="equal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The equal purpose"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAntialias" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getAntialias purpose">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getHintMetrics" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getHintMetrics purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getHintStyle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getHintStyle purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSubpixelOrder" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getSubpixelOrder purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hash" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The hash purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The merge purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setAntialias" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setAntialias purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="antialias" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setHintMetrics" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setHintMetrics purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="hint_metrics" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setHintStyle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setHintStyle purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="hint_style" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSubpixelOrder" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setSubpixelOrder purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="subpixel_order" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The status purpose">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

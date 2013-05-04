@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DateTimeZone" namespace="" name="DateTimeZone">
+  <constant name="AFRICA" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="AMERICA" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ANTARCTICA" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ARCTIC" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ASIA" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATLANTIC" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="AUSTRALIA" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EUROPE" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="INDIAN" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PACIFIC" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTC" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ALL" value="2047">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ALL_WITH_BC" value="4095">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PER_COUNTRY" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates new DateTimeZone object">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timezone" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="getLocation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns location information for a timezone">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the name of the timezone">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the timezone offset from GMT">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="datetime" optional="false" byreference="false" type="object" class="DateTime"/>
+  </method>
+  <method name="getTransitions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns all transitions for the timezone">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="timestamp_begin" optional="true" byreference="false" type="int"/>
+    <parameter name="timestamp_end" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="listAbbreviations" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns associative array containing dst, offset and the timezone name">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="listIdentifiers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns numerically index array with all timezone identifiers">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="what" optional="true" byreference="false" type="int"/>
+    <parameter name="country" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

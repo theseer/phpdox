@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MultipleIterator" namespace="" name="MultipleIterator">
+  <implements name="Iterator" full="Iterator"/>
+  <constant name="MIT_NEED_ANY" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MIT_NEED_ALL" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MIT_KEYS_NUMERIC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MIT_KEYS_ASSOC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new MultipleIterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="attachIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Attaches iterator information"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
+    <parameter name="infos" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="containsIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if an iterator is attached"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
+  </method>
+  <method name="countIterators" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the number of attached iterator instances"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the registered iterator instances"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="detachIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Detaches an iterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
+  </method>
+  <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the flag information"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the registered iterator instances"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Moves all attached iterator instances forward"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewinds all attached iterator instances"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets flags"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks the validity of sub iterators"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoFontFace" namespace="" name="CairoFontFace">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new CairoFontFace object">CairoFontFace class represents a particular font at a particular weight, slant, and other characteristic but no transformation or size.</description>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the font face type"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check for CairoFontFace errors">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

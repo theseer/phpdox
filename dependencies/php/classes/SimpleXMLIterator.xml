@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SimpleXMLIterator" namespace="" name="SimpleXMLIterator">
+  <implements name="RecursiveIterator" full="RecursiveIterator"/>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current element"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getChildren" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the sub-elements of the current element"/>
+      <return type="SimpleXMLIterator"/>
+    </docblock>
+  </method>
+  <method name="hasChildren" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Checks whether the current element has sub elements."/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Return current key"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move to next element"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Rewind to the first element"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Check whether the current element is valid"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+    <parameter name="data_is_url" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="ns" optional="true" byreference="false" type="string"/>
+    <parameter name="is_prefix" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+  <method name="addAttribute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="namespace" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SimpleXMLElement"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="namespace" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="asXML" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="attributes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SimpleXMLElement"/>
+    </docblock>
+    <parameter name="ns" optional="true" byreference="false" type="string"/>
+    <parameter name="is_prefix" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="children" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SimpleXMLElement"/>
+    </docblock>
+    <parameter name="ns" optional="true" byreference="false" type="string"/>
+    <parameter name="is_prefix" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getDocNamespaces" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="recursive" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNamespaces" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="recursive" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="registerXPathNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+    <parameter name="ns" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="xpath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

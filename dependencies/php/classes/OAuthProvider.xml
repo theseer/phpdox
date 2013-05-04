@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="OAuthProvider" namespace="" name="OAuthProvider">
+  <method name="addRequiredParameter" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Add required parameters"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="req_params" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="callconsumerHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calls the consumerNonceHandler callback"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="callTimestampNonceHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calls the timestampNonceHandler callback"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="calltokenHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calls the tokenNonceHandler callback"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="checkOAuthRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check an oauth request"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="uri" optional="true" byreference="false" type="string"/>
+    <parameter name="method" optional="true" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new OAuthProvider object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="params_array" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="consumerHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the consumerHandler handler callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback_function" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="generateToken" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Generate a random token"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="strong" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="is2LeggedEndpoint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="is2LeggedEndpoint"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="params_array" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isRequestTokenEndpoint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets isRequestTokenEndpoint"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="will_issue_request_token" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="removeRequiredParameter" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Remove a required parameter"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="req_params" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="reportProblem" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Report a problem"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="oauthexception" optional="false" byreference="false" type="string"/>
+    <parameter name="send_headers" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setParam" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Set a parameter"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="param_key" optional="false" byreference="false" type="string"/>
+    <parameter name="param_val" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setRequestTokenPath" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Set request token path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="timestampNonceHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the timestampNonceHandler handler callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback_function" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="tokenHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the tokenHandler handler callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback_function" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+</class>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="GearmanWorker" namespace="" name="GearmanWorker">
+  <method name="addFunction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register and add callback function"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="function" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="timeout" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add worker options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="addServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a job server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addServers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add job servers"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="servers" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="clone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a copy of the worker"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a GearmanWorker instance"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="echo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Test job server response"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="workload" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="error" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last error encountered"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getErrno" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get errno"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="options" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get worker options"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="register" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register a function with the job server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+    <parameter name="timeout" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="removeOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove worker options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="returnCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last Gearman return code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set worker options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set socket I/O activity timeout"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="timeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get socket I/O activity timeout"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="unregister" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unregister a function name with the job servers"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="function_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="unregisterAll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unregister all function names with the job servers"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="wait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Wait for activity from one of the job servers"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="work" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Wait for and perform jobs"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

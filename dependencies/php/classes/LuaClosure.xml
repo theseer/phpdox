@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="LuaClosure" namespace="" name="LuaClosure">
+  <method name="__invoke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="invoke luaclosure"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="arg" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

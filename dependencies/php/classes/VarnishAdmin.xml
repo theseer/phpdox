@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="VarnishAdmin" namespace="" name="VarnishAdmin">
+  <method name="auth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Authenticate on a varnish instance"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="ban" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Ban URLs using a VCL expression"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="vcl_regex" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="banUrl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Ban an URL using a VCL expression"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="vcl_regex" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="clearPanic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear varnish instance panic messages"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect to a varnish instance administration interface"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="VarnishAdmin constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="getPanic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last panic message on a varnish instance"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getParams" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetch current varnish instance configuration parameters"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the varnish slave process is currently running"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setCompat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the class compat configuration param"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="compat" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setHost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the class host configuration param"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setIdent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the class ident configuration param"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="ident" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setParam" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set configuration param on the current varnish instance"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="string|integer"/>
+  </method>
+  <method name="setPort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the class port configuration param"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSecret" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the class secret configuration param"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="secret" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the class timeout configuration param"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Start varnish worker process"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop varnish worker process"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

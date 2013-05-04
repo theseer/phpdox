@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruDoc" namespace="" name="HaruDoc">
+  <method name="addPage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Add new page to the document"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="addPageLabel" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the numbering style for the specified range of pages"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="first_page" optional="false" byreference="false" type="int"/>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+    <parameter name="first_num" optional="false" byreference="false" type="int"/>
+    <parameter name="prefix" optional="true" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Construct new HaruDoc instance"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="createOutline" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create a HaruOutline instance"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="title" optional="false" byreference="false" type="string"/>
+    <parameter name="parent_outline" optional="true" byreference="false" type="object" class="object"/>
+    <parameter name="encoder" optional="true" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="getCurrentEncoder" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get HaruEncoder currently used in the document"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getCurrentPage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Return current page of the document"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getEncoder" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get HaruEncoder instance for the specified encoding"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getFont" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get HaruFont instance"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="fontname" optional="false" byreference="false" type="string"/>
+    <parameter name="encoding" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getInfoAttr" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get current value of the specified document attribute"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getPageLayout" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get current page layout"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getPageMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get current page mode"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStreamSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the size of the temporary stream"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="insertPage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Insert new page just before the specified page"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="page" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="loadJPEG" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Load a JPEG image"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="loadPNG" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Load PNG image and return HaruImage instance">Loads a PNG image.</description>
+      <return type="object"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="deferred" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="loadRaw" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Load a RAW image"/>
+      <return type="object"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="color_space" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="loadTTC" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Load the font with the specified index from TTC file"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="fontfile" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="embed" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="loadTTF" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Load TTF font file"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="fontfile" optional="false" byreference="false" type="string"/>
+    <parameter name="embed" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="loadType1" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Load Type1 font"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="afmfile" optional="false" byreference="false" type="string"/>
+    <parameter name="pfmfile" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="output" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Write the document data to the output buffer"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="readFromStream" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Read data from the temporary stream"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="bytes" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="resetError" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Reset error state of the document handle"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="resetStream" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Rewind the temporary stream"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="save" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Save the document into the specified file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="saveToStream" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Save the document into a temporary stream"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setCompressionMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set compression mode for the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setCurrentEncoder" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the current encoder for the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setEncryptionMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set encryption mode for the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+    <parameter name="key_len" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setInfoAttr" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the info attribute of the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="info" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setInfoDateAttr" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the datetime info attributes of the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="month" optional="false" byreference="false" type="int"/>
+    <parameter name="day" optional="false" byreference="false" type="int"/>
+    <parameter name="hour" optional="false" byreference="false" type="int"/>
+    <parameter name="min" optional="false" byreference="false" type="int"/>
+    <parameter name="sec" optional="false" byreference="false" type="int"/>
+    <parameter name="ind" optional="false" byreference="false" type="string"/>
+    <parameter name="off_hour" optional="false" byreference="false" type="int"/>
+    <parameter name="off_min" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setOpenAction" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Define which page is shown when the document is opened"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="destination" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="setPageLayout" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set how pages should be displayed"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="layout" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setPageMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set how the document should be displayed"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setPagesConfiguration" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the number of pages per set of pages"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="page_per_pages" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setPassword" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set owner and user passwords for the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="owner_password" optional="false" byreference="false" type="string"/>
+    <parameter name="user_password" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPermission" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set permissions for the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="permission" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="useCNSEncodings" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable Chinese simplified encodings"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useCNSFonts" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable builtin Chinese simplified fonts"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useCNTEncodings" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable Chinese traditional encodings"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useCNTFonts" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable builtin Chinese traditional fonts"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useJPEncodings" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable Japanese encodings"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useJPFonts" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable builtin Japanese fonts"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useKREncodings" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable Korean encodings"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="useKRFonts" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Enable builtin Korean fonts"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

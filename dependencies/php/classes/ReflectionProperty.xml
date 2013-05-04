@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ReflectionProperty" namespace="" name="ReflectionProperty">
+  <implements name="Reflector" full="Reflector"/>
+  <constant name="IS_STATIC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_PUBLIC" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_PROTECTED" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_PRIVATE" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the property. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+    </docblock>
+  </member>
+  <member name="class" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the class where the property is defined. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+    </docblock>
+  </member>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Clone"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Construct a ReflectionProperty object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="export" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Export"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="return" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getDeclaringClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets declaring class"/>
+      <return type="ReflectionClass"/>
+    </docblock>
+  </method>
+  <method name="getDocComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets doc comment"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getModifiers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets modifiers"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets property name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets value"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="isDefault" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if default value "/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPrivate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if property is private"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isProtected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if property is protected"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPublic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if property is public"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isStatic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if property is static"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setAccessible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set property accessibility"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="accessible" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set property value"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="To string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

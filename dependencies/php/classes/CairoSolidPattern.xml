@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoSolidPattern" namespace="" name="CairoSolidPattern">
+  <extends name="CairoPattern" full="CairoPattern"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="red" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="green" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="blue" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="alpha" optional="true" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="getRgba" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getRgba purpose"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

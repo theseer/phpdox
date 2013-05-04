@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoPattern" namespace="" name="CairoPattern">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getMatrix purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getType purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setMatrix purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The status purpose">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

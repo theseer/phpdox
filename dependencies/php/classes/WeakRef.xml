@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="WeakRef" namespace="" name="WeakRef">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new weak reference"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="true" byreference="false" type="object" class="object"/>
+  </constructor>
+  <method name="acquire" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires a strong reference on that object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the object pointed to by the weak reference"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="release" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases a previously acquired reference"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks whether the object referenced still exists"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

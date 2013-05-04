@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.de/src#" full="SplObserver" namespace="" name="SplObserver">
+  <method name="update" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Receive update from subject"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="subject" optional="false" byreference="false" type="object" class="SplSubject"/>
+  </method>
+</interface>

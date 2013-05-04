@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ReflectionZendExtension" namespace="" name="ReflectionZendExtension">
+  <implements name="Reflector" full="Reflector"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the extension. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+    </docblock>
+  </member>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Clone handler"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="export" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Export"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="return" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getAuthor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets author"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getCopyright" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets copyright"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getURL" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets URL"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets version"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="To string handler"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

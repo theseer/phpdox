@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="V8Js" namespace="" name="V8Js">
+  <constant name="V8_VERSION" value="">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_NONE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_FORCE_ARRAY" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new V8Js object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object_name" optional="true" byreference="false" type="string"/>
+    <parameter name="variables" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="extensions" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="report_uncaught_exceptions" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+  <method name="executeString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute a string as Javascript code"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="script" optional="false" byreference="false" type="string"/>
+    <parameter name="identifier" optional="true" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getExtensions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return an array of registered extensions"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getPendingException" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return pending uncaught Javascript exception"/>
+      <return type="V8JsException"/>
+    </docblock>
+  </method>
+  <method name="registerExtension" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register Javascript extensions for V8Js"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="extension_name" optional="false" byreference="false" type="string"/>
+    <parameter name="script" optional="false" byreference="false" type="string"/>
+    <parameter name="dependencies" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="auto_enable" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

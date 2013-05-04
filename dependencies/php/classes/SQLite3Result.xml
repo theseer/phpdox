@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SQLite3Result" namespace="" name="SQLite3Result">
+  <method name="columnName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the name of the nth column"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="column_number" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="columnType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the type of the nth column"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="column_number" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="fetchArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Fetches a result row as an associative or numerically indexed array or both&#10;  "/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="finalize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes the result set"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="numColumns" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of columns in the result set"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resets the result set back to the first row"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

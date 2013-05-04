@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="php_user_filter" namespace="" name="php_user_filter">
+  <member name="filtername" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the filter registered by&#10;       stream_filter_append.&#10;      "/>
+    </docblock>
+  </member>
+  <member name="params" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="filter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Called when applying the filter"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="in" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="out" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="consumed" optional="false" byreference="false" type="int"/>
+    <parameter name="closing" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="onClose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Called when closing the filter"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="onCreate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Called when creating the filter">This method is called during instantiation of the filter class object. If your filter allocates or initializes any other resources (such as a buffer), this is the place to do it.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

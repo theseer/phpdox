@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFDisplayItem" namespace="" name="SWFDisplayItem">
+  <method name="addAction" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds this SWFAction to the given SWFSprite instance"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="action" optional="false" byreference="false" type="object" class="SWFAction"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="addColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds the given color to this item's color transform"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="red" optional="false" byreference="false" type="int"/>
+    <parameter name="green" optional="false" byreference="false" type="int"/>
+    <parameter name="blue" optional="false" byreference="false" type="int"/>
+    <parameter name="a" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="endMask" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Another way of defining a MASK layer"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getRot" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getX" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getXScale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getXSkew" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getY" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getYScale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getYSkew" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="move" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves object in relative coordinates"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="dx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="dy" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="moveTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves object in global coordinates"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="multColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Multiplies the item's color transform"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="red" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="green" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="blue" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="a" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="remove" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Removes the object from the movie"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rotate" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Rotates in relative coordinates"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="rotateTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Rotates the object in global coordinates"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Scales the object in relative coordinates"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="dx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="dy" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scaleTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Scales the object in global coordinates"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setDepth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets z-order"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="depth" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaskLevel" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Defines a MASK layer at level"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="level" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMatrix" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the item's transform matrix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="c" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="d" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the object's name"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRatio" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the object's ratio"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="ratio" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewX" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the X-skew"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="ddegrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewXTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the X-skew"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewY" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the Y-skew"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="ddegrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="skewYTo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the Y-skew"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

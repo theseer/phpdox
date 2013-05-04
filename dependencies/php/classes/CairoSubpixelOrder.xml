@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoSubpixelOrder" namespace="" name="CairoSubpixelOrder">
+  <constant name="ORDER_DEFAULT" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ORDER_RGB" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ORDER_BGR" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ORDER_VRGB" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ORDER_VBGR" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

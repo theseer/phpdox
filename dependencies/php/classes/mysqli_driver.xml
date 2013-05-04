@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="mysqli_driver" namespace="" name="mysqli_driver">
+  <member name="client_info" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The Client API header version"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="client_version" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The Client version"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="driver_version" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The MySQLi Driver version"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="embedded" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Whether MySQLi Embedded support is enabled"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="reconnect" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Allow or prevent reconnect (see the mysqli.reconnect INI directive)"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="report_mode" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Set to MYSQLI_REPORT_OFF,&#10;       MYSQLI_REPORT_ALL or any combination of&#10;       MYSQLI_REPORT_STRICT (throw Exceptions for errors),&#10;       MYSQLI_REPORT_ERROR (report errors) and&#10;       MYSQLI_REPORT_INDEX (errors regarding indexes).&#10;       See also mysqli_report.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <method name="embedded_server_end" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Stop embedded server">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="embedded_server_start" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Initialize and start embedded server">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="start" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="arguments" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="groups" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

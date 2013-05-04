@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoMatrix" namespace="" name="CairoMatrix">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new CairoMatrix object">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="xx" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="yx" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="xy" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="yy" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="x0" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="y0" optional="true" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="initIdentity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new identity matrix">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="initRotate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new rotated matrix">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="radians" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="initScale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new scaling matrix">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sy" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="initTranslate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new translation matrix">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ty" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="invert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The invert purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="multiply" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The multiply purpose"/>
+      <return type="CairoMatrix"/>
+    </docblock>
+    <parameter name="matrix1" optional="false" byreference="false" type="object" class="CairoMatrix"/>
+    <parameter name="matrix2" optional="false" byreference="false" type="object" class="CairoMatrix"/>
+  </method>
+  <method name="rotate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The rotate purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="string"/>
+    <parameter name="sy" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="scale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Applies scaling to a matrix">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sy" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="transformDistance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The transformDistance purpose"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="dx" optional="false" byreference="false" type="string"/>
+    <parameter name="dy" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="transformPoint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The transformPoint purpose"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="dx" optional="false" byreference="false" type="string"/>
+    <parameter name="dy" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="translate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The translate purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tx" optional="false" byreference="false" type="string"/>
+    <parameter name="ty" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

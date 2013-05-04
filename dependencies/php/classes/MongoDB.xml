@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoDB" namespace="" name="MongoDB">
+  <constant name="PROFILING_OFF" value="0">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="PROFILING_SLOW" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="PROFILING_ON" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <member name="w" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of servers to replicate a change to before returning success.&#10;       Inherited by instances of MongoCollection derived&#10;       from this.  w functionality is only available in &#10;       version 1.5.1+ of the MongoDB server and 1.0.8+ of the driver.&#10;      ">
+       The number of servers to replicate a change to before returning success.
+       Inherited by instances of MongoCollection derived
+       from this.  w functionality is only available in 
+       version 1.5.1+ of the MongoDB server and 1.0.8+ of the driver.
+      </description>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="wtimeout" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of milliseconds to wait for MongoDB::$w &#10;       replications to take place.  Inherited by instances of&#10;       MongoCollection derived from this. &#10;       w functionality is only available in version 1.5.1+ of&#10;       the MongoDB server and 1.0.8+ of the driver.&#10;      ">
+       The number of milliseconds to wait for MongoDB::$w 
+       replications to take place.  Inherited by instances of
+       MongoCollection derived from this. 
+       w functionality is only available in version 1.5.1+ of
+       the MongoDB server and 1.0.8+ of the driver.
+      </description>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <method name="authenticate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Log in to this database">This method causes its connection to be authenticated. If authentication is enabled for the database server (it's not, by default), you need to log in before the database will allow you to do anything.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="username" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="command" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute a database command">Almost everything that is not a CRUD operation can be done with a database command. Need to know the database version? There's a command for that. Need to do aggregation? There's a command for that. Need to turn up logging? You get the idea.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="command" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new database">This method is not meant to be called directly. The preferred way to create an instance of MongoDB is through Mongo::__get or Mongo::selectDB.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="conn" optional="false" byreference="false" type="object" class="Mongo"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="createCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a collection"/>
+      <return type="MongoCollection"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="capped" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="size" optional="true" byreference="false" type="int"/>
+    <parameter name="max" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="createDBRef" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a database reference"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="collection" optional="false" byreference="false" type="string"/>
+    <parameter name="a" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="drop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops this database">This drops the database currently being used.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="dropCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops a collection [deprecated]">Use MongoCollection::drop instead.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="coll" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Runs JavaScript code on the database server.">The Mongo database server runs a JavaScript engine. This method allows you to run arbitary JavaScript on the database. This can be useful if you want touch a number of collections lightly, or process some results on the database side to reduce the amount that has to be sent to the client.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="code" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="forceError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a database error">This method is not very useful for normal MongoDB use. It forces a database error to occur. This means that MongoDB::lastError will return a generic database error after running this command.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a collection"/>
+      <return type="MongoCollection"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getDBRef" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetches the document pointed to by a database reference"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="ref" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getGridFS" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetches toolkit for dealing with files stored in this database"/>
+      <return type="MongoGridFS"/>
+    </docblock>
+    <parameter name="prefix" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getProfilingLevel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets this database's profiling level">This returns the current database profiling level.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSlaveOkay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get slaveOkay setting for this database"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="lastError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if there was an error on the most recent db operation performed"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="listCollections" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get a list of collections in this database"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="prevError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks for the last error thrown during a database operation"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="repair" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Repairs and compacts this database">This creates a fresh copy of all database data. It will remove any corrupt data and compact and large stretches of free space it finds. This is a very slow operation on a large database.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="preserve_cloned_files" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="backup_original_files" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="resetError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clears any flagged errors on the database">This method is not used in normal operations. It resets the database error tracker (which can be incremented with MongoDB::forceError, also not normally used).</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="selectCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a collection"/>
+      <return type="MongoCollection"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setProfilingLevel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets this database's profiling level">This changes the current database profiling level.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="level" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSlaveOkay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change slaveOkay setting for this database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ok" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The name of this database"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

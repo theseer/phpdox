@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Mongo" namespace="" name="Mongo">
+  <constant name="VERSION" value="">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_HOST" value="&quot;localhost&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_PORT" value="27017">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <member name="connected" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <member name="status" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="server" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="persistent" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes this connection">The Mongo::close method forcefully closes a connection to the database, even if persistent connections are being used. You do under normal circumstance never have to do this.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connects to a database server"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="connectUtil" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Connects with a database server"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new database connection object">If no parameters are passed, this connects to "localhost:27017" (or whatever was specified in php.ini for mongo.default_host and mongo.default_port).</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="server" optional="true" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="dropDB" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops a database [deprecated]"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="__get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a database"/>
+      <return type="MongoDB"/>
+    </docblock>
+    <parameter name="dbname" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getHosts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Updates status for all hosts associated with this">This method is only useful with a connection to a replica set. It returns the status of all of the hosts in the set. Without a replica set, it will just return an array with one element containing the host that you are connected to.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getPoolSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get pool size for connection pools"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSlave" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the address being used by this for slaveOkay reads">This finds the address of the slave currently being used for reads. It is a read-only method: it does not change anything about the internal state of the object.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSlaveOkay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get slaveOkay setting for this connection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="listDBs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Lists all of the databases available."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="poolDebug" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns information about all connection pools."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="selectCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a database collection"/>
+      <return type="MongoCollection"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="collection" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="selectDB" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a database"/>
+      <return type="MongoDB"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPoolSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the size for future connection pools."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSlaveOkay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change slaveOkay setting for this connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ok" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="switchSlave" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Choose a new slave for slaveOkay reads">This choses a random slave for a connection to read from. It is called automatically by the driver and should not need to be used. It calls Mongo::getHosts (to refresh the status of hosts) and Mongo::getSlave (to get the return value).</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="String representation of this connection"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

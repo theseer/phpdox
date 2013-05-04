@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoGridFS" namespace="" name="MongoGridFS">
+  <extends name="MongoCollection" full="MongoCollection"/>
+  <member name="chunks" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="MongoCollection"/>
+    </docblock>
+  </member>
+  <member name="filesName" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="chunksName" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates new file collections">Files as stored across two collections, the first containing file meta information, the second containing chunks of the actual file. By default, fs.files and fs.chunks are the collection names used.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="object" class="MongoDB"/>
+    <parameter name="prefix" optional="true" byreference="false" type="string"/>
+    <parameter name="chunks" optional="true" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete a file from the database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="drop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops the files and chunks collections"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="find" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Queries for files"/>
+      <return type="MongoGridFSCursor"/>
+    </docblock>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="findOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a single file matching the criteria"/>
+      <return type="MongoGridFSFile"/>
+    </docblock>
+    <parameter name="query" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="fields" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve a file from the database"/>
+      <return type="MongoGridFSFile"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="put" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stores a file in the database"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="extra" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes files from the collections"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="criteria" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="storeBytes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Chunkifies and stores bytes in the database"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="bytes" optional="false" byreference="false" type="string"/>
+    <parameter name="extra" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="storeFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stores a file in the database"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="extra" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="storeUpload" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Saves an uploaded file to the database">Stores files directly from a POST to the database. For example, suppose you had the following HTML form:</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="metadata" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

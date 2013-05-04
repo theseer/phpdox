@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="GmagickDraw" namespace="" name="GmagickDraw">
+  <method name="annotate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws text on the image"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="arc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws an arc"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ex" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ey" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sd" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ed" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="bezier" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws a bezier curve"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="coordinate_array" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="ellipse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws an ellipse on the image"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="ox" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="oy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="rx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ry" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="start" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="end" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="getfillcolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the fill color"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getfillopacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the opacity used when drawing"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getfont" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the font"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getfontsize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the font pointsize"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getfontstyle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the font style"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getfontweight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the font weight"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getstrokecolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the color used for stroking object outlines"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getstrokeopacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the opacity of stroked object outlines"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getstrokewidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the width of the stroke used to draw object outlines"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="gettextdecoration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the text decoration"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="gettextencoding" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the code set used for text annotations"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="line" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The line purpose"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="sx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sy" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ex" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ey" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="point" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws a point"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="polygon" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws a polygon"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="coordinates" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="polyline" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws a polyline"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="coordinate_array" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="rectangle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws a rectangle"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="rotate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Applies the specified rotation to the current coordinate space"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="roundrectangle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draws a rounded rectangle"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="rx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ry" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adjusts the scaling factor"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setfillcolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the fill color to be used for drawing filled objects. "/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setfillopacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setfillopacity purpose"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="fill_opacity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setfont" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the fully-specified font to use when annotating with text. "/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="font" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setfontsize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the font pointsize to use when annotating with text. "/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="pointsize" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setfontstyle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the font style to use when annotating with text"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setfontweight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the font weight"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="weight" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setstrokecolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the color used for stroking object outlines. "/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
+  </method>
+  <method name="setstrokeopacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Specifies the opacity of stroked object outlines."/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="stroke_opacity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setstrokewidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the width of the stroke used to draw object outlines. "/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="settextdecoration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Specifies a decoration"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="decoration" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="settextencoding" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Specifies specifies the text code set"/>
+      <return type="GmagickDraw"/>
+    </docblock>
+    <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

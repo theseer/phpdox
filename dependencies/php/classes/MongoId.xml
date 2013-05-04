@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoId" namespace="" name="MongoId">
+  <member name="id" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new id"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="id" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getHostname" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the hostname being used for this machine's ids">This returns the hostname MongoId is using to generate unique ids. This should be the same value gethostname returns.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getInc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the incremented value to create this id"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getPID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the process id used to create this"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the number of seconds since the epoch that this id was created"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="__set_state" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a dummy MongoId">This function is only used by PHP internally, it shouldn't need to ever be called by the user.</description>
+      <return type="MongoId"/>
+    </docblock>
+    <parameter name="props" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a hexidecimal representation of this id"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

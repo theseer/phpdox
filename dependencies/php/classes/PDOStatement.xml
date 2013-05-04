@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="PDOStatement" namespace="" name="PDOStatement">
+  <implements name="Traversable" full="Traversable"/>
+  <member name="queryString" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Used query string.&#10;      "/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <method name="bindColumn" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Bind a column to a PHP variable&#10;  ">PDOStatement::bindColumn arranges to have a particular variable bound to a given column in the result-set from a query. Each call to PDOStatement::fetch or PDOStatement::fetchAll will update all the variables that are bound to columns.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="column" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="param" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+    <parameter name="maxlen" optional="true" byreference="false" type="int"/>
+    <parameter name="driverdata" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="bindParam" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Binds a parameter to the specified variable name&#10;  ">Binds a PHP variable to a corresponding named or question mark placeholder in the SQL statement that was use to prepare the statement. Unlike PDOStatement::bindValue, the variable is bound as a reference and will only be evaluated at the time that PDOStatement::execute is called.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="parameter" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="variable" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="data_type" optional="true" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+    <parameter name="driver_options" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="bindValue" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Binds a value to a parameter&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="parameter" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="data_type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="closeCursor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Closes the cursor, enabling the statement to be executed again.&#10;  ">PDOStatement::closeCursor frees up the connection to the server so that other SQL statements may be issued, but leaves the statement in a state that enables it to be executed again.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="columnCount" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns the number of columns in the result set&#10;  ">Use PDOStatement::columnCount to return the number of columns in the result set represented by the PDOStatement object.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="debugDumpParams" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Dump an SQL prepared command&#10;  ">Dumps the informations contained by a prepared statement directly on the output. It will provide the SQL query in use, the number of parameters used (Params), the list of parameters, with their name, type (paramtype) as an integer, their key name or position, the value, and the position in the query (if this is supported by the PDO driver, otherwise, it will be -1).</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="errorCode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Fetch the SQLSTATE associated with the last operation on the statement handle&#10;  "/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="errorInfo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Fetch extended error information associated with the last operation on the statement handle&#10;  "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="execute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Executes a prepared statement&#10;  ">Execute the prepared statement. If the prepared statement included parameter markers, you must either: call PDOStatement::bindParam to bind PHP variables to the parameter markers: bound variables pass their value as input and receive the output value, if any, of their associated parameter markers or pass an array of input-only parameter values</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="input_parameters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="fetch" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Fetches the next row from a result set&#10;  "/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="fetch_style" optional="true" byreference="false" type="int"/>
+    <parameter name="cursor_orientation" optional="true" byreference="false" type="int"/>
+    <parameter name="cursor_offset" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fetchAll" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns an array containing all of the result set rows&#10;  "/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="fetch_style" optional="true" byreference="false" type="int"/>
+    <parameter name="fetch_argument" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="ctor_args" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="fetchColumn" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns a single column from the next row of a result set&#10;  "/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="column_number" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="fetchObject" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetches the next row and returns it as an object."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="class_name" optional="true" byreference="false" type="string"/>
+    <parameter name="ctor_args" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Retrieve a statement attribute&#10;  ">Gets an attribute of the statement. Currently, no generic attributes exist but only driver specific: PDO::ATTR_CURSOR_NAME (Firebird and ODBC specific): Get the name of cursor for UPDATE ... WHERE CURRENT OF.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getColumnMeta" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns metadata for a column in a result set&#10;  "/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="column" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="nextRowset" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Advances to the next rowset in a multi-rowset statement handle&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="rowCount" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns the number of rows affected by the last SQL statement&#10;  ">PDOStatement::rowCount returns the number of rows affected by the last DELETE, INSERT, or UPDATE statement executed by the corresponding PDOStatement object.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Set a statement attribute&#10;  ">Sets an attribute on the statement. Currently, no generic attributes are set but only driver specific: PDO::ATTR_CURSOR_NAME (Firebird and ODBC specific): Set the name of cursor for UPDATE ... WHERE CURRENT OF.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setFetchMode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Set the default fetch mode for this statement&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="PharFileInfo" namespace="" name="PharFileInfo">
+  <extends name="SplFileInfo" full="SplFileInfo"/>
+  <method name="chmod" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets file-specific permission bits"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="permissions" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="compress" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Compresses the current Phar entry with either zlib or bzip2 compression"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="compression" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Construct a Phar entry object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="entry" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="decompress" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Decompresses the current Phar entry within the phar"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="delMetadata" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Deletes the metadata of the entry"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getCRC32" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns CRC32 code or throws an exception if CRC has not been verified"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getCompressedSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the actual size of the file (with compression) inside the Phar archive"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMetadata" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns file-specific meta-data saved with a file"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getPharFlags" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the Phar file entry flags"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hasMetadata" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the metadata of the entry"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isCRCChecked" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns whether file entry has had its CRC verified"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isCompressed" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns whether the entry is compressed"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="compression_type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="isCompressedBZIP2" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns whether the entry is compressed using bzip2">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using PharFileInfo::isCompressed, PharFileInfo::decompress, and PharFileInfo::compress.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isCompressedGZ" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns whether the entry is compressed using gz">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using PharFileInfo::isCompressed, PharFileInfo::decompress, and PharFileInfo::compress.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setCompressedBZIP2" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Compresses the current Phar entry within the phar using Bzip2 compression">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using PharFileInfo::isCompressed, PharFileInfo::decompress, and PharFileInfo::compress.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setCompressedGZ" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Compresses the current Phar entry within the phar using gz compression">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using PharFileInfo::isCompressed, PharFileInfo::decompress, and PharFileInfo::compress.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setMetadata" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets file-specific meta-data saved with a file">PharFileInfo::setMetadata should only be used to store customized data in a file that cannot be represented with existing information stored with a file. Meta-data can significantly slow down the performance of loading a phar archive if the data is large, or if there are many files containing meta-data. It is important to note that file permissions are natively supported inside a phar; it is possible to set them with the PharFileInfo::chmod method. As with all functionality that modifies the contents of a phar, the phar.readonly INI variable must be off in order to succeed if the file is within a Phar archive. Files within PharData archives do not have this restriction.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="metadata" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setUncompressed" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Uncompresses the current Phar entry within the phar, if it is compressed">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using PharFileInfo::isCompressed, PharFileInfo::decompress, and PharFileInfo::compress.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

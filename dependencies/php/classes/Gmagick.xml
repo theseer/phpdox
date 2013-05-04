@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Gmagick" namespace="" name="Gmagick">
+  <method name="addimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds new image to Gmagick object image list"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="Gmagick" optional="false" byreference="false" type="object" class="Gmagick"/>
+  </method>
+  <method name="addnoiseimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds random noise to the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="NOISE" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="annotateimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Annotates an image with text"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="GmagickDraw" optional="false" byreference="false" type="object" class="GmagickDraw"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="blurimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds blur filter to image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sigma" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="channel" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="borderimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Surrounds the image with a border"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="charcoalimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Simulates a charcoal drawing"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sigma" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="chopimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a region of an image and trims"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clears all resources associated to Gmagick object"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="commentimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a comment to your image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="comment" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="compositeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Composite one image onto another"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="source" optional="false" byreference="false" type="object" class="Gmagick"/>
+    <parameter name="COMPOSE" optional="false" byreference="false" type="int"/>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The Gmagick constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="cropimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Extracts a region of the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="cropthumbnailimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a crop thumbnail"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The current purpose"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="cyclecolormapimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Displaces an image's colormap"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="displace" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="deconstructimages" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns certain pixel differences between images"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="despeckleimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The despeckleimage purpose"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The destroy purpose"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="drawimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Renders the GmagickDraw object on the current image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="GmagickDraw" optional="false" byreference="false" type="object" class="GmagickDraw"/>
+  </method>
+  <method name="edgeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enhance edges within the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="embossimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a grayscale image with a three-dimensional effect"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sigma" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="enhanceimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Improves the quality of a noisy image"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="equalizeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Equalizes the image histogram"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="flipimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a vertical mirror image"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="flopimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The flopimage purpose"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="frameimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a simulated three-dimensional border"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="inner_bevel" optional="false" byreference="false" type="int"/>
+    <parameter name="outer_bevel" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="gammaimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gamma-corrects an image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="gamma" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="getcopyright" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the GraphicsMagick API copyright as a string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getfilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The filename associated with an image sequence"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getimagebackgroundcolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the image background color"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getimageblueprimary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the chromaticy blue primary point"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimagebordercolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the image border color"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getimagechanneldepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the depth for a particular image channel"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="channel_type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getimagecolors" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=" Returns the color of the specified colormap index"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagecolorspace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image colorspace"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagecompose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the composite operator associated with the image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagedelay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image delay"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagedepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the depth of the image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagedispose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image disposal method"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimageextrema" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the extrema for the image"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimagefilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the filename of a particular image in a sequence"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getimageformat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the format of a particular image in a sequence"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getimagegamma" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image gamma"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getimagegreenprimary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the chromaticy green primary point"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimageheight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the image height"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagehistogram" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image histogram"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimageindex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the index of the current active image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimageinterlacescheme" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image interlace scheme"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimageiterations" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image iterations"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagematte" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return if the image has a matte channel"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagemattecolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the image matte color"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getimageprofile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the named image profile."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getimageredprimary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the chromaticity red primary point"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimagerenderingintent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image rendering intent"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimageresolution" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image X and Y resolution"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimagescene" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image scene"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagesignature" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Generates an SHA-256 message digest"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getimagetype" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the potential image type. "/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimageunits" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the image units of resolution"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getimagewhitepoint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the chromaticity white point"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getimagewidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the width of the image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getpackagename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the GraphicsMagick package name."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getquantumdepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the Gmagick quantum depth as a string. "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getreleasedate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the GraphicsMagick release date as a string. "/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getsamplingfactors" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the horizontal and vertical sampling factor. "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getsize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the size associated with the Gmagick object"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getversion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the GraphicsMagick API version"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="hasnextimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the object has more images"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="haspreviousimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the object has a previous image"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="implodeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new image as a copy"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="labelimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a label to an image. "/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="label" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="levelimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adjusts the levels of an image"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="blackPoint" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="gamma" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="whitePoint" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="channel" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="magnifyimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scales an image proportionally 2x"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="mapimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Replaces the colors of an image with the closest color from a reference image."/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="gmagick" optional="false" byreference="false" type="object" class="gmagick"/>
+    <parameter name="dither" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="medianfilterimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Applies a digital filter"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="minifyimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scales an image proportionally to half its size"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="modulateimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Control the brightness, saturation, and hue"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="brightness" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="saturation" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="hue" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="motionblurimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Simulates motion blur"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sigma" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="newimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="background" optional="false" byreference="false" type="string"/>
+    <parameter name="format" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="nextimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Moves to the next image"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="normalizeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enhances the contrast of a color image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="channel" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="oilpaintimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Simulates an oil painting"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="previousimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to the previous image in the object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="profileimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds or removes a profile from an image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="profile" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="quantizeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Analyzes the colors within a reference image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="numColors" optional="false" byreference="false" type="int"/>
+    <parameter name="colorspace" optional="false" byreference="false" type="int"/>
+    <parameter name="treeDepth" optional="false" byreference="false" type="int"/>
+    <parameter name="dither" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="measureError" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="quantizeimages" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The quantizeimages purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="numColors" optional="false" byreference="false" type="int"/>
+    <parameter name="colorspace" optional="false" byreference="false" type="int"/>
+    <parameter name="treeDepth" optional="false" byreference="false" type="int"/>
+    <parameter name="dither" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="measureError" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="queryfontmetrics" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array representing the font metrics"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="draw" optional="false" byreference="false" type="object" class="GmagickDraw"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="queryfonts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the configured fonts"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="pattern" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="queryformats" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns formats supported by Gmagick."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="pattern" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="radialblurimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Radial blurs an image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="channel" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="raiseimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a simulated 3d button-like effect"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+    <parameter name="raise" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reads image from filename"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="readimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reads image from filename"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="readimageblob" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reads image from a binary string"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="imageContents" optional="false" byreference="false" type="string"/>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="readimagefile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The readimagefile purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fp" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="reducenoiseimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Smooths the contours of an image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="removeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes an image from the image list"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="removeimageprofile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes the named image profile and returns it"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="resampleimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resample image to desired resolution"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="xResolution" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="yResolution" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="filter" optional="false" byreference="false" type="int"/>
+    <parameter name="blur" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="resizeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scales an image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="filter" optional="false" byreference="false" type="int"/>
+    <parameter name="blur" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="fit" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="rollimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Offsets an image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="int"/>
+    <parameter name="y" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="rotateimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rotates an image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scaleimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scales the size of an image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="fit" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="separateimagechannel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Separates a channel from the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="channel" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setfilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the filename before you read or write the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setimagebackgroundcolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image background color. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
+  </method>
+  <method name="setimageblueprimary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image chromaticity blue primary point."/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setimagebordercolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image border color."/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
+  </method>
+  <method name="setimagechanneldepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the depth of a particular image channel"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="channel" optional="false" byreference="false" type="int"/>
+    <parameter name="depth" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagecolorspace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image colorspace"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="colorspace" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagecompose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image composite operator"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="composite" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagedelay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image delay"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="delay" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagedepth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image depth"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="depth" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagedispose" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image disposal method"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="disposeType" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagefilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the filename of a particular image in a sequence"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setimageformat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the format of a particular image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="imageFormat" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setimagegamma" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image gamma"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="gamma" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setimagegreenprimary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="TSets the image chromaticity green primary point. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setimageindex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the iterator to the position in the image list specified with the index parameter"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimageinterlacescheme" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the interlace scheme of the image."/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="interlace" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimageiterations" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image iterations. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="iterations" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimageprofile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a named profile to the Gmagick object"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="profile" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setimageredprimary" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image chromaticity red primary point. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setimagerenderingintent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image rendering intent"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="rendering_intent" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimageresolution" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image resolution"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="xResolution" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="yResolution" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setimagescene" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image scene"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="scene" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagetype" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image type"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="imgType" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimageunits" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image units of resolution. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="resolution" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setimagewhitepoint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image chromaticity white point. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setsamplingfactors" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the image sampling factors. "/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="factors" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setsize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the size of the Gmagick object"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="columns" optional="false" byreference="false" type="int"/>
+    <parameter name="rows" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="shearimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creating a parallelogram"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="xShear" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="yShear" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="solarizeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Applies a solarizing effect to the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="threshold" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="spreadimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Randomly displaces each pixel in a block"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="stripimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Strips an image of all profiles and comments"/>
+      <return type="Gmagick"/>
+    </docblock>
+  </method>
+  <method name="swirlimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Swirls the pixels about the center of the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="degrees" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="thumbnailimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Changes the size of an image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="int"/>
+    <parameter name="height" optional="false" byreference="false" type="int"/>
+    <parameter name="fit" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="trimimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove edges from the image"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="fuzz" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Writes an image to the specified filename"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="writeimage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Writes an image to the specified filename"/>
+      <return type="Gmagick"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="all_frames" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

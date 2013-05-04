@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFButton" namespace="" name="SWFButton">
+  <method name="addAction" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds an action"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="action" optional="false" byreference="false" type="object" class="SWFAction"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="addASound" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Associates a sound with a button transition"/>
+      <return type="SWFSoundInstance"/>
+    </docblock>
+    <parameter name="sound" optional="false" byreference="false" type="object" class="SWFSound"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="addShape" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds a shape to a button"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="shape" optional="false" byreference="false" type="object" class="SWFShape"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a new Button"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="setAction" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the action">Sets the action to be performed when the button is clicked.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="action" optional="false" byreference="false" type="object" class="SWFAction"/>
+  </method>
+  <method name="setDown" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Alias for addShape(shape, SWFBUTTON_DOWN)"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="shape" optional="false" byreference="false" type="object" class="SWFShape"/>
+  </method>
+  <method name="setHit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Alias for addShape(shape, SWFBUTTON_HIT)"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="shape" optional="false" byreference="false" type="object" class="SWFShape"/>
+  </method>
+  <method name="setMenu" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="enable track as menu button behaviour"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setOver" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Alias for addShape(shape, SWFBUTTON_OVER)"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="shape" optional="false" byreference="false" type="object" class="SWFShape"/>
+  </method>
+  <method name="setUp" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Alias for addShape(shape, SWFBUTTON_UP)"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="shape" optional="false" byreference="false" type="object" class="SWFShape"/>
+  </method>
+</class>

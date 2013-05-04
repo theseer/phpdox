@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoRegex" namespace="" name="MongoRegex">
+  <member name="regex" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="flags" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new regular expression"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="regex" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="A string representation of this regular expression"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

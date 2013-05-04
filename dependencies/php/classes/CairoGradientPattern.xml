@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoGradientPattern" namespace="" name="CairoGradientPattern">
+  <extends name="CairoPattern" full="CairoPattern"/>
+  <method name="addColorStopRgb" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The addColorStopRgb purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="string"/>
+    <parameter name="red" optional="false" byreference="false" type="string"/>
+    <parameter name="green" optional="false" byreference="false" type="string"/>
+    <parameter name="blue" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addColorStopRgba" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The addColorStopRgba purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="string"/>
+    <parameter name="red" optional="false" byreference="false" type="string"/>
+    <parameter name="green" optional="false" byreference="false" type="string"/>
+    <parameter name="blue" optional="false" byreference="false" type="string"/>
+    <parameter name="alpha" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getColorStopCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getColorStopCount purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getColorStopRgba" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getColorStopRgba purpose"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getExtend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getExtend purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setExtend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setExtend purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="extend" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

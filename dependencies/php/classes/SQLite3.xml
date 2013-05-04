@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SQLite3" namespace="" name="SQLite3">
+  <method name="busyTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the busy connection handler"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="msecs" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="changes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns the number of database rows that were changed (or inserted or&#10;   deleted) by the most recent SQL statement&#10;  "/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes the database connection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Instantiates an SQLite3 object and opens an SQLite 3 database&#10;  "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="encryption_key" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="createAggregate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Registers a PHP function for use as an SQL aggregate function"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="step_callback" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="final_callback" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="argument_count" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="createFunction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Registers a PHP function for use as an SQL scalar function"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="argument_count" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="escapeString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a string that has been properly escaped"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="exec" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Executes a result-less query against a given database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="lastErrorCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns the numeric result code of the most recent failed SQLite request&#10;  "/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="lastErrorMsg" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns English text describing the most recent failed SQLite request&#10;  "/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="lastInsertRowID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the row ID of the most recent INSERT into the database"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="loadExtension" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Attempts to load an SQLite extension library"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="shared_library" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Opens an SQLite database"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="encryption_key" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="prepare" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepares an SQL statement for execution"/>
+      <return type="SQLite3Stmt"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Executes an SQL query"/>
+      <return type="SQLite3Result"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="querySingle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Executes a query and returns a single result"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+    <parameter name="entire_row" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="version" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns the SQLite3 library version as a string constant and as a number&#10;  "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

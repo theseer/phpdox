@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Loader" namespace="" name="Yaf_Loader">
+  <member name="_local_ns" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_library" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       By default, this value is application.directory . &quot;/library&quot;, &#10;       you can change this either in the application.ini(application.library) or call to&#10;      Yaf_Loader::setLibraryPath&#10;      "/>
+    </docblock>
+  </member>
+  <member name="_global_library" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_instance" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="autoload" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The autoload purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="clearLocalNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The clearLocalNamespace purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __clone purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getInstance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getInstance purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getLibraryPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="get the library path"/>
+      <return type="Yaf_Loader"/>
+    </docblock>
+    <parameter name="is_global" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getLocalNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getLocalNamespace purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="import" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The import purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isLocalName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isLocalName purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="registerLocalNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The registerLocalNamespace purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setLibraryPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change the library path"/>
+      <return type="Yaf_Loader"/>
+    </docblock>
+    <parameter name="directory" optional="false" byreference="false" type="string"/>
+    <parameter name="is_global" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__sleep" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __sleep purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The __wakeup purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

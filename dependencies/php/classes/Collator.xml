@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Collator" namespace="" name="Collator">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create a collator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="asort" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sort array maintaining index association">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="arr" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="sort_flag" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="compare" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Compare two Unicode strings">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="str1" optional="false" byreference="false" type="string"/>
+    <parameter name="str2" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="create" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Create a collator">Object oriented style</description>
+      <return type="Collator"/>
+    </docblock>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get collation attribute value">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get collator's last error code">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get text for collator's last error code">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLocale" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the locale name of the collator">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getSortKey" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get sorting key for a string">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="str" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getStrength" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get current collation strength">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set collation attribute">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="val" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStrength" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set collation strength">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="strength" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="sortWithSortKeys" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sort array using specified collator and sort keys">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="arr" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="sort" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sort array using specified collator">Object oriented style</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="arr" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="sort_flag" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

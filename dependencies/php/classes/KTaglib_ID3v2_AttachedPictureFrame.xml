@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="KTaglib_ID3v2_AttachedPictureFrame" namespace="" name="KTaglib_ID3v2_AttachedPictureFrame">
+  <extends name="KTaglib_ID3v2_Frame" full="KTaglib_ID3v2_Frame"/>
+  <method name="getDescription" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a description for the picture in a picture frame"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMimeType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the mime type of the picture">Returns the mime type of the image represented by the attached picture frame.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the type of the image">Returns the type of the image.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="savePicture" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Saves the picture to a file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getMimeType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the mime type of the picture">Returns the mime type of the image represented by the attached picture frame.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPicture" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the frame picture to the given image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the type of the image"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getAlbum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getArtist" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getGenre" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTitle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTrack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getYear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

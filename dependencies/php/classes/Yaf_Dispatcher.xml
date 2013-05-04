@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Dispatcher" namespace="" name="Yaf_Dispatcher">
+  <member name="_router" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_view" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_request" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_plugins" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_instance" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_auto_render" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_return_response" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_instantly_flush" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_default_module" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_default_controller" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_default_action" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="autoRender" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Switch on/off autorendering"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="catchException" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Switch on/off exception catching">While the application.dispatcher.throwException is On(you can also calling to Yaf_Dispatcher::throwException(TRUE) to enable it), Yaf will throw Exception whe error occurrs instead of trigger error.</description>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="flag" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Yaf_Dispatcher can not be cloned"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Yaf_Dispatcher constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="disableView" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disable view rendering"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+  </method>
+  <method name="dispatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Dispatch a request">This method does the heavy work of the Yaf_Dispatcher. It take a request object.</description>
+      <return type="Yaf_Response_Abstract"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+  </method>
+  <method name="enableView" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="enable view rendering"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+  </method>
+  <method name="flushInstantly" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Switch on/off the instant flushing"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getApplication" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive the application"/>
+      <return type="Yaf_Application"/>
+    </docblock>
+  </method>
+  <method name="getInstance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive the dispatcher instance"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+  </method>
+  <method name="getRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive the request instance"/>
+      <return type="Yaf_Request_Abstract"/>
+    </docblock>
+  </method>
+  <method name="getRouter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrive router instance"/>
+      <return type="Yaf_Router"/>
+    </docblock>
+  </method>
+  <method name="initView" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initialize view and return it"/>
+      <return type="Yaf_View_Interface"/>
+    </docblock>
+    <parameter name="templates_dir" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="registerPlugin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register a plugin"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="plugin" optional="false" byreference="false" type="object" class="Yaf_Plugin_Abstract"/>
+  </method>
+  <method name="returnResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The returnResponse purpose"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setAppDirectory" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change the application directory"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="directory" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDefaultAction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change default action name"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="action" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDefaultController" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change default controller name"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="controller" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDefaultModule" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change default module name"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="module" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setErrorHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setErrorHandler purpose"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="call"/>
+    <parameter name="error_types" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setRequest purpose"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+  </method>
+  <method name="setView" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a custom view engine"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="view" optional="false" byreference="false" type="object" class="Yaf_View_Interface"/>
+  </method>
+  <method name="__sleep" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Yaf_Dispatcher can not be serialized"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="throwException" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Switch on/off exception throwing"/>
+      <return type="Yaf_Dispatcher"/>
+    </docblock>
+    <parameter name="flag" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Yaf_Dispatcher can not be unserialized"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

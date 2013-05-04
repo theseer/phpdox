@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoDBRef" namespace="" name="MongoDBRef">
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new database reference"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="collection" optional="false" byreference="false" type="string"/>
+    <parameter name="id" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="database" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetches the object pointed to by a reference"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="object" class="MongoDB"/>
+    <parameter name="ref" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="isRef" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if an array is a database reference"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ref" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFAction" namespace="" name="SWFAction">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a new SWFAction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="script" optional="false" byreference="false" type="string"/>
+  </constructor>
+</class>

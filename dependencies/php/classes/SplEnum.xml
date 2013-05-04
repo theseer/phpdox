@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SplEnum" namespace="" name="SplEnum">
+  <extends name="SplType" full="SplType"/>
+  <constant name="__default" value="null">
+    <docblock>
+      <var type="NULL"/>
+    </docblock>
+  </constant>
+  <method name="getConstList" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns all consts (possible values) as an array."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="include_default" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="initial_value" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="strict" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+</class>

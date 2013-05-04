@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DOMElement" namespace="" name="DOMElement">
+  <extends name="DOMNode" full="DOMNode"/>
+  <member name="schemaTypeInfo" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Not implemented yet, always return NULL"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="tagName" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The element name"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Creates a new DOMElement object&#10;  "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="namespaceURI" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns value of attribute"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAttributeNode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns attribute node"/>
+      <return type="DOMAttr"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAttributeNodeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns attribute node&#10;  "/>
+      <return type="DOMAttr"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAttributeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns value of attribute"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getElementsByTagName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets elements by tagname"/>
+      <return type="DOMNodeList"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getElementsByTagNameNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get elements by namespaceURI and localName"/>
+      <return type="DOMNodeList"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="hasAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Checks to see if attribute exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="hasAttributeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Checks to see if attribute exists&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Removes attribute"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeAttributeNode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Removes attribute"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="oldnode" optional="false" byreference="false" type="object" class="DOMAttr"/>
+  </method>
+  <method name="removeAttributeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Removes attribute"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds new attribute"/>
+      <return type="DOMAttr"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setAttributeNode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds new attribute node to element"/>
+      <return type="DOMAttr"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="object" class="DOMAttr"/>
+  </method>
+  <method name="setAttributeNodeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds new attribute node to element"/>
+      <return type="DOMAttr"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="object" class="DOMAttr"/>
+  </method>
+  <method name="setAttributeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds new attribute"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="qualifiedName" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setIdAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Declares the attribute specified by name to be of type ID"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="isId" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setIdAttributeNode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Declares the attribute specified by node to be of type ID"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="attr" optional="false" byreference="false" type="object" class="DOMAttr"/>
+    <parameter name="isId" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setIdAttributeNS" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Declares the attribute specified by local name and namespace URI to be of type ID"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+    <parameter name="isId" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="appendChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="newnode" optional="false" byreference="false" type="object" class="DOMNode"/>
+  </method>
+  <method name="C14N" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="exclusive" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="with_comments" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="xpath" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="ns_prefixes" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="C14NFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="uri" optional="false" byreference="false" type="string"/>
+    <parameter name="exclusive" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="with_comments" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="xpath" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="ns_prefixes" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="cloneNode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="deep" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getLineNo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getNodePath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="hasAttributes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="hasChildNodes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="insertBefore" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="newnode" optional="false" byreference="false" type="object" class="DOMNode"/>
+    <parameter name="refnode" optional="true" byreference="false" type="object" class="DOMNode"/>
+  </method>
+  <method name="isDefaultNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="isSameNode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="node" optional="false" byreference="false" type="object" class="DOMNode"/>
+  </method>
+  <method name="isSupported" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="feature" optional="false" byreference="false" type="string"/>
+    <parameter name="version" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="lookupNamespaceURI" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="lookupPrefix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="normalize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="removeChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="oldnode" optional="false" byreference="false" type="object" class="DOMNode"/>
+  </method>
+  <method name="replaceChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="newnode" optional="false" byreference="false" type="object" class="DOMNode"/>
+    <parameter name="oldnode" optional="false" byreference="false" type="object" class="DOMNode"/>
+  </method>
+</class>

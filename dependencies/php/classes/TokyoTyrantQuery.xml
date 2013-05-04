@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="TokyoTyrantQuery" namespace="" name="TokyoTyrantQuery">
+  <implements name="Iterator" full="Iterator"/>
+  <method name="addCond" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a condition to the query"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="op" optional="false" byreference="false" type="int"/>
+    <parameter name="expr" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new query"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="table" optional="false" byreference="false" type="object" class="TokyoTyrantTable"/>
+  </constructor>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Counts records"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current element"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="hint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the hint string of the query"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current key"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="metaSearch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve records with multiple queries"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="queries" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Moves the iterator to next entry"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="out" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes records based on query"/>
+      <return type="TokyoTyrantQuery"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewinds the iterator"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="search" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Searches records"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="setLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Limit results"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="max" optional="true" byreference="false" type="int"/>
+    <parameter name="skip" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setOrder" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Orders results"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks the validity of current item"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SNMP" namespace="" name="SNMP">
+  <member name="max_oids" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Maximum OID per GET/SET/GETBULK request"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="valueretrieval" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Controls the method how the SNMP values will be returned"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="quick_print" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Value of quick_print within the NET-SNMP library">Value of quick_print within the NET-SNMP library</description>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="enum_print" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Controls the way enum values are printed">Controls the way enum values are printed</description>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="oid_output_format" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Controls OID output format"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="oid_increasing_check" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Controls disabling check for increasing OID while walking OID tree">Controls disabling check for increasing OID while walking OID tree</description>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="exceptions_enabled" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Controls which failures will raise SNMPException instead of&#10;       warning. Use bitwise OR'ed SNMP::ERRNO_* constants.&#10;       By default all SNMP exceptions are disabled.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="info" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Read-only property with remote agent configuration: hostname,&#10;      port, default timeout, default retries count"/>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates SNMP instance representing session to remote SNMP agent"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="version" optional="false" byreference="false" type="int"/>
+    <parameter name="hostname" optional="false" byreference="false" type="string"/>
+    <parameter name="community" optional="false" byreference="false" type="string"/>
+    <parameter name="timeout" optional="true" byreference="false" type="int"/>
+    <parameter name="retries" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="close" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Close SNMP session"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="get" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch an SNMP object"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="object_id" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="preserve_keys" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getErrno" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get last error code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getError" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get last error message"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getnext" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch an SNMP object which&#10;  follows the given object id&#10;  "/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="object_id" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="set" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the value of an SNMP object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="object_id" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="type" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setSecurity" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Configures security-related SNMPv3 session parameters"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sec_level" optional="false" byreference="false" type="string"/>
+    <parameter name="auth_protocol" optional="true" byreference="false" type="string"/>
+    <parameter name="auth_passphrase" optional="true" byreference="false" type="string"/>
+    <parameter name="priv_protocol" optional="true" byreference="false" type="string"/>
+    <parameter name="priv_passphrase" optional="true" byreference="false" type="string"/>
+    <parameter name="contextName" optional="true" byreference="false" type="string"/>
+    <parameter name="contextEngineID" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="walk" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Fetch SNMP object subtree"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="object_id" optional="false" byreference="false" type="string"/>
+    <parameter name="suffix_as_key" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="max_repetitions" optional="true" byreference="false" type="int"/>
+    <parameter name="non_repeaters" optional="true" byreference="false" type="int"/>
+  </method>
+  <constant name="ERRNO_NOERROR" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_GENERIC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_TIMEOUT" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_ERROR_IN_REPLY" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_OID_NOT_INCREASING" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_OID_PARSING_ERROR" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_MULTIPLE_SET_QUERIES" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERRNO_ANY" value="126">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="VERSION_1" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="VERSION_2C" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="VERSION_2c" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="VERSION_3" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

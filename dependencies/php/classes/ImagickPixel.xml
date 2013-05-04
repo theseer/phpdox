@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ImagickPixel" namespace="" name="ImagickPixel">
+  <method name="clear" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Clears resources associated with this object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="The ImagickPixel constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="destroy" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Deallocates resources associated with this object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the color"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="normalized" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getColorAsString" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the color as a string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getColorCount" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the color count associated with this color"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getColorValue" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Gets the normalized value of the provided color channel"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getHSL" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the normalized HSL color of the ImagickPixel object"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="isSimilar" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Check the distance between this color and another"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="ImagickPixel"/>
+    <parameter name="fuzz" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setColor" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the color"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setColorValue" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the normalized value of one of the channels"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setHSL" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the normalized HSL color"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="hue" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="saturation" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="luminosity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

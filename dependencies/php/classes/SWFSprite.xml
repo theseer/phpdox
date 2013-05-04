@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFSprite" namespace="" name="SWFSprite">
+  <method name="add" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds an object to a sprite">swfsprite::add adds a swfshape, a swfbutton, a swftext, a swfaction or a swfsprite object.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Creates a movie clip (a sprite)"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="labelFrame" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Labels frame"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="label" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="nextFrame" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves to the next frame of the animation"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="remove" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Removes an object to a sprite"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="setFrames" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the total number of frames in the animation"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="number" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="startSound" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SWFSoundInstance"/>
+    </docblock>
+    <parameter name="sount" optional="false" byreference="false" type="object" class="SWFSound"/>
+  </method>
+  <method name="stopSound" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sount" optional="false" byreference="false" type="object" class="SWFSound"/>
+  </method>
+</class>

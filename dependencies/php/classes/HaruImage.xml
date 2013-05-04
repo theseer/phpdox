@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruImage" namespace="" name="HaruImage">
+  <method name="getBitsPerComponent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the number of bits used to describe each color component of the image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getColorSpace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the name of the color space"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the height of the image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSize" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get size of the image"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the width of the image"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="setColorMask" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the color mask of the image"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="rmin" optional="false" byreference="false" type="int"/>
+    <parameter name="rmax" optional="false" byreference="false" type="int"/>
+    <parameter name="gmin" optional="false" byreference="false" type="int"/>
+    <parameter name="gmax" optional="false" byreference="false" type="int"/>
+    <parameter name="bmin" optional="false" byreference="false" type="int"/>
+    <parameter name="bmax" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaskImage" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the image mask"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="mask_image" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+</class>

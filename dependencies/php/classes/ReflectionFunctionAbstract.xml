@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ReflectionFunctionAbstract" namespace="" name="ReflectionFunctionAbstract">
+  <implements name="Reflector" full="Reflector"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the function. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+    </docblock>
+  </member>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Clones function"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getClosureThis" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns this pointer bound to closure"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getDocComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets doc comment"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getEndLine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets end line number"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getExtension" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets extension info"/>
+      <return type="ReflectionExtension"/>
+    </docblock>
+  </method>
+  <method name="getExtensionName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets extension name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFileName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets file name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets function name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNamespaceName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets namespace name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNumberOfParameters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets number of parameters"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getNumberOfRequiredParameters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets number of required parameters"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getParameters" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets parameters"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getShortName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets function short name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getStartLine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets starting line number"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStaticVariables" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets static variables"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="inNamespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if function in namespace"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isClosure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if closure"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isDeprecated" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if deprecated"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isInternal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if is internal"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isUserDefined" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if user defined"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="returnsReference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if returns reference"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="To string"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

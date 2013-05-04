@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="XMLReader" namespace="" name="XMLReader">
+  <constant name="NONE" value="0">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="ELEMENT" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="TEXT" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="CDATA" value="4">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="ENTITY_REF" value="5">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="ENTITY" value="6">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="PI" value="7">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="COMMENT" value="8">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="DOC" value="9">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="DOC_TYPE" value="10">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="DOC_FRAGMENT" value="11">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="NOTATION" value="12">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="WHITESPACE" value="13">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="SIGNIFICANT_WHITESPACE" value="14">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="END_ELEMENT" value="15">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="END_ENTITY" value="16">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="XML_DECLARATION" value="17">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="LOADDTD" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULTATTRS" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="VALIDATE" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="SUBST_ENTITIES" value="4">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <member name="attributeCount" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of attributes on the node&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="baseURI" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The base URI of the node"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="depth" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Depth of the node in the tree, starting at 0"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="hasAttributes" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Indicates if node has attributes"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="hasValue" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Indicates if node has a text value"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="isDefault" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Indicates if attribute is defaulted from DTD"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="isEmptyElement" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Indicates if node is an empty element tag"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="localName" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The local name of the node"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The qualified name of the node"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="namespaceURI" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The URI of the namespace associated with the node"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="nodeType" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The node type for the node"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="prefix" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The prefix of the namespace associated with the node"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="value" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The text value of the node"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="xmlLang" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The xml:lang scope which the node resides"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <method name="close" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Close the XMLReader input"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="expand" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns a copy of the current node as a DOM object"/>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="basenode" optional="true" byreference="false" type="object" class="DOMNode"/>
+  </method>
+  <method name="getAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the value of a named attribute"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAttributeNo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the value of an attribute by index"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getAttributeNs" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the value of an attribute by localname and URI"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getParserProperty" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Indicates if specified property has been set&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="isValid" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Indicates if the parsed document is valid"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="lookupNamespace" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Lookup namespace for a prefix"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="moveToAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move cursor to a named attribute"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="moveToAttributeNo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move cursor to an attribute by index"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="moveToAttributeNs" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move cursor to a named attribute"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="localName" optional="false" byreference="false" type="string"/>
+    <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="moveToElement" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Position cursor on the parent Element of current Attribute"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="moveToFirstAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Position cursor on the first Attribute"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="moveToNextAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Position cursor on the next Attribute"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move cursor to next node skipping all subtrees"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="localname" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="open" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the URI containing the XML to parse"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="URI" optional="false" byreference="false" type="string"/>
+    <parameter name="encoding" optional="true" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="read" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Move to next node in document"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="readInnerXML" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Retrieve XML from current node"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="readOuterXML" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Retrieve XML from current node, including it self"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="readString" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Reads the contents of the current node as a string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="setParserProperty" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set parser options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setRelaxNGSchema" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the filename or URI for a RelaxNG Schema"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRelaxNGSchemaSource" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the data containing a RelaxNG Schema"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="source" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSchema" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Validate document against XSD"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="xml" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="source" optional="false" byreference="false" type="string"/>
+    <parameter name="encoding" optional="true" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Controller_Abstract" namespace="" name="Yaf_Controller_Abstract">
+  <member name="actions" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;      You can also define a action method in a separate PHP script by using&#10;      this property and Yaf_Action_Abstract.&#10;      &#10;       define action in a separate file&#10;        &#10;&#10;&lt;?php&#10;class IndexController extends Yaf_Controller_Abstract {&#10;    protected $actions = array(&#10;        /** now dummyAction is defined in a separate file */&#10;        &quot;dummy&quot; =&gt; &quot;actions/Dummy_action.php&quot;,&#10;    );&#10;&#10;    /* action method may have arguments */&#10;    public indexAction($name, $id) {&#10;       assert($name == $this-&gt;getRequest()-&gt;getParam(&quot;name&quot;));&#10;       assert($id   == $this-&gt;_request-&gt;getParam(&quot;id&quot;));&#10;    }&#10;}&#10;?&gt;&#10;&#10;        &#10;      &#10;      &#10;       Dummy_action.php&#10;        &#10;&#10;&lt;?php&#10;class DummyAction extends Yaf_Action_Abstract {&#10;    /* a action class shall define this method  as the entry point */&#10;    public execute() {&#10;    }&#10;}&#10;?&gt;&#10;&#10;        &#10;      &#10;      "/>
+    </docblock>
+  </member>
+  <member name="_module" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;        module name&#10;      "/>
+    </docblock>
+  </member>
+  <member name="_name" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_request" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;      the request object&#10;      "/>
+    </docblock>
+  </member>
+  <member name="_response" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_invoke_args" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_view" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;      view engine object&#10;      "/>
+    </docblock>
+  </member>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Yaf_Controller_Abstract can not be cloned"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Yaf_Controller_Abstract constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="display" abstract="false" static="false" visibility="protected" final="true">
+    <docblock>
+      <description compact="The display purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tpl" optional="false" byreference="false" type="string"/>
+    <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="forward" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The forward purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="module" optional="false" byreference="false" type="string"/>
+    <parameter name="controller" optional="true" byreference="false" type="string"/>
+    <parameter name="action" optional="true" byreference="false" type="string"/>
+    <parameter name="paramters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getInvokeArg" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getInvokeArg purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getInvokeArgs" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getInvokeArgs purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getModuleName" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getModuleName purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getRequest" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getRequest purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getResponse" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getResponse purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getView" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getView purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getViewpath" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The getViewpath purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="initView" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The initView purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="redirect" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The redirect purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="url" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="render" abstract="false" static="false" visibility="protected" final="true">
+    <docblock>
+      <description compact="The render purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tpl" optional="false" byreference="false" type="string"/>
+    <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setViewpath" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="The setViewpath purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="view_directory" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="PDOException" namespace="" name="PDOException">
+  <extends name="RuntimeException" full="RuntimeException"/>
+  <member name="errorInfo" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Corresponds to PDO::errorInfo or&#10;       PDOStatement::errorInfo&#10;      "/>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <member name="message" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Textual error message. Exception::getMessage to access it.&#10;      "/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="code" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       SQLSTATE error code. Use&#10;       Exception::getCode to access it.&#10;      "/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="Exception"/>
+    </docblock>
+  </method>
+  <method name="getCode" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getFile" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLine" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTrace" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getTraceAsString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

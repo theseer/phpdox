@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="PDO" namespace="" name="PDO">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Creates a PDO instance representing a connection to a database&#10;  "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="dsn" optional="false" byreference="false" type="string"/>
+    <parameter name="username" optional="true" byreference="false" type="string"/>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+    <parameter name="driver_options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="beginTransaction" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Initiates a transaction&#10;  ">Turns off autocommit mode. While autocommit mode is turned off, changes made to the database via the PDO object instance are not committed until you end the transaction by calling PDO::commit. Calling PDO::rollBack will roll back all changes to the database and return the connection to autocommit mode.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="commit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Commits a transaction&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="errorCode" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Fetch the SQLSTATE associated with the last operation on the database handle&#10;  "/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="errorInfo" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Fetch extended error information associated with the last operation on the database handle&#10;  "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="exec" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Execute an SQL statement and return the number of affected rows&#10;  ">PDO::exec executes an SQL statement in a single function call, returning the number of rows affected by the statement.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="statement" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Retrieve a database connection attribute&#10;  ">This function returns the value of a database connection attribute. To retrieve PDOStatement attributes, refer to PDOStatement::getAttribute.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getAvailableDrivers" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Return an array of available PDO drivers&#10;  "/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="inTransaction" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Checks if inside a transaction&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="lastInsertId" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Returns the ID of the last inserted row or sequence value&#10;  ">Returns the ID of the last inserted row, or the last value from a sequence object, depending on the underlying driver. For example, PDO_PGSQL requires you to specify the name of a sequence object for the name parameter.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="prepare" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Prepares a statement for execution and returns a statement object&#10;  ">Prepares an SQL statement to be executed by the PDOStatement::execute method. The SQL statement can contain zero or more named (:name) or question mark (?) parameter markers for which real values will be substituted when the statement is executed. You cannot use both named and question mark parameter markers within the same SQL statement; pick one or the other parameter style. Use these parameters to bind any user-input, do not include the user-input directly in the query.</description>
+      <return type="PDOStatement"/>
+    </docblock>
+    <parameter name="statement" optional="false" byreference="false" type="string"/>
+    <parameter name="driver_options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="query" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Executes an SQL statement, returning a result set as a PDOStatement object&#10;  ">PDO::query executes an SQL statement in a single function call, returning the result set (if any) returned by the statement as a PDOStatement object.</description>
+      <return type="PDOStatement"/>
+    </docblock>
+    <parameter name="statement" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="quote" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Quotes a string for use in a query.&#10;  ">PDO::quote places quotes around the input string (if required) and escapes special characters within the input string, using a quoting style appropriate to the underlying driver.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+    <parameter name="parameter_type" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="rollBack" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Rolls back a transaction&#10;  ">Rolls back the current transaction, as initiated by PDO::beginTransaction. A PDOException will be thrown if no transaction is active.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setAttribute" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Set an attribute&#10;  ">Sets an attribute on the database handle. Some of the available generic attributes are listed below; some drivers may make use of additional driver specific attributes. PDO::ATTR_CASE: Force column names to a specific case. PDO::CASE_LOWER: Force column names to lower case. PDO::CASE_NATURAL: Leave column names as returned by the database driver. PDO::CASE_UPPER: Force column names to upper case. PDO::ATTR_ERRMODE: Error reporting. PDO::ERRMODE_SILENT: Just set error codes. PDO::ERRMODE_WARNING: Raise E_WARNING. PDO::ERRMODE_EXCEPTION: Throw exceptions. PDO::ATTR_ORACLE_NULLS (available with all drivers, not just Oracle): Conversion of NULL and empty strings. PDO::NULL_NATURAL: No conversion. PDO::NULL_EMPTY_STRING: Empty string is converted to NULL. PDO::NULL_TO_STRING: NULL is converted to an empty string. PDO::ATTR_STRINGIFY_FETCHES: Convert numeric values to strings when fetching. Requires bool. PDO::ATTR_STATEMENT_CLASS: Set user-supplied statement class derived from PDOStatement. Cannot be used with persistent PDO instances. Requires array(string classname, array(mixed constructor_args)). PDO::ATTR_TIMEOUT: Specifies the timeout duration in seconds. Not all drivers support this option, and it's meaning may differ from driver to driver. For example, sqlite will wait for up to this time value before giving up on obtaining an writable lock, but other drivers may interpret this as a connect or a read timeout interval. Requires int. PDO::ATTR_AUTOCOMMIT (available in OCI, Firebird and MySQL): Whether to autocommit every single statement. PDO::ATTR_EMULATE_PREPARES Enables or disables emulation of prepared statements. Some drivers do not support native prepared statements or have limited support for them. Use this setting to force PDO to either always emulate prepared statements (if TRUE), or to try to use native prepared statements (if FALSE). It will always fall back to emulating the prepared statement if the driver cannot successfully prepare the current query. Requires bool. PDO::MYSQL_ATTR_USE_BUFFERED_QUERY (available in MySQL): Use buffered queries. PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode. Description of modes is available in PDOStatement::fetch documentation.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="attribute" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

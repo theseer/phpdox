@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoGridFSFile" namespace="" name="MongoGridFSFile">
+  <member name="file" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="array"/>
+    </docblock>
+  </member>
+  <member name="gridfs" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="MongoGridFS"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new GridFS file"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="gridfs" optional="false" byreference="false" type="object" class="MongoGridFS"/>
+    <parameter name="file" optional="false" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="getBytes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns this file's contents as a string of bytes"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns this file's filename"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getResource" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a resource that can be used to read the stored file">This method returns a stream resource that can be used with all file functions in PHP. The contents of the file are pulled out of MongoDB on the fly, so that the whole file does not have to be loaded into memory first.</description>
+      <return type="stream"/>
+    </docblock>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns this file's size"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Writes this file to the filesystem"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruFont" namespace="" name="HaruFont">
+  <method name="getAscent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the vertical ascent of the font"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getCapHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the distance from the baseline of uppercase letters"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getDescent" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the vertical descent of the font"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getEncodingName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the name of the encoding"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFontName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the name of the font"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTextWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the total width of the text, number of characters, number of words and number of spaces"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getUnicodeWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the width of the character in the font"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="character" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getXHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Get the distance from the baseline of lowercase letters"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="measureText" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Calculate the number of characters which can be included within the specified width"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="font_size" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="char_space" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="word_space" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="word_wrap" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

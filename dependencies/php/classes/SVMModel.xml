@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SVMModel" namespace="" name="SVMModel">
+  <method name="checkProbabilityModel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns true if the model has probability information"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new SVMModel"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getLabels" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the labels the model was trained on"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getNrClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of classes the model was trained with"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSvmType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the SVM type the model was trained with"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSvrProbability" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the sigma value for regression types"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="load" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Load a saved SVM Model"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="predict_probability" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return class probabilities for previous unseen data"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="predict" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Predict a value for previously unseen data"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="save" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Save a model to a file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="HaruDestination" namespace="" name="HaruDestination">
+  <method name="setFit" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the window"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setFitB" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the bounding box of the page within the window"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setFitBH" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the width of the bounding box"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="top" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFitBV" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the height of the boudning box"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="left" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFitH" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the window width"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="top" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFitR" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the specified rectangle"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="left" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="bottom" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="right" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="top" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setFitV" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page to fit the window height"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="left" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setXYZ" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the appearance of the page"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="left" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="top" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="zoom" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

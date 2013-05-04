@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="VarnishStat" namespace="" name="VarnishStat">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="VarnishStat constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="getSnapshot" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the current varnish instance statistics snapshot"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

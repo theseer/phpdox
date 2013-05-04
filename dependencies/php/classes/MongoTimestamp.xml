@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoTimestamp" namespace="" name="MongoTimestamp">
+  <member name="sec" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="inc" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new timestamp."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="sec" optional="true" byreference="false" type="int"/>
+    <parameter name="inc" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a string representation of this timestamp"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

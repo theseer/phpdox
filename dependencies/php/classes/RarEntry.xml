@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RarEntry" namespace="" name="RarEntry">
+  <constant name="HOST_MSDOS" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HOST_OS2" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HOST_WIN32" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HOST_UNIX" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HOST_MACOS" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HOST_BEOS" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_READONLY" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_HIDDEN" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_SYSTEM" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_DIRECTORY" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_ARCHIVE" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_DEVICE" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_NORMAL" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_TEMPORARY" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_SPARSE_FILE" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_REPARSE_POINT" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_COMPRESSED" value="2048">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_OFFLINE" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_NOT_CONTENT_INDEXED" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_ENCRYPTED" value="16384">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_WIN_VIRTUAL" value="65536">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_WORLD_EXECUTE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_WORLD_WRITE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_WORLD_READ" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_GROUP_EXECUTE" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_GROUP_WRITE" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_GROUP_READ" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_OWNER_EXECUTE" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_OWNER_WRITE" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_OWNER_READ" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_STICKY" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_SETGID" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_SETUID" value="2048">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_FINAL_QUARTET" value="61440">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_FIFO" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_CHAR_DEV" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_DIRECTORY" value="16384">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_BLOCK_DEV" value="24576">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_REGULAR_FILE" value="32768">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_SYM_LINK" value="40960">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ATTRIBUTE_UNIX_SOCKET" value="49152">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="extract" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Extract entry from the archive"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dir" optional="false" byreference="false" type="string"/>
+    <parameter name="filepath" optional="true" byreference="false" type="string"/>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+    <parameter name="extended_data" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getAttr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get attributes of the entry"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getCrc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get CRC of the entry"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFileTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get entry last modification time"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getHostOs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get entry host OS"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get pack method of the entry"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get name of the entry"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPackedSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get packed size of the entry">Get packed size of the archive entry.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStream" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get file handler for entry">Returns a file handler that supports read operations. This handler provides on-the-fly decompression for this entry.</description>
+      <return type="resource"/>
+    </docblock>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getUnpackedSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get unpacked size of the entry">Get unpacked size of the archive entry.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get minimum version of RAR program required to unpack the entry"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isDirectory" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Test whether an entry represents a directory"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isEncrypted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Test whether an entry is encrypted">Tests whether the current entry contents are encrypted.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get text representation of entry"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

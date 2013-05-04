@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoBinData" namespace="" name="MongoBinData">
+  <constant name="FUNC" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="BYTE_ARRAY" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="UUID" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="MD5" value="5">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="CUSTOM" value="128">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <member name="bin" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="type" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new binary data object.">Creates a new binary data object.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The string representation of this binary data object."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

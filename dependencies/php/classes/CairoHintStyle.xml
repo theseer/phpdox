@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoHintStyle" namespace="" name="CairoHintStyle">
+  <constant name="STYLE_DEFAULT" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="STYLE_NONE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="STYLE_SLIGHT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="STYLE_MEDIUM" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="STYLE_FULL" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

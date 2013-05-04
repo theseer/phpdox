@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Transliterator" namespace="" name="Transliterator">
+  <constant name="FORWARD" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="REVERSE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="id" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Private constructor to deny instantiation">This method should not be called. Its only purpose is to deny instantiation with the new operator.</description>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a transliterator">Object oriented style</description>
+      <return type="Transliterator"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+    <parameter name="direction" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="createFromRules" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create transliterator from rules">Object oriented style</description>
+      <return type="Transliterator"/>
+    </docblock>
+    <parameter name="rules" optional="false" byreference="false" type="string"/>
+    <parameter name="direction" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="createInverse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create an inverse transliterator">Object oriented style</description>
+      <return type="Transliterator"/>
+    </docblock>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error code">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error message">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="listIDs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get transliterator IDs">Object oriented style</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="transliterate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Transliterate a string">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="subject" optional="false" byreference="false" type="string"/>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
+    <parameter name="end" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

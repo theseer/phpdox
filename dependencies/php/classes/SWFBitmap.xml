@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFBitmap" namespace="" name="SWFBitmap">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Loads Bitmap object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="file" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="alphafile" optional="true" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="getHeight" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the bitmap's height"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getWidth" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the bitmap's width"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+</class>

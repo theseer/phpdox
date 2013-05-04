@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Request_Abstract" namespace="" name="Yaf_Request_Abstract">
+  <constant name="SCHEME_HTTP" value="http">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="SCHEME_HTTPS" value="https">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <member name="module" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="controller" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="action" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="method" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="params" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="language" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_exception" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_base_uri" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="uri" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="dispatched" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="routed" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="getActionName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getActionName purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getBaseUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getBaseUri purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getControllerName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getControllerName purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getEnv" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getEnv purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getException" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getException purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getLanguage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getLanguage purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getMethod purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getModuleName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getModuleName purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getParam" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getParam purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getParams" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getParams purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getRequestUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getRequestUri purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getServer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getServer purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="isCli" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isCli purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isDispatched" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isDispatched purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isGet purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isHead" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isHead purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isOptions purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isPost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isPost purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isPut" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isPut purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isRouted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isRouted purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isXmlHttpRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The isXmlHttpRequest purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setActionName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setActionName purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="action" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setBaseUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setBaseUri purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="uir" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setControllerName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setControllerName purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="controller" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDispatched" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setDispatched purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setModuleName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setModuleName purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="module" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setParam" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setParam purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setRequestUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setRequestUri purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="uir" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRouted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setRouted purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flag" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

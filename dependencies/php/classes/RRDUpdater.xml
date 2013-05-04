@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RRDUpdater" namespace="" name="RRDUpdater">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates new RRDUpdater instance"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="update" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update the RRD database file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="values" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="time" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

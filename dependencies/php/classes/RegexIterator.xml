@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="RegexIterator" namespace="" name="RegexIterator">
+  <extends name="FilterIterator" full="FilterIterator"/>
+  <constant name="" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new RegexIterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
+    <parameter name="regex" optional="false" byreference="false" type="string"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="preg_flags" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="accept" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get accept status"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get flags"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns operation mode."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getPregFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the regular expression flags."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getRegex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns current regular expression"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the flags."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the operation mode."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setPregFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the regular expression flags."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="preg_flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="accept" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getInnerIterator" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Iterator"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

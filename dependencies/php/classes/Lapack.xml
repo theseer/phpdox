@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Lapack" namespace="" name="Lapack">
+  <method name="eigenValues" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This function returns the eigenvalues for a given square matrix"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="left" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="right" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="identity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return an identity matrix"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="n" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="leastSquaresByFactorisation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calculate the linear least squares solution of a matrix using QR factorisation"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="leastSquaresBySVD" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Solve the linear least squares problem, using SVD"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="pseudoInverse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calculate the inverse of a matrix"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="singularValues" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calculated the singular values of a matrix"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="solveLinearEquation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Solve a system of linear equations"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="b" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

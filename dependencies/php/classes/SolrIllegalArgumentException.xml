@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrIllegalArgumentException" namespace="" name="SolrIllegalArgumentException">
+  <extends name="SolrException" full="SolrException"/>
+  <method name="getInternalInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns internal information where the Exception was thrown"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getInternalInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

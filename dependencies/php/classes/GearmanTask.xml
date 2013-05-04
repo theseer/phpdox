@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="GearmanTask" namespace="" name="GearmanTask">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a GearmanTask instance"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a task (deprecated)">Returns a new GearmanTask object.</description>
+      <return type="GearmanTask"/>
+    </docblock>
+  </method>
+  <method name="data" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get data returned for a task"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="dataSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the size of returned data"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="function" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get associated function name (deprecated)">Returns the name of the function this task is associated with, i.e., the function the Gearman worker calls.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="functionName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get associated function name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="isKnown" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine if task is known"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Test whether the task is currently running"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="jobHandle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the job handle"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="recvData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read work or result data into a buffer for a task"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="data_len" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="returnCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the last return code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="sendData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data for a task (deprecated)"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendWorkload" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data for a task"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="taskDenominator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get completion percentage denominator"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="taskNumerator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get completion percentage numerator"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="unique" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the unique identifier for a task"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="uuid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the unique identifier for a task (deprecated)">Returns the unique identifier for this task. This is assigned by the GearmanClient, as opposed to the job handle which is set by the Gearman job server.</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

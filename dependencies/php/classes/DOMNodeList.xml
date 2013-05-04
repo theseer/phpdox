@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DOMNodeList" namespace="" name="DOMNodeList">
+  <member name="length" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of nodes in the list. The range of valid child node &#10;       indices is 0 to length - 1 inclusive.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <method name="item" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Retrieves a node specified by index&#10;  ">Retrieves a node specified by index within the DOMNodeList object.</description>
+      <return type="DOMNode"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

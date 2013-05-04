@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="streamWrapper" namespace="" name="streamWrapper">
+  <member name="context" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The current context, or NULL if no&#10;       context was passed to the caller function.&#10;      ">
+       The current context, or NULL if no
+       context was passed to the caller function.
+      </description>
+      <var type="resource"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructs a new stream wrapper"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Destructs an existing stream wrapper"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="dir_closedir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close directory handle">This method is called in response to closedir.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="dir_opendir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Open directory handle"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="dir_readdir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read entry from directory handle"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="dir_rewinddir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind directory handle">This method is called in response to rewinddir.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="mkdir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a directory">This method is called in response to mkdir.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="mode" optional="false" byreference="false" type="int"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="rename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Renames a file or directory">This method is called in response to rename.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path_from" optional="false" byreference="false" type="string"/>
+    <parameter name="path_to" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="rmdir" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a directory">This method is called in response to rmdir.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_cast" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve the underlaying resource"/>
+      <return type="resource"/>
+    </docblock>
+    <parameter name="cast_as" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close an resource">This method is called in response to fclose.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="stream_eof" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tests for end-of-file on a file pointer"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="stream_flush" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Flushes the output">This method is called in response to fflush.</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="stream_lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Advisory file locking"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="operation" optional="false" byreference="false" type="object" class="mode"/>
+  </method>
+  <method name="stream_metadata" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change stream options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="int"/>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+    <parameter name="var" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Opens file or URL"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="mode" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+    <parameter name="opened_path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stream_read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read from stream">This method is called in response to fread and fgets.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="count" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_seek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Seeks to specific location in a stream">This method is called in response to fseek.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+    <parameter name="whence" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_set_option" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change stream options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="int"/>
+    <parameter name="arg1" optional="false" byreference="false" type="int"/>
+    <parameter name="arg2" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_stat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve information about a file resource"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="stream_tell" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve the current position of a stream"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="stream_truncate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Truncate stream"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="new_size" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="stream_write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write to stream">This method is called in response to fwrite.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="unlink" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete a file">This method is called in response to unlink.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="url_stat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve information about a file"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

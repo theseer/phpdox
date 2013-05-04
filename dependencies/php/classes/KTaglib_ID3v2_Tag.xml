@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="KTaglib_ID3v2_Tag" namespace="" name="KTaglib_ID3v2_Tag">
+  <extends name="KTaglib_Tag" full="KTaglib_Tag"/>
+  <method name="addFrame" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a frame to the ID3v2 tag"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="frame" optional="false" byreference="false" type="object" class="KTaglib_ID3v2_Frame"/>
+  </method>
+  <method name="getFrameList" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array of ID3v2 frames, associated with the ID3v2 tag"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getAlbum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getArtist" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getGenre" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTitle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTrack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getYear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

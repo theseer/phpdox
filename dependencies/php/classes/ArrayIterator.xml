@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="ArrayIterator" namespace="" name="ArrayIterator">
+  <implements name="Iterator" full="Iterator"/>
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append an element"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="asort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort array by values"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct an ArrayIterator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="array" optional="false" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Count elements"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return current array entry"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getArrayCopy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get array copy"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get flags"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return current array key"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="ksort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort array by keys"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="natcasesort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort an array naturally, case insensitive"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="natsort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sort an array naturally"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to next entry"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if offset exists"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get value for an offset"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set value for an offset"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="newval" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unset value for an offset"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind array back to the start"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="seek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Seek to position"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Serialize"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set behaviour flags"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="uasort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="User defined sort"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cmp_function" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="uksort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="User defined sort"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cmp_function" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unserialize"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether array contains more entries"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

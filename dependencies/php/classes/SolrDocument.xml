@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SolrDocument" namespace="" name="SolrDocument">
+  <implements name="ArrayAccess" full="ArrayAccess"/>
+  <constant name="SORT_DEFAULT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_ASC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_DESC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_FIELD_NAME" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_FIELD_VALUE_COUNT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SORT_FIELD_BOOST_VALUE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="addField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a field to the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+    <parameter name="fieldValue" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops all the fields in the document"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a copy of a SolrDocument object"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the current field"/>
+      <return type="SolrDocumentField"/>
+    </docblock>
+  </method>
+  <method name="deleteField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a field from the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destructor"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="fieldExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if a field exists in the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acess the field as a property"/>
+      <return type="SolrDocumentField"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves a field by name"/>
+      <return type="SolrDocumentField"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getFieldCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of fields in this document"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFieldNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array of fields names in the document"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getInputDocument" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a SolrInputDocument equivalent of the object"/>
+      <return type="SolrInputDocument"/>
+    </docblock>
+  </method>
+  <method name="__isset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if a field exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves the current key"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Merges source to the current SolrDocument"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sourceDoc" optional="false" byreference="false" type="object" class="SolrDocument"/>
+    <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Moves the internal pointer to the next field"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if a particular field exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves a field"/>
+      <return type="SolrDocumentField"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a field to the document"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+    <parameter name="fieldValue" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a field"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="This is an alias to SolrDocument::clear()"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resets the internal pointer to the beginning"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Used for custom serialization"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds another field to the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+    <parameter name="fieldValue" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sorts the fields in the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="sortOrderBy" optional="false" byreference="false" type="int"/>
+    <parameter name="sortDirection" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array representation of the document"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Custom serialization of SolrDocument objects"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__unset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a field from the document"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the current position internally is still valid"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

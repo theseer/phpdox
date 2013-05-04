@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoScaledFont" namespace="" name="CairoScaledFont">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __construct purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="font_face" optional="false" byreference="false" type="object" class="CairoFontFace"/>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="CairoMatrix"/>
+    <parameter name="ctm" optional="false" byreference="false" type="object" class="CairoMatrix"/>
+    <parameter name="options" optional="false" byreference="false" type="object" class="CairoFontOptions"/>
+  </constructor>
+  <method name="extents" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The extents purpose"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getCtm" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getCtm purpose"/>
+      <return type="CairoMatrix"/>
+    </docblock>
+  </method>
+  <method name="getFontFace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getFontFace purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getFontMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getFontMatrix purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getFontOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getFontOptions purpose">Object oriented style (method):</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getScaleMatrix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getScaleMatrix purpose"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The getType purpose"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="glyphExtents" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The glyphExtents purpose"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="glyphs" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The status purpose">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="textExtents" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The textExtents purpose">Object oriented style (method):</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

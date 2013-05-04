@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SoapHeader" namespace="" name="SoapHeader">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="SoapHeader constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="namespace" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="mustunderstand" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="actor" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="SoapHeader" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="SoapHeader constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="namespace" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="mustunderstand" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="actor" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DOMImplementation" namespace="" name="DOMImplementation">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Creates a new DOMImplementation object&#10;  "/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="createDocument" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Creates a DOMDocument object of the specified type with its document element&#10;  "/>
+      <return type="DOMDocument"/>
+    </docblock>
+    <parameter name="namespaceURI" optional="true" byreference="false" type="string"/>
+    <parameter name="qualifiedName" optional="true" byreference="false" type="string"/>
+    <parameter name="doctype" optional="true" byreference="false" type="object" class="DOMDocumentType"/>
+  </method>
+  <method name="createDocumentType" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Creates an empty DOMDocumentType object&#10;  "/>
+      <return type="DOMDocumentType"/>
+    </docblock>
+    <parameter name="qualifiedName" optional="true" byreference="false" type="string"/>
+    <parameter name="publicId" optional="true" byreference="false" type="string"/>
+    <parameter name="systemId" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="hasFeature" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Test if the DOM implementation implements a specific feature&#10;  ">Test if the DOM implementation implements a specific feature.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="feature" optional="false" byreference="false" type="string"/>
+    <parameter name="version" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

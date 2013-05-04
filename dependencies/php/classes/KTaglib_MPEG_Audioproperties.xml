@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="KTaglib_MPEG_Audioproperties" namespace="" name="KTaglib_MPEG_Audioproperties">
+  <method name="getBitrate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the bitrate of the MPEG file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getChannels" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the amount of channels of a MPEG file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLayer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the layer of a MPEG file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the length of a MPEG file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSampleBitrate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the sample bitrate of a MPEG file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the version of a MPEG file"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isCopyrighted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the copyright status of an MPEG file"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isOriginal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns if the file is marked as the original file"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isProtectionEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns if protection mechanisms of an MPEG file are enabled"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

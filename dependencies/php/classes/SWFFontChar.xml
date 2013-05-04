@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="SWFFontChar" namespace="" name="SWFFontChar">
+  <method name="addChars" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds characters to a font for exporting font"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="char" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addUTF8Chars" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Adds characters to a font for exporting font"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="char" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="StompFrame" namespace="" name="StompFrame">
+  <member name="command" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Frame command."/>
+    </docblock>
+  </member>
+  <member name="headers" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Frame headers (array)."/>
+    </docblock>
+  </member>
+  <member name="body" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Frame body."/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="command" optional="true" byreference="false" type="string"/>
+    <parameter name="headers" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="body" optional="true" byreference="false" type="string"/>
+  </constructor>
+</class>

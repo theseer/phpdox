@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoCollection" namespace="" name="MongoCollection">
+  <constant name="ASCENDING" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="DESCENDING" value="-1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <member name="db" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The &quot;parent&quot; database for this collection.&#10;      "/>
+      <var type="MongoDB"/>
+    </docblock>
+  </member>
+  <member name="w" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of servers to replicate a change to before returning success.&#10;       Value is inherited from the parent database. The &#10;       MongoDB class has a more detailed description of&#10;       how w works.&#10;      "/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="wtimeout" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of milliseconds to wait for $this-&gt;w &#10;       replications to take place.  Value is inherited from the parent database.&#10;       The MongoDB class has a more detailed description &#10;       of how wtimeout works.&#10;      "/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <method name="batchInsert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Inserts multiple documents into this collection"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new collection"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="object" class="MongoDB"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Counts the number of documents in this collection"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="limit" optional="true" byreference="false" type="int"/>
+    <parameter name="skip" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="createDBRef" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a database reference"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="deleteIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Deletes an index from this collection">This method is identical to:</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="string|array"/>
+  </method>
+  <method name="deleteIndexes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete all indices for this collection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="drop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops this collection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="ensureIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Creates an index on the given field(s), or does nothing if the index &#10;   already exists&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key|keys" optional="false" byreference="false" type="object" class="string|array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="find" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Querys this collection, returning a MongoCursor&#10;  for the result set"/>
+      <return type="MongoCursor"/>
+    </docblock>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="findOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Querys this collection, returning a single element"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="__get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a collection"/>
+      <return type="MongoCollection"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getDBRef" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fetches the document pointed to by a database reference"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="ref" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getIndexInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns information about indexes on this collection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns this collection's name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSlaveOkay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get slaveOkay setting for this collection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="group" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Performs an operation similar to SQL's GROUP BY command"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="initial" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="reduce" optional="false" byreference="false" type="object" class="MongoCode"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="insert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Inserts an array into the collection"/>
+      <return type="bool|array"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove records from this collection"/>
+      <return type="bool|array"/>
+    </docblock>
+    <parameter name="criteria" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="save" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Saves an object to this collection"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setSlaveOkay" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change slaveOkay setting for this collection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ok" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="toIndexString" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Converts keys specifying an index to its identifying string"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="String representation of this collection"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="update" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update records based on a given criteria"/>
+      <return type="bool|array"/>
+    </docblock>
+    <parameter name="criteria" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="new_object" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="validate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Validates this collection"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="scan_data" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="libXMLError" namespace="" name="libXMLError">
+  <member name="level" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       the severity of the error (one of the following constants:&#10;       LIBXML_ERR_WARNING,&#10;       LIBXML_ERR_ERROR or&#10;       LIBXML_ERR_FATAL)&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="code" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The error's code.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="column" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The column where the error occurred.&#10;      ">
+       The column where the error occurred.
+      </description>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="message" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The error message, if any.&#10;      "/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="file" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The filename, or empty if the XML was loaded from a string."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="line" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The line where the error occurred.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+</class>

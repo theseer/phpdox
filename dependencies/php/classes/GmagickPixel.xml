@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="GmagickPixel" namespace="" name="GmagickPixel">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The GmagickPixel constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getcolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the color"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="as_array" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="normalize_array" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getcolorcount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the color count associated with this color"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getcolorvalue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the normalized value of the provided color channel"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setcolor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the color"/>
+      <return type="GmagickPixel"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setcolorvalue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the normalized value of one of the channels"/>
+      <return type="GmagickPixel"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

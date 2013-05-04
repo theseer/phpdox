@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CairoContent" namespace="" name="CairoContent">
+  <constant name="COLOR" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ALPHA" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="COLOR_ALPHA" value="12288">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>
