@@ -2,9 +2,8 @@
 .project
 .settings
 build
-docs/
-xml/
 phpunit.xml
+phpdoc
 .idea
 vendor
 composer.lock
