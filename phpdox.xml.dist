@@ -8,17 +8,15 @@
         <generator output="${basedir}/build/api/docs">
 
             <build engine="html" enabled="true" output="html">
-                <file extension="html" />
+                <template dir="${phpDox.home}/templates/html" />
+                <file extension="xhtml" />
             </build>
 
             <build engine="todo" enabled="false" output="todo">
                 <file name="todolist.txt" encoding="utf-8" />
             </build>
 
-            <build engine="graph" enabled="true" output="graph">
-                <dot executable="/usr/bin/dot" />
-                <file name="graph.png" format="png" />
-            </build>
+            <build engine="graph" enabled="true" output="graph" />
 
         </generator>
     </project>

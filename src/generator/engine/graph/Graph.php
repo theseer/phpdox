@@ -43,17 +43,19 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     class Graph extends AbstractEngine {
 
-        protected $content = array();
-        protected $outputDir;
+        private $outputDir;
+        private $dotCommand;
+        private $content = array();
 
-        protected $eventMap = array(
+        private $eventMap = array(
             'class.start' =>  1,
             'interface.start' => 1,
             'phpdox.end' => 1
         );
 
-        public function __construct(BuildConfig $config) {
+        public function __construct(GraphConfig $config) {
             $this->outputDir = $config->getOutputDirectory();
+            $this->dotCommand = $config->getDotCommand();
         }
 
         public function getEvents() {
@@ -65,7 +67,7 @@ namespace TheSeer\phpDox\Generator\Engine {
                 $content = "digraph phpdox {\n".join("\n", $this->content)."\n}";
                 $this->saveFile($content, $this->outputDir . '/graph.dot');
                 $wd = $this->outputDir;
-                exec("cd $wd && dot -ograph.png -x -Tpng graph.dot");
+                exec("{$this->dotCommand} $wd/graph.dot");
                 return;
             }
             if (isset($event->class)) {

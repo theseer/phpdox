@@ -39,13 +39,24 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     class GraphConfig extends \TheSeer\phpDox\BuildConfig {
 
-        public function getDotExecutable() {
-            $default = 'dot';
+        public function getDotCommand() {
+            $binary = '/usr/bin/dot';
             $node = $this->ctx->queryOne('cfg:dot');
-            if (!$node) {
-                return $default;
+            if ($node) {
+                $binary = $node->getAttribute('executable', $binary);
             }
-            return $node->getAttribute('executable', $default);
+
+            $name = $this->getOutputDirectory() . '/graph.png';
+            $format = 'png';
+            $options = '-x';
+            $node = $this->ctx->queryOne('cfg:file');
+            if ($node) {
+                $name = $node->getAttribute('name', $name);
+                $options = $node->getAttribute('name', $options);
+                $format = $node->getAttribute('format', $format);
+            }
+            return "$binary -o$name $options -T$format";
         }
+
     }
 }
