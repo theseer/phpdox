@@ -127,25 +127,27 @@ namespace TheSeer\phpDox\DocBlock {
         /**
          * Verify the type of the given item matches the expected one.
          *
-         * @param string $item
+         * @param mixed $item
          * @param string $type
          * @throws FactoryException in case the item type and the expected type do not match.
          */
         protected function verifyType($item, $type = 'string') {
             $match = true;
             switch (strtolower($type)) {
-                case 'string':
+                case 'string': {
                     if (!is_string($item)) {
                         $match = false;
                     }
                     break;
-                default:
+                }
+                default: {
                     throw new FactoryException('Unknown type chosen for verification', FactoryException::UnknownType);
                     break;
+                }
             }
 
             if (!$match) {
-                throw new FactoryException('Argument ('.$item.') must be a string.', FactoryException::InvalidType);
+                throw new FactoryException('Argument must be a string.', FactoryException::InvalidType);
             }
         }
 

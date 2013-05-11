@@ -42,17 +42,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
-
-
-
-        /*********************************************************************/
-        /* Tests                                                             */
-        /*********************************************************************/
-
-
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getElementInstanceFor
          */

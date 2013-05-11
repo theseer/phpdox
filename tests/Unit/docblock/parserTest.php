@@ -51,26 +51,16 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
             $block = file_get_contents(__DIR__.'/../../data/docbock/heading');
 
-            $docBlock = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\DocBlock')
-                ->setMethods(array('appendElement'))
-                ->getMock();
-            $docBlock
-                ->expects($this->exactly(4))
-                ->method('appendElement')
-                ->will($this->returnValue(true));
-
             $factory = $this->getFactoryFixture(array('getInstanceFor'));
-            $factory
-                ->expects($this->once())
-                ->method('getInstanceFor')
-                ->will($this->returnValue(new DocBlock()));
+            $factory->expects($this->once())
+                    ->method('getInstanceFor')
+                    ->will($this->returnValue(new DocBlock()));
 
             $parser = new Parser($factory);
             $actual = $parser->parse($block, array());
 
-            //var_dump($this->readAttribute($parser, 'current'));
+            $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\DocBlock', $actual);
 
-            $this->markTestIncomplete('missing assertionss');
 
         }
     }

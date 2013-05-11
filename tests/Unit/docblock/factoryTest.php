@@ -38,9 +38,10 @@
 
 namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
+    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\phpDox\DocBlock\Factory;
 
-    class FactoryTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
+    class FactoryTest extends \PHPUnit_Framework_TestCase {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::addParserFactory
@@ -97,7 +98,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
             $factory = new Factory();
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\DocBlock\\InlineProcessor',
-                $factory->getInstanceFor('InlineProcessor', $this->getFDomDocumentFixture(array())));
+                $factory->getInstanceFor('InlineProcessor', new fDOMDocument()));
         }
 
         /**
@@ -107,24 +108,6 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         public function testGetInstanceForExpectingFactoryException() {
             $factory = new Factory();
             $factory->getInstanceFor('invalid Parser');
-        }
-
-        /**
-         * @covers TheSeer\phpDox\DocBlock\Factory::verifyType
-         */
-        public function testVerifyType() {
-            $factory = new FactoryProxy();
-            $this->assertNull($factory->verifyType('Tux'));
-        }
-
-        /**
-         * @expectedException TheSeer\phpDox\DocBlock\FactoryException
-         * @dataProvider verifyTypeClassDataprovider
-         * @covers TheSeer\phpDox\DocBlock\Factory::verifyType
-         */
-        public function testVerifyTypeExpectingFactoryException($item, $type) {
-            $factory = new FactoryProxy();
-            $factory->verifyType($item, $type);
         }
 
         /*********************************************************************/
@@ -146,10 +129,4 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         }
     }
 
-    class FactoryProxy extends Factory {
-
-        public function verifyType($item, $type = 'string') {
-            parent::verifyType($item, $type);
-        }
-    }
 }
