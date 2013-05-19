@@ -76,6 +76,12 @@
         <channel>nikic.github.com/pear</channel>
         <min>0.9.3</min>
        </package>
+       <package>
+        <name>PHP_Timer</name>
+        <channel>pear.phpunit.de</channel>
+        <min>1.0.2</min>
+        <max>1.0.99</max>
+       </package>
        <extension>
         <name>tokenizer</name>
        </extension>
