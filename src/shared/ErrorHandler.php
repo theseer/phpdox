@@ -49,6 +49,8 @@ namespace TheSeer\phpDox {
          * @return void
          */
         public function register() {
+            error_reporting(-1);
+            ini_set('display_errors', FALSE);
             register_shutdown_function(array($this, "handleShutdown"));
             set_exception_handler(array($this, 'handleException'));
             set_error_handler(array($this, 'handleError'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);

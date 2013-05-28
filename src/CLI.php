@@ -63,7 +63,6 @@ namespace TheSeer\phpDox {
          * Main executor for CLI process.
          */
         public function run() {
-            error_reporting(-1);
             $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
             $errorHandler->register();
             try {
@@ -84,8 +83,6 @@ namespace TheSeer\phpDox {
                     $this->showUsage();
                     exit(0);
                 }
-
-                $errorHandler->setDebug($options->getValue('debug'));
 
                 $cfgLoader = $this->factory->getInstanceFor('ConfigLoader');
                 $cfgFile = $options->getValue('file');
@@ -237,10 +234,6 @@ namespace TheSeer\phpDox {
             $c->addExclusion(new \ezcConsoleOptionRule($g));
 
             $input->registerOption( new \ezcConsoleOption(
-                NULL, 'debug', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                'For plugin developers only, enable php error reporting'
-            ));
-            $input->registerOption( new \ezcConsoleOption(
                 NULL, 'engines', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
                 'Show a list of available engines and exit'
             ));
@@ -280,8 +273,6 @@ Usage: phpdox [switches]
 
   -h, --help       Prints this usage information
   -v, --version    Prints the version and exits
-
-      --debug      For plugin developers only, enable php error reporting
 
       --engines    Show a list of available output engines and exit
       --backends   Show a list of available backends and exit
