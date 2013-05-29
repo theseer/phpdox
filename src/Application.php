@@ -164,18 +164,29 @@ namespace TheSeer\phpDox {
             $this->logger->reset();
             $this->logger->log("Starting generator\n");
 
-            $efactory = $this->factory->getInstanceFor('EngineFactory');
+            $engineFactory = $this->factory->getInstanceFor('EngineFactory');
+            $enricherFactory = $this->factory->getInstanceFor('EnricherFactory');
 
-            $failed = array_diff($config->getRequiredEngines(), $efactory->getEngineList());
+            $failed = array_diff($config->getRequiredEngines(), $engineFactory->getEngineList());
             if (count($failed)) {
                $list = join("', '", $failed);
                throw new ApplicationException("The engine(s) '$list' is/are not registered", ApplicationException::UnknownEngine);
             }
 
+            $failed = array_diff($config->getRequiredEnrichers(), $enricherFactory->getEnricherList());
+            if (count($failed)) {
+                $list = join("', '", $failed);
+                throw new ApplicationException("The enricher(s) '$list' is/are not registered", ApplicationException::UnknownEnricher);
+            }
+
             $generator = $this->factory->getInstanceFor('Generator');
 
             foreach($config->getActiveBuilds() as $buildCfg) {
-                $generator->addEngine( $efactory->getInstanceFor($buildCfg) );
+                $generator->addEngine( $engineFactory->getInstanceFor($buildCfg) );
+            }
+
+            foreach($config->getActiveEnrichSources() as $enrichCfg) {
+                $generator->addEnricher( $enricherFactory->getInstanceFor($enrichCfg) );
             }
             $pconfig = $config->getProjectConfig();
 
