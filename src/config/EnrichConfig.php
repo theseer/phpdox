@@ -38,52 +38,43 @@
 
 namespace TheSeer\phpDox {
 
-    class Bootstrap {
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
-        public function __construct(ProgressLogger $logger, BootstrapApi $api) {
-            $this->logger = $logger;
-            $this->api = $api;
+    /**
+     * @package    phpDox
+     * @author     Arne Blankerts <arne@blankerts.de>
+     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+     * @license    BSD License
+     */
+    class EnrichConfig {
+
+        protected $ctx;
+        protected $generator;
+        protected $project;
+
+        public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
+            $this->generator = $generator;
+            $this->project = $generator->getProjectConfig();
+            $this->ctx = $ctx;
         }
 
-        /**
-         * Load bootstrap files to register components and builder
-         *
-         * @param Array $require Array of files to require
-         *
-         * @return Array Map of BuilderConfig objects ([name => Config])
-         */
-        public function load(Array $require) {
-            $this->loadBootstrap( __DIR__ . '/backends.php');
-            $this->loadBootstrap( __DIR__ . '/enrichers.php');
-            $this->loadBootstrap( __DIR__ . '/engines.php');
-
-            foreach($require as $file) {
-                if (!file_exists($file) || !is_file($file)) {
-                    throw new BootstrapException("Require file '$file' not found or not a file", BootstrapException::RequireFailed);
-                }
-                $this->logger->log("Loading bootstrap file '$file'");
-                $this->loadBootstrap($file);
-            }
-
-            return $this->api->getEngines();
+        public function getGeneratorConfig() {
+            return $this->generator;
         }
 
-        public function getBackends() {
-            return $this->api->getBackends();
+        public function getEnrichNode() {
+            return $this->ctx;
         }
 
-        public function getEngines() {
-            return $this->api->getEngines();
+        public function getProjectNode() {
+            return $this->ctx->parentNode->parentNode;
         }
 
-        private function loadBootstrap($filename) {
-            $phpDox = $this->api;
-            require $filename;
+        public function getType() {
+            return $this->ctx->getAttribute('type');
         }
-    }
 
-    class BootstrapException extends \Exception {
-        const RequireFailed = 1;
     }
 
 }

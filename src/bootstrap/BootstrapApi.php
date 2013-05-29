@@ -40,6 +40,7 @@ namespace TheSeer\phpDox {
     use \TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
     use \TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
     use \TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
+    use \TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
 
     /**
      * Bootstrapping API for registering backends, generator engines and parsers
@@ -72,6 +73,10 @@ namespace TheSeer\phpDox {
          */
         protected $parserFactory;
 
+        /**
+         * @var EnricherFactory
+         */
+        protected $enricherFactory;
 
         /**
          * Array of registered engines
@@ -92,10 +97,11 @@ namespace TheSeer\phpDox {
          *
          * @param FactoryInterface $factory
          */
-        public function __construct(BackendFactory $bf, DocBlockFactory $df, EngineFactory $ef, ProgressLogger $logger) {
+        public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
             $this->backendFactory = $bf;
-            $this->engineFactory = $ef;
+            $this->engineFactory = $enf;
             $this->parserFactory = $df;
+            $this->enricherFactory = $erf;
             $this->logger = $logger;
         }
 
@@ -145,5 +151,11 @@ namespace TheSeer\phpDox {
             return new ParserBootstrapApi($annotation, $this->parserFactory);
         }
 
+
+        public function registerEnricher($name, $description) {
+            $this->logger->log("Registered enricher '$name'");
+            $this->enrichers[$name] = $description;
+            return new EnricherBootstrapApi($name, $this->enricherFactory);
+        }
     }
 }

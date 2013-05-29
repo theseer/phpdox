@@ -61,8 +61,8 @@
 
             <!-- A generation process consists of one or more build tasks and of (optional) enrich sources -->
 
-            <enrich path="${basedir}/build/logs">
-                <!-- @path - (Base-)Directory of datafiles used for enrich process -->
+            <enrich base="${basedir}/build/logs">
+                <!-- @base - (Base-)Directory of datafiles used for enrich process -->
 
                 <!-- enrichment source -->
                 <source type="checkstyle">

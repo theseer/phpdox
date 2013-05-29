@@ -35,55 +35,34 @@
  * @license    BSD License
  *
  */
-
 namespace TheSeer\phpDox {
 
-    class Bootstrap {
+    use TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
 
-        public function __construct(ProgressLogger $logger, BootstrapApi $api) {
-            $this->logger = $logger;
-            $this->api = $api;
+    class EnricherBootstrapApi {
+
+        protected $name;
+        protected $factory;
+
+        public function __construct($name, EnricherFactory $factory) {
+            $this->name = $name;
+            $this->factory = $factory;
         }
 
-        /**
-         * Load bootstrap files to register components and builder
-         *
-         * @param Array $require Array of files to require
-         *
-         * @return Array Map of BuilderConfig objects ([name => Config])
-         */
-        public function load(Array $require) {
-            $this->loadBootstrap( __DIR__ . '/backends.php');
-            $this->loadBootstrap( __DIR__ . '/enrichers.php');
-            $this->loadBootstrap( __DIR__ . '/engines.php');
-
-            foreach($require as $file) {
-                if (!file_exists($file) || !is_file($file)) {
-                    throw new BootstrapException("Require file '$file' not found or not a file", BootstrapException::RequireFailed);
-                }
-                $this->logger->log("Loading bootstrap file '$file'");
-                $this->loadBootstrap($file);
-            }
-
-            return $this->api->getEngines();
+        public function implementedByClass($class) {
+            $this->factory->addEnricherClass($this->name, $class);
+            return $this;
         }
 
-        public function getBackends() {
-            return $this->api->getBackends();
+        public function instantiatedByFactory(FactoryInterface $factory) {
+            $this->factory->addEnricherFactory($this->name, $factory);
+            return $this;
         }
 
-        public function getEngines() {
-            return $this->api->getEngines();
+        public function withConfigClass($class) {
+            $this->factory->setConfigClass($this->name, $class);
+            return $this;
         }
 
-        private function loadBootstrap($filename) {
-            $phpDox = $this->api;
-            require $filename;
-        }
     }
-
-    class BootstrapException extends \Exception {
-        const RequireFailed = 1;
-    }
-
 }

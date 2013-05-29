@@ -41,23 +41,46 @@ namespace TheSeer\phpDox\Generator {
     use \TheSeer\fDOM\fDOMDocument;
 
     use \TheSeer\phpDox\Generator\Engine\EngineInterface;
+    use \TheSeer\phpDox\Generator\Enricher\EnricherInterface;
     use \TheSeer\phpDox\ProgressLogger;
     use \TheSeer\phpDox\Project\Project;
 
     class Generator {
 
-        protected $factory;
-        protected $logger;
+        /**
+         * @var EventFactory
+         */
+        private $factory;
 
-        protected $engines = array();
+        /**
+         * @var \TheSeer\phpDox\ProgressLogger
+         */
+        private $logger;
 
-        protected $publicOnly;
-        protected $xmlDir;
+        /**
+         * @var array
+         */
+        private $engines = array();
+
+        /**
+         * @var array
+         */
+        private $enrichers = array();
+
+        /**
+         * @var bool
+         */
+        private $publicOnly;
+
+        /**
+         * @var string
+         */
+        private $xmlDir;
 
         /**
          * @var Project
          */
-        protected $project;
+        private $project;
 
         /**
          * Map of events with engines
@@ -106,11 +129,21 @@ namespace TheSeer\phpDox\Generator {
             'interface.end' => array()
         );
 
+        /**
+         * @param EventFactory   $factory
+         * @param ProgressLogger $logger
+         */
         public function __construct(EventFactory $factory, ProgressLogger $logger) {
             $this->factory = $factory;
             $this->logger = $logger;
         }
 
+        /**
+         * @param EngineInterface $engine
+         *
+         * @throws
+         * @throws GeneratorException
+         */
         public function addEngine(EngineInterface $engine) {
             $this->engines[] = $engine;
             foreach($engine->getEvents() as $event) {
@@ -125,6 +158,14 @@ namespace TheSeer\phpDox\Generator {
             }
         }
 
+        public function addEnricher(EnricherInterface $enricher) {
+            $this->enrichers[] = $enricher;
+        }
+
+        /**
+         * @param Project $project
+         * @param bool    $publicOnly
+         */
         public function run(Project $project, $publicOnly = FALSE) {
             $this->xmlDir     = $project->getXmlDir();
             $this->publicOnly = $publicOnly;
@@ -141,9 +182,12 @@ namespace TheSeer\phpDox\Generator {
 
             $this->logger->log("Triggering raw engines\n");
             $this->triggerEvent('phpdox.raw', FALSE);
-
         }
 
+        /**
+         * @param string     $eventName
+         * @param bool       $progress
+         */
         protected function triggerEvent($eventName, $progress = TRUE) {
             $payload = array_slice(func_get_args(), 1);
             $event = $this->factory->getInstanceFor($eventName, $payload);
@@ -153,8 +197,11 @@ namespace TheSeer\phpDox\Generator {
             if ($progress) {
                 $this->logger->progress('processed');
             }
-        }
+    }
 
+        /**
+         *
+         */
         protected function processGlobalOnly() {
             $classes = $this->project->getClasses();
             $this->triggerEvent('phpdox.classes.start', $classes);
@@ -178,6 +225,9 @@ namespace TheSeer\phpDox\Generator {
             $this->triggerEvent('phpdox.interfaces.end', $interfaces);
         }
 
+        /**
+         *
+         */
         protected function processWithNamespace() {
             $namespaces = $this->project->getNamespaces();
             $this->triggerEvent('phpdox.namespaces.start', $namespaces);
@@ -211,6 +261,9 @@ namespace TheSeer\phpDox\Generator {
             $this->triggerEvent('phpdox.namespaces.end', $namespaces);
         }
 
+        /**
+         * @param fDomElement $class
+         */
         protected function processClass(fDOMElement $class) {
             $classDom = new fDomDocument();
             $classDom->load($this->xmlDir . '/' . $class->getAttribute('xml'));
@@ -240,6 +293,9 @@ namespace TheSeer\phpDox\Generator {
             }
         }
 
+        /**
+         * @param fDomElement $trait
+         */
         protected function processTrait(fDOMElement $trait) {
             $traitDom = new fDomDocument();
             $traitDom->load($this->xmlDir . '/' . $trait->getAttribute('xml'));
@@ -268,7 +324,10 @@ namespace TheSeer\phpDox\Generator {
                 $this->triggerEvent('trait.end', $traitNode);
             }
         }
-        
+
+        /**
+         * @param fDomElement $interface
+         */
         protected function processInterface(fDOMElement $interface) {
             $interfaceDom = new fDomDocument();
             $interfaceDom->load($this->xmlDir . '/' . $interface->getAttribute('xml'));

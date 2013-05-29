@@ -43,6 +43,7 @@ namespace TheSeer\phpDox {
     class GeneratorConfig {
 
         protected $builds;
+        protected $enrichers;
 
         protected $ctx;
         protected $project;
@@ -58,6 +59,7 @@ namespace TheSeer\phpDox {
 
         public function getActiveBuilds() {
             if (!is_array($this->builds)) {
+                $this->builds = array();
                 foreach($this->ctx->query('cfg:build[@engine and (not(@enabled) or @enabled="true")]') as $ctx) {
                     $this->builds[] = new BuildConfig($this, $ctx);
                 }
@@ -73,6 +75,23 @@ namespace TheSeer\phpDox {
             return array_unique($engines);
         }
 
+        public function getRequiredEnrichers() {
+            $enrichers = array();
+            foreach($this->getActiveEnrichSources() as $source) {
+                $enrichers[] = $source->getType();
+            }
+            return array_unique($enrichers);
+        }
+
+        public function getActiveEnrichSources() {
+            if (!is_array($this->enrichers)) {
+                $this->enrichers = array();
+                foreach($this->ctx->query('cfg:enrich/cfg:source[@type and (not(@enabled) or @enabled="true")]') as $ctx) {
+                    $this->enrichers[] = new EnrichConfig($this, $ctx);
+                }
+            }
+            return $this->enrichers;
+        }
     }
 
     class GeneratorConfigException extends ConfigException {

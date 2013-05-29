@@ -175,7 +175,7 @@ namespace TheSeer\phpDox {
          * @return BootstrapApi
          */
         protected function getBootstrapApi() {
-            return new BootstrapApi($this->getBackendFactory(), $this->getDocblockFactory(), $this->getEngineFactory(), $this->getLogger());
+            return new BootstrapApi($this->getBackendFactory(), $this->getDocblockFactory(), $this->getEnricherFactory(), $this->getEngineFactory(), $this->getLogger());
         }
 
         /**
@@ -278,6 +278,17 @@ namespace TheSeer\phpDox {
             }
             return $this->instances['EngineFactory'];
         }
+
+        /**
+         * @return Generator\Enricher\Factory
+         */
+        protected function getEnricherFactory() {
+            if (!isset($this->instances['EnricherFactory'])) {
+                $this->instances['EnricherFactory'] = new \TheSeer\phpDox\Generator\Enricher\Factory();
+            }
+            return $this->instances['EnricherFactory'];
+        }
+
 
         /**
          * @return mixed
