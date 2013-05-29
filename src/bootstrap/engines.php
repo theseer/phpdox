@@ -35,6 +35,9 @@
  * @license    BSD License
  */
 namespace TheSeer\phpDox {
+    /**
+     * @var BootstrapApi $phpDox
+     */
 
     $phpDox->registerEngine('html', 'Simple HTML Output builder')
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Html')
