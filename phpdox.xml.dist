@@ -7,6 +7,10 @@
 
         <generator output="${basedir}/build/api/docs">
 
+            <enrich base="${basedir}/build/logs">
+                <source type="checkstyle" />
+            </enrich>
+
             <build engine="html" enabled="true" output="html">
                 <template dir="${phpDox.home}/templates/html" />
                 <file extension="xhtml" />
