@@ -103,10 +103,6 @@ namespace TheSeer\phpDox\Project {
         }
 
         public function export() {
-            if (empty($this->collection)) {
-                return $this->workDom;
-            }
-
             $dom = $this->workDom;
             if ($dom->documentElement instanceOf fDOMElement) {
                 $dom->removeChild($dom->documentElement);
