@@ -87,7 +87,7 @@ namespace TheSeer\phpDox\Generator {
          *
          * @var array
          */
-        protected $events = array(
+        private $events = array(
             'phpdox.raw' => array(),
             'phpdox.start' => array(),
             'phpdox.end' => array(),
@@ -127,6 +127,12 @@ namespace TheSeer\phpDox\Generator {
             'interface.constant' => array(),
             'interface.method' => array(),
             'interface.end' => array()
+        );
+
+        private $enricherEvents = array(
+            'class.start',
+            'trait.start',
+            'interface.start'
         );
 
         /**
@@ -171,27 +177,30 @@ namespace TheSeer\phpDox\Generator {
             $this->publicOnly = $publicOnly;
             $this->project    = $project;
 
-            $this->triggerEvent('phpdox.start', $project->getIndex(), $project->getSourceTree());
+            $this->handleEvent(new PHPDoxStartEvent($project->getIndex(), $project->getSourceTree()));
             if ($this->project->hasNamespaces()) {
                 $this->processWithNamespace();
             } else {
                 $this->processGlobalOnly();
             }
-            $this->triggerEvent('phpdox.end', $project->getIndex(), $project->getSourceTree());
+            $this->handleEvent(new PHPDoxEndEvent($project->getIndex(), $project->getSourceTree()));
             $this->logger->completed();
 
             $this->logger->log("Triggering raw engines\n");
-            $this->triggerEvent('phpdox.raw', FALSE);
+            $this->handleEvent(new PHPDoxRawEvent(), FALSE);
         }
 
         /**
-         * @param string     $eventName
-         * @param bool       $progress
+         * @param AbstractEvent $event
+         * @param bool          $progress
          */
-        protected function triggerEvent($eventName, $progress = TRUE) {
-            $payload = array_slice(func_get_args(), 1);
-            $event = $this->factory->getInstanceFor($eventName, $payload);
-            foreach($this->events[$eventName] as $engine) {
+        protected function handleEvent(AbstractEvent $event, $progress = TRUE) {
+            if (in_array($event->getType(), $this->enricherEvents)) {
+                foreach($this->enrichers as $enricher) {
+                    $enricher->enrich($event);
+                }
+            }
+            foreach($this->events[$event->getType()] as $engine) {
                 $engine->handle($event);
             }
             if ($progress) {
@@ -204,25 +213,25 @@ namespace TheSeer\phpDox\Generator {
          */
         protected function processGlobalOnly() {
             $classes = $this->project->getClasses();
-            $this->triggerEvent('phpdox.classes.start', $classes);
+            $this->handleEvent(new PHPDoxClassesStartEvent($classes));
             foreach($classes as $class) {
                 $this->processClass($class);
             }
-            $this->triggerEvent('phpdox.classes.end', $classes);
+            $this->handleEvent(new PHPDoxClassesEndEvent($classes));
 
             $traits = $this->project->getTraits();
-            $this->triggerEvent('phpdox.traits.start', $traits);
+            $this->handleEvent(new PHPDoxTraitsStartEvent($traits));
             foreach($traits as $trait) {
                 $this->processTrait($trait);
             }
-            $this->triggerEvent('phpdox.traits.end', $traits);
+            $this->handleEvent(new PHPDoxTraitsEndEvent($traits));
 
             $interfaces = $this->project->getInterfaces();
-            $this->triggerEvent('phpdox.interfaces.start', $interfaces);
+            $this->handleEvent(new PHPDoxInterfacesStartEvent($interfaces));
             foreach($interfaces as $interface) {
                 $this->processInterface($interface);
             }
-            $this->triggerEvent('phpdox.interfaces.end', $interfaces);
+            $this->handleEvent(new PHPDoxInterfacesEndEvent($interfaces));
         }
 
         /**
@@ -230,35 +239,35 @@ namespace TheSeer\phpDox\Generator {
          */
         protected function processWithNamespace() {
             $namespaces = $this->project->getNamespaces();
-            $this->triggerEvent('phpdox.namespaces.start', $namespaces);
+            $this->handleEvent(new PHPDoxNamespacesStartEvent($namespaces));
 
             foreach($namespaces as $namespace) {
-                $this->triggerEvent('namespace.start', $namespace);
+                $this->handleEvent(new NamespaceStartEvent($namespace));
 
                 $classes = $this->project->getClasses($namespace->getAttribute('name'));
-                $this->triggerEvent('namespace.classes.start', $classes, $namespace);
+                $this->handleEvent(new NamespaceClassesStartEvent($classes, $namespace));
                 foreach($classes as $class) {
                     $this->processClass($class);
                 }
-                $this->triggerEvent('namespace.classes.end', $classes, $namespace);
+                $this->handleEvent(new NamespaceClassesEndEvent($classes, $namespace));
 
                 $traits = $this->project->getTraits($namespace->getAttribute('name'));
-                $this->triggerEvent('namespace.traits.start', $traits, $namespace);
+                $this->handleEvent(new NamespaceTraitsStartEvent($traits, $namespace));
                 foreach($traits as $trait) {
                     $this->processTrait($trait);
                 }
-                $this->triggerEvent('namespace.traits.end', $traits, $namespace);
+                $this->handleEvent(new NamespaceTraitsEndEvent($traits, $namespace));
 
                 $interfaces = $this->project->getInterfaces($namespace->getAttribute('name'));
-                $this->triggerEvent('namespace.interfaces.start', $interfaces, $namespace);
+                $this->handleEvent(new NamespaceInterfacesStartEvent($interfaces, $namespace));
                 foreach($interfaces as $interface) {
                     $this->processInterface($interface);
                 }
-                $this->triggerEvent('namespace.interfaces.end', $interfaces, $namespace);
+                $this->handleEvent(new NamespaceInterfacesEndEvent($interfaces, $namespace));
 
-                $this->triggerEvent('namespace.end', $namespace);
+                $this->handleEvent(new NamespaceEndEvent($namespace));
             }
-            $this->triggerEvent('phpdox.namespaces.end', $namespaces);
+            $this->handleEvent(new PHPDoxNamespacesEndEvent($namespaces));
         }
 
         /**
@@ -270,26 +279,26 @@ namespace TheSeer\phpDox\Generator {
             $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
 
             foreach($classDom->query('//phpdox:class') as $classNode) {
-                $this->triggerEvent('class.start', $classNode);
+                $this->handleEvent(new ClassStartEvent($classNode));
 
                 foreach($classNode->query('phpdox:constant') as $constant) {
-                    $this->triggerEvent('class.constant', $constant, $classNode);
+                    $this->handleEvent(new ClassConstantEvent($constant, $classNode));
                 }
 
                 foreach($classNode->query('phpdox:member') as $member) {
                     if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->triggerEvent('class.member', $member, $classNode);
+                    $this->handleEvent(new ClassMemberEvent($member, $classNode));
                 }
 
                 foreach($classNode->query('phpdox:method') as $method) {
                     if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->triggerEvent('class.method', $method, $classNode);
+                    $this->handleEvent(new ClassMethodEvent($method, $classNode));
                 }
-                $this->triggerEvent('class.end', $classNode);
+                $this->handleEvent(new ClassEndEvent($classNode));
             }
         }
 
@@ -302,26 +311,26 @@ namespace TheSeer\phpDox\Generator {
             $traitDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
 
             foreach($traitDom->query('//phpdox:trait') as $traitNode) {
-                $this->triggerEvent('trait.start', $traitNode);
+                $this->handleEvent(new TraitStartEvent($traitNode));
 
                 foreach($traitNode->query('phpdox:constant') as $constant) {
-                    $this->triggerEvent('trait.constant', $constant, $traitNode);
+                    $this->handleEvent(new TraitConstantEvent($constant, $traitNode));
                 }
 
                 foreach($traitNode->query('phpdox:member') as $member) {
                     if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->triggerEvent('trait.member', $member, $traitNode);
+                    $this->handleEvent(new TraitMemberEvent($member, $traitNode));
                 }
 
                 foreach($traitNode->query('phpdox:method') as $method) {
                     if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
                         continue;
                     }
-                    $this->triggerEvent('trait.method', $method, $traitNode);
+                    $this->handleEvent(new TraitMethodEvent($method, $traitNode));
                 }
-                $this->triggerEvent('trait.end', $traitNode);
+                $this->handleEvent(new TraitEndEvent($traitNode));
             }
         }
 
@@ -334,17 +343,17 @@ namespace TheSeer\phpDox\Generator {
             $interfaceDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
 
             foreach($interfaceDom->query('//phpdox:interface') as $interfaceNode) {
-                $this->triggerEvent('interface.start', $interfaceNode);
+                $this->handleEvent(new InterfaceStartEvent($interfaceNode));
 
                 foreach($interfaceNode->query('phpdox:constant') as $constant) {
-                    $this->triggerEvent('interface.constant', $constant, $interfaceNode);
+                    $this->handleEvent(new InterfaceConstantEvent($constant, $interfaceNode));
                 }
 
                 foreach($interfaceNode->query('phpdox:method') as $method) {
-                    $this->triggerEvent('interface.method', $method, $interfaceNode);
+                    $this->handleEvent(new InterfaceMethodEvent($method, $interfaceNode));
                 }
 
-                $this->triggerEvent('interface.end', $interfaceNode);
+                $this->handleEvent(new InterfaceEndEvent($interfaceNode));
             }
         }
 

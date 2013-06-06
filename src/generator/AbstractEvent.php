@@ -35,12 +35,18 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator {
 
-    interface EngineInterface {
+    /**
+     * Class AbstractEvent
+     */
+    abstract class AbstractEvent {
 
-        public function getEvents();
-        public function handle(\TheSeer\phpDox\Generator\AbstractEvent $event);
+        public function getType() {
+            return $this->getEventName();
+        }
 
+        abstract protected function getEventName();
     }
+
 }

@@ -39,7 +39,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     use \TheSeer\fDom\fDomDocument;
     use \TheSeer\fDom\fDomElement;
-    use \TheSeer\phpDox\Generator\Event;
+    use \TheSeer\phpDox\Generator\AbstractEvent;
     use \TheSeer\phpDox\BuildConfig;
 
     class Indexer extends AbstractEngine {
@@ -68,7 +68,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             return array_keys($this->eventMap);
         }
 
-        public function handle(Event $event) {
+        public function handle(AbstractEvent $event) {
             if ($event->type == 'phpdox.end') {
                return $this->buildFinish();
             }

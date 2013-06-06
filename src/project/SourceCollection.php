@@ -58,6 +58,9 @@ namespace TheSeer\phpDox\Project {
         public function import(fDOMDocument $dom) {
             $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
             $dir = $dom->queryOne('/phpdox:source/phpdox:dir');
+            if (!$dir)  {
+                return;
+            }
             $this->importDirNode($dir, '');
         }
 
@@ -104,6 +107,13 @@ namespace TheSeer\phpDox\Project {
 
         public function export() {
             $dom = $this->workDom;
+            if (empty($this->collection)) {
+                if (!$dom->documentElement instanceof fDOMElement) {
+                    $root = $dom->createElementNS('http://xml.phpdox.de/src#', 'source');
+                    $dom->appendChild($root);
+                }
+                return $this->workDom;
+            }
             if ($dom->documentElement instanceOf fDOMElement) {
                 $dom->removeChild($dom->documentElement);
             }

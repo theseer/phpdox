@@ -74,7 +74,7 @@ namespace TheSeer\phpDox\Generator {
             'trait.member' => array('member', 'trait'),
             'trait.method' => array('method', 'trait'),
             'trait.end' => array('trait'),
-            
+
             'interface.start' => array('interface'),
             'interface.constant' => array('constant', 'interface'),
             'interface.method' => array('method', 'interface'),
@@ -89,7 +89,7 @@ namespace TheSeer\phpDox\Generator {
             foreach($this->eventTypes[$name] as $pos => $value) {
                 $data[$value] = $payload[$pos];
             }
-            return new Event($name, $data);
+            return new AbstractEvent($name, $data);
         }
     }
 

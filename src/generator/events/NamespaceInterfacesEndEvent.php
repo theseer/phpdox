@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,12 +35,30 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator {
 
-    interface EngineInterface {
+    class NamespaceInterfacesEndEvent extends AbstractEvent {
 
-        public function getEvents();
-        public function handle(\TheSeer\phpDox\Generator\AbstractEvent $event);
+        private $interfaces;
+        private $namespace;
+
+        public function __construct($interfaces, $namespace) {
+            $this->interfaces = $interfaces;
+            $this->namespace = $namespace;
+        }
+
+        public function getInterfaces() {
+            return $this->interfaces;
+        }
+
+        public function getNamespace() {
+            return $this->namespace;
+        }
+
+        protected function getEventName() {
+            return 'namespace.interfaces.end';
+        }
 
     }
+
 }

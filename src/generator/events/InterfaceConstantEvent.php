@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,12 +35,30 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator {
 
-    interface EngineInterface {
+    class InterfaceConstantEvent extends AbstractEvent {
 
-        public function getEvents();
-        public function handle(\TheSeer\phpDox\Generator\AbstractEvent $event);
+        private $constant;
+        private $interface;
+
+        public function __construct($constant, $interface) {
+            $this->constant = $constant;
+            $this->interface = $interface;
+        }
+
+        public function getConstant() {
+            return $this->constant;
+        }
+
+        public function getInterface() {
+            return $this->interface;
+        }
+
+        protected function getEventName() {
+            return 'interface.constant';
+        }
 
     }
+
 }

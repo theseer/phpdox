@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,12 +35,30 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator {
 
-    interface EngineInterface {
+    class ClassMemberEvent extends AbstractEvent {
 
-        public function getEvents();
-        public function handle(\TheSeer\phpDox\Generator\AbstractEvent $event);
+        private $member;
+        private $class;
+
+        public function __construct($member, $class) {
+            $this->member = $member;
+            $this->class = $class;
+        }
+
+        public function getMember() {
+            return $this->member;
+        }
+
+        public function getClass() {
+            return $this->class;
+        }
+
+        protected function getEventName() {
+            return 'class.member';
+        }
 
     }
+
 }

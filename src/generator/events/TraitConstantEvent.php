@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,32 +37,28 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class Event {
+    class TraitConstantEvent extends AbstractEvent {
 
-        protected $type;
-        protected $data;
+        private $constant;
+        private $trait;
 
-        public function __construct($type, array $data = array()) {
-            $this->type = $type;
-            $this->data = $data;
+        public function __construct($constant, $trait) {
+            $this->constant = $constant;
+            $this->trait = $trait;
         }
 
-        public function __isset($key) {
-            return isset($this->data[$key]);
+        public function getConstant() {
+            return $this->constant;
         }
 
-        public function __get($key) {
-            if ($key == 'type') {
-                return $this->type;
-            }
-            if (!isset($this->data[$key])) {
-                throw new EventException("No such key '$key' set.", EventException::NoSuchKey);
-            }
-            return $this->data[$key];
+        public function getTrait() {
+            return $this->trait;
         }
+
+        protected function getEventName() {
+            return 'trait.constant';
+        }
+
     }
 
-    class EventException extends \Exception {
-        const NoSuchKey = 1;
-    }
 }

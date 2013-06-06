@@ -37,14 +37,10 @@
  */
 namespace TheSeer\phpDox\Generator\Enricher {
 
-    use TheSeer\phpDox\Project\ClassObject;
-    use TheSeer\phpDox\Project\InterfaceObject;
-    use TheSeer\phpDox\Project\TraitObject;
+    use TheSeer\phpDox\Generator\AbstractEvent;
 
     interface EnricherInterface {
-        public function enrichClass(ClassObject $class);
-        public function enrichInterface(InterfaceObject $interface);
-        public function enrichTrait(TraitObject $trait);
+        public function enrich(AbstractEvent $event);
     }
 
 }
