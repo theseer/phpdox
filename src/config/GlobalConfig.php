@@ -147,13 +147,17 @@ namespace TheSeer\phpDox {
         }
 
         protected function resolveValue($value, Array $vars, $line) {
-            return preg_replace_callback('/\${(.*?)}/',
+            $result = preg_replace_callback('/\${(.*?)}/',
                 function($matches) use ($vars, $line) {
                     if (!isset($vars[$matches[1]])) {
                         throw new ConfigException("No value for property '{$matches[1]} found in line $line", ConfigException::PropertyNotFound);
                     }
-                    return isset($vars[$matches[1]]) ? $vars[$matches[1]] : $matches[0];
+                    return $vars[$matches[1]];
                 }, $value);
+            if (preg_match('/\${(.*?)}/', $result)) {
+                $result = $this->resolveValue($result, $vars, $line);
+            }
+            return $result;
         }
 
     }
