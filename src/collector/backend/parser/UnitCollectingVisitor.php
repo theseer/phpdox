@@ -308,6 +308,22 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $variable->setDefault('__CLASS__');
                 return;
             }
+            if ($default instanceof \PHPParser_Node_Scalar_DirConst) {
+                $variable->setName('__DIR__');
+                return;
+            }
+            if ($default instanceof \PHPParser_Node_Scalar_FileConst) {
+                $variable->setName('__FILE__');
+                return;
+            }
+            if ($default instanceof \PHPParser_Node_Scalar_FuncConst) {
+                $variable->setName('__FUNC__');
+                return;
+            }
+            if ($default instanceof \PHPParser_Node_Scalar_LineConst) {
+                $variable->setName('__LINE__');
+                return;
+            }
 
             $type = get_class($default);
             $line = $default->startLine;
