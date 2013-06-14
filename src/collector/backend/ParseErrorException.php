@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
     class ParseErrorException extends \Exception {
         const GeneralParseError = 1;
+        const UnexpectedExpr = 2;
     }
 
 }
