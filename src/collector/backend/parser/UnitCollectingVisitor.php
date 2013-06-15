@@ -304,8 +304,16 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $variable->setDefault(join('\\', $default->name->parts));
                 return;
             }
+            if ($default instanceof \PHPParser_Node_Scalar_TraitConst) {
+                $variable->setName('__TRAIT__');
+                return;
+            }
             if ($default instanceof \PHPParser_Node_Scalar_ClassConst) {
                 $variable->setDefault('__CLASS__');
+                return;
+            }
+            if ($default instanceof \PHPParser_Node_Scalar_MethodConst) {
+                $variable->setName('__METHOD__');
                 return;
             }
             if ($default instanceof \PHPParser_Node_Scalar_DirConst) {
