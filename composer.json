@@ -1,42 +1,42 @@
 {
-  "name" : "theseer/phpdox", 
-  "description" : "A fast Documentation generator for PHP Code using standard technology (SRC, DOCBLOCK, XML and XSLT) with event based processing", 
-  "license" : "BSD-3-Clause", 
+  "name" : "theseer/phpdox",
+  "description" : "A fast Documentation generator for PHP Code using standard technology (SRC, DOCBLOCK, XML and XSLT) with event based processing",
+  "license" : "BSD-3-Clause",
   "authors" : [
     {
       "name" : "Arne Blankerts",
-      "email" : "arne@blankerts.de", 
+      "email" : "arne@blankerts.de",
       "role" : "Developer"
     }
-  ], 
+  ],
   "support" : {
     "issues" : "https://github.com/theseer/phpdox/issues"
-  }, 
+  },
   "require" : {
-    "php" : ">=5.3.3", 
-    "ext-tokenizer" : "*", 
-    "ext-dom" : "*", 
-    "ext-xsl" : "*", 
-    "ext-iconv" : "*", 
-    "theseer/fdomdocument": ">=1.4.1", 
-    "theseer/directoryscanner" : ">=1.1.0", 
-    "theseer/fxsl" : ">=1.0", 
-    "phpunit/php-timer" : "1.0.4", 
-    "zetacomponents/base": ">=1.8.0", 
-    "zetacomponents/console-tools" : ">=1.6.0", 
+    "php" : ">=5.3.3",
+    "ext-tokenizer" : "*",
+    "ext-dom" : "*",
+    "ext-xsl" : "*",
+    "ext-iconv" : "*",
+    "theseer/fdomdocument": ">=1.4.1",
+    "theseer/directoryscanner" : ">=1.1.0",
+    "theseer/fxsl" : ">=1.0",
+    "phpunit/php-timer" : "~1.0.2",
+    "zetacomponents/base": ">=1.8.0",
+    "zetacomponents/console-tools" : ">=1.6.0",
     "nikic/php-parser" : ">=0.9.3"
-  }, 
+  },
   "autoload": {
     "classmap": [
       "src/"
     ]
-  }, 
+  },
   "extra" : {
     "branch-alias": {
       "dev-master": "0.5.x-dev"
     }
-  }, 
-  "bin" : [ "composer/bin/phpdox" ], 
-  "minimum-stability" : "dev", 
+  },
+  "bin" : [ "composer/bin/phpdox" ],
+  "minimum-stability" : "dev",
   "prefer-stable" : true
 }
