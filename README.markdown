@@ -33,7 +33,7 @@ Depending on your OS distribution and/or your PHP environment, you may need to i
 The following two commands (which you may have to run as `root`) are all that is required to install phpDox using the PEAR Installer:
 
     sudo pear config-set auto_discover 1
-    sudo pear install pear.netpirates.net/phpDox-0.5.0
+    sudo pear install -f pear.netpirates.net/phpDox-0.5.0
 
 This should take care of installing all the required dependencies for you.
 
