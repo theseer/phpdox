@@ -48,7 +48,7 @@ _Note: The `phpdox.php` bootstrap file assumes that all depedencies have been in
 To make things work, you now have to manually install the following dependencies using the PEAR Installer (or clone their repositories and then adjust the paths in the `phpdox.php` bootstrap file):
 
     pear channel-discover nikic.github.com/pear
-    pear install channel://nikic.github.com/pear/PHPParser-0.9.2
+    pear install channel://nikic.github.com/pear/PHPParser-0.9.3
     sudo pear install phpunit/PHP_Timer
     sudo pear install ezc/ConsoleTools
     sudo pear install theseer/DirectoryScanner
