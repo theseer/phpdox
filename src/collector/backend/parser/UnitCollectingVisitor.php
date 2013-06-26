@@ -232,6 +232,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
                 $member->setDocBlock($block);
             }
+            $member->setLine($node->getLine());
         }
 
         private function setVariableType(AbstractVariableObject $variable, $type = NULL) {

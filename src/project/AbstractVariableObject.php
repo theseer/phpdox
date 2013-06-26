@@ -54,6 +54,14 @@ namespace TheSeer\phpDox\Project {
             return $this->ctx;
         }
 
+        public function setLine($line) {
+            $this->ctx->setAttribute('line', $line);
+        }
+
+        public function getLine() {
+            return $this->ctx->getAttribute('line');
+        }
+
         public function setName($name) {
             $this->ctx->setAttribute('name', $name);
         }
