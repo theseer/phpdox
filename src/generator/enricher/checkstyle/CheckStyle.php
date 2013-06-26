@@ -3,7 +3,11 @@
 namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\Generator\AbstractEvent;
+    use TheSeer\phpDox\Generator\ClassStartEvent;
+    use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class CheckStyle implements EnricherInterface {
 
@@ -16,9 +20,22 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         public function enrich(AbstractEvent $event) {
-
-            // TODO: Implement enrich() method.
-            var_dump($event->type);
+            if ($event instanceof ClassStartEvent) {
+                $ctx = $event->getClass();
+            } elseif ($event instanceof InterfaceStartEvent) {
+                $ctx = $event->getInterface();
+            } else {
+                /** @var TraitStartEvent $event */
+                $ctx = $event->getTrait();
+            }
+            $fileNode = $ctx->queryOne('phpdox:file');
+            if (!$fileNode) {
+                return;
+            }
+            $file = $fileNode->getAttribute('realpath');
+            if (isset($this->findings[$file])) {
+                $this->processFindings($ctx, $this->findings[$file]);
+            }
         }
 
         private function loadFindings($xmlFile) {
@@ -30,6 +47,25 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
         }
 
+        private function processFindings(fDOMElement $ctx, \DOMNodeList $findings) {
+            /** @var fDOMDocument $dom */
+            $dom = $ctx->ownerDocument;
+
+            $container = $ctx->queryOne('phpdox:enrichments');
+            if(!$container) {
+                $container = $dom->createElementPrefix('phpdox','enrichments');
+                $ctx->appendChild($container);
+            }
+            $enrichment = $dom->createElementPrefix('phpdox', 'enrichment');
+            $enrichment->setAttribute('type', 'checkstyle');
+            $container->appendChild($enrichment);
+
+            foreach($findings as $f) {
+                $enrichment->appendChild(
+                    $dom->importNode($f)
+                );
+            }
+        }
     }
 
 }

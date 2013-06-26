@@ -33,7 +33,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             if (isset($this->configs[$name])) {
-                $cfg = new $this->configs[$name]($enrichCfg->getGeneratorConfig(), $enrichCfg->getBuildNode());
+                $cfg = new $this->configs[$name]($enrichCfg->getGeneratorConfig(), $enrichCfg->getEnrichNode());
             } else {
                 $cfg = $enrichCfg;
             }
