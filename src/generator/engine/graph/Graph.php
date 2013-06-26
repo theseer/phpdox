@@ -40,6 +40,9 @@ namespace TheSeer\phpDox\Generator\Engine {
     use \TheSeer\fDom\fDomElement;
     use \TheSeer\phpDox\Generator\AbstractEvent;
     use \TheSeer\phpDox\BuildConfig;
+    use TheSeer\phpDox\Generator\ClassStartEvent;
+    use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class Graph extends AbstractEngine {
 
@@ -50,6 +53,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         private $eventMap = array(
             'class.start' =>  1,
             'interface.start' => 1,
+            'trait.start' => 1,
             'phpdox.end' => 1
         );
 
@@ -63,17 +67,20 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function handle(AbstractEvent $event) {
-            if ($event->type == 'phpdox.end') {
+            if ($event->getType() == 'phpdox.end') {
                 $content = "digraph phpdox {\n".join("\n", $this->content)."\n}";
                 $this->saveFile($content, $this->outputDir . '/graph.dot');
                 $wd = $this->outputDir;
-                exec("{$this->dotCommand} $wd/graph.dot");
+                exec("{$this->dotCommand} $wd/graph.dot 2>&1 >/dev/null");
                 return;
             }
-            if (isset($event->class)) {
-                $this->renderNode($event->class, 'box');
+            if ($event instanceof ClassStartEvent) {
+                $this->renderNode($event->getClass(), 'box');
+            } elseif ($event instanceof InterfaceStartEvent) {
+                $this->renderNode($event->getInterface(), 'oval');
             } else {
-                $this->renderNode($event->interface, 'oval');
+                /** @var $event TraitStartEvent */
+                $this->renderNode($event->getTrait());
             }
         }
 

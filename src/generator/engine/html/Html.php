@@ -42,6 +42,10 @@ namespace TheSeer\phpDox\Generator\Engine {
     use \TheSeer\fXSL\fXSLCallback;
 
     use \TheSeer\phpDox\Generator\AbstractEvent;
+    use TheSeer\phpDox\Generator\ClassStartEvent;
+    use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\PHPDoxStartEvent;
+    use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class Html extends AbstractEngine {
 
@@ -73,7 +77,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function handle(AbstractEvent $event) {
-            $this->{$this->eventMap[$event->type]}($event);
+            $this->{$this->eventMap[$event->getType()]}($event);
         }
 
         protected function getXSLTProcessor($template) {
@@ -82,10 +86,10 @@ namespace TheSeer\phpDox\Generator\Engine {
             return $xsl;
         }
 
-        protected function buildStart(AbstractEvent $event) {
+        protected function buildStart(PHPDoxStartEvent $event) {
             $this->functions = new Html\Functions(
                 $this->projectNode,
-                $event->index,
+                $event->getIndex(),
                 $this->extension
             );
             $builder = new fXSLCallback('phpdox:html', 'phe');
@@ -93,7 +97,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
             $index = $this->getXSLTProcessor($this->templateDir . '/index.xsl');
             $index->registerCallback($builder);
-            $html = $index->transformToDoc($event->index);
+            $html = $index->transformToDoc($event->getIndex());
 
             $this->saveDomDocument($html, $this->outputDir . '/index.'. $this->extension);
 
@@ -105,24 +109,24 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->copyStatic($this->templateDir . '/static', $this->outputDir, TRUE);
         }
 
-        protected function buildClass(AbstractEvent $event) {
-            $html = $this->xslUnit->transformToDoc($event->class);
+        protected function buildClass(ClassStartEvent $event) {
+            $html = $this->xslUnit->transformToDoc($event->getClass());
             $this->saveDomDocument($html, $this->outputDir . '/classes/' .
-                    $this->functions->classNameToFileName($event->class->getAttribute('full'))
+                    $this->functions->classNameToFileName($event->getClass()->getAttribute('full'))
             );
         }
 
-        protected function buildTrait(AbstractEvent $event) {
-            $html = $this->xslUnit->transformToDoc($event->trait);
+        protected function buildTrait(TraitStartEvent $event) {
+            $html = $this->xslUnit->transformToDoc($event->getTrait());
             $this->saveDomDocument($html, $this->outputDir . '/traits/' .
-                $this->functions->classNameToFileName($event->trait->getAttribute('full'))
+                $this->functions->classNameToFileName($event->getTrait()->getAttribute('full'))
             );
         }
 
-        protected function buildInterface(AbstractEvent $event) {
-            $html = $this->xslUnit->transformToDoc($event->interface);
+        protected function buildInterface(InterfaceStartEvent $event) {
+            $html = $this->xslUnit->transformToDoc($event->getInterface());
             $this->saveDomDocument($html, $this->outputDir . '/interfaces/' .
-                $this->functions->classNameToFileName($event->interface->getAttribute('full'))
+                $this->functions->classNameToFileName($event->getInterface()->getAttribute('full'))
             );
         }
 
