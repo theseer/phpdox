@@ -51,20 +51,32 @@ namespace TheSeer\phpDox\Generator\Enricher {
             /** @var fDOMDocument $dom */
             $dom = $ctx->ownerDocument;
 
-            $container = $ctx->queryOne('phpdox:enrichments');
-            if(!$container) {
-                $container = $dom->createElementPrefix('phpdox','enrichments');
-                $ctx->appendChild($container);
-            }
-            $enrichment = $dom->createElementPrefix('phpdox', 'enrichment');
-            $enrichment->setAttribute('type', 'checkstyle');
-            $container->appendChild($enrichment);
-
-            foreach($findings as $f) {
+            foreach($findings as $finding) {
+                /** @var fDOMElement $finding */
+                $line = $finding->getAttribute('line');
+                $ref = $ctx->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
+                if (!$ref) {
+                    // One src file may contain multiple classes/traits/interfaces, so the
+                    // finding might not apply to the current object since findings are based on filenames
+                    // but we have individual objects - so we just ignore the finding for this context
+                    continue;
+                }
+                $container = $ref->queryOne('phpdox:enrichments');
+                if(!$container) {
+                    $container = $dom->createElementNS('http://xml.phpdox.de/src#','enrichments');
+                    $ref->appendChild($container);
+                }
+                $enrichment = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichment');
+                $enrichment->setAttribute('source', 'checkstyle');
+                $container->appendChild($enrichment);
                 $enrichment->appendChild(
-                    $dom->importNode($f)
+                    $dom->importNode($finding)
                 );
             }
+
+            $dom->formatOutput = true;
+            $dom->preserveWhiteSpace = false;
+            echo $dom->saveXML();
         }
     }
 
