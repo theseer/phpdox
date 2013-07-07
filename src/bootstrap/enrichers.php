@@ -43,4 +43,8 @@ namespace TheSeer\phpDox {
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyle')
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyleConfig');
 
+    $phpDox->registerEnricher('pmd', 'PHPMessDetector (pmd.xml) enricher')
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPMessDetector')
+        ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPMessDetectorConfig');
+
 }

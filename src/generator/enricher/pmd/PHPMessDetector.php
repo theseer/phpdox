@@ -9,14 +9,14 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class CheckStyle implements EnricherInterface {
+    class PHPMessDetector implements EnricherInterface {
 
         private $config;
-        private $findings = NULL;
+        private $violations = NULL;
 
-        public function __construct(CheckStyleConfig $config) {
+        public function __construct(PHPMessDetectorConfig $config) {
             $this->config = $config;
-            $this->loadFindings($config->getLogFilePath());
+            $this->loadViolations($config->getLogFilePath());
         }
 
         public function enrich(AbstractEvent $event) {
@@ -33,31 +33,31 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return;
             }
             $file = $fileNode->getAttribute('realpath');
-            if (isset($this->findings[$file])) {
-                $this->processFindings($ctx, $this->findings[$file]);
+            if (isset($this->violations[$file])) {
+                $this->processViolations($ctx, $this->violations[$file]);
             }
         }
 
-        private function loadFindings($xmlFile) {
+        private function loadViolations($xmlFile) {
             $dom = new fDOMDocument();
             $dom->load($xmlFile);
-            $this->findings = array();
-            foreach($dom->query('/checkstyle/file') as $file) {
-                $this->findings[$file->getAttribute('name')] = $file->query('*');
+            $this->violations = array();
+            foreach($dom->query('/pmd/file') as $file) {
+                $this->violations[$file->getAttribute('name')] = $file->query('*');
             }
         }
 
-        private function processFindings(fDOMElement $ctx, \DOMNodeList $findings) {
+        private function processViolations(fDOMElement $ctx, \DOMNodeList $violations) {
             /** @var fDOMDocument $dom */
             $dom = $ctx->ownerDocument;
 
-            foreach($findings as $finding) {
-                /** @var fDOMElement $finding */
-                $line = $finding->getAttribute('line');
+            foreach($violations as $violation) {
+                /** @var fDOMElement $violation */
+                $line = $violation->getAttribute('beginline');
                 $ref = $ctx->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
                 if (!$ref) {
                     // One src file may contain multiple classes/traits/interfaces, so the
-                    // finding might not apply to the current object since findings are based on filenames
+                    // finding might not apply to the current object since violations are based on filenames
                     // but we have individual objects - so we just ignore the finding for this context
                     continue;
                 }
@@ -66,20 +66,22 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     $container = $dom->createElementNS('http://xml.phpdox.de/src#','enrichments');
                     $ref->appendChild($container);
                 }
-                $enrichment = $container->queryOne('phpdox:enrichment[@source="checkstyle"]');
+                $enrichment = $container->queryOne('phpdox:enrichment[@source="pmd"]');
                 if (!$enrichment) {
                     $enrichment = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichment');
-                    $enrichment->setAttribute('source', 'checkstyle');
+                    $enrichment->setAttribute('source', 'pmd');
                     $container->appendChild($enrichment);
                 }
 
-                $enrichFinding = $dom->createElementNS('http://xml.phpdox.de/src#', $finding->localName);
-                $enrichment->appendChild($enrichFinding);
-                foreach($finding->attributes as $attr) {
-                    $enrichFinding->setAttributeNode($dom->importNode($attr, true));
+                $enrichViolation = $dom->createElementNS('http://xml.phpdox.de/src#', 'violation');
+                $enrichment->appendChild($enrichViolation);
+                $enrichViolation->appendChild($dom->createTextNode($enrichment->nodeValue));
+                foreach($violation->attributes as $attr) {
+                    $enrichViolation->setAttributeNode($dom->importNode($attr, true));
                 }
+
             }
-        }
+         }
     }
 
 }

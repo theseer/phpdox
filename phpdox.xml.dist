@@ -9,6 +9,7 @@
 
             <enrich base="${basedir}/build/logs">
                 <source type="checkstyle" />
+                <source type="pmd" />
             </enrich>
 
             <build engine="html" enabled="true" output="html">
