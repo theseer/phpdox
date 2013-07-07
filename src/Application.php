@@ -198,5 +198,6 @@ namespace TheSeer\phpDox {
 
     class ApplicationException extends \Exception {
         const UnknownEngine = 1;
+        const UnknownEnricher = 2;
     }
 }
