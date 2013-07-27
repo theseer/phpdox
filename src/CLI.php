@@ -66,6 +66,7 @@ namespace TheSeer\phpDox {
             $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
             $errorHandler->register();
             try {
+                $this->preBootstrap();
                 $options = $this->processOptions();
 
                 if ($options->getValue('version') === TRUE) {
@@ -284,6 +285,29 @@ Usage: phpdox [switches]
 EOF;
         }
 
+        private function preBootstrap() {
+            if (!extension_loaded('tokenizer')) {
+                throw new CLIException("ext/tokenizer not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+            }
+            if (!extension_loaded('dom')) {
+                throw new CLIException("ext/dom not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+            }
+            if (!extension_loaded('iconv')) {
+                throw new CLIException("ext/iconv not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+            }
+            if (extension_loaded('xdebug')) {
+                ini_set('xdebug.scream', 0);
+                ini_set('xdebug.max_nesting_level', 1024);
+                ini_set('xdebug.show_exception_trace', 0);
+                xdebug_disable();
+            }
+        }
+
+    }
+
+
+    class CLIException extends \Exception {
+        const ExtensionMissing = 1;
     }
 
 }
