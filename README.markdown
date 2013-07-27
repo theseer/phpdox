@@ -24,7 +24,7 @@ User Installation
 
 phpDox is shipping as a selfcontained executable phar archive. You can grab your copy here:
 
-- [Release 0.5.0](http://phpdox.de/phpdox-0.5.phar)
+- [Release 0.5.0](http://phpdox.de/releases/phpdox-0.5.phar)
 
 Alternativly, phpDox can be installed using the PEAR Installer, the backbone of the [PHP Extension and Application Repository](http://pear.php.net/) that provides a distribution system for PHP packages.
 
