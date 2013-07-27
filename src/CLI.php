@@ -297,7 +297,7 @@ EOF;
             }
             if (extension_loaded('xdebug')) {
                 ini_set('xdebug.scream', 0);
-                ini_set('xdebug.max_nesting_level', 1024);
+                ini_set('xdebug.max_nesting_level', 8192);
                 ini_set('xdebug.show_exception_trace', 0);
                 xdebug_disable();
             }
