@@ -1,7 +1,7 @@
 @echo off
 REM phpDox
 REM
-REM Copyright (c) 2010-2012, Arne Blankerts <arne@blankerts.de.
+REM Copyright (c) 2010-2013, Arne Blankerts <arne@blankerts.de.
 REM All rights reserved.
 REM
 REM Redistribution and use in source and binary forms, with or without
@@ -10,7 +10,7 @@ REM are met:
 REM
 REM   * Redistributions of source code must retain the above copyright
 REM     notice, this list of conditions and the following disclaimer.
-REM 
+REM
 REM   * Redistributions in binary form must reproduce the above copyright
 REM     notice, this list of conditions and the following disclaimer in
 REM     the documentation and/or other materials provided with the

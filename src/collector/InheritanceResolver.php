@@ -1,6 +1,6 @@
 <?php
     /**
-     * Copyright (c) 2010-2012 Arne Blankerts <arne@blankerts.de>
+     * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -142,7 +142,7 @@ namespace TheSeer\phpDox\Collector {
                 if (!file_exists($idxName)) {
                     $this->logger->log("'$idxName' not found - skipping dependency");
                     continue;
-                }   
+                }
                 $dom = new fDOMDocument();
                 $dom->load($idxName);
                 $this->dependencyStack[] = new Dependency($dom, $this->project);
