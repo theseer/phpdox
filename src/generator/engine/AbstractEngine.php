@@ -1,4 +1,4 @@
-<?phpcoverage
+<?php
 /**
  * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
