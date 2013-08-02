@@ -79,8 +79,7 @@
        <package>
         <name>PHP_Timer</name>
         <channel>pear.phpunit.de</channel>
-        <min>1.0.2</min>
-        <max>1.0.99</max>
+        <min>1.0.4</min>
        </package>
        <extension>
         <name>tokenizer</name>
