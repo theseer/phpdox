@@ -39,6 +39,7 @@ namespace TheSeer\phpDox\Collector {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\ProgressLogger;
+    use TheSeer\phpDox\Project\ClassObject;
     use TheSeer\phpDox\Project\Dependency;
     use TheSeer\phpDox\Project\Project;
     use TheSeer\phpDox\Project\AbstractUnitObject;
@@ -77,8 +78,6 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function resolve(Array $changed, Project $project, InheritanceConfig $config) {
-            //return;
-
             if (count($changed) == 0) {
                 return;
             }
@@ -99,7 +98,17 @@ namespace TheSeer\phpDox\Collector {
                         $extendedUnit = $this->getUnitByName($extends);
                         $this->processExtends($unit, $extendedUnit);
                     } catch (ProjectException $e) {
-                        $this->unresolved[$unit->getName()] = $extends;
+                        $this->addUnresolved($unit->getName(), $extends);
+                    }
+                }
+                if ($unit->hasImplements()) {
+                    foreach($unit->getImplements() as $implements) {
+                        try {
+                            $implementsUnit = $this->getUnitByName($implements);
+                            $this->processImplements($unit, $implementsUnit);
+                        } catch (ProjectException $e) {
+                            $this->addUnresolved($unit->getName(), $implements);
+                        }
                     }
                 }
             }
@@ -116,19 +125,60 @@ namespace TheSeer\phpDox\Collector {
             return $this->unresolved;
         }
 
+        private function addUnresolved($unitName, $missingUnit) {
+            if (isset($this->unresolved[$unitName])) {
+                if (!is_array($this->unresolved[$unitName])) {
+                    $this->unresolved[$unitName] = array($this->unresolved[$unitName]);
+                }
+                $this->unresolved[$unitName][] = $missingUnit;
+            } else {
+                $this->unresolved[$unitName] = $missingUnit;
+            }
+        }
+
         private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends) {
             $this->project->registerForSaving($unit);
             $this->project->registerForSaving($extends);
 
             $extends->addExtender($unit);
-            $unit->importExports($extends);
+            $unit->importExports($extends, 'parent');
 
             if ($extends->hasExtends()) {
                 try {
                     $extendedUnit = $this->getUnitByName($extends->getExtends());
                     $this->processExtends($unit, $extendedUnit, $extendedUnit);
                 } catch (ProjectException $e) {
-                    $this->unresolved[$unit->getName()] = $extends->getExtends();
+                    $this->addUnresolved($unit->getName(), $extends->getExtends());
+                }
+            }
+
+            if ($extends->hasImplements()) {
+                foreach($extends->getImplements() as $implements) {
+                    try {
+                        $implementsUnit = $this->getUnitByName($implements);
+                        $this->processImplements($unit, $implementsUnit, $implementsUnit);
+                    } catch (ProjectException $e) {
+                        $this->addUnresolved($unit->getName(), $implements);
+                    }
+                }
+            }
+        }
+
+        private function processImplements(AbstractUnitObject $unit, AbstractUnitObject $implements) {
+            $this->project->registerForSaving($unit);
+            $this->project->registerForSaving($implements);
+
+            $implements->addImplementor($unit);
+            $unit->importExports($implements, 'interface');
+
+            if ($implements->hasImplements()) {
+                foreach($implements->getImplements() as $implementing) {
+                    try {
+                        $implementsUnit = $this->getUnitByName($implementing);
+                        $this->processExtends($unit, $implementsUnit, $implementsUnit);
+                    } catch (ProjectException $e) {
+                        $this->addUnresolved($unit->getName(), $implementing);
+                    }
                 }
             }
         }

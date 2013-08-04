@@ -41,7 +41,12 @@ namespace TheSeer\phpDox\Project {
     class InterfaceObject extends AbstractUnitObject {
         protected $rootName = 'interface';
 
-        public function addImplementor() {
+        public function addImplementor(AbstractUnitObject $unit) {
+            if ($this->getRootNode()->queryOne(sprintf('phpdox:implementor[@full = "%s"]', $unit->getName())) !== NULL) {
+                return;
+            }
+            $implementor = $this->getRootNode()->appendElementNS(self::XMLNS, 'implementor');
+            $this->setName($unit->getName(), $implementor);
 
         }
     }

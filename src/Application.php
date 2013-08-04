@@ -148,6 +148,9 @@ namespace TheSeer\phpDox {
                 if ($resolver->hasUnresolved()) {
                     $this->logger->log('The following unit(s) had missing dependencies during inheritance resolution:');
                     foreach($resolver->getUnresolved() as $class => $missing) {
+                        if (is_array($missing)) {
+                            $missing = join(', ', $missing);
+                        }
                         $this->logger->log(' - ' . $class . ' (missing ' . $missing . ')');
                     }
                 }

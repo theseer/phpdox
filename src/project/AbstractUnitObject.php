@@ -104,13 +104,18 @@ namespace TheSeer\phpDox\Project {
         /**
          * @param $name
          */
-        private function setName($name, fDOMElement $ctx) {
+        protected function setName($name, fDOMElement $ctx) {
             $parts = explode('\\', $name);
             $local = array_pop($parts);
             $namespace = join('\\', $parts);
             $ctx->setAttribute('full', $name);
             $ctx->setAttribute('namespace', $namespace);
             $ctx->setAttribute('name', $local);
+        }
+
+
+        protected function getRootNode() {
+            return $this->rootNode;
         }
 
         /**
@@ -359,14 +364,14 @@ namespace TheSeer\phpDox\Project {
         /**
          * @param AbstractUnitObject $unit
          */
-        public function importExports(AbstractUnitObject $unit) {
+        public function importExports(AbstractUnitObject $unit, $container = 'parent') {
 
-            $parent = $this->rootNode->queryOne(sprintf('//phpdox:parent[@full="%s"]', $unit->getName()));
+            $parent = $this->rootNode->queryOne(sprintf('//phpdox:%s[@full="%s"]', $container, $unit->getName()));
             if ($parent instanceof fDOMElement) {
                 $parent->parentNode->removeChild($parent);
             }
 
-            $parent = $this->rootNode->appendElementNS( self::XMLNS, 'parent');
+            $parent = $this->rootNode->appendElementNS( self::XMLNS, $container);
             $parent->setAttribute('full', $unit->getName());
             $parent->setAttribute('namepsace', $unit->getNamespace());
             $parent->setAttribute('name', $unit->getLocalName());
