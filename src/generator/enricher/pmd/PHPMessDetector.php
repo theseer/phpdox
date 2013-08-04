@@ -63,7 +63,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
                 $container = $ref->queryOne('phpdox:enrichments');
                 if(!$container) {
-                    $container = $dom->createElementNS('http://xml.phpdox.de/src#','enrichments');
+                    $container = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichments');
                     $ref->appendChild($container);
                 }
                 $enrichment = $container->queryOne('phpdox:enrichment[@source="pmd"]');

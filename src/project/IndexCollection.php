@@ -93,7 +93,7 @@ namespace TheSeer\phpDox\Project {
          * @param ClassObject $class
          */
         public function addClass(ClassObject $class) {
-            $this->addUnit($class,'class');
+            $this->addUnit($class, 'class');
         }
 
         /**
@@ -115,7 +115,7 @@ namespace TheSeer\phpDox\Project {
          * @return \DOMNodeList
          */
         public function findUnitNodesBySrcFile($path) {
-            return $this->getRootElement()->query(sprintf('//*[@src="%s"]',$path));
+            return $this->getRootElement()->query(sprintf('//*[@src="%s"]', $path));
         }
 
         /**

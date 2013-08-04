@@ -120,8 +120,6 @@ namespace TheSeer\phpDox {
                     exit(0);
                 }
 
-
-
                 foreach($config->getAvailableProjects() as $project) {
                     $logger->log("Starting to process project '$project'");
                     $pcfg = $config->getProjectConfig($project);

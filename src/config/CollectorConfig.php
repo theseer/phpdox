@@ -82,7 +82,9 @@ namespace TheSeer\phpDox {
 
         public function doResolveInheritance() {
             $inNode = $this->ctx->queryOne('cfg:inheritance');
-            if (!$inNode) return true;
+            if (!$inNode) {
+                return true;
+            }
             return $inNode->getAttribute('resolve', 'true')=='true';
         }
 
