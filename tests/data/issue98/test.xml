@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.de/config" silent="false">
+
+    <project name="phpDox" source="${basedir}/src" workdir="${basedir}/xml">
+
+        <collector publiconly="false" backend="parser" />
+
+        <generator output="${basedir}/docs">
+            <build engine="html" enabled="true" output="html" />
+        </generator>
+
+    </project>
+
+</phpdox>

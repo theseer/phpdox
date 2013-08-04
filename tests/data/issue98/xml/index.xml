@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.de/src#">
+  <namespace name="TNT\Producer">
+    <class name="ProducerKernel" src="/home/theseer/storage/php/phpdox/tests/data/issue98/src/file.php" xml="classes/TNT_Producer_ProducerKernel.xml"/>
+  </namespace>
+</index>

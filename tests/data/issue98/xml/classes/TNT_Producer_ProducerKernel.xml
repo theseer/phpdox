@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.de/src#" full="TNT\Producer\ProducerKernel" namespace="TNT\Producer" name="ProducerKernel" abstract="false" final="false" start="27" end="99">
+  <file path="/home/theseer/storage/php/phpdox/tests/data/issue98/src" file="file.php" realpath="/home/theseer/storage/php/phpdox/tests/data/issue98/src/file.php" size="3066" time="2013-06-06T11:59:12+02:00" unixtime="1370512752" sha1="522efd2b472fc4b744d025b5abfa7b15e5ddbf8b"/>
+  <extends full="Symfony\Component\HttpKernel\Kernel" namespace="Symfony\Component\HttpKernel" name="Kernel"/>
+  <constructor name="__construct" start="30" end="34" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="env" byreference="false" type="{unknown}"/>
+    <parameter name="debug" byreference="false" type="{unknown}" default="false"/>
+    <parameter name="__DIR__" byreference="false" type="{unknown}"/>
+  </constructor>
+  <method name="registerBundles" start="40" end="54" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="(non-PHPdoc)"/>
+      <see value="\Symfony\Component\HttpKernel\KernelInterface::registerBundles()"/>
+    </docblock>
+  </method>
+  <method name="getContainerLoader" start="62" end="72" abstract="false" final="false" static="false" visibility="protected">
+    <docblock>
+      <description compact="Returns a loader for the container."/>
+      <param description="The service container" type="object" variable="$container">
+        <type full="Symfony\Component\DependencyInjection\ContainerInterface" namespace="Symfony\Component\DependencyInjection" name="ContainerInterface"/>
+      </param>
+      <return description="The loader" type="object">
+        <type full="Symfony\Component\Config\Loader\DelegatingLoader" namespace="Symfony\Component\Config\Loader" name="DelegatingLoader"/>
+      </return>
+    </docblock>
+    <parameter name="container" byreference="false" type="object">
+      <type full="Symfony\Component\DependencyInjection\ContainerInterface" namespace="Symfony\Component\DependencyInjection" name="ContainerInterface"/>
+    </parameter>
+  </method>
+  <method name="registerContainerConfiguration" start="77" end="82" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="(non-PHPdoc)"/>
+      <see value="\Symfony\Component\HttpKernel\KernelInterface::registerContainerConfiguration()"/>
+    </docblock>
+    <parameter name="loader" byreference="false" type="object">
+      <type full="Symfony\Component\Config\Loader\LoaderInterface" namespace="Symfony\Component\Config\Loader" name="LoaderInterface"/>
+    </parameter>
+  </method>
+  <method name="dumpContainer" start="92" end="98" abstract="false" final="false" static="false" visibility="protected">
+    <docblock>
+      <description compact="Dumps the service container to PHP code in the cache."/>
+      <param description="The config cache" type="object" variable="$cache">
+        <type full="Symfony\Component\Config\ConfigCache" namespace="Symfony\Component\Config" name="ConfigCache"/>
+      </param>
+      <param description="The service container" type="object" variable="$container">
+        <type full="Symfony\Component\DependencyInjection\ContainerBuilder" namespace="Symfony\Component\DependencyInjection" name="ContainerBuilder"/>
+      </param>
+      <param description="The name of the class to generate" type="string" variable="$class"/>
+      <param description="The name of the container's base class" type="string" variable="$baseClass"/>
+    </docblock>
+    <parameter name="cache" byreference="false" type="object">
+      <type full="Symfony\Component\Config\ConfigCache" namespace="Symfony\Component\Config" name="ConfigCache"/>
+    </parameter>
+    <parameter name="container" byreference="false" type="object">
+      <type full="Symfony\Component\DependencyInjection\ContainerBuilder" namespace="Symfony\Component\DependencyInjection" name="ContainerBuilder"/>
+    </parameter>
+    <parameter name="class" byreference="false" type="{unknown}"/>
+    <parameter name="baseClass" byreference="false" type="{unknown}"/>
+  </method>
+</class>

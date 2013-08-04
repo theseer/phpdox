@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.de/config" silent="false">
+
+    <project name="phpDox" source="src" workdir="/tmp/phpdox/issue95/xml">
+
+        <collector publiconly="false" backend="parser" />
+
+        <generator output="/tmp/phpdox/issue95/docs">
+
+            <build engine="html" enabled="true" output="html" />
+
+            <build engine="todo" enabled="false" output="todo">
+                <file name="todolist.txt" encoding="utf-8" />
+            </build>
+
+            <build engine="graph" enabled="true" output="graph">
+                <dot executable="/usr/bin/dot" render="true" format="png" />
+            </build>
+
+        </generator>
+    </project>
+
+</phpdox>
