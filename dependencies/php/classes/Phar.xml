@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="Phar" namespace="" name="Phar">
   <implements name="Countable" full="Countable"/>
-  <method name="addEmptyDir" abstract="false" static="false" final="false">
+  <method name="addEmptyDir" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Add an empty directory to the phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="dirname" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="addFile" abstract="false" static="false" final="false">
+  <method name="addFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Add a file from the filesystem to the phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
@@ -16,7 +16,7 @@
     <parameter name="file" optional="false" byreference="false" type="string"/>
     <parameter name="localname" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="addFromString" abstract="false" static="false" final="false">
+  <method name="addFromString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Add a file from the filesystem to the phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
@@ -24,13 +24,13 @@
     <parameter name="localname" optional="false" byreference="false" type="string"/>
     <parameter name="contents" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="apiVersion" abstract="false" static="false" final="false">
+  <method name="apiVersion" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the api version"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="buildFromDirectory" abstract="false" static="false" final="false">
+  <method name="buildFromDirectory" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a phar archive from the files within a directory.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="array"/>
@@ -38,7 +38,7 @@
     <parameter name="base_dir" optional="false" byreference="false" type="string"/>
     <parameter name="regex" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="buildFromIterator" abstract="false" static="false" final="false">
+  <method name="buildFromIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a phar archive from an iterator.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="array"/>
@@ -46,20 +46,20 @@
     <parameter name="iter" optional="false" byreference="false" type="object" class="Iterator"/>
     <parameter name="base_directory" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="canCompress" abstract="false" static="false" final="false">
+  <method name="canCompress" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns whether phar extension supports compression using either zlib or bzip2"/>
       <return type="bool"/>
     </docblock>
     <parameter name="type" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="canWrite" abstract="false" static="false" final="false">
+  <method name="canWrite" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns whether phar extension supports writing and creating phars"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="compress" abstract="false" static="false" final="false">
+  <method name="compress" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Compresses the entire Phar archive using Gzip or Bzip2 compression">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="object"/>
@@ -67,26 +67,26 @@
     <parameter name="compression" optional="false" byreference="false" type="int"/>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="compressAllFilesBZIP2" abstract="false" static="false" final="false">
+  <method name="compressAllFilesBZIP2" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Compresses all files in the current Phar archive using Bzip2 compression">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using Phar::compress, Phar::decompress, Phar::compressFiles and Phar::decompressFiles.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="compressAllFilesGZ" abstract="false" static="false" final="false">
+  <method name="compressAllFilesGZ" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Compresses all files in the current Phar archive using Gzip compression">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using Phar::compress, Phar::decompress, Phar::compressFiles and Phar::decompressFiles.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="compressFiles" abstract="false" static="false" final="false">
+  <method name="compressFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Compresses all files in the current Phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="compression" optional="false" byreference="false" type="int"/>
   </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a Phar archive object"/>
       <return type="void"/>
@@ -95,7 +95,7 @@
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="alias" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="convertToData" abstract="false" static="false" final="false">
+  <method name="convertToData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Convert a phar archive to a non-executable tar or zip file">This method is used to convert an executable phar archive to either a tar or zip file. To make the tar or zip non-executable, the phar stub and phar alias files are removed from the newly created archive.</description>
       <return type="PharData"/>
@@ -104,7 +104,7 @@
     <parameter name="compression" optional="true" byreference="false" type="int"/>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="convertToExecutable" abstract="false" static="false" final="false">
+  <method name="convertToExecutable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Convert a phar archive to another executable phar archive file format">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="Phar"/>
@@ -113,7 +113,7 @@
     <parameter name="compression" optional="true" byreference="false" type="int"/>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="copy" abstract="false" static="false" final="false">
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Copy a file internal to the phar archive to another new file within the phar">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
@@ -121,13 +121,13 @@
     <parameter name="oldfile" optional="false" byreference="false" type="string"/>
     <parameter name="newfile" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="count" abstract="false" static="false" final="false">
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the number of entries (files) in the Phar archive"/>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="createDefaultStub" abstract="false" static="false" final="false">
+  <method name="createDefaultStub" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Create a phar-file format specific stub">This method is intended for creation of phar-file format-specific stubs, and is not intended for use with tar- or zip-based phar archives.</description>
       <return type="string"/>
@@ -135,33 +135,33 @@
     <parameter name="indexfile" optional="true" byreference="false" type="string"/>
     <parameter name="webindexfile" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="decompress" abstract="false" static="false" final="false">
+  <method name="decompress" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Decompresses the entire Phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="object"/>
     </docblock>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="decompressFiles" abstract="false" static="false" final="false">
+  <method name="decompressFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Decompresses all files in the current Phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="delMetadata" abstract="false" static="false" final="false">
+  <method name="delMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Deletes the global metadata of the phar">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="delete" abstract="false" static="false" final="false">
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Delete a file within a phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="entry" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="extractTo" abstract="false" static="false" final="false">
+  <method name="extractTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Extract the contents of a phar archive to a directory">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
@@ -170,80 +170,80 @@
     <parameter name="files" optional="true" byreference="false" type="object" class="string|array"/>
     <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="getMetadata" abstract="false" static="false" final="false">
+  <method name="getMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns phar archive meta-data"/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="getModified" abstract="false" static="false" final="false">
+  <method name="getModified" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return whether phar was modified"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="getSignature" abstract="false" static="false" final="false">
+  <method name="getSignature" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return MD5/SHA1/SHA256/SHA512/OpenSSL signature of a Phar archive"/>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getStub" abstract="false" static="false" final="false">
+  <method name="getStub" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return the PHP loader or bootstrap stub of a Phar archive"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getSupportedCompression" abstract="false" static="false" final="false">
+  <method name="getSupportedCompression" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Return array of supported compression algorithms"/>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getSupportedSignatures" abstract="false" static="false" final="false">
+  <method name="getSupportedSignatures" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Return array of supported signature types"/>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getVersion" abstract="false" static="false" final="false">
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return version info of Phar archive"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="hasMetadata" abstract="false" static="false" final="false">
+  <method name="hasMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns whether phar has global meta-data"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="interceptFileFuncs" abstract="false" static="false" final="false">
+  <method name="interceptFileFuncs" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="instructs phar to intercept fopen, file_get_contents, opendir, and all of the stat-related functions">instructs phar to intercept fopen, readfile, file_get_contents, opendir, and all of the stat-related functions. If any of these functions is called from within a phar archive with a relative path, the call is modified to access a file within the phar archive. Absolute paths are assumed to be attempts to load external files from the filesystem.</description>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="isBuffering" abstract="false" static="false" final="false">
+  <method name="isBuffering" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Used to determine whether Phar write operations are being buffered, or are flushing directly to disk">This method can be used to determine whether a Phar will save changes to disk immediately, or whether a call to Phar::stopBuffering is needed to enable saving changes.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isCompressed" abstract="false" static="false" final="false">
+  <method name="isCompressed" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns Phar::GZ or PHAR::BZ2 if the entire phar archive is compressed (.tar.gz/tar.bz and so on)">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="isFileFormat" abstract="false" static="false" final="false">
+  <method name="isFileFormat" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns true if the phar archive is based on the tar/phar/zip file format depending on the parameter"/>
       <return type="bool"/>
     </docblock>
     <parameter name="format" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="isValidPharFilename" abstract="false" static="false" final="false">
+  <method name="isValidPharFilename" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns whether the given filename is a valid phar filename"/>
       <return type="bool"/>
@@ -251,13 +251,13 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="executable" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="isWritable" abstract="false" static="false" final="false">
+  <method name="isWritable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns true if the phar archive can be modified"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="loadPhar" abstract="false" static="false" final="false">
+  <method name="loadPhar" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Loads any phar archive with an alias"/>
       <return type="bool"/>
@@ -265,7 +265,7 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="alias" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="mapPhar" abstract="false" static="false" final="false">
+  <method name="mapPhar" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Reads the currently executed file (a phar) and registers its manifest"/>
       <return type="bool"/>
@@ -273,7 +273,7 @@
     <parameter name="alias" optional="true" byreference="false" type="string"/>
     <parameter name="dataoffset" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="mount" abstract="false" static="false" final="false">
+  <method name="mount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Mount an external path or file to a virtual location within the phar archive"/>
       <return type="void"/>
@@ -281,28 +281,28 @@
     <parameter name="pharpath" optional="false" byreference="false" type="string"/>
     <parameter name="externalpath" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="mungServer" abstract="false" static="false" final="false">
+  <method name="mungServer" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Defines a list of up to 4 $_SERVER variables that should be modified for execution">Phar::mungServer should only be called within the stub of a phar archive.</description>
       <return type="void"/>
     </docblock>
     <parameter name="munglist" optional="false" byreference="false" type="object" class="array"/>
   </method>
-  <method name="offsetExists" abstract="false" static="false" final="false">
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="determines whether a file exists in the phar">This is an implementation of the ArrayAccess interface allowing direct manipulation of the contents of a Phar archive using array access brackets.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="offsetGet" abstract="false" static="false" final="false">
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets a PharFileInfo object for a specific file"/>
       <return type="int"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="offsetSet" abstract="false" static="false" final="false">
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="set the contents of an internal file to those of an external file">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
@@ -310,28 +310,28 @@
     <parameter name="offset" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="offsetUnset" abstract="false" static="false" final="false">
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="remove a file from a phar">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="running" abstract="false" static="false" final="false">
+  <method name="running" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the full path on disk or full phar URL to the currently executing Phar archive">Returns the full path to the running phar archive. This is intended for use much like the __FILE__ magic constant, and only has effect inside an executing phar archive.</description>
       <return type="string"/>
     </docblock>
     <parameter name="retphar" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="setAlias" abstract="false" static="false" final="false">
+  <method name="setAlias" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the alias for the Phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="alias" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="setDefaultStub" abstract="false" static="false" final="false">
+  <method name="setDefaultStub" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Used to set the PHP loader or bootstrap stub of a Phar archive to the default loader">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
@@ -339,14 +339,14 @@
     <parameter name="index" optional="true" byreference="false" type="string"/>
     <parameter name="webindex" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="setMetadata" abstract="false" static="false" final="false">
+  <method name="setMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sets phar archive meta-data">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="metadata" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="setSignatureAlgorithm" abstract="false" static="false" final="false">
+  <method name="setSignatureAlgorithm" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="set the signature algorithm for a phar and apply it.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
@@ -354,39 +354,40 @@
     <parameter name="sigtype" optional="false" byreference="false" type="int"/>
     <parameter name="privatekey" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="setStub" abstract="false" static="false" final="false">
+  <method name="setStub" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Used to set the PHP loader or bootstrap stub of a Phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="stub" optional="false" byreference="false" type="string"/>
+    <parameter name="len" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="startBuffering" abstract="false" static="false" final="false">
+  <method name="startBuffering" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Start buffering Phar write operations, do not modify the Phar object on disk">Although technically unnecessary, the Phar::startBuffering method can provide a significant performance boost when creating or modifying a Phar archive with a large number of files. Ordinarily, every time a file within a Phar archive is created or modified in any way, the entire Phar archive will be recreated with the changes. In this way, the archive will be up-to-date with the activity performed on it.</description>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="stopBuffering" abstract="false" static="false" final="false">
+  <method name="stopBuffering" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Stop buffering write requests to the Phar archive, and save changes to disk">Phar::stopBuffering is used in conjunction with the Phar::startBuffering method. Phar::startBuffering can provide a significant performance boost when creating or modifying a Phar archive with a large number of files. Ordinarily, every time a file within a Phar archive is created or modified in any way, the entire Phar archive will be recreated with the changes. In this way, the archive will be up-to-date with the activity performed on it.</description>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="uncompressAllFiles" abstract="false" static="false" final="false">
+  <method name="uncompressAllFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Uncompresses all files in the current Phar archive">This method has been removed from the phar extension as of version 2.0.0. Alternative implementations are available using Phar::compress, Phar::decompress, Phar::compressFiles and Phar::decompressFiles.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="unlinkArchive" abstract="false" static="false" final="false">
+  <method name="unlinkArchive" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Completely remove a phar archive from disk and from memory"/>
       <return type="bool"/>
     </docblock>
     <parameter name="archive" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="webPhar" abstract="false" static="false" final="false">
+  <method name="webPhar" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="mapPhar for web-based phars. front controller for web applications">Phar::mapPhar for web-based phars. This method parses $_SERVER['REQUEST_URI'] and routes a request from a web browser to an internal file within the phar archive. In essence, it simulates a web server, routing requests to the correct file, echoing the correct headers and parsing PHP files as needed. This powerful method is part of what makes it easy to convert an existing PHP application into a phar archive. Combined with Phar::mungServer and Phar::interceptFileFuncs, any web application can be used unmodified from a phar archive.</description>
       <return type="void"/>
@@ -395,6 +396,6 @@
     <parameter name="index" optional="true" byreference="false" type="string"/>
     <parameter name="f404" optional="true" byreference="false" type="string"/>
     <parameter name="mimetypes" optional="true" byreference="false" type="object" class="array"/>
-    <parameter name="rewrites" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="rewrites" optional="true" byreference="false" type="object" class="callable"/>
   </method>
 </class>

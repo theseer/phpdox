@@ -39,6 +39,12 @@
     </docblock>
     <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
+  <method name="disconnect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disconnect from a varnish instance administration interface"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
   <method name="getPanic" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the last panic message on a varnish instance"/>

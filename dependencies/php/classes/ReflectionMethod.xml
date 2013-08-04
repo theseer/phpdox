@@ -169,6 +169,12 @@
       <return type="void"/>
     </docblock>
   </method>
+  <method name="getClosureScopeClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReflectionClass"/>
+    </docblock>
+  </method>
   <method name="getClosureThis" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -266,6 +272,12 @@
     </docblock>
   </method>
   <method name="isDeprecated" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isGenerator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>

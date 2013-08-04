@@ -56,7 +56,7 @@
       <var type="array"/>
     </docblock>
   </member>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates SNMP instance representing session to remote SNMP agent"/>
       <return type="void"/>
@@ -67,13 +67,13 @@
     <parameter name="timeout" optional="true" byreference="false" type="int"/>
     <parameter name="retries" optional="true" byreference="false" type="int"/>
   </constructor>
-  <method name="close" abstract="false" static="false" final="false">
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Close SNMP session"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="get" abstract="false" static="false" final="false">
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Fetch an SNMP object"/>
       <return type="mixed"/>
@@ -81,26 +81,26 @@
     <parameter name="object_id" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="preserve_keys" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="getErrno" abstract="false" static="false" final="false">
+  <method name="getErrno" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get last error code"/>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getError" abstract="false" static="false" final="false">
+  <method name="getError" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get last error message"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getnext" abstract="false" static="false" final="false">
+  <method name="getnext" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Fetch an SNMP object which&#10;  follows the given object id&#10;  "/>
       <return type="mixed"/>
     </docblock>
     <parameter name="object_id" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="set" abstract="false" static="false" final="false">
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the value of an SNMP object"/>
       <return type="bool"/>
@@ -109,7 +109,7 @@
     <parameter name="type" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="setSecurity" abstract="false" static="false" final="false">
+  <method name="setSecurity" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Configures security-related SNMPv3 session parameters"/>
       <return type="bool"/>
@@ -122,7 +122,7 @@
     <parameter name="contextName" optional="true" byreference="false" type="string"/>
     <parameter name="contextEngineID" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="walk" abstract="false" static="false" final="false">
+  <method name="walk" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Fetch SNMP object subtree"/>
       <return type="array"/>

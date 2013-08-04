@@ -58,10 +58,10 @@
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new database">This method is not meant to be called directly. The preferred way to create an instance of MongoDB is through Mongo::__get or Mongo::selectDB.</description>
+      <description compact="Creates a new database">This method is not meant to be called directly. The preferred way to create an instance of MongoDB is through MongoClient::__get or MongoClient::selectDB.</description>
       <return type="void"/>
     </docblock>
-    <parameter name="conn" optional="false" byreference="false" type="object" class="Mongo"/>
+    <parameter name="conn" optional="false" byreference="false" type="object" class="MongoClient"/>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </constructor>
   <method name="createCollection" abstract="false" static="false" visibility="public" final="false">
@@ -70,9 +70,7 @@
       <return type="MongoCollection"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="capped" optional="true" byreference="false" type="object" class="bool"/>
-    <parameter name="size" optional="true" byreference="false" type="int"/>
-    <parameter name="max" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="createDBRef" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -116,6 +114,13 @@
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="getCollectionNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get all collections from this database"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="includeSystemCollections" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
   <method name="getDBRef" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Fetches the document pointed to by a database reference"/>
@@ -136,6 +141,12 @@
       <return type="int"/>
     </docblock>
   </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the read preference for this database"/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="getSlaveOkay" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get slaveOkay setting for this database"/>
@@ -150,9 +161,10 @@
   </method>
   <method name="listCollections" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get a list of collections in this database"/>
+      <description compact="Gets an array of all MongoCollections for this database"/>
       <return type="array"/>
     </docblock>
+    <parameter name="includeSystemCollections" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="prevError" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -187,6 +199,14 @@
       <return type="int"/>
     </docblock>
     <parameter name="level" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read preference for this database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="read_preference" optional="false" byreference="false" type="string"/>
+    <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="setSlaveOkay" abstract="false" static="false" visibility="public" final="false">
     <docblock>

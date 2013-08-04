@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="ZipArchive" namespace="" name="ZipArchive">
+  <member name="status" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Status of the Zip Archive"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="statusSys" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="System status of the Zip Archive"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="numFiles" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Number of files in archive"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="filename" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="File name in the file system"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="comment" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Comment for the archive"/>
+      <var type="string"/>
+    </docblock>
+  </member>
   <method name="addEmptyDir" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Add a new directory"/>
@@ -79,7 +114,7 @@
   <method name="getFromIndex" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Returns the entry contents using its index"/>
-      <return type="mixed"/>
+      <return type="string"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
     <parameter name="length" optional="true" byreference="false" type="int"/>
@@ -88,7 +123,7 @@
   <method name="getFromName" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Returns the entry contents using its name"/>
-      <return type="mixed"/>
+      <return type="string"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="length" optional="true" byreference="false" type="int"/>
@@ -118,7 +153,7 @@
   <method name="locateName" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Returns the index of the entry in the archive"/>
-      <return type="mixed"/>
+      <return type="int"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
@@ -150,14 +185,14 @@
   <method name="setArchiveComment" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Set the comment of a ZIP archive"/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="comment" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setCommentIndex" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Set the comment of an entry defined by its index"/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
     <parameter name="comment" optional="false" byreference="false" type="string"/>
@@ -165,7 +200,7 @@
   <method name="setCommentName" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Set the comment of an entry defined by its name"/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="comment" optional="false" byreference="false" type="string"/>
@@ -173,7 +208,7 @@
   <method name="statIndex" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Get the details of an entry defined by its index."/>
-      <return type="mixed"/>
+      <return type="array"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
@@ -181,34 +216,34 @@
   <method name="statName" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Get the details of an entry defined by its name."/>
-      <return type="mixed"/>
+      <return type="array"/>
     </docblock>
-    <parameter name="name" optional="false" byreference="false" type="object" class="name"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="unchangeAll" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Undo all changes done in the archive"/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="unchangeArchive" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Revert all global changes done in the archive."/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="unchangeIndex" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Revert all changes done to an entry at the given index"/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
   <method name="unchangeName" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Revert all changes done to an entry with the given name."/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>

@@ -28,7 +28,7 @@
       <description compact="Create an instance of an AMQPQueue object"/>
       <return type="void"/>
     </docblock>
-    <parameter name="amqp_connection" optional="false" byreference="false" type="object" class="AMQPConnection"/>
+    <parameter name="amqp_channel" optional="false" byreference="false" type="object" class="AMQPChannel"/>
   </constructor>
   <method name="consume" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -84,7 +84,7 @@
   </method>
   <method name="nack" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Mark a message as explicitly not acknowledged.">Mark the message identified by delivery_tab as explicitly not acknowledged. This method can only be called on messages that have not yet been acknowledged, meaning that messages retrieved with by AMQPQueue::consume and AMQPQueue::get and using the AMQP_AUTOACK flag are not eligible.</description>
+      <description compact="Mark a message as explicitly not acknowledged.">Mark the message identified by delivery_tag as explicitly not acknowledged. This method can only be called on messages that have not yet been acknowledged, meaning that messages retrieved with by AMQPQueue::consume and AMQPQueue::get and using the AMQP_AUTOACK flag are not eligible.</description>
       <return type="void"/>
     </docblock>
     <parameter name="delivery_tag" optional="false" byreference="false" type="string"/>

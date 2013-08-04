@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventBuffer" namespace="" name="EventBuffer">
+  <constant name="EOL_ANY" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EOL_CRLF" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EOL_CRLF_STRICT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EOL_LF" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PTR_SET" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PTR_ADD" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="length" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of bytes stored in an event buffer.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="contiguous_space" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of bytes stored contiguously at the front of the buffer. The&#10;       bytes in a buffer may be stored in multiple separate chunks of memory;&#10;       the property returns the number of bytes currently stored in the first&#10;       chunk.&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append data to the end of an event buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move all data from a buffer provided to the current instance of EventBuffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="buf" optional="false" byreference="false" type="object" class="EventBuffer"/>
+  </method>
+  <method name="appendFrom" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Moves the specified number of bytes from a source buffer to the&#10;  end of the current buffer"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="buf" optional="false" byreference="false" type="object" class="EventBuffer"/>
+    <parameter name="len" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventBuffer object"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="copyout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Copies out specified number of bytes from the front of the buffer"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="max_bytes" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="drain" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes specified number of bytes from the front of the buffer&#10;  without copying it anywhere"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="len" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="enableLocking" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="expand" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reserves space in buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="len" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="freeze" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prevent calls that modify an event buffer from succeeding"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="at_front" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires a lock on buffer"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="prepend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prepend data to the front of the buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="prependBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Moves all data from source buffer to the front of current buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="buf" optional="false" byreference="false" type="object" class="EventBuffer"/>
+  </method>
+  <method name="pullup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Linearizes data within buffer&#10;  and returns it's contents as a string">"Linearizes" the first size bytes of the buffer, copying or moving them as needed to ensure that they are all contiguous and occupying the same chunk of memory. If size is negative, the function linearizes the entire buffer.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read data from an evbuffer and drain the bytes read"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="max_bytes" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read data from an evbuffer and drain the bytes read"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="howmuch" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="readLine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Extracts a line from the front of the buffer"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="eol_style" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="search" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scans the buffer for an occurrence of a string">Scans the buffer for an occurrence of the string what . It returns numeric position of the string, or FALSE if the string was not found.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="what" optional="false" byreference="false" type="string"/>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
+    <parameter name="end" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="searchEol" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scans the buffer for an occurrence of an end of line">Scans the buffer for an occurrence of an end of line specified by eol_style parameter . It returns numeric position of the string, or FALSE if the string was not found.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
+    <parameter name="eol_style" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="substr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Substracts a portion of the buffer data"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="start" optional="false" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="unfreeze" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Re-enable calls that modify an event buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="at_front" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases lock acquired by EventBuffer::lock"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write contents of the buffer to a file or socket"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="howmuch" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

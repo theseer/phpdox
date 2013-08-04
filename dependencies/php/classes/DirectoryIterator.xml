@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="DirectoryIterator" namespace="" name="DirectoryIterator">
-  <implements name="Iterator" full="Iterator"/>
+  <implements name="SeekableIterator" full="SeekableIterator"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a new directory iterator from a path"/>
@@ -35,7 +35,7 @@
   </method>
   <method name="getExtension" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the file extension component of path"/>
+      <description compact="Gets the file extension"/>
       <return type="string"/>
     </docblock>
   </method>

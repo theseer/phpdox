@@ -90,6 +90,13 @@
       <return type="int"/>
     </docblock>
   </method>
+  <method name="setId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Give the worker an identifier so it can be tracked when asking gearmand for the list of available workers."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+  </method>
   <method name="setOptions" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set worker options"/>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="IntlTimeZone" namespace="" name="IntlTimeZone">
+  <constant name="DISPLAY_SHORT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DISPLAY_LONG" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="countEquivalentIDs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the number of IDs in the equivalency group that includes the given ID"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="zoneId" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="createDefault" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new copy of the default timezone for this host"/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+  </method>
+  <method name="createEnumeration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get an enumeration over time zone IDs associated with the&#10;  given country or offset"/>
+      <return type="IntlIterator"/>
+    </docblock>
+    <parameter name="countryOrRawOffset" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="createTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a timezone object for the given ID"/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+    <parameter name="zoneId" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="fromDateTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a timezone object from DateTimeZone"/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+    <parameter name="zoneId" optional="false" byreference="false" type="object" class="DateTimeZone"/>
+  </method>
+  <method name="getCanonicalID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the canonical system timezone ID or the normalized custom time zone ID for the given time zone ID"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="zoneId" optional="false" byreference="false" type="string"/>
+    <parameter name="isSystemID" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getDisplayName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get a name of this time zone suitable for presentation to the user"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="isDaylight" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="style" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getDSTSavings" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the amount of time to be added to local standard time to get local wall clock time"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getEquivalentID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get an ID in the equivalency group that includes the given ID"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="zoneId" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error code on the object">Object oriented style (method):</description>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error message on the object">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getGMT" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create GMT (UTC) timezone"/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+  </method>
+  <method name="getID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get timezone ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the time zone raw and GMT offset for the given moment in time"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="date" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="local" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="rawOffset" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="dstOffset" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getRawOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the raw GMT offset (before taking daylight savings time into account"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getTZDataVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the timezone data version currently used by ICU"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="hasSameRules" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if this zone has the same rules and offset as another zone"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="otherTimeZone" optional="false" byreference="false" type="object" class="IntlTimeZone"/>
+  </method>
+  <method name="toDateTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Convert to DateTimeZone object"/>
+      <return type="DateTimeZone"/>
+    </docblock>
+  </method>
+  <method name="useDaylightTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if this time zone uses daylight savings time"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

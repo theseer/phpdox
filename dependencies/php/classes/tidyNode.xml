@@ -4,63 +4,63 @@
     <default>null</default>
     <docblock>
       <description compact="The HTML representation of the node, including the surrounding tags."/>
-      <var type=""/>
+      <var type="string"/>
     </docblock>
   </member>
   <member name="name" static="false">
     <default>null</default>
     <docblock>
       <description compact="The name of the HTML node"/>
-      <var type=""/>
+      <var type="string"/>
     </docblock>
   </member>
   <member name="type" static="false">
     <default>null</default>
     <docblock>
       <description compact="The type of the tag (one of the constants above, e.g. TIDY_NODETYPE_PHP)"/>
-      <var type=""/>
+      <var type="int"/>
     </docblock>
   </member>
   <member name="line" static="false">
     <default>null</default>
     <docblock>
       <description compact="The line number at which the tags is located in the file"/>
-      <var type=""/>
+      <var type="int"/>
     </docblock>
   </member>
   <member name="column" static="false">
     <default>null</default>
     <docblock>
       <description compact="The column number at which the tags is located in the file"/>
-      <var type=""/>
+      <var type="int"/>
     </docblock>
   </member>
   <member name="proprietary" static="false">
     <default>null</default>
     <docblock>
       <description compact="Indicates if the node is a proprietary tag"/>
-      <var type=""/>
+      <var type="bool"/>
     </docblock>
   </member>
   <member name="id" static="false">
     <default>null</default>
     <docblock>
       <description compact="The ID of the tag (one of the constants above, e.g. TIDY_TAG_FRAME)"/>
-      <var type=""/>
+      <var type="int"/>
     </docblock>
   </member>
   <member name="attribute" static="false">
     <default>null</default>
     <docblock>
       <description compact="&#10;       An array of string, representing&#10;       the attributes names (as keys) of the current node.&#10;      "/>
-      <var type=""/>
+      <var type="array"/>
     </docblock>
   </member>
   <member name="child" static="false">
     <default>null</default>
     <docblock>
       <description compact="&#10;       An array of tidyNode, representing&#10;       the children of the current node.&#10;      "/>
-      <var type=""/>
+      <var type="array"/>
     </docblock>
   </member>
   <method name="getParent" abstract="false" static="false" final="false">

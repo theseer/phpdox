@@ -41,7 +41,7 @@
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the current key"/>
-      <return type="void"/>
+      <return type="scalar"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
@@ -84,7 +84,7 @@
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="scalar"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">

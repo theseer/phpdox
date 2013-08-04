@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventHttpConnection" namespace="" name="EventHttpConnection">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventHttpConnection object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="dns_base" optional="false" byreference="false" type="object" class="EventDnsBase"/>
+    <parameter name="address" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+  </constructor>
+  <method name="getBase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns event base associated with the connection"/>
+      <return type="EventBase"/>
+    </docblock>
+  </method>
+  <method name="getPeer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the remote address and port associated with the connection"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="address" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="makeRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes an HTTP request over the specified connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="req" optional="false" byreference="false" type="object" class="EventHttpRequest"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="uri" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setLocalAddress" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the IP address from which HTTP connections are made"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="address" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setLocalPort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the local port from which connections are made"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaxBodySize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets maximum body size for the connection"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="max_size" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setMaxHeadersSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets maximum header size"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="max_size" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRetries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the retry limit for the connection"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="retries" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the timeout for the connection"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

@@ -4,7 +4,11 @@
   <member name="slaveOkay" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       If the query should have the &quot;slaveOkay&quot; flag set, which allows reads on&#10;       the slave (slaves are, by default, just for backup and unreadable).  Can &#10;       be overridden with MongoCursor::slaveOkay.&#10;      "/>
+      <description compact="&#10;       If the query should have the &quot;slaveOkay&quot; flag set, which allows reads on&#10;       the secondary (secondaries are, by default, just for backup and not&#10;       queried). Can be overridden with MongoCursor::slaveOkay.&#10;      ">
+       If the query should have the "slaveOkay" flag set, which allows reads on
+       the secondary (secondaries are, by default, just for backup and not
+       queried). Can be overridden with MongoCursor::slaveOkay.
+      </description>
       <var type="boolean"/>
     </docblock>
   </member>
@@ -23,19 +27,26 @@
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="batchSize" abstract="false" static="false" visibility="public" final="false">
+  <method name="awaitData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the number of results returned per result set">This cannot override MongoDB's limit on the amount of data it will return to the client (i.e., if you set batch size to 1,000,000,000, MongoDB will still only return 4-16MB of results).</description>
+      <description compact="Sets whether this cursor will wait for a while for a tailable cursor to return more data"/>
       <return type="MongoCursor"/>
     </docblock>
-    <parameter name="num" optional="false" byreference="false" type="int"/>
+    <parameter name="wait" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="batchSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Limits the number of elements returned in one batch."/>
+      <return type="MongoCursor"/>
+    </docblock>
+    <parameter name="batchSize" optional="false" byreference="false" type="int"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create a new cursor"/>
       <return type="void"/>
     </docblock>
-    <parameter name="connection" optional="false" byreference="false" type="object" class="Mongo"/>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="MongoClient"/>
     <parameter name="ns" optional="false" byreference="false" type="string"/>
     <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
@@ -55,13 +66,13 @@
   </method>
   <method name="dead" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if there are documents that have not been sent yet from the database for this cursor">The database sends responses in batches of documents, up to 4Mb of documents per response. This method checks if the database has more batches or if the result set has been exhausted.</description>
+      <description compact="Checks if there are documents that have not been sent yet from the database for this cursor">The database sends responses in batches of documents, up to 4MB of documents per response. This method checks if the database has more batches or if the result set has been exhausted.</description>
       <return type="bool"/>
     </docblock>
   </method>
   <method name="doQuery" abstract="false" static="false" visibility="protected" final="false">
     <docblock>
-      <description compact="Execute the query.">This function actually queries the database. All queries and commands go through this function. Thus, this function can be overridden to provide custom query handling.</description>
+      <description compact="Execute the query.">Please do not use me.</description>
       <return type="void"/>
     </docblock>
   </method>
@@ -84,6 +95,12 @@
       <return type="array"/>
     </docblock>
   </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the read preference for this query"/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="hasNext" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if there are any more elements in this cursor"/>
@@ -95,11 +112,11 @@
       <description compact="Gives the database a hint about the query"/>
       <return type="MongoCursor"/>
     </docblock>
-    <parameter name="key_pattern" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="immortal" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets whether this cursor will timeout">After remaining idle for some amount of time, cursor, by default, "die." This is generally the behavior one wants. The database cleans up a cursor once all of its results have been sent to the client, but if the client doesn't request all of the results, the cursor will languish there, taking up resources. Thus, after a few minutes, the cursor "times out" and the database assumes the client has gotten everything it needs and cleans up its the cursor's resources.</description>
+      <description compact="Sets whether this cursor will timeout">After remaining idle on the server for some amount of time, cursors, by default, "die." This is generally the behavior one wants. The database cleans up a cursor once all of its results have been sent to the client, but if the client doesn't request all of the results, the cursor will languish there, taking up resources. Thus, after a few minutes, the cursor "times out" and the database assumes the client has gotten everything it needs and cleans up its the cursor's resources.</description>
       <return type="MongoCursor"/>
     </docblock>
     <parameter name="liveForever" optional="true" byreference="false" type="object" class="bool"/>
@@ -148,6 +165,22 @@
       <return type="void"/>
     </docblock>
   </method>
+  <method name="setFlag" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets arbitrary flags in case there is no method available the specific flag"/>
+      <return type="MongoCursor"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="int"/>
+    <parameter name="set" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read preference for this query"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="read_preference" optional="false" byreference="false" type="string"/>
+    <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <method name="skip" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Skips a number of results"/>
@@ -157,7 +190,7 @@
   </method>
   <method name="slaveOkay" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets whether this query can be done on a slave">Calling this will make the driver route reads to slaves if: You are using a replica set and You created a Mongo instance using the option "replicaSet" =&gt; true and There is a healthy slave that can be reached by the driver. You can check which server was used for this query by calling MongoCursor::info after running the query. It's server field will show which server the query was sent to.</description>
+      <description compact="Sets whether this query can be done on a secondary">Calling this will make the driver route reads to secondaries if: You are using a replica set and You created a MongoClient instance using the option "replicaSet" =&gt; "setName" and There is a healthy secondary that can be reached by the driver. You can check which server was used for this query by calling MongoCursor::info after running the query. It's server field will show which server the query was sent to.</description>
       <return type="MongoCursor"/>
     </docblock>
     <parameter name="okay" optional="true" byreference="false" type="object" class="bool"/>

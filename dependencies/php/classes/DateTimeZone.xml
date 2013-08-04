@@ -112,7 +112,7 @@
   </method>
   <method name="listIdentifiers" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns numerically index array with all timezone identifiers">Object oriented style</description>
+      <description compact="Returns a numerically indexed array containing all defined timezone identifiers">Object oriented style</description>
       <return type="array"/>
     </docblock>
     <parameter name="what" optional="true" byreference="false" type="int"/>

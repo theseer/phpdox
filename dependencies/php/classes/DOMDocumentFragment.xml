@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="DOMDocumentFragment" namespace="" name="DOMDocumentFragment">
   <extends name="DOMNode" full="DOMNode"/>
-  <method name="appendXML" abstract="false" static="false" final="false">
+  <method name="appendXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Append raw XML data">Appends raw XML data to a DOMDocumentFragment.</description>
       <return type="bool"/>

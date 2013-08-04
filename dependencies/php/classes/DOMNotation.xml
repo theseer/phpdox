@@ -4,14 +4,14 @@
   <member name="publicId" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="Prop description"/>
+      <description compact=""/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="systemId" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="Prop description"/>
+      <description compact=""/>
       <var type="string"/>
     </docblock>
   </member>

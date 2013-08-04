@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="IteratorIterator" namespace="" name="IteratorIterator">
-  <implements name="Iterator" full="Iterator"/>
+  <implements name="OuterIterator" full="OuterIterator"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create an iterator from anything that is traversable"/>
@@ -23,7 +23,7 @@
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the key of the current element"/>
-      <return type="void"/>
+      <return type="scalar"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">

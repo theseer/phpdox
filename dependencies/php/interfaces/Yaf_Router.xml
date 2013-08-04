@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.de/src#" full="Yaf_Router" namespace="" name="Yaf_Router">
+<interface xmlns="http://xml.phpdox.de/src#" full="Yaf_Router" namespace="" name="Yaf_Router">
   <member name="_routes" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="&#10;      registered routes stack&#10;      "/>
     </docblock>
   </member>
   <member name="_current" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="&#10;       after routing phase, this indicated the name of which route&#10;       is used to route current request.&#10;&#10;       you can get this name by&#10;       Yaf_Router::getCurrentRoute.&#10;      "/>
     </docblock>
   </member>
   <method name="addConfig" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Add config-defined routes into Router"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="config" optional="false" byreference="false" type="object" class="Yaf_Config_Abstract"/>
   </method>
   <method name="addRoute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Add new Route into Router">defaultly, Yaf_Router using a Yaf_Route_Static as its defualt route. you can add new routes into Router's route stack by calling this method.</description>
-      <return type="Yaf_Router"/>
+      <description compact="Add new Route into Router">defaultly, Yaf_Router using a Yaf_Route_Static as its defualt route. you can add new routes into router's route stack by calling this method.</description>
+      <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="route" optional="false" byreference="false" type="object" class="Yaf_Route_Abstract"/>
@@ -41,15 +41,15 @@
   </method>
   <method name="getRoute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getRoute purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve a route by name"/>
+      <return type="Yaf_Route_Interface"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getRoutes" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getRoutes purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve registered routes"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="route" abstract="false" static="false" visibility="public" final="false">
@@ -59,4 +59,4 @@
     </docblock>
     <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
   </method>
-</class>
+</interface>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventUtil" namespace="" name="EventUtil">
+  <constant name="AF_INET" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="AF_INET6" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="AF_UNSPEC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LIBEVENT_VERSION_NUMBER" value="33559808">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_DEBUG" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_REUSEADDR" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_KEEPALIVE" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_DONTROUTE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_LINGER" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_BROADCAST" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_OOBINLINE" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_SNDBUF" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_RCVBUF" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_SNDLOWAT" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_RCVLOWAT" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_SNDTIMEO" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_RCVTIMEO" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_TYPE" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SO_ERROR" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOL_SOCKET" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOL_TCP" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOL_UDP" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IPPROTO_IP" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IPPROTO_IPV6" value="41">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The abstract constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getLastSocketErrno" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the most recent socket error number"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="socket" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getLastSocketError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the most recent socket error"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="socket" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getSocketFd" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns numeric file descriptor of a socket, or stream"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="socket" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getSocketName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retreives the current address to which the&#10;  socket is bound."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="socket" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="address" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setSocketOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets socket options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="socket" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="level" optional="false" byreference="false" type="int"/>
+    <parameter name="optname" optional="false" byreference="false" type="int"/>
+    <parameter name="optval" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="sslRandPoll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Generates entropy by means of OpenSSL's RAND_poll()"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

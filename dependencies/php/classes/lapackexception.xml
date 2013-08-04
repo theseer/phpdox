@@ -11,7 +11,7 @@
   <member name="code" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="The exception code. "/>
+      <description compact="The exception code"/>
       <var type="int"/>
     </docblock>
   </member>

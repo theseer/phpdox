@@ -3,7 +3,7 @@
   <member name="document" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="Prop description"/>
+      <description compact=""/>
       <var type="DOMDocument"/>
     </docblock>
   </member>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.de/src#" full="DateTimeInterface" namespace="" name="DateTimeInterface">
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the difference between two DateTime objects">Object oriented style</description>
+      <return type="DateInterval"/>
+    </docblock>
+    <parameter name="datetime2" optional="false" byreference="false" type="object" class="DateTimeInterface"/>
+    <parameter name="absolute" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="format" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns date formatted according to given format">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the timezone offset">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the Unix timestamp">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimezone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return time zone relative to given DateTime">Object oriented style</description>
+      <return type="DateTimeZone"/>
+    </docblock>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __wakeup handler"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</interface>

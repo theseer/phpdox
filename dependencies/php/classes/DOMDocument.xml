@@ -134,7 +134,7 @@
       <var type="string"/>
     </docblock>
   </member>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Creates a new DOMDocument object&#10;  "/>
       <return type="void"/>
@@ -142,14 +142,14 @@
     <parameter name="version" optional="true" byreference="false" type="string"/>
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="createAttribute" abstract="false" static="false" final="false">
+  <method name="createAttribute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new attribute"/>
       <return type="DOMAttr"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="createAttributeNS" abstract="false" static="false" final="false">
+  <method name="createAttributeNS" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Create new attribute node with an associated namespace&#10;  "/>
       <return type="DOMAttr"/>
@@ -157,27 +157,27 @@
     <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
     <parameter name="qualifiedName" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="createCDATASection" abstract="false" static="false" final="false">
+  <method name="createCDATASection" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new cdata node"/>
       <return type="DOMCDATASection"/>
     </docblock>
     <parameter name="data" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="createComment" abstract="false" static="false" final="false">
+  <method name="createComment" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new comment node"/>
       <return type="DOMComment"/>
     </docblock>
     <parameter name="data" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="createDocumentFragment" abstract="false" static="false" final="false">
+  <method name="createDocumentFragment" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new document fragment"/>
       <return type="DOMDocumentFragment"/>
     </docblock>
   </method>
-  <method name="createElement" abstract="false" static="false" final="false">
+  <method name="createElement" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new element node"/>
       <return type="DOMElement"/>
@@ -185,7 +185,7 @@
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="createElementNS" abstract="false" static="false" final="false">
+  <method name="createElementNS" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Create new element node with an associated namespace&#10;  "/>
       <return type="DOMElement"/>
@@ -194,14 +194,14 @@
     <parameter name="qualifiedName" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="createEntityReference" abstract="false" static="false" final="false">
+  <method name="createEntityReference" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new entity reference node"/>
       <return type="DOMEntityReference"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="createProcessingInstruction" abstract="false" static="false" final="false">
+  <method name="createProcessingInstruction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates new PI node"/>
       <return type="DOMProcessingInstruction"/>
@@ -209,28 +209,28 @@
     <parameter name="target" optional="false" byreference="false" type="string"/>
     <parameter name="data" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="createTextNode" abstract="false" static="false" final="false">
+  <method name="createTextNode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create new text node"/>
       <return type="DOMText"/>
     </docblock>
     <parameter name="content" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getElementById" abstract="false" static="false" final="false">
+  <method name="getElementById" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Searches for an element with a certain id">This function is similar to but searches for an element with a given id.</description>
       <return type="DOMElement"/>
     </docblock>
     <parameter name="elementId" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getElementsByTagName" abstract="false" static="false" final="false">
+  <method name="getElementsByTagName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Searches for all elements with given local tag name"/>
       <return type="DOMNodeList"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getElementsByTagNameNS" abstract="false" static="false" final="false">
+  <method name="getElementsByTagNameNS" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Searches for all elements with given tag name in specified namespace&#10;  "/>
       <return type="DOMNodeList"/>
@@ -238,7 +238,7 @@
     <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
     <parameter name="localName" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="importNode" abstract="false" static="false" final="false">
+  <method name="importNode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Import node into current document"/>
       <return type="DOMNode"/>
@@ -246,7 +246,7 @@
     <parameter name="importedNode" optional="false" byreference="false" type="object" class="DOMNode"/>
     <parameter name="deep" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="load" abstract="false" static="false" final="false">
+  <method name="load" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Load XML from a file&#10;  "/>
       <return type="mixed"/>
@@ -254,21 +254,23 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="loadHTML" abstract="false" static="false" final="false">
+  <method name="loadHTML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Load HTML from a string&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="source" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="loadHTMLFile" abstract="false" static="false" final="false">
+  <method name="loadHTMLFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Load HTML from a file&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="loadXML" abstract="false" static="false" final="false">
+  <method name="loadXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Load XML from a string&#10;  "/>
       <return type="mixed"/>
@@ -276,13 +278,13 @@
     <parameter name="source" optional="false" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="normalizeDocument" abstract="false" static="false" final="false">
+  <method name="normalizeDocument" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Normalizes the document"/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="registerNodeClass" abstract="false" static="false" final="false">
+  <method name="registerNodeClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Register extended class used to create base node type">This method allows you to register your own extended DOM class to be used afterward by the PHP DOM extension.</description>
       <return type="bool"/>
@@ -290,21 +292,21 @@
     <parameter name="baseclass" optional="false" byreference="false" type="string"/>
     <parameter name="extendedclass" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="relaxNGValidate" abstract="false" static="false" final="false">
+  <method name="relaxNGValidate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Performs relaxNG validation on the document&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="relaxNGValidateSource" abstract="false" static="false" final="false">
+  <method name="relaxNGValidateSource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Performs relaxNG validation on the document&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="source" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="save" abstract="false" static="false" final="false">
+  <method name="save" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;    Dumps the internal XML tree back into a file&#10;  "/>
       <return type="int"/>
@@ -312,21 +314,21 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="saveHTML" abstract="false" static="false" final="false">
+  <method name="saveHTML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Dumps the internal document into a string using HTML formatting&#10;  "/>
       <return type="string"/>
     </docblock>
     <parameter name="node" optional="true" byreference="false" type="object" class="DOMNode"/>
   </method>
-  <method name="saveHTMLFile" abstract="false" static="false" final="false">
+  <method name="saveHTMLFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Dumps the internal document into a file using HTML formatting&#10;  "/>
       <return type="int"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="saveXML" abstract="false" static="false" final="false">
+  <method name="saveXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Dumps the internal XML tree back into a string&#10;  "/>
       <return type="string"/>
@@ -334,27 +336,27 @@
     <parameter name="node" optional="true" byreference="false" type="object" class="DOMNode"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="schemaValidate" abstract="false" static="false" final="false">
+  <method name="schemaValidate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Validates a document based on a schema&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="schemaValidateSource" abstract="false" static="false" final="false">
+  <method name="schemaValidateSource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Validates a document based on a schema&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="source" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="validate" abstract="false" static="false" final="false">
+  <method name="validate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Validates the document based on its DTD&#10;  ">Validates the document based on its DTD.</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="xinclude" abstract="false" static="false" final="false">
+  <method name="xinclude" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Substitutes XIncludes in a DOMDocument Object&#10;  ">This method substitutes XIncludes in a DOMDocument object.</description>
       <return type="int"/>

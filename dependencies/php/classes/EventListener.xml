@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventListener" namespace="" name="EventListener">
+  <constant name="OPT_LEAVE_SOCKETS_BLOCKING" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CLOSE_ON_FREE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CLOSE_ON_EXEC" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_REUSEABLE" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_THREADSAFE" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="fd" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Numeric file descriptor of the underlying socket. (Added in&#10;       event-1.6.0&#10;       .)&#10;      "/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates new connection listener associated with an event base"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="cb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+    <parameter name="backlog" optional="false" byreference="false" type="int"/>
+    <parameter name="target" optional="false" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disables an event connect listener object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enables an event connect listener object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getBase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns event base associated with the event listener"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getSocketName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retreives the current address to which the&#10;  listener's socket is bound."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="address" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The setCallback purpose"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setErrorCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set event listener's error callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cb" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

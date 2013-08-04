@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventConfig" namespace="" name="EventConfig">
+  <constant name="FEATURE_ET" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FEATURE_O1" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FEATURE_FDS" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="avoidMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells libevent to avoid specific event method"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="method" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventConfig object"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="requireFeatures" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enters a required event method feature that the application demands"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="feature" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaxDispatchInterval" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Prevents priority inversion">Prevents priority inversion by limiting how many low-priority event callbacks can be invoked before checking for more high-priority events.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="max_interval" optional="false" byreference="false" type="int"/>
+    <parameter name="max_callbacks" optional="false" byreference="false" type="int"/>
+    <parameter name="min_priority" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

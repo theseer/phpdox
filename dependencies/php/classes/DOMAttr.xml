@@ -36,7 +36,7 @@
       <var type="string"/>
     </docblock>
   </member>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates a new DOMAttr object"/>
       <return type="void"/>
@@ -44,7 +44,7 @@
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="isId" abstract="false" static="false" final="false">
+  <method name="isId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Checks if attribute is a defined ID&#10;  ">This function checks if the attribute is a defined ID.</description>
       <return type="bool"/>

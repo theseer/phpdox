@@ -44,10 +44,10 @@
   </method>
   <method name="getHash" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Calculate a unique identifier for the contained objects&#10;  ">The function calculates an identifier for the objects added to this SplObjectStorage object.</description>
+      <description compact="&#10;   Calculate a unique identifier for the contained objects&#10;  ">This method calculates an identifier for the objects added to an SplObjectStorage object.</description>
       <return type="string"/>
     </docblock>
-    <parameter name="object" optional="false" byreference="false" type="string"/>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
   </method>
   <method name="getInfo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -69,7 +69,7 @@
   </method>
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks whether an object exists in the storage"/>
+      <description compact="Checks whether an object exists in the storage">Checks whether an object exists in the storage.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="object" optional="false" byreference="false" type="object" class="object"/>

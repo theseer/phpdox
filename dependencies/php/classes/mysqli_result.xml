@@ -31,7 +31,7 @@
   </member>
   <method name="data_seek" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Adjusts the result pointer to an arbitary row in the result">Object oriented style</description>
+      <description compact="Adjusts the result pointer to an arbitrary row in the result">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="int"/>

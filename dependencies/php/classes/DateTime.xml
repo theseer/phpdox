@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="DateTime" namespace="" name="DateTime">
+  <implements name="DateTimeInterface" full="DateTimeInterface"/>
   <constant name="ATOM" value="&quot;Y-m-d\TH:i:sP&quot;">
     <docblock>
       <var type="string"/>
@@ -79,43 +80,10 @@
     <parameter name="time" optional="false" byreference="false" type="string"/>
     <parameter name="timezone" optional="true" byreference="false" type="object" class="DateTimeZone"/>
   </method>
-  <method name="diff" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Returns the difference between two DateTime objects">Object oriented style</description>
-      <return type="DateInterval"/>
-    </docblock>
-    <parameter name="datetime2" optional="false" byreference="false" type="object" class="DateTime"/>
-    <parameter name="absolute" optional="true" byreference="false" type="object" class="bool"/>
-  </method>
-  <method name="format" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Returns date formatted according to given format">Object oriented style</description>
-      <return type="string"/>
-    </docblock>
-    <parameter name="format" optional="false" byreference="false" type="string"/>
-  </method>
   <method name="getLastErrors" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the warnings and errors">Object oriented style</description>
       <return type="array"/>
-    </docblock>
-  </method>
-  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Returns the timezone offset">Object oriented style</description>
-      <return type="int"/>
-    </docblock>
-  </method>
-  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Gets the Unix timestamp">Object oriented style</description>
-      <return type="int"/>
-    </docblock>
-  </method>
-  <method name="getTimezone" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Return time zone relative to given DateTime">Object oriented style</description>
-      <return type="DateTimeZone"/>
     </docblock>
   </method>
   <method name="modify" abstract="false" static="false" visibility="public" final="false">
@@ -180,10 +148,43 @@
     </docblock>
     <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
   </method>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DateInterval"/>
+    </docblock>
+    <parameter name="datetime2" optional="false" byreference="false" type="object" class="DateTimeInterface"/>
+    <parameter name="absolute" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="format" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimezone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DateTimeZone"/>
+    </docblock>
+  </method>
   <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __wakeup handler"/>
-      <return type="DateTime"/>
+      <description compact=""/>
+      <return type="void"/>
     </docblock>
   </method>
 </class>

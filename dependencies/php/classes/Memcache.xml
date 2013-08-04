@@ -42,7 +42,7 @@
   </method>
   <method name="decrement" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Decrement item's value">Memcache::decrement decrements value of the item by value. Similarly to Memcache::increment, current value of the item is being converted to numerical and after that value is substracted. New item's value will not be less than zero. Do not use Memcache::decrement with item, which was stored compressed, because consequent call to Memcache::get will fail. Memcache::decrement does not create an item if it didn't exist. Also you can use memcache_decrement function.</description>
+      <description compact="Decrement item's value">Memcache::decrement decrements value of the item by value. Similarly to Memcache::increment, current value of the item is being converted to numerical and after that value is subtracted. New item's value will not be less than zero. Do not use Memcache::decrement with item, which was stored compressed, because consequent call to Memcache::get will fail. Memcache::decrement does not create an item if it didn't exist. Also you can use memcache_decrement function.</description>
       <return type="int"/>
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>

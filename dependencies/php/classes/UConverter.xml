@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="UConverter" namespace="" name="UConverter">
+  <constant name="REASON_UNASSIGNED" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="REASON_ILLEGAL" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="REASON_IRREGULAR" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="REASON_RESET" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="REASON_CLOSE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="REASON_CLONE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNSUPPORTED_CONVERTER" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SBCS" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DBCS" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MBCS" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LATIN_1" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF8" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF16_BigEndian" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF16_LittleEndian" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF32_BigEndian" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF32_LittleEndian" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EBCDIC_STATEFUL" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ISO_2022" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_1" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_2" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_3" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_4" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_5" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_6" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_8" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_11" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_16" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_17" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_18" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_19" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LMBCS_LAST" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HZ" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SCSU" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ISCII" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="US_ASCII" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF7" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BOCU1" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF16" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UTF32" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CESU8" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IMAP_MAILBOX" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create UConverter object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="destination_encoding" optional="true" byreference="false" type="string"/>
+    <parameter name="source_encoding" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="convert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Convert string from one charset to another"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="str" optional="false" byreference="false" type="string"/>
+    <parameter name="reverse" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="fromUCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Default &quot;from&quot; callback function"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="reason" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="source" optional="false" byreference="false" type="string"/>
+    <parameter name="codePoint" optional="false" byreference="false" type="string"/>
+    <parameter name="error" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getAliases" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the aliases of the given name"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getAvailable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the available canonical converter names"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getDestinationEncoding" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the destination encoding"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getDestinationType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the destination converter type"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error code on the object"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error message on the object"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSourceEncoding" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the source encoding"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSourceType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the source convertor type"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getStandards" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get standards associated to converter names"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getSubstChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get substitution chars"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="reasonText" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get string representation of the callback reason"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="reason" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setDestinationEncoding" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the destination encoding"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSourceEncoding" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the source encoding"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSubstChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the substitution chars"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="chars" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="toUCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Default &quot;to&quot; callback function"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="reason" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="source" optional="false" byreference="false" type="string"/>
+    <parameter name="codeUnits" optional="false" byreference="false" type="string"/>
+    <parameter name="error" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="transcode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Convert string from one charset to another"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="str" optional="false" byreference="false" type="string"/>
+    <parameter name="toEncoding" optional="false" byreference="false" type="string"/>
+    <parameter name="fromEncoding" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

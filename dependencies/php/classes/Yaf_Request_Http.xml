@@ -15,15 +15,19 @@
   </constructor>
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The get purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve variable from client"/>
+      <return type="mixed"/>
     </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getCookie" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getCookie purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve Cookie varialbe"/>
+      <return type="mixed"/>
     </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -33,15 +37,19 @@
   </method>
   <method name="getPost" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getPost purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve POST variable"/>
+      <return type="mixed"/>
     </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getQuery" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="fetch a query parameter"/>
-      <return type="void"/>
+      <description compact="Fetch a query parameter"/>
+      <return type="mixed"/>
     </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -51,8 +59,8 @@
   </method>
   <method name="isXmlHttpRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isXmlHttpRequest purpose"/>
-      <return type="void"/>
+      <description compact="Whether a Ajax Request">Check the request whether it is a Ajax Request. This method depends on the request header: HTTP_X_REQUESTED_WITH, some Javascript library doesn't set this header while doing Ajax request</description>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="getActionName" abstract="false" static="false" visibility="public" final="false">
@@ -197,7 +205,7 @@
   <method name="setBaseUri" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="uir" optional="false" byreference="false" type="string"/>
   </method>

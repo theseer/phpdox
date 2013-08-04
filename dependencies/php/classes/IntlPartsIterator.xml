@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="IntlPartsIterator" namespace="" name="IntlPartsIterator">
+  <implements name="Iterator" full="Iterator"/>
+  <constant name="KEY_SEQUENTIAL" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_LEFT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_RIGHT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="getBreakIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get IntlBreakIterator backing this parts iterator"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+</class>

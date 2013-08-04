@@ -87,6 +87,19 @@
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="offset" optional="true" byreference="false" type="int"/>
+    <parameter name="initial_value" optional="true" byreference="false" type="int"/>
+    <parameter name="expiry" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="decrementByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Decrement numeric item's value, stored on a specific server"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+    <parameter name="initial_value" optional="true" byreference="false" type="int"/>
+    <parameter name="expiry" optional="true" byreference="false" type="int"/>
   </method>
   <method name="delete" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -103,6 +116,23 @@
     </docblock>
     <parameter name="server_key" optional="false" byreference="false" type="string"/>
     <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="time" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="deleteMulti" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete multiple items"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="time" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="deleteMultiByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete multiple items from a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="time" optional="true" byreference="false" type="int"/>
   </method>
   <method name="fetch" abstract="false" static="false" visibility="public" final="false">
@@ -132,6 +162,12 @@
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="cache_cb" optional="true" byreference="false" type="object" class="callable"/>
     <parameter name="cas_token" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="getAllKeys" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the keys stored on all the servers"/>
+      <return type="array"/>
+    </docblock>
   </method>
   <method name="getByKey" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -232,6 +268,31 @@
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="offset" optional="true" byreference="false" type="int"/>
+    <parameter name="initial_value" optional="true" byreference="false" type="int"/>
+    <parameter name="expiry" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="incrementByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Increment numeric item's value, stored on a specific server"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+    <parameter name="initial_value" optional="true" byreference="false" type="int"/>
+    <parameter name="expiry" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="isPersistent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if a persitent connection to memcache is being used"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPristine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the instance was recently created"/>
+      <return type="bool"/>
+    </docblock>
   </method>
   <method name="prepend" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -249,6 +310,12 @@
     <parameter name="server_key" optional="false" byreference="false" type="string"/>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="quit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close any open connections"/>
+      <return type="bool"/>
+    </docblock>
   </method>
   <method name="replace" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -268,6 +335,12 @@
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="expiration" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="resetServerList" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clears all servers from the server list"/>
+      <return type="bool"/>
+    </docblock>
   </method>
   <method name="set" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -312,5 +385,37 @@
     </docblock>
     <parameter name="option" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setOptions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Memcached options"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setSaslAuthData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the credentials to use for authentication">Memcached::setSaslAuthData sets the username and password that should be used for SASL authentication with the memcache servers.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="username" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="touch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a new expiration on an item"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="expiration" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="touchByKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a new expiration on an item on a specific server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_key" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="expiration" optional="false" byreference="false" type="int"/>
   </method>
 </class>

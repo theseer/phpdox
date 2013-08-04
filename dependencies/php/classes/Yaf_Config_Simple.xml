@@ -104,8 +104,8 @@
   </method>
   <method name="toArray" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The toArray purpose"/>
-      <return type="void"/>
+      <description compact="Returns a PHP array"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">

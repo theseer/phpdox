@@ -27,63 +27,63 @@
     </docblock>
     <parameter name="mode" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="bottom" abstract="false" static="false" final="false">
+  <method name="bottom" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="count" abstract="false" static="false" final="false">
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="current" abstract="false" static="false" final="false">
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="getIteratorMode" abstract="false" static="false" final="false">
+  <method name="getIteratorMode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="isEmpty" abstract="false" static="false" final="false">
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="key" abstract="false" static="false" final="false">
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="next" abstract="false" static="false" final="false">
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="offsetExists" abstract="false" static="false" final="false">
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="offsetGet" abstract="false" static="false" final="false">
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="offsetSet" abstract="false" static="false" final="false">
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -91,33 +91,33 @@
     <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="newval" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="offsetUnset" abstract="false" static="false" final="false">
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="pop" abstract="false" static="false" final="false">
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="prev" abstract="false" static="false" final="false">
+  <method name="prev" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="push" abstract="false" static="false" final="false">
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="rewind" abstract="false" static="false" final="false">
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -129,20 +129,20 @@
       <return type="string"/>
     </docblock>
   </method>
-  <method name="setIteratorMode" abstract="false" static="false" final="false">
+  <method name="setIteratorMode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="mode" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="shift" abstract="false" static="false" final="false">
+  <method name="shift" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="top" abstract="false" static="false" final="false">
+  <method name="top" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
@@ -155,14 +155,14 @@
     </docblock>
     <parameter name="serialized" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="unshift" abstract="false" static="false" final="false">
+  <method name="unshift" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="valid" abstract="false" static="false" final="false">
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>

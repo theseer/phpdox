@@ -100,4 +100,10 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reinitialises the array after being unserialised"/>
+      <return type="void"/>
+    </docblock>
+  </method>
 </class>

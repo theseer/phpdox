@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="ArrayIterator" namespace="" name="ArrayIterator">
-  <implements name="Iterator" full="Iterator"/>
+  <implements name="ArrayAccess" full="ArrayAccess"/>
   <method name="append" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Append an element"/>
@@ -19,7 +19,8 @@
       <description compact="Construct an ArrayIterator"/>
       <return type="void"/>
     </docblock>
-    <parameter name="array" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="array" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>

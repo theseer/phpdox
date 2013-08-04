@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="DOMComment" namespace="" name="DOMComment">
   <extends name="DOMCharacterData" full="DOMCharacterData"/>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Creates a new DOMComment object&#10;  "/>
       <return type="void"/>

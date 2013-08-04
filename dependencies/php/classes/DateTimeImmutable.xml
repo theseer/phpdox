@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="DateTimeImmutable" namespace="" name="DateTimeImmutable">
+  <implements name="DateTimeInterface" full="DateTimeInterface"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns new DateTimeImmutable object">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="time" optional="true" byreference="false" type="string"/>
+    <parameter name="timezone" optional="true" byreference="false" type="object" class="DateTimeZone"/>
+  </constructor>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Adds an amount of days, months, years, hours, minutes and seconds&#10;  "/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
+  </method>
+  <method name="createFromFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns new DateTimeImmutable object formatted according to the specified format">Object oriented style</description>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+    <parameter name="time" optional="false" byreference="false" type="string"/>
+    <parameter name="timezone" optional="true" byreference="false" type="object" class="DateTimeZone"/>
+  </method>
+  <method name="getLastErrors" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the warnings and errors"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="modify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alters the timestamp"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="modify" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__set_state" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The __set_state handler"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="array" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setDate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the date"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="month" optional="false" byreference="false" type="int"/>
+    <parameter name="day" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setISODate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the ISO date"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="week" optional="false" byreference="false" type="int"/>
+    <parameter name="day" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the time"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="hour" optional="false" byreference="false" type="int"/>
+    <parameter name="minute" optional="false" byreference="false" type="int"/>
+    <parameter name="second" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the date and time based on an Unix timestamp"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="unixtimestamp" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimezone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the time zone"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="timezone" optional="false" byreference="false" type="object" class="DateTimeZone"/>
+  </method>
+  <method name="sub" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Subtracts an amount of days, months, years, hours, minutes and seconds&#10;  "/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
+  </method>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DateInterval"/>
+    </docblock>
+    <parameter name="datetime2" optional="false" byreference="false" type="object" class="DateTimeInterface"/>
+    <parameter name="absolute" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="format" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimezone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DateTimeZone"/>
+    </docblock>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

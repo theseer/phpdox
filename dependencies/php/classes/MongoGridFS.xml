@@ -70,7 +70,7 @@
       <return type="mixed"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
-    <parameter name="extra" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="metadata" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="remove" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -82,11 +82,11 @@
   </method>
   <method name="storeBytes" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Chunkifies and stores bytes in the database"/>
+      <description compact="Stores a string of bytes in the database"/>
       <return type="mixed"/>
     </docblock>
     <parameter name="bytes" optional="false" byreference="false" type="string"/>
-    <parameter name="extra" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="metadata" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="storeFile" abstract="false" static="false" visibility="public" final="false">
@@ -95,12 +95,12 @@
       <return type="mixed"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
-    <parameter name="extra" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="metadata" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="storeUpload" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Saves an uploaded file to the database">Stores files directly from a POST to the database. For example, suppose you had the following HTML form:</description>
+      <description compact="Stores an uploaded file in the database"/>
       <return type="mixed"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>

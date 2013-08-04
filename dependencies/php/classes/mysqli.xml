@@ -147,7 +147,7 @@
   </constructor>
   <method name="autocommit" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Turns on or off auto-commiting database modifications">Object oriented style</description>
+      <description compact="Turns on or off auto-committing database modifications">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="mode" optional="false" byreference="false" type="object" class="bool"/>
@@ -178,6 +178,8 @@
       <description compact="Commits the current transaction">Object oriented style</description>
       <return type="bool"/>
     </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
   </method>
   <method name="debug" abstract="false" static="false" final="false">
     <docblock>
@@ -185,12 +187,6 @@
       <return type="bool"/>
     </docblock>
     <parameter name="message" optional="false" byreference="false" type="string"/>
-  </method>
-  <method name="disable_reads_from_master" abstract="false" static="false" final="false">
-    <docblock>
-      <description compact="Disable reads from master">Object oriented style</description>
-      <return type="void"/>
-    </docblock>
   </method>
   <method name="dump_debug_info" abstract="false" static="false" final="false">
     <docblock>
@@ -206,7 +202,7 @@
   </method>
   <method name="get_client_info" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Returns the MySQL client version as a string">Object oriented style</description>
+      <description compact="Get MySQL client info">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
@@ -339,6 +335,8 @@
       <description compact="Rolls back current transaction">Object oriented style</description>
       <return type="bool"/>
     </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
   </method>
   <method name="rpl_query_type" abstract="false" static="false" final="false">
     <docblock>

@@ -31,7 +31,8 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="array" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="array" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>

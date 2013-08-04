@@ -81,9 +81,10 @@
   </method>
   <method name="registerLocalNamespace" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The registerLocalNamespace purpose"/>
+      <description compact="register local class prefix">Register local class prefix name, Yaf_Loader search classes in two library directories, the one is configured via application.library.directory(in application.ini) which is called local libraray directory; the other is configured via yaf.library (in php.ini) which is callled global library directory, since it can be shared by many applications in the same server.</description>
       <return type="void"/>
     </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setLibraryPath" abstract="false" static="false" visibility="public" final="false">
     <docblock>

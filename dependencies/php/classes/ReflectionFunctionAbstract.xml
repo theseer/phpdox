@@ -13,6 +13,12 @@
       <return type="void"/>
     </docblock>
   </method>
+  <method name="getClosureScopeClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the scope associated to the closure"/>
+      <return type="ReflectionClass"/>
+    </docblock>
+  </method>
   <method name="getClosureThis" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns this pointer bound to closure"/>
@@ -112,6 +118,12 @@
   <method name="isDeprecated" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if deprecated"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isGenerator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether this function is a generator"/>
       <return type="bool"/>
     </docblock>
   </method>

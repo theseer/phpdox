@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EvLoop" namespace="" name="EvLoop">
+  <member name="data" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Custom data attached to loop&#10;      "/>
+    </docblock>
+  </member>
+  <member name="backend" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Readonly&#10;       . The&#10;       backend flags&#10;       indicating the event backend in use.&#10;      "/>
+    </docblock>
+  </member>
+  <member name="is_default_loop" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Readonly&#10;       . TRUE if it is the default event loop.&#10;      "/>
+    </docblock>
+  </member>
+  <member name="iteration" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The current iteration count of the loop. See&#10;       Ev::iteration&#10;      "/>
+    </docblock>
+  </member>
+  <member name="pending" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The number of pending watchers.&#10;       0&#10;       indicates that there are no watchers pending.&#10;      "/>
+    </docblock>
+  </member>
+  <member name="io_interval" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Higher&#10;       io_interval&#10;       allows&#10;       libev&#10;       to spend more time collecting&#10;       EvIo&#10;       events, so more events can be handled per iteration, at the cost of&#10;       increasing latency. Timeouts (both&#10;       EvPeriodic&#10;       and&#10;       EvTimer&#10;       ) will not be affected. Setting this to a non-zero value will introduce&#10;       an additional&#10;       sleep()&#10;       call into most loop iterations. The sleep time ensures that&#10;       libev&#10;       will not poll for&#10;       EvIo&#10;       events events more often than once per this interval, on average. Many&#10;       programs can usually benefit by setting the&#10;       io_interval&#10;       to a value near&#10;       0.1&#10;       , which is often enough for interactive servers(not for games). It&#10;       usually doesn't make much sense to set it to a lower value than&#10;       0.01&#10;       , as this approaches the timing granularity of most systems.&#10;      ">
+       Higher
+       io_interval
+       allows
+       libev
+       to spend more time collecting
+       EvIo
+       events, so more events can be handled per iteration, at the cost of
+       increasing latency. Timeouts (both
+       EvPeriodic
+       and
+       EvTimer
+       ) will not be affected. Setting this to a non-zero value will introduce
+       an additional
+       sleep()
+       call into most loop iterations. The sleep time ensures that
+       libev
+       will not poll for
+       EvIo
+       events events more often than once per this interval, on average. Many
+       programs can usually benefit by setting the
+       io_interval
+       to a value near
+       0.1
+       , which is often enough for interactive servers(not for games). It
+       usually doesn't make much sense to set it to a lower value than
+       0.01
+       , as this approaches the timing granularity of most systems.
+      </description>
+    </docblock>
+  </member>
+  <member name="timeout_interval" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Higher&#10;       timeout_interval&#10;       allows&#10;       libev&#10;       to spend more time collecting timeouts, at the expense of increased&#10;       latency/jitter/inexactness(the watcher callback will be called later).&#10;       EvIo&#10;       watchers will not be affected. Setting this to a non-null value will&#10;       not introduce any overhead in&#10;       libev&#10;       . See also&#10;       FUNCTIONS&#10;      CONTROLLING EVENT LOOPS&#10;       .&#10;      "/>
+    </docblock>
+  </member>
+  <member name="depth" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The recursion depth. See&#10;       Ev::depth&#10;       .&#10;      "/>
+    </docblock>
+  </member>
+  <method name="backend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an integer describing the backend used by libev."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="check" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvCheck object associated with the current event loop&#10;  instance"/>
+      <return type="EvCheck"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="true" byreference="false" type="string"/>
+    <parameter name="priority" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="child" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvChild object associated with the current event loop"/>
+      <return type="EvChild"/>
+    </docblock>
+    <parameter name="pid" optional="false" byreference="false" type="string"/>
+    <parameter name="trace" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="true" byreference="false" type="string"/>
+    <parameter name="priority" optional="true" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs the event loop object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="io_interval" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="timeout_interval" optional="true" byreference="false" type="object" class="double"/>
+  </constructor>
+  <method name="defaultLoop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns or creates the default event loop."/>
+      <return type="EvLoop"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="io_interval" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="timeout_interval" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="embed" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates an instance of EvEmbed watcher associated&#10;  with the current EvLoop object."/>
+      <return type="EvEmbed"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="true" byreference="false" type="string"/>
+    <parameter name="data" optional="true" byreference="false" type="string"/>
+    <parameter name="priority" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="fork" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvFork watcher object associated with the current event&#10;  loop instance"/>
+      <return type="EvFork"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="idle" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvIdle watcher object associated with the current event&#10;  loop instance"/>
+      <return type="EvIdle"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="invokePending" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Invoke all pending watchers while resetting their pending state"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="io" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Create EvIo watcher object associated with the current event&#10;  loop instance"/>
+      <return type="EvIo"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="events" optional="false" byreference="false" type="int"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="loopFork" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Must be called after a fork"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="now" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current &quot;event loop time&quot;"/>
+      <return type="double"/>
+    </docblock>
+  </method>
+  <method name="nowUpdate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Establishes the current time by querying the kernel, updating the time&#10;    returned by EvLoop::now in the progress."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="periodic" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvPeriodic watcher object associated with the current&#10;  event loop instance"/>
+      <return type="EvPeriodic"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="prepare" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvPrepare watcher object associated with the current&#10;  event loop instance"/>
+      <return type="EvPrepare"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="resume" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resume previously suspended default event loop"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="run" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Begin checking for events and calling callbacks for the loop"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="signal" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvSignal watcher object associated with the current&#10;  event loop instance"/>
+      <return type="EvSignal"/>
+    </docblock>
+    <parameter name="signum" optional="false" byreference="false" type="int"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="stat" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvStat watcher object associated with the current event&#10;  loop instance"/>
+      <return type="EvStat"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stops the event loop"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="how" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="suspend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Suspend the loop"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="timer" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Creates EvTimer watcher object associated with the current event&#10;  loop instance"/>
+      <return type="EvTimer"/>
+    </docblock>
+    <parameter name="after" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="repeat" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="verify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Performs internal consistency checks(for debugging)"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

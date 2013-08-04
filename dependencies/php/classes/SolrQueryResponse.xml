@@ -11,6 +11,86 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <constant name="PARSE_SOLR_OBJ" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PARSE_SOLR_DOC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="http_status" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The http status of the response."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="parser_mode" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Whether to parse the solr documents as SolrObject or SolrDocument instances."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="success" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Was there an error during the request"/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <member name="http_status_message" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Detailed message on http status"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_request_url" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The request URL"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_request_headers" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="A string of raw headers sent during the request."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_request" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The raw request sent to the server"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_response_headers" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Response headers from the Solr server."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_raw_response" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The response message from the server."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="http_digested_response" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The response in PHP serialized format."/>
+      <var type="string"/>
+    </docblock>
+  </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructor"/>

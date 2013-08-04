@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventBase" namespace="" name="EventBase">
+  <constant name="LOOP_ONCE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LOOP_NONBLOCK" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NOLOCK" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="STARTUP_IOCP" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NO_CACHE_TIME" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EPOLL_USE_CHANGELIST" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventBase object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cfg" optional="true" byreference="false" type="object" class="EventConfig"/>
+  </constructor>
+  <method name="dispatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Dispatch pending events"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="exit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop dispatching events"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="getFeatures" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns bitmask of features supported"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns event method in use"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="cfg" optional="true" byreference="false" type="object" class="EventConfig"/>
+  </method>
+  <method name="getTimeOfDayCached" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current event base time"/>
+      <return type="double"/>
+    </docblock>
+  </method>
+  <method name="gotExit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the event loop was told to exit"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="gotStop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the event loop was told to exit"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="loop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Dispatch pending events"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="priorityInit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets number of priorities per event base"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="n_priorities" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="reInit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Re-initialize event base(after a fork)."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells event_base to stop dispatching events"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.de/src#" full="SessionHandlerInterface" namespace="" name="SessionHandlerInterface">
+<interface xmlns="http://xml.phpdox.de/src#" full="SessionHandlerInterface" namespace="" name="SessionHandlerInterface">
   <method name="close" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Close the session"/>
@@ -26,7 +26,7 @@
       <return type="bool"/>
     </docblock>
     <parameter name="save_path" optional="false" byreference="false" type="string"/>
-    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="read" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -43,4 +43,4 @@
     <parameter name="session_id" optional="false" byreference="false" type="string"/>
     <parameter name="session_data" optional="false" byreference="false" type="string"/>
   </method>
-</class>
+</interface>

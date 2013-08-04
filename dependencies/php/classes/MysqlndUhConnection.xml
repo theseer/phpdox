@@ -5,7 +5,7 @@
       <description compact="Changes the user of the specified mysqlnd database connection"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_onnection"/>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
     <parameter name="user" optional="false" byreference="false" type="string"/>
     <parameter name="password" optional="false" byreference="false" type="string"/>
     <parameter name="database" optional="false" byreference="false" type="string"/>
@@ -292,7 +292,7 @@
   </method>
   <method name="setAutocommit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Turns on or off auto-commiting database modifications"/>
+      <description compact="Turns on or off auto-committing database modifications"/>
       <return type="bool"/>
     </docblock>
     <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>

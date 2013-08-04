@@ -11,7 +11,7 @@
       <var type="integer"/>
     </docblock>
   </constant>
-  <constant name="SKIP_EMPTY" value="6">
+  <constant name="SKIP_EMPTY" value="4">
     <docblock>
       <var type="integer"/>
     </docblock>
@@ -93,10 +93,10 @@
   </method>
   <method name="fputcsv" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Output a field array as a CSV line"/>
+      <description compact="Write a field array as a CSV line"/>
       <return type="int"/>
     </docblock>
-    <parameter name="fields" optional="false" byreference="false" type="string"/>
+    <parameter name="fields" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="delimiter" optional="true" byreference="false" type="string"/>
     <parameter name="enclosure" optional="true" byreference="false" type="string"/>
   </method>
@@ -220,6 +220,12 @@
       <return type="void"/>
     </docblock>
     <parameter name="max_len" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alias of SplFileObject::current"/>
+      <return type="void"/>
+    </docblock>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>

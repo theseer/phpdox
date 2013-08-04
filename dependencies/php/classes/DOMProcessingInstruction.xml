@@ -4,18 +4,18 @@
   <member name="target" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="Prop description"/>
+      <description compact=""/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="data" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="Prop description"/>
+      <description compact=""/>
       <var type="string"/>
     </docblock>
   </member>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Creates a new DOMProcessingInstruction object&#10;  "/>
       <return type="void"/>

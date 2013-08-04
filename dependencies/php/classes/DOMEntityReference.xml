@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="DOMEntityReference" namespace="" name="DOMEntityReference">
   <extends name="DOMNode" full="DOMNode"/>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Creates a new DOMEntityReference object&#10;  "/>
       <return type="void"/>

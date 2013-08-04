@@ -45,20 +45,20 @@
   <member name="invert" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Is 1 if the interval is inverted and&#10;       0 otherwise. See&#10;       DateInterval::format.&#10;      "/>
+      <description compact="&#10;       Is 1 if the interval&#10;       represents a negative time period and&#10;       0 otherwise.&#10;       See DateInterval::format.&#10;      "/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="days" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Total number of days between the starting and ending dates&#10;       in a DateTime::diff calculation.&#10;       days will be FALSE in other circumstances.&#10;      "/>
+      <description compact="&#10;       If the DateInterval object was created by&#10;       DateTime::diff, then this is the total number of&#10;       days between the start and end dates. Otherwise,&#10;       days will be FALSE.&#10;      "/>
       <var type="mixed"/>
     </docblock>
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates new DateInterval object"/>
+      <description compact="Creates a new DateInterval object"/>
       <return type="void"/>
     </docblock>
     <parameter name="interval_spec" optional="false" byreference="false" type="string"/>

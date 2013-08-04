@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Gender\Gender" namespace="" name="Gender\Gender">
+  <constant name="IS_FEMALE" value="70">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_MOSTLY_FEMALE" value="102">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_MALE" value="77">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_MOSTLY_MALE" value="109">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_UNISEX_NAME" value="63">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IS_A_COUPLE" value="67">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NAME_NOT_FOUND" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERROR_IN_NAME" value="69">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ANY_COUNTRY" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BRITAIN" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IRELAND" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="USA" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SPAIN" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PORTUGAL" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ITALY" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MALTA" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FRANCE" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BELGIUM" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LUXEMBOURG" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NETHERLANDS" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GERMANY" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EAST_FRISIA" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="AUSTRIA" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SWISS" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ICELAND" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DENMARK" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NORWAY" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SWEDEN" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FINLAND" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ESTONIA" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LATVIA" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LITHUANIA" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="POLAND" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CZECH_REP" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SLOVAKIA" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HUNGARY" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ROMANIA" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BULGARIA" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BOSNIA" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CROATIA" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KOSOVO" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MACEDONIA" value="33">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MONTENEGRO" value="34">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SERBIA" value="35">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SLOVENIA" value="36">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ALBANIA" value="37">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GREECE" value="38">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RUSSIA" value="39">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BELARUS" value="40">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MOLDOVA" value="41">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UKRAINE" value="42">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ARMENIA" value="43">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="AZERBAIJAN" value="44">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GEORGIA" value="45">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KAZAKH_UZBEK" value="46">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TURKEY" value="47">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ARABIA" value="48">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ISRAEL" value="49">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHINA" value="50">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="INDIA" value="51">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JAPAN" value="52">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KOREA" value="53">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect to an external name dictionary."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="dsn" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct the Gender object."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="dsn" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="country" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get textual country representation"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="country" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get gender of a name."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="country" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="isNick" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the name0 is an alias of the name1."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="name0" optional="false" byreference="false" type="string"/>
+    <parameter name="name1" optional="false" byreference="false" type="string"/>
+    <parameter name="country" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="similarNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get similar names."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="country" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

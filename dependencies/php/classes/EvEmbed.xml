@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EvEmbed" namespace="" name="EvEmbed">
+  <extends name="EvWatcher" full="EvWatcher"/>
+  <member name="embed" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs the EvEmbed object">This is a rather advanced watcher type that lets to embed one event loop into another(currently only IO events are supported in the embedded loop, other types of watchers might be handled in a delayed or incorrect fashion and must not be used).</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="createStopped" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Create stopped EvEmbed watcher object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="priority" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Configures the watcher"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="sweep" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Make a single, non-blocking sweep over the embedded loop."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="feed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="revents" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getLoop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="EvLoop"/>
+    </docblock>
+  </method>
+  <method name="invoke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="revents" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="keepalive" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="value" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

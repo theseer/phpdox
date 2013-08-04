@@ -9,7 +9,7 @@
   </member>
   <method name="execute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Execute the action">Yaf_Action_Abstract::execute may have agruments. The value retrived from the request is not safe. you should do some filtering work before you use it.</description>
+      <description compact="Action entry point">user should always define this method for a action, this is the entry point of an action. Yaf_Action_Abstract::execute may have agruments. The value retrived from the request is not safe. you should do some filtering work before you use it.</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
@@ -17,7 +17,7 @@
   </method>
   <method name="getController" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="get controller instance"/>
+      <description compact="Retrieve controller object"/>
       <return type="Yaf_Controller_Abstract"/>
     </docblock>
   </method>
@@ -33,90 +33,94 @@
       <return type="void"/>
     </docblock>
   </constructor>
-  <method name="display" abstract="false" static="false" visibility="protected" final="true">
+  <method name="display" abstract="false" static="false" visibility="protected" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="tpl" optional="false" byreference="false" type="string"/>
     <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
   </method>
-  <method name="forward" abstract="false" static="false" visibility="public" final="true">
+  <method name="forward" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="module" optional="false" byreference="false" type="string"/>
-    <parameter name="controller" optional="true" byreference="false" type="string"/>
-    <parameter name="action" optional="true" byreference="false" type="string"/>
+    <parameter name="action" optional="false" byreference="false" type="string"/>
     <parameter name="paramters" optional="true" byreference="false" type="object" class="array"/>
   </method>
-  <method name="getInvokeArg" abstract="false" static="false" visibility="public" final="true">
+  <method name="getInvokeArg" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getInvokeArgs" abstract="false" static="false" visibility="public" final="true">
+  <method name="getInvokeArgs" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="getModuleName" abstract="false" static="false" visibility="public" final="true">
+  <method name="getModuleName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRequest" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Yaf_Request_Abstract"/>
+    </docblock>
+  </method>
+  <method name="getResponse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Yaf_Response_Abstract"/>
+    </docblock>
+  </method>
+  <method name="getView" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Yaf_View_Interface"/>
+    </docblock>
+  </method>
+  <method name="getViewpath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="getRequest" abstract="false" static="false" visibility="public" final="true">
+  <method name="init" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="getResponse" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
-  </method>
-  <method name="getView" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
-  </method>
-  <method name="getViewpath" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
-  </method>
-  <method name="initView" abstract="false" static="false" visibility="public" final="true">
+  <method name="initView" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
-  <method name="redirect" abstract="false" static="false" visibility="public" final="true">
+  <method name="redirect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="url" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="render" abstract="false" static="false" visibility="protected" final="true">
+  <method name="render" abstract="false" static="false" visibility="protected" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
     <parameter name="tpl" optional="false" byreference="false" type="string"/>
     <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
   </method>
-  <method name="setViewpath" abstract="false" static="false" visibility="public" final="true">
+  <method name="setViewpath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>

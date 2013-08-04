@@ -7,37 +7,37 @@
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="getChildren" abstract="false" static="false" final="false">
+  <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the sub-elements of the current element"/>
       <return type="SimpleXMLIterator"/>
     </docblock>
   </method>
-  <method name="hasChildren" abstract="false" static="false" final="false">
+  <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks whether the current element has sub elements."/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="key" abstract="false" static="false" final="false">
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return current key"/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="next" abstract="false" static="false" final="false">
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move to next element"/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="rewind" abstract="false" static="false" final="false">
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Rewind to the first element"/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="valid" abstract="false" static="false" final="false">
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Check whether the current element is valid"/>
       <return type="bool"/>
@@ -107,6 +107,7 @@
       <return type="array"/>
     </docblock>
     <parameter name="recursive" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="from_root" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getName" abstract="false" static="false" visibility="public" final="false">
     <docblock>

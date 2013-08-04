@@ -8,7 +8,7 @@
   </constant>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates new DatePeriod object"/>
+      <description compact="Creates a new DatePeriod object"/>
       <return type="void"/>
     </docblock>
     <parameter name="start" optional="false" byreference="false" type="object" class="DateTime"/>
@@ -18,7 +18,7 @@
   </constructor>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates new DatePeriod object"/>
+      <description compact="Creates a new DatePeriod object"/>
       <return type="void"/>
     </docblock>
     <parameter name="start" optional="false" byreference="false" type="object" class="DateTime"/>
@@ -28,7 +28,7 @@
   </constructor>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates new DatePeriod object"/>
+      <description compact="Creates a new DatePeriod object"/>
       <return type="void"/>
     </docblock>
     <parameter name="isostr" optional="false" byreference="false" type="string"/>

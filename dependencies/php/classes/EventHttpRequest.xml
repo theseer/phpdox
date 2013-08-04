@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventHttpRequest" namespace="" name="EventHttpRequest">
+  <constant name="CMD_GET" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_POST" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_HEAD" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_PUT" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_DELETE" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_OPTIONS" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_TRACE" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_CONNECT" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CMD_PATCH" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="INPUT_HEADER" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OUTPUT_HEADER" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="addHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds an HTTP header to the headers of the request"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="cancel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Cancels a pending HTTP request">Cancels a pending HTTP request.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="clearHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all output headers from the header list of the request"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventHttpRequest object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="findHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Finds the value belonging a header"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="free" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Frees the object and removes associated events"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getCommand" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the request command(method)"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getHost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the request host"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getInputBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the input buffer"/>
+      <return type="EventBuffer"/>
+    </docblock>
+  </method>
+  <method name="getInputHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns associative array of the input headers"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getOutputBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the output buffer of the request"/>
+      <return type="EventBuffer"/>
+    </docblock>
+  </method>
+  <method name="getOutputHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns associative array of the input headers"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getResponseCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the the response code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getUri" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the request URI"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="removeHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes an HTTP header from the headers of the request"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send an HTML error message to the client"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="error" optional="false" byreference="false" type="int"/>
+    <parameter name="reason" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="sendReply" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send an HTML reply to the client"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="code" optional="false" byreference="false" type="int"/>
+    <parameter name="reason" optional="false" byreference="false" type="string"/>
+    <parameter name="buf" optional="true" byreference="false" type="object" class="EventBuffer"/>
+  </method>
+  <method name="sendReplyChunk" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send another data chunk as part of an ongoing chunked reply"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="buf" optional="false" byreference="false" type="object" class="EventBuffer"/>
+  </method>
+  <method name="sendReplyEnd" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Complete a chunked reply, freeing the request as appropriate"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="sendReplyStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Initiate a chunked reply">Initiate a reply that uses Transfer-Encoding chunked .</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="code" optional="false" byreference="false" type="int"/>
+    <parameter name="reason" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

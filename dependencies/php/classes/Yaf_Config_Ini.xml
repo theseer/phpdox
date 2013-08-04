@@ -3,7 +3,7 @@
   <implements name="Iterator" full="Iterator"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __construct purpose"/>
+      <description compact="Yaf_Config_Ini constructor"/>
       <return type="void"/>
     </docblock>
     <parameter name="config_file" optional="false" byreference="false" type="string"/>
@@ -98,8 +98,8 @@
   </method>
   <method name="toArray" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The toArray purpose"/>
-      <return type="void"/>
+      <description compact="Returns a PHP array"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">

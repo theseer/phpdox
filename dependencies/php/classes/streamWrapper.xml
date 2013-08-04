@@ -103,16 +103,16 @@
       <description compact="Advisory file locking"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="operation" optional="false" byreference="false" type="object" class="mode"/>
+    <parameter name="operation" optional="false" byreference="false" type="int"/>
   </method>
   <method name="stream_metadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Change stream options"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="path" optional="false" byreference="false" type="int"/>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
     <parameter name="option" optional="false" byreference="false" type="int"/>
-    <parameter name="var" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="stream_open" abstract="false" static="false" visibility="public" final="false">
     <docblock>

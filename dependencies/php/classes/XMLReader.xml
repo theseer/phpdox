@@ -208,34 +208,34 @@
       <var type="string"/>
     </docblock>
   </member>
-  <method name="close" abstract="false" static="false" final="false">
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Close the XMLReader input"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="expand" abstract="false" static="false" final="false">
+  <method name="expand" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a copy of the current node as a DOM object"/>
       <return type="DOMNode"/>
     </docblock>
     <parameter name="basenode" optional="true" byreference="false" type="object" class="DOMNode"/>
   </method>
-  <method name="getAttribute" abstract="false" static="false" final="false">
+  <method name="getAttribute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the value of a named attribute"/>
       <return type="string"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getAttributeNo" abstract="false" static="false" final="false">
+  <method name="getAttributeNo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the value of an attribute by index"/>
       <return type="string"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="getAttributeNs" abstract="false" static="false" final="false">
+  <method name="getAttributeNs" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the value of an attribute by localname and URI"/>
       <return type="string"/>
@@ -243,41 +243,41 @@
     <parameter name="localName" optional="false" byreference="false" type="string"/>
     <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getParserProperty" abstract="false" static="false" final="false">
+  <method name="getParserProperty" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Indicates if specified property has been set&#10;  "/>
       <return type="bool"/>
     </docblock>
     <parameter name="property" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="isValid" abstract="false" static="false" final="false">
+  <method name="isValid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Indicates if the parsed document is valid"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="lookupNamespace" abstract="false" static="false" final="false">
+  <method name="lookupNamespace" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Lookup namespace for a prefix"/>
       <return type="bool"/>
     </docblock>
     <parameter name="prefix" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="moveToAttribute" abstract="false" static="false" final="false">
+  <method name="moveToAttribute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move cursor to a named attribute"/>
       <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="moveToAttributeNo" abstract="false" static="false" final="false">
+  <method name="moveToAttributeNo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move cursor to an attribute by index"/>
       <return type="bool"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="moveToAttributeNs" abstract="false" static="false" final="false">
+  <method name="moveToAttributeNs" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move cursor to a named attribute"/>
       <return type="bool"/>
@@ -285,32 +285,32 @@
     <parameter name="localName" optional="false" byreference="false" type="string"/>
     <parameter name="namespaceURI" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="moveToElement" abstract="false" static="false" final="false">
+  <method name="moveToElement" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Position cursor on the parent Element of current Attribute"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="moveToFirstAttribute" abstract="false" static="false" final="false">
+  <method name="moveToFirstAttribute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Position cursor on the first Attribute"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="moveToNextAttribute" abstract="false" static="false" final="false">
+  <method name="moveToNextAttribute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Position cursor on the next Attribute"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="next" abstract="false" static="false" final="false">
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move cursor to next node skipping all subtrees"/>
       <return type="bool"/>
     </docblock>
     <parameter name="localname" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="open" abstract="false" static="false" final="false">
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the URI containing the XML to parse"/>
       <return type="bool"/>
@@ -319,31 +319,31 @@
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="read" abstract="false" static="false" final="false">
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move to next node in document"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="readInnerXML" abstract="false" static="false" final="false">
+  <method name="readInnerXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve XML from current node"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="readOuterXML" abstract="false" static="false" final="false">
+  <method name="readOuterXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve XML from current node, including it self"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="readString" abstract="false" static="false" final="false">
+  <method name="readString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Reads the contents of the current node as a string"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="setParserProperty" abstract="false" static="false" final="false">
+  <method name="setParserProperty" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set parser options"/>
       <return type="bool"/>
@@ -351,28 +351,28 @@
     <parameter name="property" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="setRelaxNGSchema" abstract="false" static="false" final="false">
+  <method name="setRelaxNGSchema" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the filename or URI for a RelaxNG Schema"/>
       <return type="bool"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="setRelaxNGSchemaSource" abstract="false" static="false" final="false">
+  <method name="setRelaxNGSchemaSource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the data containing a RelaxNG Schema"/>
       <return type="bool"/>
     </docblock>
     <parameter name="source" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="setSchema" abstract="false" static="false" final="false">
+  <method name="setSchema" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Validate document against XSD"/>
       <return type="bool"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="xml" abstract="false" static="false" final="false">
+  <method name="xml" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>

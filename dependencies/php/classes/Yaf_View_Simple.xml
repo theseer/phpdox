@@ -36,9 +36,9 @@
     </docblock>
     <parameter name="name" optional="true" byreference="false" type="string"/>
   </method>
-  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="The __construct purpose"/>
+      <description compact="Constructor of Yaf_View_Simple"/>
       <return type="void"/>
     </docblock>
     <parameter name="tempalte_dir" optional="false" byreference="false" type="string"/>
@@ -46,22 +46,30 @@
   </constructor>
   <method name="display" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Render and dispaly"/>
+      <description compact="Render and display"/>
       <return type="bool"/>
     </docblock>
     <parameter name="tpl" optional="false" byreference="false" type="string"/>
     <parameter name="tpl_vars" optional="true" byreference="false" type="object" class="array"/>
   </method>
+  <method name="eval" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Render template"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="tpl_content" optional="false" byreference="false" type="string"/>
+    <parameter name="tpl_vars" optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <method name="__get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve assigned variable">parameter can be empty since 2.1.11</description>
+      <description compact="Retrieve assigned variable">Retrieve assigned varaiable parameter can be empty since 2.1.11</description>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getScriptPath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get template base directory"/>
+      <description compact="Get templates directory"/>
       <return type="string"/>
     </docblock>
   </method>
@@ -90,7 +98,7 @@
   </method>
   <method name="setScriptPath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Set tempalte base directory"/>
+      <description compact="Set tempaltes directory"/>
       <return type="bool"/>
     </docblock>
     <parameter name="template_dir" optional="false" byreference="false" type="string"/>

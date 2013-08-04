@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Ev" namespace="" name="Ev">
+  <constant name="FLAG_AUTO" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_NOENV" value="16777216">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_FORKCHECK" value="33554432">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_NOINOTIFY" value="1048576">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_SIGNALFD" value="2097152">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FLAG_NOSIGMASK" value="4194304">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RUN_NOWAIT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="RUN_ONCE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BREAK_CANCEL" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BREAK_ONE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BREAK_ALL" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MINPRI" value="-2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MAXPRI" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="READ" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WRITE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TIMER" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PERIODIC" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SIGNAL" value="1024">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHILD" value="2048">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="STAT" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="IDLE" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PREPARE" value="16384">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHECK" value="32768">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EMBED" value="65536">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CUSTOM" value="16777216">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERROR" value="2147483648">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_SELECT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_POLL" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_EPOLL" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_KQUEUE" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_DEVPOLL" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_PORT" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_ALL" value="63">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BACKEND_MASK" value="65535">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="backend" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an integer describing the backend used by libev."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="depth" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns recursion depth"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="embeddableBackends" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the set of backends that are embeddable in other event loops."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="feedSignal" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Feed a signal event info Ev">Simulates a signal receive. It is safe to call this function at any time, from any context, including signal handlers or random threads. Its main use is to customise signal handling in the process.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="signum" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="feedSignalEvent" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Feed signal event into the default loop"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="signum" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="iteration" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Return the number of times the default event loop has polled for new&#10;  events."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="now" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the time when the last iteration of the default event&#10;  loop has started."/>
+      <return type="double"/>
+    </docblock>
+  </method>
+  <method name="nowUpdate" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Establishes the current time by querying the kernel, updating the time&#10;    returned by Ev::now in the progress.">Establishes the current time by querying the kernel, updating the time returned by Ev::now in the progress. This is a costly operation and is usually done automatically within Ev::run .</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="recommendedBackends" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns a bit mask of recommended backends for current&#10;  platform."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="resume" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Resume previously suspended default event loop">Ev::suspend and Ev::resume methods suspend and resume a loop correspondingly.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="run" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Begin checking for events and calling callbacks for the default&#10;  loop"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="sleep" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Block the process for the given number of seconds."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="seconds" optional="false" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Stops the default event loop"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="how" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="supportedBackends" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the set of backends supported by current libev&#10;  configuration."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="suspend" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Suspend the default event loop">Ev::suspend and Ev::resume methods suspend and resume the default loop correspondingly.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="time" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the current time in fractional seconds since the epoch."/>
+      <return type="double"/>
+    </docblock>
+  </method>
+  <method name="verify" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Performs internal consistency checks(for debugging)"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

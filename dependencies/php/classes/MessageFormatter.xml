@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="MessageFormatter" namespace="" name="MessageFormatter">
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a new Message Formatter">Object oriented style (method)</description>
       <return type="void"/>
@@ -8,7 +8,7 @@
     <parameter name="locale" optional="false" byreference="false" type="string"/>
     <parameter name="pattern" optional="false" byreference="false" type="string"/>
   </constructor>
-  <method name="create" abstract="false" static="false" final="false">
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a new Message Formatter">Object oriented style (method)</description>
       <return type="MessageFormatter"/>
@@ -16,7 +16,7 @@
     <parameter name="locale" optional="false" byreference="false" type="string"/>
     <parameter name="pattern" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="formatMessage" abstract="false" static="false" final="false">
+  <method name="formatMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Quick format message">Object oriented style</description>
       <return type="string"/>
@@ -25,38 +25,38 @@
     <parameter name="pattern" optional="false" byreference="false" type="string"/>
     <parameter name="args" optional="false" byreference="false" type="object" class="array"/>
   </method>
-  <method name="format" abstract="false" static="false" final="false">
+  <method name="format" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Format the message">Object oriented style</description>
       <return type="string"/>
     </docblock>
     <parameter name="args" optional="false" byreference="false" type="object" class="array"/>
   </method>
-  <method name="getErrorCode" abstract="false" static="false" final="false">
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the error code from last operation">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getErrorMessage" abstract="false" static="false" final="false">
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the error text from the last operation">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getLocale" abstract="false" static="false" final="false">
+  <method name="getLocale" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the locale for which the formatter was created.">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getPattern" abstract="false" static="false" final="false">
+  <method name="getPattern" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the pattern used by the formatter">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="parseMessage" abstract="false" static="false" final="false">
+  <method name="parseMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Quick parse input string">Object oriented style</description>
       <return type="array"/>
@@ -65,14 +65,14 @@
     <parameter name="pattern" optional="false" byreference="false" type="string"/>
     <parameter name="source" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="parse" abstract="false" static="false" final="false">
+  <method name="parse" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Parse input string according to pattern">Object oriented style</description>
       <return type="array"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="setPattern" abstract="false" static="false" final="false">
+  <method name="setPattern" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the pattern used by the formatter">Object oriented style</description>
       <return type="bool"/>

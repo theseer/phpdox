@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="Normalizer" namespace="" name="Normalizer">
-  <method name="isNormalized" abstract="false" static="false" final="false">
+  <method name="isNormalized" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Checks if the provided string is already in the specified normalization&#10;   form.&#10;  ">Object oriented style</description>
       <return type="bool"/>
@@ -8,7 +8,7 @@
     <parameter name="input" optional="false" byreference="false" type="string"/>
     <parameter name="form" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="normalize" abstract="false" static="false" final="false">
+  <method name="normalize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Normalizes the input provided and returns the normalized string&#10;  ">Object oriented style</description>
       <return type="string"/>

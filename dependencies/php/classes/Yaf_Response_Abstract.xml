@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="Yaf_Response_Abstract" namespace="" name="Yaf_Response_Abstract">
+  <constant name="DEFAULT_BODY" value="&quot;content&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
   <member name="_header" static="false" visibility="protected">
     <default>null</default>
     <docblock>
@@ -20,15 +25,18 @@
   </member>
   <method name="appendBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The appendBody purpose"/>
-      <return type="void"/>
+      <description compact="append to body"/>
+      <return type="bool"/>
     </docblock>
+    <parameter name="content" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="true" byreference="false" type="string"/>
   </method>
   <method name="clearBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The clearBody purpose"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
+    <parameter name="key" optional="true" byreference="false" type="string"/>
   </method>
   <method name="clearHeaders" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -56,9 +64,10 @@
   </destructor>
   <method name="getBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getBody purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve a exists content"/>
+      <return type="mixed"/>
     </docblock>
+    <parameter name="key" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getHeader" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -69,12 +78,14 @@
   <method name="prependBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The prependBody purpose"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
+    <parameter name="content" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="true" byreference="false" type="string"/>
   </method>
   <method name="response" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The response purpose"/>
+      <description compact="send response"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -86,9 +97,11 @@
   </method>
   <method name="setBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The setBody purpose"/>
-      <return type="void"/>
+      <description compact="Set content to response"/>
+      <return type="bool"/>
     </docblock>
+    <parameter name="content" optional="false" byreference="false" type="string"/>
+    <parameter name="key" optional="true" byreference="false" type="string"/>
   </method>
   <method name="setHeader" abstract="false" static="false" visibility="public" final="false">
     <docblock>

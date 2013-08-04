@@ -21,7 +21,7 @@
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __construct purpose"/>
+      <description compact="Yaf_Route_Rewrite constructor"/>
       <return type="void"/>
     </docblock>
     <parameter name="match" optional="false" byreference="false" type="string"/>

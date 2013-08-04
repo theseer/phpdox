@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Worker" namespace="" name="Worker">
+  <method name="getCreatorId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Identification"/>
+      <return type="long"/>
+    </docblock>
+  </method>
+  <method name="getStacked" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Stack Analysis"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getThreadId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Identification"/>
+      <return type="long"/>
+    </docblock>
+  </method>
+  <method name="isShutdown" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="State Detection"/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="isWorking" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="State Detection"/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="run" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execution"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="shutdown" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Synchronization"/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="stack" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Stacking"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="work" optional="false" byreference="false" type="object" class="Stackable"/>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execution"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="long"/>
+  </method>
+  <method name="unstack" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Stacking"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="work" optional="true" byreference="false" type="object" class="Stackable"/>
+  </method>
+</class>

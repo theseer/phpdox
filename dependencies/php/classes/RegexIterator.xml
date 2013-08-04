@@ -93,50 +93,50 @@
     </docblock>
     <parameter name="preg_flags" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="accept" abstract="false" static="false" final="false">
+  <method name="accept" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
   </constructor>
-  <method name="current" abstract="false" static="false" final="false">
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="getInnerIterator" abstract="false" static="false" final="false">
+  <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="Iterator"/>
     </docblock>
   </method>
-  <method name="key" abstract="false" static="false" final="false">
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="next" abstract="false" static="false" final="false">
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="rewind" abstract="false" static="false" final="false">
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="valid" abstract="false" static="false" final="false">
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>

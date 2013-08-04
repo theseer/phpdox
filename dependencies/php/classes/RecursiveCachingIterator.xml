@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="RecursiveCachingIterator" namespace="" name="RecursiveCachingIterator">
   <implements name="Countable" full="Countable"/>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct"/>
       <return type="void"/>
@@ -9,13 +9,13 @@
     <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
     <parameter name="flags" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="getChildren" abstract="false" static="false" final="false">
+  <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return the inner iterator's children as a RecursiveCachingIterator"/>
       <return type="RecursiveCachingIterator"/>
     </docblock>
   </method>
-  <method name="hasChildren" abstract="false" static="false" final="false">
+  <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Check whether the current element of the inner iterator has children"/>
       <return type="bool"/>
@@ -68,7 +68,7 @@
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="scalar"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">

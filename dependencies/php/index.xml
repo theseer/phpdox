@@ -4,6 +4,7 @@
     <class name="Exception" xml="classes/Exception.xml"/>
     <class name="ErrorException" xml="classes/ErrorException.xml"/>
     <class name="Closure" xml="classes/Closure.xml"/>
+    <class name="Generator" xml="classes/Generator.xml"/>
     <class name="APCIterator" xml="classes/APCIterator.xml"/>
     <class name="WeakRef" xml="classes/WeakRef.xml"/>
     <class name="WeakMap" xml="classes/WeakMap.xml"/>
@@ -14,6 +15,7 @@
     <class name="KTaglib_ID3v2_Frame" xml="classes/KTaglib_ID3v2_Frame.xml"/>
     <class name="KTaglib_ID3v2_AttachedPictureFrame" xml="classes/KTaglib_ID3v2_AttachedPictureFrame.xml"/>
     <class name="DateTime" xml="classes/DateTime.xml"/>
+    <class name="DateTimeImmutable" xml="classes/DateTimeImmutable.xml"/>
     <class name="DateTimeZone" xml="classes/DateTimeZone.xml"/>
     <class name="DateInterval" xml="classes/DateInterval.xml"/>
     <class name="DatePeriod" xml="classes/DatePeriod.xml"/>
@@ -28,7 +30,7 @@
     <class name="PDO" xml="classes/PDO.xml"/>
     <class name="PDOStatement" xml="classes/PDOStatement.xml"/>
     <class name="PDOException" xml="classes/PDOException.xml"/>
-    <class name="Mongo" xml="classes/Mongo.xml"/>
+    <class name="MongoClient" xml="classes/MongoClient.xml"/>
     <class name="MongoDB" xml="classes/MongoDB.xml"/>
     <class name="MongoCollection" xml="classes/MongoCollection.xml"/>
     <class name="MongoCursor" xml="classes/MongoCursor.xml"/>
@@ -48,7 +50,9 @@
     <class name="MongoGridFSCursor" xml="classes/MongoGridFSCursor.xml"/>
     <class name="MongoLog" xml="classes/MongoLog.xml"/>
     <class name="MongoPool" xml="classes/MongoPool.xml"/>
+    <class name="Mongo" xml="classes/Mongo.xml"/>
     <class name="MongoException" xml="classes/MongoException.xml"/>
+    <class name="MongoResultException" xml="classes/MongoResultException.xml"/>
     <class name="MongoCursorException" xml="classes/MongoCursorException.xml"/>
     <class name="MongoCursorTimeoutException" xml="classes/MongoCursorTimeoutException.xml"/>
     <class name="MongoConnectionException" xml="classes/MongoConnectionException.xml"/>
@@ -70,15 +74,25 @@
     <class name="TokyoTyrantIterator" xml="classes/TokyoTyrantIterator.xml"/>
     <class name="tokyotyrantexception" xml="classes/tokyotyrantexception.xml"/>
     <class name="Directory" xml="classes/Directory.xml"/>
+    <class name="Gender\Gender" xml="classes/Gender\Gender.xml"/>
     <class name="Collator" xml="classes/Collator.xml"/>
     <class name="NumberFormatter" xml="classes/NumberFormatter.xml"/>
     <class name="Locale" xml="classes/Locale.xml"/>
     <class name="Normalizer" xml="classes/Normalizer.xml"/>
     <class name="MessageFormatter" xml="classes/MessageFormatter.xml"/>
+    <class name="IntlCalendar" xml="classes/IntlCalendar.xml"/>
+    <class name="IntlTimeZone" xml="classes/IntlTimeZone.xml"/>
     <class name="IntlDateFormatter" xml="classes/IntlDateFormatter.xml"/>
     <class name="ResourceBundle" xml="classes/ResourceBundle.xml"/>
     <class name="Spoofchecker" xml="classes/Spoofchecker.xml"/>
     <class name="Transliterator" xml="classes/Transliterator.xml"/>
+    <class name="IntlBreakIterator" xml="classes/IntlBreakIterator.xml"/>
+    <class name="IntlRuleBasedBreakIterator" xml="classes/IntlRuleBasedBreakIterator.xml"/>
+    <class name="IntlCodePointBreakIterator" xml="classes/IntlCodePointBreakIterator.xml"/>
+    <class name="IntlPartsIterator" xml="classes/IntlPartsIterator.xml"/>
+    <class name="UConverter" xml="classes/UConverter.xml"/>
+    <class name="IntlException" xml="classes/IntlException.xml"/>
+    <class name="IntlIterator" xml="classes/IntlIterator.xml"/>
     <class name="Cairo" xml="classes/Cairo.xml"/>
     <class name="CairoContext" xml="classes/CairoContext.xml"/>
     <class name="CairoException" xml="classes/CairoException.xml"/>
@@ -155,6 +169,25 @@
     <class name="SWFText" xml="classes/SWFText.xml"/>
     <class name="SWFTextField" xml="classes/SWFTextField.xml"/>
     <class name="SWFVideoStream" xml="classes/SWFVideoStream.xml"/>
+    <class name="Ev" xml="classes/Ev.xml"/>
+    <class name="EvCheck" xml="classes/EvCheck.xml"/>
+    <class name="EvChild" xml="classes/EvChild.xml"/>
+    <class name="EvEmbed" xml="classes/EvEmbed.xml"/>
+    <class name="EvFork" xml="classes/EvFork.xml"/>
+    <class name="EvIdle" xml="classes/EvIdle.xml"/>
+    <class name="EvIo" xml="classes/EvIo.xml"/>
+    <class name="EvLoop" xml="classes/EvLoop.xml"/>
+    <class name="EvPeriodic" xml="classes/EvPeriodic.xml"/>
+    <class name="EvPrepare" xml="classes/EvPrepare.xml"/>
+    <class name="EvSignal" xml="classes/EvSignal.xml"/>
+    <class name="EvStat" xml="classes/EvStat.xml"/>
+    <class name="EvTimer" xml="classes/EvTimer.xml"/>
+    <class name="EvWatcher" xml="classes/EvWatcher.xml"/>
+    <class name="Thread" xml="classes/Thread.xml"/>
+    <class name="Worker" xml="classes/Worker.xml"/>
+    <class name="Stackable" xml="classes/Stackable.xml"/>
+    <class name="Mutex" xml="classes/Mutex.xml"/>
+    <class name="Cond" xml="classes/Cond.xml"/>
     <class name="Judy" xml="classes/Judy.xml"/>
     <class name="Lua" xml="classes/Lua.xml"/>
     <class name="LuaClosure" xml="classes/LuaClosure.xml"/>
@@ -228,7 +261,6 @@
     <class name="Yaf_Config_Simple" xml="classes/Yaf_Config_Simple.xml"/>
     <class name="Yaf_Controller_Abstract" xml="classes/Yaf_Controller_Abstract.xml"/>
     <class name="Yaf_Action_Abstract" xml="classes/Yaf_Action_Abstract.xml"/>
-    <class name="Yaf_View_Interface" xml="classes/Yaf_View_Interface.xml"/>
     <class name="Yaf_View_Simple" xml="classes/Yaf_View_Simple.xml"/>
     <class name="Yaf_Loader" xml="classes/Yaf_Loader.xml"/>
     <class name="Yaf_Plugin_Abstract" xml="classes/Yaf_Plugin_Abstract.xml"/>
@@ -237,11 +269,9 @@
     <class name="Yaf_Request_Http" xml="classes/Yaf_Request_Http.xml"/>
     <class name="Yaf_Request_Simple" xml="classes/Yaf_Request_Simple.xml"/>
     <class name="Yaf_Response_Abstract" xml="classes/Yaf_Response_Abstract.xml"/>
-    <class name="Yaf_Route_Interface" xml="classes/Yaf_Route_Interface.xml"/>
     <class name="Yaf_Route_Map" xml="classes/Yaf_Route_Map.xml"/>
     <class name="Yaf_Route_Regex" xml="classes/Yaf_Route_Regex.xml"/>
     <class name="Yaf_Route_Rewrite" xml="classes/Yaf_Route_Rewrite.xml"/>
-    <class name="Yaf_Router" xml="classes/Yaf_Router.xml"/>
     <class name="Yaf_Route_Simple" xml="classes/Yaf_Route_Simple.xml"/>
     <class name="Yaf_Route_Static" xml="classes/Yaf_Route_Static.xml"/>
     <class name="Yaf_Route_Supervar" xml="classes/Yaf_Route_Supervar.xml"/>
@@ -262,10 +292,24 @@
     <class name="AMQPQueue" xml="classes/AMQPQueue.xml"/>
     <class name="AMQPEnvelope" xml="classes/AMQPEnvelope.xml"/>
     <class name="chdb" xml="classes/chdb.xml"/>
+    <class name="CURLFile" xml="classes/CURLFile.xml"/>
+    <class name="Event" xml="classes/Event.xml"/>
+    <class name="EventBase" xml="classes/EventBase.xml"/>
+    <class name="EventBuffer" xml="classes/EventBuffer.xml"/>
+    <class name="EventBufferEvent" xml="classes/EventBufferEvent.xml"/>
+    <class name="EventConfig" xml="classes/EventConfig.xml"/>
+    <class name="EventDnsBase" xml="classes/EventDnsBase.xml"/>
+    <class name="EventHttp" xml="classes/EventHttp.xml"/>
+    <class name="EventHttpConnection" xml="classes/EventHttpConnection.xml"/>
+    <class name="EventHttpRequest" xml="classes/EventHttpRequest.xml"/>
+    <class name="EventListener" xml="classes/EventListener.xml"/>
+    <class name="EventSslContext" xml="classes/EventSslContext.xml"/>
+    <class name="EventUtil" xml="classes/EventUtil.xml"/>
     <class name="GearmanClient" xml="classes/GearmanClient.xml"/>
     <class name="GearmanJob" xml="classes/GearmanJob.xml"/>
     <class name="GearmanTask" xml="classes/GearmanTask.xml"/>
     <class name="GearmanWorker" xml="classes/GearmanWorker.xml"/>
+    <class name="GearmanException" xml="classes/GearmanException.xml"/>
     <class name="HttpDeflateStream" xml="classes/HttpDeflateStream.xml"/>
     <class name="HttpInflateStream" xml="classes/HttpInflateStream.xml"/>
     <class name="HttpMessage" xml="classes/HttpMessage.xml"/>
@@ -275,6 +319,7 @@
     <class name="HttpResponse" xml="classes/HttpResponse.xml"/>
     <class name="Memcache" xml="classes/Memcache.xml"/>
     <class name="Memcached" xml="classes/Memcached.xml"/>
+    <class name="MemcachedException" xml="classes/MemcachedException.xml"/>
     <class name="RRDCreator" xml="classes/RRDCreator.xml"/>
     <class name="RRDGraph" xml="classes/RRDGraph.xml"/>
     <class name="RRDUpdater" xml="classes/RRDUpdater.xml"/>
@@ -308,7 +353,6 @@
     <class name="SolrIllegalOperationException" xml="classes/SolrIllegalOperationException.xml"/>
     <class name="SphinxClient" xml="classes/SphinxClient.xml"/>
     <class name="SessionHandler" xml="classes/SessionHandler.xml"/>
-    <class name="SessionHandlerInterface" xml="classes/SessionHandlerInterface.xml"/>
     <class name="QuickHashIntSet" xml="classes/QuickHashIntSet.xml"/>
     <class name="QuickHashIntHash" xml="classes/QuickHashIntHash.xml"/>
     <class name="QuickHashStringIntHash" xml="classes/QuickHashStringIntHash.xml"/>
@@ -323,7 +367,6 @@
     <class name="ReflectionObject" xml="classes/ReflectionObject.xml"/>
     <class name="ReflectionParameter" xml="classes/ReflectionParameter.xml"/>
     <class name="ReflectionProperty" xml="classes/ReflectionProperty.xml"/>
-    <class name="Reflector" xml="classes/Reflector.xml"/>
     <class name="ReflectionException" xml="classes/ReflectionException.xml"/>
     <class name="OAuth" xml="classes/OAuth.xml"/>
     <class name="OAuthProvider" xml="classes/OAuthProvider.xml"/>
@@ -364,6 +407,7 @@
     <interface name="IteratorAggregate" xml="interfaces/IteratorAggregate.xml"/>
     <interface name="ArrayAccess" xml="interfaces/ArrayAccess.xml"/>
     <interface name="Serializable" xml="interfaces/Serializable.xml"/>
+    <interface name="DateTimeInterface" xml="interfaces/DateTimeInterface.xml"/>
     <interface name="JsonSerializable" xml="interfaces/JsonSerializable.xml"/>
     <interface name="Countable" xml="interfaces/Countable.xml"/>
     <interface name="OuterIterator" xml="interfaces/OuterIterator.xml"/>
@@ -371,5 +415,10 @@
     <interface name="SeekableIterator" xml="interfaces/SeekableIterator.xml"/>
     <interface name="SplObserver" xml="interfaces/SplObserver.xml"/>
     <interface name="SplSubject" xml="interfaces/SplSubject.xml"/>
+    <interface name="Yaf_View_Interface" xml="interfaces/Yaf_View_Interface.xml"/>
+    <interface name="Yaf_Route_Interface" xml="interfaces/Yaf_Route_Interface.xml"/>
+    <interface name="Yaf_Router" xml="interfaces/Yaf_Router.xml"/>
+    <interface name="SessionHandlerInterface" xml="interfaces/SessionHandlerInterface.xml"/>
+    <interface name="Reflector" xml="interfaces/Reflector.xml"/>
   </namespace>
 </index>

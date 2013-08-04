@@ -95,6 +95,7 @@
       <description compact="The current active sub iterator"/>
       <return type="RecursiveIterator"/>
     </docblock>
+    <parameter name="level" optional="true" byreference="false" type="int"/>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>

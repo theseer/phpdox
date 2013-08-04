@@ -16,6 +16,12 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Name of the object's class. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+    </docblock>
+  </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a ReflectionObject"/>
@@ -31,13 +37,7 @@
     <parameter name="argument" optional="false" byreference="false" type="string"/>
     <parameter name="return" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="__clone" abstract="false" static="false" final="true">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
-  </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -68,7 +68,7 @@
   <method name="getConstructor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="object"/>
+      <return type="ReflectionMethod"/>
     </docblock>
   </method>
   <method name="getDefaultProperties" abstract="false" static="false" visibility="public" final="false">
@@ -131,7 +131,7 @@
       <description compact=""/>
       <return type="array"/>
     </docblock>
-    <parameter name="filter" optional="true" byreference="false" type="string"/>
+    <parameter name="filter" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getModifiers" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -195,7 +195,7 @@
       <return type="mixed"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="default" optional="true" byreference="false" type="string"/>
+    <parameter name="def_value" optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="getTraitAliases" abstract="false" static="false" visibility="public" final="false">
     <docblock>

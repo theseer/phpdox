@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventBufferEvent" namespace="" name="EventBufferEvent">
+  <constant name="READING" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WRITING" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EOF" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERROR" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TIMEOUT" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CONNECTED" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CLOSE_ON_FREE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_THREADSAFE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_DEFER_CALLBACKS" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_UNLOCK_CALLBACKS" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSL_OPEN" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSL_CONNECTING" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSL_ACCEPTING" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="fd" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Numeric file descriptor associated with the buffer event. Normally&#10;       represents a bound socket. Equals to NULL, if there is no file&#10;       descriptor(socket) associated with the buffer event.&#10;      "/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="priority" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The priority of the events used to implement the buffer event.&#10;      "/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="input" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Underlying input buffer object(&#10;       EventBuffer&#10;       )&#10;      "/>
+      <var type="EventBuffer"/>
+    </docblock>
+  </member>
+  <member name="output" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Underlying output buffer object(&#10;       EventBuffer&#10;       )&#10;      "/>
+      <var type="EventBuffer"/>
+    </docblock>
+  </member>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect buffer event's file descriptor to given address or&#10;  UNIX socket">Connect buffer event's file descriptor to given address(optionally with port), or a UNIX domain socket.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="addr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="connectHost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connects to a hostname with optionally asyncronous DNS resolving">Resolves the DNS name hostname, looking for addresses of type family ( EventUtil::AF_* constants). If the name resolution fails, it invokes the event callback with an error event. If it succeeds, it launches a connection attempt just as EventBufferEvent::connect would.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dns_base" optional="false" byreference="false" type="object" class="EventDnsBase"/>
+    <parameter name="hostname" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+    <parameter name="family" optional="true" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventBufferEvent object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="socket" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+    <parameter name="readcb" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="writecb" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="eventcb" optional="true" byreference="false" type="object" class="callable"/>
+  </constructor>
+  <method name="createPair" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates two buffer events connected to each other"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disable events read, write, or both on a buffer event."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="events" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enable events read, write, or both on a buffer event."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="events" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="free" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Free a buffer event">Free resources allocated by buffer event.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getDnsErrorString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns string describing the last failed DNS lookup attempt"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns bitmask of events currently enabled on the buffer event"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getInput" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns underlying input buffer associated with current buffer&#10;  event">Returns underlying input buffer associated with current buffer event. An input buffer is a storage for data to read.</description>
+      <return type="EventBuffer"/>
+    </docblock>
+  </method>
+  <method name="getOutput" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns underlying output buffer associated with current buffer&#10;  event">Returns underlying output buffer associated with current buffer event. An output buffer is a storage for data to be written.</description>
+      <return type="EventBuffer"/>
+    </docblock>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read buffer's data"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="readBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drains the entire contents of the input buffer and places them into buf"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="buf" optional="false" byreference="false" type="object" class="EventBuffer"/>
+  </method>
+  <method name="setCallbacks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assigns read, write and event(status) callbacks"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="readcb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="writecb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="eventcb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setPriority" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assign a priority to a bufferevent">Assign a priority to a bufferevent</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="priority" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimeouts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read and write timeout for a buffer event"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout_read" optional="false" byreference="false" type="int"/>
+    <parameter name="timeout_write" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setWatermark" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adjusts read and/or write watermarks">Adjusts the read watermarks, the write watermarks , or both, of a single buffer event.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="events" optional="false" byreference="false" type="int"/>
+    <parameter name="lowmark" optional="false" byreference="false" type="int"/>
+    <parameter name="highmark" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="sslError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns most recent OpenSSL error reported on the buffer event">Returns most recent OpenSSL error reported on the buffer event.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="sslFilter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new SSL buffer event to send its data over another buffer event">Create a new SSL buffer event to send its data over another buffer event</description>
+      <return type="EventBufferEvent"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="underlying" optional="false" byreference="false" type="object" class="EventBufferEvent"/>
+    <parameter name="ctx" optional="false" byreference="false" type="object" class="EventSslContext"/>
+    <parameter name="state" optional="false" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="sslRenegotiate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells a bufferevent to begin SSL renegotiation.">Tells a bufferevent to begin SSL renegotiation.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="sslSocket" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new SSL buffer event to send its data over an SSL on a socket"/>
+      <return type="EventBufferEvent"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="socket" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="ctx" optional="false" byreference="false" type="object" class="EventSslContext"/>
+    <parameter name="state" optional="false" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds data to a buffer event's output buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="writeBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds contents of the entire buffer to a buffer event's output&#10;  buffer"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="buf" optional="false" byreference="false" type="object" class="EventBuffer"/>
+  </method>
+</class>

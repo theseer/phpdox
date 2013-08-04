@@ -66,6 +66,12 @@
       <return type="mixed"/>
     </docblock>
   </method>
+  <method name="getDefaultValueConstantName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the default value's constant name if default value is constant or null"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="getName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets parameter name"/>
@@ -84,9 +90,21 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="isCallable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether parameter MUST be callable"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
   <method name="isDefaultValueAvailable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a default value is available"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isDefaultValueConstant" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the default value of this parameter is constant"/>
       <return type="bool"/>
     </docblock>
   </method>

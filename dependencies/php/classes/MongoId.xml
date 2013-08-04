@@ -28,7 +28,7 @@
   </method>
   <method name="getPID" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the process id used to create this"/>
+      <description compact="Gets the process ID"/>
       <return type="int"/>
     </docblock>
   </method>

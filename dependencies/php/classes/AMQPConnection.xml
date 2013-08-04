@@ -43,6 +43,12 @@
       <return type="int"/>
     </docblock>
   </method>
+  <method name="getTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the configured timeout"/>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="getVhost" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the configured vhost"/>
@@ -88,6 +94,13 @@
       <return type="bool"/>
     </docblock>
     <parameter name="port" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the timeout."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setVhost" abstract="false" static="false" visibility="public" final="false">
     <docblock>

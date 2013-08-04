@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventHttp" namespace="" name="EventHttp">
+  <method name="accept" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes an HTTP server accept connections on the specified socket stream or resource">Makes an HTTP server accept connections on the specified socket stream or resource. The socket should be ready to accept connections.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="socket" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="addServerAlias" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a server alias to the HTTP server object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="alias" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Binds an HTTP server on the specified address and port">Binds an HTTP server on the specified address and port.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="address" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventHttp object(the HTTP server)"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+  </constructor>
+  <method name="removeServerAlias" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes server alias"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="alias" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setAllowedMethods" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the what HTTP methods are supported in requests accepted by this server, and passed to user callbacks">Sets the what HTTP methods are supported in requests accepted by this server, and passed to user callbacks</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="methods" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a callback for specified URI"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="cb" optional="false" byreference="false" type="string"/>
+    <parameter name="arg" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setDefaultCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets default callback to handle requests that are not caught by specific callbacks"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cb" optional="false" byreference="false" type="string"/>
+    <parameter name="arg" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setMaxBodySize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets maximum request body size"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMaxHeadersSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets maximum HTTP header size"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the timeout for an HTTP request"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

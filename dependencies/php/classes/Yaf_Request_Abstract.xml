@@ -96,7 +96,7 @@
   </method>
   <method name="getEnv" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getEnv purpose"/>
+      <description compact="Retrieve ENV varialbe"/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -148,7 +148,7 @@
   </method>
   <method name="getServer" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getServer purpose"/>
+      <description compact="Retrieve SERVER variable"/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -217,8 +217,8 @@
   </method>
   <method name="setBaseUri" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The setBaseUri purpose"/>
-      <return type="void"/>
+      <description compact="set base URI">Set base URI, base URI is used when doing routing, in routing phase request URI is used to route a request, while base URI is used to skip the leadding part(base URI) of request URI. That is, if comes a request with request URI a/b/c, then if you set base URI to "a/b", only "/c" will be used in routing phase. generally, you don't need to set this, Yaf will determine it automatically.</description>
+      <return type="bool"/>
     </docblock>
     <parameter name="uir" optional="false" byreference="false" type="string"/>
   </method>

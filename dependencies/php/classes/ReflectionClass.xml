@@ -22,13 +22,7 @@
       <description compact="&#10;       Name of the class. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
     </docblock>
   </member>
-  <method name="__clone" abstract="false" static="false" final="true">
-    <docblock>
-      <description compact="Clones object"/>
-      <return type="void"/>
-    </docblock>
-  </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a ReflectionClass"/>
       <return type="void"/>
@@ -58,13 +52,13 @@
   </method>
   <method name="getConstructor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets constructor"/>
-      <return type="object"/>
+      <description compact="Gets the constructor of the class"/>
+      <return type="ReflectionMethod"/>
     </docblock>
   </method>
   <method name="getDefaultProperties" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets default properties"/>
+      <description compact="Gets default properties">Gets default properties from a class (including inherited properties).</description>
       <return type="array"/>
     </docblock>
   </method>
@@ -82,13 +76,13 @@
   </method>
   <method name="getExtension" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets extension info"/>
+      <description compact="Gets a ReflectionExtension object for the extension which defined the class"/>
       <return type="ReflectionExtension"/>
     </docblock>
   </method>
   <method name="getExtensionName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets an extensions name"/>
+      <description compact="Gets the name of the extension which defined the class"/>
       <return type="string"/>
     </docblock>
   </method>
@@ -112,17 +106,17 @@
   </method>
   <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets a ReflectionMethod"/>
+      <description compact="Gets a ReflectionMethod for a class method."/>
       <return type="ReflectionMethod"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getMethods" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets a list of methods"/>
+      <description compact="Gets an array of methods"/>
       <return type="array"/>
     </docblock>
-    <parameter name="filter" optional="true" byreference="false" type="string"/>
+    <parameter name="filter" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getModifiers" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -157,7 +151,7 @@
   </method>
   <method name="getProperty" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets property"/>
+      <description compact="Gets a ReflectionProperty for a class's property"/>
       <return type="ReflectionProperty"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -186,7 +180,7 @@
       <return type="mixed"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="default" optional="true" byreference="false" type="string"/>
+    <parameter name="def_value" optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="getTraitAliases" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -267,19 +261,19 @@
   </method>
   <method name="isInstantiable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if instantiable"/>
+      <description compact="Checks if the class is instantiable"/>
       <return type="bool"/>
     </docblock>
   </method>
   <method name="isInterface" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if interface"/>
+      <description compact="Checks if the class is an interface"/>
       <return type="bool"/>
     </docblock>
   </method>
   <method name="isInternal" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if internal"/>
+      <description compact="Checks if class is defined internally by an extension, or the core"/>
       <return type="bool"/>
     </docblock>
   </method>

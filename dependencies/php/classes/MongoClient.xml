@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="MongoClient" namespace="" name="MongoClient">
+  <constant name="VERSION" value="">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_HOST" value="&quot;localhost&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="DEFAULT_PORT" value="27017">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="RP_PRIMARY" value="&quot;primary&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RP_PRIMARY_PREFERRED" value="&quot;primaryPreferred&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RP_SECONDARY" value="&quot;secondary&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RP_SECONDARY_PREFERRED" value="&quot;secondaryPreferred&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RP_NEAREST" value="&quot;nearest&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <member name="connected" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <member name="status" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="server" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="persistent" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new database connection object">If no parameters are passed, this connects to "localhost:27017" (or whatever was specified in php.ini for mongo.default_host and mongo.default_port).</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="server" optional="true" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes this connection">The MongoClient::close method forcefully closes a connection to the database, even if persistent connections are being used. You should never have to do this under normal circumstances.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="connection" optional="true" byreference="false" type="object" class="boolean|string"/>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connects to a database server"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="dropDB" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Drops a database [deprecated]"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="__get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a database"/>
+      <return type="MongoDB"/>
+    </docblock>
+    <parameter name="dbname" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getConnections" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return info about all open connections"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getHosts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Updates status for all associated hosts">This method is only useful with a connection to a replica set. It returns the status of all of the hosts in the set. Without a replica set, it will just return an array with one element containing the host that you are connected to.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the read preference for this connection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="killCursor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Kills a specific cursor on the server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="server_hash" optional="false" byreference="false" type="string"/>
+    <parameter name="id" optional="false" byreference="false" type="object" class="int|MongoInt64"/>
+  </method>
+  <method name="listDBs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Lists all of the databases available."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="selectCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a database collection"/>
+      <return type="MongoCollection"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="collection" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="selectDB" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a database"/>
+      <return type="MongoDB"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read preference for this connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="read_preference" optional="false" byreference="false" type="string"/>
+    <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="String representation of this connection"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

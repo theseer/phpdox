@@ -52,7 +52,7 @@
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the registered iterator instances"/>
-      <return type="void"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="detachIterator" abstract="false" static="false" visibility="public" final="false">
@@ -71,7 +71,7 @@
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the registered iterator instances"/>
-      <return type="void"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">

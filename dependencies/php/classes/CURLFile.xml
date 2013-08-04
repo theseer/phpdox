@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="CURLFile" namespace="" name="CURLFile">
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="mime" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="postname" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create the CURLFile object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="mimetype" optional="true" byreference="false" type="string"/>
+    <parameter name="postname" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getFilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get file name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMimeType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get MIME type"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPostFilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get file name for POST"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="setMimeType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set MIME type"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="mime" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPostFilename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set file name for POST"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="postname" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unserialization handler"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

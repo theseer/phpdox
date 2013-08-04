@@ -31,6 +31,15 @@
       <var type="integer"/>
     </docblock>
   </member>
+  <method name="aggregate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Perform an aggregation using the aggregation framework">The MongoDB aggregation framework provides a means to calculate aggregated values without having to use MapReduce. While MapReduce is powerful, it is often more difficult than necessary for many simple aggregation tasks, such as totaling or averaging field values.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="pipeline" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="op" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <method name="batchInsert" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Inserts multiple documents into this collection"/>
@@ -76,6 +85,14 @@
       <return type="array"/>
     </docblock>
   </method>
+  <method name="distinct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve a list of distinct values for the given key across a collection."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <method name="drop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Drops this collection"/>
@@ -97,6 +114,16 @@
     </docblock>
     <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="findAndModify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update a document and return it"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="update" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="findOne" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -132,6 +159,12 @@
       <return type="string"/>
     </docblock>
   </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the read preference for this collection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="getSlaveOkay" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get slaveOkay setting for this collection"/>
@@ -150,10 +183,10 @@
   </method>
   <method name="insert" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Inserts an array into the collection"/>
+      <description compact="Inserts a document into the collection"/>
       <return type="bool|array"/>
     </docblock>
-    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array|object"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="remove" abstract="false" static="false" visibility="public" final="false">
@@ -166,11 +199,19 @@
   </method>
   <method name="save" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Saves an object to this collection"/>
+      <description compact="Saves a document to this collection"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="a" optional="false" byreference="false" type="object" class="array|object"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read preference for this collection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="read_preference" optional="false" byreference="false" type="string"/>
+    <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="setSlaveOkay" abstract="false" static="false" visibility="public" final="false">
     <docblock>

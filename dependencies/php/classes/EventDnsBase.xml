@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventDnsBase" namespace="" name="EventDnsBase">
+  <constant name="OPTION_SEARCH" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPTION_NAMESERVERS" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPTION_MISC" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPTION_HOSTSFILE" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPTIONS_ALL" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="addNameserverIp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a nameserver to the DNS base"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ip" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addSearch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a domain to the list of search domains"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="domain" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="clearSearch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all current search suffixes"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs EventDnsBase object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="initialize" optional="false" byreference="false" type="object" class="bool"/>
+  </constructor>
+  <method name="countNameservers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the number of configured nameservers"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="loadHosts" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Loads a hosts file (in the same format as /etc/hosts) from hosts file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="hosts" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="parseResolvConf" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scans the resolv.conf-formatted file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the value of a configuration option"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="option" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSearchNdots" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the 'ndots' parameter for searches"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="ndots" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

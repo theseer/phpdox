@@ -8,7 +8,7 @@
     </docblock>
     <parameter name="dirname" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="addFile" abstract="false" static="false" final="false">
+  <method name="addFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -24,7 +24,7 @@
     <parameter name="localname" optional="false" byreference="false" type="string"/>
     <parameter name="contents" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="buildFromDirectory" abstract="false" static="false" final="false">
+  <method name="buildFromDirectory" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="array"/>
@@ -162,14 +162,14 @@
     <parameter name="index" optional="true" byreference="false" type="string"/>
     <parameter name="webindex" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="setMetadata" abstract="false" static="false" final="false">
+  <method name="setMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sets phar archive meta-data">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="metadata" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="setSignatureAlgorithm" abstract="false" static="false" final="false">
+  <method name="setSignatureAlgorithm" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="set the signature algorithm for a phar and apply it.  The">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
@@ -182,15 +182,16 @@
       <return type="bool"/>
     </docblock>
     <parameter name="stub" optional="false" byreference="false" type="string"/>
+    <parameter name="len" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="addEmptyDir" abstract="false" static="false" final="false">
+  <method name="addEmptyDir" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="dirname" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="addFile" abstract="false" static="false" final="false">
+  <method name="addFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -198,7 +199,7 @@
     <parameter name="file" optional="false" byreference="false" type="string"/>
     <parameter name="localname" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="addFromString" abstract="false" static="false" final="false">
+  <method name="addFromString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -206,13 +207,13 @@
     <parameter name="localname" optional="false" byreference="false" type="string"/>
     <parameter name="contents" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="apiVersion" abstract="false" static="false" final="false">
+  <method name="apiVersion" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="buildFromDirectory" abstract="false" static="false" final="false">
+  <method name="buildFromDirectory" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="array"/>
@@ -220,7 +221,7 @@
     <parameter name="base_dir" optional="false" byreference="false" type="string"/>
     <parameter name="regex" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="buildFromIterator" abstract="false" static="false" final="false">
+  <method name="buildFromIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="array"/>
@@ -228,20 +229,20 @@
     <parameter name="iter" optional="false" byreference="false" type="object" class="Iterator"/>
     <parameter name="base_directory" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="canCompress" abstract="false" static="false" final="false">
+  <method name="canCompress" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="type" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="canWrite" abstract="false" static="false" final="false">
+  <method name="canWrite" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="compress" abstract="false" static="false" final="false">
+  <method name="compress" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="object"/>
@@ -249,26 +250,26 @@
     <parameter name="compression" optional="false" byreference="false" type="int"/>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="compressAllFilesBZIP2" abstract="false" static="false" final="false">
+  <method name="compressAllFilesBZIP2" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="compressAllFilesGZ" abstract="false" static="false" final="false">
+  <method name="compressAllFilesGZ" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="compressFiles" abstract="false" static="false" final="false">
+  <method name="compressFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="compression" optional="false" byreference="false" type="int"/>
   </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -277,7 +278,7 @@
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="alias" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="convertToData" abstract="false" static="false" final="false">
+  <method name="convertToData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="PharData"/>
@@ -286,7 +287,7 @@
     <parameter name="compression" optional="true" byreference="false" type="int"/>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="convertToExecutable" abstract="false" static="false" final="false">
+  <method name="convertToExecutable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="Phar"/>
@@ -295,7 +296,7 @@
     <parameter name="compression" optional="true" byreference="false" type="int"/>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="copy" abstract="false" static="false" final="false">
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
@@ -303,13 +304,13 @@
     <parameter name="oldfile" optional="false" byreference="false" type="string"/>
     <parameter name="newfile" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="count" abstract="false" static="false" final="false">
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="createDefaultStub" abstract="false" static="false" final="false">
+  <method name="createDefaultStub" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="string"/>
@@ -317,33 +318,33 @@
     <parameter name="indexfile" optional="true" byreference="false" type="string"/>
     <parameter name="webindexfile" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="decompress" abstract="false" static="false" final="false">
+  <method name="decompress" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="object"/>
     </docblock>
     <parameter name="extension" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="decompressFiles" abstract="false" static="false" final="false">
+  <method name="decompressFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="delMetadata" abstract="false" static="false" final="false">
+  <method name="delMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="delete" abstract="false" static="false" final="false">
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="entry" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="extractTo" abstract="false" static="false" final="false">
+  <method name="extractTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
@@ -352,80 +353,80 @@
     <parameter name="files" optional="true" byreference="false" type="object" class="string|array"/>
     <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="getMetadata" abstract="false" static="false" final="false">
+  <method name="getMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="getModified" abstract="false" static="false" final="false">
+  <method name="getModified" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="getSignature" abstract="false" static="false" final="false">
+  <method name="getSignature" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getStub" abstract="false" static="false" final="false">
+  <method name="getStub" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getSupportedCompression" abstract="false" static="false" final="false">
+  <method name="getSupportedCompression" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getSupportedSignatures" abstract="false" static="false" final="false">
+  <method name="getSupportedSignatures" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getVersion" abstract="false" static="false" final="false">
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="hasMetadata" abstract="false" static="false" final="false">
+  <method name="hasMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="interceptFileFuncs" abstract="false" static="false" final="false">
+  <method name="interceptFileFuncs" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="isBuffering" abstract="false" static="false" final="false">
+  <method name="isBuffering" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isCompressed" abstract="false" static="false" final="false">
+  <method name="isCompressed" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
   </method>
-  <method name="isFileFormat" abstract="false" static="false" final="false">
+  <method name="isFileFormat" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="format" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="isValidPharFilename" abstract="false" static="false" final="false">
+  <method name="isValidPharFilename" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
@@ -433,13 +434,13 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="executable" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="isWritable" abstract="false" static="false" final="false">
+  <method name="isWritable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="loadPhar" abstract="false" static="false" final="false">
+  <method name="loadPhar" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
@@ -447,7 +448,7 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="alias" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="mapPhar" abstract="false" static="false" final="false">
+  <method name="mapPhar" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
@@ -455,7 +456,7 @@
     <parameter name="alias" optional="true" byreference="false" type="string"/>
     <parameter name="dataoffset" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="mount" abstract="false" static="false" final="false">
+  <method name="mount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -463,28 +464,28 @@
     <parameter name="pharpath" optional="false" byreference="false" type="string"/>
     <parameter name="externalpath" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="mungServer" abstract="false" static="false" final="false">
+  <method name="mungServer" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="munglist" optional="false" byreference="false" type="object" class="array"/>
   </method>
-  <method name="offsetExists" abstract="false" static="false" final="false">
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="offsetGet" abstract="false" static="false" final="false">
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="int"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="offsetSet" abstract="false" static="false" final="false">
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -492,28 +493,28 @@
     <parameter name="offset" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="offsetUnset" abstract="false" static="false" final="false">
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="running" abstract="false" static="false" final="false">
+  <method name="running" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="string"/>
     </docblock>
     <parameter name="retphar" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="setAlias" abstract="false" static="false" final="false">
+  <method name="setAlias" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="alias" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="setDefaultStub" abstract="false" static="false" final="false">
+  <method name="setDefaultStub" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
@@ -521,14 +522,14 @@
     <parameter name="index" optional="true" byreference="false" type="string"/>
     <parameter name="webindex" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="setMetadata" abstract="false" static="false" final="false">
+  <method name="setMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sets phar archive meta-data">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="metadata" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="setSignatureAlgorithm" abstract="false" static="false" final="false">
+  <method name="setSignatureAlgorithm" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="set the signature algorithm for a phar and apply it.  The">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
@@ -536,39 +537,40 @@
     <parameter name="sigtype" optional="false" byreference="false" type="int"/>
     <parameter name="privatekey" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="setStub" abstract="false" static="false" final="false">
+  <method name="setStub" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="stub" optional="false" byreference="false" type="string"/>
+    <parameter name="len" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="startBuffering" abstract="false" static="false" final="false">
+  <method name="startBuffering" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="stopBuffering" abstract="false" static="false" final="false">
+  <method name="stopBuffering" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="uncompressAllFiles" abstract="false" static="false" final="false">
+  <method name="uncompressAllFiles" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="unlinkArchive" abstract="false" static="false" final="false">
+  <method name="unlinkArchive" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="bool"/>
     </docblock>
     <parameter name="archive" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="webPhar" abstract="false" static="false" final="false">
+  <method name="webPhar" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -577,6 +579,6 @@
     <parameter name="index" optional="true" byreference="false" type="string"/>
     <parameter name="f404" optional="true" byreference="false" type="string"/>
     <parameter name="mimetypes" optional="true" byreference="false" type="object" class="array"/>
-    <parameter name="rewrites" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="rewrites" optional="true" byreference="false" type="object" class="callable"/>
   </method>
 </class>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="EventSslContext" namespace="" name="EventSslContext">
+  <constant name="SSLv2_CLIENT_METHOD" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSLv3_CLIENT_METHOD" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSLv23_CLIENT_METHOD" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TLS_CLIENT_METHOD" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSLv2_SERVER_METHOD" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSLv3_SERVER_METHOD" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SSLv23_SERVER_METHOD" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TLS_SERVER_METHOD" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_LOCAL_CERT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_LOCAL_PK" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_PASSPHRASE" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CA_FILE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CA_PATH" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_ALLOW_SELF_SIGNED" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_VERIFY_PEER" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_VERIFY_DEPTH" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="OPT_CIPHERS" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="local_cert" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Path to local certificate file on filesystem. It must be a PEM-encoded&#10;       file which contains certificate. It can optionally contain the&#10;       certificate chain of issuers.&#10;      "/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="local_pk" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Path to local private key file&#10;      "/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs an OpenSSL context for use with Event classes"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="false" byreference="false" type="string"/>
+  </constructor>
+</class>

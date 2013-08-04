@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Generator" namespace="" name="Generator">
+  <implements name="Iterator" full="Iterator"/>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the yielded value"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the yielded key"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resume execution of the generator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind the iterator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="send" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send a value to the generator">Sends the given value to the generator as the result of the yield expression and resumes execution of the generator.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="throw" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Throw an exception into the generator"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="exception" optional="false" byreference="false" type="object" class="Exception"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the iterator has been closed"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Serialize callback"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

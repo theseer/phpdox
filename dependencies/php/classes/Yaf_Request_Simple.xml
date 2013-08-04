@@ -207,7 +207,7 @@
   <method name="setBaseUri" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="uir" optional="false" byreference="false" type="string"/>
   </method>

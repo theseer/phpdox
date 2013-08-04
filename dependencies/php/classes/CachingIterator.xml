@@ -78,7 +78,7 @@
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return the key for the current element"/>
-      <return type="void"/>
+      <return type="scalar"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">

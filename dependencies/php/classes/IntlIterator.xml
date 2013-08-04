@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="IntlIterator" namespace="" name="IntlIterator">
+  <implements name="Iterator" full="Iterator"/>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the current element"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the current key"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move forward to the next element"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind the iterator to the first element"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if curent position is valid"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+</class>

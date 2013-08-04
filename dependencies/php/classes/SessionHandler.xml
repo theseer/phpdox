@@ -3,7 +3,7 @@
   <implements name="SessionHandlerInterface" full="SessionHandlerInterface"/>
   <method name="close" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Close the session">Closes the current session. This method is automaticaly executed internally by PHP when closing the session, or explicitly via session_write_close (which first calls the SessionHandler::write).</description>
+      <description compact="Close the session">Closes the current session. This method is automatically executed internally by PHP when closing the session, or explicitly via session_write_close (which first calls the SessionHandler::write).</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -16,7 +16,7 @@
   </method>
   <method name="gc" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Cleanup old sessions">Cleans up expired sessions. Called randomly by PHP internally when a sessio starts or when session_start is invoked. The frequency this is called is based on the session.gc_divisor and session.gc_probability configuration directives.</description>
+      <description compact="Cleanup old sessions">Cleans up expired sessions. Called randomly by PHP internally when a session starts or when session_start is invoked. The frequency this is called is based on the session.gc_divisor and session.gc_probability configuration directives.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="maxlifetime" optional="false" byreference="false" type="int"/>

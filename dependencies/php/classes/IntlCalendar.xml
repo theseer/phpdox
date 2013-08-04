@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="IntlCalendar" namespace="" name="IntlCalendar">
+  <constant name="FIELD_ERA" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_YEAR" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MONTH" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_WEEK_OF_YEAR" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_WEEK_OF_MONTH" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DATE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_YEAR" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_WEEK" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_WEEK_IN_MONTH" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_AM_PM" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_HOUR" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_HOUR_OF_DAY" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MINUTE" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_SECOND" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MILLISECOND" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_ZONE_OFFSET" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DST_OFFSET" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_YEAR_WOY" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DOW_LOCAL" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_EXTENDED_YEAR" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_JULIAN_DAY" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MILLISECONDS_IN_DAY" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_IS_LEAP_MONTH" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_FIELD_COUNT " value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_MONTH" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_SUNDAY" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_MONDAY" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TUESDAY" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_WEDNESDAY" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_THURSDAY" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_FRIDAY" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_SATURDAY" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKDAY" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKEND" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKEND_OFFSET" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKEND_CEASE" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WALLTIME_FIRST" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WALLTIME_LAST" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WALLTIME_NEXT_VALID" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a (signed) amount of time to a field">Add a signed amount to a field. Adding a positive amount allows advances in time, even if the numeric value of the field decreases (e.g. when working with years in BC dates).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="amount" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="after" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether this object&#x2BC;s time is after that of the passed object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="calendar" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="before" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether this object&#x2BC;s time is before that of the passed object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="calendar" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear a field or all fields"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="true" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Private constructor for disallowing instantiation">A private constructor for disallowing instantiation with the new operator.</description>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="createInstance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new IntlCalendar">Given a timezone and locale, this method creates an IntlCalendar object. This factory method may return a subclass of IntlCalendar.</description>
+      <return type="IntlCalendar"/>
+    </docblock>
+    <parameter name="timeZone" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="equals" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Compare time of two IntlCalendar objects for equality"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="calendar" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="fieldDifference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Calculate difference between given time and this object&#x2BC;s time">Return the difference between the given time and the time this object is set to, with respect to the quantity specified the field parameter.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="when" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="fromDateTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create an IntlCalendar from a DateTime object or string">Creates an IntlCalendar object either from a DateTime object or from a string from which a DateTime object can be built.</description>
+      <return type="IntlCalendar"/>
+    </docblock>
+    <parameter name="dateTime" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the value for a field"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getActualMaximum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The maximum value for a field, considering the object&#x2BC;s current time">Returns a fieldʼs relative maximum value around the current time. The exact semantics vary by field, but in the general case this is the value that would be obtained if one would set the field value into the smallest relative maximum for the field and would increment it until reaching the global maximum or the field value wraps around, in which the value returned would be the global maximum or the value before the wrapping, respectively.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getActualMinimum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The minimum value for a field, considering the object&#x2BC;s current time">Returns a fieldʼs relative minimum value around the current time. The exact semantics vary by field, but in the general case this is the value that would be obtained if one would set the field value into the greatest relative minimum for the field and would decrement it until reaching the global minimum or the field value wraps around, in which the value returned would be the global minimum or the value before the wrapping, respectively.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getAvailableLocales" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get array of locales for which there is data"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getDayOfWeekType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tell whether a day is a weekday, weekend or a day that has a transition between the two">Returns whether the passed day is a weekday (IntlCalendar::DOW_TYPE_WEEKDAY), a weekend day (IntlCalendar::DOW_TYPE_WEEKEND), a day during which a transition occurs into the weekend (IntlCalendar::DOW_TYPE_WEEKEND_OFFSET) or a day during which the weekend ceases (IntlCalendar::DOW_TYPE_WEEKEND_CEASE).</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error code on the object">Object oriented style (method):</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get last error message on the object">Object oriented style (method):</description>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFirstDayOfWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the first day of the week for the calendar&#x2BC;s locale"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getGreatestMinimum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the largest local minimum value for a field"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getKeywordValuesForLocale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get set of locale keyword values"/>
+      <return type="Iterator"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="getLeastMaximum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the smallest local maximum for a field"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getLocale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the locale associated with the object"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="localeType" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getMaximum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the global maximum value for a field"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getMinimalDaysInFirstWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get minimal number of days the first week in a year or month can have"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMinimum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the global minimum value for a field"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getNow" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get number representing the current time"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getRepeatedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get behavior for handling repeating wall time"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSkippedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get behavior for handling skipped wall time">Gets the current strategy for dealing with wall times that are skipped whenever the clock is forwarded during dailight saving time start transitions. The default value is IntlCalendar::WALLTIME_LAST.</description>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get time currently represented by the object"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the object&#x2BC;s timezone"/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the calendar type"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getWeekendTransition" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get time of the day at which weekend begins or ends">Returns the number of milliseconds after midnight at which the weekend begins or ends.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="inDaylightTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether the object&#x2BC;s time is in Daylight Savings Time"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isEquivalentTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether another calendar is equal but for a different time"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="calendar" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="isLenient" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether date/time interpretation is in lenient mode"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether a field is set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="isWeekend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether a certain date/time is in the weekend"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="date" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="roll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add value to field without carrying into more significant fields"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="amountOrUpOrDown" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a time field or several common fields at once">Sets either a specific field to the given value, or sets at once several common fields. The range of values that are accepted depend on whether the calendar is using the lenient mode.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a time field or several common fields at once">Sets either a specific field to the given value, or sets at once several common fields. The range of values that are accepted depend on whether the calendar is using the lenient mode.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="month" optional="false" byreference="false" type="int"/>
+    <parameter name="dayOfMonth" optional="true" byreference="false" type="int"/>
+    <parameter name="hour" optional="true" byreference="false" type="int"/>
+    <parameter name="minute" optional="true" byreference="false" type="int"/>
+    <parameter name="second" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setFirstDayOfWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the day on which the week is deemed to start"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setLenient" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set whether date/time interpretation is to be lenient"/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="isLenient" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRepeatedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set behavior for handling repeating wall times at negative timezone offset transitions"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wallTimeOption" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSkippedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set behavior for handling skipped wall times at positive timezone offset transitions">Sets the current strategy for dealing with wall times that are skipped whenever the clock is forwarded during dailight saving time start transitions. The default value is IntlCalendar::WALLTIME_LAST (take it as being the same instant as the one when the wall time is one hour more). Alternative values are IntlCalendar::WALLTIME_FIRST (same instant as the one with a wall time of one hour less) and IntlCalendar::WALLTIME_NEXT_VALID (same instant as when DST begins).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wallTimeOption" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the calendar time in milliseconds since the epoch"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="date" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the timezone used by this calendar"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeZone" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="toDateTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Convert an IntlCalendar into a DateTime object"/>
+      <return type="DateTime"/>
+    </docblock>
+  </method>
+</class>

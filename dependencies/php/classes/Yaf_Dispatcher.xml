@@ -68,10 +68,10 @@
   </member>
   <method name="autoRender" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Switch on/off autorendering"/>
+      <description compact="Switch on/off autorendering">Yaf_Dispatcher will render automatically after dispatches a incoming request, you can prevent the rendering by calling this method with flag TRUE you can simply return FALSE in a action to prevent the auto-rendering of that action</description>
       <return type="Yaf_Dispatcher"/>
     </docblock>
-    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="flag" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="catchException" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -94,8 +94,8 @@
   </constructor>
   <method name="disableView" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Disable view rendering"/>
-      <return type="Yaf_Dispatcher"/>
+      <description compact="Disable view rendering">disable view engine, used in some app that user will output by theirself you can simply return FALSE in a action to prevent the auto-rendering of that action</description>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="dispatch" abstract="false" static="false" visibility="public" final="false">
@@ -116,7 +116,7 @@
       <description compact="Switch on/off the instant flushing"/>
       <return type="Yaf_Dispatcher"/>
     </docblock>
-    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="flag" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getApplication" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -164,13 +164,6 @@
     </docblock>
     <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="setAppDirectory" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Change the application directory"/>
-      <return type="Yaf_Dispatcher"/>
-    </docblock>
-    <parameter name="directory" optional="false" byreference="false" type="string"/>
-  </method>
   <method name="setDefaultAction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Change default action name"/>
@@ -194,7 +187,7 @@
   </method>
   <method name="setErrorHandler" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The setErrorHandler purpose"/>
+      <description compact="Set error handler">Set error handler for Yaf. when application.dispatcher.throwException is off, Yaf will trigger catchable error while unexpected errors occrred.</description>
       <return type="Yaf_Dispatcher"/>
     </docblock>
     <parameter name="callback" optional="false" byreference="false" type="object" class="call"/>
@@ -222,7 +215,7 @@
   </method>
   <method name="throwException" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Switch on/off exception throwing"/>
+      <description compact="Switch on/off exception throwing">Siwtch on/off exception throwing while unexpected error occurring. When this is on, Yaf will throwing exceptions instead of triggering catchable errors.</description>
       <return type="Yaf_Dispatcher"/>
     </docblock>
     <parameter name="flag" optional="true" byreference="false" type="object" class="bool"/>

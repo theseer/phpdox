@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Mutex" namespace="" name="Mutex">
+  <method name="create" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Create a Mutex"/>
+      <return type="long"/>
+    </docblock>
+    <parameter name="lock" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Destroy Mutex"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Acquire Mutex">Attempt to lock the Mutex for the caller.</description>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+  </method>
+  <method name="trylock" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Attempt to Acquire Mutex"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Release Mutex"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="destroy" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+</class>

@@ -65,6 +65,7 @@
       <return type="array"/>
     </docblock>
     <parameter name="recursive" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="from_root" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getName" abstract="false" static="false" visibility="public" final="false">
     <docblock>

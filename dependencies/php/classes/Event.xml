@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.de/src#" full="Event" namespace="" name="Event">
+  <constant name="ET" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PERSIST" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="READ" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WRITE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SIGNAL" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TIMEOUT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="pending" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Whether event is pending. See&#10;       About event persistence&#10;       .&#10;      "/>
+      <var type="bool"/>
+    </docblock>
+  </member>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes event pending">Marks event pending. Non-pending event will never occur, and the event callback will never be called. In conjuction with Event::del an event could be re-scheduled by user at any time.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="addSignal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes signal event pending"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="addTimer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes timer event pending"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs Event object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="what" optional="false" byreference="false" type="int"/>
+    <parameter name="cb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="del" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes event non-pending"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="delSignal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes signal event non-pending"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="delTimer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Makes timer event non-pending"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="free" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Make event non-pending and free resources allocated for this&#10;  event."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getSupportedMethods" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns array with of the names of the methods supported in this version of Libevent"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="pending" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Detects whether event is pending or scheduled"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Re-configures event"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="what" optional="true" byreference="false" type="int"/>
+    <parameter name="cb" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setPriority" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set event priority"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="priority" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTimer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Re-configures timer event"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="cb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="signal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs signal event object"/>
+      <return type="Event"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="signum" optional="false" byreference="false" type="int"/>
+    <parameter name="cb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="timer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs timer event object"/>
+      <return type="Event"/>
+    </docblock>
+    <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="cb" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="arg" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

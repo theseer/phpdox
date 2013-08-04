@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.de/src#" full="IntlDateFormatter" namespace="" name="IntlDateFormatter">
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create a date formatter">Object oriented style</description>
       <return type="void"/>
@@ -8,11 +8,11 @@
     <parameter name="locale" optional="false" byreference="false" type="string"/>
     <parameter name="datetype" optional="false" byreference="false" type="int"/>
     <parameter name="timetype" optional="false" byreference="false" type="int"/>
-    <parameter name="timezone" optional="true" byreference="false" type="string"/>
-    <parameter name="calendar" optional="true" byreference="false" type="int"/>
+    <parameter name="timezone" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="calendar" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="pattern" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="create" abstract="false" static="false" final="false">
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create a date formatter">Object oriented style</description>
       <return type="IntlDateFormatter"/>
@@ -20,73 +20,94 @@
     <parameter name="locale" optional="false" byreference="false" type="string"/>
     <parameter name="datetype" optional="false" byreference="false" type="int"/>
     <parameter name="timetype" optional="false" byreference="false" type="int"/>
-    <parameter name="timezone" optional="true" byreference="false" type="string"/>
-    <parameter name="calendar" optional="true" byreference="false" type="int"/>
+    <parameter name="timezone" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="calendar" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="pattern" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="format" abstract="false" static="false" final="false">
+  <method name="format" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Format the date/time value as a string">Object oriented style</description>
       <return type="string"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
+  <method name="formatObject" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Formats an object">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="format" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
+  </method>
   <method name="getCalendar" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Get the calendar used for the IntlDateFormatter">Object oriented style</description>
+      <description compact="Get the calendar type used for the IntlDateFormatter">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getDateType" abstract="false" static="false" final="false">
+  <method name="getDateType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the datetype used for the IntlDateFormatter">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getErrorCode" abstract="false" static="false" final="false">
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the error code from last operation">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getErrorMessage" abstract="false" static="false" final="false">
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the error text from the last operation.">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getLocale" abstract="false" static="false" final="false">
+  <method name="getLocale" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the locale used by formatter">Object oriented style</description>
       <return type="string"/>
     </docblock>
     <parameter name="which" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="getPattern" abstract="false" static="false" final="false">
+  <method name="getPattern" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the pattern used for the IntlDateFormatter">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getTimeType" abstract="false" static="false" final="false">
+  <method name="getTimeType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the timetype used for the IntlDateFormatter">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getTimeZoneId" abstract="false" static="false" final="false">
+  <method name="getTimeZoneId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the timezone-id used for the IntlDateFormatter">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="isLenient" abstract="false" static="false" final="false">
+  <method name="getCalendarObject" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get copy of formatter&#x2BC;s calendar object">Object oriented style</description>
+      <return type="IntlCalendar"/>
+    </docblock>
+  </method>
+  <method name="getTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get formatter&#x2BC;s timezone">Object oriented style</description>
+      <return type="IntlTimeZone"/>
+    </docblock>
+  </method>
+  <method name="isLenient" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the lenient used for the IntlDateFormatter">Object oriented style</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="localtime" abstract="false" static="false" final="false">
+  <method name="localtime" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Parse string to a field-based time value">Object oriented style</description>
       <return type="array"/>
@@ -94,7 +115,7 @@
     <parameter name="value" optional="false" byreference="false" type="string"/>
     <parameter name="position" optional="true" byreference="false" type="int"/>
   </method>
-  <method name="parse" abstract="false" static="false" final="false">
+  <method name="parse" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Parse string to a timestamp value">Object oriented style</description>
       <return type="int"/>
@@ -104,30 +125,37 @@
   </method>
   <method name="setCalendar" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="sets the calendar used to the appropriate calendar, which must be">Object oriented style</description>
+      <description compact="Sets the calendar type used by the formatter">Object oriented style</description>
       <return type="bool"/>
     </docblock>
-    <parameter name="which" optional="false" byreference="false" type="int"/>
+    <parameter name="which" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="setLenient" abstract="false" static="false" final="false">
+  <method name="setLenient" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the leniency of the parser">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="lenient" optional="false" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="setPattern" abstract="false" static="false" final="false">
+  <method name="setPattern" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the pattern used for the IntlDateFormatter">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="pattern" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="setTimeZoneId" abstract="false" static="false" final="false">
+  <method name="setTimeZoneId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sets the time zone to use">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="zone" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets formatter&#x2BC;s timezone">Object oriented style</description>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="zone" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
 </class>
