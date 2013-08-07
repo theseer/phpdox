@@ -53,7 +53,6 @@ namespace TheSeer\phpDox {
         protected $map = array(
             'DirectoryScanner' => '\\TheSeer\\DirectoryScanner\\DirectoryScanner',
             'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
-            'EventFactory' => '\\TheSeer\\phpDox\\Generator\EventFactory',
             'ConfigLoader' => '\\TheSeer\\phpDox\\ConfigLoader'
         );
 
@@ -246,7 +245,7 @@ namespace TheSeer\phpDox {
          * @return Generator
          */
         protected function getGenerator() {
-            return new Generator($this->getInstanceFor('EventFactory'), $this->getLogger());
+            return new Generator($this->getLogger());
         }
 
         /**

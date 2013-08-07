@@ -48,11 +48,6 @@ namespace TheSeer\phpDox\Generator {
     class Generator {
 
         /**
-         * @var EventFactory
-         */
-        private $factory;
-
-        /**
          * @var \TheSeer\phpDox\ProgressLogger
          */
         private $logger;
@@ -139,8 +134,7 @@ namespace TheSeer\phpDox\Generator {
          * @param EventFactory   $factory
          * @param ProgressLogger $logger
          */
-        public function __construct(EventFactory $factory, ProgressLogger $logger) {
-            $this->factory = $factory;
+        public function __construct(ProgressLogger $logger) {
             $this->logger = $logger;
         }
 

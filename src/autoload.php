@@ -86,8 +86,6 @@ spl_autoload_register(
                 'theseer\\phpdox\\generator\\enricher\\phpmessdetectorconfig' => '/generator/enricher/pmd/PHPMessDetectorConfig.php',
                 'theseer\\phpdox\\generator\\enricher\\phpunit' => '/generator/enricher/phpunit/PHPUnit.php',
                 'theseer\\phpdox\\generator\\enricher\\phpunitconfig' => '/generator/enricher/phpunit/PHPUnitConfig.php',
-                'theseer\\phpdox\\generator\\eventfactory' => '/generator/EventFactory.php',
-                'theseer\\phpdox\\generator\\eventfactoryexception' => '/generator/EventFactory.php',
                 'theseer\\phpdox\\generator\\generator' => '/generator/Generator.php',
                 'theseer\\phpdox\\generator\\generatorexception' => '/generator/Generator.php',
                 'theseer\\phpdox\\generator\\interfaceconstantevent' => '/generator/events/InterfaceConstantEvent.php',
