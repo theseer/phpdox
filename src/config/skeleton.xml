@@ -61,7 +61,7 @@
 
             <!-- A generation process consists of one or more build tasks and of (optional) enrich sources -->
 
-            <enrich base="${basedir}/build/logs">
+            <enrich base="${basedir}/build">
                 <!-- @base - (Base-)Directory of datafiles used for enrich process -->
 
                 <!-- enrichment source -->
@@ -70,8 +70,7 @@
                     <!--         known types by default are: checkstyle, pmd, clover, phpunit -->
 
                     <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
-                    <!-- <file name="checkstyle.xml" /> -->
-
+                    <!-- <file name="logs/checkstyle.xml" /> -->
                 </source>
 
                 <!--
@@ -82,11 +81,11 @@
                 <source type="clover">
                     <file name="clover.xml" />
                 </source>
+                -->
 
                 <source type="phpunit">
-                    <file name="junit.xml" />
+                    <directory name="coverage/xml" />
                 </source>
-                -->
 
             </enrich>
 
