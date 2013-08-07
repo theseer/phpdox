@@ -34,24 +34,50 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox {
-    /**
-     * @var BootstrapApi $phpDox
-     */
 
-    $phpDox->registerEngine('xml', 'Raw XML Output saver after enrichment')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Xml');
+namespace TheSeer\phpDox\Generator\Engine {
 
-    $phpDox->registerEngine('html', 'Simple HTML Output builder')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Html')
-        ->withConfigClass('TheSeer\\phpDox\\Generator\\Engine\\HtmlConfig');
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\phpDox\BuildConfig;
+    use TheSeer\phpDox\Generator\AbstractEvent;
+    use TheSeer\phpDox\Generator\ClassStartEvent;
+    use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    $phpDox->registerEngine('graph', 'DOT output builder')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Graph')
-        ->withConfigClass('TheSeer\\phpDox\\Generator\\Engine\\GraphConfig');
+    class Xml extends AbstractEngine {
 
-    $phpDox->registerEngine('todo', 'Simple TODO list builder from @todo annotations')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Todo');
-    // ->withConfigClass('TheSeer\\phpDox\\Engine\\TodoConfig');
+        protected $eventMap = array(
+            'class.start' => 'buildClass',
+            'trait.start' => 'buildTrait',
+            'interface.start' => 'buildInterface',
+        );
 
+        protected $outputDir;
+
+        public function __construct(BuildConfig $config) {
+            $this->outputDir = $config->getOutputDirectory();
+        }
+
+        public function getEvents() {
+            return array_keys($this->eventMap);
+        }
+
+        public function handle(AbstractEvent $event) {
+            if ($event instanceof ClassStartEvent) {
+                $ctx = $event->getClass();
+                $path = 'classes';
+            } else if ($event instanceof TraitStartEvent) {
+                $ctx = $event->getTrait();
+                $path = 'traits';
+            } else if ($event instanceof InterfaceStartEvent) {
+                $ctx = $event->getInterface();
+                $path = 'interfaces';
+            }
+            $dom = new fDOMDocument();
+            $dom->appendChild($dom->importNode($ctx, true));
+            $this->saveDomDocument($dom,
+                $this->outputDir . '/' . $path . '/' . str_replace('\\', '_', $ctx->getAttribute('full')) . '.xml'
+            );
+        }
+    }
 }
