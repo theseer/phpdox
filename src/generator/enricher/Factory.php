@@ -47,7 +47,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
     }
 
     class FactoryException extends \Exception {
-
         const UnknownEnricher = 1;
     }
 

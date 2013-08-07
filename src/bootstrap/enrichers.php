@@ -47,4 +47,8 @@ namespace TheSeer\phpDox {
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPMessDetector')
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPMessDetectorConfig');
 
+    $phpDox->registerEnricher('phpunit', 'PHPUnit code coverage enricher')
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPUnit')
+        ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPUnitConfig');
+
 }
