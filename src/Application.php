@@ -156,7 +156,7 @@ namespace TheSeer\phpDox {
                     }
                 }
             }
-            $this->logger->log('Collector process completed');
+            $this->logger->log("Collector process completed\n");
         }
 
         /**
@@ -166,7 +166,7 @@ namespace TheSeer\phpDox {
          */
         public function runGenerator(GeneratorConfig $config) {
             $this->logger->reset();
-            $this->logger->log("Starting generator\n");
+            $this->logger->log("Starting generator");
 
             $engineFactory = $this->factory->getInstanceFor('EngineFactory');
             $enricherFactory = $this->factory->getInstanceFor('EnricherFactory');
@@ -190,16 +190,17 @@ namespace TheSeer\phpDox {
             }
 
             $this->logger->log('Loading enrichers');
-            foreach($config->getActiveEnrichSources() as $type => $enrichCfg) {
+            foreach($config->getActiveEnrichSources() as $enrichCfg) {
                 try {
-                    $generator->addEnricher( $enricherFactory->getInstanceFor($enrichCfg) );
+                    $enricher = $enricherFactory->getInstanceFor($enrichCfg);
+                    $generator->addEnricher( $enricher );
                     $this->logger->log(
-                        sprintf('Enricher %s initialized successfully', $type)
+                        sprintf('Enricher %s initialized successfully', $enricher->getName())
                     );
                 } catch (EnricherException $e) {
                     $this->logger->log(
                         sprintf("Exception while initializing enricher %s:\n\n    %s\n",
-                            $type,
+                            $enricher->getName(),
                             $e->getMessage()
                         )
                     );

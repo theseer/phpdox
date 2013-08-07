@@ -62,7 +62,7 @@ namespace TheSeer\phpDox {
             if ($pad !=0) {
                 echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
             }
-            echo "\n\n";
+            echo "\n";
         }
 
         /**

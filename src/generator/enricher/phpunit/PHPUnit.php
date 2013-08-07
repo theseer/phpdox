@@ -5,6 +5,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class PHPUnit implements EnricherInterface {
 
+        /**
+         * @return string
+         */
+        public function getName() {
+            return 'PHPUnit Coverage XML';
+        }
+
         public function enrich(AbstractEvent $event) {
             // TODO: Implement enrich() method.
         }

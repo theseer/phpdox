@@ -19,6 +19,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->loadViolations($config->getLogFilePath());
         }
 
+        /**
+         * @return string
+         */
+        public function getName() {
+            return 'PHPMessDetector XML';
+        }
+
         public function enrich(AbstractEvent $event) {
             if ($event instanceof ClassStartEvent) {
                 $ctx = $event->getClass();

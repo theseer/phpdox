@@ -20,6 +20,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->loadFindings($config->getLogFilePath());
         }
 
+        /**
+         * @return string
+         */
+        public function getName() {
+            return 'CheckStyle XML';
+        }
+
         public function enrich(AbstractEvent $event) {
             if ($event instanceof ClassStartEvent) {
                 $ctx = $event->getClass();

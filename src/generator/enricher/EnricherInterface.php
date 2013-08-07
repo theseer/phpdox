@@ -40,6 +40,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\Generator\AbstractEvent;
 
     interface EnricherInterface {
+
+        /**
+         * @return string
+         */
+        public function getName();
+
+
         public function enrich(AbstractEvent $event);
     }
 
