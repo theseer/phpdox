@@ -4,6 +4,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\fDOM\fDOMException;
     use TheSeer\phpDox\Generator\AbstractEvent;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
@@ -39,11 +40,24 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function loadFindings($xmlFile) {
-            $dom = new fDOMDocument();
-            $dom->load($xmlFile);
             $this->findings = array();
-            foreach($dom->query('/checkstyle/file') as $file) {
-                $this->findings[$file->getAttribute('name')] = $file->query('*');
+            try {
+                if (!file_exists($xmlFile)) {
+                    throw new EnricherException(
+                        sprintf('Logfile "%s" not found.', $xmlFile),
+                        EnricherException::LoadError
+                    );
+                }
+                $dom = new fDOMDocument();
+                $dom->load($xmlFile);
+                foreach($dom->query('/checkstyle/file') as $file) {
+                    $this->findings[$file->getAttribute('name')] = $file->query('*');
+                }
+            } catch (fDOMException $e) {
+                throw new EnricherException(
+                    'Parsing checkstyle logfile failed: ' . $e->getMessage(),
+                    EnricherException::LoadError
+                );
             }
         }
 

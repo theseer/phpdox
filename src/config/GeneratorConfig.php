@@ -87,7 +87,7 @@ namespace TheSeer\phpDox {
             if (!is_array($this->enrichers)) {
                 $this->enrichers = array();
                 foreach($this->ctx->query('cfg:enrich/cfg:source[@type and (not(@enabled) or @enabled="true")]') as $ctx) {
-                    $this->enrichers[] = new EnrichConfig($this, $ctx);
+                    $this->enrichers[$ctx->getAttribute('type')] = new EnrichConfig($this, $ctx);
                 }
             }
             return $this->enrichers;

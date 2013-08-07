@@ -23,7 +23,19 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         public function getLogFilePath() {
-            return 'build/logs/checkstyle.xml';
+            $path = '';
+            if ($this->context->parentNode->hasAttribute('base')) {
+                $basedirDefault = dirname($this->context->ownerDocument->baseURI);
+                $path = $this->context->parentNode->getAttribute('base', $basedirDefault . '/build/logs');
+            }
+            if ($path != '') { $path .= '/'; }
+            $file = $this->context->queryOne('cfg:file');
+            if ($file && $file->hasAttribute('name')) {
+                $path .= $file->getAttribute('name');
+            } else {
+                $path .= 'checkstyle.xml';
+            }
+            return $path;
         }
     }
 

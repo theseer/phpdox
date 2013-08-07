@@ -158,7 +158,7 @@ namespace TheSeer\phpDox\Generator {
                 }
                 $hash = spl_object_hash($engine);
                 if (isset($this->events[$event][$hash])) {
-                    throw GeneratorException("Engine instance already registered for event '$event'", GeneratorException::AlreadyRegistered);
+                    throw new GeneratorException("Engine instance already registered for event '$event'", GeneratorException::AlreadyRegistered);
                 }
                 $this->events[$event][$hash] = $engine;
             }

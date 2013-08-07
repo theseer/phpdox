@@ -39,12 +39,26 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function loadViolations($xmlFile) {
-            $dom = new fDOMDocument();
-            $dom->load($xmlFile);
             $this->violations = array();
-            foreach($dom->query('/pmd/file') as $file) {
-                $this->violations[$file->getAttribute('name')] = $file->query('*');
+            try {
+                if (!file_exists($xmlFile)) {
+                    throw new EnricherException(
+                        sprintf('Logfile "%s" not found.', $xmlFile),
+                        EnricherException::LoadError
+                    );
+                }
+                $dom = new fDOMDocument();
+                $dom->load($xmlFile);
+                foreach($dom->query('/pmd/file') as $file) {
+                    $this->violations[$file->getAttribute('name')] = $file->query('*');
+                }
+            } catch (fDOMException $e) {
+                throw new EnricherException(
+                    'Parsing pmd logfile failed: ' . $e->getMessage(),
+                    EnricherException::LoadError
+                );
             }
+
         }
 
         private function processViolations(fDOMElement $ctx, \DOMNodeList $violations) {

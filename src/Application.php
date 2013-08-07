@@ -35,6 +35,7 @@ namespace TheSeer\phpDox {
     use TheSeer\phpDox\Collector\InheritanceResolver;
     use \Theseer\DirectoryScanner\IncludeExcludeFilterIterator as Scanner;
     use \TheSeer\fDom\fDomDocument;
+    use TheSeer\phpDox\Generator\Enricher\EnricherException;
 
     /**
      * The main Application class
@@ -188,11 +189,26 @@ namespace TheSeer\phpDox {
                 $generator->addEngine( $engineFactory->getInstanceFor($buildCfg) );
             }
 
-            foreach($config->getActiveEnrichSources() as $enrichCfg) {
-                $generator->addEnricher( $enricherFactory->getInstanceFor($enrichCfg) );
+            $this->logger->log('Loading enrichers');
+            foreach($config->getActiveEnrichSources() as $type => $enrichCfg) {
+                try {
+                    $generator->addEnricher( $enricherFactory->getInstanceFor($enrichCfg) );
+                    $this->logger->log(
+                        sprintf('Enricher %s initialized successfully', $type)
+                    );
+                } catch (EnricherException $e) {
+                    $this->logger->log(
+                        sprintf("Exception while initializing enricher %s:\n\n    %s\n",
+                            $type,
+                            $e->getMessage()
+                        )
+                    );
+                }
             }
+
             $pconfig = $config->getProjectConfig();
 
+            $this->logger->log("Starting event loop.\n");
             $generator->run( new \TheSeer\phpDox\Project\Project($pconfig->getSourceDirectory(), $pconfig->getWorkDirectory()) );
             $this->logger->log("Generator process completed");
         }
