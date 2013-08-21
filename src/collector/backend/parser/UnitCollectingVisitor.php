@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
     use TheSeer\phpDox\Project\AbstractUnitObject;
     use TheSeer\phpDox\Project\AbstractVariableObject;
+    use TheSeer\phpDox\Project\InlineComment;
     use TheSeer\phpDox\Project\MemberObject;
     use TheSeer\phpDox\Project\MethodObject;
     use TheSeer\phpDox\Project\ParameterObject;
@@ -107,6 +108,8 @@ namespace TheSeer\phpDox\Collector\Backend {
                 return;
             } elseif ($node instanceof \PHPParser_Node_Stmt_ClassConst) {
                 $this->processClassConstant($node);
+            } elseif ($node instanceof \PHPParser_Comment) {
+                //
             }
         }
 
@@ -157,15 +160,13 @@ namespace TheSeer\phpDox\Collector\Backend {
                     $this->unit->addImplements(join('\\', $implements->parts));
                 }
             }
-
-            //var_dump($node);
-            //die();
         }
 
         /**
          * @param \PHPParser_Node_Stmt_ClassMethod $node
          */
         private function processMethod(\PHPParser_Node_Stmt_ClassMethod $node) {
+
             /** @var $method \TheSeer\phpDox\Project\MethodObject */
             $method = $this->unit->addMethod($node->name);
             $method->setStartLine($node->getAttribute('startLine'));
@@ -187,6 +188,22 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $method->setDocBlock($block);
             }
             $this->processMethodParams($method, $node->params);
+            $this->processInlineComments($method, $node->stmts);
+        }
+
+        private function processInlineComments(MethodObject $method, array $stmts) {
+            foreach($stmts as $stmt) {
+                if ($stmt->hasAttribute('comments')) {
+                    foreach($stmt->getAttribute('comments') as $comment) {
+                        $method->addInlineComment(
+                            new InlineComment($comment->getLine(), $comment->getText())
+                        );
+                    }
+                }
+                if ($stmt->stmts) {
+                    $this->processInlineComments($method, $stmt->stmts);
+                }
+            }
         }
 
         /**

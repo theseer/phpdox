@@ -118,6 +118,9 @@ namespace TheSeer\phpDox\Project {
             $this->ctx->setAttribute('visibility', $visibility);
         }
 
+        /**
+         * @param DocBlock $docblock
+         */
         public function setDocBlock(DocBlock $docblock) {
             $docNode = $docblock->asDom($this->ctx->ownerDocument);
             if ($this->ctx->hasChildNodes()) {
@@ -127,11 +130,33 @@ namespace TheSeer\phpDox\Project {
             $this->ctx->appendChild($docNode);
         }
 
+        /**
+         * @param string $name
+         *
+         * @return ParameterObject
+         */
         public function addParameter($name) {
             $parameter = new ParameterObject($this->ctx->appendElementNS(self::XMLNS, 'parameter'));
             $parameter->setName($name);
             return $parameter;
+        }
 
+
+        public function addInlineComment($InlineComment) {
+            $this->getInlineContainer()->appendChild(
+                $InlineComment->asDom($this->ctx->ownerDocument)
+            );
+        }
+
+        /**
+         * @return fDOMElement
+         */
+        private function getInlineContainer() {
+            $node = $this->ctx->queryOne('phpdox:inline');
+            if ($node !== NULL) {
+                return $node;
+            }
+            return $this->ctx->appendElementNS(self::XMLNS, 'inline');
         }
 
     }

@@ -133,6 +133,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\project\\domcollectioninterface' => '/project/DOMCollectionInterface.php',
                 'theseer\\phpdox\\project\\indexcollection' => '/project/IndexCollection.php',
                 'theseer\\phpdox\\project\\indexcollectionexception' => '/project/IndexCollection.php',
+                'theseer\\phpdox\\project\\inlinecomment' => '/project/InlineComment.php',
                 'theseer\\phpdox\\project\\interfaceobject' => '/project/InterfaceObject.php',
                 'theseer\\phpdox\\project\\memberobject' => '/project/MemberObject.php',
                 'theseer\\phpdox\\project\\methodobject' => '/project/MethodObject.php',
