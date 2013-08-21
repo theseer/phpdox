@@ -141,8 +141,10 @@ namespace TheSeer\phpDox\Project {
             return $parameter;
         }
 
-
-        public function addInlineComment($InlineComment) {
+        /**
+         * @param InlineComment $InlineComment
+         */
+        public function addInlineComment(InlineComment $InlineComment) {
             $this->getInlineContainer()->appendChild(
                 $InlineComment->asDom($this->ctx->ownerDocument)
             );

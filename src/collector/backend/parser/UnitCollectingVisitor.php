@@ -195,9 +195,10 @@ namespace TheSeer\phpDox\Collector\Backend {
             foreach($stmts as $stmt) {
                 if ($stmt->hasAttribute('comments')) {
                     foreach($stmt->getAttribute('comments') as $comment) {
-                        $method->addInlineComment(
-                            new InlineComment($comment->getLine(), $comment->getText())
-                        );
+                        $inline = new InlineComment($comment->getLine(), $comment->getText());
+                        if ($inline->getCount() != 0) {
+                            $method->addInlineComment($inline);
+                        }
                     }
                 }
                 if ($stmt->stmts) {

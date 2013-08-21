@@ -21,6 +21,10 @@ namespace TheSeer\phpDox\Project {
             );
         }
 
+        public function getCount() {
+            return $this->fragment->childNodes->length;
+        }
+
         public function asDom(fDOMDocument $dom) {
             return $dom->importNode($this->fragment, true);
         }
