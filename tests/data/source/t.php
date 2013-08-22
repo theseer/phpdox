@@ -12,9 +12,45 @@ class FooException extends \Exception {}
 
 
 interface someInterface {}
+
 class base {
 
-    public function baseMethod() {}
+    public function baseMethod() {
+
+        // some inline comment - syntax 1
+        echo "123";
+
+        /* comment - syntax 2
+           multine comment
+           for the win ;)
+         */
+
+        $x = 1 + 2;
+
+        // @TODO: fix me as well
+        $y = '12345';
+
+        # comment syntax 4
+        # multi line
+        # in a different
+        # way
+        for($a=0; $a<100; $a++) {
+            // comment within foreach
+            $y++;
+        }
+
+        /**
+         * @todo fix me!
+         * with a second line
+         */
+        $z = $x * $y;
+
+        echo $z;
+
+        /** docblock style comment - syntax 3 */
+
+        $this->someMethod();
+    }
 }
 
 /**
