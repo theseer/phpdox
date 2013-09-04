@@ -93,6 +93,9 @@
        <extension>
         <name>iconv</name>
        </extension>
+       <extension>
+        <name>fileinfo</name>
+       </extension>
       </required>
      </dependencies>
      <phprelease>
