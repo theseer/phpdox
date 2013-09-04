@@ -293,6 +293,9 @@ EOF;
             if (!extension_loaded('iconv')) {
                 throw new CLIException("ext/iconv not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
             }
+            if (!extension_loaded('fileinfo')) {
+                throw new CLIException("ext/fileinfo not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+            }
             if (extension_loaded('xdebug')) {
                 ini_set('xdebug.scream', 0);
                 ini_set('xdebug.max_nesting_level', 8192);
