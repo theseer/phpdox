@@ -104,6 +104,8 @@ namespace TheSeer\phpDox {
         protected function runResolver($ctx) {
             if (defined('PHPDOX_VERSION') && constant('PHPDOX_VERSION')=='%development%') {
                 $home = realpath(__DIR__.'/../../');
+            } else if (defined('PHPDOX_PHAR')) {
+                $home = 'phar://' . constant('PHPDOX_PHAR');
             } else {
                 $home = realpath(__DIR__.'/../');
             }
