@@ -138,6 +138,12 @@ namespace TheSeer\phpDox {
 
                 $logger->buildSummary();
 
+            } catch (CLIEnvironmentException $e) {
+                /*
+                $this->showVersion();
+                fwrite(STDERR, $e->getMessage()."\n\n");
+                exit(3);
+                */
             } catch (CLIOptionsException $e) {
                 $this->showVersion();
                 fwrite(STDERR, "\n".$e->getMessage()."\n\n");
@@ -285,16 +291,28 @@ EOF;
 
         private function preBootstrap() {
             if (!extension_loaded('tokenizer')) {
-                throw new CLIException("ext/tokenizer not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+                throw new CLIEnvironmentException(
+                    "ext/tokenizer not installed. Please adjust your PHP configuration",
+                    CLIEnvironmentException::ExtensionMissing
+                );
             }
             if (!extension_loaded('dom')) {
-                throw new CLIException("ext/dom not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+                throw new CLIEnvironmentException(
+                    "ext/dom not installed. Please adjust your PHP configuration",
+                    CLIEnvironmentException::ExtensionMissing
+                );
             }
             if (!extension_loaded('iconv')) {
-                throw new CLIException("ext/iconv not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+                throw new CLIEnvironmentException(
+                    "ext/iconv not installed. Please adjust your PHP configuration",
+                    CLIEnvironmentException::ExtensionMissing
+                );
             }
             if (!extension_loaded('fileinfo')) {
-                throw new CLIException("ext/fileinfo not installed. Please adjust your PHP configuration", CLIException::ExtensionMissing);
+                throw new CLIEnvironmentException(
+                    "ext/fileinfo not installed. Please adjust your PHP configuration",
+                    CLIEnvironmentException::ExtensionMissing
+                );
             }
             if (extension_loaded('xdebug')) {
                 ini_set('xdebug.scream', 0);
@@ -307,7 +325,7 @@ EOF;
     }
 
 
-    class CLIException extends \Exception {
+    class CLIEnvironmentException extends \Exception {
         const ExtensionMissing = 1;
     }
 
