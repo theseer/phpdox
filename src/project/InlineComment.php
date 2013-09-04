@@ -56,9 +56,7 @@ namespace TheSeer\phpDox\Project {
                             $node = $this->fragment->appendChild(
                                 $this->fragment->ownerDocument->createElementNS(self::XMLNS, 'todo')
                             );
-                            $node->appendChild(
-                                $this->fragment->ownerDocument->createTextNode(trim($matches[2]))
-                            );
+                            $node->setAttribute('value', trim($matches[2]));
                             break;
                         }
                     }
@@ -66,15 +64,11 @@ namespace TheSeer\phpDox\Project {
                     $node = $this->fragment->appendChild(
                         $this->fragment->ownerDocument->createElementNS(self::XMLNS, 'comment')
                     );
-                    $node->appendChild(
-                        $this->fragment->ownerDocument->createTextNode(trim($comment))
-                    );
+                    $node->setAttribute('value', trim($comment));
                 }
-                /*
-                if ($node instanceof fDOMElement) {
+                if (isset($node) && $node instanceof fDOMElement) {
                     $node->setAttribute('line', $this->startLine + $pos);
                 }
-                */
             }
         }
 
