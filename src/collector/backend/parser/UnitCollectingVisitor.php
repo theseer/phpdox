@@ -188,7 +188,9 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $method->setDocBlock($block);
             }
             $this->processMethodParams($method, $node->params);
-            $this->processInlineComments($method, $node->stmts);
+            if ($node->stmts) {
+                $this->processInlineComments($method, $node->stmts);
+            }
         }
 
         private function processInlineComments(MethodObject $method, array $stmts) {
