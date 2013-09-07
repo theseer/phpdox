@@ -32,9 +32,9 @@
  */
 namespace TheSeer\phpDox {
 
+    use TheSeer\DirectoryScanner\DirectoryScanner;
     use TheSeer\phpDox\Collector\InheritanceResolver;
     use \Theseer\DirectoryScanner\IncludeExcludeFilterIterator as Scanner;
-    use \TheSeer\fDom\fDomDocument;
     use TheSeer\phpDox\Generator\Enricher\EnricherException;
 
     /**
@@ -209,8 +209,27 @@ namespace TheSeer\phpDox {
 
             $pconfig = $config->getProjectConfig();
 
+            if (!file_exists($pconfig->getWorkDirectory() . '/index.xml')) {
+                throw new ApplicationException(
+                    'Workdirectory does not contain an index.xml file. Did you run the collector?',
+                    ApplicationException::IndexMissing
+                );
+            }
+
+            if (!file_exists($pconfig->getWorkDirectory() . '/source.xml')) {
+                throw new ApplicationException(
+                    'Workdirectory does not contain an source.xml file. Did you run the collector?',
+                    ApplicationException::SourceMissing
+                );
+            }
+
             $this->logger->log("Starting event loop.\n");
-            $generator->run( new \TheSeer\phpDox\Project\Project($pconfig->getSourceDirectory(), $pconfig->getWorkDirectory()) );
+            $generator->run(
+                new \TheSeer\phpDox\Generator\Project(
+                    $pconfig->getSourceDirectory(),
+                    $pconfig->getWorkDirectory()
+                )
+            );
             $this->logger->log("Generator process completed");
         }
 
@@ -219,5 +238,7 @@ namespace TheSeer\phpDox {
     class ApplicationException extends \Exception {
         const UnknownEngine = 1;
         const UnknownEnricher = 2;
+        const IndexMissing = 3;
+        const SourceMissing = 4;
     }
 }

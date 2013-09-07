@@ -43,7 +43,6 @@ namespace TheSeer\phpDox\Generator {
     use \TheSeer\phpDox\Generator\Engine\EngineInterface;
     use \TheSeer\phpDox\Generator\Enricher\EnricherInterface;
     use \TheSeer\phpDox\ProgressLogger;
-    use \TheSeer\phpDox\Project\Project;
 
     class Generator {
 
