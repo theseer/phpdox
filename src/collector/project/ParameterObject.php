@@ -34,20 +34,17 @@
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
-    use \TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
-    class InterfaceObject extends AbstractUnitObject {
-        protected $rootName = 'interface';
+    /**
+     *
+     */
+    class ParameterObject extends AbstractVariableObject {
 
-        public function addImplementor(AbstractUnitObject $unit) {
-            if ($this->getRootNode()->queryOne(sprintf('phpdox:implementor[@full = "%s"]', $unit->getName())) !== NULL) {
-                return;
-            }
-            $implementor = $this->getRootNode()->appendElementNS(self::XMLNS, 'implementor');
-            $this->setName($unit->getName(), $implementor);
-
+        public function setByReference($isRef) {
+            $this->ctx->setAttribute('byreference', $isRef ? 'true' : 'false');
         }
     }
 

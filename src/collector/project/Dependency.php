@@ -1,6 +1,6 @@
 <?php
 
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
 

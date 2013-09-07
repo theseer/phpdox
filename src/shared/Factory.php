@@ -231,7 +231,7 @@ namespace TheSeer\phpDox {
          * @return Collector\Collector
          */
         protected function getCollector($srcDir, $xmlDir) {
-            return new Collector($this->getLogger(), new \TheSeer\phpDox\Project\Project($srcDir, $xmlDir));
+            return new Collector($this->getLogger(), new \TheSeer\phpDox\Collector\Project($srcDir, $xmlDir));
         }
 
         /**

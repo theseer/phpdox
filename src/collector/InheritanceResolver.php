@@ -37,14 +37,8 @@
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\ProgressLogger;
-    use TheSeer\phpDox\Project\ClassObject;
-    use TheSeer\phpDox\Project\Dependency;
-    use TheSeer\phpDox\Project\Project;
-    use TheSeer\phpDox\Project\AbstractUnitObject;
     use TheSeer\phpDox\InheritanceConfig;
-    use TheSeer\phpDox\Project\ProjectException;
 
     /**
      * Inheritance resolving class
@@ -57,7 +51,7 @@ namespace TheSeer\phpDox\Collector {
         private $logger;
 
         /**
-         * @var Project
+         * @var \TheSeer\phpDox\Collector\Project
          */
         private $project;
 

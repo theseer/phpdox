@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\Collector {
     use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Collector\Backend\BackendInterface;
     use TheSeer\phpDox\Collector\Backend\ParseErrorException;
-    use TheSeer\phpDox\Project\Project;
+    use TheSeer\phpDox\Collector\Project;
 
     /**
      * Collector processing class
@@ -53,7 +53,7 @@ namespace TheSeer\phpDox\Collector {
         private $logger;
 
         /**
-         * @var \TheSeer\phpDox\Project\Project
+         * @var Project
          */
         private $project;
 
@@ -120,6 +120,11 @@ namespace TheSeer\phpDox\Collector {
          */
         private function processFile(\SplFileInfo $file) {
             try {
+                if ($file->getSize() === 0) {
+                    $this->logger->progress('processed');
+                    return true;
+                }
+
                 $result = $this->backend->parse($file);
                 if ($result->hasClasses()) {
                     foreach($result->getClasses() as $class) {

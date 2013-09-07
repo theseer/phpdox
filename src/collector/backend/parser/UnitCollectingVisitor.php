@@ -36,13 +36,10 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\phpDox\Project\AbstractUnitObject;
-    use TheSeer\phpDox\Project\AbstractVariableObject;
-    use TheSeer\phpDox\Project\InlineComment;
-    use TheSeer\phpDox\Project\MemberObject;
-    use TheSeer\phpDox\Project\MethodObject;
-    use TheSeer\phpDox\Project\ParameterObject;
-
+    use TheSeer\phpDox\Collector\AbstractUnitObject;
+    use TheSeer\phpDox\Collector\AbstractVariableObject;
+    use TheSeer\phpDox\Collector\InlineComment;
+    use TheSeer\phpDox\Collector\MethodObject;
     use TheSeer\phpDox\DocBlock\Parser as DocBlockParser;
 
     /**
@@ -167,7 +164,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         private function processMethod(\PHPParser_Node_Stmt_ClassMethod $node) {
 
-            /** @var $method \TheSeer\phpDox\Project\MethodObject */
+            /** @var $method \TheSeer\phpDox\Collector\MethodObject */
             $method = $this->unit->addMethod($node->name);
             $method->setStartLine($node->getAttribute('startLine'));
             $method->setEndLine($node->getAttribute('endLine'));
@@ -210,7 +207,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
-         * @param \TheSeer\phpDox\Project\MethodObject $method
+         * @param MethodObject $method
          * @param array                                $params
          */
         private function processMethodParams(MethodObject $method, array $params) {

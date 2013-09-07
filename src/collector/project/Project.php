@@ -34,7 +34,7 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
@@ -156,40 +156,6 @@ namespace TheSeer\phpDox\Project {
          */
         public function hasNamespaces() {
             return $this->index->export()->query('count(//phpdox:namespace[not(@name="/")])') > 0;
-        }
-
-        /**
-         * @return \DOMNodeList
-         */
-        public function getNamespaces() {
-            return $this->index->export()->query('//phpdox:namespace');
-        }
-
-        /**
-         * @param string $namespace
-         * @return \DOMNodeList
-         */
-        public function getClasses($namespace = NULL) {
-            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return $this->index->export()->query($root . 'phpdox:class');
-        }
-
-        /**
-         * @param string $namespace
-         * @return \DOMNodeList
-         */
-        public function getTraits($namespace = NULL) {
-            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return $this->index->export()->query($root . 'phpdox:trait');
-        }
-
-        /**
-         * @param string $namespace
-         * @return \DOMNodeList
-         */
-        public function getInterfaces($namespace = NULL) {
-            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return $this->index->export()->query($root . 'phpdox:interface');
         }
 
         /**

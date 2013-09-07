@@ -34,12 +34,39 @@
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
-    use \TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\DocBlock\DocBlock;
 
-    class ClassObject extends AbstractUnitObject {
-        protected $rootName = 'class';
+    class ConstantObject {
+
+        protected  $ctx;
+
+        public function __construct(fDOMElement $ctx) {
+            $this->ctx = $ctx;
+        }
+
+        public function export() {
+            return $this->ctx;
+        }
+
+        public function setName($name) {
+            $this->ctx->setAttribute('name', $name);
+        }
+
+        public function setValue($value) {
+            $this->ctx->setAttribute('value', $value);
+        }
+
+        public function setDocBlock(DocBlock $docblock) {
+            $docNode = $docblock->asDom($this->ctx->ownerDocument);
+            if ($this->ctx->hasChildNodes()) {
+                $this->ctx->insertBefore($docblock, $this->ctx->firstChild);
+                return;
+            }
+            $this->ctx->appendChild($docNode);
+        }
+
     }
-
 }

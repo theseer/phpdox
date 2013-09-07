@@ -34,7 +34,7 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;

@@ -34,29 +34,12 @@
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
-    use TheSeer\fDOM\fDOMDocument;
+    use \TheSeer\fDOM\fDOMDocument;
 
-    /**
-     *
-     */
-    interface DOMCollectionInterface {
-
-        /**
-         * @abstract
-         * @param \TheSeer\fDOM\fDOMDocument $dom
-         * @return void
-         */
-        public function import(fDOMDocument $dom);
-
-        /**
-         * @abstract
-         *
-         * @return \TheSeer\fDOM\fDOMDocument
-         */
-        public function export();
-
+    class TraitObject extends AbstractUnitObject {
+        protected $rootName = 'trait';
     }
 
 }

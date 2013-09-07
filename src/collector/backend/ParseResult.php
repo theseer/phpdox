@@ -36,9 +36,9 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\phpDox\Project\TraitObject;
-    use TheSeer\phpDox\Project\InterfaceObject;
-    use TheSeer\phpDox\Project\ClassObject;
+    use TheSeer\phpDox\Collector\TraitObject;
+    use TheSeer\phpDox\Collector\InterfaceObject;
+    use TheSeer\phpDox\Collector\ClassObject;
 
     /**
      *

@@ -34,38 +34,29 @@
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
-    use TheSeer\fDOM\fDOMElement;
-    use TheSeer\phpDox\DocBlock\DocBlock;
+    use TheSeer\fDOM\fDOMDocument;
 
-    class MemberObject extends AbstractVariableObject {
-
-        /**
-         * @param boolean $isStatic
-         */
-        public function setStatic($isStatic) {
-            $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
-        }
+    /**
+     *
+     */
+    interface DOMCollectionInterface {
 
         /**
-         * @param string $visibility
+         * @abstract
+         * @param \TheSeer\fDOM\fDOMDocument $dom
+         * @return void
          */
-        public function setVisibility($visibility) {
-            if (!in_array($visibility, array('public','private','protected'))) {
-                throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
-            }
-            $this->ctx->setAttribute('visibility', $visibility);
-        }
+        public function import(fDOMDocument $dom);
 
-        public function setDocBlock(DocBlock $docblock) {
-            $docNode = $docblock->asDom($this->ctx->ownerDocument);
-            if ($this->ctx->hasChildNodes()) {
-                $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
-                return;
-            }
-            $this->ctx->appendChild($docNode);
-        }
+        /**
+         * @abstract
+         *
+         * @return \TheSeer\fDOM\fDOMDocument
+         */
+        public function export();
 
     }
+
 }

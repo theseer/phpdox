@@ -35,7 +35,7 @@
      * @license    BSD License
      *
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
     use \TheSeer\fDOM\fDOMDocument;
     use \TheSeer\fDOM\fDOMElement;

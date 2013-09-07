@@ -34,35 +34,34 @@
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
      */
-namespace TheSeer\phpDox\Project {
+namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\DocBlock\DocBlock;
 
-    class ConstantObject {
+    class MemberObject extends AbstractVariableObject {
 
-        protected  $ctx;
-
-        public function __construct(fDOMElement $ctx) {
-            $this->ctx = $ctx;
+        /**
+         * @param boolean $isStatic
+         */
+        public function setStatic($isStatic) {
+            $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
         }
 
-        public function export() {
-            return $this->ctx;
-        }
-
-        public function setName($name) {
-            $this->ctx->setAttribute('name', $name);
-        }
-
-        public function setValue($value) {
-            $this->ctx->setAttribute('value', $value);
+        /**
+         * @param string $visibility
+         */
+        public function setVisibility($visibility) {
+            if (!in_array($visibility, array('public','private','protected'))) {
+                throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
+            }
+            $this->ctx->setAttribute('visibility', $visibility);
         }
 
         public function setDocBlock(DocBlock $docblock) {
             $docNode = $docblock->asDom($this->ctx->ownerDocument);
             if ($this->ctx->hasChildNodes()) {
-                $this->ctx->insertBefore($docblock, $this->ctx->firstChild);
+                $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
                 return;
             }
             $this->ctx->appendChild($docNode);
