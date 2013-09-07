@@ -279,6 +279,9 @@ Usage: phpdox [switches]
   -h, --help       Prints this usage information
   -v, --version    Prints the version and exits
 
+  -c, --collector  Run only collector process
+  -g, --generator  Run only generator process
+
       --engines    Show a list of available output engines and exit
       --backends   Show a list of available backends and exit
 
