@@ -18,14 +18,14 @@
     "ext-dom" : "*",
     "ext-xsl" : "*",
     "ext-iconv" : "*",
+    "ext-fileinfo": "*",
     "theseer/fdomdocument": ">=1.4.1",
     "theseer/directoryscanner" : ">=1.1.0",
     "theseer/fxsl" : ">=1.0",
     "phpunit/php-timer" : ">=1.0.4",
     "zetacomponents/base": ">=1.8.0",
     "zetacomponents/console-tools" : ">=1.6.0",
-    "nikic/php-parser" : ">=0.9.3",
-    "ext-fileinfo": "*"
+    "nikic/php-parser" : ">=0.9.4"
   },
   "autoload": {
     "classmap": [
