@@ -90,17 +90,17 @@ namespace TheSeer\phpDox\Generator {
 
 
         /**
-         * @return fDOMDocument
+         * @return Index
          */
         public function getIndex() {
-            return $this->index;
+            return new Index($this->index);
         }
 
         /**
-         * @return fDOMDocument
+         * @return SourceTree
          */
         public function getSourceTree() {
-            return $this->source;
+            return new SourceTree($this->source);
         }
 
         /**
@@ -114,7 +114,7 @@ namespace TheSeer\phpDox\Generator {
          * @return \DOMNodeList
          */
         public function getNamespaces() {
-            return $this->index->query('//phpdox:namespace');
+            return new NamespaceCollection($this->index->query('//phpdox:namespace'));
         }
 
         /**

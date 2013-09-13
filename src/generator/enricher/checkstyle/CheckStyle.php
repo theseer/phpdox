@@ -36,13 +36,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 /** @var TraitStartEvent $event */
                 $ctx = $event->getTrait();
             }
-            $fileNode = $ctx->queryOne('phpdox:file');
-            if (!$fileNode) {
-                return;
+            if ($ctx instanceof fDOMElement) {
+                debug_print_backtrace();
+                die();
             }
-            $file = $fileNode->getAttribute('realpath');
+            $file = $ctx->getSourceFile();
             if (isset($this->findings[$file])) {
-                $this->processFindings($ctx, $this->findings[$file]);
+                $this->processFindings($ctx->asDom(), $this->findings[$file]);
             }
         }
 
@@ -68,14 +68,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
         }
 
-        private function processFindings(fDOMElement $ctx, \DOMNodeList $findings) {
-            /** @var fDOMDocument $dom */
-            $dom = $ctx->ownerDocument;
+        private function processFindings(fDOMDocument $dom, \DOMNodeList $findings) {
 
             foreach($findings as $finding) {
                 /** @var fDOMElement $finding */
                 $line = $finding->getAttribute('line');
-                $ref = $ctx->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
+                $ref = $dom->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
                 if (!$ref) {
                     // One src file may contain multiple classes/traits/interfaces, so the
                     // finding might not apply to the current object since findings are based on filenames

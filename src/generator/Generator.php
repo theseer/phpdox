@@ -237,21 +237,21 @@ namespace TheSeer\phpDox\Generator {
             foreach($namespaces as $namespace) {
                 $this->handleEvent(new NamespaceStartEvent($namespace));
 
-                $classes = $this->project->getClasses($namespace->getAttribute('name'));
+                $classes = $namespace->getClasses();
                 $this->handleEvent(new NamespaceClassesStartEvent($classes, $namespace));
                 foreach($classes as $class) {
                     $this->processClass($class);
                 }
                 $this->handleEvent(new NamespaceClassesEndEvent($classes, $namespace));
 
-                $traits = $this->project->getTraits($namespace->getAttribute('name'));
+                $traits = $namespace->getTraits();
                 $this->handleEvent(new NamespaceTraitsStartEvent($traits, $namespace));
                 foreach($traits as $trait) {
                     $this->processTrait($trait);
                 }
                 $this->handleEvent(new NamespaceTraitsEndEvent($traits, $namespace));
 
-                $interfaces = $this->project->getInterfaces($namespace->getAttribute('name'));
+                $interfaces = $namespace->getInterfaces();
                 $this->handleEvent(new NamespaceInterfacesStartEvent($interfaces, $namespace));
                 foreach($interfaces as $interface) {
                     $this->processInterface($interface);
@@ -264,90 +264,78 @@ namespace TheSeer\phpDox\Generator {
         }
 
         /**
-         * @param fDomElement $class
+         * @param $class ClassEntry
          */
-        protected function processClass(fDOMElement $class) {
-            $classDom = new fDomDocument();
-            $classDom->load($this->xmlDir . '/' . $class->getAttribute('xml'));
-            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+        protected function processClass(ClassEntry $entry) {
+            $class = $entry->getClassObject($this->xmlDir);
+            $this->handleEvent(new ClassStartEvent($class));
 
-            foreach($classDom->query('//phpdox:class') as $classNode) {
-                $this->handleEvent(new ClassStartEvent($classNode));
-
-                foreach($classNode->query('phpdox:constant') as $constant) {
-                    $this->handleEvent(new ClassConstantEvent($constant, $classNode));
-                }
-
-                foreach($classNode->query('phpdox:member') as $member) {
-                    if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
-                        continue;
-                    }
-                    $this->handleEvent(new ClassMemberEvent($member, $classNode));
-                }
-
-                foreach($classNode->query('phpdox:method') as $method) {
-                    if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
-                        continue;
-                    }
-                    $this->handleEvent(new ClassMethodEvent($method, $classNode));
-                }
-                $this->handleEvent(new ClassEndEvent($classNode));
+            foreach($class->getConstants() as $constant) {
+                $this->handleEvent(new ClassConstantEvent($constant, $class));
             }
+
+            foreach($class->getMembers() as $member) {
+                if ($this->publicOnly && !$member->isPublic()) {
+                    continue;
+                }
+                $this->handleEvent(new ClassMemberEvent($member, $class));
+            }
+
+            foreach($class->getMethods() as $method) {
+                if ($this->publicOnly && !$method->isPublic()) {
+                    continue;
+                }
+                $this->handleEvent(new ClassMethodEvent($method, $class));
+            }
+            $this->handleEvent(new ClassEndEvent($class));
+
         }
 
         /**
-         * @param fDomElement $trait
+         * @param TraitEntry $traitEntry
          */
-        protected function processTrait(fDOMElement $trait) {
-            $traitDom = new fDomDocument();
-            $traitDom->load($this->xmlDir . '/' . $trait->getAttribute('xml'));
-            $traitDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+        protected function processTrait(TraitEntry $traitEntry) {
+            $trait = $traitEntry->getTraitObject($this->xmlDir);
 
-            foreach($traitDom->query('//phpdox:trait') as $traitNode) {
-                $this->handleEvent(new TraitStartEvent($traitNode));
+            $this->handleEvent(new TraitStartEvent($trait));
 
-                foreach($traitNode->query('phpdox:constant') as $constant) {
-                    $this->handleEvent(new TraitConstantEvent($constant, $traitNode));
-                }
-
-                foreach($traitNode->query('phpdox:member') as $member) {
-                    if ($this->publicOnly && ($member->getAttribute('visibility')!='public')) {
-                        continue;
-                    }
-                    $this->handleEvent(new TraitMemberEvent($member, $traitNode));
-                }
-
-                foreach($traitNode->query('phpdox:method') as $method) {
-                    if ($this->publicOnly && ($method->getAttribute('visibility')!='public')) {
-                        continue;
-                    }
-                    $this->handleEvent(new TraitMethodEvent($method, $traitNode));
-                }
-                $this->handleEvent(new TraitEndEvent($traitNode));
+            foreach($trait->getConstants() as $constant) {
+                $this->handleEvent(new TraitConstantEvent($constant, $trait));
             }
+
+            foreach($trait->getMembers() as $member) {
+                if ($this->publicOnly && !$member->isPublic()) {
+                    continue;
+                }
+                $this->handleEvent(new TraitMemberEvent($member, $trait));
+            }
+
+            foreach($trait->getMethods() as $method) {
+                if ($this->publicOnly && !$method->isPublic()) {
+                    continue;
+                }
+                $this->handleEvent(new TraitMethodEvent($method, $trait));
+            }
+            $this->handleEvent(new TraitEndEvent($trait));
         }
 
         /**
-         * @param fDomElement $interface
+         * @param InterfaceEntry $interface
          */
-        protected function processInterface(fDOMElement $interface) {
-            $interfaceDom = new fDomDocument();
-            $interfaceDom->load($this->xmlDir . '/' . $interface->getAttribute('xml'));
-            $interfaceDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+        protected function processInterface(InterfaceEntry $interfaceEntry) {
+            $interface = $interfaceEntry->getInterfaceObject($this->xmlDir);
 
-            foreach($interfaceDom->query('//phpdox:interface') as $interfaceNode) {
-                $this->handleEvent(new InterfaceStartEvent($interfaceNode));
+            $this->handleEvent(new InterfaceStartEvent($interface));
 
-                foreach($interfaceNode->query('phpdox:constant') as $constant) {
-                    $this->handleEvent(new InterfaceConstantEvent($constant, $interfaceNode));
-                }
-
-                foreach($interfaceNode->query('phpdox:method') as $method) {
-                    $this->handleEvent(new InterfaceMethodEvent($method, $interfaceNode));
-                }
-
-                $this->handleEvent(new InterfaceEndEvent($interfaceNode));
+            foreach($interface->getConstants() as $constant) {
+                $this->handleEvent(new InterfaceConstantEvent($constant, $interface));
             }
+
+            foreach($interface->getMethods() as $method) {
+                $this->handleEvent(new InterfaceMethodEvent($method, $interface));
+            }
+
+            $this->handleEvent(new InterfaceEndEvent($interface));
         }
 
     }

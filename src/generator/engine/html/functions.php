@@ -105,8 +105,12 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
 
         }
 
-        public function classNameToFileName($class) {
-            return str_replace('\\', '_', $class) . '.' . $this->extension;
+        public function classNameToFileName($class, $method = NULL) {
+            $name = str_replace('\\', '_', $class);
+            if ($method !== NULL) {
+                $name .= '.' . $method;
+            }
+            return $name . '.' . $this->extension;
         }
 
         public function getProjectNode() {

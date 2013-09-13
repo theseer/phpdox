@@ -35,13 +35,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 /** @var TraitStartEvent $event */
                 $ctx = $event->getTrait();
             }
-            $fileNode = $ctx->queryOne('phpdox:file');
-            if (!$fileNode) {
-                return;
-            }
-            $file = $fileNode->getAttribute('realpath');
+            $file = $ctx->getSourceFile();
             if (isset($this->violations[$file])) {
-                $this->processViolations($ctx, $this->violations[$file]);
+                $this->processViolations($ctx->asDom(), $this->violations[$file]);
             }
         }
 
@@ -68,14 +64,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         }
 
-        private function processViolations(fDOMElement $ctx, \DOMNodeList $violations) {
-            /** @var fDOMDocument $dom */
-            $dom = $ctx->ownerDocument;
-
+        private function processViolations(fDOMDocument $dom, \DOMNodeList $violations) {
             foreach($violations as $violation) {
                 /** @var fDOMElement $violation */
                 $line = $violation->getAttribute('beginline');
-                $ref = $ctx->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
+                $ref = $dom->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
                 if (!$ref) {
                     // One src file may contain multiple classes/traits/interfaces, so the
                     // finding might not apply to the current object since violations are based on filenames
