@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $traits;
         private $namespace;
 
-        public function __construct($traits, $namespace) {
+        public function __construct(TraitCollection $traits, $namespace) {
             $this->traits = $traits;
             $this->namespace = $namespace;
         }

@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $constant;
         private $interface;
 
-        public function __construct($constant, $interface) {
+        public function __construct(ConstantObject $constant, InterfaceObject $interface) {
             $this->constant = $constant;
             $this->interface = $interface;
         }

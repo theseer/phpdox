@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $classes;
         private $namespace;
 
-        public function __construct($classes, $namespace) {
+        public function __construct(ClassCollection $classes, $namespace) {
             $this->classes = $classes;
             $this->namespace = $namespace;
         }

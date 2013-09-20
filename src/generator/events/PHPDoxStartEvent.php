@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $index;
         private $tree;
 
-        public function __construct($index, $tree) {
+        public function __construct(Index $index, SourceTree $tree) {
             $this->index = $index;
             $this->tree = $tree;
         }

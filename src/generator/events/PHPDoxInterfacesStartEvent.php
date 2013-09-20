@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Generator {
 
         private $interfaces;
 
-        public function __construct($interfaces) {
+        public function __construct(InterfaceCollection $interfaces) {
             $this->interfaces = $interfaces;
         }
 

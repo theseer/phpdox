@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $member;
         private $trait;
 
-        public function __construct($member, $trait) {
+        public function __construct(MemberObject $member, TraitObject $trait) {
             $this->member = $member;
             $this->trait = $trait;
         }

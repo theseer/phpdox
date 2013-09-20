@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $constant;
         private $trait;
 
-        public function __construct($constant, $trait) {
+        public function __construct(ConstantObject $constant, TraitObject $trait) {
             $this->constant = $constant;
             $this->trait = $trait;
         }

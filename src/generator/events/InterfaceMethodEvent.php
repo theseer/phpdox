@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Generator {
         private $method;
         private $interface;
 
-        public function __construct($method, $interface) {
+        public function __construct(MethodObject $method, InterfaceObject $interface) {
             $this->method = $method;
             $this->interface = $interface;
         }

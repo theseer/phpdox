@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Generator {
 
         private $namespaces;
 
-        public function __construct($namespaces) {
+        public function __construct(NamespaceCollection $namespaces) {
             $this->namespaces = $namespaces;
         }
 
