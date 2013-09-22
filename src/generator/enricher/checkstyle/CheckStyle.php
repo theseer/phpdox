@@ -36,10 +36,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 /** @var TraitStartEvent $event */
                 $ctx = $event->getTrait();
             }
-            if ($ctx instanceof fDOMElement) {
-                debug_print_backtrace();
-                die();
-            }
             $file = $ctx->getSourceFile();
             if (isset($this->findings[$file])) {
                 $this->processFindings($ctx->asDom(), $this->findings[$file]);
@@ -97,7 +93,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 foreach($finding->attributes as $attr) {
                     $enrichFinding->setAttributeNode($dom->importNode($attr, true));
                 }
+
             }
+
         }
     }
 
