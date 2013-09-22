@@ -11,6 +11,8 @@ namespace TheSeer\phpDox\Generator {
          */
         private $node;
 
+        private $dom = array();
+
         public function __construct(fDOMElement $node) {
             $this->node = $node;
         }
@@ -21,10 +23,13 @@ namespace TheSeer\phpDox\Generator {
 
         protected function loadDocument($dir) {
             $path = $dir . '/' . $this->getNode()->getAttribute('xml');
-            $classDom = new fDOMDocument();
-            $classDom->load($path);
-            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
-            return $classDom;
+            if (!isset($this->dom[$path])) {
+                $classDom = new fDOMDocument();
+                $classDom->load($path);
+                $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+                $this->dom[$path] = $classDom;
+            }
+            return $this->dom[$path];
         }
     }
 
