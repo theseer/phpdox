@@ -73,10 +73,9 @@ namespace TheSeer\phpDox\Generator\Engine {
                 $ctx = $event->getInterface();
                 $path = 'interfaces';
             }
-            $dom = new fDOMDocument();
-            $dom->appendChild($dom->importNode($ctx, true));
+            $dom = $ctx->asDom();
             $this->saveDomDocument($dom,
-                $this->outputDir . '/' . $path . '/' . str_replace('\\', '_', $ctx->getAttribute('full')) . '.xml'
+                $this->outputDir . '/' . $path . '/' . str_replace('\\', '_', $dom->documentElement->getAttribute('full')) . '.xml'
             );
         }
     }
