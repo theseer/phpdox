@@ -74,7 +74,7 @@
     <class name="TokyoTyrantIterator" xml="classes/TokyoTyrantIterator.xml"/>
     <class name="tokyotyrantexception" xml="classes/tokyotyrantexception.xml"/>
     <class name="Directory" xml="classes/Directory.xml"/>
-    <class name="Gender\Gender" xml="classes/Gender\Gender.xml"/>
+    <class name="Gender\Gender" xml="classes/Gender_Gender.xml"/>
     <class name="Collator" xml="classes/Collator.xml"/>
     <class name="NumberFormatter" xml="classes/NumberFormatter.xml"/>
     <class name="Locale" xml="classes/Locale.xml"/>
