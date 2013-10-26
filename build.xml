@@ -63,9 +63,9 @@
         </exec>
     </target>
 
-    <target name="phploc" description="Generate phploc.csv">
+    <target name="phploc" description="Generate phploc.xml">
         <exec executable="phploc">
-            <arg line="--log-csv ${basedir}/build/logs/phploc.csv ${source}"/>
+            <arg line="--count-tests --log-xml ${basedir}/build/logs/phploc.xml ${source} tests"/>
         </exec>
     </target>
 
