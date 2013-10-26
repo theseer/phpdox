@@ -6,8 +6,6 @@
     <xsl:import href="components.xsl" />
 
     <xsl:output method="xml" indent="yes" encoding="utf-8" />
-    <xsl:param name="mode" select="'class'" />
-    <xsl:param name="title" select="'Classes'" />
 
     <xsl:template match="/">
         <html lang="en">
@@ -15,10 +13,23 @@
             <body>
                 <xsl:call-template name="nav" />
                 <div id="mainstage">
-                    <h1><xsl:value-of select="$title" /></h1>
-                    <xsl:apply-templates select="//idx:namespace[*[local-name() = $mode]]">
-                        <xsl:sort select="@name" order="ascending" />
-                    </xsl:apply-templates>
+                    <h1>Namespaces</h1>
+                    <div class="container">
+                        <h2>Namespaces</h2>
+                        <table class="styled">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Interfaces</th>
+                                <th>Classes</th>
+                                <th>Traits</th>
+                            </tr>
+                        </thead>
+                        <xsl:apply-templates select="//idx:namespace">
+                            <xsl:sort select="@name" order="ascending" />
+                        </xsl:apply-templates>
+                        </table>
+                    </div>
                 </div>
                 <xsl:call-template name="footer" />
             </body>
@@ -26,32 +37,42 @@
     </xsl:template>
 
     <xsl:template match="idx:namespace">
-        <div class="container">
-            <h2>\<xsl:value-of select="@name" /></h2>
-            <table class="styled">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th />
-                    </tr>
-                </thead>
-                <tbody>
-                    <xsl:for-each select="*[local-name() = $mode]">
-                        <xsl:variable name="link"><xsl:choose>
-                            <xsl:when test="local-name(.) = 'class'">classes</xsl:when>
-                            <xsl:when test="local-name(.) = 'interface'">interfaces</xsl:when>
-                            <xsl:otherwise>traits</xsl:otherwise>
-                        </xsl:choose>/<xsl:value-of select="translate(../@name, '\', '_')" /><xsl:if test="not(../@name = '')">_</xsl:if><xsl:value-of select="@name" />.<xsl:value-of select="$extension" /></xsl:variable>
-                        <tr>
-                            <td><a href="{$link}"><xsl:value-of select="@name" /></a></td>
-                            <td>The description</td>
-                            <td>[Build-State]</td>
-                        </tr>
-                    </xsl:for-each>
-                </tbody>
-            </table>
-        </div>
+        <tr>
+            <td>\<xsl:value-of select="@name" /></td>
+            <td class="nummeric">
+                <xsl:call-template name="countlink">
+                    <xsl:with-param name="ctx" select="idx:interface" />
+                    <xsl:with-param name="mode" select="'interfaces'" />
+                </xsl:call-template>
+            </td>
+            <td class="nummeric">
+                <xsl:call-template name="countlink">
+                    <xsl:with-param name="ctx" select="idx:class" />
+                    <xsl:with-param name="mode" select="'classes'" />
+                </xsl:call-template>
+            </td>
+            <td class="nummeric">
+                <xsl:call-template name="countlink">
+                    <xsl:with-param name="ctx" select="idx:trait" />
+                    <xsl:with-param name="mode" select="'traits'" />
+                </xsl:call-template>
+            </td>
+        </tr>
     </xsl:template>
+
+    <xsl:template name="countlink">
+        <xsl:param name="ctx" />
+        <xsl:param name="mode" />
+
+        <xsl:variable name="count" select="count($ctx)" />
+
+        <xsl:choose>
+            <xsl:when test="$count &gt; 0">
+                <a href="{$base}{$mode}.{$extension}#{translate(@name, '\', '_')}"><xsl:value-of select="$count" /></a>
+            </xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
 
 </xsl:stylesheet>
