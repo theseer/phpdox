@@ -167,6 +167,17 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
+         * @return string
+         */
+        public function getCompactDescription() {
+            $desc = $this->rootNode->queryOne('phpdox:docblock/phpdox:description');
+            if (!$desc || !$desc->hasAttribute('compact')) {
+                return '';
+            }
+            return $desc->getAttribute('compact');
+        }
+
+        /**
          * @param int $endLine
          */
         public function setEndLine($endLine) {
