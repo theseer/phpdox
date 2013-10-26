@@ -39,6 +39,8 @@
                 </thead>
                 <tbody>
                     <xsl:for-each select="*[local-name() = $mode]">
+                        <xsl:sort select="@name" order="ascending" />
+
                         <xsl:variable name="link"><xsl:choose>
                             <xsl:when test="local-name(.) = 'class'">classes</xsl:when>
                             <xsl:when test="local-name(.) = 'interface'">interfaces</xsl:when>
@@ -46,7 +48,12 @@
                         </xsl:choose>/<xsl:value-of select="translate(../@name, '\', '_')" /><xsl:if test="not(../@name = '')">_</xsl:if><xsl:value-of select="@name" />.<xsl:value-of select="$extension" /></xsl:variable>
                         <tr>
                             <td><a href="{$link}"><xsl:value-of select="@name" /></a></td>
-                            <td>The description</td>
+                            <td>
+                                <xsl:choose>
+                                    <xsl:when test="@description"><xsl:value-of select="@description" /></xsl:when>
+                                    <xsl:otherwise><span class="unavailable">No description available</span></xsl:otherwise>
+                                </xsl:choose>
+                            </td>
                             <td>[Build-State]</td>
                         </tr>
                     </xsl:for-each>
