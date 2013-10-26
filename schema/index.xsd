@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:src="http://xml.phpdox.de/src#"
+           attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://xml.phpdox.de/src#">
+
+    <xs:element name="index" type="src:indexType"/>
+
+    <xs:complexType name="indexType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="src:namespaceType" name="namespace"/>
+
+            <xs:element type="src:unitType" name="interface"/>
+            <xs:element type="src:unitType" name="class"/>
+            <xs:element type="src:unitType" name="trait"/>
+
+            <xs:element type="src:enrichmentsType" name="enrichments" maxOccurs="1" minOccurs="0"
+                       />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="unitType">
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="xml" use="required"/>
+
+        <xs:attribute type="xs:string" name="src" use="optional"/>
+        <xs:attribute type="xs:string" name="description" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="namespaceType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="src:unitType" name="interface"/>
+            <xs:element type="src:unitType" name="class"/>
+            <xs:element type="src:unitType" name="trait"/>
+        </xs:choice>
+        <xs:attribute type="xs:string" name="name" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="enrichmentsType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="src:enrichmentType" name="enrichment"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="enrichmentType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:any processContents="lax" />
+        </xs:choice>
+        <xs:attribute type="xs:string" name="type" use="required"/>
+    </xs:complexType>
+
+</xs:schema>
