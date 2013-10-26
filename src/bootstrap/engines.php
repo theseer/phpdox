@@ -51,7 +51,7 @@ namespace TheSeer\phpDox {
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Engine\\GraphConfig');
 
     $phpDox->registerEngine('todo', 'Simple TODO list builder from @todo annotations')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\Todo');
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Engine\\ToDo');
     // ->withConfigClass('TheSeer\\phpDox\\Engine\\TodoConfig');
 
 }

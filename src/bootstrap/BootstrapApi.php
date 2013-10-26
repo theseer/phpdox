@@ -86,6 +86,12 @@ namespace TheSeer\phpDox {
         protected $engines = array();
 
         /**
+         * Array of registered enrichers
+         *
+         * @var array
+         */
+        protected $enrichers = array();
+        /**
          * Array of registered backends
          *
          * @var array
@@ -110,6 +116,13 @@ namespace TheSeer\phpDox {
          */
         public function getEngines() {
             return $this->engines;
+        }
+
+        /**
+         * @return array
+         */
+        public function getEnrichers() {
+            return $this->enrichers;
         }
 
         /**

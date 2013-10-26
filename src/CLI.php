@@ -114,6 +114,12 @@ namespace TheSeer\phpDox {
                     exit(0);
                 }
 
+                if ($options->getValue('enrichers')) {
+                    $this->showVersion();
+                    $this->showList('enrichers', $bootstrap->getEnrichers());
+                    exit(0);
+                }
+
                 if ($options->getValue('backends')) {
                     $this->showVersion();
                     $this->showList('backends', $bootstrap->getBackends());
@@ -244,6 +250,11 @@ namespace TheSeer\phpDox {
             ));
 
             $input->registerOption( new \ezcConsoleOption(
+                NULL, 'enrichers', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
+                'Show a list of available enrichers and exit'
+            ));
+
+            $input->registerOption( new \ezcConsoleOption(
                 NULL, 'backends', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
                 'Show a list of available backends and exit'
             ));
@@ -283,6 +294,8 @@ Usage: phpdox [switches]
   -g, --generator  Run only generator process
 
       --engines    Show a list of available output engines and exit
+      --enrichers  Show a list of available output enrichers and exit
+
       --backends   Show a list of available backends and exit
 
       --skel       Show an annotated skeleton config xml file and exit

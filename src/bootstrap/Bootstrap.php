@@ -76,6 +76,10 @@ namespace TheSeer\phpDox {
             return $this->api->getEngines();
         }
 
+        public function getEnrichers() {
+            return $this->api->getEnrichers();
+        }
+
         private function loadBootstrap($filename) {
             $phpDox = $this->api;
             require $filename;
