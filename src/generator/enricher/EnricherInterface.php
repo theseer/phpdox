@@ -46,8 +46,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         public function getName();
 
-
-        public function enrich(AbstractEvent $event);
     }
 
 }

@@ -5,12 +5,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\fDOM\fDOMException;
-    use TheSeer\phpDox\Generator\AbstractEvent;
+    use TheSeer\phpDox\Generator\AbstractUnitObject;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class CheckStyle implements EnricherInterface {
+    class CheckStyle extends AbstractEnricher implements ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface {
 
         private $config;
         private $findings = NULL;
@@ -27,15 +27,19 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return 'CheckStyle XML';
         }
 
-        public function enrich(AbstractEvent $event) {
-            if ($event instanceof ClassStartEvent) {
-                $ctx = $event->getClass();
-            } elseif ($event instanceof InterfaceStartEvent) {
-                $ctx = $event->getInterface();
-            } else {
-                /** @var TraitStartEvent $event */
-                $ctx = $event->getTrait();
-            }
+        public function enrichClass(ClassStartEvent $event) {
+            $this->enrichUnit($event->getClass());
+        }
+
+        public function enrichInterface(InterfaceStartEvent $event) {
+            $this->enrichUnit($event->getInterface());
+        }
+
+        public function enrichTrait(TraitStartEvent $event) {
+            $this->enrichUnit($event->getTrait());
+        }
+
+        private function enrichUnit(AbstractUnitObject $ctx) {
             $file = $ctx->getSourceFile();
             if (isset($this->findings[$file])) {
                 $this->processFindings($ctx->asDom(), $this->findings[$file]);
@@ -76,19 +80,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     // but we have individual objects - so we just ignore the finding for this context
                     continue;
                 }
-                $container = $ref->queryOne('phpdox:enrichments');
-                if(!$container) {
-                    $container = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichments');
-                    $ref->appendChild($container);
-                }
-                $enrichment = $container->queryOne('phpdox:enrichment[@source="checkstyle"]');
-                if (!$enrichment) {
-                    $enrichment = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichment');
-                    $enrichment->setAttribute('source', 'checkstyle');
-                    $container->appendChild($enrichment);
-                }
 
-                $enrichFinding = $dom->createElementNS('http://xml.phpdox.de/src#', $finding->localName);
+                $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
+                $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->localName);
                 $enrichment->appendChild($enrichFinding);
                 foreach($finding->attributes as $attr) {
                     $enrichFinding->setAttributeNode($dom->importNode($attr, true));

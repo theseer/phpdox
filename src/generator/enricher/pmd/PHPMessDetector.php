@@ -4,12 +4,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
-    use TheSeer\phpDox\Generator\AbstractEvent;
+    use TheSeer\phpDox\Generator\AbstractUnitObject;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class PHPMessDetector implements EnricherInterface {
+    class PHPMessDetector extends AbstractEnricher implements ClassEnricherInterface, InterfaceEnricherInterface, TraitEnricherInterface {
 
         private $config;
         private $violations = NULL;
@@ -26,15 +26,19 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return 'PHPMessDetector XML';
         }
 
-        public function enrich(AbstractEvent $event) {
-            if ($event instanceof ClassStartEvent) {
-                $ctx = $event->getClass();
-            } elseif ($event instanceof InterfaceStartEvent) {
-                $ctx = $event->getInterface();
-            } else {
-                /** @var TraitStartEvent $event */
-                $ctx = $event->getTrait();
-            }
+        public function enrichClass(ClassStartEvent $event) {
+            $this->enrichUnit($event->getClass());
+        }
+
+        public function enrichInterface(InterfaceStartEvent $event) {
+            $this->enrichUnit($event->getInterface());
+        }
+
+        public function enrichTrait(TraitStartEvent $event) {
+            $this->enrichUnit($event->getTrait());
+        }
+
+        public function enrichUnit(AbstractUnitObject $ctx) {
             $file = $ctx->getSourceFile();
             if (isset($this->violations[$file])) {
                 $this->processViolations($ctx->asDom(), $this->violations[$file]);
@@ -75,19 +79,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     // but we have individual objects - so we just ignore the finding for this context
                     continue;
                 }
-                $container = $ref->queryOne('phpdox:enrichments');
-                if(!$container) {
-                    $container = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichments');
-                    $ref->appendChild($container);
-                }
-                $enrichment = $container->queryOne('phpdox:enrichment[@source="pmd"]');
-                if (!$enrichment) {
-                    $enrichment = $dom->createElementNS('http://xml.phpdox.de/src#', 'enrichment');
-                    $enrichment->setAttribute('source', 'pmd');
-                    $container->appendChild($enrichment);
-                }
 
-                $enrichViolation = $dom->createElementNS('http://xml.phpdox.de/src#', 'violation');
+                $enrichment = $this->getEnrichtmentContainer($ref, 'pmd');
+                $enrichViolation = $dom->createElementNS(self::XMLNS, 'violation');
                 $enrichment->appendChild($enrichViolation);
                 $enrichViolation->appendChild($dom->createTextNode($enrichment->nodeValue));
                 foreach($violation->attributes as $attr) {

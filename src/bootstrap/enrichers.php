@@ -39,6 +39,12 @@ namespace TheSeer\phpDox {
      * @var BootstrapApi $phpDox
      */
 
+    $phpDox->registerEnricher('build', 'Build information enricher')
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\Build');
+
+    $phpDox->registerEnricher('git', 'GIT repository information enricher')
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\Git');
+
     $phpDox->registerEnricher('checkstyle', 'checkstyle.xml enricher')
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyle')
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyleConfig');
@@ -50,5 +56,9 @@ namespace TheSeer\phpDox {
     $phpDox->registerEnricher('phpunit', 'PHPUnit code coverage enricher')
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPUnit')
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPUnitConfig');
+
+    $phpDox->registerEnricher('phploc', 'PHPLoc code statistic enricher')
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPLoc')
+        ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPLocConfig');
 
 }

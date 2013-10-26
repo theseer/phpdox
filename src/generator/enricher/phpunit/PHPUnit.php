@@ -2,8 +2,18 @@
 namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\phpDox\Generator\AbstractEvent;
+    use TheSeer\phpDox\Generator\ClassStartEvent;
+    use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class PHPUnit implements EnricherInterface {
+    class PHPUnit implements ClassEnricherInterface, InterfaceEnricherInterface, TraitEnricherInterface {
+
+        private $config;
+
+        public function __construct(CheckStyleConfig $config) {
+            $this->config = $config;
+            $this->loadIndex($config->getLogFilePath());
+        }
 
         /**
          * @return string
@@ -12,8 +22,16 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return 'PHPUnit Coverage XML';
         }
 
-        public function enrich(AbstractEvent $event) {
-            // TODO: Implement enrich() method.
+        public function enrichClass(ClassStartEvent $event) {
+            // TODO: Implement enrichClass() method.
+        }
+
+        public function enrichInterface(InterfaceStartEvent $event) {
+            // TODO: Implement enrichInterface() method.
+        }
+
+        public function enrichTrait(TraitStartEvent $event) {
+            // TODO: Implement enrichTrait() method.
         }
 
     }
