@@ -51,11 +51,9 @@ namespace TheSeer\phpDox {
 
         protected $ctx;
         protected $generator;
-        protected $project;
 
         public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
             $this->generator = $generator;
-            $this->project = $generator->getProjectConfig();
             $this->ctx = $ctx;
         }
 
