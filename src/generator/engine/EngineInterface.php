@@ -39,8 +39,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     interface EngineInterface {
 
-        public function getEvents();
-        public function handle(\TheSeer\phpDox\Generator\AbstractEvent $event);
+        public function registerEventHandlers(EventHandlerRegistry $registry);
 
     }
 }
