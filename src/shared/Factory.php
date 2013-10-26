@@ -38,6 +38,7 @@
 namespace TheSeer\phpDox {
 
     use TheSeer\phpDox\Collector\InheritanceResolver;
+    use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Generator;
     use TheSeer\phpDox\Collector\Collector;
     use TheSeer\phpDox\Collector\ClassBuilder;
@@ -245,7 +246,7 @@ namespace TheSeer\phpDox {
          * @return Generator
          */
         protected function getGenerator() {
-            return new Generator($this->getLogger());
+            return new Generator($this->getLogger(), new EventHandlerRegistry());
         }
 
         /**

@@ -37,18 +37,13 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class TraitConstantEvent extends AbstractEvent {
+    class TraitConstantEvent extends ConstantEvent {
 
-        private $constant;
         private $trait;
 
         public function __construct(ConstantObject $constant, TraitObject $trait) {
-            $this->constant = $constant;
+            parent::__construct($constant);
             $this->trait = $trait;
-        }
-
-        public function getConstant() {
-            return $this->constant;
         }
 
         public function getTrait() {

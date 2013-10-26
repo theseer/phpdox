@@ -37,18 +37,13 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class InterfaceMethodEvent extends AbstractEvent {
+    class InterfaceMethodEvent extends MethodEvent {
 
-        private $method;
         private $interface;
 
         public function __construct(MethodObject $method, InterfaceObject $interface) {
-            $this->method = $method;
+            parent::__construct($method);
             $this->interface = $interface;
-        }
-
-        public function getMethod() {
-            return $this->method;
         }
 
         public function getInterface() {

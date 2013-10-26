@@ -37,18 +37,13 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class TraitMemberEvent extends AbstractEvent {
+    class TraitMemberEvent extends MemberEvent {
 
-        private $member;
         private $trait;
 
         public function __construct(MemberObject $member, TraitObject $trait) {
-            $this->member = $member;
+            parent::__construct($member);
             $this->trait = $trait;
-        }
-
-        public function getMember() {
-            return $this->member;
         }
 
         public function getTrait() {

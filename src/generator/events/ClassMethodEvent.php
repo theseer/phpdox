@@ -37,18 +37,13 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class ClassMethodEvent extends AbstractEvent {
+    class ClassMethodEvent extends MethodEvent {
 
-        private $method;
         private $class;
 
         public function __construct(MethodObject $method, ClassObject $class) {
-            $this->method = $method;
+            parent::__construct($method);
             $this->class = $class;
-        }
-
-        public function getMethod() {
-            return $this->method;
         }
 
         public function getClass() {

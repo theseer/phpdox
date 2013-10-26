@@ -37,18 +37,13 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class ClassConstantEvent extends AbstractEvent {
+    class ClassConstantEvent extends ConstantEvent {
 
-        private $constant;
         private $class;
 
         public function __construct(ConstantObject $constant, ClassObject $class) {
-            $this->constant = $constant;
+            parent::__construct($constant);
             $this->class = $class;
-        }
-
-        public function getConstant() {
-            return $this->constant;
         }
 
         public function getClass() {

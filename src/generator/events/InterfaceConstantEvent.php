@@ -37,18 +37,13 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    class InterfaceConstantEvent extends AbstractEvent {
+    class InterfaceConstantEvent extends ConstantEvent {
 
-        private $constant;
         private $interface;
 
         public function __construct(ConstantObject $constant, InterfaceObject $interface) {
-            $this->constant = $constant;
+            parent::__construct($constant);
             $this->interface = $interface;
-        }
-
-        public function getConstant() {
-            return $this->constant;
         }
 
         public function getInterface() {

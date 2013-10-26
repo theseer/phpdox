@@ -41,7 +41,12 @@ namespace TheSeer\phpDox\Generator {
     use \TheSeer\fDOM\fDOMDocument;
 
     use \TheSeer\phpDox\Generator\Engine\EngineInterface;
+    use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
+    use TheSeer\phpDox\Generator\Enricher\ClassEnricherInterface;
     use \TheSeer\phpDox\Generator\Enricher\EnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\IndexEnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\InterfaceEnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\TraitEnricherInterface;
     use \TheSeer\phpDox\ProgressLogger;
 
     class Generator {
@@ -59,7 +64,12 @@ namespace TheSeer\phpDox\Generator {
         /**
          * @var array
          */
-        private $enrichers = array();
+        private $enrichers = array(
+            'phpdox.start'    => array(),
+            'class.start'     => array(),
+            'trait.start'     => array(),
+            'interface.start' => array()
+        );
 
         /**
          * @var bool
@@ -79,62 +89,17 @@ namespace TheSeer\phpDox\Generator {
         /**
          * Map of events with engines
          *
-         * @var array
+         * @var EventHandlerRegistry
          */
-        private $events = array(
-            'phpdox.raw' => array(),
-            'phpdox.start' => array(),
-            'phpdox.end' => array(),
-
-            'phpdox.namespaces.start' => array(),
-            'phpdox.namespaces.end' => array(),
-
-            'phpdox.classes.start' => array(),
-            'phpdox.classes.end' => array(),
-            'phpdox.traits.start' => array(),
-            'phpdox.traits.end' => array(),
-            'phpdox.interfaces.start' => array(),
-            'phpdox.interfaces.end' => array(),
-
-            'namespace.start' => array(),
-            'namespace.classes.start' => array(),
-            'namespace.classes.end' => array(),
-            'namespace.traits.start' => array(),
-            'namespace.traits.end' => array(),
-            'namespace.interfaces.start' => array(),
-            'namespace.interfaces.end' => array(),
-            'namespace.end' => array(),
-
-            'class.start' => array(),
-            'class.constant' => array(),
-            'class.member' => array(),
-            'class.method' => array(),
-            'class.end' => array(),
-
-            'trait.start' => array(),
-            'trait.constant' => array(),
-            'trait.member' => array(),
-            'trait.method' => array(),
-            'trait.end' => array(),
-
-            'interface.start' => array(),
-            'interface.constant' => array(),
-            'interface.method' => array(),
-            'interface.end' => array()
-        );
-
-        private $enricherEvents = array(
-            'class.start',
-            'trait.start',
-            'interface.start'
-        );
+        private $handlerRegistry;
 
         /**
          * @param EventFactory   $factory
          * @param ProgressLogger $logger
          */
-        public function __construct(ProgressLogger $logger) {
+        public function __construct(ProgressLogger $logger, EventHandlerRegistry $registry) {
             $this->logger = $logger;
+            $this->handlerRegistry = $registry;
         }
 
         /**
@@ -144,21 +109,22 @@ namespace TheSeer\phpDox\Generator {
          * @throws GeneratorException
          */
         public function addEngine(EngineInterface $engine) {
-            $this->engines[] = $engine;
-            foreach($engine->getEvents() as $event) {
-                if (!array_key_exists($event, $this->events)) {
-                    throw new GeneratorException("'$event' is unknown", GeneratorException::UnknownEvent);
-                }
-                $hash = spl_object_hash($engine);
-                if (isset($this->events[$event][$hash])) {
-                    throw new GeneratorException("Engine instance already registered for event '$event'", GeneratorException::AlreadyRegistered);
-                }
-                $this->events[$event][$hash] = $engine;
-            }
+            $engine->registerEventHandlers($this->handlerRegistry);
         }
 
         public function addEnricher(EnricherInterface $enricher) {
-            $this->enrichers[] = $enricher;
+            if ($enricher instanceof IndexEnricherInterface) {
+                $this->enrichers['phpdox.start'][] = $enricher;
+            }
+            if ($enricher instanceof ClassEnricherInterface) {
+                $this->enrichers['class.start'][] = $enricher;
+            }
+            if ($enricher instanceof InterfaceEnricherInterface) {
+                $this->enrichers['interface.start'][] = $enricher;
+            }
+            if ($enricher instanceof TraitEnricherInterface) {
+                $this->enrichers['trait.start'][] = $enricher;
+            }
         }
 
         /**
@@ -188,13 +154,31 @@ namespace TheSeer\phpDox\Generator {
          * @param bool          $progress
          */
         protected function handleEvent(AbstractEvent $event, $progress = TRUE) {
-            if (in_array($event->getType(), $this->enricherEvents)) {
-                foreach($this->enrichers as $enricher) {
-                    $enricher->enrich($event);
+            $eventType = $event->getType();
+            if (isset($this->enrichers[$eventType])) {
+                foreach($this->enrichers[$eventType] as $enricher) {
+                    switch($eventType) {
+                        case 'phpdox.start': {
+                            $enricher->enrichIndex($event);
+                            break;
+                        }
+                        case 'class.start': {
+                            $enricher->enrichClass($event);
+                            break;
+                        }
+                        case 'interface.start': {
+                            $enricher->enrichInterface($event);
+                            break;
+                        }
+                        case 'trait.start': {
+                            $enricher->enrichTrait($event);
+                            break;
+                        }
+                    }
                 }
             }
-            foreach($this->events[$event->getType()] as $engine) {
-                $engine->handle($event);
+            foreach($this->handlerRegistry->getHandlersForEvent($event->getType()) as $callback) {
+                call_user_func($callback, $event);
             }
             if ($progress) {
                 $this->logger->progress('processed');
