@@ -42,24 +42,22 @@ namespace TheSeer\phpDox\Generator\Engine {
     use TheSeer\phpDox\Generator\AbstractEvent;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\PHPDoxStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class Xml extends AbstractEngine {
 
-        protected $eventMap = array(
-            'class.start' => 'buildClass',
-            'trait.start' => 'buildTrait',
-            'interface.start' => 'buildInterface',
-        );
-
-        protected $outputDir;
+        private $outputDir;
 
         public function __construct(BuildConfig $config) {
             $this->outputDir = $config->getOutputDirectory();
         }
 
-        public function getEvents() {
-            return array_keys($this->eventMap);
+        public function registerEventHandlers(EventHandlerRegistry $registry) {
+            $registry->addHandler('phpdox.start', $this, 'handleIndex');
+            $registry->addHandler('class.start', $this, 'handle');
+            $registry->addHandler('trait.start', $this, 'handle');
+            $registry->addHandler('interface.start', $this, 'handle');
         }
 
         public function handle(AbstractEvent $event) {
@@ -77,6 +75,11 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->saveDomDocument($dom,
                 $this->outputDir . '/' . $path . '/' . str_replace('\\', '_', $dom->documentElement->getAttribute('full')) . '.xml'
             );
+        }
+
+        public function handleIndex(PHPDoxStartEvent $event) {
+            $dom = $event->getIndex()->asDom();
+            $this->saveDomDocument($dom, $this->outputDir . '/index.xml');
         }
     }
 }

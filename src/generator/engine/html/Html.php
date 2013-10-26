@@ -53,21 +53,20 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     class Html extends AbstractEngine {
 
-        private $eventMap = array(
-            'phpdox.start' => 'buildStart',
-            'class.start' => 'buildClass',
-            'trait.start' => 'buildTrait',
-            'interface.start' => 'buildInterface',
-            'class.method' => 'buildClassMethod',
-            'trait.method' => 'buildTraitMethod',
-            'interface.method' => 'buildInterfaceMethod',
-            'phpdox.end' => 'buildFinish'
-        );
+        /**
+         * @var fXSLTProcessor
+         */
+        private $xslClass;
 
         /**
          * @var fXSLTProcessor
          */
-        private $xslUnit;
+        private $xslTrait;
+
+        /**
+         * @var fXSLTProcessor
+         */
+        private $xslInterface;
 
         /**
          * @var fXSLTProcessor
@@ -88,103 +87,133 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->extension = $config->getFileExtension();
         }
 
-        public function getEvents() {
-            return array_keys($this->eventMap);
-        }
-
-        public function handle(AbstractEvent $event) {
-            $this->{$this->eventMap[$event->getType()]}($event);
+        public function registerEventHandlers(EventHandlerRegistry $registry) {
+            $registry->addHandler('phpdox.start',     $this, 'buildStart');
+            $registry->addHandler('class.start',      $this, 'buildClass');
+//            $registry->addHandler('trait.start',      $this, 'buildTrait');
+//            $registry->addHandler('interface.start',  $this, 'buildInterface');
+//            $registry->addHandler('class.method',     $this, 'buildClassMethod');
+//            $registry->addHandler('trait.method',     $this, 'buildTraitMethod');
+//            $registry->addHandler('interface.method', $this, 'buildInterfaceMethod');
+            $registry->addHandler('phpdox.end',       $this, 'buildFinish');
         }
 
         protected function getXSLTProcessor($template) {
             $xsl = parent::getXSLTProcessor($template);
             $xsl->setParameter('', 'extension', $this->extension);
+            $xsl->setParameter('', 'xml', '/home/theseer/storage/php/phpdox/build/api/xml/');
             return $xsl;
         }
 
-        private function buildStart(PHPDoxStartEvent $event) {
+        public function buildStart(PHPDoxStartEvent $event) {
             $this->functions = new Html\Functions(
                 $this->projectNode,
                 $event->getIndex()->asDom(),
                 $this->extension
             );
+            /*
             $builder = new fXSLCallback('phpdox:html', 'phe');
             $builder->setObject($this->functions);
+            */
 
-            $index = $this->getXSLTProcessor($this->templateDir . '/index.xsl');
-            $index->registerCallback($builder);
-            $html = $index->transformToDoc($event->getIndex()->asDom());
+            $this->generateIndex($event);
 
-            $this->saveDomDocument($html, $this->outputDir . '/index.'. $this->extension);
+            $this->xslClass = $this->getXSLTProcessor($this->templateDir . '/class.xsl');
+            $this->xslClass->setParameter('', 'base', '../');
+            //$this->xslUnit->registerCallback($builder);
 
-            $this->xslUnit = $this->getXSLTProcessor($this->templateDir . '/unit.xsl');
-            $this->xslUnit->registerCallback($builder);
-
-            $this->xslMethod = $this->getXSLTProcessor($this->templateDir . '/method.xsl');
-            $this->xslMethod->registerCallback($builder);
+            //$this->xslMethod = $this->getXSLTProcessor($this->templateDir . '/method.xsl');
+            //$this->xslMethod->registerCallback($builder);
 
         }
 
-        private function buildFinish(AbstractEvent $event) {
+        private function generateIndex(PHPDoxStartEvent $event) {
+            $proc = $this->getXSLTProcessor($this->templateDir . '/index.xsl');
+            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $this->saveDomDocument($html, $this->outputDir . '/index.' . $this->extension);
+
+            $proc = $this->getXSLTProcessor($this->templateDir . '/namespaces.xsl');
+            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $this->saveDomDocument($html, $this->outputDir . '/namespaces.' . $this->extension);
+
+            $proc = $this->getXSLTProcessor($this->templateDir . '/units.xsl');
+            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $this->saveDomDocument($html, $this->outputDir . '/classes.' . $this->extension);
+
+            /*
+            $proc->setParameter('', 'mode', 'traits');
+            $proc->setParameter('', 'title', 'Traits');
+            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $this->saveDomDocument($html, $this->outputDir . '/traits.' . $this->extension);
+            */
+        }
+
+        public function buildFinish(AbstractEvent $event) {
             $this->copyStatic($this->templateDir . '/static', $this->outputDir, TRUE);
         }
 
-        private function buildClass(ClassStartEvent $event) {
-            $this->genericUnitBuild(
-                $event->getClass()->asDom(),
-                'classes',
-                $event->getClass()->getFullName()
+        public function buildClass(ClassStartEvent $event) {
+            $html = $this->xslClass->transformToDoc($event->getClass()->asDom());
+            $this->saveDomDocument($html, $this->outputDir . '/classes/' .
+                $this->functions->classNameToFileName($event->getClass()->getFullName())
             );
+
         }
 
-        private function buildTrait(TraitStartEvent $event) {
+        public function buildTrait(TraitStartEvent $event) {
+            /*
             $this->genericUnitBuild(
                 $event->getTrait()->asDom(),
                 'traits',
                 $event->getTrait()->getFullName()
             );
+            */
         }
 
-        private function buildInterface(InterfaceStartEvent $event) {
+        public function buildInterface(InterfaceStartEvent $event) {
+            /*
             $this->genericUnitBuild(
                 $event->getInterface()->asDom(),
                 'interfaces',
                 $event->getInterface()->getFullName()
             );
+            */
         }
 
-        private function genericUnitBuild(fDOMDocument $ctx, $target, $name) {
-            $html = $this->xslUnit->transformToDoc($ctx);
-            $this->saveDomDocument($html, $this->outputDir . '/' . $target . '/' .
-                $this->functions->classNameToFileName($name)
-            );
-        }
-
-        private function buildClassMethod(ClassMethodEvent $event) {
+        public function buildClassMethod(ClassMethodEvent $event) {
+            /*
             $this->genericMethodBuild(
                 $event->getClass()->asDom(),
                 'classes',
                 $event->getClass()->getFullname(),
                 $event->getMethod()->getName()
             );
+            */
         }
 
-        private function buildTraitMethod(TraitMethodEvent $event) {
+        public function buildTraitMethod(TraitMethodEvent $event) {
+            /*
             $this->genericMethodBuild(
                 $event->getTrait()->asDom(),
                 'traits',
                 $event->getTrait()->getFullName(),
                 $event->getMethod()->getName()
             );
+            */
         }
 
-        private function buildInterfaceMethod(InterfaceMethodEvent $event) {
+        public function buildInterfaceMethod(InterfaceMethodEvent $event) {
+            /*
             $this->genericMethodBuild(
                 $event->getInterface()->asDom(),
                 'interfaces',
                 $event->getInterface()->getFullName(),
                 $event->getMethod()->getName()
             );
+            */
+        }
+
+        private function genericUnitBuild(fDOMDocument $ctx, $target, $name) {
         }
 
         private function genericMethodBuild(fDOMDocument $ctx, $target, $unitName, $method) {

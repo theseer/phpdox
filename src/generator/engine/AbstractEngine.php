@@ -37,11 +37,8 @@
 
 namespace TheSeer\phpDox\Generator\Engine {
 
-    use \TheSeer\fDom\fDomDocument;
-    use \TheSeer\fDom\fDomElement;
-
-    use \TheSeer\fXSL\fXSLTProcessor;
-    use \TheSeer\fXSL\fXSLCallback;
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fXSL\fXSLTProcessor;
 
     abstract class AbstractEngine implements EngineInterface {
 
@@ -71,7 +68,6 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         protected function saveFile($content, $filename) {
-            $filename = $filename;
             $path = dirname($filename);
             clearstatcache();
             if (!file_exists($path)) {
@@ -100,7 +96,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         protected function loadDataFile($filename) {
-            $classDom = new fDomDocument();
+            $classDom = new fDOMDocument();
             $classDom->load($this->xmlDir . '/' . $filename);
             $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
             return $classDom;
