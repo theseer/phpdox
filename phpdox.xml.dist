@@ -8,8 +8,11 @@
         <generator output="${basedir}/build/api/docs">
 
             <enrich base="${basedir}/build/logs">
+                <source type="build" />
+                <source type="git"/>
                 <source type="checkstyle" />
                 <source type="pmd" />
+                <source type="phploc" />
             </enrich>
 
             <build engine="html" enabled="true" output="html">
@@ -17,11 +20,13 @@
                 <file extension="xhtml" />
             </build>
 
+            <build engine="xml" enabled="true" output="xml" />
+
             <build engine="todo" enabled="false" output="todo">
                 <file name="todolist.txt" encoding="utf-8" />
             </build>
 
-            <build engine="graph" enabled="true" output="graph" />
+            <build engine="graph" enabled="false" output="graph" />
 
         </generator>
     </project>
