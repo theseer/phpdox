@@ -139,7 +139,16 @@ namespace TheSeer\phpDox\Collector {
             if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName())) {
                 $unitNode = $root->appendElementNS('http://xml.phpdox.de/src#', $type);
                 $unitNode->setAttribute('name', $unit->getLocalName());
-                $unitNode->setAttribute('src', $unit->getSourceFilename());
+
+                $src = $unit->getSourceFilename();
+                if ($src != '') {
+                    $unitNode->setAttribute('src', $src);
+                }
+
+                $desc = $unit->getCompactDescription();
+                if ($desc != '') {
+                    $unitNode->setAttribute('description', $desc);
+                }
 
                 $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
                 $ctx = $root->queryOne($xpath);
