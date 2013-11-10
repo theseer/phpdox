@@ -52,11 +52,11 @@ namespace TheSeer\phpDox\Collector {
         public function __construct($srcDir) {
             $this->srcDir = realpath($srcDir);
             $this->workDom = new fDOMDocument();
-            $this->workDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $this->workDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
         }
 
         public function import(fDOMDocument $dom) {
-            $dom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
             $dir = $dom->queryOne('/phpdox:source/phpdox:dir');
             if (!$dir)  {
                 return;
@@ -65,7 +65,7 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function addFile(\SplFileInfo $file) {
-            $node = $this->workDom->createElementNS('http://xml.phpdox.de/src#', 'file');
+            $node = $this->workDom->createElementNS('http://xml.phpdox.net/src#', 'file');
             $node->setAttribute('name', basename($file->getBasename()));
             $node->setAttribute('size', $file->getSize());
             $node->setAttribute('time', date('c', $file->getMTime()));
@@ -109,7 +109,7 @@ namespace TheSeer\phpDox\Collector {
             $dom = $this->workDom;
             if (empty($this->collection)) {
                 if (!$dom->documentElement instanceof fDOMElement) {
-                    $root = $dom->createElementNS('http://xml.phpdox.de/src#', 'source');
+                    $root = $dom->createElementNS('http://xml.phpdox.net/src#', 'source');
                     $dom->appendChild($root);
                 }
                 return $this->workDom;
@@ -117,7 +117,7 @@ namespace TheSeer\phpDox\Collector {
             if ($dom->documentElement instanceOf fDOMElement) {
                 $dom->removeChild($dom->documentElement);
             }
-            $root = $dom->createElementNS('http://xml.phpdox.de/src#', 'source');
+            $root = $dom->createElementNS('http://xml.phpdox.net/src#', 'source');
             $this->workDom->appendChild($root);
             foreach($this->collection as $path => $file) {
                 $dirs = explode('/', dirname($path));
@@ -125,7 +125,7 @@ namespace TheSeer\phpDox\Collector {
                 foreach($dirs as $dir) {
                     $node = $ctx->queryOne('phpdox:dir[@name="'. $dir . '"]');
                     if (!$node) {
-                        $node = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'dir');
+                        $node = $ctx->appendElementNS('http://xml.phpdox.net/src#', 'dir');
                         $node->setAttribute('name', $dir);
                     }
                     $ctx = $node;

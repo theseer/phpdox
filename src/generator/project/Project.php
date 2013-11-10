@@ -150,11 +150,11 @@ namespace TheSeer\phpDox\Generator {
         private function initCollections() {
             $this->source = new fDOMDocument();
             $this->source->load($this->xmlDir . '/source.xml');
-            $this->source->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $this->source->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
 
             $this->index = new fDOMDocument();
             $this->index->load($this->xmlDir . '/index.xml');
-            $this->index->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
         }
 
     }

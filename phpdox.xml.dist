@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpdox xmlns="http://phpdox.de/config" silent="false">
+<phpdox xmlns="http://phpdox.net/config" silent="false">
 
     <project name="phpDox" source="src" workdir="${basedir}/build/api/xml">
 

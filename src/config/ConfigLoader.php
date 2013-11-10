@@ -69,11 +69,11 @@ namespace TheSeer\phpDox {
                 $dom->load($fname);
 
                 $root = $dom->documentElement;
-                if ($root->namespaceURI != 'http://phpdox.de/config' ||
+                if ($root->namespaceURI != 'http://phpdox.net/config' ||
                     $root->localName != 'phpdox') {
                     throw new ConfigLoaderException("File '$fname' is not a valid phpDox configuration.", ConfigLoaderException::WrongType);
                 }
-                $dom->registerNamespace('cfg', 'http://phpdox.de/config');
+                $dom->registerNamespace('cfg', 'http://phpdox.net/config');
 
                 return new GlobalConfig($dom, realpath($fname));
             } catch (fDOMException $e) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.de/src#" full="MongoDB" namespace="" name="MongoDB">
+<class xmlns="http://xml.phpdox.net/src#" full="MongoDB" namespace="" name="MongoDB">
   <constant name="PROFILING_OFF" value="0">
     <docblock>
       <var type="int"/>
@@ -21,7 +21,7 @@
       <description compact="&#10;       The number of servers to replicate a change to before returning success.&#10;       Inherited by instances of MongoCollection derived&#10;       from this.  w functionality is only available in &#10;       version 1.5.1+ of the MongoDB server and 1.0.8+ of the driver.&#10;      ">
        The number of servers to replicate a change to before returning success.
        Inherited by instances of MongoCollection derived
-       from this.  w functionality is only available in 
+       from this.  w functionality is only available in
        version 1.5.1+ of the MongoDB server and 1.0.8+ of the driver.
       </description>
       <var type="integer"/>
@@ -31,9 +31,9 @@
     <default>null</default>
     <docblock>
       <description compact="&#10;       The number of milliseconds to wait for MongoDB::$w &#10;       replications to take place.  Inherited by instances of&#10;       MongoCollection derived from this. &#10;       w functionality is only available in version 1.5.1+ of&#10;       the MongoDB server and 1.0.8+ of the driver.&#10;      ">
-       The number of milliseconds to wait for MongoDB::$w 
+       The number of milliseconds to wait for MongoDB::$w
        replications to take place.  Inherited by instances of
-       MongoCollection derived from this. 
+       MongoCollection derived from this.
        w functionality is only available in version 1.5.1+ of
        the MongoDB server and 1.0.8+ of the driver.
       </description>

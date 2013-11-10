@@ -98,7 +98,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         protected function loadDataFile($filename) {
             $classDom = new fDOMDocument();
             $classDom->load($this->xmlDir . '/' . $filename);
-            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.de/src#');
+            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
             return $classDom;
         }
 

@@ -81,11 +81,11 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             }
             $full = $nodes[0]->getAttribute('full');
 
-            $container = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'extended');
-            $by = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'by');
+            $container = $this->dom->createElementNS('http://xml.phpdox.net/src#', 'extended');
+            $by = $this->dom->createElementNS('http://xml.phpdox.net/src#', 'by');
             $container->appendChild($by);
 
-            $of = $this->dom->createElementNS('http://xml.phpdox.de/src#', 'of');
+            $of = $this->dom->createElementNS('http://xml.phpdox.net/src#', 'of');
             $container->appendChild($of);
 
             $xp = $this->indexDom->getDOMXPath();
@@ -108,7 +108,7 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
         public function classNameToFileName($class, $method = NULL) {
             $name = str_replace('\\', '_', $class);
             if ($method !== NULL) {
-                $name .= '.' . $method;
+                $name .= '/' . $method;
             }
             return $name . '.' . $this->extension;
         }
@@ -127,7 +127,7 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
                 if ($parent) {
                     $ctx = $this->followInheritence($parent, $ctx);
                 } else {
-                    $ctx = $ctx->appendElementNS('http://xml.phpdox.de/src#', 'class');
+                    $ctx = $ctx->appendElementNS('http://xml.phpdox.net/src#', 'class');
                     foreach($extends->attributes as $attr) {
                         $ctx->appendChild($this->dom->importNode($attr));
                     }

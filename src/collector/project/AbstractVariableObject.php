@@ -38,42 +38,77 @@ namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMElement;
 
+    /**
+     * Class AbstractVariableObject
+     *
+     * @package TheSeer\phpDox\Collector
+     */
     abstract class AbstractVariableObject {
 
-        const XMLNS = 'http://xml.phpdox.de/src#';
+        const XMLNS = 'http://xml.phpdox.net/src#';
 
-        protected  $ctx;
+        /**
+         * @var \TheSeer\fDOM\fDOMElement
+         */
+        protected $ctx;
 
+        /**
+         * @var array
+         */
         private $types = array('{unknown}', 'object', 'array','integer','float','string','boolean','resource');
 
+        /**
+         * @param fDOMElement $ctx
+         */
         public function __construct(fDOMElement $ctx) {
             $this->ctx = $ctx;
         }
 
+        /**
+         * @return fDOMElement
+         */
         public function export() {
             return $this->ctx;
         }
 
+        /**
+         * @param $line
+         */
         public function setLine($line) {
             $this->ctx->setAttribute('line', $line);
         }
 
+        /**
+         * @return string
+         */
         public function getLine() {
             return $this->ctx->getAttribute('line');
         }
 
+        /**
+         * @param $name
+         */
         public function setName($name) {
             $this->ctx->setAttribute('name', $name);
         }
 
+        /**
+         * @return \DOMAttr
+         */
         public function getName() {
             return $this->ctx->getAttributeNode('name');
         }
 
+        /**
+         * @param $value
+         */
         public function setDefault($value) {
             $this->ctx->setAttribute('default', $value);
         }
 
+        /**
+         * @param $type
+         */
         public function setType($type) {
             if (!in_array(strtolower($type), $this->types)) {
                 $parts = explode('\\', $type);
@@ -89,6 +124,9 @@ namespace TheSeer\phpDox\Collector {
             $this->ctx->setAttribute('type', $type);
         }
 
+        /**
+         * @return string
+         */
         public function getType() {
             return $this->ctx->getAttribute('type');
         }
