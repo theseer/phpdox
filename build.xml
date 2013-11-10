@@ -27,7 +27,7 @@
     </target>
 
     <target name="parallelTasks"
-            description="Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks in parallel using a maximum of 2 threads.">
+            description="Run the pdepend, phpmd, phpcpd, phpcs and phploc tasks in parallel using a maximum of 2 threads.">
         <parallel threadCount="2">
             <sequential>
                 <antcall target="pdepend"/>
@@ -75,14 +75,6 @@
               --report-file=${basedir}/build/logs/checkstyle.xml
               --standard=phpcs.xml
               ${source}"/>
-        </exec>
-    </target>
-
-    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
-        <exec executable="phpcb">
-            <arg line="--log    ${basedir}/build/logs
-              --source ${source}
-              --output ${basedir}/build/code-browser"/>
         </exec>
     </target>
 
@@ -196,5 +188,5 @@
         <delete dir="${basedir}/build/phar/_tmp"/>
     </target>
 
-    <target name="build" depends="clean,parallelTasks,phpunit,phpcb"/>
+    <target name="build" depends="clean,parallelTasks,phpunit"/>
 </project>
