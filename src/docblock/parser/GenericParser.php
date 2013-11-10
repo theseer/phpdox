@@ -44,6 +44,10 @@ namespace TheSeer\phpDox\DocBlock {
         protected $name;
         protected $payload;
 
+        private $types = array(
+            '', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int', 'float', 'string', 'boolean', 'resource'
+        );
+
         public function __construct(Factory $factory, $name) {
             $this->factory = $factory;
             $this->name = $name;
@@ -72,6 +76,11 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function lookupType($type) {
+            // Do not mess with scalar and fixed types
+            if (in_array($type, $this->types)) {
+                return $type;
+            }
+
             // absolute definition?
             if ($type[0] == '\\') {
                 return $type;
@@ -86,7 +95,7 @@ namespace TheSeer\phpDox\DocBlock {
             if (isset($this->aliasMap['::context'])) {
                 return $this->aliasMap['::context'] . '\\' . $type;
             }
-            
+
             // don't know any better ..
             return  $type;
         }
