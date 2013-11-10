@@ -83,7 +83,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $enrichment = $this->getEnrichtmentContainer($ref, 'pmd');
                 $enrichViolation = $dom->createElementNS(self::XMLNS, 'violation');
                 $enrichment->appendChild($enrichViolation);
-                $enrichViolation->appendChild($dom->createTextNode($enrichment->nodeValue));
+                $enrichViolation->setAttribute('message', trim($violation->nodeValue));
                 foreach($violation->attributes as $attr) {
                     $enrichViolation->setAttributeNode($dom->importNode($attr, true));
                 }
