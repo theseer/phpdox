@@ -48,6 +48,7 @@ namespace TheSeer\phpDox\DocBlock {
             'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
             'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
             'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'throws' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
             'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
 
             'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser'
