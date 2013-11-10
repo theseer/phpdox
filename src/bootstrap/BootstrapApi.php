@@ -29,7 +29,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package    phpDox
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
@@ -49,6 +48,10 @@ namespace TheSeer\phpDox {
      * collecting backends, additional parsers for annotations, generator engines for
      * additional output formats as well as enrichment plugins
      *
+     * @author     Arne Blankerts <arne@blankerts.de>
+     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+     * @license    BSD License
+     *
      */
     class BootstrapApi {
 
@@ -57,46 +60,46 @@ namespace TheSeer\phpDox {
          *
          * @var BackendFactory
          */
-        protected $backendFactory;
+        private $backendFactory;
 
         /**
          * Reference to the EngineFactory instance
          *
          * @var EngineFactory
          */
-        protected $engineFactory;
+        private $engineFactory;
 
         /**
          * Reference to the DocblockParserFactory instance
          *
          * @var DocBlockFactory
          */
-        protected $parserFactory;
+        private $parserFactory;
 
         /**
          * @var EnricherFactory
          */
-        protected $enricherFactory;
+        private $enricherFactory;
 
         /**
          * Array of registered engines
          *
          * @var array
          */
-        protected $engines = array();
+        private $engines = array();
 
         /**
          * Array of registered enrichers
          *
          * @var array
          */
-        protected $enrichers = array();
+        private $enrichers = array();
         /**
          * Array of registered backends
          *
          * @var array
          */
-        protected $backends = array();
+        private $backends = array();
 
         /**
          * Constructor
@@ -112,6 +115,8 @@ namespace TheSeer\phpDox {
         }
 
         /**
+         * Get list of all registered generator engines
+         *
          * @return array
          */
         public function getEngines() {
@@ -119,6 +124,8 @@ namespace TheSeer\phpDox {
         }
 
         /**
+         * Get list of all registered enrichers
+         *
          * @return array
          */
         public function getEnrichers() {
@@ -126,6 +133,8 @@ namespace TheSeer\phpDox {
         }
 
         /**
+         * Get list of all registered collector backends
+         *
          * @return array
          */
         public function getBackends() {
@@ -133,20 +142,25 @@ namespace TheSeer\phpDox {
         }
 
         /**
+         * Register a new backend
+         *
          * @param string $name        Name of the collector backend
          * @param string $description A describing text
          *
          * @return BackendBootstrapApi
          */
-        public function registerBackend($name, $description) {
+        public function registerBackend($name, $description = 'no description set') {
             $this->logger->log("Registered collector backend '$name'");
             $this->backends[$name] = $description;
             return new BackendBootstrapApi($name, $this->backendFactory);
         }
 
         /**
-         * @param $name
-         * @param $description
+         * Register a new generator enginge
+         *
+         * @param $name         Name of the generator engine
+         * @param $description  A describing text
+         *
          * @return EngineBootstrapApi
          */
         public function registerEngine($name, $description) {
@@ -164,7 +178,14 @@ namespace TheSeer\phpDox {
             return new ParserBootstrapApi($annotation, $this->parserFactory);
         }
 
-
+        /**
+         * Register a new enricher
+         *
+         * @param $name         Name of the enricher
+         * @param $description  A describing text
+         *
+         * @return EnricherBootstrapApi
+         */
         public function registerEnricher($name, $description) {
             $this->logger->log("Registered enricher '$name'");
             $this->enrichers[$name] = $description;
