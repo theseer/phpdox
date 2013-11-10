@@ -14,11 +14,11 @@ namespace TheSeer\phpDox\Generator {
         }
 
         public function getTraits() {
-            return new TraitCollection($this->getNode()->query('phpdox:class'));
+            return new TraitCollection($this->getNode()->query('phpdox:trait'));
         }
 
         public function getInterfaces() {
-            return new InterfaceCollection($this->getNode()->query('phpdox:class'));
+            return new InterfaceCollection($this->getNode()->query('phpdox:interface'));
         }
 
     }
