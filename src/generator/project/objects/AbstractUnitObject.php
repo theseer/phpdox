@@ -43,7 +43,7 @@ namespace TheSeer\phpDox\Generator {
          * @return string
          */
         public function getFullName() {
-            return $this->dom->queryOne('//phpdox:class')->getAttribute('full');
+            return $this->dom->documentElement->getAttribute('full');
         }
 
         /**
