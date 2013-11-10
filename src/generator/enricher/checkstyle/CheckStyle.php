@@ -82,9 +82,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
 
                 $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
-                $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->localName);
+                $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->getAttribute('severity', 'error'));
                 $enrichment->appendChild($enrichFinding);
                 foreach($finding->attributes as $attr) {
+                    if ($attr->localName == 'severity') {
+                        continue;
+                    }
                     $enrichFinding->setAttributeNode($dom->importNode($attr, true));
                 }
 
