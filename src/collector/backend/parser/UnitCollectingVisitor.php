@@ -36,7 +36,6 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\phpDox\Collector\AbstractUnitObject;
     use TheSeer\phpDox\Collector\AbstractVariableObject;
     use TheSeer\phpDox\Collector\InlineComment;
     use TheSeer\phpDox\Collector\MethodObject;
@@ -83,6 +82,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         public function enterNode(\PHPParser_Node $node) {
             if ($node instanceof \PHPParser_Node_Stmt_Namespace) {
                 $this->namespace = join('\\', $node->name->parts);
+                $this->aliasMap['::context'] = $this->namespace;
             } else if ($node instanceof \PHPParser_Node_Stmt_UseUse) {
                 $this->aliasMap[$node->alias] = join('\\', $node->name->parts);
             } else if ($node instanceof \PHPParser_Node_Stmt_Class) {
@@ -284,7 +284,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 return;
             }
             if ($default instanceof \PHPParser_Node_Scalar_String) {
-                $variable->setDefault($default->originalValue);
+                $variable->setDefault($default->getAttribute('originalValue'));
                 if ($variable->getType() == '{unknown}') {
                     $variable->setType('string');
                 }
@@ -293,14 +293,14 @@ namespace TheSeer\phpDox\Collector\Backend {
             if ($default instanceof \PHPParser_Node_Scalar_LNumber ||
                 $default instanceof \PHPParser_Node_Expr_UnaryMinus ||
                 $default instanceof \PHPParser_Node_Expr_UnaryPlus) {
-                $variable->setDefault($default->originalValue);
+                $variable->setDefault($default->getAttribute('originalValue'));
                 if ($variable->getType() == '{unknown}') {
                     $variable->setType('integer');
                 }
                 return;
             }
             if ($default instanceof \PHPParser_Node_Scalar_DNumber) {
-                $variable->setDefault($default->originalValue);
+                $variable->setDefault($default->getAttribute('originalValue'));
                 if ($variable->getType() == '{unknown}') {
                     $variable->setType('float');
                 }

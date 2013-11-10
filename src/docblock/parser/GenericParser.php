@@ -72,7 +72,23 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function lookupType($type) {
-            return isset($this->aliasMap[$type]) ? $this->aliasMap[$type] : $type;
+            // absolute definition?
+            if ($type[0] == '\\') {
+                return $type;
+            }
+
+            // alias?
+            if (isset($this->aliasMap[$type])) {
+                return $this->aliasMap[$type];
+            }
+
+            // relative to local namespace?
+            if (isset($this->aliasMap['::context'])) {
+                return $this->aliasMap['::context'] . '\\' . $type;
+            }
+            
+            // don't know any better ..
+            return  $type;
         }
 
     }
