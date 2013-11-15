@@ -190,17 +190,17 @@ namespace TheSeer\phpDox {
             }
 
             $this->logger->log('Loading enrichers');
-            foreach($config->getActiveEnrichSources() as $enrichCfg) {
+            foreach($config->getActiveEnrichSources() as $type => $enrichCfg) {
                 try {
                     $enricher = $enricherFactory->getInstanceFor($enrichCfg);
-                    $generator->addEnricher( $enricher );
+                    $generator->addEnricher($enricher);
                     $this->logger->log(
                         sprintf('Enricher %s initialized successfully', $enricher->getName())
                     );
                 } catch (EnricherException $e) {
                     $this->logger->log(
                         sprintf("Exception while initializing enricher %s:\n\n    %s\n",
-                            $enricher->getName(),
+                            $type,
                             $e->getMessage()
                         )
                     );
