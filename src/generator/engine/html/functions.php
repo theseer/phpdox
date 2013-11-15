@@ -32,79 +32,6 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             return \TheSeer\phpDox\Version::getGeneratedByString();
         }
 
-        public function classLink(Array $nodes) {
-            if (count($nodes)!=1) {
-                return $this->dom->createTextNode('invalid method call');
-            }
-            $workNode = $nodes[0];
-            $full = $workNode->getAttribute('full');
-            if (($full != '') && isset($this->links[$full])) {
-                return $this->links[$full];
-            }
-
-            $xp = $this->indexDom->getDOMXPath();
-            $node = $this->indexDom->queryOne(
-                sprintf('//phpdox:namespace[@name=%s]/phpdox:*[@name=%s]',
-                    $xp->quote($workNode->getAttribute('namespace')),
-                    $xp->quote($workNode->getAttribute('name'))
-                )
-            );
-
-            if (!$node) {
-                $text = $this->dom->createTextNode($workNode->getAttribute('name'));
-                $span = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'span');
-                if ($nodes[0]->hasAttribute('namespace')) {
-                    $span->setAttribute('title', $full);
-                }
-                $span->appendChild($text);
-                $this->links[$full] = $span;
-                return $span;
-            }
-
-            $map = array(
-                'class' => 'classes',
-                'interface' => 'interfaces',
-                'trait'  => 'traits'
-            );
-            $path = $map[$node->localName];
-
-            $a = $this->dom->createElementNS('http://www.w3.org/1999/xhtml', 'a');
-            $a->setAttribute('href', '../'.$path.'/'. $this->classNameToFileName($full));
-            $a->appendChild($this->dom->createTextNode($full));
-            $this->links[$full] = $a;
-            return $a;
-        }
-
-        public function getInheritanceInfo(Array $nodes) {
-            if (count($nodes)!=1) {
-                return $this->dom->createTextNode('invalid method call');
-            }
-            $full = $nodes[0]->getAttribute('full');
-
-            $container = $this->dom->createElementNS('http://xml.phpdox.net/src#', 'extended');
-            $by = $this->dom->createElementNS('http://xml.phpdox.net/src#', 'by');
-            $container->appendChild($by);
-
-            $of = $this->dom->createElementNS('http://xml.phpdox.net/src#', 'of');
-            $container->appendChild($of);
-
-            $xp = $this->indexDom->getDOMXPath();
-            $prepared = $xp->quote($full);
-            $class = $this->indexDom->queryOne('//phpdox:class[@full='.$prepared.']');
-            if (!$class) {
-                return $container;
-            }
-
-            $this->followInheritence($class, $of);
-
-            foreach($this->indexDom->query('//phpdox:class[phpdox:extends[@full="'.$full.'"]]') as $node) {
-                $by->appendChild($this->dom->importNode($node));
-            }
-
-            return $container;
-
-        }
-
         public function classNameToFileName($class, $method = NULL) {
             $name = str_replace('\\', '_', $class);
             if ($method !== NULL) {
@@ -117,24 +44,5 @@ namespace TheSeer\phpDox\Generator\Engine\Html {
             return $this->projectNode;
         }
 
-        protected function followInheritence($class, $ctx) {
-            $node = $this->dom->importNode($class);
-
-            /** @var $extends \DOMElement */
-            $extends = $class->queryOne('phpdox:extends');
-            if ($extends) {
-                $parent = $this->indexDom->queryOne('//phpdox:class[@full="'.$extends->getAttribute('full').'"]');
-                if ($parent) {
-                    $ctx = $this->followInheritence($parent, $ctx);
-                } else {
-                    $ctx = $ctx->appendElementNS('http://xml.phpdox.net/src#', 'class');
-                    foreach($extends->attributes as $attr) {
-                        $ctx->appendChild($this->dom->importNode($attr));
-                    }
-                }
-            }
-            $ctx->appendChild($node);
-            return $node;
-        }
     }
 }
