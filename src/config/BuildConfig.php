@@ -75,6 +75,10 @@ namespace TheSeer\phpDox {
             return $this->ctx->getAttribute('engine');
         }
 
+        public function getWorkDirectory() {
+            return $this->project->getWorkDirectory();
+        }
+
         public function getOutputDirectory() {
             $path = '';
             if ($this->ctx->parentNode->hasAttribute('output')) {
