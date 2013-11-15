@@ -50,7 +50,6 @@
                 <!--  You can define multiple (external) dependencies to be included -->
                 <!--  <dependency  path="" -->
                 <!--    @path  - path to a directory containing an index.xml for a dependency project -->
-
             </inheritance>
 
         </collector>
@@ -64,6 +63,9 @@
             <enrich base="${basedir}/build">
                 <!-- @base - (Base-)Directory of datafiles used for enrich process -->
 
+                <!-- add build information - this should always be enabled -->
+                <source type="build" />
+
                 <!-- enrichment source -->
                 <source type="checkstyle">
                     <!-- @type - the handler for the enrichment -->
@@ -72,7 +74,6 @@
                     <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
                     <!-- <file name="logs/checkstyle.xml" /> -->
                 </source>
-
                 <!--
                 <source type="pmd">
                     <file name="pmd.xml" />
@@ -81,12 +82,11 @@
                 <source type="clover">
                     <file name="clover.xml" />
                 </source>
-                -->
 
                 <source type="phpunit">
                     <directory name="coverage/xml" />
                 </source>
-
+                -->
             </enrich>
 
 
