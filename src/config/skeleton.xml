@@ -66,29 +66,29 @@
                 <!-- add build information - this should always be enabled -->
                 <source type="build" />
 
+                <!-- add phploc output -->
+                <!-- <source type="phploc" /> -->
+
+                <!-- add git vcs information -->
+                <!--<source type="git" /> -->
+
                 <!-- enrichment source -->
-                <source type="checkstyle">
+                <!--<source type="checkstyle">-->
                     <!-- @type - the handler for the enrichment -->
                     <!--         known types by default are: checkstyle, pmd, clover, phpunit -->
 
                     <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
                     <!-- <file name="logs/checkstyle.xml" /> -->
-                </source>
+                <!--</source> -->
+
+                <!-- PHPMessDetector -->
                 <!--
                 <source type="pmd">
                     <file name="pmd.xml" />
                 </source>
-
-                <source type="clover">
-                    <file name="clover.xml" />
-                </source>
-
-                <source type="phpunit">
-                    <directory name="coverage/xml" />
-                </source>
                 -->
-            </enrich>
 
+            </enrich>
 
             <!-- <build engine="..." enabled="true" output="..." /> -->
             <!--   @engine  - The name of the engine this build task uses, use ./phpDox - -engines to get a list of available engines -->
@@ -102,18 +102,6 @@
                 <template dir="${phpDox.home}/templates/html" />
                 <file extension="xhtml" />
             </build>
-
-            <!--
-            <build engine="todo" enabled="true" output="todo">
-                <file name="todolist.txt" encoding="utf-8" />
-            </build>
-
-            <build engine="graph" enabled="true" output="graph">
-                <dot executable="/usr/bin/dot" options="" />
-                <file name="graph.png" options="" format="png" />
-            </build>
-
-            -->
 
         </generator>
     </project>
