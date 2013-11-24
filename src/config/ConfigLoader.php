@@ -69,6 +69,10 @@ namespace TheSeer\phpDox {
                 $dom->load($fname);
 
                 $root = $dom->documentElement;
+                if ($root->namespaceURI == 'http://phpdox.de/config') {
+                    throw new ConfigLoaderException("File '$fname' uses an outdated xml namespace. Please update the xmlns to 'http://phpdox.net/config'", ConfigLoaderException::OldNamespace);
+                }
+
                 if ($root->namespaceURI != 'http://phpdox.net/config' ||
                     $root->localName != 'phpdox') {
                     throw new ConfigLoaderException("File '$fname' is not a valid phpDox configuration.", ConfigLoaderException::WrongType);
@@ -87,5 +91,6 @@ namespace TheSeer\phpDox {
         const ParseError = 2;
         const NoCandidateExists = 3;
         const Wrongtype = 4;
+        const OldNamespace = 5;
     }
 }
