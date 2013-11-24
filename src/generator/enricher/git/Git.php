@@ -1,13 +1,20 @@
 <?php
 namespace TheSeer\phpDox\Generator\Enricher {
 
+    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\EnrichConfig;
+    use TheSeer\phpDox\Generator\ClassStartEvent;
+    use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\PHPDoxStartEvent;
+    use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class Git extends AbstractEnricher implements IndexEnricherInterface {
+    class Git extends AbstractEnricher implements IndexEnricherInterface, InterfaceEnricherInterface, ClassEnricherInterface, TraitEnricherInterface {
 
         private $srcDir;
+        private $noGitAvailable = false;
+
+        private $tokens = array('H','aE','aN','cE','cN','at','ct');
 
         public function __construct(EnrichConfig $config) {
             $this->srcDir = $config->getGeneratorConfig()->getProjectConfig()->getSourceDirectory();
@@ -28,12 +35,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $cwd = getcwd();
             chdir($this->srcDir);
             $describe = exec('git describe --always --dirty 2>/dev/null', $foo, $rc);
-
             if ($rc !== 0) {
                 $enrichtment->appendChild(
                     $dom->createComment('Not a git repository or no git binary available')
                 );
                 chdir($cwd);
+                $this->noGitAvailable = true;
                 return;
             }
 
@@ -69,6 +76,106 @@ namespace TheSeer\phpDox\Generator\Enricher {
             chdir($cwd);
         }
 
+        public function enrichClass(ClassStartEvent $event) {
+            $this->enrichByFile($event->getClass()->asDom());
+        }
+
+        public function enrichInterface(InterfaceStartEvent $event) {
+            $this->enrichByFile($event->getInterface()->asDom());
+        }
+
+        public function enrichTrait(TraitStartEvent $event) {
+            $this->enrichByFile($event->getTrait()->asDom());
+        }
+
+        private function enrichByFile(fDOMDocument $dom) {
+            if ($this->noGitAvailable) {
+                return;
+            }
+            $fileNode = $dom->queryOne('//phpdox:file');
+            if (!$fileNode) {
+                return;
+            }
+
+            $enrichtment = $this->getEnrichtmentContainer($dom->documentElement, 'git');
+
+            try {
+                $log = $this->getLogHistory($fileNode->getAttribute('realpath'));
+                $block = array();
+                foreach($log as $line) {
+                    if ($line == '[EOF]') {
+                        $this->addCommit($enrichtment, $this->tokens, $block);
+                        $block = array();
+                        continue;
+                    }
+                    $block[] = $line;
+                }
+
+            } catch (GitEnricherException $e) {
+                $enrichtment->appendChild(
+                    $dom->createComment('GitEnricher Error: ' . $e->getMessage())
+                );
+            }
+
+        }
+
+        private function addCommit(fDOMElement $enrichment, array $tokens, array $block) {
+            list($data, $text) = array_chunk($block, count($tokens));
+
+            $data = array_combine($tokens, $data);
+
+            $commit = $enrichment->appendElementNS(self::XMLNS, 'commit');
+            $commit->setAttribute('sha1', $data['H']);
+
+            $author = $commit->appendElementNS(self::XMLNS, 'author');
+            $author->setAttribute('email', $data['aE']);
+            $author->setAttribute('name', $data['aN']);
+            $author->setAttribute('time', date('c', $data['at']));
+            $author->setAttribute('unixtime', $data['at']);
+
+            $commiter = $commit->appendElementNS(self::XMLNS, 'commiter');
+            $commiter->setAttribute('email', $data['cE']);
+            $commiter->setAttribute('name', $data['cN']);
+            $commiter->setAttribute('time', date('c', $data['ct']));
+            $commiter->setAttribute('unixtime', $data['ct']);
+
+            $message = $commit->appendElementNS(self::XMLNS, 'message');
+            $message->appendTextNode(trim(join("\n", $text)));
+        }
+
+
+        private function getLogHistory($filename) {
+            /*
+             * H:8283723b40725a91c684e27c0c0449b959a48740
+             * aE:Arne@Blankerts.de
+             * aN:Arne Blankerts
+             * cE:Arne@Blankerts.de
+             * cN:Arne Blankerts
+             * at:1375611883
+             * ct:1375836305
+             * {commit message text}
+             * [EOF]
+             *
+             * see git log --help for more details
+             *
+             * The logic of addCommit assumes the commit message to be last
+             */
+            $format = '%' . join('%n%',$this->tokens) . '%n%B%n[EOF]';
+
+            $cwd = getcwd();
+            chdir(dirname($filename));
+            $fname = escapeshellarg(basename($filename));
+            exec(sprintf('git log --follow --pretty=format:"%s" %s', $format, $fname), $log, $rc);
+            chdir($cwd);
+            if ($rc !== 0) {
+                throw new GitEnricherException('Error getting log history for file ' . $filename, GitEnricherException::FetchingHistoryFailed);
+            }
+            return $log;
+        }
     }
 
+
+    class GitEnricherException extends \Exception {
+        const FetchingHistoryFailed = 1;
+    }
 }
