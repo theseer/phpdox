@@ -326,12 +326,24 @@ EOF;
                 ini_set('xdebug.show_exception_trace', 0);
                 xdebug_disable();
             }
+
+            try {
+                date_default_timezone_set(date_default_timezone_get());
+            } catch (\ErrorException $e) {
+                date_default_timezone_set('UTC');
+                throw new CLIEnvironmentException(
+                    "No default date.timezone configured in php.ini.",
+                    CLIEnvironmentException::DateTimeZoneMissing,
+                    $e
+                );
+            }
         }
 
     }
 
     class CLIEnvironmentException extends \Exception {
         const ExtensionMissing = 1;
+        const DateTimeZoneMissing = 2;
     }
 
 }
