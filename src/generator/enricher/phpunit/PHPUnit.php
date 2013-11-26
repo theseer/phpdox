@@ -10,7 +10,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         private $config;
 
-        public function __construct(CheckStyleConfig $config) {
+        public function __construct(PHPUnitConfig $config) {
             $this->config = $config;
             $this->loadIndex($config->getLogFilePath());
         }
