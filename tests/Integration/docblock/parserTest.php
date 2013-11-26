@@ -29,9 +29,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package    phpDox
- * @subpackage Tests
- * @author     Bastian Feder <phpdox@bastian-feder.de>
+ * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
@@ -46,22 +44,32 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         /**
          * @covers TheSeer\phpDox\DocBlock\Parser::__construct
          * @covers TheSeer\phpDox\DocBlock\Parser::parse
+         *
+         * @dataProvider docblockSource
          */
-        public function testParse() {
+        public function testParse($src) {
 
-            $block = file_get_contents(__DIR__.'/../../data/docbock/heading');
+            $block = file_get_contents( $src);
+            //$expected = file_get_contents($src . '.xml');
 
-            $factory = $this->getFactoryFixture(array('getInstanceFor'));
+            $factory = $this->getMock('TheSeer\\phpDox\\DocBlock\\Factory');
             $factory->expects($this->once())
                     ->method('getInstanceFor')
                     ->will($this->returnValue(new DocBlock()));
 
             $parser = new Parser($factory);
-            $actual = $parser->parse($block, array());
+            $result = $parser->parse($block, array());
 
-            $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\DocBlock', $actual);
+            var_dump($result->asDom());
 
+            $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\DocBlock', $result);
+            $this->assertEquals($expected, $result->asDom());
+        }
 
+        public function docblockSource() {
+            return array(
+                'heading' => array(__DIR__.'/../../data/docbock/heading')
+            );
         }
     }
 }
