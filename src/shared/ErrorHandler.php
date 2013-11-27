@@ -114,10 +114,10 @@ namespace TheSeer\phpDox {
          */
         public function handleException(\Exception $exception) {
             fwrite(STDERR, "\n\nOups... phpDox encountered a problem and has terminated!\n");
-            fwrite(STDERR, "It most likely means you've found a bug, so please file a report for this and paste the stacktrace (if given) along!\n\n");
-
+            fwrite(STDERR, "\nIt most likely means you've found a bug, so please file a report for this\n");
+            fwrite(STDERR, "and paste the following details and the stacktrace (if given) along:\n\n");
+            fwrite(STDERR, "Version: " . Version::getVersion() . "\n");
             $this->renderException($exception);
-
             fwrite(STDERR, "\n\n\n");
             exit(1);
         }
@@ -136,10 +136,12 @@ namespace TheSeer\phpDox {
             foreach($trace as $pos => $entry) {
                 fwrite(STDERR,
                     sprintf('#%1$d %2$s(%3$d): %4$s%5$s%6$s()'."\n",
-                        $pos, $entry['file'], $entry['line'],
+                        $pos,
+                        isset($entry['file']) ? $entry['file'] : 'unknown',
+                        isset ($entry['line']) ? $entry['line'] : '0',
                         isset($entry['class']) ? $entry['class'] : '',
                         isset($entry['type']) ? $entry['type'] : '',
-                        $entry['function']
+                        isset($entry['function']) ? $entry['function'] : ''
                     )
                 );
             }
