@@ -34,9 +34,10 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests\Unit\DocBlock {
+namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
-    use TheSeer\phpDox\DocBlock\DocBlock;
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\phpDox\DocBlock\Factory;
     use TheSeer\phpDox\DocBlock\Parser;
 
     class ParserTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
@@ -45,30 +46,47 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\Parser::__construct
          * @covers TheSeer\phpDox\DocBlock\Parser::parse
          *
-         * @dataProvider docblockSource
+         * @dataProvider docblockSources
          */
         public function testParse($src) {
+            $dom = new fDOMDocument();
+            $dir = __DIR__.'/../../data/docbock/';
+            $block = file_get_contents($dir . $src);
+            $expected = file_get_contents($dir . $src . '.xml');
 
-            $block = file_get_contents( $src);
-            //$expected = file_get_contents($src . '.xml');
-
-            $factory = $this->getMock('TheSeer\\phpDox\\DocBlock\\Factory');
-            $factory->expects($this->once())
-                    ->method('getInstanceFor')
-                    ->will($this->returnValue(new DocBlock()));
-
+            $factory = new Factory();
             $parser = new Parser($factory);
             $result = $parser->parse($block, array());
 
-            var_dump($result->asDom());
-
             $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\DocBlock', $result);
-            $this->assertEquals($expected, $result->asDom());
+            $this->assertEquals($expected, $dom->saveXML($result->asDom($dom)));
         }
 
-        public function docblockSource() {
+        public function docblockSources() {
             return array(
-                'heading' => array(__DIR__.'/../../data/docbock/heading')
+                array('author'),
+                array('body'),
+                array('complex'),
+                array('deprecated'),
+                array('docblock'),
+                array('docblock_compact'),
+                array('docblock_compact_multiline_short'),
+                array('empty'),
+                array('exception'),
+                array('global'),
+                array('heading'),
+                array('multiat'),
+                array('multiline_body'),
+                array('param_without_description'),
+                array('param_without_varname'),
+                array('param_without_varname_and_description'),
+                array('see'),
+                array('since'),
+                array('throws'),
+                array('var_full'),
+                array('var_no_body'),
+                array('var_only'),
+                array('version')
             );
         }
     }

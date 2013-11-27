@@ -1,0 +1,1 @@
+<docblock xmlns="http://xml.phpdox.net/src#"><description compact="the heading">the body</description><param description="The foo parameter" type="string" variable="$foo"/><param description="Number of bars" type="int" variable="$bar"/><return type="object"><type full="null" namespace="" name="null"/></return></docblock>

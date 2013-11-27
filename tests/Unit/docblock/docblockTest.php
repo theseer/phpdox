@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,145 +30,120 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package    phpDox
- * @subpackage Tests
- * @author     Bastian Feder <phpdox@bastian-feder.de>
+ * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
 
 namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
-    use TheSeer\phpDox\DocBlock\GenericElement;
+    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\phpDox\DocBlock\DocBlock;
+    use TheSeer\phpDox\DocBlock\GenericElement;
 
-    class DocBlockTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
-
-
-        /*********************************************************************/
-        /* Fixtures                                                          */
-        /*********************************************************************/
+    class DocBlockTest extends \PHPUnit_Framework_TestCase {
 
         /**
-         * Provides a fixture representing an instance of the class 'GenericElement'.
-         *
-         * @param string $name
-         * @param array $methods
-         *
-         * @return TheSeer\phpDox\DocBlock\GenericElement
+         * @var DocBlock
          */
-        protected function getGenericElementFixture($name, array $methods) {
-            return $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\GenericElement')
-                ->setConstructorArgs(array($this->getFactoryFixture(), $name))
-                ->setMethods($methods)
+        private $docBlock;
+
+        /**
+         * @var GenericElement
+         */
+        private $element;
+
+        protected function setUp() {
+            $this->docBlock = new DocBlock();
+
+            $this->element = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\GenericElement')
+                ->disableOriginalConstructor()
                 ->getMock();
+
+            $this->element->expects($this->any())
+                            ->method('getAnnotationName')
+                            ->will($this->returnValue('stub'));
         }
 
-        /*********************************************************************/
-        /* Tests                                                             */
-        /*********************************************************************/
-
-        /**
-         * @covers TheSeer\phpDox\DocBlock\DocBlock::appendElement
-         */
-        public function testAppendElement() {
-
-            $docBlock = new DocBlock();
-
-            $genericElement = $this->getGenericElementFixture('Beastie', array('getAnnotationName'));
-            $genericElement
-                ->expects($this->once())
-                ->method('getAnnotationName')
-                ->will($this->returnValue('Beastie'));
-
-            $docBlock->appendElement($genericElement);
-
-            $elements = $this->readAttribute($docBlock, 'elements');
-            $this->assertArrayHasKey('Beastie', $elements);
-            $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\GenericElement', $elements['Beastie']);
+        public function testHasElementByNameReturnsFalseIfNotPresent() {
+            $this->assertFalse($this->docBlock->hasElementByName('not-set'));
         }
 
         /**
          * @covers TheSeer\phpDox\DocBlock\DocBlock::appendElement
-         */
-        public function testAppendElementExistingElement() {
-            $genericElement = $this->getGenericElementFixture('Beastie', array('getAnnotationName'));
-            $genericElement
-                ->expects($this->exactly(3))
-                ->method('getAnnotationName')
-                ->will($this->returnValue('Beastie'));
-
-            $docBlock = new DocBlock();
-            $docBlock->appendElement($genericElement);
-            $docBlock->appendElement($genericElement);
-            $docBlock->appendElement($genericElement);
-
-            $elements = $this->readAttribute($docBlock, 'elements');
-            $this->assertArrayHasKey('Beastie', $elements);
-            $this->assertInternalType('array', $elements['Beastie']);
-            $this->assertEquals(3, count($elements['Beastie']));
-        }
-
-        /**
-         * @dataProvider hasElementByNameDataprovider
          * @covers TheSeer\phpDox\DocBlock\DocBlock::hasElementByName
          */
-        public function testHasElementByName($expected, $name, $elements) {
-            $docBlock = new DocBlockProxy();
-            $docBlock->elements = $elements;
-            $this->assertEquals($expected, $docBlock->hasElementByName($name));
+        public function testElementCanBeAdded() {
+            $this->docBlock->appendElement($this->element);
+            $this->assertTrue($this->docBlock->hasElementByName('stub'));
         }
+
+        /**
+         * @covers TheSeer\phpDox\DocBlock\DocBlock::appendElement
+         */
+        public function testSameTypeElementCanBeAddedMultipleTimes() {
+            $this->docBlock->appendElement($this->element);
+            $this->docBlock->appendElement($this->element);
+            $this->assertTrue($this->docBlock->hasElementByName('stub'));
+            $this->assertCount(2, $this->docBlock->getElementByName('stub'));
+        }
+
+        /**
+         * @expectedException \TheSeer\phpDox\DocBlock\DocBlockException
+         * @covers TheSeer\phpDox\DocBlock\DocBlock::getElementByName
+         */
+        public function testTryingToGetANonExistingElementThrowsException() {
+            $this->docBlock->getElementByName('non-set');
+        }
+
 
         /**
          * @covers TheSeer\phpDox\DocBlock\DocBlock::getElementByName
          */
-        public function testGetElementByName() {
-            $docBlock = new DocBlockProxy();
-            $docBlock->elements = array('Tux' => true);
-            $this->assertTrue($docBlock->getElementByName('Tux'));
+        public function testElementCanBeRetreived() {
+            $this->docBlock->appendElement($this->element);
+            $this->assertEquals($this->element, $this->docBlock->getElementByName('stub'));
         }
 
-        /**
-         * @expectedException TheSeer\phpDox\DocBlock\DocBlockException
-         * @covers TheSeer\phpDox\DocBlock\DocBlock::getElementByName
-         */
-        public function testGetElementByNameExpectingDocBlockException() {
-            $docBlock = new DocBlockProxy();
-            $docBlock->elements = array('Tux' => true);
-            $docBlock->getElementByName('Gnu');
+        public function testDocBlockCanBeSerializedToDom() {
+            $dom = new fDOMDocument();
+            $dom->registerNamespace('test', 'http://xml.phpdox.net/src#');
+            $this->element->expects($this->once())
+                ->method('asDom')
+                ->will($this->returnValue($dom->createElementNS('http://xml.phpdox.net/src#', 'stub')));
+
+            $this->docBlock->appendElement($this->element);
+            $node = $this->docBlock->asDom($dom);
+
+            $this->assertEquals(
+                '<docblock xmlns="http://xml.phpdox.net/src#"><stub/></docblock>',
+                $dom->saveXML($node)
+            );
         }
 
-        /**
-         * @covers TheSeer\phpDox\DocBlock\DocBlock::asDom
-         */
-        public function testAsDomNoRegisteredElments() {
+        public function testDocBlockWithMultipleOccurencesOfAnnotationCanBeSerializedToDom() {
+            $dom = new fDOMDocument();
+            $dom->registerNamespace('test', 'http://xml.phpdox.net/src#');
 
-            $node = new \stdClass;
+            $element2 = clone $this->element;
+            $this->element->expects($this->once())
+                ->method('asDom')
+                ->will($this->returnValue($dom->createElementNS('http://xml.phpdox.net/src#', 'stub')));
 
-            $fDomDocument = $this->getFDomDocumentFixture(array('createElementNS'));
-            $fDomDocument
-                ->expects($this->once())
-                ->method('createElementNS')
-                ->will($this->returnValue($node));
+            $element2->expects($this->once())
+                ->method('asDom')
+                ->will($this->returnValue($dom->createElementNS('http://xml.phpdox.net/src#', 'stub')));
 
-            $docBlock = new DocBlockProxy();
-            $this->assertEquals(new \stdClass, $docBlock->asDom($fDomDocument));
+            $this->docBlock->appendElement($this->element);
+            $this->docBlock->appendElement($element2);
 
-        }
+            $node = $this->docBlock->asDom($dom);
 
-        /*********************************************************************/
-        /* Dataprovider                                                      */
-        /*********************************************************************/
-
-        public static function hasElementByNameDataprovider() {
-            return array(
-                'known element' => array(true, 'Tux', array('Tux' => true)),
-                'unknown element' => array(false, 'Gnu', array('Tux' => true)),
+            $this->assertEquals(
+                '<docblock xmlns="http://xml.phpdox.net/src#"><stub/><stub/></docblock>',
+                $dom->saveXML($node)
             );
         }
     }
 
-
-    class DocBlockProxy extends DocBlock {
-        public $elements = array();
-    }
 }

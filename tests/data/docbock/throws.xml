@@ -1,0 +1,1 @@
+<docblock xmlns="http://xml.phpdox.net/src#"><description compact=""/><throws description="The description" type="object"><type full="SomeException" namespace="" name="SomeException"/></throws><throws description="The other description" type="object"><type full="AnotherException" namespace="" name="AnotherException"/></throws></docblock>

@@ -53,7 +53,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         }
 
         /**
-         * @expectedException TheSeer\phpDox\DocBlock\FactoryException
+         * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
          * @covers TheSeer\phpDox\DocBlock\Factory::addParserFactory
          */
         public function testAddParserFactoryExpectingFactoryException() {
@@ -72,7 +72,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
         /**
          * @dataProvider addParserClassDataprovider
-         * @expectedException TheSeer\phpDox\DocBlock\FactoryException
+         * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
          * @covers TheSeer\phpDox\DocBlock\Factory::addParserClass
          */
         public function testAddParserClassExpectingFactoryException($annotation, $classname) {
@@ -102,7 +102,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         }
 
         /**
-         * @expectedException TheSeer\phpDox\DocBlock\FactoryException
+         * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
          */
         public function testGetInstanceForExpectingFactoryException() {
