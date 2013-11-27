@@ -30,20 +30,20 @@
                 <li>
                     <div class="logo"><span>/**</span>phpDox</div>
                 </li>
-                <li class="separator"><a href="{$base}index.xhtml">Overview</a></li>
+                <li class="separator"><a href="{$base}index.{$extension}">Overview</a></li>
                 <xsl:if test="count($index/pdx:namespace) &gt; 1">
-                    <li class="separator"><a href="{$base}namespaces.xhtml">Namespaces</a></li>
+                    <li class="separator"><a href="{$base}namespaces.{$extension}">Namespaces</a></li>
                 </xsl:if>
                 <xsl:if test="count($index//pdx:interface) &gt; 0">
-                    <li><a href="{$base}interfaces.xhtml">Interfaces</a></li>
+                    <li><a href="{$base}interfaces.{$extension}">Interfaces</a></li>
                 </xsl:if>
                 <xsl:if test="count($index//pdx:class) &gt; 0">
-                    <li><a href="{$base}classes.xhtml">Classes</a></li>
+                    <li><a href="{$base}classes.{$extension}">Classes</a></li>
                 </xsl:if>
                 <xsl:if test="count($index//pdx:trait) &gt; 0">
-                    <li><a href="{$base}traits.xhtml">Traits</a></li>
+                    <li><a href="{$base}traits.{$extension}">Traits</a></li>
                 </xsl:if>
-                <li class="separator"><a href="{$base}reports.xhtml">Reports</a></li>
+                <li class="separator"><a href="{$base}reports.{$extension}">Reports</a></li>
             </ul>
         </nav>
     </xsl:template>
