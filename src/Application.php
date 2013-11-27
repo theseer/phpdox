@@ -110,6 +110,12 @@ namespace TheSeer\phpDox {
             $this->logger->log("Starting collector");
 
             $srcDir = $config->getSourceDirectory();
+            if (!file_exists($srcDir) || !is_dir($srcDir)) {
+                throw new ApplicationException(
+                    sprintf('Invalid src directory "%s" specified', $srcDir),
+                    ApplicationException::InvalidSrcDirectory
+                );
+            }
             $xmlDir = $config->getWorkDirectory();
 
             /** @var $scanner DirectoryScanner */
@@ -223,10 +229,18 @@ namespace TheSeer\phpDox {
                 );
             }
 
+            $srcDir = $pconfig->getSourceDirectory();
+            if (!file_exists($srcDir) || !is_dir($srcDir)) {
+                throw new ApplicationException(
+                    sprintf('Invalid src directory "%s" specified', $srcDir),
+                    ApplicationException::InvalidSrcDirectory
+                );
+            }
+
             $this->logger->log("Starting event loop.\n");
             $generator->run(
                 new \TheSeer\phpDox\Generator\Project(
-                    $pconfig->getSourceDirectory(),
+                    $srcDir,
                     $pconfig->getWorkDirectory()
                 )
             );
@@ -236,9 +250,10 @@ namespace TheSeer\phpDox {
     }
 
     class ApplicationException extends \Exception {
-        const UnknownEngine = 1;
-        const UnknownEnricher = 2;
-        const IndexMissing = 3;
-        const SourceMissing = 4;
+        const InvalidSrcDirectory = 1;
+        const UnknownEngine = 2;
+        const UnknownEnricher = 3;
+        const IndexMissing = 4;
+        const SourceMissing = 5;
     }
 }
