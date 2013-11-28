@@ -5,7 +5,7 @@
 
     <xsl:import href="components.xsl" />
 
-    <xsl:output method="xml" indent="yes" encoding="utf-8" />
+    <xsl:output method="xml" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
     <xsl:template match="/">
         <html lang="en">

@@ -8,7 +8,7 @@
     <xsl:import href="functions.xsl" />
     <xsl:import href="synopsis.xsl" />
 
-    <xsl:output method="xml" indent="yes" encoding="utf-8" />
+    <xsl:output method="xml" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
     <xsl:variable name="unit" select="/*[1]" />
 

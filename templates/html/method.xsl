@@ -15,7 +15,7 @@
 
     <xsl:variable name="method" select="$unit/pdx:*[@name = $methodName]" />
 
-    <xsl:output standalone="yes" method="xml" encoding="utf-8" />
+    <xsl:output method="xml" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
     <xsl:template match="/">
         <html lang="en">

@@ -17,6 +17,7 @@
         <head>
             <title>phpDox - <xsl:value-of select="$title" /></title>
             <link rel="stylesheet" type="text/css" href="{$base}css/style.css" media="screen" />
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         </head>
 
     </xsl:template>

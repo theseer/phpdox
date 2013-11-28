@@ -7,7 +7,7 @@
     <xsl:import href="functions.xsl" />
     <xsl:import href="synopsis.xsl" />
 
-    <xsl:output method="xml" indent="yes" encoding="utf-8" />
+    <xsl:output method="xml" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
     <xsl:variable name="unit" select="/*[1]" />
 
@@ -98,7 +98,9 @@
             <ul class="breadcrumb">
                 <li><a href="{$base}index.{$extension}">Overview</a></li>
                 <li class="separator"><a href="{$base}{$type}.{$extension}"><xsl:value-of select="$title" /></a></li>
-                <li class="separator"><a href="{$base}{$type}.{$extension}#{translate($unit/@namespace, '\', '_')}"><xsl:value-of select="$unit/@namespace" /></a></li>
+                <xsl:if test="$unit/@namespace != ''">
+                    <li class="separator"><a href="{$base}{$type}.{$extension}#{translate($unit/@namespace, '\', '_')}"><xsl:value-of select="$unit/@namespace" /></a></li>
+                </xsl:if>
                 <li class="separator"><xsl:value-of select="$unit/@name" /></li>
             </ul>
         </div>
