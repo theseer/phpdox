@@ -39,4 +39,21 @@
         <func:result><a title="{$ctx/@full}" href="{$link}"><xsl:value-of select="$text" /></a></func:result>
     </func:function>
 
+    <func:function name="pdxf:nl2br">
+            <xsl:param name="string"/>
+            <xsl:variable name="format">
+            <xsl:value-of select="normalize-space(substring-before($string,'&#10;'))"/>
+            <xsl:choose>
+                <xsl:when test="contains($string,'&#10;')">
+                    <br />
+                    <xsl:copy-of select="pdxf:nl2br(substring-after($string,'&#10;'))" />
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$string"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            </xsl:variable>
+            <func:result><xsl:copy-of select="$format" /></func:result>
+    </func:function>
+
 </xsl:stylesheet>
