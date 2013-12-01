@@ -27,8 +27,7 @@
 
     <xsl:template match="idx:namespace">
         <div class="container">
-            <a name="{translate(@name, '\', '_')}" />
-            <h2>\<xsl:value-of select="@name" /></h2>
+            <h2 id="{translate(@name, '\', '_')}">\<xsl:value-of select="@name" /></h2>
             <table class="styled">
                 <thead>
                     <tr>

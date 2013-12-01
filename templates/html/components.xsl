@@ -141,8 +141,7 @@
         <xsl:param name="ctx" />
 
         <xsl:if test="$ctx/pdx:enrichment[@type='pmd' or @type='checkstyle']">
-        <a name="violations" />
-        <h2>Violations</h2>
+        <h2 id="violations">Violations</h2>
         <div class="styled">
             <xsl:if test="$ctx/pdx:enrichment[@type='pmd']">
                 <h3>PHPMessDetector</h3>
@@ -235,7 +234,7 @@
             <tbody>
                 <xsl:for-each select="//pdx:constant">
                     <tr>
-                        <td><a name="{@name}" /><xsl:value-of select="@name" /></td>
+                        <td id="{@name}"><xsl:value-of select="@name" /></td>
                         <td><xsl:value-of select="@value" /></td>
                     </tr>
                 </xsl:for-each>
@@ -280,8 +279,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="memberli">
-        <li>
-            <a name="{@name}" />
+        <li id="{@name}">
             <strong>$<xsl:value-of select="@name" /></strong>
             <xsl:if test="pdx:docblock/pdx:var">
                 —
@@ -358,7 +356,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="method-li">
-        <li><a name="{@name}" />
+        <li id="{@name}">
             <xsl:copy-of select="pdxf:link(parent::*[1], @name, concat(@name, '()'))" />
             <xsl:if test="pdx:docblock/pdx:description/@compact != ''">
                 — <xsl:value-of select="pdx:docblock/pdx:description/@compact" />
