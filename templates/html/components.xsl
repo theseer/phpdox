@@ -113,6 +113,14 @@
                     </xsl:for-each>
                 </ul>
             </xsl:if>
+            <xsl:if test="$unit/pdx:implementor">
+                <h4>Implemented by</h4>
+                <ul>
+                    <xsl:for-each select="$unit/pdx:implementor">
+                        <li><a href="{$base}classes/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                    </xsl:for-each>
+                </ul>
+            </xsl:if>
         </div>
     </xsl:template>
 
