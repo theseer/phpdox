@@ -22,9 +22,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->generator = $generator;
         }
 
-        public function getCoverageDirectory() {
-            return 'build/coverage/xml';
-        }
     }
 
 }

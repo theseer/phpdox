@@ -23,10 +23,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         public function getLogFilePath() {
-            $path = '';
+            $basedirDefault = dirname($this->context->ownerDocument->baseURI);
+            $path = $basedirDefault . '/build/logs';
             if ($this->context->parentNode->hasAttribute('base')) {
-                $basedirDefault = dirname($this->context->ownerDocument->baseURI);
-                $path = $this->context->parentNode->getAttribute('base', $basedirDefault . '/build/logs');
+                $path = $this->context->parentNode->getAttribute('base');
             }
             if ($path != '') { $path .= '/'; }
             $file = $this->context->queryOne('cfg:file');
