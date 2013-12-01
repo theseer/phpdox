@@ -40,6 +40,11 @@ namespace TheSeer\phpDox\Tests\Integration {
 
     use TheSeer\phpDox\Factory;
 
+    /**
+     * Class FactoryTest
+     *
+     * @covers TheSeer\phpDox\Factory
+     */
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
         private $facctory;
@@ -50,6 +55,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @covers TheSeer\phpDox\Factory::getApplication
+         * @uses TheSeer\phpDox\Application
          */
         public function testGetApplication() {
             $this->assertInstanceOf(
@@ -60,6 +66,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @covers TheSeer\phpDox\Factory::getCollector
+         * @uses TheSeer\phpDox\Collector\Collector
          */
         public function testGetCollector() {
             $this->assertInstanceOf(
@@ -70,6 +77,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @covers TheSeer\phpDox\Factory::getGenerator
+         * @uses TheSeer\phpDox\Generator\Generator
          */
         public function testGetGenerator() {
             $this->assertInstanceOf(
@@ -80,6 +88,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @covers TheSeer\phpDox\Factory::getDocblockFactory
+         * @uses TheSeer\phpDox\DocBlock\Factory
          */
         public function testgetDoclockFactory() {
             $docBlock = $this->factory->getInstanceFor('DocblockFactory');
@@ -95,6 +104,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @covers TheSeer\phpDox\Factory::getDocblockParser
+         * @uses TheSeer\phpDox\DocBlock\Parser
          */
         public function testgetDoclockParser() {
             $docBlock = $this->factory->getInstanceFor('DocblockParser');

@@ -40,6 +40,11 @@ namespace TheSeer\phpDox\Tests\Unit {
 
     use TheSeer\phpDox\Factory;
 
+    /**
+     * Class FactoryTest
+     *
+     * @covers TheSeer\phpDox\Factory
+     */
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
         /**
@@ -110,6 +115,7 @@ namespace TheSeer\phpDox\Tests\Unit {
 
         /**
          * @covers TheSeer\phpDox\Factory::getInstanceFor
+         * @uses TheSeer\phpDox\Factory
          */
         public function testGetInstanceForFactory() {
             $factory = new Factory();
@@ -120,6 +126,7 @@ namespace TheSeer\phpDox\Tests\Unit {
 
         /**
          * @covers TheSeer\phpDox\Factory::getInstanceFor
+         * @uses TheSeer\phpDox\ProgressLogger
          */
         public function testGetInstanceForMethod() {
             $factory = new Factory();
@@ -137,7 +144,7 @@ namespace TheSeer\phpDox\Tests\Unit {
         }
 
         /**
-         * @expectedException TheSeer\phpDox\FactoryException
+         * @expectedException \TheSeer\phpDox\FactoryException
          * @dataProvider getGenericInstanceExpectionFactoryExceptionDataprovider
          * @covers TheSeer\phpDox\Factory::getGenericInstance
          */

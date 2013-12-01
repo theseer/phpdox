@@ -40,6 +40,12 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
     use TheSeer\phpDox\DocBlock\Factory;
     use TheSeer\phpDox\DocBlock\Parser;
 
+    /**
+     * Class ParserTest
+     *
+     * @uses TheSeer\phpDox\DocBlock\Factory
+     * @covers TheSeer\phpDox\DocBlock\Parser
+     */
     class ParserTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
 
         /**

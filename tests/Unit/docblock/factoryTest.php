@@ -41,6 +41,11 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\phpDox\DocBlock\Factory;
 
+    /**
+     * Class FactoryTest
+     *
+     * @covers TheSeer\phpDox\DocBlock\Factory
+     */
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
         /**
@@ -82,6 +87,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+         * @uses TheSeer\phpDox\DocBlock\DocBlock
          */
         public function testGetInstanceForDocBlock() {
             $factory = new Factory();
@@ -93,6 +99,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+         * @uses TheSeer\phpDox\DocBlock\InlineProcessor
          */
         public function testGetInstanceForInlineProcessor() {
             $factory = new Factory();

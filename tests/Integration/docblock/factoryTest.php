@@ -40,10 +40,16 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
     use TheSeer\phpDox\DocBlock\Factory;
 
+    /**
+     * Class FactoryTest
+     *
+     * @covers TheSeer\phpDox\DocBlock\Factory
+     */
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getElementInstanceFor
+         * @uses TheSeer\phpDox\DocBlock\GenericElement
          */
         public function testGetElementInstanceFor() {
             $factory = new Factory();
@@ -55,6 +61,7 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getParserInstanceFor
+         * @uses TheSeer\phpDox\DocBlock\GenericParser
          */
         public function testGetParserInstanceFor() {
             $factory = new Factory();
@@ -67,9 +74,23 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
         /**
          * @dataProvider getInstanceMapDataprovider
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceByMap
+         *
+         * @uses TheSeer\phpDox\Tests\Integration\DocBlock\FactoryProxy
+         * @uses TheSeer\fDOM\fDOMDocument
+         * @uses TheSeer\fDOM\fDOMElement
+         *
+         * @uses TheSeer\phpDox\DocBlock\GenericElement
+         * @uses TheSeer\phpDox\DocBlock\InvalidElement
+         * @uses TheSeer\phpDox\DocBlock\InvalidParser
+         * @uses TheSeer\phpDox\DocBlock\GenericParser
+         * @uses TheSeer\phpDox\DocBlock\DescriptionParser
+         * @uses TheSeer\phpDox\DocBlock\ParamParser
+         * @uses TheSeer\phpDox\DocBlock\VarParser
+         * @uses TheSeer\phpDox\DocBlock\VarParser
+         * @uses TheSeer\phpDox\DocBlock\LicenseParser
+         * @uses TheSeer\phpDox\DocBlock\InternalParser
          */
         public function testGetInstanceByMap($expected, $name, $elementMap) {
-
             $factory = new FactoryProxy();
             $this->assertInstanceOf(
                 $expected,
@@ -79,6 +100,7 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceByMap
+         * @uses TheSeer\phpDox\Tests\Integration\DocBlock\FactoryProxy
          */
         public function testGetInstanceByMapHandlingAFactory() {
 

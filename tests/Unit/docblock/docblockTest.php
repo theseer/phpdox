@@ -41,6 +41,12 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
     use TheSeer\phpDox\DocBlock\DocBlock;
     use TheSeer\phpDox\DocBlock\GenericElement;
 
+    /**
+     * Class DocBlockTest
+     *
+     * @covers TheSeer\phpDox\DocBlock\DocBlock
+     * @uses TheSeer\phpDox\DocBlock\GenericElement
+     */
     class DocBlockTest extends \PHPUnit_Framework_TestCase {
 
         /**
