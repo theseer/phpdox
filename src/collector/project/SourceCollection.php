@@ -107,7 +107,7 @@ namespace TheSeer\phpDox\Collector {
 
         public function export() {
             $dom = $this->workDom;
-            if (empty($this->collection)) {
+            if (sizeof($this->collection) === 0) {
                 if (!$dom->documentElement instanceof fDOMElement) {
                     $root = $dom->createElementNS('http://xml.phpdox.net/src#', 'source');
                     $dom->appendChild($root);
