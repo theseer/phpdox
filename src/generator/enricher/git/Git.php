@@ -14,6 +14,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
         private $srcDir;
         private $noGitAvailable = false;
 
+        /**
+         * Array of tokens for git log
+         * see git log --help for more details
+         *
+         * @var array
+         */
         private $tokens = array('H','aE','aN','cE','cN','at','ct');
 
         public function __construct(EnrichConfig $config) {
