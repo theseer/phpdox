@@ -163,6 +163,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $format = '%' . join('%n%',$this->tokens) . '%n%B%n[EOF]';
 
             $cwd = getcwd();
+            if (!file_exists($filename)) {
+                throw new GitEnricherException('Error getting log history for file ' . $filename . ' (file not found)', GitEnricherException::FetchingHistoryFailed);
+            }
             chdir(dirname($filename));
             $fname = escapeshellarg(basename($filename));
             exec(sprintf('git log --follow --pretty=format:"%s" %s', $format, $fname), $log, $rc);
