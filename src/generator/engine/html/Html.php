@@ -98,7 +98,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         protected function getXSLTProcessor($template) {
             $xsl = parent::getXSLTProcessor($this->templateDir . '/' . $template);
             $xsl->setParameter('', 'extension', $this->extension);
-            $xsl->setParameter('', 'xml', $this->workDir . '/');
+            $xsl->setParameter('', 'xml', 'file://' . $this->workDir . '/');
             return $xsl;
         }
 
