@@ -57,7 +57,7 @@ namespace TheSeer\phpDox\Generator {
          * @return MethodCollection
          */
         public function getMethods() {
-            return new MethodCollection($this->dom->query('phpdox:method'));
+            return new MethodCollection($this->dom->query('phpdox:constructor|phpdox:method|phpdox:destructor'));
         }
 
 
