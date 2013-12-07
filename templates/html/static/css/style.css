@@ -1,4 +1,4 @@
-/* @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro); */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 html {
     background-color: #888888;
@@ -108,7 +108,7 @@ h3 {
     background-color: #888888;
     color: #fff;
     margin:0;
-    min-height: 12em;
+    min-height: 14em;
 }
 
 #index h1 {
