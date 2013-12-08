@@ -90,7 +90,7 @@ namespace TheSeer\phpDox {
         const NotFound = 1;
         const ParseError = 2;
         const NoCandidateExists = 3;
-        const Wrongtype = 4;
+        const WrongType = 4;
         const OldNamespace = 5;
     }
 }
