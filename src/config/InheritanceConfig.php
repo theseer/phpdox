@@ -54,11 +54,15 @@ namespace TheSeer\phpDox {
          * @return array
          */
         public function getDependencyDirectories() {
-            if (PHPDOX_VERSION == '%development%' || defined('PHPDOX_PHAR')) {
-                $default = __DIR__ . '/../../dependencies/php';
+
+            if (defined('PHPDOX_VERSION') && constant('PHPDOX_VERSION')=='%development%') {
+                $home = realpath(__DIR__.'/../../');
+            } else if (defined('PHPDOX_PHAR')) {
+                $home = 'phar://' . constant('PHPDOX_PHAR');
             } else {
-                $default = __DIR__ . '/../dependencies/php';
+                $home = realpath(__DIR__.'/../');
             }
+            $default = $home . '/dependencies/php';
             $list = array($default);
             if (!$this->ctx) {
                 return $list;
