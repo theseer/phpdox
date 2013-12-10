@@ -379,7 +379,9 @@
 
         <xsl:if test="$ctx/pdx:extends">
             <xsl:variable name="parent" select="$unit/pdx:parent[@full = $ctx/pdx:extends/@full]" />
-            <h3>Inherited from <xsl:copy-of select="pdxf:link($parent, '', $parent/@full)" /></h3>
+            <xsl:if test="count($parent/pdx:method) > 0">
+                <h3>Inherited from <xsl:copy-of select="pdxf:link($parent, '', $parent/@full)" /></h3>
+            </xsl:if>
             <xsl:if test="$parent/pdx:method[@visibility='protected']">
                 <h4>protected</h4>
                 <ul>
