@@ -70,12 +70,12 @@ You can run phpDox like this:
 
 As of version 0.4 phpDox requires an xml configuration file. In case a project you want to generate documentation for does not come with one, you can create it by calling
 
-    phpdox.php --skel > phpdox.xml.dist
+    phpdox --skel > phpdox.xml.dist
         
 
 Sample invocation to parse and generate output based on the default phpdox.xml configuration file
 
-    ./phpdox.php
+    phpdox
     
 
 
@@ -88,11 +88,11 @@ Trouble Shooting
         No valid packages found
         install failed
 
-    Try to install the xsl extention of PHP. On Ubuntu, you can simply use:
+    Try to install the xsl extension of PHP. On Ubuntu, you can simply use:
 
         sudo apt-get install php5-xsl
         
-    For Redhat based distributions:
+    For Red Hat based distributions:
     
         sudo yum install php-xsl
 
