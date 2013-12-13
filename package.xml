@@ -54,7 +54,7 @@
        <package>
         <name>DirectoryScanner</name>
         <channel>pear.netpirates.net</channel>
-        <min>1.1.0</min>
+        <min>1.2.1</min>
        </package>
        <package>
         <name>fDOMDocument</name>

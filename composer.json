@@ -20,7 +20,7 @@
     "ext-iconv" : "*",
     "ext-fileinfo": "*",
     "theseer/fdomdocument": ">=1.4.1",
-    "theseer/directoryscanner" : ">=1.1.0",
+    "theseer/directoryscanner" : ">=1.2.1",
     "theseer/fxsl" : ">=1.0",
     "phpunit/php-timer" : ">=1.0.4",
     "zetacomponents/base": ">=1.8.0",
