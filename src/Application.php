@@ -124,6 +124,7 @@ namespace TheSeer\phpDox {
                     $config->getIncludeMasks(),
                     $config->getExcludeMasks()
             );
+            $scanner->setFlag(\FilesystemIterator::UNIX_PATHS);
 
             $collector = $this->factory->getInstanceFor('Collector',
                 $srcDir,
