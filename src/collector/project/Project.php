@@ -199,14 +199,14 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         * @return integer
+         * @return array
          */
         public function cleanVanishedFiles() {
             $files = $this->source->getVanishedFiles();
             foreach ($files as $path) {
                 $this->removeFileReferences($path);
             }
-            return count($files);
+            return $files;
         }
 
 

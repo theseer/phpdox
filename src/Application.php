@@ -144,8 +144,11 @@ namespace TheSeer\phpDox {
 
             $this->logger->log("Saving results to directory '{$xmlDir}'");
             $vanished = $project->cleanVanishedFiles();
-            if ($vanished > 0) {
-                $this->logger->log("Removed $vanished vanished file(s) from project");
+            if (count($vanished) > 0) {
+                $this->logger->log(sprintf("Removed %d vanished file(s) from project:", count($vanished)));
+                foreach($vanished as $file) {
+                    $this->logger->log(' - ' . $file);
+                }
             }
             $changed = $project->save();
             if ($config->doResolveInheritance()) {
