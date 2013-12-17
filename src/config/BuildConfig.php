@@ -88,7 +88,7 @@ namespace TheSeer\phpDox {
                 if ($path != '') { $path .= '/'; }
                 $path .= $this->ctx->getAttribute('output');
             }
-            return $path;
+            return new Path($path);
         }
 
         public function getSourceDirectory() {

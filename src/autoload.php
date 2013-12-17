@@ -185,6 +185,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\hasfileinfoexception' => '/shared/HasFileInfoException.php',
                 'theseer\\phpdox\\inheritanceconfig' => '/config/InheritanceConfig.php',
                 'theseer\\phpdox\\parserbootstrapapi' => '/bootstrap/ParserBootstrapApi.php',
+                'theseer\\phpdox\\path' => '/shared/Path.php',
                 'theseer\\phpdox\\progresslogger' => '/logger/ProgressLogger.php',
                 'theseer\\phpdox\\progressloggerexception' => '/logger/ProgressLogger.php',
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
