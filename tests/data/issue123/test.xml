@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.net/config" silent="false">
+
+    <project name="phpDox" source="src" workdir="/tmp/phpdox/issue123/xml">
+
+        <collector publiconly="false" backend="parser" />
+
+        <generator output="/tmp/phpdox/issue123/docs">
+            <build engine="html" enabled="true" output="html" />
+        </generator>
+    </project>
+
+</phpdox>
