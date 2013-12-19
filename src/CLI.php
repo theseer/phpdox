@@ -306,7 +306,7 @@ EOF;
         }
 
         private function preBootstrap() {
-            $required = array('tokenizer', 'iconv', 'fileinfo', 'libxml', 'dom', 'xsl');
+            $required = array('tokenizer', 'iconv', 'fileinfo', 'libxml', 'dom', 'xsl','mbstring');
             $missing = array();
             foreach($required as $test) {
                 if (!extension_loaded($test)) {
