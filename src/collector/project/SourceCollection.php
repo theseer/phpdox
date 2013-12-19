@@ -82,7 +82,7 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function removeFile(FileInfo $file) {
-            $relPath = $file->getRelative($this->srcDir);
+            $relPath = (string)$file->getRelative($this->srcDir);
             unset($this->collection[$relPath]);
         }
 

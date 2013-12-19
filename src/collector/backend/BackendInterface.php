@@ -35,6 +35,7 @@
      * @license    BSD License
      */
 namespace TheSeer\phpDox\Collector\Backend {
+    use TheSeer\phpDox\Collector\SourceFile;
 
     /**
      *
@@ -42,11 +43,10 @@ namespace TheSeer\phpDox\Collector\Backend {
     interface BackendInterface {
 
         /**
-         * @abstract
-         * @param \SplFileInfo $file
+         * @param SourceFile $sourceFile
          * @return ParseResult
          */
-        public function parse(\SplFileInfo $file);
+        public function parse(SourceFile $sourceFile);
 
     }
 }

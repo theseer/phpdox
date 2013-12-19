@@ -37,6 +37,8 @@
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\DirectoryScanner\DirectoryScanner;
+    use TheSeer\phpDox\Collector\Backend\SourceFileException;
+    use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Collector\Backend\BackendInterface;
     use TheSeer\phpDox\Collector\Backend\ParseErrorException;
@@ -118,16 +120,16 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         * @param \SplFileInfo $file
+         * @param FileInfo $file
          */
-        private function processFile(\SplFileInfo $file) {
+        private function processFile(FileInfo $file) {
             try {
                 if ($file->getSize() === 0) {
                     $this->logger->progress('processed');
                     return true;
                 }
 
-                $result = $this->backend->parse($file);
+                $result = $this->backend->parse(new SourceFile($file));
                 if ($result->hasClasses()) {
                     foreach($result->getClasses() as $class) {
                         $this->project->addClass($class);

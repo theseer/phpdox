@@ -36,6 +36,7 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use TheSeer\phpDox\Collector\SourceFile;
     use \TheSeer\phpDox\DocBlock\Parser as DocblockParser;
 
     /**
@@ -61,23 +62,17 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
-         * @param \SplFileInfo $file
-         * @return ParseResult
+         *
+         * @param SourceFile $sourceFile
+         *
          * @throws ParseErrorException
+         * @return ParseResult
          */
-        public function parse(\SplFileInfo $file) {
+        public function parse(SourceFile $sourceFile) {
             try {
-                $result = new ParseResult($file);
+                $result = new ParseResult($sourceFile->getFileInfo());
                 $parser = $this->getParserInstance();
-
-                $code = file_get_contents($file->getPathname());
-
-                $info = new \finfo();
-                $encoding = $info->file($file, FILEINFO_MIME_ENCODING);
-                if (strtolower($encoding) != 'utf-8') {
-                    $code = iconv($encoding, 'UTF-8//TRANSLIT', $code);
-                }
-                $nodes = $parser->parse($code);
+                $nodes = $parser->parse($sourceFile->getSource());
                 $this->getTraverserInstance($result)->traverse($nodes);
                 return $result;
             } catch (\Exception $e) {
