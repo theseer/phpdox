@@ -25,7 +25,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="nav">
-        <xsl:variable name="index" select="document(concat($xml,'index.xml'))/pdx:index" />
+        <xsl:variable name="index" select="document(concat($xml,'index.xml'), .)/pdx:index" />
         <nav class="topnav">
             <ul>
                 <li>
