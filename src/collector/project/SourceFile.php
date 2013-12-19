@@ -47,6 +47,8 @@ namespace TheSeer\phpDox\Collector {
             if ($cleanCode != $code) {
                 throw new SourceFileException('Encoding error - invalid UTF-8 bytes found', SourceFileException::InvalidDataBytes);
             }
+
+            return $cleanCode;
         }
 
     }
