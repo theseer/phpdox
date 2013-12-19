@@ -124,7 +124,7 @@ namespace TheSeer\phpDox\Generator {
          */
         public function getClasses($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return $this->index->query($root . 'phpdox:class');
+            return new ClassCollection($this->index->query($root . 'phpdox:class'));
         }
 
         /**
@@ -133,7 +133,7 @@ namespace TheSeer\phpDox\Generator {
          */
         public function getTraits($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return $this->index->query($root . 'phpdox:trait');
+            return new TraitCollection($this->index->query($root . 'phpdox:trait'));
         }
 
         /**
@@ -142,7 +142,7 @@ namespace TheSeer\phpDox\Generator {
          */
         public function getInterfaces($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return $this->index->query($root . 'phpdox:interface');
+            return new InterfaceCollection($this->index->query($root . 'phpdox:interface'));
         }
 
         /**

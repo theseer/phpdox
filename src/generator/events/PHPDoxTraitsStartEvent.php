@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Generator {
 
         private $traits;
 
-        public function __construct(TraitObject $traits) {
+        public function __construct(TraitCollection $traits) {
             $this->traits = $traits;
         }
 
