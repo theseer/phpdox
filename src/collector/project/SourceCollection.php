@@ -37,11 +37,15 @@
      */
 namespace TheSeer\phpDox\Collector {
 
-    use \TheSeer\fDOM\fDOMDocument;
-    use \TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\FileInfo;
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
     class SourceCollection implements DOMCollectionInterface {
 
+        /**
+         * @var FileInfo
+         */
         private $srcDir;
 
         private $original = array();
@@ -50,7 +54,7 @@ namespace TheSeer\phpDox\Collector {
         private $workDom;
 
         public function __construct($srcDir) {
-            $this->srcDir = realpath($srcDir);
+            $this->srcDir = $srcDir;
             $this->workDom = new fDOMDocument();
             $this->workDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
         }
@@ -64,7 +68,7 @@ namespace TheSeer\phpDox\Collector {
             $this->importDirNode($dir, '');
         }
 
-        public function addFile(\SplFileInfo $file) {
+        public function addFile(FileInfo $file) {
             $node = $this->workDom->createElementNS('http://xml.phpdox.net/src#', 'file');
             $node->setAttribute('name', basename($file->getBasename()));
             $node->setAttribute('size', $file->getSize());
@@ -72,16 +76,13 @@ namespace TheSeer\phpDox\Collector {
             $node->setAttribute('unixtime', $file->getMTime());
             $node->setAttribute('sha1', sha1_file($file->getPathname()));
 
-            $relPath = realpath($file->getPathname());
-            $relPath = substr($relPath, strlen(dirname($this->srcDir))+1);
-
+            $relPath = (string)$file->getRelative($this->srcDir);
             $this->collection[$relPath] = $node;
             return $this->isChanged($relPath);
         }
 
-        public function removeFile(\SplFileInfo $file) {
-            $relPath = realpath($file->getPathname());
-            $relPath = substr($relPath, strlen(dirname($this->srcDir))+1);
+        public function removeFile(FileInfo $file) {
+            $relPath = $file->getRelative($this->srcDir);
             unset($this->collection[$relPath]);
         }
 

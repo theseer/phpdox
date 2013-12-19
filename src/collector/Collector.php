@@ -77,17 +77,19 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         * @param \TheSeer\DirectoryScanner\DirectoryScanner $scanner
-         * @param                                            $backend
+         * @param DirectoryScanner $scanner
+         * @param BackendInterface $backend
          *
-         *
+         * @return Project
          */
         public function run(DirectoryScanner $scanner, BackendInterface $backend) {
             $this->backend = $backend;
 
             $srcDir = $this->project->getSourceDir();
             $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
-            foreach($scanner($srcDir) as $file) {
+
+            $iterator = new PathConverterIterator($scanner($srcDir));
+            foreach($iterator as $file) {
                 $needsProcessing = $this->project->addFile($file);
                 if (!$needsProcessing) {
                     $this->logger->progress('cached');

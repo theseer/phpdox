@@ -110,7 +110,7 @@ namespace TheSeer\phpDox {
             $this->logger->log("Starting collector");
 
             $srcDir = $config->getSourceDirectory();
-            if (!file_exists($srcDir) || !is_dir($srcDir)) {
+            if (!$srcDir->isDir()) {
                 throw new ApplicationException(
                     sprintf('Invalid src directory "%s" specified', $srcDir),
                     ApplicationException::InvalidSrcDirectory

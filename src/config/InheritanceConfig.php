@@ -62,14 +62,14 @@ namespace TheSeer\phpDox {
             } else {
                 $home = realpath(__DIR__.'/../');
             }
-            $default = new Path($home . '/dependencies/php');
+            $default = new FileInfo($home . '/dependencies/php');
             $list = array($default);
             if (!$this->ctx) {
                 return $list;
             }
             foreach($this->ctx->query('cfg:dependency') as $dep) {
                 if ($dep->hasAttribute('path')) {
-                    $list[] = new Path($dep->getAttribute('path'));
+                    $list[] = new FileInfo($dep->getAttribute('path'));
                 }
             }
             return $list;

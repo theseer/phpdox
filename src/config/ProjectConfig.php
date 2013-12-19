@@ -58,11 +58,11 @@ namespace TheSeer\phpDox {
         }
 
         public function getWorkDirectory() {
-            return new Path($this->ctx->getAttribute('workdir', 'xml'));
+            return new FileInfo($this->ctx->getAttribute('workdir', 'xml'));
         }
 
         public function getSourceDirectory() {
-            return new Path($this->ctx->getAttribute('source', 'src'));
+            return new FileInfo($this->ctx->getAttribute('source', 'src'));
         }
 
         public function isPublicOnlyMode() {

@@ -57,10 +57,16 @@ namespace TheSeer\phpDox {
             return 'parser';
         }
 
+        /**
+         * @return FileInfo
+         */
         public function getWorkDirectory() {
             return $this->project->getWorkDirectory();
         }
 
+        /**
+         * @return FileInfo
+         */
         public function getSourceDirectory() {
             return $this->project->getSourceDirectory();
         }

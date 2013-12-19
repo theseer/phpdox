@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\FileInfo;
 
     /**
      *
@@ -45,12 +46,12 @@ namespace TheSeer\phpDox\Collector {
     class Project {
 
         /**
-         * @var string
+         * @var FileInfo
          */
         private $xmlDir;
 
         /**
-         * @var string
+         * @var FileInfo
          */
         private $srcDir;
 
@@ -72,31 +73,31 @@ namespace TheSeer\phpDox\Collector {
          * @param $srcDir
          * @param $xmlDir
          */
-        public function __construct($srcDir, $xmlDir) {
+        public function __construct(FileInfo $srcDir, FileInfo $xmlDir) {
             $this->xmlDir = $xmlDir;
             $this->srcDir = $srcDir;
             $this->initCollections();
         }
 
         /**
-         * @return string
+         * @return FileInfo
          */
         public function getSourceDir() {
             return $this->srcDir;
         }
 
         /**
-         * @return string
+         * @return FileInfo
          */
         public function getXmlDir() {
             return $this->xmlDir;
         }
 
         /**
-         * @param \SplFileInfo $file
+         * @param FileInfo $file
          * @return bool
          */
-        public function addFile(\SplFileInfo $file) {
+        public function addFile(FileInfo $file) {
             $isNew = $this->source->addFile($file);
             if ($isNew) {
                 $this->removeFileReferences($file->getPathname());
@@ -104,8 +105,10 @@ namespace TheSeer\phpDox\Collector {
             return $isNew;
         }
 
-
-        public function removeFile(\SplFileInfo $file) {
+        /**
+         * @param FileInfo $file
+         */
+        public function removeFile(FileInfo $file) {
             $this->removeFileReferences($file->getPathname());
             $this->source->removeFile($file);
         }

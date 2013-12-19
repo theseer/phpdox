@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Generator {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\FileInfo;
 
     /**
      *
@@ -65,24 +66,24 @@ namespace TheSeer\phpDox\Generator {
         private $index = NULL;
 
         /**
-         * @param $srcDir
-         * @param $xmlDir
+         * @param FileInfo $srcDir
+         * @param FileInfo $xmlDir
          */
-        public function __construct($srcDir, $xmlDir) {
+        public function __construct(FileInfo $srcDir, FileInfo $xmlDir) {
             $this->xmlDir = $xmlDir;
             $this->srcDir = $srcDir;
             $this->initCollections();
         }
 
         /**
-         * @return string
+         * @return FileInfo
          */
         public function getSourceDir() {
             return $this->srcDir;
         }
 
         /**
-         * @return string
+         * @return FileInfo
          */
         public function getXmlDir() {
             return $this->xmlDir;

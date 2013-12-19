@@ -227,8 +227,8 @@ namespace TheSeer\phpDox {
         }
 
         /**
-         * @param string $srcDir
-         * @param string $xmlDir
+         * @param FileInfo $srcDir
+         * @param FileInfo $xmlDir
          * @return Collector\Collector
          */
         protected function getCollector($srcDir, $xmlDir) {
