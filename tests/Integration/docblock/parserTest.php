@@ -56,16 +56,17 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          */
         public function testParse($src) {
             $dom = new fDOMDocument();
+            $expected = new fDOMDocument();
             $dir = __DIR__.'/../../data/docbock/';
             $block = file_get_contents($dir . $src);
-            $expected = file_get_contents($dir . $src . '.xml');
+            $expected->load($dir . $src . '.xml');
 
             $factory = new Factory();
             $parser = new Parser($factory);
             $result = $parser->parse($block, array());
 
             $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\DocBlock', $result);
-            $this->assertEquals($expected, $dom->saveXML($result->asDom($dom)));
+            $this->assertEquals($expected->documentElement, $result->asDom($dom));
         }
 
         public function docblockSources() {
