@@ -69,9 +69,10 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @uses TheSeer\phpDox\Collector\Collector
          */
         public function testGetCollector() {
+            $dir1 = new \TheSeer\phpDox\FileInfo('');
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Collector\\Collector',
-                $this->factory->getInstanceFor('Collector','/tplDir', '/docDir')
+                $this->factory->getInstanceFor('Collector', $dir1, $dir1)
             );
         }
 
