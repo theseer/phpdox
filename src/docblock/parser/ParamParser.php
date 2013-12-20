@@ -45,8 +45,14 @@ namespace TheSeer\phpDox\DocBlock {
             $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
             switch(count($param)) {
                 case 3: {
-                    $obj->setDescription($param[2]);
-                    // no break!
+                    if ($param[0][0]=='$' || $param[1][0]=='$') {
+                        $obj->setDescription($param[2]);
+                        // no break!
+                    } else {
+                        $obj->setDescription($param[1] . ' ' . $param[2]);
+                        $obj->setType($this->lookupType($param[0]));
+                        break;
+                    }
                 }
                 case 2: {
                     if ($param[0][0]=='$') {
