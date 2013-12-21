@@ -19,7 +19,7 @@ before_script:
     - phpenv rehash
 
 script:
-    - ./vendor/bin/phpcs --standard=phpcs.xml  src/
+    - phpcs --standard=phpcs.xml  src/
 
 notifications:
   email: false
