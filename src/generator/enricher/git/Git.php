@@ -75,7 +75,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 foreach($branches as $branchName) {
                     $branch = $branchesNode->appendElementNS(self::XMLNS, 'branch');
                     if ($branchName[0] == '*') {
-                        $branchName = trim(substr($branchName,1));
+                        $branchName = trim(substr($branchName, 1));
                         $currentBranch = $branchName;
                     } else {
                         $branchName = trim($branchName);
@@ -188,7 +188,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
              *
              * The logic of addCommit assumes the commit message to be last
              */
-            $format = '%' . join('%n%',$this->tokens) . '%n%B%n[EOF]';
+            $format = '%' . join('%n%', $this->tokens) . '%n%B%n[EOF]';
 
             $cwd = getcwd();
             if (!file_exists($filename)) {

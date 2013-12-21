@@ -118,6 +118,8 @@ spl_autoload_register(
                 'theseer\\phpdox\\generator\\enricher\\factory' => '/generator/enricher/Factory.php',
                 'theseer\\phpdox\\generator\\enricher\\factoryexception' => '/generator/enricher/Factory.php',
                 'theseer\\phpdox\\generator\\enricher\\git' => '/generator/enricher/git/Git.php',
+                'theseer\\phpdox\\generator\\enricher\\gitconfig' => '/generator/enricher/git/GitConfig.php',
+                'theseer\\phpdox\\generator\\enricher\\gitenricherexception' => '/generator/enricher/git/Git.php',
                 'theseer\\phpdox\\generator\\enricher\\indexenricherinterface' => '/generator/enricher/IndexEnricherInterface.php',
                 'theseer\\phpdox\\generator\\enricher\\interfaceenricherinterface' => '/generator/enricher/InterfaceEnricherInterface.php',
                 'theseer\\phpdox\\generator\\enricher\\phploc' => '/generator/enricher/phploc/PHPLoc.php',

@@ -85,14 +85,14 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function registerEventHandlers(EventHandlerRegistry $registry) {
-            $registry->addHandler('phpdox.start',     $this, 'buildStart');
-            $registry->addHandler('class.start',      $this, 'buildClass');
-            $registry->addHandler('trait.start',      $this, 'buildTrait');
-            $registry->addHandler('interface.start',  $this, 'buildInterface');
-            $registry->addHandler('class.method',     $this, 'buildClassMethod');
-            $registry->addHandler('trait.method',     $this, 'buildTraitMethod');
+            $registry->addHandler('phpdox.start', $this, 'buildStart');
+            $registry->addHandler('class.start', $this, 'buildClass');
+            $registry->addHandler('trait.start', $this, 'buildTrait');
+            $registry->addHandler('interface.start', $this, 'buildInterface');
+            $registry->addHandler('class.method', $this, 'buildClassMethod');
+            $registry->addHandler('trait.method', $this, 'buildTraitMethod');
             $registry->addHandler('interface.method', $this, 'buildInterfaceMethod');
-            $registry->addHandler('phpdox.end',       $this, 'buildFinish');
+            $registry->addHandler('phpdox.end', $this, 'buildFinish');
         }
 
         protected function getXSLTProcessor($template) {
@@ -151,8 +151,8 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function buildClass(ClassStartEvent $event) {
-            $this->xslClass->setParameter('','type','classes');
-            $this->xslClass->setParameter('','title','Classes');
+            $this->xslClass->setParameter('', 'type', 'classes');
+            $this->xslClass->setParameter('', 'title', 'Classes');
             $html = $this->xslClass->transformToDoc($event->getClass()->asDom());
             $this->saveDomDocument($html, $this->outputDir . '/classes/' .
                 $this->functions->classNameToFileName($event->getClass()->getFullName())
@@ -160,8 +160,8 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function buildTrait(TraitStartEvent $event) {
-            $this->xslClass->setParameter('','type','traits');
-            $this->xslClass->setParameter('','title','Traits');
+            $this->xslClass->setParameter('', 'type', 'traits');
+            $this->xslClass->setParameter('', 'title', 'Traits');
             $html = $this->xslClass->transformToDoc($event->getTrait()->asDom());
             $this->saveDomDocument($html, $this->outputDir . '/traits/' .
                 $this->functions->classNameToFileName($event->getTrait()->getFullName())
