@@ -9,7 +9,9 @@
 
             <enrich base="${basedir}/build/logs">
                 <source type="build" />
-                <source type="git"/>
+                <source type="git">
+                    <history enabled="true" limit="15" />
+                </source>
                 <source type="checkstyle" />
                 <source type="pmd" />
                 <source type="phploc" />

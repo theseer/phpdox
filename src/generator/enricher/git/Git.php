@@ -11,7 +11,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class Git extends AbstractEnricher implements IndexEnricherInterface, InterfaceEnricherInterface, ClassEnricherInterface, TraitEnricherInterface {
 
-        private $srcDir;
+        /**
+         * @var bool
+         */
         private $noGitAvailable = false;
 
         /**
@@ -22,8 +24,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         private $tokens = array('H','aE','aN','cE','cN','at','ct');
 
-        public function __construct(EnrichConfig $config) {
-            $this->srcDir = $config->getGeneratorConfig()->getProjectConfig()->getSourceDirectory();
+        /**
+         * @var GitConfig
+         */
+        private $config;
+
+        public function __construct(GitConfig $config) {
+            $this->config = $config;
         }
 
         /**
@@ -38,9 +45,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
             /** @var fDOMElement $enrichtment */
             $enrichtment = $this->getEnrichtmentContainer($dom->documentElement, 'git');
 
+            $binary = $this->config->getGitBinary();
+
             $cwd = getcwd();
-            chdir($this->srcDir);
-            $describe = exec('git describe --always --dirty 2>/dev/null', $foo, $rc);
+            chdir($this->config->getSourceDirectory());
+            $describe = exec($binary . ' describe --always --dirty 2>/dev/null', $foo, $rc);
             if ($rc !== 0) {
                 $enrichtment->appendChild(
                     $dom->createComment('Not a git repository or no git binary available')
@@ -50,7 +59,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return;
             }
 
-            exec('git tag 2>/dev/null', $tags, $rc);
+            exec($binary . ' tag 2>/dev/null', $tags, $rc);
             if (count($tags)) {
                 $tagsNode = $enrichtment->appendElementNS(self::XMLNS, 'tags');
                 foreach($tags as $tagName) {
@@ -60,7 +69,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             $currentBranch = 'master';
-            exec('git branch 2>/dev/null', $branches, $rc);
+            exec($binary . ' branch 2>/dev/null', $branches, $rc);
             if (count($branches)) {
                 $branchesNode = $enrichtment->appendElementNS(self::XMLNS, 'branches');
                 foreach($branches as $branchName) {
@@ -104,14 +113,27 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             $enrichtment = $this->getEnrichtmentContainer($dom->documentElement, 'git');
+            if (!$this->config->doLogProcessing()) {
+                $enrichtment->appendChild(
+                    $dom->createComment('GitEnricher: Log processing disabled in configuration ')
+                );
+                return;
+            }
 
             try {
+                $count = 0;
+                $limit = $this->config->getLogLimit();
                 $log = $this->getLogHistory($fileNode->getAttribute('realpath'));
                 $block = array();
+
                 foreach($log as $line) {
                     if ($line == '[EOF]') {
                         $this->addCommit($enrichtment, $this->tokens, $block);
                         $block = array();
+                        $count++;
+                        if ($count > $limit) {
+                            break;
+                        }
                         continue;
                     }
                     $block[] = $line;
@@ -174,7 +196,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
             chdir(dirname($filename));
             $fname = escapeshellarg(basename($filename));
-            exec(sprintf('git log --follow --pretty=format:"%s" %s', $format, $fname), $log, $rc);
+            exec(sprintf($this->config->getGitBinary() . ' log --follow --pretty=format:"%s" %s', $format, $fname), $log, $rc);
             chdir($cwd);
             if ($rc !== 0) {
                 throw new GitEnricherException('Error getting log history for file ' . $filename, GitEnricherException::FetchingHistoryFailed);

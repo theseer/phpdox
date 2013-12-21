@@ -43,7 +43,8 @@ namespace TheSeer\phpDox {
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\Build');
 
     $phpDox->registerEnricher('git', 'GIT repository information enricher')
-        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\Git');
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\Git')
+        ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\GitConfig');
 
     $phpDox->registerEnricher('checkstyle', 'checkstyle.xml enricher')
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyle')
