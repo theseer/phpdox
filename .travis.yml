@@ -8,15 +8,7 @@ php:
 
 before_script:
     - composer install --prefer-dist --dev
-    - pear config-set auto_discover 1
-    - pear install pear/PHP_CodeSniffer
-    - pear install pear.netpirates.net/Autoload
     - phpenv rehash
-
-script:
-    - phpcs --standard=phpcs.xml src/
-    - ant phpab
-    - ant phpunit
 
 notifications:
   email: false
@@ -24,4 +16,3 @@ notifications:
 matrix:
   allow_failures:
     - php: hhvm
-    - script: phpcs
