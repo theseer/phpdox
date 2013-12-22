@@ -9,13 +9,6 @@ php:
 before_script:
     - composer install --prefer-dist --dev
     - pear install pear/PHP_CodeSniffer
-    - echo "extension=tokenizer.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "extension=iconv.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "extension=mbstring.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "extension=libxml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "extension=dom.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "extension=xsl.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "extension=fileinfo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - phpenv rehash
 
 script:
