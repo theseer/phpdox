@@ -8,8 +8,14 @@ php:
 
 before_script:
     - composer install --prefer-dist --dev
+    - pear config-set auto_discover 1
     - pear install pear/PHP_CodeSniffer
+    - pear install pear.netpirates.net/Autoload
     - phpenv rehash
+
+script:
+    - ant phpcs
+    - ant phpab
 
 notifications:
   email: false
