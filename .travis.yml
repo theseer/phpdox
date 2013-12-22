@@ -14,8 +14,9 @@ before_script:
     - phpenv rehash
 
 script:
-    - ant phpcs
+    - phpcs --standard=phpcs.xml src/
     - ant phpab
+    - ant phpunit
 
 notifications:
   email: false
@@ -23,3 +24,4 @@ notifications:
 matrix:
   allow_failures:
     - php: hhvm
+    - script: phpcs
