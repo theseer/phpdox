@@ -36,8 +36,17 @@
  * @license    BSD License
  */
 
-require 'TheSeer/fDOMDocument/autoload.php';
-require __DIR__ .'/../src/autoload.php';
+$autoloaders = array(
+    'TheSeer/fDOMDocument/autoload.php',
+    __DIR__ . '/../src/autoload.php',
+    __DIR__ . '/../vendor/autoload.php'
+);
+
+foreach($autoloaders as $loader) {
+    if (file_exists(stream_resolve_include_path($loader))) {
+        require $loader;
+    }
+}
 
 //  custom TestCase
 require __DIR__.'/phpDoxTestCase.php';
