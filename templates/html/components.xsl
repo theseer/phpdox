@@ -437,7 +437,7 @@
                         Author: <xsl:value-of select="pdx:author/@name" /> (<xsl:value-of select="pdx:author/@email" />) /
                         Commiter: <xsl:value-of select="pdx:commiter/@name" /> (<xsl:value-of select="pdx:author/@email" />)
                     </p>
-                    <pre><xsl:value-of select="pdx:message" /></pre>
+                    <pre class="wrapped"><xsl:value-of select="pdx:message" /></pre>
                 </div>
             </li>
         </xsl:for-each>

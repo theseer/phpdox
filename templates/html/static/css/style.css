@@ -168,6 +168,14 @@ h3 {
     width:5em;
 }
 
+.wrapped {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
 .unavailable {
     border:1px dotted #802420;
     background-color: rgba(230,10,10,0.2);
