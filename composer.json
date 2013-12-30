@@ -19,6 +19,7 @@
     "ext-xsl" : "*",
     "ext-iconv" : "*",
     "ext-fileinfo": "*",
+    "ext-mbstring": "*",
     "theseer/fdomdocument": ">=1.4.1",
     "theseer/directoryscanner" : ">=1.2.1",
     "theseer/fxsl" : ">=1.0",
