@@ -111,12 +111,12 @@
                     <tr>
                         <td class="indent2">Non-Static Methods</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:nonStaticMethods" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:nonStaticMethods div $phploc/pdx:methods * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent2">Static Methods</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:staticMethods" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:staticMethods div $phploc/pdx:methods * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent">Visibility</td>
@@ -126,12 +126,12 @@
                     <tr>
                         <td class="indent2">Public Method</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:publicMethods" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:publicMethods div $phploc/pdx:methods * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent2">Non-Public Methods</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:nonPublicMethods" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:nonPublicMethods div $phploc/pdx:methods * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Functions</td>
@@ -141,12 +141,12 @@
                     <tr>
                         <td class="indent">Named Functions</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:namedFunctions" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:namedFunctions div $phploc/pdx:functions * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent">Anonymous Functions</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:anonymousFunctions" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:anonymousFunctions div $phploc/pdx:functions * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Constants</td>
@@ -156,12 +156,12 @@
                     <tr>
                         <td class="indent">Global Constants</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:globalConstants" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:globalConstants div $phploc/pdx:constants * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent">Class Constants</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:classConstants" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:classConstants div $phploc/pdx:constants * 100,'0.##')" />%)</td>
                     </tr>
                 </table>
             </div>
@@ -193,22 +193,22 @@
                     <tr>
                         <td>Comment Lines of Code (CLOC)</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:cloc" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:cloc div $phploc/pdx:loc * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Non-Comment Lines of Code (NCLOC)</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:ncloc" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:ncloc div $phploc/pdx:loc * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Logical Lines of Code (LLOC)</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:lloc" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:lloc div $phploc/pdx:loc * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Classes</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:llocClasses" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:llocClasses div $phploc/pdx:lloc * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent">Average Class Length</td>
@@ -223,7 +223,7 @@
                     <tr>
                         <td>Functions</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:llocFunctions" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:llocFunctions div $phploc/pdx:lloc * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td class="indent">Average Function Length</td>
@@ -233,7 +233,7 @@
                     <tr>
                         <td>Not in classes or functions</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:llocGlobal" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:llocGlobal div $phploc/pdx:lloc * 100,'0.##')" />%)</td>
                     </tr>
                 </table>
             </div>
@@ -263,19 +263,19 @@
                         <td />
                     </tr>
                     <tr>
-                        <td>Global Constants</td>
+                        <td class="indent">Global Constants</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:globalConstantAccesses" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:globalConstantAccesses div $phploc/pdx:globalAccesses * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
-                        <td>Global Variables</td>
+                        <td class="indent">Global Variables</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:globalVariableAccesses" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:globalVariableAccesses div $phploc/pdx:globalAccesses * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
-                        <td>Super-Global Variables</td>
+                        <td class="indent">Super-Global Variables</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:superGlobalVariableAccesses" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:superGlobalVariableAccesses div $phploc/pdx:globalAccesses * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Attribute Accesses</td>
@@ -283,14 +283,14 @@
                         <td />
                     </tr>
                     <tr>
-                        <td>Non-Static</td>
+                        <td class="indent">Non-Static</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:instanceAttributeAccesses" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:instanceAttributeAccesses div $phploc/pdx:attributeAccesses * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
-                        <td>Static</td>
+                        <td class="indent">Static</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:staticAttributeAccesses" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:staticAttributeAccesses div $phploc/pdx:attributeAccesses * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
                         <td>Method Calls</td>
@@ -298,14 +298,14 @@
                         <td />
                     </tr>
                     <tr>
-                        <td>Non-Static</td>
+                        <td class="indent">Non-Static</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:instanceMethodCalls" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:instanceMethodCalls div $phploc/pdx:methodCalls * 100,'0.##')" />%)</td>
                     </tr>
                     <tr>
-                        <td>Static</td>
+                        <td class="indent">Static</td>
                         <td class="nummeric"><xsl:value-of select="$phploc/pdx:staticMethodCalls" /></td>
-                        <td class="percent">(<xsl:value-of select="format-number(0,'0.##')" />%)</td>
+                        <td class="percent">(<xsl:value-of select="format-number($phploc/pdx:staticMethodCalls div $phploc/pdx:methodCalls * 100,'0.##')" />%)</td>
                     </tr>
                 </table>
             </div>
