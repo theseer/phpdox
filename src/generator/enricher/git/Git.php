@@ -188,7 +188,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
              *
              * The logic of addCommit assumes the commit message to be last
              */
-            $format = '%' . join('%n%', $this->tokens) . '%n%B%n[EOF]';
+            $format = '%' . join('%n%', $this->tokens) . '%n%s%b%n[EOF]';
 
             $cwd = getcwd();
             if (!file_exists($filename)) {
