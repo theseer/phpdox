@@ -3,13 +3,15 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\fDOM\fDOMNode;
     use TheSeer\phpDox\EnrichConfig;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\PHPDoxEndEvent;
     use TheSeer\phpDox\Generator\PHPDoxStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class Git extends AbstractEnricher implements IndexEnricherInterface, InterfaceEnricherInterface, ClassEnricherInterface, TraitEnricherInterface {
+    class Git extends AbstractEnricher implements FullEnricherInterface {
 
         /**
          * @var bool
@@ -29,6 +31,21 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         private $config;
 
+        /**
+         * @var fDOMDocument
+         */
+        private $cacheDom;
+
+        /**
+         * @var bool
+         */
+        private $cacheDirty = false;
+
+        /**
+         * @var string
+         */
+        private $commitSha1;
+
         public function __construct(GitConfig $config) {
             $this->config = $config;
         }
@@ -40,7 +57,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return 'GIT information';
         }
 
-        public function enrichIndex(PHPDoxStartEvent $event) {
+        public function enrichStart(PHPDoxStartEvent $event) {
             $dom = $event->getIndex()->asDom();
             /** @var fDOMElement $enrichtment */
             $enrichtment = $this->getEnrichtmentContainer($dom->documentElement, 'git');
@@ -88,6 +105,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $current->setAttribute('describe', $describe);
             $current->setAttribute('branch', $currentBranch);
 
+            $sha1 = exec($binary . " rev-parse HEAD 2>/dev/null");
+            $current->setAttribute('commit', $sha1);
+
             chdir($cwd);
         }
 
@@ -103,6 +123,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->enrichByFile($event->getTrait()->asDom());
         }
 
+        public function enrichEnd(PHPDoxEndEvent $event) {
+            if ($this->cacheDirty) {
+                $this->cacheDom->save($this->config->getLogfilePath());
+            }
+        }
+
         private function enrichByFile(fDOMDocument $dom) {
             if ($this->noGitAvailable) {
                 return;
@@ -112,11 +138,16 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return;
             }
 
+            /** @var fDOMElement $enrichtment */
             $enrichtment = $this->getEnrichtmentContainer($dom->documentElement, 'git');
             if (!$this->config->doLogProcessing()) {
                 $enrichtment->appendChild(
                     $dom->createComment('GitEnricher: Log processing disabled in configuration ')
                 );
+                return;
+            }
+
+            if ($this->loadFromCache($fileNode, $enrichtment)) {
                 return;
             }
 
@@ -138,6 +169,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     }
                     $block[] = $line;
                 }
+
+                $this->addToCache($fileNode, $enrichtment);
 
             } catch (GitEnricherException $e) {
                 $enrichtment->appendChild(
@@ -203,6 +236,70 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
             return $log;
         }
+
+        private function loadFromCache(fDOMElement $fileNode, fDOMElement $enrichment) {
+            $dom = $this->getCacheDom();
+            $fields = array(
+                'path' => $fileNode->getAttribute('path'),
+                'file' => $fileNode->getAttribute('file')
+            );
+            $query = $dom->prepareQuery('//*[@path = :path and @file = :file]', $fields);
+            $cacheNode = $dom->queryOne($query);
+            if (!$cacheNode) {
+                return false;
+            }
+            foreach($cacheNode->childNodes as $child) {
+                $enrichment->appendChild(
+                    $enrichment->ownerDocument->importNode($child)
+                );
+            }
+            return true;
+        }
+
+        private function addToCache(fDOMElement $fileNode, fDOMElement $enrichment) {
+            $dom = $this->getCacheDom();
+            $import = $dom->importNode($fileNode);
+            foreach($enrichment->childNodes as $node) {
+                $import->appendChild(
+                    $dom->importNode($node, true)
+                );
+            }
+            $dom->documentElement->appendChild($import);
+            $this->cacheDirty = true;
+        }
+
+        private function getCacheDom() {
+            if ($this->cacheDom === NULL) {
+                $this->cacheDom = new fDOMDocument();
+                $cacheFile = $this->config->getLogfilePath();
+                if (file_exists($cacheFile)) {
+                    $this->cacheDom->load($cacheFile);
+
+                    $sha1 = $this->cacheDom->documentElement->getAttribute('sha1');
+                    $cwd = getcwd();
+                    chdir($this->config->getSourceDirectory());
+                    exec($this->config->getGitBinary() . ' diff --name-only ' . $sha1, $files, $rc);
+                    foreach($files as $file) {
+                        $fields = array(
+                            'path' => dirname($file),
+                            'file' => basename($file)
+                        );
+                        $query = $this->cacheDom->prepareQuery('//*[@path = :path and @file = :file]', $fields);
+                        $node = $this->cacheDom->queryOne($query);
+                        if (!$node) {
+                            continue;
+                        }
+                        $node->parentNode->removeChild($node);
+                    }
+                    chdir($cwd);
+                } else {
+                    $this->cacheDom->loadXML('<?xml version="1.0" ?><gitlog xmlns="http://phpdox.net/gitlog" />');
+                    $this->cacheDom->documentElement->setAttribute('sha1', $this->commitSha1);
+                }
+            }
+            return $this->cacheDom;
+        }
+
     }
 
 
