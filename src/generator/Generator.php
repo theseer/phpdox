@@ -43,8 +43,9 @@ namespace TheSeer\phpDox\Generator {
     use \TheSeer\phpDox\Generator\Engine\EngineInterface;
     use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Enricher\ClassEnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\EndEnricherInterface;
     use \TheSeer\phpDox\Generator\Enricher\EnricherInterface;
-    use TheSeer\phpDox\Generator\Enricher\IndexEnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\StartEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\InterfaceEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\TraitEnricherInterface;
     use \TheSeer\phpDox\ProgressLogger;
@@ -68,7 +69,8 @@ namespace TheSeer\phpDox\Generator {
             'phpdox.start'    => array(),
             'class.start'     => array(),
             'trait.start'     => array(),
-            'interface.start' => array()
+            'interface.start' => array(),
+            'phpdox.end'      => array()
         );
 
         /**
@@ -94,8 +96,8 @@ namespace TheSeer\phpDox\Generator {
         private $handlerRegistry;
 
         /**
-         * @param EventFactory   $factory
-         * @param ProgressLogger $logger
+         * @param ProgressLogger       $logger
+         * @param EventHandlerRegistry $registry
          */
         public function __construct(ProgressLogger $logger, EventHandlerRegistry $registry) {
             $this->logger = $logger;
@@ -113,7 +115,7 @@ namespace TheSeer\phpDox\Generator {
         }
 
         public function addEnricher(EnricherInterface $enricher) {
-            if ($enricher instanceof IndexEnricherInterface) {
+            if ($enricher instanceof StartEnricherInterface) {
                 $this->enrichers['phpdox.start'][] = $enricher;
             }
             if ($enricher instanceof ClassEnricherInterface) {
@@ -124,6 +126,9 @@ namespace TheSeer\phpDox\Generator {
             }
             if ($enricher instanceof TraitEnricherInterface) {
                 $this->enrichers['trait.start'][] = $enricher;
+            }
+            if ($enricher instanceof EndEnricherInterface) {
+                $this->enrichers['phpdox.end'][] = $enricher;
             }
         }
 
@@ -159,7 +164,7 @@ namespace TheSeer\phpDox\Generator {
                 foreach($this->enrichers[$eventType] as $enricher) {
                     switch($eventType) {
                         case 'phpdox.start': {
-                            $enricher->enrichIndex($event);
+                            $enricher->enrichStart($event);
                             break;
                         }
                         case 'class.start': {
@@ -172,6 +177,10 @@ namespace TheSeer\phpDox\Generator {
                         }
                         case 'trait.start': {
                             $enricher->enrichTrait($event);
+                            break;
+                        }
+                        case 'phpdox.end': {
+                            $enricher->enrichEnd($event);
                             break;
                         }
                     }

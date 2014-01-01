@@ -5,7 +5,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\fDOM\fDOMException;
     use TheSeer\phpDox\Generator\PHPDoxStartEvent;
 
-    class PHPLoc extends  AbstractEnricher implements IndexEnricherInterface {
+    class PHPLoc extends  AbstractEnricher implements StartEnricherInterface {
 
         /**
          * @var fDOMDocument
@@ -23,7 +23,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return 'PHPLoc xml';
         }
 
-        public function enrichIndex(PHPDoxStartEvent $event) {
+        public function enrichStart(PHPDoxStartEvent $event) {
             $index = $event->getIndex()->asDom();
             $enrichment = $this->getEnrichtmentContainer($index->documentElement, 'phploc');
 

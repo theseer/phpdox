@@ -10,7 +10,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\Generator\TraitStartEvent;
     use TheSeer\phpDox\Version;
 
-    class Build extends AbstractEnricher implements IndexEnricherInterface,
+    class Build extends AbstractEnricher implements StartEnricherInterface,
         ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface {
 
         /**
@@ -34,7 +34,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return 'Build Information';
         }
 
-        public function enrichIndex(PHPDoxStartEvent $event) {
+        public function enrichStart(PHPDoxStartEvent $event) {
             $this->genericProcess($event->getIndex()->asDom());
         }
 
