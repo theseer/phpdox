@@ -21,8 +21,6 @@ namespace TheSeer\phpDox\Generator {
             return $this->nodeList->item($this->position);
         }
 
-        abstract public function current();
-
         /**
          * (PHP 5 &gt;= 5.0.0)<br/>
          * Move forward to next element
