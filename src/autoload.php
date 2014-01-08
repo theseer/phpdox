@@ -76,6 +76,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\enginebootstrapapi' => '/bootstrap/EngineBootstrapApi.php',
                 'theseer\\phpdox\\enrichconfig' => '/config/EnrichConfig.php',
                 'theseer\\phpdox\\enricherbootstrapapi' => '/bootstrap/EnricherBootstrapApi.php',
+                'theseer\\phpdox\\errorexception' => '/shared/ErrorException.php',
                 'theseer\\phpdox\\errorhandler' => '/shared/ErrorHandler.php',
                 'theseer\\phpdox\\factory' => '/shared/Factory.php',
                 'theseer\\phpdox\\factoryexception' => '/shared/Factory.php',

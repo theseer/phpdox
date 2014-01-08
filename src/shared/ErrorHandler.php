@@ -49,11 +49,12 @@ namespace TheSeer\phpDox {
          * @return void
          */
         public function register() {
-            error_reporting(-1);
+            error_reporting(0);
             ini_set('display_errors', FALSE);
             register_shutdown_function(array($this, "handleShutdown"));
             set_exception_handler(array($this, 'handleException'));
             set_error_handler(array($this, 'handleError'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);
+            class_exists('\TheSeer\phpDox\ErrorException', true);
         }
 
         public function setDebug($mode) {
@@ -86,7 +87,7 @@ namespace TheSeer\phpDox {
             if (ini_get('error_reporting')==0 && !$this->debugMode) {
                 return true;
             }
-            throw new \ErrorException($errstr, -1, $errno, $errfile, $errline);
+            throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
         }
 
 
@@ -99,8 +100,8 @@ namespace TheSeer\phpDox {
          */
         public function handleShutdown() {
             $error = error_get_last();
-            if ($error && in_array($error['type'], array(E_ERROR, E_PARSE, E_RECOVERABLE_ERROR))) {
-                $exception = new \ErrorException($error['message'], -1, $error['type'], $error['file'], $error['line']);
+            if ($error) {
+                $exception = new ErrorException($error['message'], $error['type'], 0, $error['file'], $error['line']);
                 $this->handleException($exception);
             }
         }
@@ -116,14 +117,19 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, "\n\nOups... phpDox encountered a problem and has terminated!\n");
             fwrite(STDERR, "\nIt most likely means you've found a bug, so please file a report for this\n");
             fwrite(STDERR, "and paste the following details and the stacktrace (if given) along:\n\n");
-            fwrite(STDERR, "Version: " . Version::getVersion() . "\n");
+            fwrite(STDERR, "PHP Version: " . PHP_VERSION . " (" . PHP_OS . ")\n");
+            fwrite(STDERR, "PHPDox Version: " . Version::getVersion() . "\n");
             $this->renderException($exception);
             fwrite(STDERR, "\n\n\n");
             exit(1);
         }
 
         protected function renderException(\Exception $exception) {
-            fwrite(STDERR, sprintf("Exception: %s\n", get_class($exception)));
+            if ($exception instanceof ErrorException) {
+                fwrite(STDERR, sprintf("ErrorException: %s \n", $exception->getErrorName()));
+            } else {
+                fwrite(STDERR, sprintf("Exception: %s (Code: %d)\n", get_class($exception), $exception->getCode()));
+            }
             fwrite(STDERR, sprintf("Location: %s (Line %d)\n\n", $exception->getFile(), $exception->getLine()));
             fwrite(STDERR, $exception->getMessage() . "\n\n");
 
