@@ -55,7 +55,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          * @dataProvider docblockSources
          */
         public function testParse($src) {
-            $dom = new fDOMDocument();
             $expected = new fDOMDocument();
             $dir = __DIR__.'/../../data/docbock/';
             $block = file_get_contents($dir . $src);
@@ -66,7 +65,11 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
             $result = $parser->parse($block, array());
 
             $this->assertInstanceOf('TheSeer\\phpDox\\DocBlock\\DocBlock', $result);
-            $this->assertEquals($expected->documentElement, $result->asDom($dom));
+
+            $dom = new fDOMDocument();
+            $dom->appendChild($result->asDom($dom));
+
+            $this->assertEquals($expected->documentElement, $dom->documentElement);
         }
 
         public function docblockSources() {
