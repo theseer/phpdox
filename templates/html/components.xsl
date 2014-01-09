@@ -2,6 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pdx="http://xml.phpdox.net/src#"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
+                xmlns:git="http://xml.phpdox.net/gitlog#"
                 exclude-result-prefixes="pdx pdxf">
 
     <xsl:param name="base" select="''" />
@@ -428,16 +429,16 @@
 
     <xsl:template name="git-history">
         <ul class="styled history">
-        <xsl:for-each select="//pdx:enrichment[@type = 'git']/pdx:commit">
-            <xsl:sort data-type="number" select="pdx:commiter/@unixtime" order="descending" />
+        <xsl:for-each select="//pdx:enrichment[@type = 'git']/git:commit">
+            <xsl:sort data-type="number" select="git:commiter/@unixtime" order="descending" />
             <li>
-                <h3><xsl:value-of select="pdx:commiter/@time" /> (commit #<span title="{@sha1}"><xsl:value-of select="substring(@sha1,0,8)" /></span>)</h3>
+                <h3><xsl:value-of select="git:commiter/@time" /> (commit #<span title="{@sha1}"><xsl:value-of select="substring(@sha1,0,8)" /></span>)</h3>
                 <div>
                     <p>
-                        Author: <xsl:value-of select="pdx:author/@name" /> (<xsl:value-of select="pdx:author/@email" />) /
-                        Commiter: <xsl:value-of select="pdx:commiter/@name" /> (<xsl:value-of select="pdx:author/@email" />)
+                        Author: <xsl:value-of select="git:author/@name" /> (<xsl:value-of select="git:author/@email" />) /
+                        Commiter: <xsl:value-of select="git:commiter/@name" /> (<xsl:value-of select="git:author/@email" />)
                     </p>
-                    <pre class="wrapped"><xsl:value-of select="pdx:message" /></pre>
+                    <pre class="wrapped"><xsl:value-of select="git:message" /></pre>
                 </div>
             </li>
         </xsl:for-each>

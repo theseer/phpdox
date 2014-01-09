@@ -13,6 +13,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class Git extends AbstractEnricher implements FullEnricherInterface {
 
+        const GITNS = 'http://xml.phpdox.net/gitlog#';
         /**
          * @var bool
          */
@@ -78,9 +79,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             exec($binary . ' tag 2>/dev/null', $tags, $rc);
             if (count($tags)) {
-                $tagsNode = $enrichtment->appendElementNS(self::XMLNS, 'tags');
+                $tagsNode = $enrichtment->appendElementNS(self::GITNS, 'tags');
                 foreach($tags as $tagName) {
-                    $tag = $tagsNode->appendElementNS(self::XMLNS, 'tag');
+                    $tag = $tagsNode->appendElementNS(self::GITNS, 'tag');
                     $tag->setAttribute('name', $tagName);
                 }
             }
@@ -88,9 +89,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $currentBranch = 'master';
             exec($binary . ' branch 2>/dev/null', $branches, $rc);
             if (count($branches)) {
-                $branchesNode = $enrichtment->appendElementNS(self::XMLNS, 'branches');
+                $branchesNode = $enrichtment->appendElementNS(self::GITNS, 'branches');
                 foreach($branches as $branchName) {
-                    $branch = $branchesNode->appendElementNS(self::XMLNS, 'branch');
+                    $branch = $branchesNode->appendElementNS(self::GITNS, 'branch');
                     if ($branchName[0] == '*') {
                         $branchName = trim(substr($branchName, 1));
                         $currentBranch = $branchName;
@@ -101,12 +102,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
             }
 
-            $current = $enrichtment->appendElementNS(self::XMLNS, 'current');
+            $current = $enrichtment->appendElementNS(self::GITNS, 'current');
             $current->setAttribute('describe', $describe);
             $current->setAttribute('branch', $currentBranch);
 
-            $sha1 = exec($binary . " rev-parse HEAD 2>/dev/null");
-            $current->setAttribute('commit', $sha1);
+            $this->commitSha1 = exec($binary . " rev-parse HEAD 2>/dev/null");
+            $current->setAttribute('commit', $this->commitSha1);
 
             chdir($cwd);
         }
@@ -185,22 +186,22 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             $data = array_combine($tokens, $data);
 
-            $commit = $enrichment->appendElementNS(self::XMLNS, 'commit');
+            $commit = $enrichment->appendElementNS(self::GITNS, 'commit');
             $commit->setAttribute('sha1', $data['H']);
 
-            $author = $commit->appendElementNS(self::XMLNS, 'author');
+            $author = $commit->appendElementNS(self::GITNS, 'author');
             $author->setAttribute('email', $data['aE']);
             $author->setAttribute('name', $data['aN']);
             $author->setAttribute('time', date('c', $data['at']));
             $author->setAttribute('unixtime', $data['at']);
 
-            $commiter = $commit->appendElementNS(self::XMLNS, 'commiter');
+            $commiter = $commit->appendElementNS(self::GITNS, 'commiter');
             $commiter->setAttribute('email', $data['cE']);
             $commiter->setAttribute('name', $data['cN']);
             $commiter->setAttribute('time', date('c', $data['ct']));
             $commiter->setAttribute('unixtime', $data['ct']);
 
-            $message = $commit->appendElementNS(self::XMLNS, 'message');
+            $message = $commit->appendElementNS(self::GITNS, 'message');
             $message->appendTextNode(trim(join("\n", $text)));
         }
 
@@ -293,7 +294,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     }
                     chdir($cwd);
                 } else {
-                    $this->cacheDom->loadXML('<?xml version="1.0" ?><gitlog xmlns="http://phpdox.net/gitlog" />');
+                    $this->cacheDom->loadXML('<?xml version="1.0" ?><gitlog xmlns="' . self::GITNS . '" />');
                     $this->cacheDom->documentElement->setAttribute('sha1', $this->commitSha1);
                 }
             }
