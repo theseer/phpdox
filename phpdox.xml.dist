@@ -15,6 +15,9 @@
                 <source type="checkstyle" />
                 <source type="pmd" />
                 <source type="phploc" />
+                <source type="phpunit">
+                    <coverage path="coverage/xml" />
+                </source>
             </enrich>
 
             <build engine="html" enabled="true" output="html">
