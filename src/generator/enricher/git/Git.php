@@ -220,7 +220,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
              *
              * The logic of addCommit assumes the commit message to be last
              */
-            $format = '%' . join('%n%', $this->tokens) . '%n%s%b%n[EOF]';
+            $format = '%' . join('%n%', $this->tokens) . '%n%B%n[EOF]';
 
             $cwd = getcwd();
             if (!file_exists($filename)) {
@@ -257,7 +257,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         private function addToCache(fDOMElement $fileNode, fDOMElement $enrichment) {
             $dom = $this->getCacheDom();
-            $import = $dom->importNode($fileNode);
+            $import = $dom->createElementNS(self::GITNS, 'file');
+            foreach($fileNode->attributes as $attr) {
+                $import->appendChild(
+                    $dom->importNode($fileNode->getAttributeNode($attr))
+                );
+            }
             foreach($enrichment->childNodes as $node) {
                 $import->appendChild(
                     $dom->importNode($node, true)
