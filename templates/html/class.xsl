@@ -2,6 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pdx="http://xml.phpdox.net/src#"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
+                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
                 exclude-result-prefixes="pdx">
 
     <xsl:import href="components.xsl" />
@@ -142,14 +143,18 @@
 
         <table class="styled">
             <tr>
+                <xsl:variable name="methods"  select="count($unit/pdx:method|$unit/pdx:constructor|$unit/pdx:destructor)" />
+                <xsl:variable name="executed" select="count($unit//pdx:enrichments/pdx:enrichment[@type='phpunit']/pu:coverage[@coverage = '100'])" />
                 <td>Methods</td>
-                <td class="percent">??%</td>
-                <td class="nummeric">?? / <xsl:value-of select="count($unit/pdx:method|$unit/pdx:constructor|$unit/pdx:destructor)" /></td>
+                <td class="percent"><xsl:value-of select="format-number($executed div $methods * 100, '0.##')" />%</td>
+                <td class="nummeric"><xsl:value-of select="$executed" /> / <xsl:value-of select="$methods" /></td>
             </tr>
             <tr>
+                <xsl:variable name="executed"    select="$unit/pdx:enrichments/pdx:enrichment[@type='phpunit']/pu:coverage/@executed" />
+                <xsl:variable name="executable"  select="$unit/pdx:enrichments/pdx:enrichment[@type='phpunit']/pu:coverage/@executable" />
                 <td>Lines</td>
-                <td class="percent">??%</td>
-                <td class="nummeric">?? / <xsl:value-of select="$unit/@end - $unit/@start " /></td>
+                <td class="percent"><xsl:value-of select="format-number($executed div $executable * 100, '0.##')" />%</td>
+                <td class="nummeric"><xsl:value-of select="$executed" /> / <xsl:value-of select="$executable" /></td>
             </tr>
         </table>
     </xsl:template>
