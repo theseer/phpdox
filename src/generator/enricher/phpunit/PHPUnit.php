@@ -2,6 +2,7 @@
 namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
     use TheSeer\fDOM\fDOMException;
     use TheSeer\fDOM\XPathQuery;
     use TheSeer\phpDox\Collector\MemberObject;
@@ -89,17 +90,47 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function processUnit(fDOMDocument $unit, fDOMDocument $coverage) {
-            $methods = $unit->query('//phpdox:constructor|//phpdox:destructor|//phpdox:method');
+            $enrichment = $this->getEnrichtmentContainer($unit->documentElement, 'phpunit');
+
+            $className = $unit->documentElement->getAttribute('name');
+            $classNamespace = $unit->documentElement->getAttribute('namespace');
+
+            $classNode = $coverage->queryOne(
+                sprintf('//pu:class[@name = "%s" and pu:namespace[@name = "%s"]]', $className, $classNamespace)
+            );
+            $coverageTarget = $enrichment->appendElementNS(self::XMLNS, 'coverage');
+            foreach(array('executable','executed', 'crap') as $attr) {
+                $coverageTarget->appendChild(
+                    $coverageTarget->ownerDocument->importNode($classNode->getAttributeNode($attr))
+                );
+            }
+
+            $methods = $unit->query('/phpdox:*/phpdox:constructor|/phpdox:*/phpdox:destructor|/phpdox:*/phpdox:method');
+            $xp = $this->index->getDOMXPath();
+
             foreach($methods as $method) {
                 $start = $method->getAttribute('start');
                 $end = $method->getAttribute('end');
 
                 $enrichment = $this->getEnrichtmentContainer($method, 'phpunit');
-                $method->appendChild($enrichment);
                 $coverageTarget = $enrichment->appendElementNS(self::XMLNS, 'coverage');
 
-                $query = sprintf('//pu:coverage/pu:line[@nr >= "%d" and @nr <= "%d"]/pu:covered', $start, $end);
-                $coveredNodes = $coverage->query($query);
+                /** @var fDOMElement $coverageMethod */
+                $coverageMethod = $coverage->queryOne(
+                    sprintf('//pu:method[@start = "%d" and @end = "%d"]', $start, $end)
+                );
+
+                if ($coverageMethod != NULL) {
+                    foreach(array('executable','executed','coverage', 'crap') as $attr) {
+                        $coverageTarget->appendChild(
+                            $coverageTarget->ownerDocument->importNode($coverageMethod->getAttributeNode($attr))
+                        );
+                    }
+                }
+
+                $coveredNodes = $coverage->query(
+                    sprintf('//pu:coverage/pu:line[@nr >= "%d" and @nr <= "%d"]/pu:covered', $start, $end)
+                );
 
                 $seen = array();
                 foreach($coveredNodes as $coveredNode) {
@@ -109,9 +140,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     }
                     $seen[$by] = true;
 
-                    $xp = $this->index->getDOMXPath();
                     $name = $xp->prepare(':name', array('name' => $by));
-
                     $coverageTarget->appendChild(
                         $unit->importNode(
                             $this->index->queryOne(
