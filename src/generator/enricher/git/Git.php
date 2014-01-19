@@ -249,7 +249,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
             foreach($cacheNode->childNodes as $child) {
                 $enrichment->appendChild(
-                    $enrichment->ownerDocument->importNode($child)
+                    $enrichment->ownerDocument->importNode($child, true)
                 );
             }
             return true;
@@ -260,7 +260,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $import = $dom->createElementNS(self::GITNS, 'file');
             foreach($fileNode->attributes as $attr) {
                 $import->appendChild(
-                    $dom->importNode($fileNode->getAttributeNode($attr))
+                    $dom->importNode($attr)
                 );
             }
             foreach($enrichment->childNodes as $node) {
