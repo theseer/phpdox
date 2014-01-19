@@ -2,6 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pdx="http://xml.phpdox.net/src#"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
+                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
                 exclude-result-prefixes="pdx pdxf">
 
     <xsl:import href="components.xsl" />
@@ -62,9 +63,6 @@
                         </xsl:if>
 
                         <xsl:if test="$method//pdx:enrichment[@type = 'phpunit']">
-                            <xsl:call-template name="coverage">
-                                <xsl:with-param name="ctx" select="$method" />
-                            </xsl:call-template>
                             <xsl:call-template name="tests" />
                         </xsl:if>
 
@@ -107,6 +105,37 @@
             <ul>
                 <li><a href="#introduction">Introduction</a></li>
                 <li><a href="#synopsis">Synopsis</a></li>
+                <xsl:if test="$method/pdx:parameter">
+                    <li><a href="#parameter">Parameter</a></li>
+                </xsl:if>
+
+                <xsl:if test="$method/pdx:docblock/pdx:return">
+                    <li><a href="#return">Return</a></li>
+                </xsl:if>
+
+                <xsl:if test="$method/pdx:docblock/pdx:throws">
+                    <li><a href="#throws">Throws</a></li>
+                </xsl:if>
+
+                <xsl:if test="$unit//pdx:interface[pdx:method/@name = $methodName]">
+                    <li><a href="#interface">Interface</a></li>
+                </xsl:if>
+
+                <xsl:if test="$unit//pdx:parent[pdx:method/@name = $methodName]">
+                    <li><a href="#overrides">Overrides</a></li>
+                </xsl:if>
+
+                <xsl:if test="$method//pdx:enrichment[@type = 'phpunit']">
+                    <li><a href="#tests">Tests</a></li>
+                </xsl:if>
+
+                <xsl:if test="$method//pdx:enrichtment[@type = 'checkstyle' or @type='pmd']">
+                    <li><a href="#violations">Violations</a></li>
+                </xsl:if>
+
+                <xsl:if test="$method//pdx:todo">
+                    <li><a href="#tasks">Tasks</a></li>
+                </xsl:if>
             </ul>
         </nav>
     </xsl:template>
@@ -114,7 +143,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="parameterlist">
-        <h2>Parameters</h2>
+        <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
             <xsl:for-each select="$method/pdx:parameter">
                 <xsl:variable name="param" select="." />
@@ -127,7 +156,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="signature">
-        <h2>Signature</h2>
+        <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
             <code>
                 <xsl:value-of select="$method/@visibility" /> function <xsl:value-of select="$methodName" />(<xsl:if test="$method/pdx:parameter">
@@ -177,7 +206,7 @@
 
     <xsl:template name="return">
         <xsl:param name="return" />
-        <h2>Returns</h2>
+        <h2 id="return">Returns</h2>
         <dl class="styled">
             <dt><xsl:call-template name="type">
                 <xsl:with-param name="ctx" select="$method" />
@@ -192,7 +221,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="throws">
-        <h2>Errors/Exceptions</h2>
+        <h2 id="throws">Errors/Exceptions</h2>
         <dl class="styled">
             <xsl:for-each select="$method/pdx:docblock/pdx:throws">
                 <dt><code><xsl:copy-of select="pdxf:link(pdx:type, '', pdx:type/@name)" /></code></dt>
@@ -204,7 +233,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="interface">
-        <h2>Defined by Interface</h2>
+        <h2 id="interface">Defined by Interface</h2>
         <p class="styled">
             <code><xsl:copy-of select="pdxf:link($unit/pdx:interface[pdx:method/@name = $methodName])" /></code>
         </p>
@@ -213,7 +242,7 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="overrides">
-        <h2>Parent Implementation<xsl:if test="count($unit//pdx:parent[pdx:method/@name = $methodName]) &gt; 1">s</xsl:if></h2>
+        <h2 id="overrides">Parent Implementation<xsl:if test="count($unit//pdx:parent[pdx:method/@name = $methodName]) &gt; 1">s</xsl:if></h2>
         <ul class="styled">
             <xsl:for-each select="$unit//pdx:parent[pdx:method/@name = $methodName]">
                 <li><code><xsl:copy-of select="pdxf:link(., $methodName)" /></code></li>
@@ -224,14 +253,30 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="tests">
-        <h2>Tests</h2>
-        <ul class="styled">
-            <li>[ X ] — \Some\Test\Class::ThisIsAFancyTwstMethodName</li>
-            <li>[ X ] — \Some\Test\Class::ThisIsAFancyTwstMethodName</li>
-            <li>[ X ] — \Some\Test\Class::ThisIsAFancyTwstMethodName</li>
-            <li>[ X ] — \Some\Test\Class::ThisIsAFancyTwstMethodName</li>
-            <li>[ X ] — \Some\Test\Class::ThisIsAFancyTwstMethodName</li>
-        </ul>
+        <h2 id="tests">Test Coverage</h2>
+        <div class="styled">
+            <xsl:variable name="coverage" select="$method//pdx:enrichment[@type='phpunit']/pu:coverage" />
+            <xsl:variable name="count" select="count($coverage/pu:test)" />
+            <xsl:variable name="passed" select="count($coverage/pu:test[@result='0'])" />
+
+            <h3>Information</h3>
+            <ul class="styled">
+                <li>Coverage: <xsl:value-of select="$coverage/@executed"/>/<xsl:value-of select="$coverage/@executable"/> Lines (<xsl:value-of select="$coverage/@coverage"/>%)</li>
+                <li>Tests: <xsl:value-of select="$count" /></li>
+                <li>Passed: <xsl:value-of select="$passed" /> (<xsl:choose>
+                    <xsl:when test="$count = 0">0</xsl:when>
+                    <xsl:otherwise><xsl:value-of select="format-number($passed div $count * 100,'0.##')" /></xsl:otherwise>
+                </xsl:choose>%)</li>
+            </ul>
+            <xsl:if test="$method//pdx:enrichment[@type='phpunit']/pu:coverage/pu:test">
+                <h3>Tests</h3>
+                <ul class="styled">
+                    <xsl:for-each select="$method//pdx:enrichment[@type='phpunit']/pu:coverage/pu:test">
+                        <li>[ <span class="testresult-{@status}"><xsl:value-of select="@status" /></span> ] — <xsl:value-of select="@name" /></li>
+                    </xsl:for-each>
+                </ul>
+            </xsl:if>
+        </div>
     </xsl:template>
 
 </xsl:stylesheet>

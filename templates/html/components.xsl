@@ -127,25 +127,6 @@
 
     <!-- ######################################################################################################### -->
 
-    <xsl:template name="coverage">
-        <xsl:param name="ctx" select="$unit" />
-
-        <table class="styled">
-            <tr>
-                <td>Methods</td>
-                <td class="percent">90.91%</td>
-                <td class="nummeric">10 / 11</td>
-            </tr>
-            <tr>
-                <td>Lines</td>
-                <td class="percent">96.43%</td>
-                <td class="nummeric">54 / 56</td>
-            </tr>
-        </table>
-    </xsl:template>
-
-    <!-- ######################################################################################################### -->
-
     <xsl:template name="violations">
         <xsl:param name="ctx" />
 
@@ -208,10 +189,11 @@
     <xsl:template name="tasks">
         <xsl:param name="ctx" select="$unit" />
 
+        <h2 id="tasks">Tasks</h2>
         <table class="styled">
             <thead>
                 <tr>
-                    <th>Line</th>
+                    <th style="width:3em;">Line</th>
                     <th>Task</th>
                 </tr>
             </thead>
@@ -444,6 +426,5 @@
         </xsl:for-each>
         </ul>
     </xsl:template>
-
 
 </xsl:stylesheet>

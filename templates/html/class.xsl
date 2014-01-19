@@ -136,4 +136,22 @@
     </xsl:template>
 
 
+    <!-- ######################################################################################################### -->
+
+    <xsl:template name="coverage">
+
+        <table class="styled">
+            <tr>
+                <td>Methods</td>
+                <td class="percent">??%</td>
+                <td class="nummeric">?? / <xsl:value-of select="count($unit/pdx:method|$unit/pdx:constructor|$unit/pdx:destructor)" /></td>
+            </tr>
+            <tr>
+                <td>Lines</td>
+                <td class="percent">??%</td>
+                <td class="nummeric">?? / <xsl:value-of select="$unit/@end - $unit/@start " /></td>
+            </tr>
+        </table>
+    </xsl:template>
+
 </xsl:stylesheet>
