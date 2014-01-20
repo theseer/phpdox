@@ -1,5 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:git="http://xml.phpdox.net/gitlog#"
                 xmlns:pdx="http://xml.phpdox.net/src#">
 
     <xsl:import href="components.xsl" />
@@ -39,7 +40,7 @@
                 <p><xsl:value-of select="//pdx:enrichment[@type='build']/pdx:date/@rfc" /></p>
                 <h3>VCS Info</h3>
                 <p>
-                    <xsl:variable name="current" select="//pdx:enrichment[@type='git']/pdx:current" />
+                    <xsl:variable name="current" select="//pdx:enrichment[@type='git']/git:current" />
                     tag: <xsl:value-of select="$current/@describe" /><br/>
                     branch: <xsl:value-of select="$current/@branch" />
                 </p>
