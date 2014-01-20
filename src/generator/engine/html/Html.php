@@ -74,8 +74,6 @@ namespace TheSeer\phpDox\Generator\Engine {
         private $extension;
         private $workDir;
 
-        private $functions;
-
         public function __construct(HtmlConfig $config) {
             $this->templateDir = $config->getTemplateDirectory();
             $this->outputDir = $config->getOutputDirectory();
@@ -103,12 +101,6 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function buildStart(PHPDoxStartEvent $event) {
-            $this->functions = new Html\Functions(
-                $this->projectNode,
-                $event->getIndex()->asDom(),
-                $this->extension
-            );
-
             $this->generateIndex($event);
 
             $this->xslClass = $this->getXSLTProcessor('class.xsl');
@@ -155,7 +147,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->xslClass->setParameter('', 'title', 'Classes');
             $html = $this->xslClass->transformToDoc($event->getClass()->asDom());
             $this->saveDomDocument($html, $this->outputDir . '/classes/' .
-                $this->functions->classNameToFileName($event->getClass()->getFullName())
+                $this->classNameToFileName($event->getClass()->getFullName())
             );
         }
 
@@ -164,14 +156,14 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->xslClass->setParameter('', 'title', 'Traits');
             $html = $this->xslClass->transformToDoc($event->getTrait()->asDom());
             $this->saveDomDocument($html, $this->outputDir . '/traits/' .
-                $this->functions->classNameToFileName($event->getTrait()->getFullName())
+                $this->classNameToFileName($event->getTrait()->getFullName())
             );
         }
 
         public function buildInterface(InterfaceStartEvent $event) {
             $html = $this->xslInterface->transformToDoc($event->getInterface()->asDom());
             $this->saveDomDocument($html, $this->outputDir . '/interfaces/' .
-                $this->functions->classNameToFileName($event->getInterface()->getFullName())
+                $this->classNameToFileName($event->getInterface()->getFullName())
             );
         }
 
@@ -207,9 +199,17 @@ namespace TheSeer\phpDox\Generator\Engine {
             $html = $this->xslMethod->transformToDoc($ctx);
 
             $filename = $this->outputDir . '/' . $target . '/' .
-                $this->functions->classNameToFileName($unitName, $method);
+                $this->classNameToFileName($unitName, $method);
 
             $this->saveDomDocument($html, $filename);
+        }
+
+        private function classNameToFileName($class, $method = NULL) {
+            $name = str_replace('\\', '_', $class);
+            if ($method !== NULL) {
+                $name .= '/' . $method;
+            }
+            return $name . '.' . $this->extension;
         }
 
     }
