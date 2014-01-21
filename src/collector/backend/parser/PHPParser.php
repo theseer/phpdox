@@ -88,6 +88,8 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
+         * @param ParseResult $result
+         *
          * @return \PHPParser_NodeTraverser
          */
         private function getTraverserInstance(ParseResult $result) {
