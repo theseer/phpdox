@@ -39,7 +39,7 @@ namespace TheSeer\phpDox\Collector\Backend {
     /**
      * CustomLexer as suggest for workaround for issue 26 (https://github.com/nikic/PHP-Parser/issues/26)
      */
-    class OriginalValueLexer extends \PHPParser_Lexer_Emulative {
+    class CustomLexer extends \PHPParser_Lexer_Emulative {
 
         public function getNextToken(&$value = NULL, &$startAttributes = NULL, &$endAttributes = NULL) {
             $tokenId = parent::getNextToken($value, $startAttributes, $endAttributes);
@@ -52,6 +52,12 @@ namespace TheSeer\phpDox\Collector\Backend {
             }
             return $tokenId;
         }
+
+        protected function resetErrors() {
+            // kill PHPParser_Lexer's Error reset code as it breaks phpDox's error handling
+            return;
+        }
+
     }
 
 }
