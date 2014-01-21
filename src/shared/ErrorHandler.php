@@ -39,8 +39,6 @@ namespace TheSeer\phpDox {
 
     class ErrorHandler {
 
-        protected $debugMode = false;
-
         /**
          * Init method
          *
@@ -55,10 +53,6 @@ namespace TheSeer\phpDox {
             set_exception_handler(array($this, 'handleException'));
             set_error_handler(array($this, 'handleError'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);
             class_exists('\TheSeer\phpDox\ErrorException', true);
-        }
-
-        public function setDebug($mode) {
-            $this->debugMode = ($mode === true);
         }
 
         /**
@@ -84,12 +78,8 @@ namespace TheSeer\phpDox {
          * @throws \ErrorException
          */
         public function handleError($errno, $errstr, $errfile, $errline) {
-            if (ini_get('error_reporting')==0 && !$this->debugMode) {
-                return true;
-            }
             throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
         }
-
 
         /**
          * System shutdown handler
