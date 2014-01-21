@@ -54,9 +54,6 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         private $docblockParser = NULL;
 
-        private $traverser = NULL;
-
-
         public function __construct(DocblockParser $parser) {
             $this->docblockParser = $parser;
         }
@@ -85,7 +82,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         private function getParserInstance() {
             if ($this->parser === NULL) {
-                $this->parser = new \PHPParser_Parser(new OriginalValueLexer());
+                $this->parser = new \PHPParser_Parser(new CustomLexer());
             }
             return $this->parser;
         }
