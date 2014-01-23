@@ -87,7 +87,9 @@
             <xsl:if test="$unit/pdx:extends">
                 <h4>Extends</h4>
                 <ul>
-                    <li><a href="{$base}{$dir}/{translate($unit/pdx:extends/@full, '\', '_')}.{$extension}"><xsl:value-of select="$unit/pdx:extends/@full" /></a></li>
+                    <xsl:for-each select="$unit/pdx:extends">
+                        <li><a href="{$base}{$dir}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                    </xsl:for-each>
                 </ul>
             </xsl:if>
             <xsl:if test="$unit/pdx:extender">
@@ -360,8 +362,9 @@
     <xsl:template name="inheritedMethods">
         <xsl:param name="ctx" />
 
-        <xsl:if test="$ctx/pdx:extends">
-            <xsl:variable name="parent" select="$unit/pdx:parent[@full = $ctx/pdx:extends/@full]" />
+        <xsl:for-each select="//pdx:parent">
+            <xsl:variable name="parent" select="." />
+
             <xsl:if test="count($parent/pdx:method) > 0">
                 <h3>Inherited from <xsl:copy-of select="pdxf:link($parent, '', $parent/@full)" /></h3>
             </xsl:if>
@@ -389,11 +392,7 @@
                     </xsl:for-each>
                 </ul>
             </xsl:if>
-
-            <xsl:call-template name="inheritedMethods">
-                <xsl:with-param name="ctx" select="$parent" />
-            </xsl:call-template>
-        </xsl:if>
+        </xsl:for-each>
     </xsl:template>
 
     <!-- ######################################################################################################### -->

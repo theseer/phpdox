@@ -87,12 +87,13 @@ namespace TheSeer\phpDox\Collector {
                 $this->logger->progress('processed');
                 /** @var AbstractUnitObject $unit */
                 if ($unit->hasExtends()) {
-                    try {
-                        $extends = $unit->getExtends();
-                        $extendedUnit = $this->getUnitByName($extends);
-                        $this->processExtends($unit, $extendedUnit);
-                    } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $extends);
+                    foreach($unit->getExtends() as $name) {
+                        try {
+                            $extendedUnit = $this->getUnitByName($name);
+                            $this->processExtends($unit, $extendedUnit);
+                        } catch (ProjectException $e) {
+                            $this->addUnresolved($unit->getName(), $name);
+                        }
                     }
                 }
                 if ($unit->hasImplements()) {
@@ -138,11 +139,13 @@ namespace TheSeer\phpDox\Collector {
             $unit->importExports($extends, 'parent');
 
             if ($extends->hasExtends()) {
-                try {
-                    $extendedUnit = $this->getUnitByName($extends->getExtends());
-                    $this->processExtends($unit, $extendedUnit, $extendedUnit);
-                } catch (ProjectException $e) {
-                    $this->addUnresolved($unit->getName(), $extends->getExtends());
+                foreach($extends->getExtends() as $name) {
+                    try {
+                        $extendedUnit = $this->getUnitByName($name);
+                        $this->processExtends($unit, $extendedUnit, $extendedUnit);
+                    } catch (ProjectException $e) {
+                        $this->addUnresolved($unit->getName(), $extends->getExtends());
+                    }
                 }
             }
 

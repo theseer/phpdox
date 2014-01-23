@@ -50,18 +50,22 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @var \TheSeer\phpDox\DocBlock\Parser
          */
         private $dockblocParser;
+
         /**
          * @var array
          */
         private $aliasMap = array();
+
         /**
          * @var string
          */
         private $namespace = '\\';
+
         /**
          * @var ParseResult
          */
         private $result;
+
         /**
          * @var
          */
@@ -143,13 +147,15 @@ namespace TheSeer\phpDox\Collector\Backend {
             }
 
             /** @var \PHPParser_Node_Stmt_Class $node */
-            if (count($node->extends) === 1) {
+            if (count($node->extends) > 0) {
                 if (is_array($node->extends)) {
-                    $extends = $node->extends[0];
+                    foreach($node->extends as $extends) {
+                        $this->unit->addExtends(join('\\', $extends->parts));
+                    }
                 } else {
-                    $extends = $node->extends;
+                    $this->unit->addExtends(join('\\', $node->extends->parts));
                 }
-                $this->unit->setExtends(join('\\', $extends->parts));
+
             }
 
             if (count($node->implements) > 0) {

@@ -216,11 +216,8 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @param $name
          */
-        public function setExtends($name) {
-            $extends = $this->rootNode->queryOne('phpdox:extends');
-            if (!$extends) {
-                $extends = $this->rootNode->appendElementNS(self::XMLNS, 'extends');
-            }
+        public function addExtends($name) {
+            $extends = $this->rootNode->appendElementNS(self::XMLNS, 'extends');
             $this->setName($name, $extends);
         }
 
@@ -239,8 +236,11 @@ namespace TheSeer\phpDox\Collector {
             if(!$this->hasExtends()) {
                 throw new UnitObjectException('This unit does not extend any unit', UnitObjectException::NoExtends);
             }
-            return $this->rootNode->queryOne('phpdox:extends')->getAttribute('full');
-
+            $result = array();
+            foreach($this->rootNode->query('phpdox:extends') as $ext) {
+                $result[] = $ext->getAttribute('full');
+            }
+            return $result;
         }
 
         /**
@@ -388,8 +388,10 @@ namespace TheSeer\phpDox\Collector {
             $parent->setAttribute('name', $unit->getLocalName());
 
             if ($unit->hasExtends()) {
-                $extends = $parent->appendElementNS( self::XMLNS, 'extends');
-                $this->setName($unit->getExtends(), $extends);
+                foreach($unit->getExtends() as $name) {
+                    $extends = $parent->appendElementNS( self::XMLNS, 'extends');
+                    $this->setName($name, $extends);
+                }
             }
 
             foreach($unit->getConstants() as $constant) {

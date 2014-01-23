@@ -18,7 +18,11 @@
         <div class="synopsis">
             <xsl:value-of select="local-name($unit)" />&#160;<xsl:value-of select="$unit/@name" />
             <xsl:if test="$unit/pdx:extends">
-                extends <xsl:copy-of select="pdxf:link($unit/pdx:extends, '', $unit/pdx:extends/@name)" />
+                extends <xsl:for-each select="$unit/pdx:extends">
+                    <xsl:copy-of select="pdxf:link(., '', @name)" />
+                    <xsl:if test="position() != last()">, </xsl:if>
+                </xsl:for-each>
+
             </xsl:if>
             <xsl:if test="$unit/pdx:implements">
                 implements
