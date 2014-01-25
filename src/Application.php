@@ -50,29 +50,15 @@ namespace TheSeer\phpDox {
         /**
          * Logger for progress and error reporting
          *
-         * @var Logger
+         * @var ProgressLogger
          */
-        protected $logger;
-
-        /**
-         * Helper class wrapping container DOMDocuments
-         *
-         * @var Container
-         */
-        protected $container = NULL;
+        private $logger;
 
         /**
          * Factory instance
          * @var Factory
          */
-        protected $factory;
-
-        /**
-         * Map for builder names to generators and configs
-         *
-         * @var array
-         */
-        protected $builderMap = array();
+        private $factory;
 
         /**
          * Constructor of PHPDox Application
