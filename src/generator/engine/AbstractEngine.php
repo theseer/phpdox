@@ -46,14 +46,25 @@ namespace TheSeer\phpDox\Generator\Engine {
             $tpl = new fDomDocument();
             $tpl->load($template);
             $xsl = new fXSLTProcessor($tpl);
-
-            /*
-            $service = new fXSLCallback('phpdox:service','ps');
-            $service->setObject($this->factory->getInstanceFor('Service', $this));
-            $xsl->registerCallback($service);
-            */
-
             return $xsl;
+        }
+
+        protected function clearDirectory($path) {
+            if (strlen($path) < 5) {
+                throw new EngineException(
+                    'For security reasons, path must be at least 5 chars long', EngineException::SecurityLimitation
+                );
+            }
+            $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+            foreach($worker as $x) {
+                if($x->getFilename() == "." || $x->getFilename() == "..") {
+                    continue;
+                }
+                if ($x->isDir()) {
+                    $this->clearDirectory($x->getPathname());
+                }
+                unlink($x->getPathname());
+            }
         }
 
         protected function saveDomDocument(\DOMDocument $dom, $filename) {
@@ -102,6 +113,10 @@ namespace TheSeer\phpDox\Generator\Engine {
             return $classDom;
         }
 
+    }
+
+    class EngineException extends \Exception {
+        const SecurityLimitation = 1;
     }
 
 }
