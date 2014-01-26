@@ -101,6 +101,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function buildStart(PHPDoxStartEvent $event) {
+            $this->clearDirectory($this->outputDir);
             $this->generateIndex($event);
 
             $this->xslClass = $this->getXSLTProcessor('class.xsl');
