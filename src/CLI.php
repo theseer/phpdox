@@ -93,6 +93,8 @@ namespace TheSeer\phpDox {
                     $config = $cfgLoader->autodetect();
                 }
 
+                /** @var $config GlobalConfig */
+
                 if ($config->isSilentMode()) {
                     $this->factory->setLoggerType('silent');
                 } else {
@@ -101,7 +103,7 @@ namespace TheSeer\phpDox {
                 }
 
                 $logger = $this->factory->getInstanceFor('Logger');
-                $logger->log("Using config file '". $config->getFilename(). "'");
+                $logger->log("Using config file '". $config->getConfigFile()->getPathname() . "'");
 
                 $app = $this->factory->getInstanceFor('Application');
 
@@ -129,6 +131,13 @@ namespace TheSeer\phpDox {
                 foreach($config->getAvailableProjects() as $project) {
                     $logger->log("Starting to process project '$project'");
                     $pcfg = $config->getProjectConfig($project);
+
+                    $index = new FileInfo($pcfg->getWorkDirectory() . '/index.xml');
+                    if ($index->exists() && ($index->getMTime() < $config->getConfigFile()->getMTime())) {
+                        $logger->log("Configuration change detected - cleaning cache");
+                        $cleaner = new DirectoryCleaner();
+                        $cleaner->process(new FileInfo($pcfg->getWorkDirectory()));
+                    }
 
                     if (!$options->getValue('generator')) {
                         $app->runCollector( $pcfg->getCollectorConfig() );
