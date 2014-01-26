@@ -98,6 +98,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $classNode = $coverage->queryOne(
                 sprintf('//pu:class[@name = "%s" and pu:namespace[@name = "%s"]]', $className, $classNamespace)
             );
+            if (!$classNode) {
+                // This class seems to be newer than the last phpunit run
+                return;
+            }
             $coverageTarget = $enrichment->appendElementNS(self::XMLNS, 'coverage');
             foreach(array('executable','executed', 'crap') as $attr) {
                 $coverageTarget->appendChild(
