@@ -14,6 +14,13 @@ namespace TheSeer\phpDox {
             return $this->toUnix($path);
         }
 
+        /**
+         * @return bool
+         */
+        public function exists() {
+            return (bool)parent::getRealPath();
+        }
+
         public function asFileUri() {
             $result = $this->getRealPath();
             if ($result[0] != '/') {
