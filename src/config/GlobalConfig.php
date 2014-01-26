@@ -45,27 +45,30 @@ namespace TheSeer\phpDox {
         /**
          * @var fDOMDocument
          */
-        protected $cfg;
+        private $cfg;
 
         /**
-         * Filename this config is based on
-         * @var string
+         * File this config is based on
+         * @var FileInfo
          */
-        protected $fname;
+        private $file;
 
         /**
          * Constructor for global config
          *
          * @param fDOMDocument $cfg   A configuration dom
-         * @param string       $fname Filename
+         * @param FileInfo     $file  FileInfo of the cfg file
          */
-        public function __construct(fDOMDocument $cfg, $fname) {
+        public function __construct(fDOMDocument $cfg, FileInfo $file) {
             $this->cfg = $cfg;
-            $this->fname = $fname;
+            $this->file = $file;
         }
 
-        public function getFilename() {
-            return $this->fname;
+        /**
+         * @return FileInfo
+         */
+        public function getConfigFile() {
+            return $this->file;
         }
 
         public function isSilentMode() {
@@ -111,10 +114,10 @@ namespace TheSeer\phpDox {
             }
 
             $vars = array(
-                'basedir' => $ctx->getAttribute('basedir', dirname($this->fname)),
+                'basedir' => $ctx->getAttribute('basedir', $this->file->getPath()),
 
                 'phpDox.home' => $home,
-                'phpDox.file' => $this->fname,
+                'phpDox.file' => $this->file->getPathname(),
                 'phpDox.version' => Version::getVersion(),
 
                 'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
