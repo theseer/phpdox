@@ -46,7 +46,7 @@ namespace TheSeer\phpDox {
         /**
          * @var fDOMElement;
          */
-        protected $ctx;
+        private $ctx;
 
         /**
          * Constructor for global config
