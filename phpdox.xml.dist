@@ -27,12 +27,6 @@
 
             <build engine="xml" enabled="true" output="xml" />
 
-            <build engine="todo" enabled="false" output="todo">
-                <file name="todolist.txt" encoding="utf-8" />
-            </build>
-
-            <build engine="graph" enabled="false" output="graph" />
-
         </generator>
     </project>
 
