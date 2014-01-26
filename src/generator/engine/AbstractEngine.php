@@ -39,6 +39,9 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fXSL\fXSLTProcessor;
+    use TheSeer\phpDox\DirectoryCleaner;
+    use TheSeer\phpDox\DirectoryCleanerException;
+    use TheSeer\phpDox\FileInfo;
 
     abstract class AbstractEngine implements EngineInterface {
 
@@ -50,21 +53,8 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         protected function clearDirectory($path) {
-            if (strlen($path) < 5) {
-                throw new EngineException(
-                    'For security reasons, path must be at least 5 chars long', EngineException::SecurityLimitation
-                );
-            }
-            $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
-            foreach($worker as $x) {
-                if($x->getFilename() == "." || $x->getFilename() == "..") {
-                    continue;
-                }
-                if ($x->isDir()) {
-                    $this->clearDirectory($x->getPathname());
-                }
-                unlink($x->getPathname());
-            }
+            $cleaner = new DirectoryCleaner();
+            $cleaner->process(new FileInfo($path));
         }
 
         protected function saveDomDocument(\DOMDocument $dom, $filename) {
@@ -116,7 +106,7 @@ namespace TheSeer\phpDox\Generator\Engine {
     }
 
     class EngineException extends \Exception {
-        const SecurityLimitation = 1;
+        const UnexpectedError = 1;
     }
 
 }
