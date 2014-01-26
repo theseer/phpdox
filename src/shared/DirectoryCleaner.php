@@ -11,10 +11,7 @@ namespace TheSeer\phpDox {
                 );
             }
             if (!file_exists($path)) {
-                throw new DirectoryCleanerException(
-                    sprintf('Path "%s" not found', $path->getPathname()),
-                    DirectoryCleanerException::PathNotFound
-                );
+                return;
             }
             $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path->getPathname()));
             foreach($worker as $x) {
@@ -31,6 +28,5 @@ namespace TheSeer\phpDox {
 
     class DirectoryCleanerException extends \Exception {
         const SecurityLimitation = 1;
-        const PathNotFound = 2;
     }
 }
