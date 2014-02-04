@@ -85,7 +85,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             $currentBranch = 'master';
-            exec($binary . ' branch 2>/dev/null', $branches, $rc);
+            exec($binary . ' branch --no-color 2>/dev/null', $branches, $rc);
             if (count($branches)) {
                 $branchesNode = $enrichtment->appendElementNS(self::GITNS, 'branches');
                 foreach($branches as $branchName) {
@@ -228,7 +228,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
             chdir(dirname($filename));
             $fname = escapeshellarg(basename($filename));
-            exec(sprintf($this->config->getGitBinary() . ' log --follow --pretty=format:"%s" %s', $format, $fname), $log, $rc);
+            exec(sprintf($this->config->getGitBinary() . ' log --no-color --follow --pretty=format:"%s" %s', $format, $fname), $log, $rc);
             chdir($cwd);
             if ($rc !== 0) {
                 throw new GitEnricherException('Error getting log history for file ' . $filename, GitEnricherException::FetchingHistoryFailed);
