@@ -74,12 +74,20 @@ namespace TheSeer\phpDox\Generator\Engine {
         private $extension;
         private $workDir;
 
+        private $hasNamespaces = false;
+        private $hasInterfaces = false;
+        private $hasTraits = false;
+        private $hasClasses = false;
+        private $hasReports;
+
+
         public function __construct(HtmlConfig $config) {
             $this->templateDir = $config->getTemplateDirectory();
             $this->outputDir = $config->getOutputDirectory();
             $this->projectNode = $config->getProjectNode();
             $this->extension = $config->getFileExtension();
             $this->workDir = $config->getWorkDirectory();
+            $this->hasReports = false; // $config->getReports()->count() ?
         }
 
         public function registerEventHandlers(EventHandlerRegistry $registry) {
@@ -97,11 +105,25 @@ namespace TheSeer\phpDox\Generator\Engine {
             $xsl = parent::getXSLTProcessor($this->templateDir . '/' . $template);
             $xsl->setParameter('', 'extension', $this->extension);
             $xsl->setParameter('', 'xml', $this->workDir->asFileUri() . '/');
+
+            $xsl->setParameter('', 'hasNamespaces', $this->hasNamespaces ? 'Y' : 'N');
+            $xsl->setParameter('', 'hasInterfaces', $this->hasInterfaces ? 'Y' : 'N');
+            $xsl->setParameter('', 'hasTraits', $this->hasTraits ? 'Y' : 'N');
+            $xsl->setParameter('', 'hasClasses', $this->hasClasses ? 'Y' : 'N');
+            $xsl->setParameter('', 'hasReports', $this->hasReports ? 'Y' : 'N');
+
             return $xsl;
         }
 
         public function buildStart(PHPDoxStartEvent $event) {
             $this->clearDirectory($this->outputDir);
+
+            $index = $event->getIndex();
+            $this->hasNamespaces = $index->hasNamespaces();
+            $this->hasInterfaces = $index->hasInterfaces();
+            $this->hasTraits = $index->hasTraits();
+            $this->hasClasses = $index->hasClasses();
+
             $this->generateIndex($event);
 
             $this->xslClass = $this->getXSLTProcessor('class.xsl');

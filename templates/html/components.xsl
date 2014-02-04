@@ -10,6 +10,12 @@
     <xsl:param name="extension" select="'xhtml'" />
     <xsl:param name="project" select="'phpDox generated Project'" />
 
+    <xsl:param name="hasNamespaces" select="'N'" />
+    <xsl:param name="hasInterfaces" select="'N'" />
+    <xsl:param name="hasTraits" select="'N'" />
+    <xsl:param name="hasClasses" select="'N'" />
+    <xsl:param name="hasReports" select="'N'" />
+
     <!-- ######################################################################################################### -->
 
     <xsl:template name="head">
@@ -26,28 +32,28 @@
     <!-- ######################################################################################################### -->
 
     <xsl:template name="nav">
-        <xsl:variable name="index" select="document(concat($xml,'index.xml'), .)/pdx:index" />
         <nav class="topnav">
             <ul>
                 <li>
                     <div class="logo"><span>/**</span>phpDox</div>
                 </li>
                 <li class="separator"><a href="{$base}index.{$extension}">Overview</a></li>
-                <xsl:if test="count($index/pdx:namespace) &gt; 1">
+                <xsl:if test="$hasNamespaces = 'Y'">
                     <li class="separator"><a href="{$base}namespaces.{$extension}">Namespaces</a></li>
                 </xsl:if>
-                <xsl:if test="count($index//pdx:interface) &gt; 0">
+                <xsl:if test="$hasInterfaces = 'Y'">
                     <li><a href="{$base}interfaces.{$extension}">Interfaces</a></li>
                 </xsl:if>
-                <xsl:if test="count($index//pdx:class) &gt; 0">
+                <xsl:if test="$hasClasses = 'Y'">
                     <li><a href="{$base}classes.{$extension}">Classes</a></li>
                 </xsl:if>
-                <xsl:if test="count($index//pdx:trait) &gt; 0">
+                <xsl:if test="$hasTraits = 'Y'">
                     <li><a href="{$base}traits.{$extension}">Traits</a></li>
                 </xsl:if>
                 <li class="separator"><a href="{$base}reports.{$extension}">Reports</a></li>
             </ul>
         </nav>
+
     </xsl:template>
 
     <!-- ######################################################################################################### -->
