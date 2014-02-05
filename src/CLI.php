@@ -105,10 +105,16 @@ namespace TheSeer\phpDox {
                 $logger = $this->factory->getInstanceFor('Logger');
                 $logger->log("Using config file '". $config->getConfigFile()->getPathname() . "'");
 
+                /** @var Application $app */
                 $app = $this->factory->getInstanceFor('Application');
 
-                /** @var $bootstrap Bootstrap */
-                $bootstrap = $app->runBootstrap($config->getBootstrapFiles());
+                $bootstrap = $app->runBootstrap(array(
+                    __DIR__ . '/../bootstrap/backends.php',
+                    __DIR__ . '/../bootstrap/enrichers.php',
+                    __DIR__ . '/../bootstrap/engines.php'
+                ));
+
+                $bootstrap->load($config->getBootstrapFiles());
 
                 if ($options->getValue('engines')) {
                     $this->showVersion();

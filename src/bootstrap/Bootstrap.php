@@ -50,13 +50,9 @@ namespace TheSeer\phpDox {
          *
          * @param Array $require Array of files to require
          *
-         * @return Array Map of BuilderConfig objects ([name => Config])
+         * @throws BootstrapException
          */
         public function load(Array $require) {
-            $this->loadBootstrap( __DIR__ . '/backends.php');
-            $this->loadBootstrap( __DIR__ . '/enrichers.php');
-            $this->loadBootstrap( __DIR__ . '/engines.php');
-
             foreach($require as $file) {
                 if (!file_exists($file) || !is_file($file)) {
                     throw new BootstrapException("Require file '$file' not found or not a file", BootstrapException::RequireFailed);
@@ -64,8 +60,6 @@ namespace TheSeer\phpDox {
                 $this->logger->log("Loading bootstrap file '$file'");
                 $this->loadBootstrap($file);
             }
-
-            return $this->api->getEngines();
         }
 
         public function getBackends() {
