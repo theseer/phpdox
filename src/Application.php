@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2014 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,7 +34,6 @@ namespace TheSeer\phpDox {
 
     use TheSeer\DirectoryScanner\DirectoryScanner;
     use TheSeer\phpDox\Collector\InheritanceResolver;
-    use \Theseer\DirectoryScanner\IncludeExcludeFilterIterator as Scanner;
     use TheSeer\phpDox\Generator\Enricher\EnricherException;
 
     /**
@@ -87,9 +86,9 @@ namespace TheSeer\phpDox {
         /**
          * Run collection process on given directory tree
          *
-         * @param CollectorConfig  $config     Configuration options
-         * @param Scanner          $scanner    A Directory scanner iterator for files/dirs to process
+         * @param CollectorConfig $config Configuration options
          *
+         * @throws ApplicationException
          * @return void
          */
         public function runCollector(CollectorConfig $config) {
@@ -118,7 +117,7 @@ namespace TheSeer\phpDox {
                 $config->isPublicOnlyMode()
             );
 
-            $backend =  $this->factory->getInstanceFor('BackendFactory')->getInstanceFor($config->getBackend());
+            $backend = $this->factory->getInstanceFor('BackendFactory')->getInstanceFor($config->getBackend());
             $project = $collector->run($scanner, $backend);
 
             if ($collector->hasParseErrors()) {
@@ -158,6 +157,9 @@ namespace TheSeer\phpDox {
         /**
          * Run Documentation generation process
          *
+         * @param GeneratorConfig $config
+         *
+         * @throws ApplicationException
          * @return void
          */
         public function runGenerator(GeneratorConfig $config) {

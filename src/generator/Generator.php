@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2014 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,19 +36,15 @@
  */
 namespace TheSeer\phpDox\Generator {
 
-    use \TheSeer\fXSL\fXSLTProcessor;
-    use \TheSeer\fDom\fDomElement;
-    use \TheSeer\fDOM\fDOMDocument;
-
-    use \TheSeer\phpDox\Generator\Engine\EngineInterface;
+    use TheSeer\phpDox\Generator\Engine\EngineInterface;
     use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Enricher\ClassEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\EndEnricherInterface;
-    use \TheSeer\phpDox\Generator\Enricher\EnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\EnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\StartEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\InterfaceEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\TraitEnricherInterface;
-    use \TheSeer\phpDox\ProgressLogger;
+    use TheSeer\phpDox\ProgressLogger;
 
     class Generator {
 
@@ -56,11 +52,6 @@ namespace TheSeer\phpDox\Generator {
          * @var \TheSeer\phpDox\ProgressLogger
          */
         private $logger;
-
-        /**
-         * @var array
-         */
-        private $engines = array();
 
         /**
          * @var array

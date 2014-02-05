@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2014 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,8 +36,8 @@
  */
 namespace TheSeer\phpDox\Generator {
 
+    use DOMNodeList;
     use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\FileInfo;
 
     /**
@@ -112,7 +112,7 @@ namespace TheSeer\phpDox\Generator {
         }
 
         /**
-         * @return \DOMNodeList
+         * @return DOMNodeList
          */
         public function getNamespaces() {
             return new NamespaceCollection($this->index->query('//phpdox:namespace'));
@@ -120,7 +120,7 @@ namespace TheSeer\phpDox\Generator {
 
         /**
          * @param string $namespace
-         * @return \DOMNodeList
+         * @return ClassCollection
          */
         public function getClasses($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
@@ -129,7 +129,7 @@ namespace TheSeer\phpDox\Generator {
 
         /**
          * @param string $namespace
-         * @return \DOMNodeList
+         * @return TraitCollection
          */
         public function getTraits($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
@@ -138,7 +138,7 @@ namespace TheSeer\phpDox\Generator {
 
         /**
          * @param string $namespace
-         * @return \DOMNodeList
+         * @return InterfaceCollection
          */
         public function getInterfaces($namespace = NULL) {
             $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
