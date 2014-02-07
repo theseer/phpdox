@@ -175,7 +175,6 @@ spl_autoload_register(
                 'theseer\\phpdox\\generator\\phpdoxtraitsstartevent' => '/generator/events/PHPDoxTraitsStartEvent.php',
                 'theseer\\phpdox\\generator\\project' => '/generator/project/Project.php',
                 'theseer\\phpdox\\generator\\projectexception' => '/generator/project/Project.php',
-                'theseer\\phpdox\\generator\\service' => '/generator/Service.php',
                 'theseer\\phpdox\\generator\\sourcetree' => '/generator/project/SourceTree.php',
                 'theseer\\phpdox\\generator\\traitcollection' => '/generator/project/collections/TraitCollection.php',
                 'theseer\\phpdox\\generator\\traitconstantevent' => '/generator/events/TraitConstantEvent.php',
