@@ -152,6 +152,9 @@
         <copy todir="${basedir}/build/phar/_tmp/phpdox">
             <fileset dir="${basedir}/src"/>
         </copy>
+        <copy todir="${basedir}/build/phar/_tmp/bootstrap">
+            <fileset dir="${basedir}/bootstrap"/>
+        </copy>
         <copy todir="${basedir}/build/phar/_tmp/templates">
             <fileset dir="${basedir}/templates"/>
         </copy>
