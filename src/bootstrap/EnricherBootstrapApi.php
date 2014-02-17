@@ -41,8 +41,8 @@ namespace TheSeer\phpDox {
 
     class EnricherBootstrapApi {
 
-        protected $name;
-        protected $factory;
+        private $name;
+        private $factory;
 
         public function __construct($name, EnricherFactory $factory) {
             $this->name = $name;

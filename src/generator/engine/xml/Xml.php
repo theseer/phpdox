@@ -37,12 +37,11 @@
 
 namespace TheSeer\phpDox\Generator\Engine {
 
-    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\phpDox\BuildConfig;
     use TheSeer\phpDox\Generator\AbstractEvent;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
-    use TheSeer\phpDox\Generator\PHPDoxStartEvent;
+    use TheSeer\phpDox\Generator\PHPDoxEndEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class Xml extends AbstractEngine {
@@ -54,7 +53,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function registerEventHandlers(EventHandlerRegistry $registry) {
-            $registry->addHandler('phpdox.start', $this, 'handleIndex');
+            $registry->addHandler('phpdox.end', $this, 'handleIndex');
             $registry->addHandler('class.start', $this, 'handle');
             $registry->addHandler('trait.start', $this, 'handle');
             $registry->addHandler('interface.start', $this, 'handle');
@@ -77,7 +76,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             );
         }
 
-        public function handleIndex(PHPDoxStartEvent $event) {
+        public function handleIndex(PHPDoxEndEvent $event) {
             $dom = $event->getIndex()->asDom();
             $this->saveDomDocument($dom, $this->outputDir . '/index.xml');
         }

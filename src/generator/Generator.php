@@ -141,15 +141,13 @@ namespace TheSeer\phpDox\Generator {
             $this->handleEvent(new PHPDoxEndEvent($project->getIndex(), $project->getSourceTree()));
             $this->logger->completed();
 
-            $this->logger->log("Triggering raw engines\n");
-            $this->handleEvent(new PHPDoxRawEvent(), FALSE);
         }
 
         /**
          * @param AbstractEvent $event
          * @param bool          $progress
          */
-        protected function handleEvent(AbstractEvent $event, $progress = TRUE) {
+        private function handleEvent(AbstractEvent $event, $progress = TRUE) {
             $eventType = $event->getType();
             if (isset($this->enrichers[$eventType])) {
                 foreach($this->enrichers[$eventType] as $enricher) {
@@ -188,7 +186,7 @@ namespace TheSeer\phpDox\Generator {
         /**
          *
          */
-        protected function processGlobalOnly() {
+        private function processGlobalOnly() {
             $classes = $this->project->getClasses();
             $this->handleEvent(new PHPDoxClassesStartEvent($classes));
             foreach($classes as $class) {
@@ -214,7 +212,7 @@ namespace TheSeer\phpDox\Generator {
         /**
          *
          */
-        protected function processWithNamespace() {
+        private function processWithNamespace() {
             $namespaces = $this->project->getNamespaces();
             $this->handleEvent(new PHPDoxNamespacesStartEvent($namespaces));
 
@@ -250,7 +248,7 @@ namespace TheSeer\phpDox\Generator {
         /**
          * @param $class ClassEntry
          */
-        protected function processClass(ClassEntry $entry) {
+        private function processClass(ClassEntry $entry) {
             $class = $entry->getClassObject($this->xmlDir);
             $this->handleEvent(new ClassStartEvent($class));
 
@@ -278,7 +276,7 @@ namespace TheSeer\phpDox\Generator {
         /**
          * @param TraitEntry $traitEntry
          */
-        protected function processTrait(TraitEntry $traitEntry) {
+        private function processTrait(TraitEntry $traitEntry) {
             $trait = $traitEntry->getTraitObject($this->xmlDir);
 
             $this->handleEvent(new TraitStartEvent($trait));
@@ -306,7 +304,7 @@ namespace TheSeer\phpDox\Generator {
         /**
          * @param InterfaceEntry $interface
          */
-        protected function processInterface(InterfaceEntry $interfaceEntry) {
+        private function processInterface(InterfaceEntry $interfaceEntry) {
             $interface = $interfaceEntry->getInterfaceObject($this->xmlDir);
 
             $this->handleEvent(new InterfaceStartEvent($interface));

@@ -129,6 +129,9 @@ namespace TheSeer\phpDox {
 
             $trace = $exception->getTrace();
             array_shift($trace);
+            if (count($trace) == 0) {
+                fwrite(STDERR, 'No stacktrace available');
+            }
             foreach($trace as $pos => $entry) {
                 fwrite(STDERR,
                     sprintf('#%1$d %2$s(%3$d): %4$s%5$s%6$s()'."\n",

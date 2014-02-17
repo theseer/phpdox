@@ -37,16 +37,15 @@
 
 namespace TheSeer\phpDox\Generator\Engine {
 
-    use \TheSeer\fDom\fDomDocument;
-    use \TheSeer\fDom\fDomElement;
-    use \TheSeer\fXSL\fXSLCallback;
-
+    use TheSeer\fDom\fDomDocument;
     use TheSeer\fXSL\fXSLTProcessor;
-    use \TheSeer\phpDox\Generator\AbstractEvent;
+
+    use TheSeer\phpDox\Generator\AbstractEvent;
     use TheSeer\phpDox\Generator\ClassMethodEvent;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceMethodEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\PHPDoxEndEvent;
     use TheSeer\phpDox\Generator\PHPDoxStartEvent;
     use TheSeer\phpDox\Generator\TraitMethodEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
@@ -124,8 +123,6 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->hasTraits = $index->hasTraits();
             $this->hasClasses = $index->hasClasses();
 
-            $this->generateIndex($event);
-
             $this->xslClass = $this->getXSLTProcessor('class.xsl');
             $this->xslClass->setParameter('', 'base', '../');
 
@@ -136,7 +133,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->xslMethod->setParameter('', 'base', '../../');
         }
 
-        private function generateIndex(PHPDoxStartEvent $event) {
+        private function generateIndex(PHPDoxEndEvent $event) {
             $proc = $this->getXSLTProcessor('index.xsl');
             $proc->setParameter('', 'project', $this->projectNode->getAttribute('name'));
             $html = $proc->transformToDoc($event->getIndex()->asDom());
@@ -162,6 +159,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         public function buildFinish(AbstractEvent $event) {
+            $this->generateIndex($event);
             $this->copyStatic($this->templateDir . '/static', $this->outputDir, TRUE);
         }
 

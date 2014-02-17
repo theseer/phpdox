@@ -41,8 +41,8 @@ namespace TheSeer\phpDox {
 
     class ParserBootstrapApi {
 
-        protected $annotation;
-        protected $factory;
+        private $annotation;
+        private $factory;
 
         public function __construct($annotation, DocBlockFactory $factory) {
             $this->annotation = $annotation;

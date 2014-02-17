@@ -52,12 +52,20 @@ namespace TheSeer\phpDox {
          *
          * @throws BootstrapException
          */
-        public function load(Array $require) {
+        public function load(Array $require, $silent = TRUE) {
             foreach($require as $file) {
-                if (!file_exists($file) || !is_file($file)) {
-                    throw new BootstrapException("Require file '$file' not found or not a file", BootstrapException::RequireFailed);
+                /** @var FileInfo $file */
+                if (!$file->exists()) {
+                    throw new BootstrapException(
+                        sprintf("Require file '%s' not found or not a file", $file->getRealPath()),
+                        BootstrapException::RequireFailed
+                    );
                 }
-                $this->logger->log("Loading bootstrap file '$file'");
+                if (!$silent) {
+                    $this->logger->log(
+                        sprintf("Loading bootstrap file '%s'", $file->getRealPath())
+                    );
+                }
                 $this->loadBootstrap($file);
             }
         }

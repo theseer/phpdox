@@ -109,12 +109,11 @@ namespace TheSeer\phpDox {
                 $app = $this->factory->getInstanceFor('Application');
 
                 $bootstrap = $app->runBootstrap(array(
-                    __DIR__ . '/../bootstrap/backends.php',
-                    __DIR__ . '/../bootstrap/enrichers.php',
-                    __DIR__ . '/../bootstrap/engines.php'
+                    new FileInfo(__DIR__ . '/../bootstrap/backends.php'),
+                    new FileInfo(__DIR__ . '/../bootstrap/enrichers.php'),
+                    new FileInfo(__DIR__ . '/../bootstrap/engines.php')
                 ));
-
-                $bootstrap->load($config->getBootstrapFiles());
+                $bootstrap->load($config->getBootstrapFiles(), false);
 
                 if ($options->getValue('engines')) {
                     $this->showVersion();

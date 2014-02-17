@@ -4,7 +4,6 @@ namespace TheSeer\phpDox\Generator\Engine {
     class EventHandlerRegistry {
 
         private $events = array(
-            'phpdox.raw' => array(),
             'phpdox.start' => array(),
             'phpdox.end' => array(),
 

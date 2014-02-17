@@ -41,8 +41,8 @@ namespace TheSeer\phpDox {
 
     class EngineBootstrapApi {
 
-        protected $name;
-        protected $factory;
+        private $name;
+        private $factory;
 
         public function __construct($name, EngineFactory $factory) {
             $this->name = $name;
