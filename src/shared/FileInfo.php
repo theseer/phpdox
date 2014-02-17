@@ -30,7 +30,7 @@ namespace TheSeer\phpDox {
         }
 
         public function getPath() {
-            return $this->toUnix(parent::getPathname());
+            return $this->toUnix(parent::getPath());
         }
 
         public function getRelative(\SplFileInfo $relation) {
