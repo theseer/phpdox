@@ -103,7 +103,7 @@
             <arg value="pear package" />
         </exec>
 
-        <move file="${basedir}/build/pear/_tmp/phpdox-${version}.tgz" todir="${basedir}/build/pear" />
+        <move file="${basedir}/build/pear/_tmp/phpDox-${version}.tgz" todir="${basedir}/build/pear" />
 
         <delete dir="${basedir}/build/pear/_tmp"/>
 
