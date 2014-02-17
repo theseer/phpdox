@@ -78,43 +78,23 @@
         </exec>
     </target>
 
-    <target name="pear" description="Create a PEAR archive of phpDox">
+    <target name="pear" depends="phar" description="Create a PEAR archive of phpDox">
         <delete dir="${basedir}/build/pear/_tmp"/>
-
-        <mkdir dir="${basedir}/build/pear/_tmp/TheSeer/phpDox/templates"/>
-        <mkdir dir="${basedir}/build/pear/_tmp/TheSeer/phpDox/dependencies"/>
-
-        <delete>
-            <fileset dir="${basedir}/build/pear">
-                <include name="**/*.tgz"/>
-            </fileset>
-        </delete>
+        <mkdir dir="${basedir}/build/pear/_tmp"/>
 
         <exec executable="bash" outputproperty="version">
             <arg value="-c"/>
             <arg value="${basedir}/phpdox.php --version | awk 'BEGIN { ORS = &quot;&quot;; } {print $2}'"/>
         </exec>
 
-        <copy todir="${basedir}/build/pear/_tmp/TheSeer/phpDox">
-            <fileset dir="${basedir}/src"/>
-        </copy>
-        <copy todir="${basedir}/build/pear/_tmp/TheSeer/phpDox/templates">
-            <fileset dir="${basedir}/templates"/>
-        </copy>
-        <copy todir="${basedir}/build/pear/_tmp/TheSeer/phpDox/dependencies">
-            <fileset dir="${basedir}/dependencies"/>
-        </copy>
+        <move file="${basedir}/build/phar/phpdox-${version}.phar" tofile="${basedir}/build/pear/_tmp/phpdox.phar" />
+
         <copy todir="${basedir}/build/pear/_tmp">
             <fileset dir="${basedir}">
-                <include name="phpdox.php"/>
                 <include name="phpdox.bat"/>
+                <include name="package.xml" />
             </fileset>
         </copy>
-
-        <exec executable="bash" dir="${basedir}/build/pear/_tmp">
-            <arg value="-c" />
-            <arg value="php ${basedir}/../DirectoryScanner/samples/pear-package.php ${basedir}/package.xml . | xmllint --format - > ${basedir}/build/pear/_tmp/package.xml" />
-        </exec>
 
         <replace file="${basedir}/build/pear/_tmp/package.xml" token="%release%" value="${version}" />
 
@@ -123,8 +103,7 @@
             <arg value="pear package" />
         </exec>
 
-        <move file="${basedir}/build/pear/_tmp/phpdox-${version}.tgz" todir="${basedir}/build/pear" />
-        <delete dir="${basedir}/build/pear/_tmp"/>
+        <!--<delete dir="${basedir}/build/pear/_tmp"/> -->
     </target>
 
     <target name="phar" description="Create PHAR archive of phpDox and its dependencies">
