@@ -18,7 +18,7 @@ namespace TheSeer\phpDox {
          * @return bool
          */
         public function exists() {
-            return (bool)parent::getRealPath();
+            return file_exists($this->getPathname());
         }
 
         public function asFileUri() {
@@ -30,7 +30,7 @@ namespace TheSeer\phpDox {
         }
 
         public function getPath() {
-            return $this->toUnix(parent::getPath());
+            return $this->toUnix(parent::getPathname());
         }
 
         public function getRelative(\SplFileInfo $relation) {
