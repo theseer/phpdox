@@ -177,9 +177,9 @@ h3 {
 }
 
 .unavailable {
-    border:1px dotted #802420;
-    background-color: rgba(230,10,10,0.2);
-    color: #802420;
+    border:1px dotted rgba(128, 36, 32, 0.60);
+    background-color: rgba(230, 10, 10, 0.20);
+    color: rgba(128, 36, 32, 0.61);
     margin:0 1em 1em 0;
     padding:0;
 }
@@ -373,5 +373,5 @@ footer span {
 }
 
 .testresult-SKIPPED {
-    color:#ffff00;
+    color: #afafaf;
 }

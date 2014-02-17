@@ -50,7 +50,7 @@
                 <xsl:if test="$hasTraits = 'Y'">
                     <li><a href="{$base}traits.{$extension}">Traits</a></li>
                 </xsl:if>
-                <li class="separator"><a href="{$base}reports.{$extension}">Reports</a></li>
+                <li class="separator"><a href="{$base}reports/index.{$extension}">Reports</a></li>
             </ul>
         </nav>
 

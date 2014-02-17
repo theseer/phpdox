@@ -8,9 +8,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\Collector\MemberObject;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
+    use TheSeer\phpDox\Generator\PHPDoxEndEvent;
+    use TheSeer\phpDox\Generator\PHPDoxStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class PHPUnit extends AbstractEnricher implements ClassEnricherInterface, TraitEnricherInterface {
+    class PHPUnit extends AbstractEnricher implements EndEnricherInterface, ClassEnricherInterface, TraitEnricherInterface {
 
         const XMLNS = 'http://schema.phpunit.de/coverage/1.0';
 
@@ -24,6 +26,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         private $index;
 
+
+        private $results = array();
+
         public function __construct(PHPUnitConfig $config) {
             $this->config = $config;
             $this->index = $this->loadXML('index.xml');
@@ -34,6 +39,25 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         public function getName() {
             return 'PHPUnit Coverage XML';
+        }
+
+        public function enrichEnd(PHPDoxEndEvent $event) {
+            $index = $event->getIndex()->asDom();
+            foreach($this->results as $namespace => $classes) {
+                foreach($classes as $class => $results) {
+                    $classNode = $index->queryOne(
+                        sprintf('//phpdox:namespace[@name = "%s"]/phpdox:class[@name = "%s"]', $namespace, $class)
+                    );
+                    if (!$classNode) {
+                        continue;
+                    }
+                    $container = $this->getEnrichtmentContainer($classNode, 'phpunit');
+                    $resultNode = $container->appendElementNS(self::XMLNS, 'result');
+                    foreach($results as $key => $value) {
+                        $resultNode->setAttribute(strtolower($key), $value);
+                    }
+                }
+            }
         }
 
         public function enrichClass(ClassStartEvent $event) {
@@ -109,6 +133,15 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 );
             }
 
+            $result = array(
+                'PASSED'  => 0,
+                'SKIPPED'  => 0,
+                'INCOMPLETE'  => 0,
+                'FAILURE'  => 0,
+                'ERROR'  => 0,
+                'RISKY'  => 0
+            );
+
             $methods = $unit->query('/phpdox:*/phpdox:constructor|/phpdox:*/phpdox:destructor|/phpdox:*/phpdox:method');
             $xp = $this->index->getDOMXPath();
 
@@ -145,16 +178,24 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     $seen[$by] = true;
 
                     $name = $xp->prepare(':name', array('name' => $by));
-                    $coverageTarget->appendChild(
+                    $test = $coverageTarget->appendChild(
                         $unit->importNode(
                             $this->index->queryOne(
                                 sprintf('//pu:tests/pu:test[@name = %s]', $name)
                             )
                         )
                     );
+
+                    $result[$test->getAttribute('status')]++;
+
                 }
 
             }
+
+            if (!isset($this->results[$classNamespace])) {
+                $this->results[$classNamespace] = array();
+            }
+            $this->results[$classNamespace][$className] = $result;
         }
     }
 

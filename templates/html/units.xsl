@@ -1,6 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:idx="http://xml.phpdox.net/src#"
+                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
                 exclude-result-prefixes="idx">
 
     <xsl:import href="components.xsl" />
@@ -33,7 +34,9 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th />
+                        <xsl:if test="$mode = 'class'">
+                            <th />
+                        </xsl:if>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,12 +56,39 @@
                                     <xsl:otherwise><span class="unavailable">No description available</span></xsl:otherwise>
                                 </xsl:choose>
                             </td>
-                            <td>[Build-State]</td>
+                            <xsl:if test="$mode = 'class'">
+                                <td>
+                                    <xsl:call-template name="buildstate">
+                                        <xsl:with-param name="class" select="." />
+                                    </xsl:call-template>
+                                </td>
+                            </xsl:if>
                         </tr>
                     </xsl:for-each>
                 </tbody>
             </table>
         </div>
+    </xsl:template>
+
+    <xsl:template name="buildstate">
+        <xsl:param name="class" />
+
+        <xsl:variable name="result" select="$class//pu:result" />
+        <xsl:choose>
+            <!-- all 0 or skipped or incomplete -->
+            <xsl:when test="sum($result/@*) = 0 or $result/@skipped != 0 or $result/@incomplete != 0">
+                <xsl:attribute name="class">testresult-SKIPPED</xsl:attribute>UNTESTED</xsl:when>
+
+            <!-- at least one is failure or error-->
+            <xsl:when test="$result/@failure != '0' or $result/@error != '0'">
+                <xsl:attribute name="class">testresult-FAILED</xsl:attribute>FAILED</xsl:when>
+
+            <!-- everything 0 except passed -->
+            <xsl:when test="sum($result/@*) = $result/@passed and $result/@passed != 0">
+                <xsl:attribute name="class">testresult-PASSED</xsl:attribute>PASSED</xsl:when>
+
+
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
