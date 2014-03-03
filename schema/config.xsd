@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:src="http://phpdox.net/config" xmlns:xsl="http://www.w3.org/2001/XMLSchema"
+           attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://phpdox.net/config">
+
+    <xs:element name="phpdox" type="src:configurationType"/>
+
+    <xs:complexType name="configurationType">
+        <xs:sequence>
+            <xs:element name="bootstrap" type="src:bootstrapType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="project" type="src:projectType" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="silent" type="src:booleanAttributeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="bootstrapType">
+        <xs:sequence>
+            <xs:element name="require" type="src:fileType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="projectType">
+        <xs:sequence>
+            <xs:element name="property" type="src:propertyType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="collector" type="src:collectorType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="generator" type="src:generatorType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="source" type="xs:string"/>
+        <xs:attribute name="workdir" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="collectorType">
+        <xs:sequence>
+            <xs:element name="include" type="src:fileFilterType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="exclude" type="src:fileFilterType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="inheritance" type="src:inheritanceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="publiconly" type="src:booleanAttributeType"/>
+        <xs:attribute name="backend" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="inheritanceType">
+        <xs:sequence>
+          <xs:element name="dependency" type="src:pathType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="resolve" type="src:booleanAttributeType"/>
+    </xs:complexType>
+
+    <xs:complexType name="generatorType">
+        <xs:sequence>
+            <xs:element name="enrich" type="src:enrichType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="build" type="src:buildType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="output" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="enrichType">
+        <xs:sequence>
+            <xs:element name="source" type="src:enrichSourceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="base" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="enrichSourceType">
+        <xs:sequence>
+            <xs:element name="file" type="src:nameType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsl:group ref="gitSourceGroup"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="buildType">
+        <xs:sequence>
+            <xs:element name="template" type="src:dirType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="file" type="src:extensionType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="engine" type="xs:string" use="required"/>
+        <xs:attribute name="enabled" type="src:booleanAttributeType"/>
+        <xs:attribute name="output" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="pathType">
+        <xs:attribute name="path" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="dirType">
+        <xs:attribute name="dir" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="fileType">
+        <xs:attribute name="file" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="nameType">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="extensionType">
+        <xs:attribute name="extension" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="fileFilterType">
+        <xs:attribute name="mask" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="propertyType">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="booleanAttributeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:group name="gitSourceGroup">
+        <xs:sequence>
+            <xs:element name="git" minOccurs="0">
+                <xs:complexType>
+                   <xs:attribute name="binary" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="history">
+                <xs:complexType>
+                    <xs:attribute name="enabled" type="src:booleanAttributeType"/>
+                    <xs:attribute name="limit" type="xs:int"/>
+                    <xs:attribute name="cache" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+
+</xs:schema>
