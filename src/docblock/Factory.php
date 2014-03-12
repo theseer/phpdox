@@ -51,10 +51,12 @@ namespace TheSeer\phpDox\DocBlock {
             'throws' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
             'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
 
-            'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser'
+            'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser',
+            'inheritdoc' => 'TheSeer\\phpDox\\DocBlock\\InheritdocParser'
         );
 
         protected $elementMap = array(
+            'inheritdoc' => 'TheSeer\\phpDox\\DocBlock\\InheritdocAttribute',
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement',
             'var' => 'TheSeer\\phpDox\\DocBlock\\VarElement'
