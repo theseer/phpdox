@@ -56,10 +56,7 @@
                 <li>// members</li>
                 <xsl:for-each select="$unit/pdx:member">
                     <li>
-                        <xsl:value-of select="@visibility" />
-                        <xsl:if test="@static = 'true'">&#160;static</xsl:if>
-                        <xsl:if test="pdx:docblock/pdx:var/@type = 'object'">&#160;<span title="{pdx:docblock/pdx:var/pdx:type/@full}"><xsl:value-of select="pdx:docblock/pdx:var/pdx:type/@name" /></span></xsl:if>
-                        &#160;<a href="#members">$<xsl:value-of select="@name" /></a>;
+                        <xsl:value-of select="@visibility" /><xsl:if test="@static = 'true'">&#160;static</xsl:if><xsl:call-template name="vartype" />&#160;<a href="#members">$<xsl:value-of select="@name" /></a>;
                     </li>
                 </xsl:for-each>
             </ul>
@@ -70,10 +67,7 @@
                     <li>// Inherited members from <span title="{@full}"><xsl:value-of select="@name" /></span></li>
                     <xsl:for-each select="pdx:member">
                         <li>
-                            <xsl:value-of select="@visibility" />
-                            <xsl:if test="@static = 'true'">&#160;static</xsl:if>
-                            <xsl:if test="pdx:docblock/pdx:var/@type = 'object'">&#160;<xsl:value-of select="pdx:docblock/pdx:var/pdx:type/@name" /></xsl:if>
-                            &#160;<a href="#members">$<xsl:value-of select="@name" /></a>;
+                            <xsl:value-of select="@visibility" /><xsl:if test="@static = 'true'">&#160;static</xsl:if><xsl:call-template name="vartype" />&#160;<a href="#members">$<xsl:value-of select="@name" /></a>;
                         </li>
                     </xsl:for-each>
                 </ul>
@@ -112,5 +106,16 @@
     </xsl:template>
 
     <!-- ######################################################################################################### -->
+
+    <xsl:template name="vartype">
+        <xsl:choose>
+            <xsl:when test="pdx:docblock/pdx:var/@type = 'object'">&#160;<span title="{pdx:docblock/pdx:var/pdx:type/@full}"><xsl:value-of select="pdx:docblock/pdx:var/pdx:type/@name" /></span></xsl:when>
+            <xsl:when test="@type = '{unknown}'">
+                <xsl:if test="pdx:docblock/pdx:var/@type">&#160;<xsl:value-of select="pdx:docblock/pdx:var/@type" /></xsl:if>
+            </xsl:when>
+            <xsl:otherwise>&#160;<xsl:value-of select="@type" /></xsl:otherwise>
+        </xsl:choose>
+
+    </xsl:template>
 
 </xsl:stylesheet>

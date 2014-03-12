@@ -154,6 +154,9 @@
                     <xsl:when test="$param/@type = 'object'">
                         <a href="#"><xsl:value-of select="$docparam/pdx:type/@full" /></a>
                     </xsl:when>
+                    <xsl:when test="$param/@type = '{unknown}'">
+                        <xsl:value-of select="$docparam/@type" />
+                    </xsl:when>
                     <xsl:otherwise><xsl:value-of select="@type" /></xsl:otherwise>
                 </xsl:choose>
                 </dt>
