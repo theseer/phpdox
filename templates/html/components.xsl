@@ -196,8 +196,6 @@
 
     <xsl:template name="tasks">
         <xsl:param name="ctx" select="$unit" />
-
-        <h2 id="tasks">Tasks</h2>
         <table class="styled">
             <thead>
                 <tr>
