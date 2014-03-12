@@ -66,6 +66,8 @@ spl_autoload_register(
                 'theseer\\phpdox\\docblock\\genericelement' => '/docblock/GenericElement.php',
                 'theseer\\phpdox\\docblock\\genericelementexception' => '/docblock/GenericElement.php',
                 'theseer\\phpdox\\docblock\\genericparser' => '/docblock/parser/GenericParser.php',
+                'theseer\\phpdox\\docblock\\inheritdocattribute' => '/docblock/InheritdocAttribute.php',
+                'theseer\\phpdox\\docblock\\inheritdocparser' => '/docblock/parser/InheritdocParser.php',
                 'theseer\\phpdox\\docblock\\inlineprocessor' => '/docblock/InlineProcessor.php',
                 'theseer\\phpdox\\docblock\\internalparser' => '/docblock/parser/InternalParser.php',
                 'theseer\\phpdox\\docblock\\invalidelement' => '/docblock/InvalidElement.php',
