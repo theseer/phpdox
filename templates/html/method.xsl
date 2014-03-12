@@ -147,8 +147,21 @@
         <dl class="styled">
             <xsl:for-each select="$method/pdx:parameter">
                 <xsl:variable name="param" select="." />
-                <dt><code>$<xsl:value-of select="@name" /></code></dt>
-                <dd><xsl:value-of select="$method/pdx:docblock/pdx:param[@variable = concat('$', $param/@name)]/@description" /></dd>
+                <xsl:variable name="docparam" select="$method/pdx:docblock/pdx:param[@variable = concat('$', $param/@name)]" />
+                <dt><code>$<xsl:value-of select="@name" /></code>
+                —
+                <xsl:choose>
+                    <xsl:when test="$param/@type = 'object'">
+                        <a href="#"><xsl:value-of select="$docparam/pdx:type/@full" /></a>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:value-of select="@type" /></xsl:otherwise>
+                </xsl:choose>
+                </dt>
+                <dd><xsl:value-of select="$docparam/@description" />
+                    <xsl:if test="$docparam/text() != ''">
+                        <br/><xsl:copy-of select="pdxf:nl2br($docparam)" />
+                    </xsl:if>
+                </dd>
             </xsl:for-each>
         </dl>
     </xsl:template>

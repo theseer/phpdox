@@ -273,6 +273,10 @@ table.styled td {
     font-size: 0.9em;
 }
 
+dl.styled {
+    font-size: 0.9em;
+}
+
 ul.history {
     list-style-type: none;
 }
