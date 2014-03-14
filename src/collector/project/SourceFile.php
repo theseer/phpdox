@@ -31,7 +31,7 @@ namespace TheSeer\phpDox\Collector {
             $code = file_get_contents($this->fileInfo->getPathname());
 
             $info = new \finfo();
-            $encoding = $info->file($this->fileInfo, FILEINFO_MIME_ENCODING);
+            $encoding = $info->file( (string)$this->fileInfo, FILEINFO_MIME_ENCODING);
             if (strtolower($encoding) != 'utf-8') {
                 try {
                     $code = iconv($encoding, 'UTF-8//TRANSLIT', $code);
