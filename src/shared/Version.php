@@ -47,7 +47,8 @@ namespace TheSeer\phpDox {
                 if (PHPDOX_VERSION == '%development%') {
                     $cwd = getcwd();
                     chdir(__DIR__);
-                    $git = exec('command -p git describe --always --dirty 2>/dev/null', $foo, $rc);
+                    $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
+                    $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
                     chdir($cwd);
                     if ($rc === 0) {
                         self::$version = $git;
