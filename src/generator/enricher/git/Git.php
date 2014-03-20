@@ -63,9 +63,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             $binary = $this->config->getGitBinary();
 
+            $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
+
             $cwd = getcwd();
             chdir($this->config->getSourceDirectory());
-            $describe = exec($binary . ' describe --always --dirty 2>/dev/null', $foo, $rc);
+            $describe = exec($binary . ' describe --always --dirty 2>'.$devNull, $foo, $rc);
             if ($rc !== 0) {
                 $enrichtment->appendChild(
                     $dom->createComment('Not a git repository or no git binary available')
@@ -75,7 +77,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return;
             }
 
-            exec($binary . ' tag 2>/dev/null', $tags, $rc);
+            exec($binary . ' tag 2>'.$devNull, $tags, $rc);
             if (count($tags)) {
                 $tagsNode = $enrichtment->appendElementNS(self::GITNS, 'tags');
                 foreach($tags as $tagName) {
@@ -85,7 +87,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             $currentBranch = 'master';
-            exec($binary . ' branch --no-color 2>/dev/null', $branches, $rc);
+            exec($binary . ' branch --no-color 2>'.$devNull, $branches, $rc);
             if (count($branches)) {
                 $branchesNode = $enrichtment->appendElementNS(self::GITNS, 'branches');
                 foreach($branches as $branchName) {
@@ -104,7 +106,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $current->setAttribute('describe', $describe);
             $current->setAttribute('branch', $currentBranch);
 
-            $this->commitSha1 = exec($binary . " rev-parse HEAD 2>/dev/null");
+            $this->commitSha1 = exec($binary . " rev-parse HEAD 2>".$devNull);
             $current->setAttribute('commit', $this->commitSha1);
 
             chdir($cwd);
