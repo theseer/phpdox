@@ -134,6 +134,10 @@ namespace TheSeer\phpDox\Collector {
             $this->dom->registerNamespace('phpdox', self::XMLNS);
         }
 
+        public function getType() {
+            return $this->rootNode->localName;
+        }
+
         /**
          * @return string
          */
@@ -302,19 +306,19 @@ namespace TheSeer\phpDox\Collector {
                 default:
                     $nodeName = 'method';
             }
-            $method = new MethodObject($this->rootNode->appendElementNS(self::XMLNS, $nodeName));
+            $method = new MethodObject($this, $this->rootNode->appendElementNS(self::XMLNS, $nodeName));
             $method->setName($name);
             return $method;
         }
 
         /**
-         * @return array MethodObject
+         * @return MethodObject[]
          */
         public function getExportedMethods() {
             $result = array();
             $xpath = '(phpdox:constructor|phpdox:destructor|phpdox:method)[@visibility="public" or @visibility="protected"]';
             foreach($this->rootNode->query($xpath) as $node) {
-                $result[] = new MethodObject($node);
+                $result[] = new MethodObject($this, $node);
             }
             return $result;
         }
@@ -366,13 +370,6 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         *
-         */
-        public function markInterfaceMethods() {
-
-        }
-
-        /**
          * @param AbstractUnitObject $unit
          */
         public function importExports(AbstractUnitObject $unit, $container = 'parent') {
@@ -403,9 +400,34 @@ namespace TheSeer\phpDox\Collector {
             }
 
             foreach($unit->getExportedMethods() as $method) {
-                $parent->appendChild( $this->dom->importNode($method->export(), TRUE) );
+                $methodNode = $this->dom->importNode($method->export(), TRUE);
+                $parent->appendChild( $methodNode );
+                if ($this->hasMethod($method->getName())) {
+                    $unitMethod = $this->getMethod($method->getName());
+                    if ($unitMethod->hasInheritDoc()) {
+                        $unitMethod->inhertDocBlock($method);
+                    }
+                }
             }
+        }
 
+        private function hasMethod($name) {
+            return $this->dom->query(
+                sprintf('phpdox:method[@name="%s"]', $name)
+            )->length > 0;
+        }
+
+        private function getMethod($name) {
+            $ctx = $this->dom->queryOne(
+                sprintf('phpdox:method[@name="%s"]', $name)
+            );
+            if (!$ctx) {
+                throw new UnitObjectException(
+                    sprintf('Method "%s" not found', $name),
+                    UnitObjectException::NoSuchMethod
+                );
+            }
+            return new MethodObject($this, $ctx);
         }
 
     }
@@ -429,6 +451,11 @@ namespace TheSeer\phpDox\Collector {
          *
          */
         const NoImplements = 3;
+
+        /**
+         *
+         */
+        const NoSuchMethod = 4;
 
     }
 

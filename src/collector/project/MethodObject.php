@@ -52,12 +52,22 @@ namespace TheSeer\phpDox\Collector {
         private $ctx;
 
         /**
-         * @param \TheSeer\fDOM\fDOMElement $ctx
+         * @var AbstractUnitObject
          */
-        public function __construct(fDOMElement $ctx) {
+        private $unit;
+
+        /**
+         * @param AbstractUnitObject $unit
+         * @param fDOMElement        $ctx
+         */
+        public function __construct(AbstractUnitObject $unit, fDOMElement $ctx) {
+            $this->unit = $unit;
             $this->ctx = $ctx;
         }
 
+        public function getOwner() {
+            return $this->unit;
+        }
 
         public function export() {
             return $this->ctx;
@@ -123,12 +133,38 @@ namespace TheSeer\phpDox\Collector {
          */
         public function setDocBlock(DocBlock $docblock) {
             $docNode = $docblock->asDom($this->ctx->ownerDocument);
+
             if ($this->ctx->hasChildNodes()) {
                 $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
                 return;
             }
             $this->ctx->appendChild($docNode);
         }
+
+        public function hasInheritDoc() {
+            return $this->ctx->query('phpdox:docblock[@inherit="true"]')->length > 0;
+        }
+
+        public function inhertDocBlock(MethodObject $method) {
+            $inherit = $method->export()->queryOne('phpdox:docblock');
+            if (!$inherit) { // no docblock, no work ;)
+                return;
+            }
+            $docNode = $this->ctx->queryOne('phpdox:docblock');
+            if (!$docNode) {
+                $this->setDocBlock(new DocBlock());
+                $docNode = $this->ctx->queryOne('phpdox:docblock');
+            }
+
+            $container = $docNode->appendElementNS(self::XMLNS, 'inherited');
+            $container->setAttribute(
+                $method->getOwner()->getType(),
+                $method->getOwner()->getName()
+            );
+            $container->appendChild($this->ctx->ownerDocument->importNode($inherit, true));
+
+        }
+
 
         /**
          * @param string $name
