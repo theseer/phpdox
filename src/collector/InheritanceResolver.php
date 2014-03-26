@@ -84,7 +84,6 @@ namespace TheSeer\phpDox\Collector {
             $this->setupDependencies();
 
             foreach($changed as $unit) {
-                $this->logger->progress('processed');
                 /** @var AbstractUnitObject $unit */
                 if ($unit->hasExtends()) {
                     foreach($unit->getExtends() as $name) {
@@ -106,6 +105,8 @@ namespace TheSeer\phpDox\Collector {
                         }
                     }
                 }
+
+                $this->logger->progress('processed');
             }
 
             $this->project->save();
@@ -196,6 +197,12 @@ namespace TheSeer\phpDox\Collector {
             }
         }
 
+        /**
+         * @param $name
+         *
+         * @return AbstractUnitObject
+         * @throws ProjectException
+         */
         private function getUnitByName($name) {
             foreach($this->dependencyStack as $dependency) {
                 try {
