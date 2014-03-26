@@ -11,7 +11,16 @@ class FooException extends \Exception {}
 
 
 
-interface someInterface {}
+interface someInterface {
+
+    /**
+     * @param int $a
+     * @param int $b
+     *
+     * @return mixed
+     */
+    public function someInterfaceMethod($a, $b);
+}
 
 class base {
 
@@ -88,6 +97,16 @@ class foo extends base implements someInterface{
    }
 
     /**
+     * @inheritdoc
+     *
+     * @param string $c
+     */
+    public function someInterfaceMethod($a, $b, $c = null) {
+        // ...
+    }
+
+
+    /**
      * This is the 2nd method of this class
      *
      * We can have a funny description text here, going over multiple lines if need be. So we just add
@@ -124,6 +143,10 @@ class baz extends foo {
 }
 
 class last extends baz {
+
+    /** @var baz[] */
+    private $arrayOfBaz;
+
     public function blupp(SomeClass $o, $x = 'hello', $y = 1, $z = 0.5, $last = true) {}
 }
 
