@@ -70,18 +70,34 @@ namespace TheSeer\phpDox {
 
                 $root = $dom->documentElement;
                 if ($root->namespaceURI == 'http://phpdox.de/config') {
-                    throw new ConfigLoaderException("File '$fname' uses an outdated xml namespace. Please update the xmlns to 'http://phpdox.net/config'", ConfigLoaderException::OldNamespace);
+                    throw new ConfigLoaderException(
+                        "File '$fname' uses an outdated xml namespace. Please update the xmlns to 'http://xml.phpdox.net/config'",
+                        ConfigLoaderException::OldNamespace
+                    );
                 }
 
-                if ($root->namespaceURI != 'http://phpdox.net/config' ||
-                    $root->localName != 'phpdox') {
-                    throw new ConfigLoaderException("File '$fname' is not a valid phpDox configuration.", ConfigLoaderException::WrongType);
+                // the 'alternative' namespace http://phpdox.net/config is kept for compat reasons
+                if ($root->namespaceURI != 'http://xml.phpdox.net/config' && $root->namespaceURI != 'http://phpdox.net/config') {
+                    throw new ConfigLoaderException(
+                        "File '$fname' is not a valid phpDox configuration.",
+                        ConfigLoaderException::WrongNamespace
+                    );
                 }
-                $dom->registerNamespace('cfg', 'http://phpdox.net/config');
+                $dom->registerNamespace('cfg', $root->namespaceURI);
+
+                if ($root->localName != 'phpdox') {
+                    throw new ConfigLoaderException(
+                        "File '$fname' is not a valid phpDox configuration.",
+                        ConfigLoaderException::WrongType);
+                }
 
                 return new GlobalConfig($dom, new FileInfo($fname));
             } catch (fDOMException $e) {
-                throw new ConfigLoaderException("Parsing config file '$fname' failed.", ConfigLoaderException::ParseError, $e);
+                throw new ConfigLoaderException(
+                    "Parsing config file '$fname' failed.",
+                    ConfigLoaderException::ParseError,
+                    $e
+                );
             }
         }
     }
@@ -90,7 +106,8 @@ namespace TheSeer\phpDox {
         const NotFound = 1;
         const ParseError = 2;
         const NoCandidateExists = 3;
-        const WrongType = 4;
-        const OldNamespace = 5;
+        const OldNamespace = 4;
+        const WrongType = 5;
+        const WrongNamespace = 6;
     }
 }
