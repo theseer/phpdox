@@ -66,14 +66,17 @@
     <xs:complexType name="enrichSourceType">
         <xs:sequence>
             <xs:element name="file" type="src:nameType" minOccurs="0" maxOccurs="unbounded"/>
-            <xsl:group ref="gitSourceGroup"/>
+            <xs:element name="path" type="src:nameType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="executable" type="src:fileType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="history" type="src:historyType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="type" type="xs:string"/>
     </xs:complexType>
 
     <xs:complexType name="buildType">
         <xs:sequence>
-            <xs:element name="template" type="src:dirType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="template" type="src:pathType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="resource" type="src:pathType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="file" type="src:extensionType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="engine" type="xs:string" use="required"/>
@@ -83,10 +86,6 @@
 
     <xs:complexType name="pathType">
         <xs:attribute name="path" type="xs:string" use="required"/>
-    </xs:complexType>
-
-    <xs:complexType name="dirType">
-        <xs:attribute name="dir" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="fileType">
@@ -117,21 +116,10 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:group name="gitSourceGroup">
-        <xs:sequence>
-            <xs:element name="git" minOccurs="0">
-                <xs:complexType>
-                   <xs:attribute name="binary" type="xs:string" use="required"/>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="history">
-                <xs:complexType>
-                    <xs:attribute name="enabled" type="src:booleanAttributeType"/>
-                    <xs:attribute name="limit" type="xs:int"/>
-                    <xs:attribute name="cache" type="xs:string"/>
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-    </xs:group>
+    <xs:complexType name="historyType">
+        <xs:attribute name="enabled" type="src:booleanAttributeType"/>
+        <xs:attribute name="limit" type="xs:int"/>
+        <xs:attribute name="cache" type="xs:string"/>
+    </xs:complexType>
 
 </xs:schema>
