@@ -41,21 +41,15 @@
  */
 
 define('PHPDOX_VERSION', '%development%');
-
-require 'TheSeer/DirectoryScanner/autoload.php';
-require 'TheSeer/fDOMDocument/autoload.php';
-require 'TheSeer/fXSL/autoload.php';
-require 'ezc/Base/base.php';
-require 'PHP/Timer.php';
-
+require(__DIR__.'/vendor/autoload.php');
+/*
 if (strpos(PHPDOX_VERSION, '%devel')===0) {
-    require __DIR__ . '/src/autoload.php';
-} else {
-    require 'TheSeer/phpDox/autoload.php';
+  require __DIR__ . '/src/autoload.php';
 }
 
-spl_autoload_register( array('ezcBase','autoload'));
 
+spl_autoload_register( array('ezcBase','autoload'));
+*/
 $factory = new \TheSeer\phpDox\Factory();
 $factory->getInstanceFor('CLI')->run();
 
