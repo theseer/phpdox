@@ -49,7 +49,19 @@ namespace TheSeer\phpDox\Generator\Engine {
             if (!$node) {
                 return $default;
             }
+            if ($node->hasAttribute('path')) {
+                return $node->getAttribute('path', $default);
+            }
             return $node->getAttribute('dir', $default);
+        }
+
+        public function getResourceDirectory() {
+          $default = $this->getTemplateDirectory().'/static';
+          $node = $this->ctx->queryOne('cfg:resource');
+          if (!$node) {
+              return $default;
+          }
+          return $node->getAttribute('path', $default);
         }
 
         public function getFileExtension() {

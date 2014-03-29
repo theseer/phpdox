@@ -68,6 +68,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         private $xslMethod;
 
         private $templateDir;
+        private $resourceDir;
         private $outputDir;
         private $projectNode;
         private $extension;
@@ -82,6 +83,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
         public function __construct(HtmlConfig $config) {
             $this->templateDir = $config->getTemplateDirectory();
+            $this->resourceDir = $config->getResourceDirectory();
             $this->outputDir = $config->getOutputDirectory();
             $this->projectNode = $config->getProjectNode();
             $this->extension = $config->getFileExtension();
@@ -160,7 +162,7 @@ namespace TheSeer\phpDox\Generator\Engine {
 
         public function buildFinish(AbstractEvent $event) {
             $this->generateIndex($event);
-            $this->copyStatic($this->templateDir . '/static', $this->outputDir, TRUE);
+            $this->copyStatic($this->resourceDir, $this->outputDir, TRUE);
         }
 
         public function buildClass(ClassStartEvent $event) {
