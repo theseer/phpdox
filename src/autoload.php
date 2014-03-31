@@ -73,6 +73,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\docblock\\invalidelement' => '/docblock/InvalidElement.php',
                 'theseer\\phpdox\\docblock\\invalidparser' => '/docblock/parser/InvalidParser.php',
                 'theseer\\phpdox\\docblock\\licenseparser' => '/docblock/parser/LicenseParser.php',
+                'theseer\\phpdox\\docblock\\linkparser' => '/docblock/parser/LinkParser.php',
                 'theseer\\phpdox\\docblock\\paramparser' => '/docblock/parser/ParamParser.php',
                 'theseer\\phpdox\\docblock\\parser' => '/docblock/Parser.php',
                 'theseer\\phpdox\\docblock\\varelement' => '/docblock/VarElement.php',
