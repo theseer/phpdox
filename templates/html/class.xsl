@@ -146,14 +146,14 @@
                 <xsl:variable name="methods"  select="count($unit/pdx:method|$unit/pdx:constructor|$unit/pdx:destructor)" />
                 <xsl:variable name="executed" select="count($unit//pdx:enrichments/pdx:enrichment[@type='phpunit']/pu:coverage[@coverage = '100'])" />
                 <td>Methods</td>
-                <td class="percent"><xsl:value-of select="format-number($executed div $methods * 100, '0.##')" />%</td>
+                <td class="percent"><xsl:value-of select="pdxf:format-number($executed div $methods * 100, '0.##')" />%</td>
                 <td class="nummeric"><xsl:value-of select="$executed" /> / <xsl:value-of select="$methods" /></td>
             </tr>
             <tr>
                 <xsl:variable name="executed"    select="$unit/pdx:enrichments/pdx:enrichment[@type='phpunit']/pu:coverage/@executed" />
                 <xsl:variable name="executable"  select="$unit/pdx:enrichments/pdx:enrichment[@type='phpunit']/pu:coverage/@executable" />
                 <td>Lines</td>
-                <td class="percent"><xsl:value-of select="format-number($executed div $executable * 100, '0.##')" />%</td>
+                <td class="percent"><xsl:value-of select="pdxf:format-number($executed div $executable * 100, '0.##')" />%</td>
                 <td class="nummeric"><xsl:value-of select="$executed" /> / <xsl:value-of select="$executable" /></td>
             </tr>
         </table>
