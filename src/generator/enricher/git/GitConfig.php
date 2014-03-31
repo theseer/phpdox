@@ -34,11 +34,16 @@ namespace TheSeer\phpDox\Generator\Enricher {
          * @return string
          */
         public function getGitBinary() {
-            $git = $this->context->queryOne('cfg:git');
-            if (!$git) {
-                return 'git';
-            }
-            return $git->getAttribute('binary', 'git');
+          $git = $this->context->queryOne('cfg:executable');
+          if ($git) {
+            return $git->getAttribute('file', 'git');
+          }
+          /* allow "git/@binary" for bc */
+          $git = $this->context->queryOne('cfg:git');
+          if (!$git) {
+            return 'git';
+          }
+          return $git->getAttribute('binary', 'git');
         }
 
         /**

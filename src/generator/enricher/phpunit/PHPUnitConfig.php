@@ -29,11 +29,16 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $path = $this->context->parentNode->getAttribute('base');
             }
             if ($path != '') { $path .= '/'; }
-            $coverage = $this->context->queryOne('cfg:coverage');
-            if ($coverage && $coverage->hasAttribute('path')) {
-                $path .= $coverage->getAttribute('path');
+            $coverage = $this->context->queryOne('cfg:path');
+            if ($coverage && $coverage->hasAttribute('name')) {
+                 $path .= $coverage->getAttribute('name');
             } else {
+              $coverage = $this->context->queryOne('cfg:coverage');
+              if ($coverage && $coverage->hasAttribute('path')) {
+                  $path .= $coverage->getAttribute('path');
+              } else {
                 $path .= 'coverage';
+              }
             }
             return $path;
         }
