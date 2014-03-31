@@ -281,7 +281,7 @@
                 <li>Tests: <xsl:value-of select="$count" /></li>
                 <li>Passed: <xsl:value-of select="$passed" /> (<xsl:choose>
                     <xsl:when test="$count = 0">0</xsl:when>
-                    <xsl:otherwise><xsl:value-of select="format-number($passed div $count * 100,'0.##')" /></xsl:otherwise>
+                    <xsl:otherwise><xsl:value-of select="pdxf:format-number($passed div $count * 100,'0.##')" /></xsl:otherwise>
                 </xsl:choose>%)</li>
             </ul>
             <xsl:if test="$method//pdx:enrichment[@type='phpunit']/pu:coverage/pu:test">
