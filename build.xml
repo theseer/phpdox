@@ -151,8 +151,13 @@
                 <include name="**/Autoload.php.in"/>
                 <include name="**/package.sig"/>
                 <include name="**/package.xml"/>
+                <include name="**/composer.json"/>
+                <include name="**/*.md"/>
                 <include name="**/docs/**"/>
                 <include name="**/design/**"/>
+                <include name="**/grammar/**"/>
+                <include name="**/tests/**"/>
+                <include name="**/tests_old/**"/>
             </fileset>
         </delete>
 
