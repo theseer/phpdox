@@ -381,7 +381,7 @@ namespace TheSeer\phpDox\Collector {
 
             $parent = $this->rootNode->appendElementNS( self::XMLNS, $container);
             $parent->setAttribute('full', $unit->getName());
-            $parent->setAttribute('namepsace', $unit->getNamespace());
+            $parent->setAttribute('namespace', $unit->getNamespace());
             $parent->setAttribute('name', $unit->getLocalName());
 
             if ($unit->hasExtends()) {
