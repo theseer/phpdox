@@ -25,7 +25,10 @@ namespace TheSeer\phpDox\Collector {
                     sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $local));
 
             if (!$indexNode) {
-                return;
+                throw new DependencyException(
+                    sprintf("Unit '%s' not found", $name),
+                    DependencyException::UnitNotFound
+                );
             }
 
             $dom = new fDOMDocument();
@@ -50,11 +53,22 @@ namespace TheSeer\phpDox\Collector {
                     $this->project->addClass($unit);
                     break;
                 }
+                default: {
+                    throw new DependencyException(
+                        sprintf("Invalid unit type '%s'", $indexNode->localName),
+                        DependencyException::InvalidUnitType
+                    );
+                }
             }
 
             return $unit;
         }
 
+    }
+
+    class DependencyException extends \Exception {
+        const UnitNotFound = 1;
+        const InvalidUnitType = 2;
     }
 
 }

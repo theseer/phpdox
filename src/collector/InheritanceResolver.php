@@ -206,10 +206,7 @@ namespace TheSeer\phpDox\Collector {
         private function getUnitByName($name) {
             foreach($this->dependencyStack as $dependency) {
                 try {
-                    $res = $dependency->getUnitByName($name);
-                    if ($res) {
-                        return $res;
-                    }
+                    return $dependency->getUnitByName($name);
                 } catch (\Exception $e) {}
             }
             throw new ProjectException("No unit with name '$name' found");
