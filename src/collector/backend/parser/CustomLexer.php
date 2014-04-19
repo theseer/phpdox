@@ -36,17 +36,20 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use PhpParser\Lexer\Emulative;
+    use PhpParser\Parser;
+
     /**
      * CustomLexer as suggest for workaround for issue 26 (https://github.com/nikic/PHP-Parser/issues/26)
      */
-    class CustomLexer extends \PHPParser_Lexer_Emulative {
+    class CustomLexer extends Emulative {
 
         public function getNextToken(&$value = NULL, &$startAttributes = NULL, &$endAttributes = NULL) {
             $tokenId = parent::getNextToken($value, $startAttributes, $endAttributes);
 
-            if ($tokenId == \PHPParser_Parser::T_CONSTANT_ENCAPSED_STRING
-                || $tokenId == \PHPParser_Parser::T_LNUMBER
-                || $tokenId == \PHPParser_Parser::T_DNUMBER
+            if ($tokenId == Parser::T_CONSTANT_ENCAPSED_STRING
+                || $tokenId == Parser::T_LNUMBER
+                || $tokenId == Parser::T_DNUMBER
             ) {
                 $endAttributes['originalValue'] = $value;
             }

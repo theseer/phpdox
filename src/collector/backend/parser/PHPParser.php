@@ -42,10 +42,10 @@ namespace TheSeer\phpDox\Collector\Backend {
     /**
      *
      */
-    class PHPParser implements BackendInterface {
+    class PhpParser implements BackendInterface {
 
         /**
-         * @var \PHPParser_Parser
+         * @var \PhpParser\Parser
          */
         private $parser = NULL;
 
@@ -78,11 +78,11 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
-         * @return \PHPParser_Parser
+         * @return \PhpParser\Parser
          */
         private function getParserInstance() {
             if ($this->parser === NULL) {
-                $this->parser = new \PHPParser_Parser(new CustomLexer());
+                $this->parser = new \PhpParser\Parser(new CustomLexer());
             }
             return $this->parser;
         }
@@ -90,11 +90,11 @@ namespace TheSeer\phpDox\Collector\Backend {
         /**
          * @param ParseResult $result
          *
-         * @return \PHPParser_NodeTraverser
+         * @return \PhpParser\NodeTraverser
          */
         private function getTraverserInstance(ParseResult $result) {
-            $traverser = new \PHPParser_NodeTraverser();
-            $traverser->addVisitor(new \PHPParser_NodeVisitor_NameResolver());
+            $traverser = new \PhpParser\NodeTraverser();
+            $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
             $traverser->addVisitor(new UnitCollectingVisitor($this->docblockParser, $result));
             return $traverser;
         }
