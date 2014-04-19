@@ -36,8 +36,6 @@
      */
 namespace TheSeer\phpDox\Collector {
 
-    use \TheSeer\fDOM\fDOMDocument;
-
     class TraitObject extends AbstractUnitObject {
         protected $rootName = 'trait';
     }

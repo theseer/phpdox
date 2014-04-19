@@ -37,12 +37,10 @@
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\DirectoryScanner\DirectoryScanner;
-    use TheSeer\phpDox\Collector\Backend\SourceFileException;
     use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Collector\Backend\BackendInterface;
     use TheSeer\phpDox\Collector\Backend\ParseErrorException;
-    use TheSeer\phpDox\Collector\Project;
 
     /**
      * Collector processing class

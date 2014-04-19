@@ -36,7 +36,6 @@
      */
 namespace TheSeer\phpDox\Collector {
 
-    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\DocBlock\DocBlock;
 
     class MemberObject extends AbstractVariableObject {
