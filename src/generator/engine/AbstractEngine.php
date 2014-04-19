@@ -40,7 +40,6 @@ namespace TheSeer\phpDox\Generator\Engine {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fXSL\fXSLTProcessor;
     use TheSeer\phpDox\DirectoryCleaner;
-    use TheSeer\phpDox\DirectoryCleanerException;
     use TheSeer\phpDox\FileInfo;
 
     abstract class AbstractEngine implements EngineInterface {
@@ -94,13 +93,6 @@ namespace TheSeer\phpDox\Generator\Engine {
                 }
                 copy($x->getPathname(), $target);
             }
-        }
-
-        protected function loadDataFile($filename) {
-            $classDom = new fDOMDocument();
-            $classDom->load($this->xmlDir . '/' . $filename);
-            $classDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
-            return $classDom;
         }
 
     }

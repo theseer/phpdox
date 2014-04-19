@@ -41,7 +41,6 @@ namespace TheSeer\phpDox {
     use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Generator;
     use TheSeer\phpDox\Collector\Collector;
-    use TheSeer\phpDox\Collector\ClassBuilder;
 
     /**
      *
@@ -229,7 +228,7 @@ namespace TheSeer\phpDox {
         /**
          * @param FileInfo $srcDir
          * @param FileInfo $xmlDir
-         * @return Collector\Collector
+         * @return Collector
          */
         protected function getCollector($srcDir, $xmlDir) {
             return new Collector($this->getLogger(), new \TheSeer\phpDox\Collector\Project($srcDir, $xmlDir));

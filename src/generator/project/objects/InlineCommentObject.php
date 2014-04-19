@@ -1,6 +1,8 @@
 <?php
 namespace TheSeer\phpDox\Generator {
 
+    use TheSeer\fDOM\fDOMElement;
+
     class InlineCommentObject {
 
         /**

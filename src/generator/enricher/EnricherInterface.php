@@ -37,8 +37,6 @@
  */
 namespace TheSeer\phpDox\Generator\Enricher {
 
-    use TheSeer\phpDox\Generator\AbstractEvent;
-
     interface EnricherInterface {
 
         /**

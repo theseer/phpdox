@@ -1,8 +1,6 @@
 <?php
 namespace TheSeer\phpDox\Generator {
 
-    use TheSeer\fDOM\fDOMElement;
-
     class NamespaceEntry extends AbstractEntry {
 
         public function getName() {

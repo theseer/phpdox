@@ -69,6 +69,11 @@ namespace TheSeer\phpDox\Generator\Engine {
             } else if ($event instanceof InterfaceStartEvent) {
                 $ctx = $event->getInterface();
                 $path = 'interfaces';
+            } else {
+                throw new EngineException(
+                    'Unexpected Event of type ' . get_class($event),
+                    XMLEngineException::UnexpectedType
+                );
             }
             $dom = $ctx->asDom();
             $this->saveDomDocument($dom,
@@ -81,4 +86,9 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->saveDomDocument($dom, $this->outputDir . '/index.xml');
         }
     }
+
+    class XMLEngineException extends EngineException {
+        const UnexpectedType = 2;
+    }
+
 }

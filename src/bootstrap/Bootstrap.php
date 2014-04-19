@@ -83,7 +83,9 @@ namespace TheSeer\phpDox {
         }
 
         private function loadBootstrap($filename) {
+            /** @noinspection PhpUnusedLocalVariableInspection */
             $phpDox = $this->api;
+            /** @noinspection PhpIncludeInspection */
             require $filename;
         }
     }

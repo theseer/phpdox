@@ -4,12 +4,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\fDOM\fDOMException;
-    use TheSeer\fDOM\XPathQuery;
-    use TheSeer\phpDox\Collector\MemberObject;
     use TheSeer\phpDox\Generator\ClassStartEvent;
-    use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\PHPDoxEndEvent;
-    use TheSeer\phpDox\Generator\PHPDoxStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class PHPUnit extends AbstractEnricher implements EndEnricherInterface, ClassEnricherInterface, TraitEnricherInterface {

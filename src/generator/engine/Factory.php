@@ -38,6 +38,7 @@
 namespace TheSeer\phpDox\Generator\Engine {
 
     use TheSeer\phpDox\BuildConfig;
+    use TheSeer\phpDox\FactoryInterface;
 
     class Factory {
 

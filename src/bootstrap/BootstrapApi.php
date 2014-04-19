@@ -158,8 +158,8 @@ namespace TheSeer\phpDox {
         /**
          * Register a new generator enginge
          *
-         * @param $name         Name of the generator engine
-         * @param $description  A describing text
+         * @param string $name         Name of the generator engine
+         * @param string $description  A describing text
          *
          * @return EngineBootstrapApi
          */
@@ -181,8 +181,8 @@ namespace TheSeer\phpDox {
         /**
          * Register a new enricher
          *
-         * @param $name         Name of the enricher
-         * @param $description  A describing text
+         * @param string $name         Name of the enricher
+         * @param string $description  A describing text
          *
          * @return EnricherBootstrapApi
          */

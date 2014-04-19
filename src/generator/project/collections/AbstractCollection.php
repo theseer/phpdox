@@ -1,6 +1,8 @@
 <?php
 namespace TheSeer\phpDox\Generator {
 
+    use TheSeer\fDOM\fDOMElement;
+
     abstract class AbstractCollection implements \Iterator {
 
         /**
@@ -17,6 +19,9 @@ namespace TheSeer\phpDox\Generator {
             $this->nodeList = $nodeList;
         }
 
+        /**
+         * @return fDOMElement
+         */
         protected function getCurrentNode() {
             return $this->nodeList->item($this->position);
         }
