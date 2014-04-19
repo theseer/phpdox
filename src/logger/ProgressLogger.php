@@ -79,7 +79,7 @@ namespace TheSeer\phpDox {
          */
         public function progress($state) {
             if (!isset($this->stateChars[$state])) {
-                throw new ProgressLoggerException("Unkown progress state '$state'", ShellLoggerException::UnkownState);
+                throw new ProgressLoggerException("Unkown progress state '$state'", ProgressLoggerException::UnknownState);
             }
             $this->stateCount[$state]++;
             $this->totalCount++;
