@@ -97,7 +97,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $fname = $this->config->getCoveragePath() . '/' . $fname;
                 if (!file_exists($fname)) {
                     throw new EnricherException(
-                        sprintf('PHPLoc xml file "%s" not found.', $fname),
+                        sprintf('PHPUnit xml file "%s" not found.', $fname),
                         EnricherException::LoadError
                     );
                 }
@@ -107,7 +107,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return $dom;
             } catch (fDOMException $e) {
                 throw new EnricherException(
-                    'Parsing PHPLoc xml file failed: ' . $e->getMessage(),
+                    'Parsing PHPUnit xml file failed: ' . $e->getMessage(),
                     EnricherException::LoadError
                 );
             }
