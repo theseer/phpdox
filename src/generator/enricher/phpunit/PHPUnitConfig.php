@@ -37,6 +37,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
             return $path;
         }
+
+        public function getSourceDirectory() {
+            return $this->generator->getProjectConfig()->getSourceDirectory();
+        }
     }
 
 }

@@ -4,6 +4,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\fDOM\fDOMException;
+    use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\PHPDoxEndEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
@@ -69,11 +70,14 @@ namespace TheSeer\phpDox\Generator\Enricher {
             if (!$fileNode) {
                 return;
             }
-            $paths = explode('/', $fileNode->getAttribute('path'));
-            $file = $fileNode->getAttribute('file');
 
+            $fileInfo = new FileInfo($fileNode->getAttribute('path'));
+            $srcDir = $this->config->getSourceDirectory();
+            $paths = explode('/', (string)$fileInfo->getRelative($srcDir));
+            $file = $fileNode->getAttribute('file');
             $paths = array_slice($paths, 1);
-            $query = '//pu:project/pu:directory';
+            
+            $query = sprintf('//pu:project/pu:directory[@name = "%s"]', $srcDir->getRealPath());
             foreach($paths as $path) {
                 $query .= sprintf('/pu:directory[@name = "%s"]', $path);
             }
