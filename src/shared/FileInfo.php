@@ -33,9 +33,13 @@ namespace TheSeer\phpDox {
             return $this->toUnix(parent::getPath());
         }
 
-        public function getRelative(\SplFileInfo $relation) {
+        public function getRelative(\SplFileInfo $relation, $inclusive = TRUE) {
             $relPath = $this->getRealPath();
-            $relPath = substr($relPath, strlen(dirname($relation->getRealPath()))+1);
+            $relationPath = $relation->getRealPath();
+            if ($inclusive) {
+                $relationPath = dirname($relationPath);
+            }
+            $relPath = substr($relPath, strlen($relationPath)+1);
             return new FileInfo($relPath);
         }
 
