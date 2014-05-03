@@ -123,7 +123,6 @@ namespace TheSeer\phpDox\Collector {
          * @param $name
          *
          * @return fDOMElement
-         * @throws IndexCollectionException
          */
         public function findUnitNodeByName($namespace, $name) {
             return $this->getRootElement()->queryOne(
@@ -159,10 +158,6 @@ namespace TheSeer\phpDox\Collector {
                 $ctx->appendChild($unitNode);
             }
         }
-
-    }
-
-    class IndexCollectionException extends \Exception {
 
     }
 
