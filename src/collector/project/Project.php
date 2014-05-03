@@ -313,7 +313,7 @@ namespace TheSeer\phpDox\Collector {
                 $this->source->import($dom);
             }
 
-            $this->index = new IndexCollection();
+            $this->index = new IndexCollection($this->srcDir);
             $srcFile = $this->xmlDir . '/index.xml';
             if (file_exists($srcFile)) {
                 $dom = new fDOMDocument();
