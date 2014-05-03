@@ -41,7 +41,7 @@ namespace TheSeer\phpDox\Collector {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
 
-    class SourceCollection implements DOMCollectionInterface {
+    class SourceCollection {
 
         /**
          * @var FileInfo
@@ -53,10 +53,11 @@ namespace TheSeer\phpDox\Collector {
 
         private $workDom;
 
-        public function __construct($srcDir) {
+        public function __construct(FileInfo $srcDir) {
             $this->srcDir = $srcDir;
             $this->workDom = new fDOMDocument();
             $this->workDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
+            $this->workDom->appendElementNS('http://xml.phpdox.net/src#', 'source');
         }
 
         public function import(fDOMDocument $dom) {
@@ -76,14 +77,13 @@ namespace TheSeer\phpDox\Collector {
             $node->setAttribute('unixtime', $file->getMTime());
             $node->setAttribute('sha1', sha1_file($file->getPathname()));
 
-            $relPath = (string)$file->getRelative($this->srcDir);
-            $this->collection[$relPath] = $node;
-            return $this->isChanged($relPath);
+            $path = $file->getRealPath();
+            $this->collection[$path] = $node;
+            return $this->isChanged($path);
         }
 
         public function removeFile(FileInfo $file) {
-            $relPath = (string)$file->getRelative($this->srcDir);
-            unset($this->collection[$relPath]);
+            unset($this->collection[$file->getRealPath()]);
         }
 
         public function getChangedFiles() {
@@ -107,35 +107,33 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function export() {
-            $dom = $this->workDom;
-            if (sizeof($this->collection) === 0) {
-                if (!$dom->documentElement instanceof fDOMElement) {
-                    $root = $dom->createElementNS('http://xml.phpdox.net/src#', 'source');
-                    $dom->appendChild($root);
-                }
+            if (count($this->collection) == 0) {
                 return $this->workDom;
             }
-            if ($dom->documentElement instanceOf fDOMElement) {
-                $dom->removeChild($dom->documentElement);
+
+            $root = $this->workDom->documentElement;
+            while($root->hasChildNodes()) {
+                $root->nodeValue = null;
             }
-            $root = $dom->createElementNS('http://xml.phpdox.net/src#', 'source');
-            $this->workDom->appendChild($root);
-            foreach($this->collection as $path => $file) {
-                $dirs = explode('/', dirname($path));
+
+            foreach ($this->collection as $path => $file) {
+                $pathInfo = new FileInfo($path);
+                $dirs = explode('/', dirname($pathInfo->getRelative($this->srcDir)));
+                $dirs[0] = $this->srcDir->getRealPath();
                 $ctx = $root;
-                foreach($dirs as $dir) {
-                    $node = $ctx->queryOne('phpdox:dir[@name="'. $dir . '"]');
+                foreach ($dirs as $dir) {
+                    $node = $ctx->queryOne('phpdox:dir[@name="' . $dir . '"]');
                     if (!$node) {
                         $node = $ctx->appendElementNS('http://xml.phpdox.net/src#', 'dir');
                         $node->setAttribute('name', $dir);
                     }
                     $ctx = $node;
                 }
-                $ctx->appendChild($this->workDom->importNode($file, true));
+                $ctx->appendChild($this->workDom->importNode($file, TRUE));
             }
 
             $this->collection = array();
-            return $dom;
+            return $this->workDom;
         }
 
 
@@ -144,8 +142,8 @@ namespace TheSeer\phpDox\Collector {
             foreach($dir->query('phpdox:file') as $file) {
                 $this->original[ $path . '/' . $file->getAttribute('name')] = $file;
             }
-            foreach($dir->query('phpdox:dir') as $dir) {
-                $this->importDirNode($dir, $path . '/');
+            foreach($dir->query('phpdox:dir') as $child) {
+                $this->importDirNode($child, $path . '/');
             }
         }
 
