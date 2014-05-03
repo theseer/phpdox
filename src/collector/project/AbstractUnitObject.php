@@ -39,6 +39,7 @@ namespace TheSeer\phpDox\Collector {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\DocBlock\DocBlock;
+    use TheSeer\phpDox\FileInfo;
 
     /**
      *
@@ -160,14 +161,14 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         * @return string
+         * @return FileInfo
          */
         public function getSourceFilename() {
             $file = $this->rootNode->queryOne('phpdox:file');
             if (!$file) {
                 return '';
             }
-            return $file->getAttribute('path') . '/' . $file->getAttribute('file');
+            return new FileInfo($file->getAttribute('path') . '/' . $file->getAttribute('file'));
         }
 
         /**
