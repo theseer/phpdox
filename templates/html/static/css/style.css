@@ -372,6 +372,10 @@ footer span {
     color:darkgreen;
 }
 
+.testresult-EMPTY {
+    color: rgba(0, 100, 0, 0.20);
+}
+
 .testresult-FAILED {
    color:darkred;
 }

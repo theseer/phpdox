@@ -25,6 +25,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
 
         private $results = array();
+        private $coverage = array();
 
         public function __construct(PHPUnitConfig $config) {
             $this->config = $config;
@@ -53,6 +54,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     foreach($results as $key => $value) {
                         $resultNode->setAttribute(strtolower($key), $value);
                     }
+                    $container->appendChild(
+                        $container->ownerDocument->importNode($this->coverage[$namespace][$class])
+                    );
                 }
             }
         }
@@ -76,7 +80,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $paths = explode('/', (string)$fileInfo->getRelative($srcDir));
             $file = $fileNode->getAttribute('file');
             $paths = array_slice($paths, 1);
-            
+
             $query = sprintf('//pu:project/pu:directory[@name = "%s"]', $srcDir->getRealPath());
             foreach($paths as $path) {
                 $query .= sprintf('/pu:directory[@name = "%s"]', $path);
@@ -194,8 +198,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             if (!isset($this->results[$classNamespace])) {
                 $this->results[$classNamespace] = array();
+                $this->coverage[$classNamespace] = array();
             }
             $this->results[$classNamespace][$className] = $result;
+            $this->coverage[$classNamespace][$className] = $coverageTarget->cloneNode(false);
         }
     }
 

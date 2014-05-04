@@ -73,22 +73,30 @@
     <xsl:template name="buildstate">
         <xsl:param name="class" />
 
-        <xsl:variable name="result" select="$class//pu:result" />
         <xsl:choose>
-            <!-- all 0 or skipped or incomplete -->
-            <xsl:when test="sum($result/@*) = 0 or $result/@skipped != 0 or $result/@incomplete != 0">
-                <xsl:attribute name="class">testresult-SKIPPED</xsl:attribute>UNTESTED</xsl:when>
+            <xsl:when test="$class//pu:coverage/@executable = 0">
+                <xsl:attribute name="class">testresult-EMPTY</xsl:attribute>EMPTY</xsl:when>
 
-            <!-- at least one is failure or error-->
-            <xsl:when test="$result/@failure != '0' or $result/@error != '0'">
-                <xsl:attribute name="class">testresult-FAILED</xsl:attribute>FAILED</xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="result" select="$class//pu:result" />
+                <xsl:choose>
+                    <!-- all 0 or skipped or incomplete -->
+                    <xsl:when test="sum($result/@*) = 0 or $result/@skipped != 0 or $result/@incomplete != 0">
+                        <xsl:attribute name="class">testresult-SKIPPED</xsl:attribute>UNTESTED</xsl:when>
 
-            <!-- everything 0 except passed -->
-            <xsl:when test="sum($result/@*) = $result/@passed and $result/@passed != 0">
-                <xsl:attribute name="class">testresult-PASSED</xsl:attribute>PASSED</xsl:when>
+                    <!-- at least one is failure or error-->
+                    <xsl:when test="$result/@failure != '0' or $result/@error != '0'">
+                        <xsl:attribute name="class">testresult-FAILED</xsl:attribute>FAILED</xsl:when>
 
+                    <!-- everything 0 except passed -->
+                    <xsl:when test="sum($result/@*) = $result/@passed and $result/@passed != 0">
+                        <xsl:attribute name="class">testresult-PASSED</xsl:attribute>PASSED</xsl:when>
+
+                </xsl:choose>
+            </xsl:otherwise>
 
         </xsl:choose>
+
     </xsl:template>
 
 </xsl:stylesheet>
