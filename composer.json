@@ -20,13 +20,13 @@
     "ext-iconv" : "*",
     "ext-fileinfo": "*",
     "ext-mbstring": "*",
-    "theseer/fdomdocument": ">=1.4.1",
-    "theseer/directoryscanner" : ">=1.2.1",
+    "theseer/fdomdocument": ">=1.5.0",
+    "theseer/directoryscanner" : ">=1.3.0",
     "theseer/fxsl" : ">=1.1",
     "phpunit/php-timer" : ">=1.0.4",
     "zetacomponents/base": ">=1.8",
     "zetacomponents/console-tools" : ">=1.6.0",
-    "nikic/php-parser" : ">=0.9.4"
+    "nikic/php-parser" : ">=1.0.0"
   },
   "autoload": {
     "classmap": [
