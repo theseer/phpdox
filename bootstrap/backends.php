@@ -40,9 +40,14 @@ namespace TheSeer\phpDox {
      */
 
     // nikic's PHPParser
-    $phpParser = stream_resolve_include_path('PHPParser/bootstrap.php');
-    if ($phpParser !== FALSE) {
-        require $phpParser;
+    if (!class_exists('PhpParser\Autoloader', true)) {
+        $phpParser = stream_resolve_include_path('PHPParser/bootstrap.php');
+        if ($phpParser !== FALSE) {
+            require $phpParser;
+        }
+    }
+
+    if (class_exists('PhpParser\Autoloader', false)) {
         $phpDox->registerBackend('parser', 'PHP Parser');
     }
 
