@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\Collector\Backend {
     /**
      *
      */
-    class PhpParser implements BackendInterface {
+    class PHPParser implements BackendInterface {
 
         /**
          * @var \PhpParser\Parser
