@@ -114,7 +114,7 @@ namespace TheSeer\phpDox {
             }
 
             $vars = array(
-                'basedir' => $ctx->getAttribute('basedir', $this->file->getPath()),
+                'basedir' => $ctx->getAttribute('basedir', dirname($this->file->getRealPath())),
 
                 'phpDox.home' => $home,
                 'phpDox.file' => $this->file->getPathname(),
