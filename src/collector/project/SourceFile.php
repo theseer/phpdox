@@ -48,7 +48,16 @@ namespace TheSeer\phpDox\Collector {
                 throw new SourceFileException('Encoding error - invalid UTF-8 bytes found', SourceFileException::InvalidDataBytes);
             }
 
-            return $cleanCode;
+            // Replace xml relevant control characters by surrogates
+            return preg_replace_callback(
+                '/(?![\x{000d}\x{000a}\x{0009}])\p{C}/u',
+                function(array $matches) {
+                    $unicodeChar = '\u' . (2400 + ord($matches[0]));
+                    return json_decode('"'.$unicodeChar.'"');
+                },
+                $cleanCode
+            );
+
         }
 
     }
