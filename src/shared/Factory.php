@@ -38,6 +38,7 @@
 namespace TheSeer\phpDox {
 
     use TheSeer\phpDox\Collector\InheritanceResolver;
+    use TheSeer\phpDox\Collector\Tokenizer;
     use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Generator;
     use TheSeer\phpDox\Collector\Collector;
@@ -231,7 +232,12 @@ namespace TheSeer\phpDox {
          * @return Collector
          */
         protected function getCollector($srcDir, $xmlDir) {
-            return new Collector($this->getLogger(), new \TheSeer\phpDox\Collector\Project($srcDir, $xmlDir));
+            return new Collector(
+                $this->getLogger(),
+                new \TheSeer\phpDox\Collector\Project(
+                    $srcDir, $xmlDir, new Tokenizer()
+                )
+            );
         }
 
         /**

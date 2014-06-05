@@ -56,6 +56,11 @@ namespace TheSeer\phpDox\Collector {
         private $srcDir;
 
         /**
+         * @var Tokenizer
+         */
+        private $tokenizer;
+
+        /**
          * @var SourceCollection
          */
         private $source = NULL;
@@ -69,13 +74,20 @@ namespace TheSeer\phpDox\Collector {
         private $saveUnits = array();
         private $loadedUnits = array();
 
+
+        /**
+         * @var SourceFile[]
+         */
+        private $saveSources = array();
+
         /**
          * @param $srcDir
          * @param $xmlDir
          */
-        public function __construct(FileInfo $srcDir, FileInfo $xmlDir) {
+        public function __construct(FileInfo $srcDir, FileInfo $xmlDir, Tokenizer $tokenizer) {
             $this->xmlDir = $xmlDir;
             $this->srcDir = $srcDir;
+            $this->tokenizer = $tokenizer;
             $this->initCollections();
         }
 
@@ -101,6 +113,7 @@ namespace TheSeer\phpDox\Collector {
             $isNew = $this->source->addFile($file);
             if ($isNew) {
                 $this->removeFileReferences($file->getPathname());
+                $this->saveSources[] = new SourceFile($file);
             }
             return $isNew;
         }
@@ -227,6 +240,8 @@ namespace TheSeer\phpDox\Collector {
          * @return array
          */
         public function save() {
+            $this->saveSources();
+
             $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
             foreach ($map as $col) {
                 $path = $this->xmlDir . '/' . $col;
@@ -234,6 +249,7 @@ namespace TheSeer\phpDox\Collector {
                     mkdir($path, 0755, TRUE);
                 }
             }
+
             $indexDom = $this->index->export();
             $reportUnits = $this->saveUnits;
             foreach($this->saveUnits as $unit) {
@@ -274,6 +290,23 @@ namespace TheSeer\phpDox\Collector {
             $this->saveUnits = array();
 
             return $reportUnits;
+        }
+
+        private function saveSources() {
+            $base = $this->xmlDir . '/source';
+
+            foreach($this->saveSources as $src) {
+                $path = $base . '/' . dirname($src->getFileInfo()->getRelative($this->srcDir, false));
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, TRUE);
+                }
+                file_put_contents(
+                    $path . '/' . $src->getFileInfo()->getFilename() . '.xml',
+                    $this->tokenizer->toXML($src->getSource())
+                );
+            }
+
+            $this->saveSources = array();
         }
 
         /**

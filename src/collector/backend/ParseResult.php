@@ -36,6 +36,7 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\phpDox\Collector\TraitObject;
     use TheSeer\phpDox\Collector\InterfaceObject;
     use TheSeer\phpDox\Collector\ClassObject;
@@ -51,19 +52,24 @@ namespace TheSeer\phpDox\Collector\Backend {
         private $file;
 
         /**
-         * @var array
+         * @var ClassObject[]
          */
         private $classes = array();
 
         /**
-         * @var array
+         * @var InterfaceObject[]
          */
         private $interfaces  = array();
 
         /**
-         * @var array
+         * @var TraitObject[]
          */
         private $traits  = array();
+
+        /**
+         * @var fDOMDocument
+         */
+        private $srcDom;
 
         /**
          * @param \SplFileInfo $file
@@ -74,6 +80,10 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         public function getFileName() {
             return $this->file->getRealPath();
+        }
+
+        public function setSource(fDOMDocument $src) {
+            $this->srcDom = $src;
         }
 
         /**
@@ -128,21 +138,21 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
-         * @return array
+         * @return ClassObject[]
          */
         public function getClasses() {
             return $this->classes;
         }
 
         /**
-         * @return array
+         * @return InterfaceObject[]
          */
         public function getInterfaces() {
             return $this->interfaces;
         }
 
         /**
-         * @return array
+         * @return TraitObject[]
          */
         public function getTraits() {
             return $this->traits;
