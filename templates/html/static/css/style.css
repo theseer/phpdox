@@ -233,6 +233,7 @@ ul.members li {
     background-color: #efefef;
     border-top: 2px solid rgba(255,147,30,1);
     font-family: "Courier New", Courier, mono;
+    width:50em;
 }
 
 table.overview {
@@ -273,6 +274,10 @@ table.styled td {
     font-size: 0.9em;
 }
 
+td.line {
+    min-width: 4em;
+}
+
 dl.styled {
     font-size: 0.9em;
 }
@@ -293,13 +298,13 @@ ul.history li div {
 ul.history li p {
     padding: 0;
     margin: 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .breadcrumb {
     margin:0;
     padding:0;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 ul.breadcrumb li {
@@ -313,9 +318,11 @@ ul.breadcrumb li.separator:before {
 }
 
 nav.box {
+    font-size: 1.2em;
     padding: 1em;
     margin: 0 1em 1em 0;
-    float:left;
+    min-width:10em;
+    float:right;
 }
 
 nav.box ul {
@@ -328,6 +335,10 @@ nav.box ul li {
     border-bottom: 1px solid #dddddd;
     font-size: 0.8em;
     margin-bottom: 0.2em;
+}
+
+.styled {
+    width:50em;
 }
 
 #mainstage section {

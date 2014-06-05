@@ -3,7 +3,7 @@
                 xmlns:pdx="http://xml.phpdox.net/src#"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
                 xmlns:pu="http://schema.phpunit.de/coverage/1.0"
-                exclude-result-prefixes="pdx">
+                exclude-result-prefixes="pdx pdxf pu">
 
     <xsl:import href="components.xsl" />
     <xsl:import href="functions.xsl" />

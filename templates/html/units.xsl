@@ -2,7 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:idx="http://xml.phpdox.net/src#"
                 xmlns:pu="http://schema.phpunit.de/coverage/1.0"
-                exclude-result-prefixes="idx">
+                exclude-result-prefixes="idx pu">
 
     <xsl:import href="components.xsl" />
 

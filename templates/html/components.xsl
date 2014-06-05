@@ -3,7 +3,7 @@
                 xmlns:pdx="http://xml.phpdox.net/src#"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
                 xmlns:git="http://xml.phpdox.net/gitlog#"
-                exclude-result-prefixes="pdx pdxf">
+                exclude-result-prefixes="pdx pdxf git">
 
     <xsl:param name="base" select="''" />
     <xsl:param name="xml" select="''" />
@@ -154,7 +154,7 @@
                     <xsl:for-each select="$ctx/pdx:enrichment[@type='pmd']/pdx:violation">
                         <xsl:sort data-type="number" select="@beginline" order="ascending" />
                         <tr>
-                            <td>
+                            <td class="line">
                                 <xsl:choose>
                                     <xsl:when test="@beginline = @endline"><xsl:value-of select="@beginline" /></xsl:when>
                                     <xsl:otherwise><xsl:value-of select="@beginline" /> - <xsl:value-of select="@endline" /></xsl:otherwise>
@@ -180,7 +180,7 @@
                     <xsl:for-each select="$ctx/pdx:enrichment[@type='checkstyle']/pdx:*">
                         <xsl:sort data-type="number" select="@line" order="ascending" />
                         <tr>
-                            <td><xsl:value-of select="@line" /></td>
+                            <td class="line"><xsl:value-of select="@line" /></td>
                             <td><xsl:value-of select="@column" /></td>
                             <td><span title="{@source}"><xsl:value-of select="local-name(.)" /></span></td>
                             <td><xsl:value-of select="@message" /></td>
