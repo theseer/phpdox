@@ -85,7 +85,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @param \PhpParser\Node $node
          */
         public function enterNode(\PhpParser\Node $node) {
-            if ($node instanceof \PhpParser\Node\Stmt\Namespace_) {
+            if ($node instanceof \PhpParser\Node\Stmt\Namespace_ && $node->name != NULL) {
                 $this->namespace = join('\\', $node->name->parts);
                 $this->aliasMap['::context'] = $this->namespace;
             } else if ($node instanceof \PhpParser\Node\Stmt\UseUse) {
