@@ -120,8 +120,8 @@ namespace TheSeer\phpDox\Collector {
          * @return \DOMNodeList
          */
         public function findUnitNodesBySrcFile($path) {
-            $search = new FileInfo($path);
-            return $this->getRootElement()->query(sprintf('//*[@src="%s"]', $search->getRelative($this->srcDir)));
+            $src = substr($path, strlen($this->srcDir) + 1);
+            return $this->getRootElement()->query(sprintf('//*[@src="%s"]', $src));
         }
 
         /**
