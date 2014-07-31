@@ -4,23 +4,12 @@ namespace TheSeer\phpDox\Collector {
     use TheSeer\phpDox\Collector\Backend\SourceFileException;
     use TheSeer\phpDox\FileInfo;
 
-    class SourceFile {
+    class SourceFile extends FileInfo {
 
         /**
-         * @var FileInfo
+         * @var string
          */
-        private $fileInfo;
-
-        public function __construct(FileInfo $fileInfo) {
-            $this->fileInfo = $fileInfo;
-        }
-
-        /**
-         * @return FileInfo
-         */
-        public function getFileInfo() {
-            return $this->fileInfo;
-        }
+        private $src;
 
         /**
          * @return string
@@ -28,10 +17,14 @@ namespace TheSeer\phpDox\Collector {
          * @throws Backend\SourceFileException
          */
         public function getSource() {
-            $code = file_get_contents($this->fileInfo->getPathname());
+            if ($this->src !== NULL) {
+                return $this->src;
+            }
+
+            $code = file_get_contents($this->getPathname());
 
             $info = new \finfo();
-            $encoding = $info->file( (string)$this->fileInfo, FILEINFO_MIME_ENCODING);
+            $encoding = $info->file( (string)$this, FILEINFO_MIME_ENCODING);
             if (strtolower($encoding) != 'utf-8' && $code != '') {
                 try {
                     $code = iconv($encoding, 'UTF-8//TRANSLIT', $code);
@@ -49,7 +42,7 @@ namespace TheSeer\phpDox\Collector {
             }
 
             // Replace xml relevant control characters by surrogates
-            return preg_replace_callback(
+            $this->src = preg_replace_callback(
                 '/(?![\x{000d}\x{000a}\x{0009}])\p{C}/u',
                 function(array $matches) {
                     $unicodeChar = '\u' . (2400 + ord($matches[0]));
@@ -58,6 +51,17 @@ namespace TheSeer\phpDox\Collector {
                 $cleanCode
             );
 
+            return $this->src;
+        }
+
+        /**
+         * @return \TheSeer\fDOM\fDOMDocument
+         *
+         * @throws Backend\SourceFileException
+         */
+        public function getTokens() {
+            $tokenizer = new Tokenizer();
+            return $tokenizer->toXML($this->getSource());
         }
 
     }

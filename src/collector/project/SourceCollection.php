@@ -37,6 +37,7 @@
      */
 namespace TheSeer\phpDox\Collector {
 
+    use TheSeer\phpDox\Collector\Backend\SourceFileException;
     use TheSeer\phpDox\FileInfo;
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
@@ -69,31 +70,36 @@ namespace TheSeer\phpDox\Collector {
             $this->importDirNode($dir, '');
         }
 
-        public function addFile(FileInfo $file) {
+        public function addFile(SourceFile $file) {
+            $path = $file->getRealPath();
             $node = $this->workDom->createElementNS('http://xml.phpdox.net/src#', 'file');
             $node->setAttribute('name', basename($file->getBasename()));
             $node->setAttribute('size', $file->getSize());
             $node->setAttribute('time', date('c', $file->getMTime()));
             $node->setAttribute('unixtime', $file->getMTime());
             $node->setAttribute('sha1', sha1_file($file->getPathname()));
-
-            $path = $file->getRealPath();
             $this->collection[$path] = $node;
             return $this->isChanged($path);
         }
 
-        public function removeFile(FileInfo $file) {
-            unset($this->collection[$file->getRealPath()]);
+        public function setTokenFileReference(SourceFile $file, FileInfo $path) {
+            $path = $file->getRealPath();
+            if (!isset($this->collection[$path])) {
+                throw new SourceCollectionException(
+                    sprintf("File %s not found in collection", $path),
+                    SourceCollectionException::SourceNotFound
+                );
+            }
         }
 
-        public function getChangedFiles() {
-            $list = array();
-            foreach(array_keys($this->collection) as $path) {
-                if ($this->isChanged($path)) {
-                    $list[] = $path;
-                }
+        public function removeFile(FileInfo $file) {
+            if (!isset($this->collection[$path])) {
+                throw new SourceCollectionException(
+                    sprintf("File %s not found in collection", $path),
+                    SourceCollectionException::SourceNotFound
+                );
             }
-            return $list;
+            unset($this->collection[$file->getRealPath()]);
         }
 
         public function getVanishedFiles() {
@@ -156,6 +162,11 @@ namespace TheSeer\phpDox\Collector {
             return $org->getAttribute('sha1') != $new->getAttribute('sha1');
         }
 
+    }
+
+
+    class SourceCollectionException extends \Exception {
+        const SourceNotFound = 1;
     }
 
 }

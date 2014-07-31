@@ -63,9 +63,10 @@ namespace TheSeer\phpDox\Collector {
         private $parseErrors = array();
 
         /**
-         * @var
+         * @var BackendInterface
          */
         private $backend;
+
 
         /**
          * @param \TheSeer\phpDox\ProgressLogger  $logger
@@ -88,7 +89,7 @@ namespace TheSeer\phpDox\Collector {
             $srcDir = $this->project->getSourceDir();
             $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
 
-            $iterator = new PathConverterIterator($scanner($srcDir));
+            $iterator = new SourceFileIterator($scanner($srcDir));
             foreach($iterator as $file) {
                 $needsProcessing = $this->project->addFile($file);
                 if (!$needsProcessing) {
@@ -119,15 +120,20 @@ namespace TheSeer\phpDox\Collector {
 
         /**
          * @param FileInfo $file
+         *
+         * @throws CollectorException
+         * @throws \TheSeer\phpDox\ProgressLoggerException
+         *
+         * @return bool
          */
-        private function processFile(FileInfo $file) {
+        private function processFile(SourceFile $file) {
             try {
                 if ($file->getSize() === 0) {
                     $this->logger->progress('processed');
                     return true;
                 }
+                $result = $this->backend->parse($file);
 
-                $result = $this->backend->parse(new SourceFile($file));
                 if ($result->hasClasses()) {
                     foreach($result->getClasses() as $class) {
                         $this->project->addClass($class);

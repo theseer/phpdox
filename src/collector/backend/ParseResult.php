@@ -67,11 +67,6 @@ namespace TheSeer\phpDox\Collector\Backend {
         private $traits  = array();
 
         /**
-         * @var fDOMDocument
-         */
-        private $srcDom;
-
-        /**
          * @param \SplFileInfo $file
          */
         public function __construct(\SplFileInfo $file) {
@@ -80,10 +75,6 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         public function getFileName() {
             return $this->file->getRealPath();
-        }
-
-        public function setSource(fDOMDocument $src) {
-            $this->srcDom = $src;
         }
 
         /**

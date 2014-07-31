@@ -56,11 +56,6 @@ namespace TheSeer\phpDox\Collector {
         private $srcDir;
 
         /**
-         * @var Tokenizer
-         */
-        private $tokenizer;
-
-        /**
          * @var SourceCollection
          */
         private $source = NULL;
@@ -70,24 +65,21 @@ namespace TheSeer\phpDox\Collector {
          */
         private $index = NULL;
 
-
-        private $saveUnits = array();
-        private $loadedUnits = array();
-
-
         /**
          * @var SourceFile[]
          */
-        private $saveSources = array();
+        private $files  = array();
+
+        private $saveUnits = array();
+        private $loadedUnits = array();
 
         /**
          * @param $srcDir
          * @param $xmlDir
          */
-        public function __construct(FileInfo $srcDir, FileInfo $xmlDir, Tokenizer $tokenizer) {
+        public function __construct(FileInfo $srcDir, FileInfo $xmlDir) {
             $this->xmlDir = $xmlDir;
             $this->srcDir = $srcDir;
-            $this->tokenizer = $tokenizer;
             $this->initCollections();
         }
 
@@ -109,11 +101,11 @@ namespace TheSeer\phpDox\Collector {
          * @param FileInfo $file
          * @return bool
          */
-        public function addFile(FileInfo $file) {
+        public function addFile(SourceFile $file) {
             $isNew = $this->source->addFile($file);
             if ($isNew) {
                 $this->removeFileReferences($file->getPathname());
-                $this->saveSources[] = new SourceFile($file);
+                $this->files[] = $file;
             }
             return $isNew;
         }
@@ -240,15 +232,7 @@ namespace TheSeer\phpDox\Collector {
          * @return array
          */
         public function save() {
-            $this->saveSources();
-
-            $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
-            foreach ($map as $col) {
-                $path = $this->xmlDir . '/' . $col;
-                if (!file_exists($path)) {
-                    mkdir($path, 0755, TRUE);
-                }
-            }
+            $map = $this->initDirectories();
 
             $indexDom = $this->index->export();
             $reportUnits = $this->saveUnits;
@@ -282,31 +266,12 @@ namespace TheSeer\phpDox\Collector {
             $indexDom->preserveWhiteSpace = FALSE;
             $indexDom->save($this->xmlDir . '/index.xml');
 
-            $sourceDom = $this->source->export();
-            $sourceDom->formatOutput = TRUE;
-            $sourceDom->preserveWhiteSpace = FALSE;
-            $sourceDom->save($this->xmlDir . '/source.xml');
+            $this->saveSources();
 
             $this->saveUnits = array();
+            $this->files = array();
 
             return $reportUnits;
-        }
-
-        private function saveSources() {
-            $base = $this->xmlDir . '/source';
-
-            foreach($this->saveSources as $src) {
-                $path = $base . '/' . dirname($src->getFileInfo()->getRelative($this->srcDir, false));
-                if (!file_exists($path)) {
-                    mkdir($path, 0755, TRUE);
-                }
-                file_put_contents(
-                    $path . '/' . $src->getFileInfo()->getFilename() . '.xml',
-                    $this->tokenizer->toXML($src->getSource())
-                );
-            }
-
-            $this->saveSources = array();
         }
 
         /**
@@ -334,6 +299,17 @@ namespace TheSeer\phpDox\Collector {
             return $affected;
         }
 
+
+        private function initDirectories() {
+            $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
+            foreach ($map as $col) {
+                $path = $this->xmlDir . '/' . $col;
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, TRUE);
+                }
+            }
+            return $map;
+        }
         /**
          * @return void
          */
@@ -368,6 +344,25 @@ namespace TheSeer\phpDox\Collector {
                 }
                 $node->parentNode->removeChild($node);
             }
+        }
+
+        private function saveSources() {
+            foreach($this->files as $file) {
+                $tokenDom = $file->getTokens();
+                $tokenDom->formatOutput = TRUE;
+                $tokenDom->preserveWhiteSpace = FALSE;
+                $fname = $this->xmlDir . '/source/' . $file->getRelative($this->srcDir, FALSE) . '.xml';
+                $dir = dirname($fname);
+                if (!file_exists($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+                $tokenDom->save($fname);
+            }
+
+            $sourceDom = $this->source->export();
+            $sourceDom->formatOutput = TRUE;
+            $sourceDom->preserveWhiteSpace = FALSE;
+            $sourceDom->save($this->xmlDir . '/source.xml');
         }
 
     }

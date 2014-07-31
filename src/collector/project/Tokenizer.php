@@ -1,6 +1,8 @@
 <?php
 namespace TheSeer\phpDox\Collector {
 
+    use TheSeer\fDOM\fDOMDocument;
+
     class Tokenizer {
 
         /**
@@ -50,9 +52,11 @@ namespace TheSeer\phpDox\Collector {
         );
 
         /**
-         * @param string $source
+         * @param $source
          *
-         * @return string
+         * @return fDOMDocument
+         *
+         * @throws \TheSeer\fDOM\fDOMException
          */
         public function toXML($source) {
 
@@ -108,7 +112,9 @@ namespace TheSeer\phpDox\Collector {
             $this->writer->endElement();
             $this->writer->endDocument();
 
-            return $this->writer->outputMemory();
+            $dom = new fDOMDocument();
+            $dom->loadXML($this->writer->outputMemory());
+            return $dom;
         }
 
         private function addToken(array $token) {

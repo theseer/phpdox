@@ -3,7 +3,7 @@ namespace TheSeer\phpDox\Collector {
 
     use TheSeer\phpDox\FileInfo;
 
-    class PathConverterIterator implements \Iterator {
+    class SourceFileIterator implements \Iterator {
 
         private $iterator;
 
@@ -19,7 +19,7 @@ namespace TheSeer\phpDox\Collector {
          * @return mixed Can return any type.
          */
         public function current() {
-            return new FileInfo($this->iterator->current()->getPathname());
+            return new SourceFile($this->iterator->current()->getPathname());
         }
 
         /**

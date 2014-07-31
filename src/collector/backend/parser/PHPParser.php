@@ -67,7 +67,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         public function parse(SourceFile $sourceFile) {
             try {
-                $result = new ParseResult($sourceFile->getFileInfo());
+                $result = new ParseResult($sourceFile);
                 $parser = $this->getParserInstance();
                 $nodes = $parser->parse($sourceFile->getSource());
                 $this->getTraverserInstance($result)->traverse($nodes);
