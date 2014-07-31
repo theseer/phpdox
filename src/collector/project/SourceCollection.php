@@ -93,9 +93,9 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function removeFile(FileInfo $file) {
-            if (!isset($this->collection[$path])) {
+            if (!isset($this->collection[$file->getRealPath()])) {
                 throw new SourceCollectionException(
-                    sprintf("File %s not found in collection", $path),
+                    sprintf("File %s not found in collection", $file->getRealPath()),
                     SourceCollectionException::SourceNotFound
                 );
             }
