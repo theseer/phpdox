@@ -87,6 +87,15 @@
                     <!-- <file name="logs/checkstyle.xml" /> -->
                 <!--</source> -->
 
+                <!-- enrichment source -->
+                <!--<source type="phpcs">-->
+                <!-- @type - the handler for the enrichment -->
+                <!--         known types by default are: checkstyle, pmd, clover, phpunit, phpcs -->
+
+                <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
+                <!-- <file name="logs/phpcs.xml" /> -->
+                <!--</source> -->
+
                 <!-- PHPMessDetector -->
                 <!--
                 <source type="pmd">
