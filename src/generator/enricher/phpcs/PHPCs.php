@@ -10,7 +10,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class PHPCs extends AbstractEnricher implements ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface {
+    class PHPCs extends CheckStyle {
 
         private $config;
         private $findings = NULL;
@@ -26,25 +26,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         public function getName() {
             return 'PHPCS XML';
-        }
-
-        public function enrichClass(ClassStartEvent $event) {
-            $this->enrichUnit($event->getClass());
-        }
-
-        public function enrichInterface(InterfaceStartEvent $event) {
-            $this->enrichUnit($event->getInterface());
-        }
-
-        public function enrichTrait(TraitStartEvent $event) {
-            $this->enrichUnit($event->getTrait());
-        }
-
-        private function enrichUnit(AbstractUnitObject $ctx) {
-            $file = $ctx->getSourceFile();
-            if (isset($this->findings[$file])) {
-                $this->processFindings($ctx->asDom(), $this->findings[$file]);
-            }
         }
 
         private function loadFindings($xmlFile) {
@@ -69,31 +50,18 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
         }
 
-        private function processFindings(fDOMDocument $dom, \DOMNodeList $findings) {
-
-            foreach($findings as $finding) {
-                /** @var fDOMElement $finding */
-                $line = $finding->getAttribute('line');
-                $ref = $dom->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
-                if (!$ref) {
-                    // One src file may contain multiple classes/traits/interfaces, so the
-                    // finding might not apply to the current object since findings are based on filenames
-                    // but we have individual objects - so we just ignore the finding for this context
+        protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding)
+        {
+            $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
+            $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->tagName);
+            $enrichment->appendChild($enrichFinding);
+            foreach($finding->attributes as $attr) {
+                if ($attr->localName == 'severity') {
                     continue;
                 }
-
-                $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
-                $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->tagName);
-                $enrichment->appendChild($enrichFinding);
-                foreach($finding->attributes as $attr) {
-                    if ($attr->localName == 'severity') {
-                        continue;
-                    }
-                    $enrichFinding->setAttributeNode($dom->importNode($attr, true));
-                }
-                $enrichFinding->setAttribute('message', $finding->nodeValue);
+                $enrichFinding->setAttributeNode($dom->importNode($attr, true));
             }
-
+            $enrichFinding->setAttribute('message', $finding->nodeValue);
         }
     }
 
