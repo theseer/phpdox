@@ -50,6 +50,10 @@ namespace TheSeer\phpDox {
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyle')
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\CheckStyleConfig');
 
+    $phpDox->registerEnricher('phpcs', 'phpcs.xml enricher')
+        ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPCs')
+        ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPCsConfig');
+
     $phpDox->registerEnricher('pmd', 'PHPMessDetector (pmd.xml) enricher')
         ->implementedByClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPMessDetector')
         ->withConfigClass('TheSeer\\phpDox\\Generator\\Enricher\\PHPMessDetectorConfig');
