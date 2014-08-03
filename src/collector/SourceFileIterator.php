@@ -12,11 +12,7 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
-         * (PHP 5 &gt;= 5.0.0)<br/>
-         * Return the current element
-         *
-         * @link http://php.net/manual/en/iterator.current.php
-         * @return mixed Can return any type.
+         * @return SourceFile
          */
         public function current() {
             return new SourceFile($this->iterator->current()->getPathname());

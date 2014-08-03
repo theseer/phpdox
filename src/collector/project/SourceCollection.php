@@ -82,7 +82,7 @@ namespace TheSeer\phpDox\Collector {
             return $this->isChanged($path);
         }
 
-        public function setTokenFileReference(SourceFile $file, FileInfo $path) {
+        public function setTokenFileReference(SourceFile $file, $tokenPath) {
             $path = $file->getRealPath();
             if (!isset($this->collection[$path])) {
                 throw new SourceCollectionException(
@@ -90,6 +90,7 @@ namespace TheSeer\phpDox\Collector {
                     SourceCollectionException::SourceNotFound
                 );
             }
+            $this->collection[$path]->setAttribute('xml', $tokenPath);
         }
 
         public function removeFile(FileInfo $file) {

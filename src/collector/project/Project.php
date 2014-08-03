@@ -351,12 +351,14 @@ namespace TheSeer\phpDox\Collector {
                 $tokenDom = $file->getTokens();
                 $tokenDom->formatOutput = TRUE;
                 $tokenDom->preserveWhiteSpace = FALSE;
-                $fname = $this->xmlDir . '/source/' . $file->getRelative($this->srcDir, FALSE) . '.xml';
+                $relName = 'tokens/' . $file->getRelative($this->srcDir, FALSE) . '.xml';
+                $fname = $this->xmlDir . '/' . $relName;
                 $dir = dirname($fname);
                 if (!file_exists($dir)) {
                     mkdir($dir, 0755, true);
                 }
                 $tokenDom->save($fname);
+                $this->source->setTokenFileReference($file, $relName);
             }
 
             $sourceDom = $this->source->export();
