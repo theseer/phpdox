@@ -6,16 +6,18 @@ namespace TheSeer\phpDox\Collector {
     class SourceFileIterator implements \Iterator {
 
         private $iterator;
+        private $srcDir;
 
-        public function __construct(\Iterator $iterator) {
+        public function __construct(\Iterator $iterator, $srcDir) {
             $this->iterator = $iterator;
+            $this->srcDir = $srcDir;
         }
 
         /**
          * @return SourceFile
          */
         public function current() {
-            return new SourceFile($this->iterator->current()->getPathname());
+            return new SourceFile($this->iterator->current()->getPathname(), $this->srcDir);
         }
 
         /**

@@ -56,14 +56,13 @@ namespace TheSeer\phpDox\Generator\Engine {
             $cleaner->process(new FileInfo($path));
         }
 
-        protected function saveDomDocument(\DOMDocument $dom, $filename) {
+        protected function saveDomDocument(\DOMDocument $dom, $filename, $format = true) {
             $path = dirname($filename);
             clearstatcache();
             if (!file_exists($path)) {
                 mkdir($path, 0755, true);
             }
-            $dom->formatOutput = true;
-            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = $format;
             return $dom->save($filename);
         }
 

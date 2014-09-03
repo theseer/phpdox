@@ -70,7 +70,7 @@ namespace TheSeer\phpDox\Collector {
          * @param string       $name
          * @param \SplFileInfo $file
          */
-        public function __construct($name = NULL, \SplFileInfo $file = NULL) {
+        public function __construct($name = NULL, SourceFile $file = NULL) {
             if ($this->rootName === NULL) {
                 throw new UnitObjectException('No or invalid rootname set', UnitObjectException::InvalidRootname);
             }
@@ -82,24 +82,10 @@ namespace TheSeer\phpDox\Collector {
                 $this->setName($name, $this->rootNode);
             }
             if ($file !== NULL) {
-                $this->setFileHeader($file);
+                $this->rootNode->appendChild($file->asNode($this->rootNode));
             }
             $this->setAbstract(FALSE);
             $this->setFinal(FALSE);
-        }
-
-        /**
-         * @param \SplFileInfo $file
-         */
-        private function setFileHeader(\SplFileInfo $file) {
-            $fileNode = $this->rootNode->appendElementNS(self::XMLNS, 'file');
-            $fileNode->setAttribute('path', $file->getPath());
-            $fileNode->setAttribute('file', $file->getBasename());
-            $fileNode->setAttribute('realpath', $file->getRealPath());
-            $fileNode->setAttribute('size', $file->getSize());
-            $fileNode->setAttribute('time', date('c', $file->getMTime()));
-            $fileNode->setAttribute('unixtime', $file->getMTime());
-            $fileNode->setAttribute('sha1', sha1_file($file->getRealPath()));
         }
 
         /**

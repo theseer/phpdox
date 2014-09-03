@@ -1,15 +1,32 @@
 <?php
 namespace TheSeer\phpDox\Collector {
 
+    use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
     use TheSeer\phpDox\Collector\Backend\SourceFileException;
     use TheSeer\phpDox\FileInfo;
 
     class SourceFile extends FileInfo {
 
         /**
+         * PHPDOX Namespace
+         */
+        const XMLNS = 'http://xml.phpdox.net/src#';
+
+        /**
          * @var string
          */
         private $src;
+
+        /**
+         * @var FileInfo
+         */
+        private $srcDir;
+
+        public function __construct($file_name, FileInfo $srcDir = NULL) {
+            parent::__construct($file_name);
+            $this->srcDir = $srcDir;
+        }
 
         /**
          * @return string
@@ -61,7 +78,30 @@ namespace TheSeer\phpDox\Collector {
          */
         public function getTokens() {
             $tokenizer = new Tokenizer();
-            return $tokenizer->toXML($this->getSource());
+            $dom = $tokenizer->toXML($this->getSource());
+            $root = $dom->documentElement;
+            $root->insertBefore($this->asNode($dom->documentElement), $root->firstChild);
+            return $dom;
+        }
+
+        /**
+         * @param fDOMDocument $ctx
+         *
+         * @return \TheSeer\fDOM\fDOMElement
+           */
+        public function asNode(fDOMElement $ctx) {
+            $fileNode = $ctx->ownerDocument->createElementNS(self::XMLNS, 'file');
+            $fileNode->setAttribute('path', $this->getPath());
+            $fileNode->setAttribute('file', $this->getBasename());
+            $fileNode->setAttribute('realpath', $this->getRealPath());
+            $fileNode->setAttribute('size', $this->getSize());
+            $fileNode->setAttribute('time', date('c', $this->getMTime()));
+            $fileNode->setAttribute('unixtime', $this->getMTime());
+            $fileNode->setAttribute('sha1', sha1_file($this->getRealPath()));
+            if ($this->srcDir instanceof FileInfo) {
+                $fileNode->setAttribute('relative', $this->getRelative($this->srcDir, FALSE));
+            }
+            return $fileNode;
         }
 
     }

@@ -1,15 +1,37 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:src="http://xml.phpdox.net/token#"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns:token="http://xml.phpdox.net/token#"
+                xmlns:src="http://xml.phpdox.net/src#"
+                xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="token src">
+
+    <xsl:import href="components.xsl" />
+    <xsl:import href="functions.xsl" />
+
+    <xsl:param name="base" select="''" />
+
+    <xsl:output indent="no" standalone="yes" method="xml" xml:space="default" />
 
     <xsl:template match="/">
-        <html>
+        <html lang="en">
             <head>
-                <link rel="stylesheet" href="./test.css" />
-                <title>PHP Source Highlight</title>
+                <title>phpDox - Source of <xsl:value-of select="//src:file/@file" /></title>
+                <link rel="stylesheet" type="text/css" href="{$base}css/style.css" media="screen" />
+                <link rel="stylesheet" href="{$base}css/source.css" />
+                <meta http-equiv="content-type" content="text/html; charset=utf-8" />
             </head>
+
             <body>
-                <xsl:call-template name="source" />
+                <xsl:call-template name="nav" />
+                <div id="mainstage">
+                    <h1><small><xsl:value-of select="//src:file/@path" />/</small><xsl:value-of select="//src:file/@file" /></h1>
+                    <p>
+                        Size: <xsl:value-of select="format-number(//src:file/@size, '0,000')" /> Bytes - Last Modified: <xsl:value-of select="//src:file/@time" />
+                    </p>
+                    <section>
+                        <xsl:call-template name="source" />
+                    </section>
+                </div>
+                <xsl:call-template name="footer" />
             </body>
         </html>
     </xsl:template>
@@ -18,30 +40,28 @@
         <table class="source">
             <tr>
                 <td class="no">
-                    <xsl:for-each select="//src:line">
-                        <a href="#line{@no}"><xsl:value-of select="@no" /></a>
+                    <xsl:for-each select="//token:line">
+                        <a class="anker" href="#line{@no}"><xsl:value-of select="@no" /></a>
                     </xsl:for-each>
                 </td>
                 <td class="line">
-                    <pre>
-                        <xsl:apply-templates select="//src:line" />
-                    </pre>
+                    <xsl:apply-templates select="//token:line" />
                 </td>
             </tr>
         </table>
     </xsl:template>
 
-    <xsl:template match="src:line[not(*)]">
+    <xsl:template match="token:line[not(*)]">
         <div id="line{@no}"><br/></div>
     </xsl:template>
 
-    <xsl:template match="src:line">
+    <xsl:template match="token:line">
         <div id="line{@no}">
-            <xsl:apply-templates select="src:token" />
+            <pre><xsl:apply-templates select="token:token" /></pre>
         </div>
     </xsl:template>
 
-    <xsl:template match="src:token">
+    <xsl:template match="token:token">
         <span class="token {@name}"><xsl:value-of select="." /></span>
     </xsl:template>
 

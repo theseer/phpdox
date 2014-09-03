@@ -52,7 +52,7 @@ namespace TheSeer\phpDox\Collector {
         );
 
         /**
-         * @param $source
+         * @param string $source
          *
          * @return fDOMDocument
          *
@@ -113,6 +113,7 @@ namespace TheSeer\phpDox\Collector {
             $this->writer->endDocument();
 
             $dom = new fDOMDocument();
+            $dom->preserveWhiteSpace = false;
             $dom->loadXML($this->writer->outputMemory());
             return $dom;
         }

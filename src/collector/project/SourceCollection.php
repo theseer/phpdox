@@ -37,7 +37,6 @@
      */
 namespace TheSeer\phpDox\Collector {
 
-    use TheSeer\phpDox\Collector\Backend\SourceFileException;
     use TheSeer\phpDox\FileInfo;
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
@@ -49,7 +48,14 @@ namespace TheSeer\phpDox\Collector {
          */
         private $srcDir;
 
+        /**
+         * @var fDOMElement[]
+         */
         private $original = array();
+
+        /**
+         * @var fDOMElement[]
+         */
         private $collection = array();
 
         private $workDom;
@@ -79,7 +85,11 @@ namespace TheSeer\phpDox\Collector {
             $node->setAttribute('unixtime', $file->getMTime());
             $node->setAttribute('sha1', sha1_file($file->getPathname()));
             $this->collection[$path] = $node;
-            return $this->isChanged($path);
+            $changed = $this->isChanged($path);
+            if (!$changed) {
+                $node->setAttribute('xml', $this->original[$path]->getAttribute('xml'));
+            }
+            return $changed;
         }
 
         public function setTokenFileReference(SourceFile $file, $tokenPath) {

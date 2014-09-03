@@ -57,11 +57,12 @@ namespace TheSeer\phpDox\Generator {
          * @var array
          */
         private $enrichers = array(
-            'phpdox.start'    => array(),
-            'class.start'     => array(),
-            'trait.start'     => array(),
-            'interface.start' => array(),
-            'phpdox.end'      => array()
+            'phpdox.start'       => array(),
+            'class.start'        => array(),
+            'trait.start'        => array(),
+            'interface.start'    => array(),
+            'token.file.start'   => array(),
+            'phpdox.end'         => array()
         );
 
         /**
@@ -138,9 +139,24 @@ namespace TheSeer\phpDox\Generator {
             } else {
                 $this->processGlobalOnly();
             }
+            $this->processTokenFiles($project->getSourceTree());
             $this->handleEvent(new PHPDoxEndEvent($project->getIndex(), $project->getSourceTree()));
             $this->logger->completed();
 
+        }
+
+        private function processTokenFiles(SourceTree $sourceTree) {
+            foreach($sourceTree as $tokenFile) {
+                $this->handleEvent(new TokenFileStartEvent($tokenFile));
+                foreach($tokenFile as $sourceLine) {
+                    $this->handleEvent(new TokenLineStartEvent($tokenFile, $sourceLine));
+                    foreach($sourceLine as $token) {
+                        $this->handleEvent(new TokenEvent($sourceLine, $token));
+                    }
+                    $this->handleEvent(new TokenLineEndEvent($tokenFile, $sourceLine));
+                }
+                $this->handleEvent(new TokenFileEndEvent($tokenFile));
+            }
         }
 
         /**
