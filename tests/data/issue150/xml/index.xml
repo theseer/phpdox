@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src#" basedir="/home/theseer/storage/php/phpdox/tests/data/issue150/src">
+  <namespace name="">
+    <class name="MyClass" src="MyClass.php" xml="classes/MyClass.xml"/>
+  </namespace>
+</index>

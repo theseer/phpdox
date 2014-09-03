@@ -43,14 +43,14 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
     /**
      * Class ParserTest
      *
-     * @uses TheSeer\phpDox\DocBlock\Factory
-     * @covers TheSeer\phpDox\DocBlock\Parser
+     * @ uses TheSeer\phpDox\DocBlock\Factory
+     * @ covers TheSeer\phpDox\DocBlock\Parser
      */
     class ParserTest extends \TheSeer\phpDox\Tests\phpDox_TestCase {
 
         /**
-         * @covers TheSeer\phpDox\DocBlock\Parser::__construct
-         * @covers TheSeer\phpDox\DocBlock\Parser::parse
+         * @ covers TheSeer\phpDox\DocBlock\Parser::__construct
+         * @ covers TheSeer\phpDox\DocBlock\Parser::parse
          *
          * @dataProvider docblockSources
          */

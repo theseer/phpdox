@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src#" full="MyClass" namespace="" name="MyClass" abstract="false" final="false" start="3" end="3">
+  <file path="/home/theseer/storage/php/phpdox/tests/data/issue150/src" file="MyClass.php" realpath="/home/theseer/storage/php/phpdox/tests/data/issue150/src/MyClass.php" size="41" time="2014-06-17T23:03:48+02:00" unixtime="1403039028" sha1="ef655e00c89305bf65a54de4f9a879d6c589c35a"/>
+</class>

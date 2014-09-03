@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token#">
+ <line no="1">
+  <token name="T_OPEN_TAG">&lt;?php</token>
+ </line>
+ <line no="2">
+  <token name="T_NAMESPACE">namespace</token>
+  <token name="T_WHITESPACE"> </token>
+  <token name="T_PHPDOX_OPEN_CURLY">{</token>
+ </line>
+ <line no="3">
+  <token name="T_WHITESPACE">    </token>
+  <token name="T_CLASS">class</token>
+  <token name="T_WHITESPACE"> </token>
+  <token name="T_STRING">MyClass</token>
+  <token name="T_WHITESPACE"> </token>
+  <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+ </line>
+ <line no="4">
+  <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+ </line>
+ <line no="5"/>
+</source>
