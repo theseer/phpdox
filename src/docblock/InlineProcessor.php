@@ -86,7 +86,7 @@ namespace TheSeer\phpDox\DocBlock {
             }
             $parts = preg_split("/[\s,]+/", $match, 2, PREG_SPLIT_NO_EMPTY);
             $annotation = substr($parts[0], 1);
-            if (preg_match('=[a-zA-Z0-9]=', $annotation)) {
+            if (preg_match('=^[a-zA-Z0-9]*$=', $annotation)) {
                 $parser = $this->factory->getParserInstanceFor($annotation);
             } else {
                 $parser = $this->factory->getParserInstanceFor('invalid', $annotation);
