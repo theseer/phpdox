@@ -80,19 +80,21 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     // but we have individual objects - so we just ignore the finding for this context
                     continue;
                 }
-
-                $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
-                $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->getAttribute('severity', 'error'));
-                $enrichment->appendChild($enrichFinding);
-                foreach($finding->attributes as $attr) {
-                    if ($attr->localName == 'severity') {
-                        continue;
-                    }
-                    $enrichFinding->setAttributeNode($dom->importNode($attr, true));
-                }
-
+                $this->processFinding($dom, $ref, $finding);
             }
 
+        }
+
+        protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding) {
+            $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
+            $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->getAttribute('severity', 'error'));
+            $enrichment->appendChild($enrichFinding);
+            foreach($finding->attributes as $attr) {
+                if ($attr->localName == 'severity') {
+                    continue;
+                }
+                $enrichFinding->setAttributeNode($dom->importNode($attr, true));
+            }
         }
     }
 

@@ -131,6 +131,8 @@ spl_autoload_register(
                 'theseer\\phpdox\\generator\\enricher\\gitconfig' => '/generator/enricher/git/GitConfig.php',
                 'theseer\\phpdox\\generator\\enricher\\gitenricherexception' => '/generator/enricher/git/Git.php',
                 'theseer\\phpdox\\generator\\enricher\\interfaceenricherinterface' => '/generator/enricher/InterfaceEnricherInterface.php',
+                'theseer\\phpdox\\generator\\enricher\\phpcs' => '/generator/enricher/phpcs/PHPCs.php',
+                'theseer\\phpdox\\generator\\enricher\\phpcsconfig' => '/generator/enricher/phpcs/PHPCsConfig.php',
                 'theseer\\phpdox\\generator\\enricher\\phploc' => '/generator/enricher/phploc/PHPLoc.php',
                 'theseer\\phpdox\\generator\\enricher\\phplocconfig' => '/generator/enricher/phploc/PHPLocConfig.php',
                 'theseer\\phpdox\\generator\\enricher\\phpmessdetector' => '/generator/enricher/pmd/PHPMessDetector.php',
