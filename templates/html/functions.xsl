@@ -14,6 +14,7 @@
             <xsl:choose>
                 <xsl:when test="local-name($ctx) = 'implements'">interfaces</xsl:when>
                 <xsl:when test="local-name($ctx) = 'uses'">traits</xsl:when>
+                <xsl:when test="local-name($ctx) = 'interface'">interfaces</xsl:when>
 
                 <xsl:when test="local-name($unit) = 'interface'">interfaces</xsl:when>
                 <xsl:when test="local-name($unit) = 'class'">classes</xsl:when>
