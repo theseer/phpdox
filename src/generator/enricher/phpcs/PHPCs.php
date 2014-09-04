@@ -50,8 +50,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
         }
 
-        protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding)
-        {
+        protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding) {
             $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
             $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->tagName);
             $enrichment->appendChild($enrichFinding);
