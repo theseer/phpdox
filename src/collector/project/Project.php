@@ -105,7 +105,7 @@ namespace TheSeer\phpDox\Collector {
             $isNew = $this->source->addFile($file);
             if ($isNew) {
                 $this->removeFileReferences($file->getPathname());
-                $this->files[] = $file;
+                $this->files[$file->getPathname()] = $file;
             }
             return $isNew;
         }
@@ -115,6 +115,7 @@ namespace TheSeer\phpDox\Collector {
          */
         public function removeFile(FileInfo $file) {
             $this->removeFileReferences($file->getPathname());
+            unset($this->files[$file->getPathname()]);
             $this->source->removeFile($file);
         }
 
