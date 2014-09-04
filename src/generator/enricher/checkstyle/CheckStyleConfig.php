@@ -17,6 +17,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         private $context;
 
+
+        protected $defaultFileName = 'checkstyle.xml';
+
         public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
             $this->context = $ctx;
             $this->generator = $generator;
@@ -33,7 +36,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             if ($file && $file->hasAttribute('name')) {
                 $path .= $file->getAttribute('name');
             } else {
-                $path .= 'checkstyle.xml';
+                $path .= $this->defaultFileName;
             }
             return $path;
         }
