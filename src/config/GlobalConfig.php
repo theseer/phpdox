@@ -71,6 +71,9 @@ namespace TheSeer\phpDox {
             return $this->file;
         }
 
+        /**
+         * @return bool
+         */
         public function isSilentMode() {
             $root = $this->cfg->queryOne('/cfg:phpdox');
             if (!$root instanceOf \DomNode) {
@@ -79,14 +82,20 @@ namespace TheSeer\phpDox {
             return $root->getAttribute('silent', 'false') === 'true';
         }
 
-        public function getBootstrapFiles() {
-            $files = array();
+        /**
+         * @return FileInfoCollection
+         */
+        public function getCustomBootstrapFiles() {
+            $files = new FileInfoCollection();
             foreach($this->cfg->query('//cfg:bootstrap/cfg:require[@file]') as $require) {
-                $files[] = $require->getAttribute('file');
+                $files->add(new FileInfo($require->getAttribute('file'))) ;
             }
             return $files;
         }
 
+        /**
+         * @return array
+         */
         public function getAvailableProjects() {
             $list = array();
             foreach ($this->cfg->query('//cfg:project[@enabled="true" or not(@enabled)]') as $pos => $project) {
@@ -95,6 +104,12 @@ namespace TheSeer\phpDox {
             return $list;
         }
 
+        /**
+         * @param $project
+         *
+         * @return ProjectConfig
+         * @throws ConfigException
+         */
         public function getProjectConfig($project) {
             $filter = is_int($project) ? $project : "@name = '$project'";
             $ctx = $this->cfg->queryOne("//cfg:project[$filter]");
@@ -104,6 +119,12 @@ namespace TheSeer\phpDox {
             return new ProjectConfig($this->runResolver($ctx));
         }
 
+        /**
+         * @param $ctx
+         *
+         * @return mixed
+         * @throws ConfigException
+         */
         protected function runResolver($ctx) {
             if (defined('PHPDOX_VERSION') && constant('PHPDOX_VERSION')=='%development%') {
                 $home = realpath(__DIR__.'/../../');
@@ -151,6 +172,13 @@ namespace TheSeer\phpDox {
             return $ctx;
         }
 
+        /**
+         * @param       $value
+         * @param array $vars
+         * @param       $line
+         *
+         * @return mixed
+         */
         protected function resolveValue($value, Array $vars, $line) {
             $result = preg_replace_callback('/\${(.*?)}/',
                 function($matches) use ($vars, $line) {

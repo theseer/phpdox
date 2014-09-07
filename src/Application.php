@@ -73,13 +73,13 @@ namespace TheSeer\phpDox {
         /**
          * Run Bootstrap code for given list of bootstrap files
          *
-         * @param array $requires
+         * @param FileInfoCollection $requires
          *
          * @return Bootstrap
          */
-        public function runBootstrap(array $requires) {
+        public function runBootstrap(FileInfoCollection $requires) {
             $bootstrap = $this->factory->getInstanceFor('Bootstrap');
-            $bootstrap->load($requires);
+            $bootstrap->load($requires, true);
             return $bootstrap;
         }
 

@@ -48,11 +48,11 @@ namespace TheSeer\phpDox {
         /**
          * Load bootstrap files to register components and builder
          *
-         * @param Array $require Array of files to require
+         * @param FileInfoCollection $require list of files to require
          *
          * @throws BootstrapException
          */
-        public function load(Array $require, $silent = TRUE) {
+        public function load(FileInfoCollection $require, $silent = TRUE) {
             foreach($require as $file) {
                 /** @var FileInfo $file */
                 if (!$file->exists()) {
