@@ -54,9 +54,6 @@ if (strpos(PHPDOX_VERSION, '%devel')===0) {
     require 'TheSeer/phpDox/autoload.php';
 }
 
-spl_autoload_register( array('ezcBase','autoload'));
 
 $factory = new \TheSeer\phpDox\Factory();
-$factory->getInstanceFor('CLI')->run();
-
-exit(0);
+$factory->getInstanceFor('CLI')->run(new \TheSeer\phpDox\CLIOptions($_SERVER['argv']));

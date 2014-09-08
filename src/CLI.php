@@ -62,39 +62,37 @@ namespace TheSeer\phpDox {
         /**
          * Main executor for CLI process.
          */
-        public function run() {
+        public function run(CLIOptions $options) {
             $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
             $errorHandler->register();
             try {
                 $this->preBootstrap();
-                $options = $this->processOptions();
 
-                if ($options->getValue('version') === TRUE) {
+                if ($options->showHelp() === TRUE) {
+                    $this->showVersion();
+                    echo $options->getHelpScreen();
+                    exit(0);
+                }
+
+                if ($options->showVersion() === TRUE) {
                     $this->showVersion();
                     exit(0);
                 }
 
-                if ($options->getValue('skel') === TRUE) {
-                    $this->showSkeletonConfig($options->getValue('strip'));
-                    exit(0);
-                }
-
-                if ($options->getValue('help') === TRUE) {
-                    $this->showVersion();
-                    $this->showUsage();
+                if ($options->generateSkel() === TRUE) {
+                    $this->showSkeletonConfig($options->generateStrippedSkel());
                     exit(0);
                 }
 
                 $cfgLoader = $this->factory->getInstanceFor('ConfigLoader');
-                $cfgFile = $options->getValue('file');
-                if ($cfgFile) {
+                $cfgFile = $options->configFile();
+                if ($cfgFile != '') {
                     $config = $cfgLoader->load($cfgFile);
                 } else {
                     $config = $cfgLoader->autodetect();
                 }
 
                 /** @var $config GlobalConfig */
-
                 if ($config->isSilentMode()) {
                     $this->factory->setLoggerType('silent');
                 } else {
@@ -116,21 +114,22 @@ namespace TheSeer\phpDox {
                 $bootstrap = $app->runBootstrap($defBootstrapFiles);
                 $bootstrap->load($config->getCustomBootstrapFiles(), false);
 
-                if ($options->getValue('engines')) {
+                if ($options->listEngines()) {
                     $this->showVersion();
                     $this->showList('engines', $bootstrap->getEngines());
-                    exit(0);
                 }
 
-                if ($options->getValue('enrichers')) {
+                if ($options->listEnrichers()) {
                     $this->showVersion();
                     $this->showList('enrichers', $bootstrap->getEnrichers());
-                    exit(0);
                 }
 
-                if ($options->getValue('backends')) {
+                if ($options->listBackends()) {
                     $this->showVersion();
                     $this->showList('backends', $bootstrap->getBackends());
+                }
+
+                if ($options->listBackends() || $options->listEngines() || $options->listEnrichers()) {
                     exit(0);
                 }
 
@@ -145,11 +144,11 @@ namespace TheSeer\phpDox {
                         $cleaner->process(new FileInfo($pcfg->getWorkDirectory()));
                     }
 
-                    if (!$options->getValue('generator')) {
+                    if (!$options->generatorOnly()) {
                         $app->runCollector( $pcfg->getCollectorConfig() );
                     }
 
-                    if (!$options->getValue('collector')) {
+                    if (!$options->collectorOnly()) {
                         $app->runGenerator( $pcfg->getGeneratorConfig() );
                     }
 
@@ -167,8 +166,8 @@ namespace TheSeer\phpDox {
                 exit(3);
             } catch (CLIOptionsException $e) {
                 $this->showVersion();
-                fwrite(STDERR, "\n".$e->getMessage()."\n\n");
-                $this->showUsage();
+                fwrite(STDERR, $e->getMessage()."\n\n");
+                fwrite(STDERR, $options->getHelpScreen());
                 exit(3);
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
@@ -223,101 +222,6 @@ namespace TheSeer\phpDox {
                 printf("   %s \t %s\n", $name, $desc);
             }
             echo "\n\n";
-        }
-
-        /**
-         * Helper to register and process supported CLI options into an ezcConsoleInput
-         *
-         * @throws CLIOptionsException
-         * @return CLIOptions
-         */
-        protected function processOptions() {
-            $input = new \ezcConsoleInput();
-            $versionOption = $input->registerOption( new \ezcConsoleOption( 'v', 'version' ) );
-            $versionOption->shorthelp    = 'Prints the version and exits';
-            $versionOption->isHelpOption = TRUE;
-
-            $helpOption = $input->registerOption( new \ezcConsoleOption( 'h', 'help' ) );
-            $helpOption->isHelpOption = TRUE;
-            $helpOption->shorthelp    = 'Prints this usage information';
-
-            $input->registerOption( new \ezcConsoleOption(
-                'f', 'file', \ezcConsoleInput::TYPE_STRING, NULL, FALSE,
-                'Configuration file to load'
-            ));
-
-            $c = $input->registerOption( new \ezcConsoleOption(
-                    'c', 'collector', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                    'Run collector process only'
-            ));
-
-            $g = $input->registerOption( new \ezcConsoleOption(
-                    'g', 'generator', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                    'Run generator process only'
-            ));
-
-            $g->addExclusion(new \ezcConsoleOptionRule($c));
-            $c->addExclusion(new \ezcConsoleOptionRule($g));
-
-            $input->registerOption( new \ezcConsoleOption(
-                NULL, 'engines', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                'Show a list of available engines and exit'
-            ));
-
-            $input->registerOption( new \ezcConsoleOption(
-                NULL, 'enrichers', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                'Show a list of available enrichers and exit'
-            ));
-
-            $input->registerOption( new \ezcConsoleOption(
-                NULL, 'backends', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                'Show a list of available backends and exit'
-            ));
-
-            $skel = $input->registerOption( new \ezcConsoleOption(
-                    NULL, 'skel', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                    'Show a skeleton config xml file and exit'
-            ));
-
-            $strip = $input->registerOption( new \ezcConsoleOption(
-                    NULL, 'strip', \ezcConsoleInput::TYPE_NONE, NULL, FALSE,
-                    'Strip xml config when showing'
-            ));
-            $strip->addDependency(new \ezcConsoleOptionRule($skel));
-
-            try {
-                $input->process();
-                return new CLIOptions($input);
-            } catch (\ezcConsoleException $e) {
-                throw new CLIOptionsException($e->getMessage(), $e->getCode());
-            }
-        }
-
-        /**
-         * Helper to output usage information.
-         */
-        protected function showUsage() {
-            print <<<EOF
-Usage: phpdox [switches]
-
-  -f, --file       Configuration file to use (defaults to ./phpdox.xml[.dist])
-
-  -h, --help       Prints this usage information
-  -v, --version    Prints the version and exits
-
-  -c, --collector  Run only collector process
-  -g, --generator  Run only generator process
-
-      --engines    Show a list of available output engines and exit
-      --enrichers  Show a list of available output enrichers and exit
-
-      --backends   Show a list of available backends and exit
-
-      --skel       Show an annotated skeleton config xml file and exit
-      --strip      Strip comments from skeleton config xml when showing
-
-
-EOF;
         }
 
         private function preBootstrap() {

@@ -27,4 +27,4 @@ if (!defined('PHPDOX_COMPOSER_INSTALL')) {
 }
 
 $factory = new \TheSeer\phpDox\Factory();
-$factory->getInstanceFor('CLI')->run();
+$factory->getInstanceFor('CLI')->run(new \TheSeer\phpDox\CLIOptions($_SERVER['argv']));
