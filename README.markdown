@@ -3,7 +3,7 @@ phpDox
 
 *phpDox* is a documentation generator for generating API documentation in HTML format, for instance, from PHP source code.
 
-  
+
 [![Build Status](https://travis-ci.org/theseer/phpdox.svg?branch=master)](https://travis-ci.org/theseer/phpdox)
 
 Requirements
@@ -18,7 +18,6 @@ Requirements
 - [DirectoryScanner](http://github.com/theseer/DirectoryScanner)
 - [fXSL](http://github.com/theseer/fXSL)
 - [PHP_Timer](http://github.com/sebastianbergmann/php-timer)
-- Zeta Components [ConsoleTools](http://zetac.org/ConsoleTools)
 
 
 User Installation
@@ -33,11 +32,11 @@ Installation is simple:
     wget http://phpdox.de/releases/phpdox.phar
     chmod +x phpdox.phar
     sudo mv phpdox.phar /usr/bin/phpdox
-    
+
 You can now execute phpdox on the command line:
 
     phpdox --version
-    
+
 If everything worked out, you should get an output like this:
 
     phpDox 0.6.6 - Copyright (C) 2010 - 2014 by Arne Blankerts
