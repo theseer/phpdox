@@ -23,11 +23,15 @@
             <body>
                 <xsl:call-template name="nav" />
                 <div id="mainstage">
-                    <h1><small><xsl:value-of select="//src:file/@path" />/</small><xsl:value-of select="//src:file/@file" /></h1>
+
+                    <xsl:call-template name="breadcrumb" />
+
+                    <h1>Source of file <xsl:value-of select="//src:file/@file" /></h1>
                     <p>
                         Size: <xsl:value-of select="format-number(//src:file/@size, '0,000')" /> Bytes - Last Modified: <xsl:value-of select="//src:file/@time" />
                     </p>
                     <section>
+                        <h2><small><xsl:value-of select="//src:file/@path" />/</small><xsl:value-of select="//src:file/@file" /></h2>
                         <xsl:call-template name="source" />
                     </section>
                 </div>
@@ -35,6 +39,21 @@
             </body>
         </html>
     </xsl:template>
+
+    <!-- ######################################################################################################### -->
+
+    <xsl:template name="breadcrumb">
+        <div class="box">
+            <ul class="breadcrumb">
+                <li><a href="{$base}index.{$extension}">Overview</a></li>
+                <li class="separator"><a href="{$base}source/index.{$extension}">Source</a></li>
+
+                
+            </ul>
+        </div>
+    </xsl:template>
+
+    <!-- ######################################################################################################### -->
 
     <xsl:template name="source">
         <table class="source">

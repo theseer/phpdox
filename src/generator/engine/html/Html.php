@@ -40,6 +40,7 @@ namespace TheSeer\phpDox\Generator\Engine {
     use TheSeer\fDom\fDomDocument;
     use TheSeer\fXSL\fXSLTProcessor;
 
+    use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\Generator\AbstractEvent;
     use TheSeer\phpDox\Generator\ClassMethodEvent;
     use TheSeer\phpDox\Generator\ClassStartEvent;
@@ -87,7 +88,6 @@ namespace TheSeer\phpDox\Generator\Engine {
         private $hasClasses = false;
         private $hasReports;
 
-
         public function __construct(HtmlConfig $config) {
             $this->templateDir = $config->getTemplateDirectory();
             $this->resourceDir = $config->getResourceDirectory();
@@ -121,6 +121,10 @@ namespace TheSeer\phpDox\Generator\Engine {
             $xsl->setParameter('', 'hasTraits', $this->hasTraits ? 'Y' : 'N');
             $xsl->setParameter('', 'hasClasses', $this->hasClasses ? 'Y' : 'N');
             $xsl->setParameter('', 'hasReports', $this->hasReports ? 'Y' : 'N');
+
+            if ($this->projectNode->hasAttribute('name')) {
+                $xsl->setParameter('', 'project', $this->projectNode->getAttribute('name'));
+            }
 
             return $xsl;
         }
@@ -172,10 +176,24 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         private function renderSourceIndexes(fDOMDocument $treeDom) {
-            $proc = $this->getXSLTProcessor('index.xsl');
-            $proc->setParameter('', 'project', $this->projectNode->getAttribute('name'));
-            $html = $proc->transformToDoc($treeDom);
-            $this->saveDomDocument($html, $this->outputDir . '/index.' . $this->extension);
+            $proc = $this->getXSLTProcessor('directory.xsl');
+            $dirList = $treeDom->query('/phpdox:source//phpdox:dir');
+            foreach($dirList as $dirNode) {
+                $dirNode->setAttributeNS('ctx://engine/html','ctx:engine', 'current');
+
+                $parents = $dirNode->query('ancestor-or-self::phpdox:dir');
+                $elements = array();
+                foreach($parents as $parent) {
+                    $elements[] = $parent->getAttribute('name');
+                }
+                $elements[0] = $this->outputDir . '/source';
+                $elements[] = 'index.' . $this->extension;
+
+                $proc->setParameter('', 'base', str_repeat('../', count($elements) - 1));
+                $this->saveDomDocument( $proc->transformToDoc($treeDom), join('/', $elements));
+
+                $dirNode->removeAttributeNS('ctx://engine/html','engine');
+            }
         }
 
         public function buildFinish(PHPDoxEndEvent $event) {

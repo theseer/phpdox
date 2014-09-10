@@ -46,7 +46,7 @@ namespace TheSeer\phpDox {
                 self::$version = PHPDOX_VERSION;
                 if (PHPDOX_VERSION == '%development%') {
                     $cwd = getcwd();
-                    chdir(__DIR__);
+                    chdir(__DIR__ . '/../..');
                     $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
                     $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
                     chdir($cwd);

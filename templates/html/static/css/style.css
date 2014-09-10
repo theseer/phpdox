@@ -177,11 +177,11 @@ h3 {
 }
 
 .unavailable {
-    border:1px dotted rgba(128, 36, 32, 0.60);
-    background-color: rgba(230, 10, 10, 0.20);
-    color: rgba(128, 36, 32, 0.61);
+    border:1px dotted rgba(128, 36, 32, 0.10);
+    background-color: rgba(230, 10, 10, 0.05);
+    color: rgba(128, 36, 32, 0.20);
     margin:0 1em 1em 0;
-    padding:0;
+    padding: 2px;
 }
 
 .unavailable p {
@@ -393,4 +393,24 @@ footer span {
 
 .testresult-SKIPPED {
     color: #afafaf;
+}
+
+.path {
+    margin:0;
+    padding:0;
+    font-size: 0.9em;
+}
+
+ul.path li {
+    display: inline-block;
+}
+
+ul.path li.separator:before {
+    content: '/';
+    /*padding-left:0.5em;
+    padding-right:0.5em;*/
+}
+
+.directory tr td:first-of-type {
+    padding-left:1em;
 }
