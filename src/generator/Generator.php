@@ -43,6 +43,7 @@ namespace TheSeer\phpDox\Generator {
     use TheSeer\phpDox\Generator\Enricher\EnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\StartEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\InterfaceEnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\TokenFileEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\TraitEnricherInterface;
     use TheSeer\phpDox\ProgressLogger;
 
@@ -119,6 +120,9 @@ namespace TheSeer\phpDox\Generator {
             if ($enricher instanceof TraitEnricherInterface) {
                 $this->enrichers['trait.start'][] = $enricher;
             }
+            if ($enricher instanceof TokenFileEnricherInterface) {
+                $this->enrichers['token.file.start'][] = $enricher;
+            }
             if ($enricher instanceof EndEnricherInterface) {
                 $this->enrichers['phpdox.end'][] = $enricher;
             }
@@ -182,6 +186,10 @@ namespace TheSeer\phpDox\Generator {
                         }
                         case 'trait.start': {
                             $enricher->enrichTrait($event);
+                            break;
+                        }
+                        case 'token.file.start': {
+                            $enricher->enrichTokenFile($event);
                             break;
                         }
                         case 'phpdox.end': {

@@ -141,6 +141,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\generator\\enricher\\phpunit' => '/generator/enricher/phpunit/PHPUnit.php',
                 'theseer\\phpdox\\generator\\enricher\\phpunitconfig' => '/generator/enricher/phpunit/PHPUnitConfig.php',
                 'theseer\\phpdox\\generator\\enricher\\startenricherinterface' => '/generator/enricher/StartEnricherInterface.php',
+                'theseer\\phpdox\\generator\\enricher\\tokenfileenricherinterface' => '/generator/enricher/TokenFileEnricherInterface.php',
                 'theseer\\phpdox\\generator\\enricher\\traitenricherinterface' => '/generator/enricher/TraitEnricherInterface.php',
                 'theseer\\phpdox\\generator\\generator' => '/generator/Generator.php',
                 'theseer\\phpdox\\generator\\generatorexception' => '/generator/Generator.php',

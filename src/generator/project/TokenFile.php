@@ -33,6 +33,7 @@ namespace TheSeer\phpDox\Generator {
             if (!$this->dom instanceof fDOMDocument) {
                 $this->dom = new fDOMDocument();
                 $this->dom->load($this->file->getPathname());
+                $this->dom->registerNamespace('phpdox', SourceFile::XMLNS);
             }
             return $this->dom;
         }

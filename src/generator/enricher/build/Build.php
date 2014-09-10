@@ -7,11 +7,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
     use TheSeer\phpDox\Generator\PHPDoxStartEvent;
+    use TheSeer\phpDox\Generator\TokenFileStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
     use TheSeer\phpDox\Version;
 
     class Build extends AbstractEnricher implements StartEnricherInterface,
-        ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface {
+        ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface, TokenFileEnricherInterface {
 
         /**
          * @var array
@@ -48,6 +49,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         public function enrichTrait(TraitStartEvent $event) {
             $this->genericProcess($event->getTrait()->asDom());
+        }
+
+        public function enrichTokenFile(TokenFileStartEvent $event) {
+            $this->genericProcess($event->getTokenFile()->asDom());
         }
 
         private function genericProcess(fDOMDocument $dom) {
