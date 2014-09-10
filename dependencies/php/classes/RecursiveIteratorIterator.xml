@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="RecursiveIteratorIterator" namespace="" name="RecursiveIteratorIterator">
+<class xmlns="http://xml.phpdox.net/src" full="RecursiveIteratorIterator" namespace="" name="RecursiveIteratorIterator">
   <implements name="OuterIterator" full="OuterIterator"/>
   <constant name="LEAVES_ONLY" value="0">
     <docblock>

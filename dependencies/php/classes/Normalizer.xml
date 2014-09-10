@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Normalizer" namespace="" name="Normalizer">
+<class xmlns="http://xml.phpdox.net/src" full="Normalizer" namespace="" name="Normalizer">
   <method name="isNormalized" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Checks if the provided string is already in the specified normalization&#10;   form.&#10;  ">Object oriented style</description>

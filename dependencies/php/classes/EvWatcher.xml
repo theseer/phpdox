@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="EvWatcher" namespace="" name="EvWatcher">
+<class xmlns="http://xml.phpdox.net/src" full="EvWatcher" namespace="" name="EvWatcher">
   <member name="is_active" static="false" visibility="public">
     <default>null</default>
     <docblock>

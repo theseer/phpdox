@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="EvLoop" namespace="" name="EvLoop">
+<class xmlns="http://xml.phpdox.net/src" full="EvLoop" namespace="" name="EvLoop">
   <member name="data" static="false" visibility="public">
     <default>null</default>
     <docblock>

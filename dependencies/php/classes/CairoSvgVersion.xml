@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoSvgVersion" namespace="" name="CairoSvgVersion">
+<class xmlns="http://xml.phpdox.net/src" full="CairoSvgVersion" namespace="" name="CairoSvgVersion">
   <constant name="VERSION_1_1" value="0">
     <docblock>
       <var type="integer"/>

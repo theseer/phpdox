@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SolrClientException" namespace="" name="SolrClientException">
+<class xmlns="http://xml.phpdox.net/src" full="SolrClientException" namespace="" name="SolrClientException">
   <extends name="SolrException" full="SolrException"/>
   <member name="message" static="false" visibility="protected">
     <default>null</default>

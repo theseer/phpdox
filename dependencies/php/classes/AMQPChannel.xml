@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="AMQPChannel" namespace="" name="AMQPChannel">
+<class xmlns="http://xml.phpdox.net/src" full="AMQPChannel" namespace="" name="AMQPChannel">
   <method name="commitTransaction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Commit a pending transaction"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="Yaf_View_Interface" namespace="" name="Yaf_View_Interface">
+<interface xmlns="http://xml.phpdox.net/src" full="Yaf_View_Interface" namespace="" name="Yaf_View_Interface">
   <method name="assign" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Assign value to View engine"/>

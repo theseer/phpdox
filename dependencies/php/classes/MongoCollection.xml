@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="MongoCollection" namespace="" name="MongoCollection">
+<class xmlns="http://xml.phpdox.net/src" full="MongoCollection" namespace="" name="MongoCollection">
   <constant name="ASCENDING" value="1">
     <docblock>
       <var type="int"/>

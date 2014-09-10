@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SolrDocument" namespace="" name="SolrDocument">
+<class xmlns="http://xml.phpdox.net/src" full="SolrDocument" namespace="" name="SolrDocument">
   <implements name="ArrayAccess" full="ArrayAccess"/>
   <constant name="SORT_DEFAULT" value="1">
     <docblock>

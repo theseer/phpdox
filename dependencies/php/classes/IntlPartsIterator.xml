@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="IntlPartsIterator" namespace="" name="IntlPartsIterator">
+<class xmlns="http://xml.phpdox.net/src" full="IntlPartsIterator" namespace="" name="IntlPartsIterator">
   <implements name="Iterator" full="Iterator"/>
   <constant name="KEY_SEQUENTIAL" value="0">
     <docblock>

@@ -49,7 +49,7 @@ namespace TheSeer\phpDox\Collector {
         /**
          * PHPDOX Namespace
          */
-        const XMLNS = 'http://xml.phpdox.net/src#';
+        const XMLNS = 'http://xml.phpdox.net/src';
 
         /**
          * @var fDOMDocument

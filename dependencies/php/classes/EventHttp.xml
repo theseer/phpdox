@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="EventHttp" namespace="" name="EventHttp">
+<class xmlns="http://xml.phpdox.net/src" full="EventHttp" namespace="" name="EventHttp">
   <method name="accept" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Makes an HTTP server accept connections on the specified socket stream or resource">Makes an HTTP server accept connections on the specified socket stream or resource. The socket should be ready to accept connections.</description>

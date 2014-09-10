@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Gender\Gender" namespace="" name="Gender\Gender">
+<class xmlns="http://xml.phpdox.net/src" full="Gender\Gender" namespace="" name="Gender\Gender">
   <constant name="IS_FEMALE" value="70">
     <docblock>
       <var type="integer"/>

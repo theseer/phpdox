@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Config_Simple" namespace="" name="Yaf_Config_Simple">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Config_Simple" namespace="" name="Yaf_Config_Simple">
   <implements name="Iterator" full="Iterator"/>
   <member name="_readonly" static="false" visibility="protected">
     <default>null</default>

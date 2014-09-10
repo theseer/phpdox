@@ -44,7 +44,7 @@ namespace TheSeer\phpDox\Collector {
      */
     class MethodObject {
 
-        const XMLNS = 'http://xml.phpdox.net/src#';
+        const XMLNS = 'http://xml.phpdox.net/src';
 
         /**
          * @var \TheSeer\fDOM\fDOMElement

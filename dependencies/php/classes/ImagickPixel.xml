@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ImagickPixel" namespace="" name="ImagickPixel">
+<class xmlns="http://xml.phpdox.net/src" full="ImagickPixel" namespace="" name="ImagickPixel">
   <method name="clear" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Clears resources associated with this object"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="OAuthException" namespace="" name="OAuthException">
+<class xmlns="http://xml.phpdox.net/src" full="OAuthException" namespace="" name="OAuthException">
   <extends name="Exception" full="Exception"/>
   <member name="lastResponse" static="false" visibility="public">
     <default>null</default>

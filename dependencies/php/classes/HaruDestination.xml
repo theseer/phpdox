@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="HaruDestination" namespace="" name="HaruDestination">
+<class xmlns="http://xml.phpdox.net/src" full="HaruDestination" namespace="" name="HaruDestination">
   <method name="setFit" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Set the appearance of the page to fit the window"/>

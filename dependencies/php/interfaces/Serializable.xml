@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="Serializable" namespace="" name="Serializable">
+<interface xmlns="http://xml.phpdox.net/src" full="Serializable" namespace="" name="Serializable">
   <method name="serialize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="String representation of object">Should return the string representation of the object.</description>

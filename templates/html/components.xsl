@@ -1,8 +1,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:pdx="http://xml.phpdox.net/src#"
+                xmlns:pdx="http://xml.phpdox.net/src"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
-                xmlns:git="http://xml.phpdox.net/gitlog#"
+                xmlns:git="http://xml.phpdox.net/gitlog"
                 exclude-result-prefixes="pdx pdxf git">
 
     <xsl:param name="base" select="''" />
@@ -50,7 +50,7 @@
                 <xsl:if test="$hasTraits = 'Y'">
                     <li><a href="{$base}traits.{$extension}">Traits</a></li>
                 </xsl:if>
-                <li class="separator"><a href="{$base}reports/index.{$extension}">Reports</a></li>
+                <!--<li class="separator"><a href="{$base}reports/index.{$extension}">Reports</a></li>-->
             </ul>
         </nav>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="FilesystemIterator" namespace="" name="FilesystemIterator">
+<class xmlns="http://xml.phpdox.net/src" full="FilesystemIterator" namespace="" name="FilesystemIterator">
   <implements name="SeekableIterator" full="SeekableIterator"/>
   <constant name="CURRENT_AS_PATHNAME" value="32">
     <docblock>

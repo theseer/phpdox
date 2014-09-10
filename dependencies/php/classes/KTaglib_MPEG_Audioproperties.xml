@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="KTaglib_MPEG_Audioproperties" namespace="" name="KTaglib_MPEG_Audioproperties">
+<class xmlns="http://xml.phpdox.net/src" full="KTaglib_MPEG_Audioproperties" namespace="" name="KTaglib_MPEG_Audioproperties">
   <method name="getBitrate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the bitrate of the MPEG file"/>

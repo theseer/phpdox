@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="chdb" namespace="" name="chdb">
+<class xmlns="http://xml.phpdox.net/src" full="chdb" namespace="" name="chdb">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates a chdb instance">Loads a chdb file, by mapping it into memory. While some validity checks are performed on the specified file, they are mostly there to avoid the possibility of common mistakes (for example, loading a file which is not a chdb database, or that is somehow incompatible with the current system). A maliciously crafted chdb file can thus be dangerous if loaded, so chdb files should be trusted and treated with the same security protections used for PHP shared libraries.</description>

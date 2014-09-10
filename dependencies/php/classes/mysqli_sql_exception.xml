@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="mysqli_sql_exception" namespace="" name="mysqli_sql_exception">
+<class xmlns="http://xml.phpdox.net/src" full="mysqli_sql_exception" namespace="" name="mysqli_sql_exception">
   <extends name="RuntimeException" full="RuntimeException"/>
   <member name="sqlstate" static="false" visibility="protected">
     <default>null</default>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="AMQPConnection" namespace="" name="AMQPConnection">
+<class xmlns="http://xml.phpdox.net/src" full="AMQPConnection" namespace="" name="AMQPConnection">
   <method name="connect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Establish a connection with the AMQP broker."/>

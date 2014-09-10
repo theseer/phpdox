@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="RarException" namespace="" name="RarException">
+<class xmlns="http://xml.phpdox.net/src" full="RarException" namespace="" name="RarException">
   <extends name="RarException" full="RarException"/>
   <method name="isUsingExceptions" abstract="false" static="false" visibility="public" final="false">
     <docblock>

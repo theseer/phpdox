@@ -69,7 +69,7 @@ namespace TheSeer\phpDox\DocBlock {
          * @return \TheSeer\fDOM\fDOMElement
          */
         public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
-            $node = $doc->createElementNS('http://xml.phpdox.net/src#', 'docblock');
+            $node = $doc->createElementNS('http://xml.phpdox.net/src', 'docblock');
             // add lines and such?
             foreach($this->elements as $element) {
                 if (is_array($element)) {

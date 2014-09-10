@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SQLite3Stmt" namespace="" name="SQLite3Stmt">
+<class xmlns="http://xml.phpdox.net/src" full="SQLite3Stmt" namespace="" name="SQLite3Stmt">
   <method name="bindParam" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Binds a parameter to a statement variable"/>

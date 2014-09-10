@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CachingIterator" namespace="" name="CachingIterator">
+<class xmlns="http://xml.phpdox.net/src" full="CachingIterator" namespace="" name="CachingIterator">
   <implements name="OuterIterator" full="OuterIterator"/>
   <constant name="CALL_TOSTRING" value="1">
     <docblock>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="SeekableIterator" namespace="" name="SeekableIterator">
+<interface xmlns="http://xml.phpdox.net/src" full="SeekableIterator" namespace="" name="SeekableIterator">
   <extends name="Iterator" full="Iterator"/>
   <method name="seek" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="IntlIterator" namespace="" name="IntlIterator">
+<class xmlns="http://xml.phpdox.net/src" full="IntlIterator" namespace="" name="IntlIterator">
   <implements name="Iterator" full="Iterator"/>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:idx="http://xml.phpdox.net/src#"
+                xmlns:idx="http://xml.phpdox.net/src"
                 xmlns:pu="http://schema.phpunit.de/coverage/1.0"
                 exclude-result-prefixes="idx pu">
 

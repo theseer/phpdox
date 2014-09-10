@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Application" namespace="" name="Yaf_Application">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Application" namespace="" name="Yaf_Application">
   <member name="config" static="false" visibility="protected">
     <default>null</default>
     <docblock>

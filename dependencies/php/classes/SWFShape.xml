@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SWFShape" namespace="" name="SWFShape">
+<class xmlns="http://xml.phpdox.net/src" full="SWFShape" namespace="" name="SWFShape">
   <method name="addFill" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Adds a solid fill to the shape">SWFShape::addFill adds a solid fill to the shape's list of fill styles. SWFShape::addFill accepts three different types of arguments.</description>

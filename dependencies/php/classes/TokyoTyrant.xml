@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="TokyoTyrant" namespace="" name="TokyoTyrant">
+<class xmlns="http://xml.phpdox.net/src" full="TokyoTyrant" namespace="" name="TokyoTyrant">
   <constant name="RDBDEF_PORT" value="1978">
     <docblock>
       <var type="integer"/>

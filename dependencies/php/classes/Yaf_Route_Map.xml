@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Route_Map" namespace="" name="Yaf_Route_Map">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Route_Map" namespace="" name="Yaf_Route_Map">
   <implements name="Yaf_Route_Interface" full="Yaf_Route_Interface"/>
   <member name="_ctl_router" static="false" visibility="protected">
     <default>null</default>

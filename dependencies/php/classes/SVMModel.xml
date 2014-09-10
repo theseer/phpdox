@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SVMModel" namespace="" name="SVMModel">
+<class xmlns="http://xml.phpdox.net/src" full="SVMModel" namespace="" name="SVMModel">
   <method name="checkProbabilityModel" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns true if the model has probability information"/>

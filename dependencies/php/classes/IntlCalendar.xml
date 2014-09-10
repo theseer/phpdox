@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="IntlCalendar" namespace="" name="IntlCalendar">
+<class xmlns="http://xml.phpdox.net/src" full="IntlCalendar" namespace="" name="IntlCalendar">
   <constant name="FIELD_ERA" value="0">
     <docblock>
       <var type="integer"/>

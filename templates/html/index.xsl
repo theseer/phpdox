@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:git="http://xml.phpdox.net/gitlog#"
-                xmlns:pdx="http://xml.phpdox.net/src#"
+                xmlns:git="http://xml.phpdox.net/gitlog"
+                xmlns:pdx="http://xml.phpdox.net/src"
                 xmlns:pdxf="http://xml.phpdox.net/functions">
 
     <xsl:import href="functions.xsl"/>

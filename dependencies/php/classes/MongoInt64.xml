@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="MongoInt64" namespace="" name="MongoInt64">
+<class xmlns="http://xml.phpdox.net/src" full="MongoInt64" namespace="" name="MongoInt64">
   <member name="value" static="false" visibility="public">
     <default>null</default>
     <docblock>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="OAuthProvider" namespace="" name="OAuthProvider">
+<class xmlns="http://xml.phpdox.net/src" full="OAuthProvider" namespace="" name="OAuthProvider">
   <method name="addRequiredParameter" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Add required parameters"/>

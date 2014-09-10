@@ -14,7 +14,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         private $config;
         private $findings = NULL;
-        const XMLNS = 'http://xml.phpdox.net/src#';
+        const XMLNS = 'http://xml.phpdox.net/src';
 
         public function __construct(PHPCsConfig $config) {
             $this->config = $config;

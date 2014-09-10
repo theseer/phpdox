@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="DOMDocumentFragment" namespace="" name="DOMDocumentFragment">
+<class xmlns="http://xml.phpdox.net/src" full="DOMDocumentFragment" namespace="" name="DOMDocumentFragment">
   <extends name="DOMNode" full="DOMNode"/>
   <method name="appendXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>

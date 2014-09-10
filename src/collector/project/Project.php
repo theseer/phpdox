@@ -284,7 +284,7 @@ namespace TheSeer\phpDox\Collector {
             $affected = array();
             $dom = new fDOMDocument();
             $dom->load($this->xmlDir . '/' . $fname);
-            $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
+            $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
             $extends = $dom->queryOne('//phpdox:extends');
             if ($extends instanceof fDOMElement) {
                 try {

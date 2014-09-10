@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="UnderflowException" namespace="" name="UnderflowException">
+<class xmlns="http://xml.phpdox.net/src" full="UnderflowException" namespace="" name="UnderflowException">
   <extends name="RuntimeException" full="RuntimeException"/>
   <member name="message" static="false" visibility="protected">
     <default>null</default>

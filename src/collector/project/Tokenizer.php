@@ -65,7 +65,7 @@ namespace TheSeer\phpDox\Collector {
             $this->writer->setIndent(true);
             $this->writer->startDocument();
             $this->writer->startElement('source');
-            $this->writer->writeAttribute('xmlns','http://xml.phpdox.net/token#');
+            $this->writer->writeAttribute('xmlns','http://xml.phpdox.net/token');
             $this->writer->startElement('line');
             $this->writer->writeAttribute('no', 1);
 

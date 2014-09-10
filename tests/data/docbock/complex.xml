@@ -1,1 +1,1 @@
-<docblock xmlns="http://xml.phpdox.net/src#"><description /><complex value="(&quot;foo&quot;, foo=&quot;bar&quot;)"/></docblock>
+<docblock xmlns="http://xml.phpdox.net/src"><description /><complex value="(&quot;foo&quot;, foo=&quot;bar&quot;)"/></docblock>

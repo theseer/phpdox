@@ -45,7 +45,7 @@ namespace TheSeer\phpDox\Collector {
      */
     abstract class AbstractVariableObject {
 
-        const XMLNS = 'http://xml.phpdox.net/src#';
+        const XMLNS = 'http://xml.phpdox.net/src';
 
         /**
          * @var \TheSeer\fDOM\fDOMElement

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SWFFont" namespace="" name="SWFFont">
+<class xmlns="http://xml.phpdox.net/src" full="SWFFont" namespace="" name="SWFFont">
   <constructor name="__construct" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Loads a font definition">If filename is the name of an FDB file (i.e., it ends in ".fdb"), load the font definition found in said file. Otherwise, create a browser-defined font reference.</description>

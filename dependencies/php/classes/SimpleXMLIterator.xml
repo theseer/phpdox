@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SimpleXMLIterator" namespace="" name="SimpleXMLIterator">
+<class xmlns="http://xml.phpdox.net/src" full="SimpleXMLIterator" namespace="" name="SimpleXMLIterator">
   <implements name="RecursiveIterator" full="RecursiveIterator"/>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>

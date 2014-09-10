@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="EventListener" namespace="" name="EventListener">
+<class xmlns="http://xml.phpdox.net/src" full="EventListener" namespace="" name="EventListener">
   <constant name="OPT_LEAVE_SOCKETS_BLOCKING" value="1">
     <docblock>
       <var type="integer"/>

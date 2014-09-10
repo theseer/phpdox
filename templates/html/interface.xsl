@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:pdx="http://xml.phpdox.net/src#"
-                xmlns:idx="http://xml.phpdox.net/src#"
+                xmlns:pdx="http://xml.phpdox.net/src"
+                xmlns:idx="http://xml.phpdox.net/src"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
                 exclude-result-prefixes="idx pdx pdxf">
 

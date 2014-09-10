@@ -63,12 +63,12 @@ namespace TheSeer\phpDox\Collector {
         public function __construct(FileInfo $srcDir) {
             $this->srcDir = $srcDir;
             $this->workDom = new fDOMDocument();
-            $this->workDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
-            $this->workDom->appendElementNS('http://xml.phpdox.net/src#', 'source');
+            $this->workDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
+            $this->workDom->appendElementNS('http://xml.phpdox.net/src', 'source');
         }
 
         public function import(fDOMDocument $dom) {
-            $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
+            $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
             $dir = $dom->queryOne('/phpdox:source/phpdox:dir');
             if (!$dir)  {
                 return;
@@ -78,7 +78,7 @@ namespace TheSeer\phpDox\Collector {
 
         public function addFile(SourceFile $file) {
             $path = $file->getRealPath();
-            $node = $this->workDom->createElementNS('http://xml.phpdox.net/src#', 'file');
+            $node = $this->workDom->createElementNS('http://xml.phpdox.net/src', 'file');
             $node->setAttribute('name', basename($file->getBasename()));
             $node->setAttribute('size', $file->getSize());
             $node->setAttribute('time', date('c', $file->getMTime()));
@@ -141,7 +141,7 @@ namespace TheSeer\phpDox\Collector {
                 foreach ($dirs as $dir) {
                     $node = $ctx->queryOne('phpdox:dir[@name="' . $dir . '"]');
                     if (!$node) {
-                        $node = $ctx->appendElementNS('http://xml.phpdox.net/src#', 'dir');
+                        $node = $ctx->appendElementNS('http://xml.phpdox.net/src', 'dir');
                         $node->setAttribute('name', $dir);
                     }
                     $ctx = $node;

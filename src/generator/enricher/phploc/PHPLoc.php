@@ -34,7 +34,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
                 $enrichment->appendChild(
                     $index->createElementNS(
-                        'http://xml.phpdox.net/src#',
+                        'http://xml.phpdox.net/src',
                         $node->localName,
                         $node->nodeValue
                     )

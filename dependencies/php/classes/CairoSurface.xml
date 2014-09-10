@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoSurface" namespace="" name="CairoSurface">
+<class xmlns="http://xml.phpdox.net/src" full="CairoSurface" namespace="" name="CairoSurface">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The __construct purpose"/>

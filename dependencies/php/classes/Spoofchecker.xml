@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Spoofchecker" namespace="" name="Spoofchecker">
+<class xmlns="http://xml.phpdox.net/src" full="Spoofchecker" namespace="" name="Spoofchecker">
   <constant name="SINGLE_SCRIPT_CONFUSABLE" value="1">
     <docblock>
       <var type="integer"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoGradientPattern" namespace="" name="CairoGradientPattern">
+<class xmlns="http://xml.phpdox.net/src" full="CairoGradientPattern" namespace="" name="CairoGradientPattern">
   <extends name="CairoPattern" full="CairoPattern"/>
   <method name="addColorStopRgb" abstract="false" static="false" visibility="public" final="false">
     <docblock>

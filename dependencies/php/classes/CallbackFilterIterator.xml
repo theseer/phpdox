@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CallbackFilterIterator" namespace="" name="CallbackFilterIterator">
+<class xmlns="http://xml.phpdox.net/src" full="CallbackFilterIterator" namespace="" name="CallbackFilterIterator">
   <implements name="OuterIterator" full="OuterIterator"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>

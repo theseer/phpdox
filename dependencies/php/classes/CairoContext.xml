@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoContext" namespace="" name="CairoContext">
+<class xmlns="http://xml.phpdox.net/src" full="CairoContext" namespace="" name="CairoContext">
   <method name="appendPath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Appends a path to current path">Object oriented style (method):</description>

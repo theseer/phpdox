@@ -26,7 +26,7 @@ namespace TheSeer\phpDox\Generator {
             if (!isset($this->dom[$path])) {
                 $classDom = new fDOMDocument();
                 $classDom->load($path);
-                $classDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
+                $classDom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
                 $this->dom[$path] = $classDom;
             }
             return $this->dom[$path];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="tokyotyrantexception" namespace="" name="tokyotyrantexception">
+<class xmlns="http://xml.phpdox.net/src" full="tokyotyrantexception" namespace="" name="tokyotyrantexception">
   <extends name="Exception" full="Exception"/>
   <member name="code" static="false" visibility="protected">
     <default>null</default>

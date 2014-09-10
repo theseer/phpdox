@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Stomp" namespace="" name="Stomp">
+<class xmlns="http://xml.phpdox.net/src" full="Stomp" namespace="" name="Stomp">
   <method name="abort" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Rolls back a transaction in progress">Object oriented style (method):</description>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<index xmlns="http://xml.phpdox.net/src#">
+<index xmlns="http://xml.phpdox.net/src">
   <namespace name="">
     <class name="Exception" xml="classes/Exception.xml"/>
     <class name="ErrorException" xml="classes/ErrorException.xml"/>

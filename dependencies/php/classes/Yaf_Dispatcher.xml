@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Dispatcher" namespace="" name="Yaf_Dispatcher">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Dispatcher" namespace="" name="Yaf_Dispatcher">
   <member name="_router" static="false" visibility="protected">
     <default>null</default>
     <docblock>

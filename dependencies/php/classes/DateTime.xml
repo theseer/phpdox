@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="DateTime" namespace="" name="DateTime">
+<class xmlns="http://xml.phpdox.net/src" full="DateTime" namespace="" name="DateTime">
   <implements name="DateTimeInterface" full="DateTimeInterface"/>
   <constant name="ATOM" value="&quot;Y-m-d\TH:i:sP&quot;">
     <docblock>

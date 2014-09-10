@@ -5,7 +5,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class AbstractEnricher {
 
-        const XMLNS = 'http://xml.phpdox.net/src#';
+        const XMLNS = 'http://xml.phpdox.net/src';
 
         /**
          * @param fDOMElement $node

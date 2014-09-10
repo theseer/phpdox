@@ -57,7 +57,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
             $element = new InvalidElement($this->getMock('TheSeer\phpDox\DocBlock\Factory'), 'test');
 
             $this->assertEquals(
-                '<invalid xmlns="http://xml.phpdox.net/src#" annotation="test"/>',
+                '<invalid xmlns="http://xml.phpdox.net/src" annotation="test"/>',
                 $dom->saveXML($element->asDom($dom))
             );
         }

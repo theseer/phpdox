@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SplFileObject" namespace="" name="SplFileObject">
+<class xmlns="http://xml.phpdox.net/src" full="SplFileObject" namespace="" name="SplFileObject">
   <implements name="RecursiveIterator" full="RecursiveIterator"/>
   <constant name="DROP_NEW_LINE" value="1">
     <docblock>

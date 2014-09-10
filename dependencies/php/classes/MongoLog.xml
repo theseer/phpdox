@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="MongoLog" namespace="" name="MongoLog">
+<class xmlns="http://xml.phpdox.net/src" full="MongoLog" namespace="" name="MongoLog">
   <constant name="NONE" value="0">
     <docblock>
       <var type="int"/>

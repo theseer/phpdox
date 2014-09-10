@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="mysqli_result" namespace="" name="mysqli_result">
+<class xmlns="http://xml.phpdox.net/src" full="mysqli_result" namespace="" name="mysqli_result">
   <implements name="Traversable" full="Traversable"/>
   <member name="mysqli_result-&gt;current_field" static="false">
     <default>null</default>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ReflectionFunction" namespace="" name="ReflectionFunction">
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionFunction" namespace="" name="ReflectionFunction">
   <implements name="Reflector" full="Reflector"/>
   <constant name="IS_DEPRECATED" value="262144">
     <docblock>

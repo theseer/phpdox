@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SimpleXMLElement" namespace="" name="SimpleXMLElement">
+<class xmlns="http://xml.phpdox.net/src" full="SimpleXMLElement" namespace="" name="SimpleXMLElement">
   <implements name="Traversable" full="Traversable"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>

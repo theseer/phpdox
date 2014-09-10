@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Transliterator" namespace="" name="Transliterator">
+<class xmlns="http://xml.phpdox.net/src" full="Transliterator" namespace="" name="Transliterator">
   <constant name="FORWARD" value="0">
     <docblock>
       <var type="integer"/>

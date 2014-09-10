@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoExtend" namespace="" name="CairoExtend">
+<class xmlns="http://xml.phpdox.net/src" full="CairoExtend" namespace="" name="CairoExtend">
   <constant name="NONE" value="0">
     <docblock>
       <var type="integer"/>

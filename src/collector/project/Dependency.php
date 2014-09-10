@@ -13,7 +13,7 @@ namespace TheSeer\phpDox\Collector {
         public function __construct(fDOMDocument $dom, Project $project) {
             $this->index = $dom;
             $this->baseDir = dirname($dom->documentURI);
-            $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
+            $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
             $this->project = $project;
         }
 

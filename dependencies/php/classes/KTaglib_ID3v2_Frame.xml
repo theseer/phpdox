@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="KTaglib_ID3v2_Frame" namespace="" name="KTaglib_ID3v2_Frame">
+<class xmlns="http://xml.phpdox.net/src" full="KTaglib_ID3v2_Frame" namespace="" name="KTaglib_ID3v2_Frame">
   <extends name="KTaglib_Tag" full="KTaglib_Tag"/>
   <method name="getSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>

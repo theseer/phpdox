@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoFontFace" namespace="" name="CairoFontFace">
+<class xmlns="http://xml.phpdox.net/src" full="CairoFontFace" namespace="" name="CairoFontFace">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates a new CairoFontFace object">CairoFontFace class represents a particular font at a particular weight, slant, and other characteristic but no transformation or size.</description>

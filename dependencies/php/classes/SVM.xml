@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SVM" namespace="" name="SVM">
+<class xmlns="http://xml.phpdox.net/src" full="SVM" namespace="" name="SVM">
   <constant name="C_SVC" value="0">
     <docblock>
       <var type="integer"/>

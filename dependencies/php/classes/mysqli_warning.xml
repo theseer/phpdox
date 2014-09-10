@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="mysqli_warning" namespace="" name="mysqli_warning">
+<class xmlns="http://xml.phpdox.net/src" full="mysqli_warning" namespace="" name="mysqli_warning">
   <member name="message" static="false" visibility="public">
     <default>null</default>
     <docblock>

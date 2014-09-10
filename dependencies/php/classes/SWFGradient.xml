@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SWFGradient" namespace="" name="SWFGradient">
+<class xmlns="http://xml.phpdox.net/src" full="SWFGradient" namespace="" name="SWFGradient">
   <method name="addEntry" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Adds an entry to the gradient list">swfgradient::addentry adds an entry to the gradient list. ratio is a number between 0 and 1 indicating where in the gradient this color appears. Thou shalt add entries in order of increasing ratio.</description>

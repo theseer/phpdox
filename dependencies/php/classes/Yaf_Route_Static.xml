@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Route_Static" namespace="" name="Yaf_Route_Static">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Route_Static" namespace="" name="Yaf_Route_Static">
   <implements name="Yaf_Router" full="Yaf_Router"/>
   <method name="match" abstract="false" static="false" visibility="public" final="false">
     <docblock>

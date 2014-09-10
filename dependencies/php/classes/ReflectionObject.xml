@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ReflectionObject" namespace="" name="ReflectionObject">
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionObject" namespace="" name="ReflectionObject">
   <implements name="Reflector" full="Reflector"/>
   <constant name="IS_IMPLICIT_ABSTRACT" value="16">
     <docblock>

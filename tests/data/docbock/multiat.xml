@@ -1,1 +1,1 @@
-<docblock xmlns="http://xml.phpdox.net/src#"><description /><foo value="some @more::const"/></docblock>
+<docblock xmlns="http://xml.phpdox.net/src"><description /><foo value="some @more::const"/></docblock>

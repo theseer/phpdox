@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="SplSubject" namespace="" name="SplSubject">
+<interface xmlns="http://xml.phpdox.net/src" full="SplSubject" namespace="" name="SplSubject">
   <method name="attach" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Attach an SplObserver"/>

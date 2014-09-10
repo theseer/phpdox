@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoFontSlant" namespace="" name="CairoFontSlant">
+<class xmlns="http://xml.phpdox.net/src" full="CairoFontSlant" namespace="" name="CairoFontSlant">
   <constant name="NORMAL" value="0">
     <docblock>
       <var type="integer"/>

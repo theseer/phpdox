@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="DateTimeInterface" namespace="" name="DateTimeInterface">
+<interface xmlns="http://xml.phpdox.net/src" full="DateTimeInterface" namespace="" name="DateTimeInterface">
   <method name="diff" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the difference between two DateTime objects">Object oriented style</description>

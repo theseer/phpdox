@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Ev" namespace="" name="Ev">
+<class xmlns="http://xml.phpdox.net/src" full="Ev" namespace="" name="Ev">
   <constant name="FLAG_AUTO" value="0">
     <docblock>
       <var type="integer"/>

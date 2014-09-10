@@ -1,1 +1,1 @@
-<docblock xmlns="http://xml.phpdox.net/src#"><description /><exception value="SomeException The description"/><exception value="AnotherException The other description"/></docblock>
+<docblock xmlns="http://xml.phpdox.net/src"><description /><exception value="SomeException The description"/><exception value="AnotherException The other description"/></docblock>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SplPriorityQueue" namespace="" name="SplPriorityQueue">
+<class xmlns="http://xml.phpdox.net/src" full="SplPriorityQueue" namespace="" name="SplPriorityQueue">
   <implements name="Iterator" full="Iterator"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>

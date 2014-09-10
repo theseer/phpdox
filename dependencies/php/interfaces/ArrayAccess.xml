@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="ArrayAccess" namespace="" name="ArrayAccess">
+<interface xmlns="http://xml.phpdox.net/src" full="ArrayAccess" namespace="" name="ArrayAccess">
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Whether a offset exists">Whether or not an offset exists.</description>

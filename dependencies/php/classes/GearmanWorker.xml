@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="GearmanWorker" namespace="" name="GearmanWorker">
+<class xmlns="http://xml.phpdox.net/src" full="GearmanWorker" namespace="" name="GearmanWorker">
   <method name="addFunction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Register and add callback function"/>

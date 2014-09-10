@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoMatrix" namespace="" name="CairoMatrix">
+<class xmlns="http://xml.phpdox.net/src" full="CairoMatrix" namespace="" name="CairoMatrix">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates a new CairoMatrix object">Object oriented style (method):</description>

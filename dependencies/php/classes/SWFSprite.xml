@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SWFSprite" namespace="" name="SWFSprite">
+<class xmlns="http://xml.phpdox.net/src" full="SWFSprite" namespace="" name="SWFSprite">
   <method name="add" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Adds an object to a sprite">swfsprite::add adds a swfshape, a swfbutton, a swftext, a swfaction or a swfsprite object.</description>

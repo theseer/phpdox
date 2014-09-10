@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ReflectionFunctionAbstract" namespace="" name="ReflectionFunctionAbstract">
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionFunctionAbstract" namespace="" name="ReflectionFunctionAbstract">
   <implements name="Reflector" full="Reflector"/>
   <member name="name" static="false" visibility="public">
     <default>null</default>

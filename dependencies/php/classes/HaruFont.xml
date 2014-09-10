@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="HaruFont" namespace="" name="HaruFont">
+<class xmlns="http://xml.phpdox.net/src" full="HaruFont" namespace="" name="HaruFont">
   <method name="getAscent" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Get the vertical ascent of the font"/>

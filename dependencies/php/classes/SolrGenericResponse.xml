@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SolrGenericResponse" namespace="" name="SolrGenericResponse">
+<class xmlns="http://xml.phpdox.net/src" full="SolrGenericResponse" namespace="" name="SolrGenericResponse">
   <extends name="SolrGenericResponse" full="SolrGenericResponse"/>
   <constant name="PARSE_SOLR_OBJ" value="0">
     <docblock>

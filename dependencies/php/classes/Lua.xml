@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Lua" namespace="" name="Lua">
+<class xmlns="http://xml.phpdox.net/src" full="Lua" namespace="" name="Lua">
   <constant name="LUA_VERSION" value="Lua 5.1.4">
     <docblock>
       <var type="string"/>

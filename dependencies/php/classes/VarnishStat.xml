@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="VarnishStat" namespace="" name="VarnishStat">
+<class xmlns="http://xml.phpdox.net/src" full="VarnishStat" namespace="" name="VarnishStat">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="VarnishStat constructor"/>

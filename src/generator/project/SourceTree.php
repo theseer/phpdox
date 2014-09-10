@@ -10,7 +10,7 @@ namespace TheSeer\phpDox\Generator {
 
         public function __construct(fDOMDocument $dom) {
             $this->dom = $dom;
-            $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src#');
+            $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
         }
 
         /**

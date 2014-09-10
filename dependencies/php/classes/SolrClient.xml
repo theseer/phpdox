@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SolrClient" namespace="" name="SolrClient">
+<class xmlns="http://xml.phpdox.net/src" full="SolrClient" namespace="" name="SolrClient">
   <constant name="SEARCH_SERVLET_TYPE" value="1">
     <docblock>
       <var type="integer"/>

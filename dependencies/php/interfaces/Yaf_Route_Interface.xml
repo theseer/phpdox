@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src#" full="Yaf_Route_Interface" namespace="" name="Yaf_Route_Interface">
+<interface xmlns="http://xml.phpdox.net/src" full="Yaf_Route_Interface" namespace="" name="Yaf_Route_Interface">
   <method name="route" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="route a request">Yaf_Route_Interface::route is the only method that a custom route should implement.</description>

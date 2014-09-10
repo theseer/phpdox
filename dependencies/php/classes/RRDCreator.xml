@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="RRDCreator" namespace="" name="RRDCreator">
+<class xmlns="http://xml.phpdox.net/src" full="RRDCreator" namespace="" name="RRDCreator">
   <method name="addArchive" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Adds RRA - archive of data values for each data source."/>

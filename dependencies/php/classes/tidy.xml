@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="tidy" namespace="" name="tidy">
+<class xmlns="http://xml.phpdox.net/src" full="tidy" namespace="" name="tidy">
   <member name="tidy-&gt;errorBuffer" static="false">
     <default>null</default>
     <docblock>

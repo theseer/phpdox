@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ReflectionProperty" namespace="" name="ReflectionProperty">
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionProperty" namespace="" name="ReflectionProperty">
   <implements name="Reflector" full="Reflector"/>
   <constant name="IS_STATIC" value="1">
     <docblock>

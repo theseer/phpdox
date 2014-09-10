@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Plugin_Abstract" namespace="" name="Yaf_Plugin_Abstract">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Plugin_Abstract" namespace="" name="Yaf_Plugin_Abstract">
   <method name="dispatchLoopShutdown" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The dispatchLoopShutdown purpose"/>

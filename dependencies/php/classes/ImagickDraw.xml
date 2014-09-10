@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ImagickDraw" namespace="" name="ImagickDraw">
+<class xmlns="http://xml.phpdox.net/src" full="ImagickDraw" namespace="" name="ImagickDraw">
   <method name="affine" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Adjusts the current affine transformation matrix"/>

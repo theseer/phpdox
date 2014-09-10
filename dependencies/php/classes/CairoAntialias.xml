@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="CairoAntialias" namespace="" name="CairoAntialias">
+<class xmlns="http://xml.phpdox.net/src" full="CairoAntialias" namespace="" name="CairoAntialias">
   <constant name="MODE_DEFAULT" value="0">
     <docblock>
       <var type="integer"/>

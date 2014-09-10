@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="HaruException" namespace="" name="HaruException">
+<class xmlns="http://xml.phpdox.net/src" full="HaruException" namespace="" name="HaruException">
   <extends name="Exception" full="Exception"/>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
     <docblock>

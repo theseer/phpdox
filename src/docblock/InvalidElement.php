@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\DocBlock {
     class InvalidElement extends GenericElement {
 
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-            $node = $ctx->createElementNS('http://xml.phpdox.net/src#', 'invalid');
+            $node = $ctx->createElementNS('http://xml.phpdox.net/src', 'invalid');
             $node->setAttribute('annotation', $this->name);
             foreach($this->attributes as $attribute => $value) {
                 $node->setAttribute($attribute, $value);

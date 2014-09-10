@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="StompException" namespace="" name="StompException">
+<class xmlns="http://xml.phpdox.net/src" full="StompException" namespace="" name="StompException">
   <extends name="Exception" full="Exception"/>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
     <docblock>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="HttpResponse" namespace="" name="HttpResponse">
+<class xmlns="http://xml.phpdox.net/src" full="HttpResponse" namespace="" name="HttpResponse">
   <method name="capture" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Capture script output"/>

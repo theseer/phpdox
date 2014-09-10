@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="TokyoTyrantQuery" namespace="" name="TokyoTyrantQuery">
+<class xmlns="http://xml.phpdox.net/src" full="TokyoTyrantQuery" namespace="" name="TokyoTyrantQuery">
   <implements name="Iterator" full="Iterator"/>
   <method name="addCond" abstract="false" static="false" visibility="public" final="false">
     <docblock>

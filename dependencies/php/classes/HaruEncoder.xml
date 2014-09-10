@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="HaruEncoder" namespace="" name="HaruEncoder">
+<class xmlns="http://xml.phpdox.net/src" full="HaruEncoder" namespace="" name="HaruEncoder">
   <method name="getByteType" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Get the type of the byte in the text"/>

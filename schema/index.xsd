@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:src="http://xml.phpdox.net/src#"
+           xmlns:src="http://xml.phpdox.net/src"
            attributeFormDefault="unqualified" elementFormDefault="qualified"
-           targetNamespace="http://xml.phpdox.net/src#">
+           targetNamespace="http://xml.phpdox.net/src">
 
     <xs:element name="index" type="src:indexType"/>
 

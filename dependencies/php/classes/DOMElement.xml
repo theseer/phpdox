@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="DOMElement" namespace="" name="DOMElement">
+<class xmlns="http://xml.phpdox.net/src" full="DOMElement" namespace="" name="DOMElement">
   <extends name="DOMNode" full="DOMNode"/>
   <member name="schemaTypeInfo" static="false" visibility="public">
     <default>null</default>

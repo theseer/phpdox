@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="V8Js" namespace="" name="V8Js">
+<class xmlns="http://xml.phpdox.net/src" full="V8Js" namespace="" name="V8Js">
   <constant name="V8_VERSION" value="">
     <docblock>
       <var type="string"/>

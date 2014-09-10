@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="KTaglib_Tag" namespace="" name="KTaglib_Tag">
+<class xmlns="http://xml.phpdox.net/src" full="KTaglib_Tag" namespace="" name="KTaglib_Tag">
   <method name="getAlbum" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the title string from a ID3 tag"/>

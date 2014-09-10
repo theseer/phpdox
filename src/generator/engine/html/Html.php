@@ -146,33 +146,41 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->xslSource = $this->getXSLTProcessor('source.xsl');
         }
 
-        private function generateIndex(PHPDoxEndEvent $event) {
+        private function renderIndexPages(fDOMDocument $indexDom) {
             $proc = $this->getXSLTProcessor('index.xsl');
             $proc->setParameter('', 'project', $this->projectNode->getAttribute('name'));
-            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $html = $proc->transformToDoc($indexDom);
             $this->saveDomDocument($html, $this->outputDir . '/index.' . $this->extension);
 
             $proc = $this->getXSLTProcessor('namespaces.xsl');
-            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $html = $proc->transformToDoc($indexDom);
             $this->saveDomDocument($html, $this->outputDir . '/namespaces.' . $this->extension);
 
             $proc = $this->getXSLTProcessor('units.xsl');
-            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $html = $proc->transformToDoc($indexDom);
             $this->saveDomDocument($html, $this->outputDir . '/classes.' . $this->extension);
 
             $proc->setParameter('', 'mode', 'interface');
             $proc->setParameter('', 'title', 'Interfaces');
-            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $html = $proc->transformToDoc($indexDom);
             $this->saveDomDocument($html, $this->outputDir . '/interfaces.' . $this->extension);
 
             $proc->setParameter('', 'mode', 'trait');
             $proc->setParameter('', 'title', 'Traits');
-            $html = $proc->transformToDoc($event->getIndex()->asDom());
+            $html = $proc->transformToDoc($indexDom);
             $this->saveDomDocument($html, $this->outputDir . '/traits.' . $this->extension);
         }
 
-        public function buildFinish(AbstractEvent $event) {
-            $this->generateIndex($event);
+        private function renderSourceIndexes(fDOMDocument $treeDom) {
+            $proc = $this->getXSLTProcessor('index.xsl');
+            $proc->setParameter('', 'project', $this->projectNode->getAttribute('name'));
+            $html = $proc->transformToDoc($treeDom);
+            $this->saveDomDocument($html, $this->outputDir . '/index.' . $this->extension);
+        }
+
+        public function buildFinish(PHPDoxEndEvent $event) {
+            $this->renderIndexPages($event->getIndex()->asDom());
+            $this->renderSourceIndexes($event->getTree()->asDom());
             $this->copyStatic($this->resourceDir, $this->outputDir, TRUE);
         }
 

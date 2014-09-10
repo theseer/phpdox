@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="RarEntry" namespace="" name="RarEntry">
+<class xmlns="http://xml.phpdox.net/src" full="RarEntry" namespace="" name="RarEntry">
   <constant name="HOST_MSDOS" value="0">
     <docblock>
       <var type="integer"/>

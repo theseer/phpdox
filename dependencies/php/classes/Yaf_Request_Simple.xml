@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="Yaf_Request_Simple" namespace="" name="Yaf_Request_Simple">
+<class xmlns="http://xml.phpdox.net/src" full="Yaf_Request_Simple" namespace="" name="Yaf_Request_Simple">
   <extends name="Yaf_Request_Abstract" full="Yaf_Request_Abstract"/>
   <constant name="SCHEME_HTTP" value="http">
     <docblock>

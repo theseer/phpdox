@@ -72,7 +72,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-            $node = $ctx->createElementNS('http://xml.phpdox.net/src#', strtolower($this->name));
+            $node = $ctx->createElementNS('http://xml.phpdox.net/src', strtolower($this->name));
             foreach($this->attributes as $attribute => $value) {
                 if ($value != '') {
                     $node->setAttribute($attribute, $value);

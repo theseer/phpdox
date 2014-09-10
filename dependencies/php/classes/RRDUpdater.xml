@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="RRDUpdater" namespace="" name="RRDUpdater">
+<class xmlns="http://xml.phpdox.net/src" full="RRDUpdater" namespace="" name="RRDUpdater">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates new RRDUpdater instance"/>

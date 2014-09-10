@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="ErrorException" namespace="" name="ErrorException">
+<class xmlns="http://xml.phpdox.net/src" full="ErrorException" namespace="" name="ErrorException">
   <extends name="Exception" full="Exception"/>
   <member name="severity" static="false" visibility="protected">
     <default>null</default>

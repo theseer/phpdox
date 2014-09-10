@@ -39,6 +39,7 @@
 namespace TheSeer\phpDox {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMException;
 
     class ConfigLoader {
 
@@ -63,6 +64,13 @@ namespace TheSeer\phpDox {
             throw new ConfigLoaderException("None of the candidate files found", ConfigLoaderException::NoCandidateExists);
         }
 
+        /**
+         * @param $fname
+         *
+         * @return GlobalConfig
+         *
+         * @throws ConfigLoaderException
+         */
         protected function createInstanceFor($fname) {
             try {
                 $dom = new fDOMDocument();

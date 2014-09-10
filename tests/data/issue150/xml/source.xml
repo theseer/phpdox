@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<source xmlns="http://xml.phpdox.net/src#">
+<source xmlns="http://xml.phpdox.net/src">
   <dir name="/home/theseer/storage/php/phpdox/tests/data/issue150/src">
     <file name="MyClass.php" size="41" time="2014-06-17T23:03:48+02:00" unixtime="1403039028" sha1="ef655e00c89305bf65a54de4f9a879d6c589c35a"/>
   </dir>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SplMaxHeap" namespace="" name="SplMaxHeap">
+<class xmlns="http://xml.phpdox.net/src" full="SplMaxHeap" namespace="" name="SplMaxHeap">
   <implements name="Iterator" full="Iterator"/>
   <method name="compare" abstract="false" static="false" visibility="protected" final="false">
     <docblock>

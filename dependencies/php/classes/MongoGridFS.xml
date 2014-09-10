@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="MongoGridFS" namespace="" name="MongoGridFS">
+<class xmlns="http://xml.phpdox.net/src" full="MongoGridFS" namespace="" name="MongoGridFS">
   <extends name="MongoCollection" full="MongoCollection"/>
   <member name="chunks" static="false" visibility="public">
     <default>null</default>

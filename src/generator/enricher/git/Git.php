@@ -11,7 +11,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class Git extends AbstractEnricher implements FullEnricherInterface {
 
-        const GITNS = 'http://xml.phpdox.net/gitlog#';
+        const GITNS = 'http://xml.phpdox.net/gitlog';
         /**
          * @var bool
          */

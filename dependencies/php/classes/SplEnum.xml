@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="SplEnum" namespace="" name="SplEnum">
+<class xmlns="http://xml.phpdox.net/src" full="SplEnum" namespace="" name="SplEnum">
   <extends name="SplType" full="SplType"/>
   <constant name="__default" value="null">
     <docblock>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src#" full="EventConfig" namespace="" name="EventConfig">
+<class xmlns="http://xml.phpdox.net/src" full="EventConfig" namespace="" name="EventConfig">
   <constant name="FEATURE_ET" value="1">
     <docblock>
       <var type="integer"/>
