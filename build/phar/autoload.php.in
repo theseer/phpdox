@@ -23,7 +23,7 @@ Phar::mapPhar('phpdox.phar');
 define('PHPDOX_VERSION', '___VERSION___');
 define('PHPDOX_PHAR', 'phpdox.phar');
 $factory = new \TheSeer\phpDox\Factory();
-$factory->getInstanceFor('CLI')->run();
+$factory->getInstanceFor('CLI')->run(new \TheSeer\phpDox\CLIOptions($_SERVER['argv']));
 exit(0);
 
 __HALT_COMPILER();
