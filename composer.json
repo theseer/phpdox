@@ -33,7 +33,7 @@
   },
   "extra" : {
     "branch-alias": {
-      "dev": "master"
+      "dev": "0.8-dev"
     }
   },
   "bin" : [ "composer/bin/phpdox" ],
