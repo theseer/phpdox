@@ -31,11 +31,6 @@
       "src/"
     ]
   },
-  "extra" : {
-    "branch-alias": {
-      "dev": "0.8-dev"
-    }
-  },
   "bin" : [ "composer/bin/phpdox" ],
   "minimum-stability" : "dev",
   "prefer-stable" : true
