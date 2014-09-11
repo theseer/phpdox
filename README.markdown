@@ -25,7 +25,7 @@ User Installation
 
 phpDox is shipping as a selfcontained executable phar archive. You can grab your copy here:
 
-- [Release 0.6.6](http://phpdox.de/releases/phpdox.phar)
+- [Release 0.7.0](http://phpdox.de/releases/phpdox.phar)
 
 Installation is simple:
 
@@ -39,7 +39,7 @@ You can now execute phpdox on the command line:
 
 If everything worked out, you should get an output like this:
 
-    phpDox 0.6.6 - Copyright (C) 2010 - 2014 by Arne Blankerts
+    phpDox 0.7.0 - Copyright (C) 2010 - 2014 by Arne Blankerts
 
 
 _Note: Starting with release 0.6.6 the pear package distribution is merely a wrapper for the selfcontained phar._
@@ -79,6 +79,24 @@ Sample invocation to parse and generate output based on the default phpdox.xml c
 
 Changelog
 ---------
+#####Release 0.7.0
+
+* Fix: Set default resolution of ${basename} to dirname of realpath of config file instead of only relative dir
+* Fix: Crash on invalid encoding / control chars in source (Issue #146, #148)
+* Fix: Crash on empty namespace name (Issue #150)
+* Fix: Broken cache handling for files that no longer exist (Issue #149)
+* Fix: DocBlock parsing generates invalid tag names in xml in some cases (Thanks to Reno Reckling)
+* Fix: Crash on custom bootstrapping (Thanks to Sebastian Heuer)
+* Updated Templates
+* Added tokenizer xml and highlighted source output
+* Added support for native PHPCS xml format (Thanks to Reno Reckling)
+* Removed dependency to Zeta Components by own (simplified) implementation
+* Unified xml namespace uri format by stripping the # where it was still in place
+* Minor performance tweaks
+
+#####Release 0.6.6.1 (composer only)
+
+* Fix: Issue with composer based installs
 
 #####Release 0.6.6
 
