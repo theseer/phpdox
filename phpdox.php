@@ -45,7 +45,6 @@ define('PHPDOX_VERSION', '%development%');
 require 'TheSeer/DirectoryScanner/autoload.php';
 require 'TheSeer/fDOMDocument/autoload.php';
 require 'TheSeer/fXSL/autoload.php';
-require 'ezc/Base/base.php';
 require 'PHP/Timer.php';
 
 if (strpos(PHPDOX_VERSION, '%devel')===0) {
