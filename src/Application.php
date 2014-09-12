@@ -42,7 +42,7 @@ namespace TheSeer\phpDox {
      * @author     Arne Blankerts <arne@blankerts.de>
      * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
      * @license    BSD License
-     * @link       http://phpDox.de
+     * @link       http://phpDox.net
      */
     class Application {
 
