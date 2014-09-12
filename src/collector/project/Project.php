@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\fDOM\fDOMException;
     use TheSeer\phpDox\FileInfo;
 
     /**
@@ -233,46 +234,31 @@ namespace TheSeer\phpDox\Collector {
          * @return array
          */
         public function save() {
-            $map = $this->initDirectories();
+            try {
+                $map = $this->initDirectories();
 
-            $indexDom = $this->index->export();
-            $reportUnits = $this->saveUnits;
-            foreach($this->saveUnits as $unit) {
-                /** @var AbstractUnitObject $unit  */
-                $indexNode = $this->index->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName());
-                if (!$indexNode) {
-                    throw new ProjectException(
-                        sprintf(
-                            "Internal Error: Unit '%s' not found in index (ns: %s, n: %s).",
-                            $unit->getName(),
-                            $unit->getNamespace(),
-                            $unit->getLocalName()
-                        ),
-                        ProjectException::UnitNotFoundInIndex
-                    );
+                $indexDom = $this->index->export();
+                $reportUnits = $this->saveUnits;
+                foreach($this->saveUnits as $unit) {
+                    $reportUnits = $this->saveUnit($map, $reportUnits, $unit);
                 }
-                $name = str_replace('\\', '_', $unit->getName());
-                $dom = $unit->export();
-                $dom->formatOutput = TRUE;
-                $dom->preserveWhiteSpace = FALSE;
-                $fname = $map[$dom->documentElement->localName] . '/' . $name . '.xml';
-                if ($indexNode->hasAttribute('xml')) {
-                     $reportUnits = array_merge($reportUnits, $this->findAffectedUnits($fname));
-                } else {
-                    $indexNode->setAttribute('xml', $fname);
-                }
-                $dom->save($this->xmlDir . '/' . $fname);
+                $indexDom->formatOutput = TRUE;
+                $indexDom->preserveWhiteSpace = FALSE;
+                $indexDom->save($this->xmlDir . '/index.xml');
+
+                $this->saveSources();
+
+                $this->saveUnits = array();
+                $this->files = array();
+
+                return $reportUnits;
+            } catch (\Exception $e) {
+                throw new ProjectException(
+                    sprintf('An error occured while saving the collected data: %s', $e->getMessage()),
+                    ProjectException::ErrorWhileSaving,
+                    $e
+                );
             }
-            $indexDom->formatOutput = TRUE;
-            $indexDom->preserveWhiteSpace = FALSE;
-            $indexDom->save($this->xmlDir . '/index.xml');
-
-            $this->saveSources();
-
-            $this->saveUnits = array();
-            $this->files = array();
-
-            return $reportUnits;
         }
 
         /**
@@ -300,6 +286,46 @@ namespace TheSeer\phpDox\Collector {
             return $affected;
         }
 
+        private function saveUnit(array $map, array $reportUnits, AbstractUnitObject $unit) {
+            $indexNode = $this->index->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName());
+            if (!$indexNode) {
+                throw new ProjectException(
+                    sprintf(
+                        "Internal Error: Unit '%s' not found in index (ns: %s, n: %s).",
+                        $unit->getName(),
+                        $unit->getNamespace(),
+                        $unit->getLocalName()
+                    ),
+                    ProjectException::UnitNotFoundInIndex
+                );
+            }
+            $name = str_replace('\\', '_', $unit->getName());
+            $dom = $unit->export();
+            $dom->formatOutput = TRUE;
+            $dom->preserveWhiteSpace = FALSE;
+            $fname = $map[$dom->documentElement->localName] . '/' . $name . '.xml';
+            try {
+                $dom->save($this->xmlDir . '/' . $fname);
+            } catch (fDOMException $e) {
+                throw new ProjectException(
+                    sprintf(
+                        "Internal Error: Unit '%s' could not be saved (ns: %s, n: %s).",
+                        $unit->getName(),
+                        $unit->getNamespace(),
+                        $unit->getLocalName()
+                    ),
+                    ProjectException::UnitCouldNotBeSaved,
+                    $e
+                );
+            }
+            if ($indexNode->hasAttribute('xml')) {
+                $reportUnits = array_merge($reportUnits, $this->findAffectedUnits($fname));
+            } else {
+                $indexNode->setAttribute('xml', $fname);
+            }
+
+            return $reportUnits;
+        }
 
         private function initDirectories() {
             $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
@@ -374,7 +400,9 @@ namespace TheSeer\phpDox\Collector {
     class ProjectException extends \Exception {
 
         const UnitNotFoundInIndex = 1;
-        const UnexpectedType = 2;
+        const UnitCouldNotBeSaved = 2;
+        const UnexpectedType = 3;
+        const ErrorWhileSaving = 4;
 
     }
 }
