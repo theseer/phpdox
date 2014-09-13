@@ -13,14 +13,14 @@
     "issues" : "https://github.com/theseer/phpdox/issues"
   },
   "require" : {
-    "php" : ">=5.3.3",
+    "php" : ">=5.4.0",
     "ext-tokenizer" : "*",
     "ext-dom" : "*",
     "ext-xsl" : "*",
     "ext-iconv" : "*",
     "ext-fileinfo": "*",
     "ext-mbstring": "*",
-    "theseer/fdomdocument": ">=1.5.0",
+    "theseer/fdomdocument": ">=1.6.0",
     "theseer/directoryscanner" : ">=1.3.0",
     "theseer/fxsl" : ">=1.1",
     "phpunit/php-timer" : ">=1.0.4",
