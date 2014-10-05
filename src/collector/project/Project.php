@@ -384,7 +384,18 @@ namespace TheSeer\phpDox\Collector {
                 if (!file_exists($dir)) {
                     mkdir($dir, 0755, true);
                 }
-                $tokenDom->save($fname);
+                try {
+                    $tokenDom->save($fname);
+                } catch (fDOMException $e) {
+                    throw new ProjectException(
+                        sprintf(
+                            "Internal Error: Token xml file '%s' could not be saved.",
+                            $fname
+                        ),
+                        ProjectException::UnitCouldNotBeSaved,
+                        $e
+                    );
+                }
                 $this->source->setTokenFileReference($file, $relName);
             }
 
