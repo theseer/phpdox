@@ -15,7 +15,7 @@ namespace TheSeer\phpDox\Generator {
         private $dom;
 
         public function __construct(FileInfo $file) {
-            if (!file_exists($file->getPathname())) {
+            if (!$file->exists()) {
                 throw new TokenFileException(
                     sprintf("File '%s' not found", $file->getPathname()),
                     TokenFileException::FileNotFound
