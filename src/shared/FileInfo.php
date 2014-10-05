@@ -18,6 +18,7 @@ namespace TheSeer\phpDox {
          * @return bool
          */
         public function exists() {
+            clearstatcache(true, $this->getPathname());
             return file_exists($this->getPathname());
         }
 
