@@ -13,7 +13,7 @@
     "issues" : "https://github.com/theseer/phpdox/issues"
   },
   "require" : {
-    "php" : ">=5.4.0",
+    "php" : ">=5.3.3",
     "ext-tokenizer" : "*",
     "ext-dom" : "*",
     "ext-xsl" : "*",
