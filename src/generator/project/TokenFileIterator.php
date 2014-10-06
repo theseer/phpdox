@@ -24,8 +24,7 @@ namespace TheSeer\phpDox\Generator {
          */
         public function current() {
             $item = $this->nodeList->item($this->pos);
-            //var_dump($item);
-            $path = dirname($item->ownerDocument->documentURI) . '/' . $item->getAttribute('xml');
+            $path = dirname(urldecode($item->ownerDocument->documentURI)) . '/' . $item->getAttribute('xml');
             return new TokenFile(new FileInfo($path));
         }
 
