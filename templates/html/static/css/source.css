@@ -142,3 +142,43 @@ table.source td.line div:target pre {
 .T_CONSTANT_ENCAPSED_STRING, .T_ENCAPSED_AND_WHITESPACE {
     color: #DD0000;
 }
+
+.covered {
+    background-color: rgba(5, 238, 25, 0.13);
+}
+
+a.covered:hover + div {
+    left:90px;
+}
+
+.coverage_details {
+    position: absolute;
+    left:-10000px;
+    margin:-1.4em 0 0 0;
+    background-color: #eee;
+    box-shadow: 5px 5px 10px #888;
+    z-index: 1;
+    padding:1em;
+}
+
+.coverage_details span {
+    font-weight: bold;
+}
+
+.coverage_details ul {
+    margin:0;
+    padding:1em;
+}
+
+.coverage_details:before {
+    position: absolute;
+    content:"";
+    width: 12px;
+    height: 12px;
+    top: 3px;
+    left: -6px;
+    border:0;
+    background-color: #eee;
+    transform: rotate(45deg);
+    z-index: -1;
+}

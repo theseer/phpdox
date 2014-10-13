@@ -1,6 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:token="http://xml.phpdox.net/token"
                 xmlns:src="http://xml.phpdox.net/src"
+                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
                 xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="token src">
 
@@ -48,7 +49,7 @@
                 <li><a href="{$base}index.{$extension}">Overview</a></li>
                 <li class="separator"><a href="{$base}source/index.{$extension}">Source</a></li>
 
-                
+
             </ul>
         </div>
     </xsl:template>
@@ -60,7 +61,24 @@
             <tr>
                 <td class="no">
                     <xsl:for-each select="//token:line">
-                        <a class="anker" href="#line{@no}"><xsl:value-of select="@no" /></a>
+                        <xsl:variable name="no" select="@no" />
+                        <xsl:variable name="ctx" select="//src:enrichment[@type='phpunit']//pu:line[@nr = $no]" />
+                        <xsl:variable name="coverage">
+                            <xsl:if test="count($ctx/pu:covered) &gt; 0"> covered</xsl:if>
+                        </xsl:variable>
+                        <a class="anker{$coverage}" href="#line{@no}"><xsl:value-of select="@no" /></a>
+                        <xsl:if test="count($ctx/pu:covered) &gt; 0">
+                        <div class="coverage_details">
+                            <span>
+                                Covered by <xsl:value-of select="count($ctx/pu:covered)" /> test(s):
+                            </span>
+                            <ul>
+                            <xsl:for-each select="$ctx/pu:covered">
+                                <li><xsl:value-of select="@by" /></li>
+                            </xsl:for-each>
+                            </ul>
+                        </div>
+                        </xsl:if>
                     </xsl:for-each>
                 </td>
                 <td class="line">
