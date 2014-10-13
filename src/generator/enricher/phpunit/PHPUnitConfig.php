@@ -3,6 +3,7 @@
 namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\GeneratorConfig;
 
     class PHPUnitConfig {
@@ -22,6 +23,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->generator = $generator;
         }
 
+        /**
+         * @return FileInfo
+         */
         public function getCoveragePath() {
             $basedirDefault = dirname($this->context->ownerDocument->baseURI);
             $path = $basedirDefault . '/build/logs';
@@ -35,12 +39,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             } else {
                 $path .= 'coverage';
             }
-            return $path;
+            return new FileInfo($path);
         }
 
-        public function getSourceDirectory() {
-            return $this->generator->getProjectConfig()->getSourceDirectory();
-        }
     }
 
 }

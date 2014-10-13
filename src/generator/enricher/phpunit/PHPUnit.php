@@ -7,16 +7,18 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\PHPDoxEndEvent;
+    use TheSeer\phpDox\Generator\TokenFileStartEvent;
     use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class PHPUnit extends AbstractEnricher implements EndEnricherInterface, ClassEnricherInterface, TraitEnricherInterface {
+    class PHPUnit extends AbstractEnricher implements
+        EndEnricherInterface, ClassEnricherInterface, TraitEnricherInterface, TokenFileEnricherInterface {
 
         const XMLNS = 'http://schema.phpunit.de/coverage/1.0';
 
         /**
-         * @var PHPUnitConfig
+         * @var Fileinfo
          */
-        private $config;
+        private $coveragePath;
 
         /**
          * @var fDOMDocument
@@ -27,8 +29,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
         private $results = array();
         private $coverage = array();
 
+        /**
+         * @param PHPUnitConfig $config
+         *
+         * @throws EnricherException
+         */
         public function __construct(PHPUnitConfig $config) {
-            $this->config = $config;
+            $this->coveragePath = $config->getCoveragePath();
             $this->index = $this->loadXML('index.xml');
         }
 
@@ -69,36 +76,40 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->enrichByFile($event->getTrait()->asDom());
         }
 
-        private function enrichByFile(fDOMDocument $dom) {
-            $fileNode = $dom->queryOne('//phpdox:file');
-            if (!$fileNode) {
-                return;
+        public function enrichTokenFile(TokenFileStartEvent $event) {
+            try {
+                $tokenDom = $event->getTokenFile()->asDom();
+                $coverageDom = $this->loadConverageInformation($tokenDom);
+                $coverage = $coverageDom->queryOne('//pu:coverage[pu:line]');
+                if ($coverage) {
+                    $container = $this->getEnrichtmentContainer($tokenDom->documentElement, 'phpunit');
+                    $container->appendChild($tokenDom->importNode($coverage, true));
+                }
+            } catch (PHPUnitEnricherException $e) {
+                // Silently ignore for now
             }
 
-            $fileInfo = new FileInfo($fileNode->getAttribute('path'));
-            $srcDir = $this->config->getSourceDirectory();
-            $paths = explode('/', (string)$fileInfo->getRelative($srcDir));
-            $file = $fileNode->getAttribute('file');
-            $paths = array_slice($paths, 1);
-
-            $query = sprintf('//pu:project/pu:directory[@name = "%s"]', $srcDir->getRealPath());
-            foreach($paths as $path) {
-                $query .= sprintf('/pu:directory[@name = "%s"]', $path);
-            }
-            $query .= sprintf('/pu:file[@name = "%s"]', $file);
-
-            $phpunitFileNode = $this->index->queryOne($query);
-            if (!$phpunitFileNode) {
-                return;
-            }
-
-            $refDom = $this->loadXML($phpunitFileNode->getAttribute('href'));
-            $this->processUnit($dom, $refDom);
         }
 
+        private function enrichByFile(fDOMDocument $dom) {
+            try {
+                $coverageDom = $this->loadConverageInformation($dom);
+                $this->processUnit($dom, $coverageDom);
+            } catch (PHPUnitEnricherException $e) {
+                // Silently ignore for now
+            }
+        }
+
+        /**
+         * @param $fname
+         *
+         * @return fDOMDocument
+         *
+         * @throws EnricherException
+         */
         private function loadXML($fname) {
             try {
-                $fname = $this->config->getCoveragePath() . '/' . $fname;
+                $fname = (string)$this->coveragePath . '/' . $fname;
                 if (!file_exists($fname)) {
                     throw new EnricherException(
                         sprintf('PHPUnit xml file "%s" not found.', $fname),
@@ -203,6 +214,54 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $this->results[$classNamespace][$className] = $result;
             $this->coverage[$classNamespace][$className] = $coverageTarget->cloneNode(false);
         }
+
+        /**
+         * @return FileInfo
+         */
+        private function getSourceDirectory() {
+            $baseDir = $this->index->queryOne('//pu:project/pu:directory');
+            $srcDir = new FileInfo($baseDir->getAttribute('name'));
+            return $srcDir;
+        }
+
+        /**
+         * @param fDOMDocument $dom
+         *
+         * @return fDOMDocument
+         *
+         * @throws EnricherException
+         * @throws PHPUnitEnricherException
+         */
+        private function loadConverageInformation(fDOMDocument $dom) {
+            $fileNode = $dom->queryOne('//phpdox:file');
+            if (!$fileNode) {
+                throw new PHPUnitEnricherException('No file header in event dom');
+            }
+
+            $fileInfo = new FileInfo($fileNode->getAttribute('path'));
+            $srcDir = $this->getSourceDirectory();
+
+            $paths = explode('/', (string)$fileInfo->getRelative($srcDir));
+            $file = $fileNode->getAttribute('file');
+            $paths = array_slice($paths, 1);
+
+            $query = sprintf('//pu:project/pu:directory[@name = "%s"]', $srcDir->getRealPath());
+            foreach ($paths as $path) {
+                $query .= sprintf('/pu:directory[@name = "%s"]', $path);
+            }
+            $query .= sprintf('/pu:file[@name = "%s"]', $file);
+
+            $phpunitFileNode = $this->index->queryOne($query);
+            if (!$phpunitFileNode) {
+                throw new PHPUnitEnricherException('No coverage information for file');
+            }
+
+            $refDom = $this->loadXML($phpunitFileNode->getAttribute('href'));
+            return $refDom;
+        }
     }
 
+
+    class PHPUnitEnricherException extends EnricherException {
+    }
 }
