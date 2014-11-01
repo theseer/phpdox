@@ -52,6 +52,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\collector\\sourcefileiterator' => '/collector/SourceFileIterator.php',
                 'theseer\\phpdox\\collector\\tokenizer' => '/collector/project/Tokenizer.php',
                 'theseer\\phpdox\\collector\\traitobject' => '/collector/project/TraitObject.php',
+                'theseer\\phpdox\\collector\\traituseobject' => '/collector/project/TraitUseObject.php',
                 'theseer\\phpdox\\collector\\unitobjectexception' => '/collector/project/AbstractUnitObject.php',
                 'theseer\\phpdox\\collectorconfig' => '/config/CollectorConfig.php',
                 'theseer\\phpdox\\configexception' => '/config/GlobalConfig.php',

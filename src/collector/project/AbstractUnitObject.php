@@ -276,6 +276,52 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
+         * @return bool
+         */
+        public function usesTraits() {
+            return $this->rootNode->query('phpdox:implements')->length > 0;
+        }
+
+        /**
+         * @param string $name
+         *
+         * @return TraitUseObject
+         */
+        public function addTraitUse($name) {
+            $traituse = new TraitUseObject($this->rootNode->appendElementNS(self::XMLNS, 'uses'));
+            $traituse->setName($name);
+            return $traituse;
+        }
+
+        /**
+         * @param $name
+         *
+         * @return bool
+         */
+        public function usesTtrait($name) {
+            return $this->rootNode->query(sprintf('phpdox:uses[@name="%s"]', $name))->length > 0;
+        }
+
+        /**
+         * @param $name
+         *
+         * @return TraitUseObject
+         * @throws UnitObjectException
+         */
+        public function getTraitUse($name) {
+            $node = $this->rootNode->queryOne(
+                sprintf('phpdox:uses[@name="%s"]', $name)
+            );
+            if (!$node) {
+                throw new UnitObjectException(
+                    sprintf('Trait "%s" not used', $name),
+                    UnitObjectException::NoSuchTrait
+                );
+            }
+            return new TraitUseObject($node);
+        }
+
+        /**
          *
          */
         public function addMethod($name) {
@@ -443,6 +489,11 @@ namespace TheSeer\phpDox\Collector {
          *
          */
         const NoSuchMethod = 4;
+
+        /**
+         *
+         */
+        const NoSuchTrait = 5;
 
     }
 

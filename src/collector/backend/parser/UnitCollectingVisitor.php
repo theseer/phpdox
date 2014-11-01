@@ -36,11 +36,13 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use TheSeer\phpDox\Collector\AbstractUnitObject;
     use TheSeer\phpDox\Collector\AbstractVariableObject;
     use TheSeer\phpDox\Collector\InlineComment;
     use TheSeer\phpDox\Collector\MethodObject;
     use TheSeer\phpDox\DocBlock\Parser as DocBlockParser;
     use PhpParser\NodeVisitorAbstract;
+    use PhpParser\Node\Stmt as NodeType;
 
     /**
      *
@@ -68,9 +70,15 @@ namespace TheSeer\phpDox\Collector\Backend {
         private $result;
 
         /**
-         * @var
+         * @var AbstractUnitObject
          */
         private $unit;
+
+        private $modifier = array(
+            NodeType\Class_::MODIFIER_PUBLIC    => 'public',
+            NodeType\Class_::MODIFIER_PROTECTED => 'protected',
+            NodeType\Class_::MODIFIER_PRIVATE   => 'private',
+        );
 
         /**
          * @param \TheSeer\phpDox\DocBlock\Parser $parser
@@ -85,33 +93,33 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @param \PhpParser\Node $node
          */
         public function enterNode(\PhpParser\Node $node) {
-            if ($node instanceof \PhpParser\Node\Stmt\Namespace_ && $node->name != NULL) {
+            if ($node instanceof NodeType\Namespace_ && $node->name != NULL) {
                 $this->namespace = join('\\', $node->name->parts);
                 $this->aliasMap['::context'] = $this->namespace;
-            } else if ($node instanceof \PhpParser\Node\Stmt\UseUse) {
+            } else if ($node instanceof NodeType\UseUse) {
                 $this->aliasMap[$node->alias] = join('\\', $node->name->parts);
-            } else if ($node instanceof \PhpParser\Node\Stmt\Class_) {
+            } else if ($node instanceof NodeType\Class_) {
                 $this->unit = $this->result->addClass((string)$node->namespacedName);
                 $this->processUnit($node);
                 return;
-            } else if ($node instanceof \PhpParser\Node\Stmt\Interface_) {
+            } else if ($node instanceof NodeType\Interface_) {
                 $this->unit = $this->result->addInterface((string)$node->namespacedName);
                 $this->processUnit($node);
                 return;
-            } else if ($node instanceof \PhpParser\Node\Stmt\Trait_) {
+            } else if ($node instanceof NodeType\Trait_) {
                 $this->unit = $this->result->addTrait((string)$node->namespacedName);
                 $this->processUnit($node);
                 return;
-            } else if ($node instanceof \PhpParser\Node\Stmt\Property) {
+            } else if ($node instanceof NodeType\Property) {
                 $this->processProperty($node);
                 return;
-            } else if ($node instanceof \PhpParser\Node\Stmt\ClassMethod) {
+            } else if ($node instanceof NodeType\ClassMethod) {
                 $this->processMethod($node);
                 return;
-            } elseif ($node instanceof \PhpParser\Node\Stmt\ClassConst) {
+            } elseif ($node instanceof NodeType\ClassConst) {
                 $this->processClassConstant($node);
-            } elseif ($node instanceof \PhpParser\Comment) {
-                //
+            } elseif ($node instanceof NodeType\TraitUse) {
+                $this->processTraitUse($node);
             }
         }
 
@@ -119,9 +127,9 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @param \PhpParser\Node $node
          */
         public function leaveNode(\PhpParser\Node $node) {
-            if ($node instanceof \PhpParser\Node\Stmt\Class_
-                || $node instanceof \PhpParser\Node\Stmt\Interface_
-                || $node instanceof \PhpParser\Node\Stmt\Trait_) {
+            if ($node instanceof NodeType\Class_
+                || $node instanceof NodeType\Interface_
+                || $node instanceof NodeType\Trait_) {
                 $this->unit = NULL;
                 return;
             }
@@ -133,7 +141,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         private function processUnit($node) {
             $this->unit->setStartLine($node->getAttribute('startLine'));
             $this->unit->setEndLine($node->getAttribute('endLine'));
-            if ($node instanceof \PhpParser\Node\Stmt\Class_) {
+            if ($node instanceof NodeType\Class_) {
                 $this->unit->setAbstract($node->isAbstract());
                 $this->unit->setFinal($node->isFinal());
             } else {
@@ -147,7 +155,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $this->unit->setDocBlock($block);
             }
 
-            /** @var \PhpParser\Node\Stmt\Class_ $node */
+            /** @var NodeType\Class_ $node */
             if (count($node->extends) > 0) {
                 if (is_array($node->extends)) {
                     foreach($node->extends as $extends) {
@@ -166,10 +174,48 @@ namespace TheSeer\phpDox\Collector\Backend {
             }
         }
 
+        private function processTraitUse(NodeType\TraitUse $node) {
+            foreach($node->traits as $trait) {
+                $traitUse = $this->unit->addTraitUse( (string)$trait );
+                $traitUse->setStartLine($node->getAttribute('startLine'));
+                $traitUse->setEndLine($node->getAttribute('endLine'));
+            }
+
+            foreach($node->adaptations as $adaptation) {
+                if ($adaptation instanceof NodeType\TraitUseAdaptation\Alias) {
+                    $traitUse = $this->getTraitUse((string)$adaptation->trait);
+                    $traitUse->addAlias(
+                        $adaptation->method,
+                        $adaptation->newName,
+                        $adaptation->newModifier ? $this->modifier[$adaptation->newModifier] : NULL
+                    );
+                } elseif ($adaptation instanceof NodeType\TraitUseAdaptation\Precedence) {
+                    $traitUse = $this->getTraitUse((string)$adaptation->insteadof[0]);
+                    $traitUse->addExclude($adaptation->method);
+                } else {
+                    throw new ParseErrorException(
+                        sprintf('Unexpected adaption type %s', get_class($adaptation)),
+                        ParseErrorException::UnexpectedExpr
+                    );
+                }
+            }
+
+        }
+
+        private function getTraitUse($traitName) {
+            if (!$this->unit->usesTtrait($traitName)) {
+                throw new ParseErrorException(
+                    sprintf('Referenced trait "%s" not used', $traitName),
+                    ParseErrorException::GeneralParseError
+                );
+            }
+            return $this->unit->getTraitUse($traitName);
+        }
+
         /**
-         * @param \PhpParser\Node\Stmt\ClassMethod $node
+         * @param NodeType\ClassMethod $node
          */
-        private function processMethod(\PhpParser\Node\Stmt\ClassMethod $node) {
+        private function processMethod(NodeType\ClassMethod $node) {
 
             /** @var $method \TheSeer\phpDox\Collector\MethodObject */
             $method = $this->unit->addMethod($node->name);
@@ -228,7 +274,7 @@ namespace TheSeer\phpDox\Collector\Backend {
             //die();
         }
 
-        private function processClassConstant(\PhpParser\Node\Stmt\ClassConst $node) {
+        private function processClassConstant(NodeType\ClassConst $node) {
             $constNode = $node->consts[0];
             $const = $this->unit->addConstant($constNode->name);
             $const->setValue($constNode->getAttribute('originalValue'));
@@ -239,7 +285,7 @@ namespace TheSeer\phpDox\Collector\Backend {
             }
         }
 
-        private function processProperty(\PhpParser\Node\Stmt\Property $node) {
+        private function processProperty(NodeType\Property $node) {
             $property = $node->props[0];
             $member = $this->unit->addMember($property->name);
             $this->setVariableType($member, $property->type);
