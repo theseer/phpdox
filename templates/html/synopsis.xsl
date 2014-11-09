@@ -88,7 +88,7 @@
             </ul>
             </xsl:if>
 
-            <xsl:for-each select="$unit/pdx:parent[pdx:method[@visibility != 'private']|pdx:constructor[@visibility != 'private']|pdx:destructor[@visibility != 'private']]">
+            <xsl:for-each select="$unit/pdx:parent[pdx:method[@visibility != 'private']|pdx:constructor[@visibility != 'private']|pdx:destructor[@visibility != 'private']]|$unit/pdx:trait[pdx:method]">
                 <xsl:variable name="parent" select="." />
                 <ul class="none">
                     <li>// Inherited methods from <span title="{@full}"><xsl:value-of select="@name" /></span></li>

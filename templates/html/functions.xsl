@@ -16,6 +16,10 @@
                 <xsl:when test="local-name($ctx) = 'uses'">traits</xsl:when>
                 <xsl:when test="local-name($ctx) = 'interface'">interfaces</xsl:when>
 
+                <xsl:when test="local-name($ctx) = 'interface'">interfaces</xsl:when>
+                <xsl:when test="local-name($ctx) = 'trait'">traits</xsl:when>
+                <xsl:when test="local-name($ctx) = 'class'">classes</xsl:when>
+
                 <xsl:when test="local-name($unit) = 'interface'">interfaces</xsl:when>
                 <xsl:when test="local-name($unit) = 'class'">classes</xsl:when>
                 <xsl:when test="local-name($unit) = 'trait'">traits</xsl:when>

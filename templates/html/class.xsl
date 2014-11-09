@@ -1,3 +1,4 @@
+<?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pdx="http://xml.phpdox.net/src"
@@ -39,7 +40,7 @@
                             <xsl:with-param name="unit" select="$unit" />
                         </xsl:call-template>
 
-                        <xsl:if test="$unit/pdx:extends|$unit/pdx:extender|$unit/pdx:implements|$unit/pdx:uses">
+                        <xsl:if test="$unit/pdx:extends|$unit/pdx:extender|$unit/pdx:implements|$unit/pdx:uses|$unit/pdx:users">
                         <h2 id="hierarchy">Hierarchy</h2>
                         <xsl:call-template name="hierarchy" />
                         </xsl:if>

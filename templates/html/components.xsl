@@ -102,7 +102,7 @@
             <xsl:if test="$unit/pdx:extender">
                 <h4>Extended by</h4>
                 <ul>
-                    <xsl:for-each select="$unit/pdx:extender">
+                    <xsl:for-each select="$unit/pdx:extender/*">
                         <li><a href="{$base}{$dir}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
                     </xsl:for-each>
                 </ul>
@@ -128,6 +128,15 @@
                 <ul>
                     <xsl:for-each select="$unit/pdx:implementor">
                         <li><a href="{$base}classes/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                    </xsl:for-each>
+                </ul>
+            </xsl:if>
+            <xsl:if test="$unit/pdx:users">
+                <h4>Used by</h4>
+                <ul>
+                    <xsl:for-each select="$unit/pdx:users/*">
+                        <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
+                        <!--<a href="{$base}{local-name(.)}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a>-->
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -367,7 +376,7 @@
     <xsl:template name="inheritedMethods">
         <xsl:param name="ctx" />
 
-        <xsl:for-each select="//pdx:parent">
+        <xsl:for-each select="//pdx:parent|$unit//pdx:trait">
             <xsl:variable name="parent" select="." />
 
             <xsl:if test="count($parent/pdx:method) > 0">
