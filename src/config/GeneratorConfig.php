@@ -89,6 +89,11 @@ namespace TheSeer\phpDox {
                 foreach($this->ctx->query('cfg:enrich/cfg:source[@type and (not(@enabled) or @enabled="true")]') as $ctx) {
                     $this->enrichers[$ctx->getAttribute('type')] = new EnrichConfig($this, $ctx);
                 }
+                if (!isset($this->enrichers['build'])) {
+                    $ctx = $this->ctx->ownerDocument->createElementNS('http://xml.phpdox.net/config', 'source');
+                    $ctx->setAttribute('type', 'build');
+                    $this->enrichers['build'] = new EnrichConfig($this, $ctx);
+                }
             }
             return $this->enrichers;
         }
