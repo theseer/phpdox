@@ -8,3 +8,6 @@
 /sample
 /vendor
 /composer.lock
+/tests/data/*/xml
+/tests/data/*/docs
+
