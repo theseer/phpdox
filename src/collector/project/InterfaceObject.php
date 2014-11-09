@@ -43,7 +43,7 @@ namespace TheSeer\phpDox\Collector {
             if ($this->getRootNode()->queryOne(sprintf('phpdox:implementor[@full = "%s"]', $unit->getName())) !== NULL) {
                 return;
             }
-            $implementor = $this->getRootNode()->appendElementNS(self::XMLNS, 'implementor');
+            $implementor = $this->addToContainer('implementors', $unit->getType());
             $this->setName($unit->getName(), $implementor);
 
         }

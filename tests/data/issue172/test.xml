@@ -7,6 +7,7 @@
 
         <generator output="${basedir}/docs">
             <build engine="html" enabled="true" output="html" />
+            <build engine="xml" enabled="true" output="xml" />
         </generator>
 
     </project>

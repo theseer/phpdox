@@ -176,7 +176,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         private function processTraitUse(NodeType\TraitUse $node) {
             foreach($node->traits as $trait) {
-                $traitUse = $this->unit->addTraitUse( (string)$trait );
+                $traitUse = $this->unit->addTrait( (string)$trait );
                 $traitUse->setStartLine($node->getAttribute('startLine'));
                 $traitUse->setEndLine($node->getAttribute('endLine'));
             }

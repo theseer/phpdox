@@ -105,6 +105,20 @@ namespace TheSeer\phpDox\Collector {
                         }
                     }
                 }
+                if ($unit->usesTraits()) {
+                    foreach($unit->getUsedTraits() as $traitName) {
+                        try {
+                            $traitUnit = $this->getUnitByName($traitName);
+                            $this->processTraitUse(
+                                $unit,
+                                $unit->getTraitUse($traitName),
+                                $traitUnit
+                            );
+                        } catch (ProjectException $e) {
+                            $this->addUnresolved($unit->getName(), $traitName);
+                        }
+                    }
+                }
 
                 $this->logger->progress('processed');
             }
@@ -160,6 +174,22 @@ namespace TheSeer\phpDox\Collector {
                     }
                 }
             }
+
+            if ($extends->usesTraits()) {
+                foreach($extends->getUsedTraits() as $traitName) {
+                    try {
+                        $traitUnit = $this->getUnitByName($traitName);
+                        $this->processTraitUse(
+                            $unit,
+                            $extends->getTraitUse($traitName),
+                            $traitUnit
+                        );
+                    } catch (ProjectException $e) {
+                        $this->addUnresolved($unit->getName(), $traitName);
+                    }
+                }
+            }
+
         }
 
         private function processImplements(AbstractUnitObject $unit, AbstractUnitObject $implements) {
@@ -179,6 +209,41 @@ namespace TheSeer\phpDox\Collector {
                     }
                 }
             }
+        }
+
+        private function processTraitUse(AbstractUnitObject $unit, TraitUseObject $use, AbstractUnitObject $trait) {
+            $this->project->registerForSaving($unit);
+            $this->project->registerForSaving($trait);
+
+            $trait->addUser($unit);
+            $unit->importTraitExports($trait, $use);
+
+            if ($trait->hasExtends()) {
+                foreach($trait->getExtends() as $name) {
+                    try {
+                        $extendedUnit = $this->getUnitByName($name);
+                        $this->processExtends($unit, $extendedUnit, $extendedUnit);
+                    } catch (ProjectException $e) {
+                        $this->addUnresolved($unit->getName(), $trait->getExtends());
+                    }
+                }
+            }
+
+            if ($trait->usesTraits()) {
+                foreach($trait->getUsedTraits() as $traitName) {
+                    try {
+                        $traitUnit = $this->getUnitByName($traitName);
+                        $this->processTraitUse(
+                            $unit,
+                            $trait->getTraitUse($traitName),
+                            $traitUnit
+                        );
+                    } catch (ProjectException $e) {
+                        $this->addUnresolved($unit->getName(), $traitName);
+                    }
+                }
+            }
+
         }
 
         private function setupDependencies() {

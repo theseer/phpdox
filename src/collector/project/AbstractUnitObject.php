@@ -238,10 +238,10 @@ namespace TheSeer\phpDox\Collector {
          * @param AbstractUnitObject $unit
          */
         public function addExtender(AbstractUnitObject $unit) {
-            if ($this->rootNode->queryOne(sprintf('phpdox:extender[@full = "%s"]', $unit->getName())) !== NULL) {
+            if ($this->rootNode->queryOne(sprintf('phpdox:extenders/phpdox:*[@full = "%s"]', $unit->getName())) !== NULL) {
                 return;
             }
-            $extender = $this->rootNode->appendElementNS(self::XMLNS, 'extender');
+            $extender = $this->addToContainer('extenders', 'extender');
             $this->setName($unit->getName(), $extender);
         }
 
@@ -257,7 +257,7 @@ namespace TheSeer\phpDox\Collector {
          * @return bool
          */
         public function hasImplements() {
-            return $this->rootNode->query('phpdox:implements')->length > 0;
+            return $this->rootNode->query('phpdox:interface')->length > 0;
         }
 
         /**
@@ -283,23 +283,38 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
+         * @param $name
+         *
+         * @return bool
+         */
+        public function usesTtrait($name) {
+            return $this->rootNode->query(sprintf('phpdox:uses[@full="%s"]', $name))->length > 0;
+        }
+
+        /**
          * @param string $name
          *
          * @return TraitUseObject
          */
-        public function addTraitUse($name) {
+        public function addTrait($name) {
             $traituse = new TraitUseObject($this->rootNode->appendElementNS(self::XMLNS, 'uses'));
             $traituse->setName($name);
             return $traituse;
         }
 
         /**
-         * @param $name
-         *
-         * @return bool
+         * @return array
+         * @throws UnitObjectException
          */
-        public function usesTtrait($name) {
-            return $this->rootNode->query(sprintf('phpdox:uses[@name="%s"]', $name))->length > 0;
+        public function getUsedTraits() {
+            if (!$this->usesTraits()) {
+                throw new UnitObjectException('This unit does not use any traits', UnitObjectException::NoTraitsUsed);
+            }
+            $result = array();
+            foreach($this->rootNode->query('phpdox:uses') as $trait) {
+                $result[] = $trait->getAttribute('full');
+            }
+            return $result;
         }
 
         /**
@@ -310,7 +325,7 @@ namespace TheSeer\phpDox\Collector {
          */
         public function getTraitUse($name) {
             $node = $this->rootNode->queryOne(
-                sprintf('phpdox:uses[@name="%s"]', $name)
+                sprintf('phpdox:uses[@full="%s"]', $name)
             );
             if (!$node) {
                 throw new UnitObjectException(
@@ -444,6 +459,57 @@ namespace TheSeer\phpDox\Collector {
             }
         }
 
+        public function importTraitExports(AbstractUnitObject $trait, TraitUseObject $use) {
+
+            $container = $this->rootNode->queryOne(
+                sprintf(
+                    'phpdox:trait[@full="%s"]',
+                    $trait->getName()
+                )
+            );
+            if ($container instanceof fDOMElement) {
+                $container->parentNode->removeChild($container);
+            }
+
+            $container = $this->rootNode->appendElementNS( self::XMLNS, 'trait');
+            $this->setName($trait->getName(), $container);
+
+            if ($trait->hasExtends()) {
+                foreach($trait->getExtends() as $name) {
+                    $extends = $container->appendElementNS( self::XMLNS, 'extends');
+                    $this->setName($name, $extends);
+                }
+            }
+
+            foreach($trait->getConstants() as $constant) {
+                $container->appendChild( $this->dom->importNode($constant->export(), TRUE) );
+            }
+
+            foreach($trait->getExportedMembers() as $member) {
+                $container->appendChild( $this->dom->importNode($member->export(), TRUE) );
+            }
+
+            foreach($trait->getExportedMethods() as $method) {
+                $methodName = $method->getName();
+                $methodNode = $this->dom->importNode($method->export(), TRUE);
+
+                if (!$use->isExcluded($methodName)) {
+                    $container->appendChild($methodNode);
+                }
+
+                $aliasNode = NULL;
+                if ($use->isAliased($methodName)) {
+                    $aliasNode = $methodNode->cloneNode(true);
+                    $aliasNode->setAttribute('name', $use->getAliasedName($methodName));
+                    if ($use->hasAliasedModifier($methodName)) {
+                        $aliasNode->setAttribute('visibility', $use->getAliasedModifier($methodName));
+                    }
+                    $container->appendChild($aliasNode);
+                }
+            }
+
+        }
+
         private function hasMethod($name) {
             return $this->dom->query(
                 sprintf('phpdox:method[@name="%s"]', $name)
@@ -461,6 +527,20 @@ namespace TheSeer\phpDox\Collector {
                 );
             }
             return new MethodObject($this, $ctx);
+        }
+
+        /**
+         * @param $containerName
+         * @param $elementName
+         *
+         * @return fDOMElement
+         */
+        protected function addToContainer($containerName, $elementName) {
+            $container = $this->rootNode->queryOne('phpdox:' . $containerName);
+            if (!$container) {
+                $container = $this->rootNode->appendElementNS(self::XMLNS, $containerName);
+            }
+            return $container->appendElementNS(self::XMLNS, $elementName);
         }
 
     }
@@ -488,12 +568,17 @@ namespace TheSeer\phpDox\Collector {
         /**
          *
          */
-        const NoSuchMethod = 4;
+        const NoTraitsUsed = 4;
 
         /**
          *
          */
-        const NoSuchTrait = 5;
+        const NoSuchMethod = 5;
+
+        /**
+         *
+         */
+        const NoSuchTrait = 6;
 
     }
 
