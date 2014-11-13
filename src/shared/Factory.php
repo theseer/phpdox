@@ -37,6 +37,7 @@
  */
 namespace TheSeer\phpDox {
 
+    use TheSeer\DirectoryScanner\DirectoryScanner;
     use TheSeer\phpDox\Collector\InheritanceResolver;
     use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Generator;
@@ -50,11 +51,7 @@ namespace TheSeer\phpDox {
         /**
          * @var array
          */
-        private $map = array(
-            'DirectoryScanner' => '\\TheSeer\\DirectoryScanner\\DirectoryScanner',
-            'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
-            'ConfigLoader' => '\\TheSeer\\phpDox\\ConfigLoader'
-        );
+        private $map = array();
 
         /**
          * @var array
@@ -104,64 +101,6 @@ namespace TheSeer\phpDox {
             $this->loggerType = $name;
         }
 
-        /**
-         * @param string           $name
-         * @param FactoryInterface $factory
-         */
-        public function addFactory($name, FactoryInterface $factory) {
-            $this->map[$name] = $factory;
-        }
-
-        /**
-         * @param string $name
-         * @param string $class
-         */
-        public function addClass($name, $class) {
-            $this->map[$name] = $class;
-        }
-
-        /**
-         * @param string $name
-         * @return mixed|object
-         */
-        public function getInstanceFor($name) {
-            $params = func_get_args();
-            if (isset($this->map[$name])) {
-                if ($this->map[$name] instanceof FactoryInterface) {
-                    return call_user_func_array( array($this->map[$name], 'getInstanceFor'), $params);
-                }
-                if (is_string($this->map[$name])) {
-                    array_shift($params);
-                    return $this->getGenericInstance($this->map[$name], $params);
-                }
-            }
-            $method = 'get'.$name;
-            array_shift($params);
-            if (method_exists($this, $method)) {
-                return call_user_func_array(array($this, $method), $params);
-            }
-            return $this->getGenericInstance($name, $params);
-        }
-
-        /**
-         * @param string $class
-         * @param array $params
-         * @return object
-         * @throws FactoryException
-         */
-        private function getGenericInstance($class, array $params) {
-            $rfc = new \ReflectionClass($class);
-            if (!$rfc->isInstantiable()) {
-                throw new FactoryException("class '$class' is not instantiable", FactoryException::NotInstantiable);
-            }
-            if (count($params)==0) {
-                return new $class();
-            }
-            if (!$rfc->getConstructor()) {
-               throw new FactoryException("class '$class' does not have a constructor but constructor parameters given", FactoryException::NoConstructor);
-            }
-            return $rfc->newInstanceArgs($params);
-        }
 
         /**
          * @return ErrorHandler
@@ -182,6 +121,11 @@ namespace TheSeer\phpDox {
          */
         public function getConfigLoader() {
             return new ConfigLoader();
+        }
+
+
+        public function getDirectoryScanner() {
+            return new DirectoryScanner();
         }
 
         /**

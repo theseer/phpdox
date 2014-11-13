@@ -55,4 +55,4 @@ if (strpos(PHPDOX_VERSION, '%devel')===0) {
 
 
 $factory = new \TheSeer\phpDox\Factory();
-$factory->getInstanceFor('CLI')->run(new \TheSeer\phpDox\CLIOptions($_SERVER['argv']));
+$factory->getCLI()->run(new \TheSeer\phpDox\CLIOptions($_SERVER['argv']));
