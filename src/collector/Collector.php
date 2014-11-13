@@ -72,19 +72,18 @@ namespace TheSeer\phpDox\Collector {
          * @param \TheSeer\phpDox\ProgressLogger  $logger
          * @param Project $project
          */
-        public function __construct(ProgressLogger $logger, Project $project) {
+        public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend) {
             $this->logger = $logger;
             $this->project = $project;
+            $this->backend = $backend;
         }
 
         /**
          * @param DirectoryScanner $scanner
-         * @param BackendInterface $backend
          *
          * @return Project
          */
-        public function run(DirectoryScanner $scanner, BackendInterface $backend) {
-            $this->backend = $backend;
+        public function run(DirectoryScanner $scanner) {
 
             $srcDir = $this->project->getSourceDir();
             $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");

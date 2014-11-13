@@ -112,23 +112,14 @@ namespace TheSeer\phpDox {
                     ApplicationException::InvalidSrcDirectory
                 );
             }
-            $xmlDir = $config->getWorkDirectory();
 
-            /** @var $scanner DirectoryScanner */
+            $collector = $this->factory->getCollector($config);
+
             $scanner = $this->factory->getScanner(
-                    $config->getIncludeMasks(),
-                    $config->getExcludeMasks()
+                $config->getIncludeMasks(),
+                $config->getExcludeMasks()
             );
-            $scanner->setFlag(\FilesystemIterator::UNIX_PATHS);
-
-            $collector = $this->factory->getCollector(
-                $srcDir,
-                $xmlDir,
-                $config->isPublicOnlyMode()
-            );
-
-            $backend = $this->factory->getBackendFactory()->getInstanceFor($config->getBackend());
-            $project = $collector->run($scanner, $backend);
+            $project = $collector->run($scanner);
 
             if ($collector->hasParseErrors()) {
                 $this->logger->log('The following file(s) had errors during processing and were excluded:');
@@ -137,7 +128,9 @@ namespace TheSeer\phpDox {
                 }
             }
 
-            $this->logger->log("Saving results to directory '{$xmlDir}'");
+            $this->logger->log(
+                sprintf("Saving results to directory '%s'", $config->getWorkDirectory())
+            );
             $vanished = $project->cleanVanishedFiles();
             if (count($vanished) > 0) {
                 $this->logger->log(sprintf("Removed %d vanished file(s) from project:", count($vanished)));

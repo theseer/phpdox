@@ -38,10 +38,11 @@
 namespace TheSeer\phpDox {
 
     use TheSeer\DirectoryScanner\DirectoryScanner;
+    use TheSeer\phpDox\Collector\Collector;
     use TheSeer\phpDox\Collector\InheritanceResolver;
+    use TheSeer\phpDox\Collector\Project;
     use TheSeer\phpDox\Generator\Engine\EventHandlerRegistry;
     use TheSeer\phpDox\Generator\Generator;
-    use TheSeer\phpDox\Collector\Collector;
 
     /**
      *
@@ -189,20 +190,24 @@ namespace TheSeer\phpDox {
                     $scanner->addExclude($exclude);
                 }
             }
+            $scanner->setFlag(\FilesystemIterator::UNIX_PATHS);
+
             return $scanner;
         }
 
         /**
-         * @param FileInfo $srcDir
-         * @param FileInfo $xmlDir
+         * @param CollectorConfig $config
+         *
          * @return Collector
          */
-        public function getCollector($srcDir, $xmlDir) {
+        public function getCollector(CollectorConfig $config) {
             return new Collector(
                 $this->getLogger(),
-                new \TheSeer\phpDox\Collector\Project(
-                    $srcDir, $xmlDir
-                )
+                new Project(
+                    $config->getSourceDirectory(),
+                    $config->getWorkDirectory()
+                ),
+                $this->getBackendFactory()->getInstanceFor($config->getBackend())
             );
         }
 
