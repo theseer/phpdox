@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Copyright (c) 2010-2013 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2014 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -40,19 +40,8 @@
  *
  */
 
-define('PHPDOX_VERSION', '%development%');
+require __DIR__ . '/src/autoload.php';
 
-require 'TheSeer/DirectoryScanner/autoload.php';
-require 'TheSeer/fDOMDocument/autoload.php';
-require 'TheSeer/fXSL/autoload.php';
-require 'PHP/Timer.php';
-
-if (strpos(PHPDOX_VERSION, '%devel')===0) {
-    require __DIR__ . '/src/autoload.php';
-} else {
-    require 'TheSeer/phpDox/autoload.php';
-}
-
-
-$factory = new \TheSeer\phpDox\Factory();
-$factory->getCLI()->run(new \TheSeer\phpDox\CLIOptions($_SERVER['argv']));
+(new TheSeer\phpDox\Factory())->getCLI()->run(
+    new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
+);

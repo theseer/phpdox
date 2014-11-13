@@ -41,10 +41,7 @@ namespace TheSeer\phpDox {
 
     // nikic's PHPParser
     if (!class_exists('PhpParser\Autoloader', true)) {
-        $phpParser = stream_resolve_include_path('PHPParser/bootstrap.php');
-        if ($phpParser !== FALSE) {
-            require $phpParser;
-        }
+        require __DIR__ . '/../vendor/nikic/php-parser/lib/bootstrap.php';
     }
 
     if (class_exists('PhpParser\Autoloader', false)) {

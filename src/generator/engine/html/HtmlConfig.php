@@ -40,10 +40,10 @@ namespace TheSeer\phpDox\Generator\Engine {
     class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
 
         public function getTemplateDirectory() {
-            if (PHPDOX_VERSION == '%development%' || defined('PHPDOX_PHAR')) {
-                $default = __DIR__ . '/../../../../templates/html';
+            if (defined('PHPDOX_PHAR')) {
+                $default = sprintf('phar://%s/templates/html', PHPDOX_PHAR);
             } else {
-                $default = __DIR__ . '/../../../templates/html';
+                $default = __DIR__ . '/../../../../templates/html';
             }
             $node = $this->ctx->queryOne('cfg:template');
             if (!$node) {

@@ -31,7 +31,9 @@
       "src/"
     ]
   },
-  "bin" : [ "composer/bin/phpdox" ],
+  "bin" : [
+      "phpdox"
+  ],
   "minimum-stability" : "dev",
   "prefer-stable" : true
 }

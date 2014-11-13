@@ -41,18 +41,19 @@ namespace TheSeer\phpDox {
 
         private static $version = NULL;
 
+        public static function setVersion($version) {
+            self::$version = $version;
+        }
+
         public static function getVersion() {
             if (self::$version === NULL) {
-                self::$version = PHPDOX_VERSION;
-                if (PHPDOX_VERSION == '%development%') {
-                    $cwd = getcwd();
-                    chdir(__DIR__ . '/../..');
-                    $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
-                    $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
-                    chdir($cwd);
-                    if ($rc === 0) {
-                        self::$version = $git;
-                    }
+                $cwd = getcwd();
+                chdir(__DIR__ . '/../..');
+                $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
+                $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
+                chdir($cwd);
+                if ($rc === 0) {
+                    self::$version = $git;
                 }
             }
             return self::$version;
