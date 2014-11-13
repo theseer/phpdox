@@ -45,7 +45,7 @@ namespace TheSeer\phpDox\DocBlock {
         protected $body;
         protected $attributes = array();
 
-        public function __construct(\TheSeer\phpDox\FactoryInterface $factory, $name) {
+        public function __construct(Factory $factory, $name) {
             $this->factory = $factory;
             $this->name = $name;
         }
@@ -79,7 +79,7 @@ namespace TheSeer\phpDox\DocBlock {
                 }
             }
             if ($this->body !== null && $this->body !== '') {
-                $parser = $this->factory->getInstanceFor('InlineProcessor', $ctx);
+                $parser = $this->factory->getInlineProcessor($ctx);
                 $node->appendChild($parser->transformToDom($this->body));
             }
             return $node;
