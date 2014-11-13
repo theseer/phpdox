@@ -221,7 +221,7 @@ namespace TheSeer\phpDox {
          * @return mixed|object
          */
         public function getScanner($include, $exclude = NULL) {
-            $scanner = $this->getInstanceFor('DirectoryScanner');
+            $scanner = $this->getDirectoryScanner();
 
             if (is_array($include)) {
                 $scanner->setIncludes($include);

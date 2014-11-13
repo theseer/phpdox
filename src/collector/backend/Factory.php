@@ -36,21 +36,21 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\phpDox\Factory as GlobalFactory;
+    use TheSeer\phpDox\Factory as MasterFactory;
 
     class Factory {
 
-        /** @var GlobalFactory */
+        /** @var MasterFactory */
         private $master;
 
-        public function __construct(GlobalFactory $factory) {
+        public function __construct(MasterFactory $factory) {
             $this->master = $factory;
         }
 
         public function getInstanceFor($type) {
             switch ($type) {
                 case 'parser': {
-                    return new PHPParser($this->master->getInstanceFor('DocblockParser'));
+                    return new PHPParser($this->master->getDocblockParser());
                 }
                 default: {
                     throw new FactoryException("'$type' is not a known backend.");

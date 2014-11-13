@@ -104,8 +104,7 @@ namespace TheSeer\phpDox {
             $xmlDir = $config->getWorkDirectory();
 
             /** @var $scanner DirectoryScanner */
-            $scanner = $this->factory->getInstanceFor(
-                    'Scanner',
+            $scanner = $this->factory->getScanner(
                     $config->getIncludeMasks(),
                     $config->getExcludeMasks()
             );
