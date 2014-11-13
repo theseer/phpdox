@@ -63,7 +63,7 @@ namespace TheSeer\phpDox {
          * Main executor for CLI process.
          */
         public function run(CLIOptions $options) {
-            $errorHandler = $this->factory->getInstanceFor('ErrorHandler');
+            $errorHandler = $this->factory->getErrorHandler();
             $errorHandler->register();
             try {
                 $this->preBootstrap();
@@ -84,7 +84,7 @@ namespace TheSeer\phpDox {
                     exit(0);
                 }
 
-                $cfgLoader = $this->factory->getInstanceFor('ConfigLoader');
+                $cfgLoader = $this->factory->getConfigLoader();
                 $cfgFile = $options->configFile();
                 if ($cfgFile != '') {
                     $config = $cfgLoader->load($cfgFile);
@@ -100,11 +100,11 @@ namespace TheSeer\phpDox {
                     $this->factory->setLoggerType('shell');
                 }
 
-                $logger = $this->factory->getInstanceFor('Logger');
+                $logger = $this->factory->getLogger();
                 $logger->log("Using config file '". $config->getConfigFile()->getPathname() . "'");
 
                 /** @var Application $app */
-                $app = $this->factory->getInstanceFor('Application');
+                $app = $this->factory->getApplication();
 
                 $defBootstrapFiles = new FileInfoCollection();
                 $defBootstrapFiles->add(new FileInfo(__DIR__ . '/../bootstrap/backends.php'));

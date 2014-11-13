@@ -36,11 +36,11 @@
  */
 namespace TheSeer\phpDox\DocBlock {
 
-    use \TheSeer\phpDox\FactoryInterface;
+    use TheSeer\fDOM\fDOMDocument;
 
-    class Factory implements FactoryInterface {
+    class Factory {
 
-        protected $parserMap = array(
+        private $parserMap = array(
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
 
@@ -51,11 +51,13 @@ namespace TheSeer\phpDox\DocBlock {
             'throws' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
             'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
 
+            'method' => 'TheSeer\\phpDox\\DocBlock\\MethodParser',
+
             'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser',
             'inheritdoc' => 'TheSeer\\phpDox\\DocBlock\\InheritdocParser'
         );
 
-        protected $elementMap = array(
+        private $elementMap = array(
             'inheritdoc' => 'TheSeer\\phpDox\\DocBlock\\InheritdocAttribute',
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement',
@@ -87,19 +89,12 @@ namespace TheSeer\phpDox\DocBlock {
             $this->parserMap[$annotation] = $classname;
         }
 
-        public function getInstanceFor($name) {
-            switch ($name) {
-                case 'DocBlock': {
-                    return new DocBlock();
-                }
-                case 'InlineProcessor': {
-                    $args = func_get_args();
-                    return new InlineProcessor($this, $args[1]);
-                }
-                default: {
-                    throw new FactoryException("No class defined for name '$name'", FactoryException::UnkownClass);
-                }
-            }
+        public function getDocBlock() {
+            return new DocBlock();
+        }
+
+        public function getInlineProcessor(fDOMDocument $dom) {
+            return new InlineProcessor($this, $dom);
         }
 
         public function getElementInstanceFor($name, $annotation = null) {
@@ -157,9 +152,8 @@ namespace TheSeer\phpDox\DocBlock {
     }
 
     class FactoryException extends \Exception {
-        const UnkownClass = 1;
-        const InvalidType = 2;
-        const UnknownType = 3;
+        const InvalidType = 1;
+        const UnknownType = 2;
     }
 
 }

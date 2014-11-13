@@ -78,7 +78,7 @@ namespace TheSeer\phpDox {
          * @return Bootstrap
          */
         public function runBootstrap(FileInfoCollection $requires) {
-            $bootstrap = $this->factory->getInstanceFor('Bootstrap');
+            $bootstrap = $this->factory->getBootstrap();
             $bootstrap->load($requires, true);
             return $bootstrap;
         }
@@ -111,13 +111,13 @@ namespace TheSeer\phpDox {
             );
             $scanner->setFlag(\FilesystemIterator::UNIX_PATHS);
 
-            $collector = $this->factory->getInstanceFor('Collector',
+            $collector = $this->factory->getCollector(
                 $srcDir,
                 $xmlDir,
                 $config->isPublicOnlyMode()
             );
 
-            $backend = $this->factory->getInstanceFor('BackendFactory')->getInstanceFor($config->getBackend());
+            $backend = $this->factory->getBackendFactory()->getInstanceFor($config->getBackend());
             $project = $collector->run($scanner, $backend);
 
             if ($collector->hasParseErrors()) {
@@ -138,7 +138,7 @@ namespace TheSeer\phpDox {
             $changed = $project->save();
             if ($config->doResolveInheritance()) {
                 /** @var $resolver InheritanceResolver */
-                $resolver = $this->factory->getInstanceFor('InheritanceResolver');
+                $resolver = $this->factory->getInheritanceResolver();
                 $resolver->resolve($changed, $project, $config->getInheritanceConfig());
 
                 if ($resolver->hasUnresolved()) {
@@ -166,8 +166,8 @@ namespace TheSeer\phpDox {
             $this->logger->reset();
             $this->logger->log("Starting generator");
 
-            $engineFactory = $this->factory->getInstanceFor('EngineFactory');
-            $enricherFactory = $this->factory->getInstanceFor('EnricherFactory');
+            $engineFactory = $this->factory->getEngineFactory();
+            $enricherFactory = $this->factory->getEnricherFactory();
 
             $failed = array_diff($config->getRequiredEngines(), $engineFactory->getEngineList());
             if (count($failed)) {
@@ -181,7 +181,7 @@ namespace TheSeer\phpDox {
                 throw new ApplicationException("The enricher(s) '$list' is/are not registered", ApplicationException::UnknownEnricher);
             }
 
-            $generator = $this->factory->getInstanceFor('Generator');
+            $generator = $this->factory->getGenerator();
 
             foreach($config->getActiveBuilds() as $buildCfg) {
                 $generator->addEngine( $engineFactory->getInstanceFor($buildCfg) );

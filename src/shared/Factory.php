@@ -45,12 +45,12 @@ namespace TheSeer\phpDox {
     /**
      *
      */
-    class Factory implements FactoryInterface {
+    class Factory {
 
         /**
          * @var array
          */
-        protected $map = array(
+        private $map = array(
             'DirectoryScanner' => '\\TheSeer\\DirectoryScanner\\DirectoryScanner',
             'ErrorHandler' => '\\TheSeer\\phpDox\\ErrorHandler',
             'ConfigLoader' => '\\TheSeer\\phpDox\\ConfigLoader'
@@ -59,7 +59,7 @@ namespace TheSeer\phpDox {
         /**
          * @var array
          */
-        protected $loggerMap = array(
+        private $loggerMap = array(
             'silent' => '\\TheSeer\\phpDox\\ProgressLogger',
             'shell' => '\\TheSeer\\phpDox\\ShellProgressLogger'
         );
@@ -67,22 +67,22 @@ namespace TheSeer\phpDox {
         /**
          * @var array
          */
-        protected $instances = array();
+        private $instances = array();
 
         /**
          * @var
          */
-        protected $config;
+        private $config;
 
         /**
          * @var string
          */
-        protected $loggerType = 'shell';
+        private $loggerType = 'shell';
 
         /**
-         * @var
+         * @var ProgressLogger
          */
-        protected $logger;
+        private $logger;
 
         /**
          * @param array $map
@@ -149,7 +149,7 @@ namespace TheSeer\phpDox {
          * @return object
          * @throws FactoryException
          */
-        protected function getGenericInstance($class, array $params) {
+        private function getGenericInstance($class, array $params) {
             $rfc = new \ReflectionClass($class);
             if (!$rfc->isInstantiable()) {
                 throw new FactoryException("class '$class' is not instantiable", FactoryException::NotInstantiable);
@@ -164,23 +164,37 @@ namespace TheSeer\phpDox {
         }
 
         /**
+         * @return ErrorHandler
+         */
+        public function getErrorHandler() {
+            return new ErrorHandler();
+        }
+
+        /**
          * @return CLI
          */
-        protected function getCLI() {
+        public function getCLI() {
             return new CLI($this);
+        }
+
+        /**
+         * @return ConfigLoader
+         */
+        public function getConfigLoader() {
+            return new ConfigLoader();
         }
 
         /**
          * @return BootstrapApi
          */
-        protected function getBootstrapApi() {
+        public function getBootstrapApi() {
             return new BootstrapApi($this->getBackendFactory(), $this->getDocblockFactory(), $this->getEnricherFactory(), $this->getEngineFactory(), $this->getLogger());
         }
 
         /**
-         * @return mixed
+         * @return ProgressLogger
          */
-        protected function getLogger() {
+        public function getLogger() {
             if (!$this->logger) {
                 $this->logger = new $this->loggerMap[$this->loggerType]();
             }
@@ -190,14 +204,14 @@ namespace TheSeer\phpDox {
         /**
          * @return Bootstrap
          */
-        protected function getBootstrap() {
+        public function getBootstrap() {
             return new Bootstrap($this->getLogger(), $this->getBootstrapApi());
         }
 
         /**
          * @return Application
          */
-        protected function getApplication() {
+        public function getApplication() {
             return new Application($this, $this->getLogger());
         }
 
@@ -206,7 +220,7 @@ namespace TheSeer\phpDox {
          * @param string|array $exclude
          * @return mixed|object
          */
-        protected function getScanner($include, $exclude = NULL) {
+        public function getScanner($include, $exclude = NULL) {
             $scanner = $this->getInstanceFor('DirectoryScanner');
 
             if (is_array($include)) {
@@ -230,7 +244,7 @@ namespace TheSeer\phpDox {
          * @param FileInfo $xmlDir
          * @return Collector
          */
-        protected function getCollector($srcDir, $xmlDir) {
+        public function getCollector($srcDir, $xmlDir) {
             return new Collector(
                 $this->getLogger(),
                 new \TheSeer\phpDox\Collector\Project(
@@ -242,23 +256,23 @@ namespace TheSeer\phpDox {
         /**
          * @return InheritanceResolver
          */
-        protected function getInheritanceResolver() {
+        public function getInheritanceResolver() {
             return new \TheSeer\phpDox\Collector\InheritanceResolver($this->getLogger());
         }
 
         /**
          * @return Generator
          */
-        protected function getGenerator() {
+        public function getGenerator() {
             return new Generator($this->getLogger(), new EventHandlerRegistry());
         }
 
         /**
-         * @return mixed
+         * @return \TheSeer\phpDox\DocBlock\Factory
          */
-        protected function getDocblockFactory() {
+        public function getDocblockFactory() {
             if (!isset($this->instances['DocblockFactory'])) {
-                $this->instances['DocblockFactory'] = new \TheSeer\phpDox\DocBlock\Factory();
+                $this->instances['DocblockFactory'] = new \TheSeer\phpDox\DocBlock\Factory($this);
             }
             return $this->instances['DocblockFactory'];
         }
@@ -266,7 +280,7 @@ namespace TheSeer\phpDox {
         /**
          * @return mixed
          */
-        protected function getBackendFactory() {
+        public function getBackendFactory() {
             if (!isset($this->instances['BackendFactory'])) {
                 $this->instances['BackendFactory'] = new \TheSeer\phpDox\Collector\Backend\Factory($this);
             }
@@ -276,7 +290,7 @@ namespace TheSeer\phpDox {
         /**
          * @return mixed
          */
-        protected function getEngineFactory() {
+        public function getEngineFactory() {
             if (!isset($this->instances['EngineFactory'])) {
                 $this->instances['EngineFactory'] = new \TheSeer\phpDox\Generator\Engine\Factory();
             }
@@ -286,7 +300,7 @@ namespace TheSeer\phpDox {
         /**
          * @return Generator\Enricher\Factory
          */
-        protected function getEnricherFactory() {
+        public function getEnricherFactory() {
             if (!isset($this->instances['EnricherFactory'])) {
                 $this->instances['EnricherFactory'] = new \TheSeer\phpDox\Generator\Enricher\Factory();
             }
@@ -297,7 +311,7 @@ namespace TheSeer\phpDox {
         /**
          * @return mixed
          */
-        protected function getDocblockParser() {
+        public function getDocblockParser() {
             if (!isset($this->instances['DocblockParser'])) {
                 $this->instances['DocblockParser'] = new \TheSeer\phpDox\DocBlock\Parser($this->getDocblockFactory());
             }

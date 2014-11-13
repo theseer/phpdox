@@ -36,14 +36,14 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\phpDox\FactoryInterface;
+    use TheSeer\phpDox\Factory as GlobalFactory;
 
     class Factory {
 
-        /** @var FactoryInterface */
+        /** @var GlobalFactory */
         private $master;
 
-        public function __construct(FactoryInterface $factory) {
+        public function __construct(GlobalFactory $factory) {
             $this->master = $factory;
         }
 

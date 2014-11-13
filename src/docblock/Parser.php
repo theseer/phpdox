@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\DocBlock {
         protected $current = null;
         protected $aliasMap = array();
 
-        public function __construct(\TheSeer\phpDox\FactoryInterface $factory) {
+        public function __construct(Factory $factory) {
             $this->factory = $factory;
         }
 
@@ -50,7 +50,7 @@ namespace TheSeer\phpDox\DocBlock {
             $this->aliasMap = $aliasMap;
             $this->current = null;
 
-            $docBlock = $this->factory->getInstanceFor('DocBlock');
+            $docBlock = $this->factory->getDocBlock();
             $lines = $this->prepare($block);
             if (count($lines)>1) {
                 $this->startParser('description');
