@@ -53,7 +53,7 @@ namespace TheSeer\phpDox {
          *
          * @var Factory
          */
-        protected $factory;
+        private $factory;
 
         public function __construct(Factory $factory) {
             $this->factory = $factory;
@@ -134,6 +134,7 @@ namespace TheSeer\phpDox {
                 }
 
                 foreach($config->getProjects() as $projectName => $projectConfig) {
+
                     /** @var ProjectConfig $projectConfig */
                     $logger->log("Starting to process project '$projectName'");
 
@@ -189,7 +190,7 @@ namespace TheSeer\phpDox {
         /**
          * Helper to output version information.
          */
-        protected function showVersion() {
+        private function showVersion() {
             static $shown = FALSE;
             if ($shown) {
                 return;
@@ -198,7 +199,7 @@ namespace TheSeer\phpDox {
             echo Version::getInfoString() . "\n\n";
         }
 
-        protected function showSkeletonConfig($strip) {
+        private function showSkeletonConfig($strip) {
             $config = file_get_contents(__DIR__ . '/config/skeleton.xml');
             if ($strip) {
                 $dom = new fDOMDocument();
@@ -214,7 +215,7 @@ namespace TheSeer\phpDox {
             echo $config;
         }
 
-        protected function showList($title, Array $list) {
+        private function showList($title, Array $list) {
             echo "\nThe following $title are registered:\n\n";
             foreach($list as $name => $desc) {
                 printf("   %s \t %s\n", $name, $desc);

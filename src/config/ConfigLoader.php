@@ -43,6 +43,12 @@ namespace TheSeer\phpDox {
 
     class ConfigLoader {
 
+        /**
+         * @param $fname
+         *
+         * @return GlobalConfig
+         * @throws ConfigLoaderException
+         */
         public function load($fname) {
            if (!file_exists($fname)) {
                throw new ConfigLoaderException("Config file '$fname' not found", ConfigLoaderException::NotFound);
@@ -50,6 +56,10 @@ namespace TheSeer\phpDox {
            return $this->createInstanceFor($fname);
         }
 
+        /**
+         * @return GlobalConfig
+         * @throws ConfigLoaderException
+         */
         public function autodetect() {
             $candidates = array(
                     './phpdox.xml',
@@ -61,7 +71,7 @@ namespace TheSeer\phpDox {
                 }
                 return $this->createInstanceFor($fname);
             }
-            throw new ConfigLoaderException("None of the candidate files found", ConfigLoaderException::NoCandidateExists);
+            throw new ConfigLoaderException("None of the candidate files found", ConfigLoaderException::NeitherCandidateExists);
         }
 
         /**
@@ -71,7 +81,7 @@ namespace TheSeer\phpDox {
          *
          * @throws ConfigLoaderException
          */
-        protected function createInstanceFor($fname) {
+        private function createInstanceFor($fname) {
             try {
                 $dom = new fDOMDocument();
                 $dom->load($fname);
@@ -113,7 +123,7 @@ namespace TheSeer\phpDox {
     class ConfigLoaderException extends \Exception {
         const NotFound = 1;
         const ParseError = 2;
-        const NoCandidateExists = 3;
+        const NeitherCandidateExists = 3;
         const OldNamespace = 4;
         const WrongType = 5;
         const WrongNamespace = 6;
