@@ -3,7 +3,7 @@
 <phpdox xmlns="http://xml.phpdox.net/config" silent="false">
     <!--  @silent: true | false to enable or disable visual output of progress -->
 
-    <!-- Additional bootstrap files to load for additional parsers and/or engines -->
+    <!-- Additional bootstrap files to load for additional parsers, enrichers and/or engines -->
     <!-- Place as many require nodes as you feel like in this container -->
     <!-- syntax: <require file="/path/to/file.php" /> -->
     <bootstrap />
@@ -77,7 +77,6 @@
                 </source>
                 -->
 
-
                 <!-- enrichment source -->
                 <!--<source type="checkstyle">-->
                     <!-- @type - the handler for the enrichment -->
@@ -102,6 +101,16 @@
                     <file name="pmd.xml" />
                 </source>
                 -->
+
+                <!-- PHPUnit -->
+                <!--
+                <source type="phpunit">  -->
+                    <!-- <coverage path="" /> -->
+                    <!--           @path - the directory where the xml code coverage report can be found -->
+
+                    <!--<filter directory="${phpDox.project.source}" />-->
+                    <!-- @directory - path of the phpunit config whitelist filter directory -->
+                <!--</source>-->
 
             </enrich>
 
