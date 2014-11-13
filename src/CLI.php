@@ -133,26 +133,24 @@ namespace TheSeer\phpDox {
                     exit(0);
                 }
 
-                foreach($config->getAvailableProjects() as $project) {
-                    $logger->log("Starting to process project '$project'");
-                    $pcfg = $config->getProjectConfig($project);
+                foreach($config->getProjects() as $projectName => $projectConfig) {
+                    /** @var ProjectConfig $projectConfig */
+                    $logger->log("Starting to process project '$projectName'");
 
-                    $index = new FileInfo($pcfg->getWorkDirectory() . '/index.xml');
-                    if ($index->exists() && ($index->getMTime() < $config->getConfigFile()->getMTime())) {
-                        $logger->log("Configuration change detected - cleaning cache");
-                        $cleaner = new DirectoryCleaner();
-                        $cleaner->process(new FileInfo($pcfg->getWorkDirectory()));
-                    }
+                    $app->runConfigChangeDetection(
+                        $projectConfig->getWorkDirectory(),
+                        $config->getConfigFile()
+                    );
 
                     if (!$options->generatorOnly()) {
-                        $app->runCollector( $pcfg->getCollectorConfig() );
+                        $app->runCollector( $projectConfig->getCollectorConfig() );
                     }
 
                     if (!$options->collectorOnly()) {
-                        $app->runGenerator( $pcfg->getGeneratorConfig() );
+                        $app->runGenerator( $projectConfig->getGeneratorConfig() );
                     }
 
-                    $logger->log("Processing project '$project' completed.");
+                    $logger->log("Processing project '$projectName' completed.");
 
                 }
 

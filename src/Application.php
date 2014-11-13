@@ -83,6 +83,17 @@ namespace TheSeer\phpDox {
             return $bootstrap;
         }
 
+
+        public function runConfigChangeDetection(FileInfo $workDirectory, FileInfo $configFile) {
+            $index = new FileInfo( (string)$workDirectory . '/index.xml');
+            if (!$index->exists() || ($index->getMTime() >= $configFile->getMTime())) {
+                return;
+            }
+            $this->logger->log("Configuration change detected - cleaning cache");
+            $cleaner = $this->factory->getDirectoryCleaner();
+            $cleaner->process($workDirectory);
+        }
+
         /**
          * Run collection process on given directory tree
          *

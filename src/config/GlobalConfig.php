@@ -96,27 +96,12 @@ namespace TheSeer\phpDox {
         /**
          * @return array
          */
-        public function getAvailableProjects() {
+        public function getProjects() {
             $list = array();
             foreach ($this->cfg->query('//cfg:project[@enabled="true" or not(@enabled)]') as $pos => $project) {
-                $list[] = $project->getAttribute('name') ?: $pos;
+                $list[$project->getAttribute('name', $pos)] = new ProjectConfig($this->runResolver($project));
             }
             return $list;
-        }
-
-        /**
-         * @param $project
-         *
-         * @return ProjectConfig
-         * @throws ConfigException
-         */
-        public function getProjectConfig($project) {
-            $filter = is_int($project) ? $project : "@name = '$project'";
-            $ctx = $this->cfg->queryOne("//cfg:project[$filter]");
-            if (!$ctx) {
-                throw new ConfigException("Project '$project' not found in configuration xml file", ConfigException::ProjectNotFound);
-            }
-            return new ProjectConfig($this->runResolver($ctx));
         }
 
         /**

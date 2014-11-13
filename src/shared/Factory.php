@@ -123,9 +123,18 @@ namespace TheSeer\phpDox {
             return new ConfigLoader();
         }
 
-
+        /**
+         * @return DirectoryScanner
+         */
         public function getDirectoryScanner() {
             return new DirectoryScanner();
+        }
+
+        /**
+         * @return DirectoryCleaner
+         */
+        public function getDirectoryCleaner() {
+            return new DirectoryCleaner();
         }
 
         /**
