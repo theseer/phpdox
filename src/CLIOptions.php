@@ -132,7 +132,8 @@ EOF;
                 'f' => 'file',
                 'h' => 'help',
                 'c' => 'collector',
-                'g' => 'generator'
+                'g' => 'generator',
+                'v' => 'version'
             );
             $valueOptions = array(
                 'file'
