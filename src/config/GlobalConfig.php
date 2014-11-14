@@ -111,12 +111,10 @@ namespace TheSeer\phpDox {
          * @throws ConfigException
          */
         protected function runResolver($ctx) {
-            if (defined('PHPDOX_VERSION') && constant('PHPDOX_VERSION')=='%development%') {
-                $home = realpath(__DIR__.'/../../');
-            } else if (defined('PHPDOX_PHAR')) {
+            if (defined('PHPDOX_PHAR')) {
                 $home = 'phar://' . constant('PHPDOX_PHAR');
             } else {
-                $home = realpath(__DIR__.'/../');
+                $home = realpath(__DIR__.'/../../');
             }
 
             $vars = array(
