@@ -18,9 +18,16 @@
 
     <target name="phpab">
         <exec executable="phpab">
-            <arg line='--cache ${basedir}/build/autoload.cache -o src/autoload.php' />
+            <arg line="--cache ${basedir}/build/phpab/autoload.cache -o src/autoload.php" />
             <arg path="src" />
+        </exec>
+        <exec executable="phpab">
+            <arg line="--cache ${basedir}/build/phpab/autoload.cache" />
+            <arg line="-o src/vendor.php" />
+            <arg line="-b vendor" />
+            <arg line="-t ${basedir}/build/phpab/vendor.tpl" />
             <arg path="vendor/phpunit/php-timer/PHP" />
+            <arg path="vendor/nikic/php-parser/lib" />
             <arg path="vendor/theseer/*/src" />
         </exec>
     </target>
@@ -184,7 +191,7 @@
         </exec>
 
         <chmod file="${basedir}/build/phar/phpdox-${version}.phar" perm="ugo+rx"/>
-        <delete dir="${basedir}/build/phar/_tmp"/>
+        <!--<delete dir="${basedir}/build/phar/_tmp"/>-->
     </target>
 
     <target name="build" depends="clean,parallelTasks,phpunit"/>

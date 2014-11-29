@@ -245,23 +245,17 @@ namespace TheSeer\phpDox {
                 xdebug_disable();
             }
 
-            try {
-                date_default_timezone_set(date_default_timezone_get());
-            } catch (\ErrorException $e) {
-                date_default_timezone_set('UTC');
-                throw new CLIEnvironmentException(
-                    "No default date.timezone configured in php.ini.",
-                    CLIEnvironmentException::DateTimeZoneMissing,
-                    $e
-                );
+            if (!ini_get('date.timezone')) {
+                ini_set('date.timezone', 'UTC');
             }
+
         }
 
     }
 
     class CLIEnvironmentException extends \Exception {
         const ExtensionMissing = 1;
-        const DateTimeZoneMissing = 2;
+        const VendorMissing = 2;
     }
 
 }

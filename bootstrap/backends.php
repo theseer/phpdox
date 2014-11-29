@@ -35,17 +35,9 @@
  * @license    BSD License
  */
 namespace TheSeer\phpDox {
-    /**
-     * @var BootstrapApi $phpDox
-     */
 
-    // nikic's PHPParser
-    if (!class_exists('PhpParser\Autoloader', true)) {
-        require __DIR__ . '/../vendor/nikic/php-parser/lib/bootstrap.php';
-    }
+    /** @var BootstrapApi $phpDox */
 
-    if (class_exists('PhpParser\Autoloader', false)) {
-        $phpDox->registerBackend('parser', 'PHP Parser');
-    }
+    $phpDox->registerBackend('parser', 'PHP Parser');
 
 }
