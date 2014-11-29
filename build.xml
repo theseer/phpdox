@@ -191,7 +191,7 @@
         </exec>
 
         <chmod file="${basedir}/build/phar/phpdox-${version}.phar" perm="ugo+rx"/>
-        <!--<delete dir="${basedir}/build/phar/_tmp"/>-->
+        <delete dir="${basedir}/build/phar/_tmp"/>
     </target>
 
     <target name="build" depends="clean,parallelTasks,phpunit"/>
