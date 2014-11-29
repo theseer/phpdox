@@ -41,10 +41,11 @@ namespace TheSeer\phpDox\Generator\Engine {
 
         public function getTemplateDirectory() {
             if (defined('PHPDOX_HOME')) {
-                $default = PHPDOX_HOME . '/templates/html';
+                $default = PHPDOX_HOME;
             } else {
-                $default = __DIR__ . '/../../../../templates/html';
+                $default = realpath(__DIR__ . '/../../../..');
             }
+            $default .= '/templates/html';
             $node = $this->ctx->queryOne('cfg:template');
             if (!$node) {
                 return $default;
