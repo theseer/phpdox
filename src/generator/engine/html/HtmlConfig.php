@@ -40,8 +40,8 @@ namespace TheSeer\phpDox\Generator\Engine {
     class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
 
         public function getTemplateDirectory() {
-            if (defined('PHPDOX_PHAR')) {
-                $default = sprintf('phar://%s/templates/html', PHPDOX_PHAR);
+            if (defined('PHPDOX_HOME')) {
+                $default = PHPDOX_HOME . '/templates/html';
             } else {
                 $default = __DIR__ . '/../../../../templates/html';
             }

@@ -111,8 +111,8 @@ namespace TheSeer\phpDox {
          * @throws ConfigException
          */
         protected function runResolver($ctx) {
-            if (defined('PHPDOX_PHAR')) {
-                $home = 'phar://' . constant('PHPDOX_PHAR');
+            if (defined('PHPDOX_HOME')) {
+                $home = PHPDOX_HOME;
             } else {
                 $home = realpath(__DIR__.'/../../');
             }

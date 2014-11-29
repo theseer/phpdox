@@ -55,8 +55,8 @@ namespace TheSeer\phpDox {
          */
         public function getDependencyDirectories() {
 
-            if (defined('PHPDOX_PHAR')) {
-                $home = 'phar://' . constant('PHPDOX_PHAR');
+            if (defined('PHPDOX_HOME')) {
+                $home = PHPDOX_HOME;
             } else {
                 $home = realpath(__DIR__.'/../../');
             }
