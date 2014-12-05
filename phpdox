@@ -43,7 +43,7 @@
 require __DIR__ . '/src/autoload.php';
 
 $found = false;
-foreach(array(__DIR__ . '/vendor', __DIR__ . '/../../vendor') as $vendor) {
+foreach(array(__DIR__ . '/vendor', __DIR__ . '/../../../vendor') as $vendor) {
     if (file_exists($vendor)) {
         $found = true;
         require __DIR__ . '/src/vendor.php';
