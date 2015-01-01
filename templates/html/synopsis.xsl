@@ -93,9 +93,15 @@
                 <ul class="none">
                     <li>// Inherited methods from <span title="{@full}"><xsl:value-of select="@name" /></span></li>
                     <xsl:for-each select="pdx:constructor[@visibility != 'private']|pdx:destructor[@visibility != 'private']|pdx:method[@visibility != 'private']">
+                        <xsl:variable name="title">
+                            <xsl:choose>
+                                <xsl:when test="@original"><xsl:value-of select="@original" /></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="@name" /></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
                         <li>
                             <xsl:value-of select="@visibility" /><xsl:if test="@final = 'true'">&#160;final</xsl:if><xsl:if test="@abstract = 'true'">&#160;abstract</xsl:if><xsl:if test="@static = 'true'">&#160;static</xsl:if>&#160;<xsl:call-template
-                                name="type"><xsl:with-param name="ctx" select="." /></xsl:call-template>&#160;<xsl:copy-of select="pdxf:link($parent, @name, @name)" />()
+                                name="type"><xsl:with-param name="ctx" select="." /></xsl:call-template>&#160;<xsl:copy-of select="pdxf:link($parent, $title, @name)" />()
                         </li>
                     </xsl:for-each>
                 </ul>

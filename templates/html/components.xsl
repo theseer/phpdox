@@ -364,7 +364,13 @@
 
     <xsl:template name="method-li">
         <li id="{@name}">
-            <xsl:copy-of select="pdxf:link(parent::*[1], @name, concat(@name, '()'))" />
+            <xsl:variable name="title">
+            <xsl:choose>
+                <xsl:when test="@original"><xsl:value-of select="@original" /></xsl:when>
+                <xsl:otherwise><xsl:value-of select="@name" /></xsl:otherwise>
+            </xsl:choose>
+            </xsl:variable>
+            <xsl:copy-of select="pdxf:link(parent::*[1], $title, concat(@name, '()'))" />
             <xsl:if test="pdx:docblock/pdx:description/@compact != ''">
                 — <xsl:value-of select="pdx:docblock/pdx:description/@compact" />
             </xsl:if>

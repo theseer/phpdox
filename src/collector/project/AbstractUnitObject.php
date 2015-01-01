@@ -500,6 +500,7 @@ namespace TheSeer\phpDox\Collector {
                 $aliasNode = NULL;
                 if ($use->isAliased($methodName)) {
                     $aliasNode = $methodNode->cloneNode(true);
+                    $aliasNode->setAttribute('original', $aliasNode->getAttribute('name'));
                     $aliasNode->setAttribute('name', $use->getAliasedName($methodName));
                     if ($use->hasAliasedModifier($methodName)) {
                         $aliasNode->setAttribute('visibility', $use->getAliasedModifier($methodName));
