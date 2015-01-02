@@ -53,7 +53,7 @@ namespace TheSeer\phpDox\DocBlock {
             $type = $node->getAttribute('type');
 
             if (strpos($type, '[]')) {
-                $type = substr($type, 0, -2);
+                $type = mb_substr($type, 0, -2);
                 $node->setAttribute('type', 'array');
                 $node->setAttribute('of', $type);
             }

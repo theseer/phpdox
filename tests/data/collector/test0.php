@@ -333,8 +333,8 @@
          }
 
          $str = json_encode($obj)."\n";
-         $x   = strlen($str);
-         $rc  = @fwrite($this->socket, $str, strlen($str));
+         $x   = mb_strlen($str);
+         $rc  = @fwrite($this->socket, $str, mb_strlen($str));
          $rc2 = @fflush($this->socket);
          if (!$rc || ($x != $rc)) {
             $this->closeSocket();

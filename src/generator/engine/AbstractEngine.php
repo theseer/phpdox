@@ -76,7 +76,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         protected function copyStatic($path, $dest, $recursive = true) {
-            $len  = strlen($path);
+            $len  = mb_strlen($path);
             if ($recursive) {
                 $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
             } else {
@@ -86,7 +86,7 @@ namespace TheSeer\phpDox\Generator\Engine {
                 if($x->isDir() && ($x->getFilename() == "." || $x->getFilename() == "..")) {
                     continue;
                 }
-                $target = $dest . substr($x->getPathname(), $len);
+                $target = $dest . mb_substr($x->getPathname(), $len);
                 if (!file_exists(dirname($target))) {
                     mkdir(dirname($target), 0755, true);
                 }

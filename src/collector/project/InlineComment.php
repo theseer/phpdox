@@ -47,7 +47,7 @@ namespace TheSeer\phpDox\Collector {
             foreach($comments as $pos => $comment) {
                 preg_match('=^@{0,1}(todo|var|fixme):{0,1}(.*)=i', $comment, $matches);
                 if (count($matches) != 0) {
-                    switch(strtolower($matches[1])) {
+                    switch(mb_strtolower($matches[1])) {
                         case 'var': {
                             // we ignore @var comments as they are IDE support only
                             continue;
@@ -55,7 +55,7 @@ namespace TheSeer\phpDox\Collector {
                         case 'fixme':
                         case 'todo': {
                             $node = $this->fragment->appendChild(
-                                $this->fragment->ownerDocument->createElementNS(self::XMLNS, strtolower($matches[1]))
+                                $this->fragment->ownerDocument->createElementNS(self::XMLNS, mb_strtolower($matches[1]))
                             );
                             $node->setAttribute('value', trim($matches[2]));
                             break;

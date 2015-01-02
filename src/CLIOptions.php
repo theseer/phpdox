@@ -160,14 +160,14 @@ EOF;
             foreach($argv as $arg) {
                 if ($arg[0] == '-') {
                     if ($arg[1] == '-') {
-                        $argName = substr($arg, 2);
+                        $argName = mb_substr($arg, 2);
                         if (!in_array($argName, $options)) {
                             throw new CLIOptionsException(
                                 sprintf('Option "%s" is not defined', $argName)
                             );
                         }
                     } else {
-                        $argChar = substr($arg, 1);
+                        $argChar = mb_substr($arg, 1);
                         if (!isset($shortMap[$argChar])) {
                             throw new CLIOptionsException(
                                 sprintf('Option "%s" is not defined', $argChar)

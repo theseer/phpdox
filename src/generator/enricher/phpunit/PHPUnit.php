@@ -59,7 +59,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     $container = $this->getEnrichtmentContainer($classNode, 'phpunit');
                     $resultNode = $container->appendElementNS(self::XMLNS, 'result');
                     foreach($results as $key => $value) {
-                        $resultNode->setAttribute(strtolower($key), $value);
+                        $resultNode->setAttribute(mb_strtolower($key), $value);
                     }
                     $container->appendChild(
                         $container->ownerDocument->importNode($this->coverage[$namespace][$class])

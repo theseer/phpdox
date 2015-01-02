@@ -4,7 +4,7 @@ namespace TheSeer\phpDox {
     class DirectoryCleaner {
 
         public function process(FileInfo $path) {
-            if (strlen($path->getPathname()) < 5) {
+            if (mb_strlen($path->getPathname()) < 5) {
                 throw new DirectoryCleanerException(
                     'For security reasons, path must be at least 5 chars long',
                     DirectoryCleanerException::SecurityLimitation

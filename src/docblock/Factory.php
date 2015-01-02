@@ -131,7 +131,7 @@ namespace TheSeer\phpDox\DocBlock {
          */
         protected function verifyType($item, $type = 'string') {
             $match = true;
-            switch (strtolower($type)) {
+            switch (mb_strtolower($type)) {
                 case 'string': {
                     if (!is_string($item)) {
                         $match = false;

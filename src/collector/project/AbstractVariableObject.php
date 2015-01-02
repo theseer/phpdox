@@ -110,7 +110,7 @@ namespace TheSeer\phpDox\Collector {
          * @param $type
          */
         public function setType($type) {
-            if (!in_array(strtolower($type), $this->types)) {
+            if (!in_array(mb_strtolower($type), $this->types)) {
                 $parts = explode('\\', $type);
                 $local = array_pop($parts);
                 $namespace = join('\\', $parts);

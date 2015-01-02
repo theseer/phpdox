@@ -63,7 +63,7 @@ namespace TheSeer\phpDox\DocBlock {
                 throw new GenericElementException("Method '$method' not defined", GenericElementException::MethodNotDefined);
             }
             // extract attribute name (remove 'set' or 'get' from string)
-            $attribute = strtolower(substr($method, 3));
+            $attribute = mb_strtolower(mb_substr($method, 3));
             $this->attributes[$attribute] = $value[0];
         }
 
@@ -72,7 +72,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-            $node = $ctx->createElementNS('http://xml.phpdox.net/src', strtolower($this->name));
+            $node = $ctx->createElementNS('http://xml.phpdox.net/src', mb_strtolower($this->name));
             foreach($this->attributes as $attribute => $value) {
                 if ($value != '') {
                     $node->setAttribute($attribute, $value);

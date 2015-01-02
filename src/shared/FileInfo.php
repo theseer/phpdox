@@ -40,7 +40,7 @@ namespace TheSeer\phpDox {
             if ($inclusive) {
                 $relationPath = dirname($relationPath);
             }
-            $relPath = substr($relPath, strlen($relationPath)+1);
+            $relPath = mb_substr($relPath, mb_strlen($relationPath)+1);
             return new FileInfo($relPath);
         }
 

@@ -63,7 +63,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             $binary = $this->config->getGitBinary();
 
-            $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
+            $devNull = mb_strtolower(mb_substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
 
             $cwd = getcwd();
             chdir($this->config->getSourceDirectory());
@@ -93,7 +93,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 foreach($branches as $branchName) {
                     $branch = $branchesNode->appendElementNS(self::GITNS, 'branch');
                     if ($branchName[0] == '*') {
-                        $branchName = trim(substr($branchName, 1));
+                        $branchName = trim(mb_substr($branchName, 1));
                         $currentBranch = $branchName;
                     } else {
                         $branchName = trim($branchName);
