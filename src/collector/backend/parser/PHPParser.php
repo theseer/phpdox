@@ -37,7 +37,7 @@
 namespace TheSeer\phpDox\Collector\Backend {
 
     use TheSeer\phpDox\Collector\SourceFile;
-    use \TheSeer\phpDox\DocBlock\Parser as DocblockParser;
+    use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
 
     /**
      *
@@ -50,10 +50,13 @@ namespace TheSeer\phpDox\Collector\Backend {
         private $parser = NULL;
 
         /**
-         * @var \TheSeer\phpDox\DocBlock\Parser
+         * @var DocblockParser
          */
         private $docblockParser = NULL;
 
+        /**
+         * @param DocblockParser $parser
+         */
         public function __construct(DocblockParser $parser) {
             $this->docblockParser = $parser;
         }
