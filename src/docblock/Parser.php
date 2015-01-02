@@ -92,10 +92,11 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function prepare($block) {
-            $block = str_replace(array("\r\n", "\r"), "\n", mb_substr($block, 2, -2));
+            $block = str_replace(array("\r\n", "\r"), "\n", mb_substr($block, 3, -2));
             $raw = array();
             foreach(explode("\n", $block) as $line) {
-                $raw[] = mb_substr(trim($line, " \n\t"), 2) ?: '';
+                $line = preg_replace('/^\s*\* ?/', '', $line);
+                $raw[] = rtrim($line, " \n\t*");
             }
             return $raw;
         }
