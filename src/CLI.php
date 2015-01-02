@@ -40,7 +40,6 @@
  * @license    BSD License
  *
  */
-
 namespace TheSeer\phpDox {
 
     use TheSeer\fDOM\fDOMDocument;
@@ -49,13 +48,23 @@ namespace TheSeer\phpDox {
     class CLI {
 
         /**
+         * @var Environment
+         */
+        private $environment;
+
+        /**
          * Factory instance
          *
          * @var Factory
          */
         private $factory;
 
-        public function __construct(Factory $factory) {
+        /**
+         * @param Environment $env
+         * @param Factory     $factory
+         */
+        public function __construct(Environment $env, Factory $factory) {
+            $this->environment = $env;
             $this->factory = $factory;
         }
 
@@ -66,7 +75,7 @@ namespace TheSeer\phpDox {
             $errorHandler = $this->factory->getErrorHandler();
             $errorHandler->register();
             try {
-                $this->preBootstrap();
+                $this->environment->ensureFitness();
 
                 if ($options->showHelp() === TRUE) {
                     $this->showVersion();
@@ -157,7 +166,7 @@ namespace TheSeer\phpDox {
 
                 $logger->buildSummary();
 
-            } catch (CLIEnvironmentException $e) {
+            } catch (EnvironmentException $e) {
                 $this->showVersion();
                 fwrite(STDERR, 'Sorry, but your PHP environment is currently not able to run phpDox due to');
                 fwrite(STDERR, "\nthe following issue(s):\n\n" . $e->getMessage() . "\n\n");
@@ -223,39 +232,6 @@ namespace TheSeer\phpDox {
             echo "\n\n";
         }
 
-        private function preBootstrap() {
-            $required = array('tokenizer', 'iconv', 'fileinfo', 'libxml', 'dom', 'xsl','mbstring');
-            $missing = array();
-            foreach($required as $test) {
-                if (!extension_loaded($test)) {
-                    $missing[] = sprintf('ext/%s not installed/enabled', $test);
-                }
-            }
-            if (count($missing)) {
-                throw new CLIEnvironmentException(
-                    join("\n", $missing),
-                    CLIEnvironmentException::ExtensionMissing
-                );
-            }
-
-            if (extension_loaded('xdebug')) {
-                ini_set('xdebug.scream', 0);
-                ini_set('xdebug.max_nesting_level', 8192);
-                ini_set('xdebug.show_exception_trace', 0);
-                xdebug_disable();
-            }
-
-            if (!ini_get('date.timezone')) {
-                ini_set('date.timezone', 'UTC');
-            }
-
-        }
-
-    }
-
-    class CLIEnvironmentException extends \Exception {
-        const ExtensionMissing = 1;
-        const VendorMissing = 2;
     }
 
 }

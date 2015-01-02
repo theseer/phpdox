@@ -114,7 +114,7 @@ namespace TheSeer\phpDox {
          * @return CLI
          */
         public function getCLI() {
-            return new CLI($this);
+            return new CLI(new Environment(), $this);
         }
 
         /**
