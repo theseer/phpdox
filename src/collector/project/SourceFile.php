@@ -38,24 +38,18 @@ namespace TheSeer\phpDox\Collector {
                 return $this->src;
             }
 
-            $code = file_get_contents($this->getPathname());
-
-            $info = new \finfo();
-            $encoding = $info->file( (string)$this, FILEINFO_MIME_ENCODING);
-            if (strtolower($encoding) != 'utf-8' && $code != '') {
-                try {
-                    $code = iconv($encoding, 'UTF-8//TRANSLIT', $code);
-                } catch (\ErrorException $e) {
-                    throw new SourceFileException('Encoding error - conversion to UTF-8 failed', SourceFileException::BadEncoding, $e);
-                }
+            $source = file_get_contents($this->getPathname());
+            if ($source == '') {
+                $this->src = '';
+                return '';
             }
 
-            // This is a workaround to filter out leftover invalid UTF-8 byte sets
-            // even if the source looks like it's UTF-8 already
-            mb_substitute_character('none');
-            $cleanCode = mb_convert_encoding($code, 'UTF-8', 'UTF-8');
-            if ($cleanCode != $code) {
-                throw new SourceFileException('Encoding error - invalid UTF-8 bytes found', SourceFileException::InvalidDataBytes);
+            $info = new \finfo();
+            $encoding = $info->file((string)$this, FILEINFO_MIME_ENCODING);
+            try {
+                $source = iconv($encoding, 'UTF-8//TRANSLIT', $source);
+            } catch (\ErrorException $e) {
+                throw new SourceFileException('Encoding error - conversion to UTF-8 failed', SourceFileException::BadEncoding, $e);
             }
 
             // Replace xml relevant control characters by surrogates
@@ -65,7 +59,7 @@ namespace TheSeer\phpDox\Collector {
                     $unicodeChar = '\u' . (2400 + ord($matches[0]));
                     return json_decode('"'.$unicodeChar.'"');
                 },
-                $cleanCode
+                $source
             );
 
             return $this->src;
