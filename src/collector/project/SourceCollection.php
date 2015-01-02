@@ -123,7 +123,7 @@ namespace TheSeer\phpDox\Collector {
             return $list;
         }
 
-        public function export() {
+        public function export($collapse = false) {
             if (count($this->collection) == 0) {
                 return $this->workDom;
             }
@@ -150,9 +150,12 @@ namespace TheSeer\phpDox\Collector {
             }
 
             $this->collection = array();
+
+            if ($collapse) {
+                $this->collapseDirectory();
+            }
             return $this->workDom;
         }
-
 
         private function importDirNode(fDOMElement $dir, $path) {
             $path .=  $dir->getAttribute('name');
@@ -171,6 +174,20 @@ namespace TheSeer\phpDox\Collector {
             $org = $this->original[$path];
             $new = $this->collection[$path];
             return $org->getAttribute('sha1') != $new->getAttribute('sha1');
+        }
+
+        private function collapseDirectory() {
+            $first = $this->workDom->queryOne('/phpdox:source/phpdox:dir');
+            if ($first->query('phpdox:file')->length == 0 &&
+                $first->query('phpdox:dir')->length == 1) {
+                $dir = $first->queryOne('phpdox:dir');
+                foreach($dir->query('*') as $child) {
+                    $first->appendChild($child);
+                }
+                $first->setAttribute('name', $first->getAttribute('name') . '/' . $dir->getAttribute('name'));
+                $first->removeChild($dir);
+                $this->collapseDirectory();
+            }
         }
 
     }
