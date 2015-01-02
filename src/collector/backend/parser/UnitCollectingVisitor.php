@@ -52,7 +52,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         /**
          * @var \TheSeer\phpDox\DocBlock\Parser
          */
-        private $dockblocParser;
+        private $docBlockParser;
 
         /**
          * @var array
@@ -85,7 +85,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          * @param ParseResult                     $result
          */
         public function __construct(DocBlockParser $parser, ParseResult $result) {
-            $this->dockblocParser = $parser;
+            $this->docBlockParser = $parser;
             $this->result = $result;
         }
 
@@ -99,14 +99,17 @@ namespace TheSeer\phpDox\Collector\Backend {
             } else if ($node instanceof NodeType\UseUse) {
                 $this->aliasMap[$node->alias] = join('\\', $node->name->parts);
             } else if ($node instanceof NodeType\Class_) {
+                $this->aliasMap['::unit'] = (string)$node->namespacedName;
                 $this->unit = $this->result->addClass((string)$node->namespacedName);
                 $this->processUnit($node);
                 return;
             } else if ($node instanceof NodeType\Interface_) {
+                $this->aliasMap['::unit'] = (string)$node->namespacedName;
                 $this->unit = $this->result->addInterface((string)$node->namespacedName);
                 $this->processUnit($node);
                 return;
             } else if ($node instanceof NodeType\Trait_) {
+                $this->aliasMap['::unit'] = (string)$node->namespacedName;
                 $this->unit = $this->result->addTrait((string)$node->namespacedName);
                 $this->processUnit($node);
                 return;
@@ -151,7 +154,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
-                $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
+                $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
                 $this->unit->setDocBlock($block);
             }
 
@@ -234,7 +237,7 @@ namespace TheSeer\phpDox\Collector\Backend {
             $method->setVisibility($visibility);
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
-                $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
+                $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
                 $method->setDocBlock($block);
             }
             $this->processMethodParams($method, $node->params);
@@ -280,7 +283,7 @@ namespace TheSeer\phpDox\Collector\Backend {
             $const->setValue($constNode->getAttribute('originalValue'));
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
-                $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
+                $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
                 $const->setDocBlock($block);
             }
         }
@@ -299,7 +302,7 @@ namespace TheSeer\phpDox\Collector\Backend {
             $member->setVisibility($visibility);
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
-                $block = $this->dockblocParser->parse($docComment, $this->aliasMap);
+                $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
                 $member->setDocBlock($block);
             }
             $member->setLine($node->getLine());
