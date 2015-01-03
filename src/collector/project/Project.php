@@ -332,7 +332,7 @@ namespace TheSeer\phpDox\Collector {
             foreach ($map as $col) {
                 $path = $this->xmlDir . '/' . $col;
                 if (!file_exists($path)) {
-                    mkdir($path, 0755, TRUE);
+                    mkdir($path, 0777, TRUE);
                 }
             }
             return $map;
@@ -382,7 +382,7 @@ namespace TheSeer\phpDox\Collector {
                 $fname = $this->xmlDir . '/' . $relName;
                 $dir = dirname($fname);
                 if (!file_exists($dir)) {
-                    mkdir($dir, 0755, true);
+                    mkdir($dir, 0777, true);
                 }
                 try {
                     $tokenDom->save($fname);

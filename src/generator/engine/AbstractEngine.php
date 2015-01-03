@@ -60,7 +60,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $path = dirname($filename);
             clearstatcache();
             if (!file_exists($path)) {
-                mkdir($path, 0755, true);
+                mkdir($path, 0777, true);
             }
             $dom->formatOutput = $format;
             return $dom->save($filename);
@@ -70,7 +70,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $path = dirname($filename);
             clearstatcache();
             if (!file_exists($path)) {
-                mkdir($path, 0755, true);
+                mkdir($path, 0777, true);
             }
             return file_put_contents($filename, $content);
         }
@@ -88,7 +88,7 @@ namespace TheSeer\phpDox\Generator\Engine {
                 }
                 $target = $dest . mb_substr($x->getPathname(), $len);
                 if (!file_exists(dirname($target))) {
-                    mkdir(dirname($target), 0755, true);
+                    mkdir(dirname($target), 0777, true);
                 }
                 copy($x->getPathname(), $target);
             }
