@@ -444,11 +444,14 @@ namespace TheSeer\phpDox\Collector {
             }
 
             foreach($unit->getExportedMembers() as $member) {
-                $parent->appendChild( $this->dom->importNode($member->export(), TRUE) );
+                $memberNode = $this->dom->importNode($member->export(), TRUE);
+                $this->adjustStaticResolution($memberNode);
+                $parent->appendChild($memberNode);
             }
 
             foreach($unit->getExportedMethods() as $method) {
                 $methodNode = $this->dom->importNode($method->export(), TRUE);
+                $this->adjustStaticResolution($methodNode);
                 $parent->appendChild( $methodNode );
                 if ($this->hasMethod($method->getName())) {
                     $unitMethod = $this->getMethod($method->getName());
@@ -486,7 +489,9 @@ namespace TheSeer\phpDox\Collector {
             }
 
             foreach($trait->getExportedMembers() as $member) {
-                $container->appendChild( $this->dom->importNode($member->export(), TRUE) );
+                $memberNode = $this->dom->importNode($member->export(), TRUE);
+                $this->adjustStaticResolution($memberNode);
+                $container->appendChild($memberNode);
             }
 
             foreach($trait->getExportedMethods() as $method) {
@@ -496,6 +501,8 @@ namespace TheSeer\phpDox\Collector {
                 if (!$use->isExcluded($methodName)) {
                     $container->appendChild($methodNode);
                 }
+
+                $this->adjustStaticResolution($methodNode);
 
                 $aliasNode = NULL;
                 if ($use->isAliased($methodName)) {
@@ -528,6 +535,20 @@ namespace TheSeer\phpDox\Collector {
                 );
             }
             return new MethodObject($this, $ctx);
+        }
+
+        private function adjustStaticResolution(fDOMElement $ctx) {
+            $container = $ctx->queryOne('.//phpdox:docblock/phpdox:return|.//phpdox:docblock/phpdox:var');
+            if ($container->getAttribute('resolution') !== 'static') {
+                return;
+            }
+            $type = $container->queryOne('phpdox:type');
+            if (!$type) {
+                return;
+            }
+            foreach(array('full','namespace','name') as $attribute) {
+                $type->setAttribute($attribute, $this->rootNode->getAttribute($attribute));
+            }
         }
 
         /**

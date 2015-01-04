@@ -10,6 +10,11 @@ class StaticAndSelf {
      * @return static
      */
     public function foo() {
-        return new static();
+        return new static;
     }
+}
+
+
+class bar extends StaticAndSelf {
+
 }

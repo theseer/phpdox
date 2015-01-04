@@ -76,7 +76,7 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function lookupType($type) {
-            if ($type === 'self') {
+            if ($type === 'self' || $type === 'static') {
                 return $this->aliasMap['::unit'];
             }
 
