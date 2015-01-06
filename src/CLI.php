@@ -211,14 +211,14 @@ namespace TheSeer\phpDox {
         private function showSkeletonConfig($strip) {
             $config = file_get_contents(__DIR__ . '/config/skeleton.xml');
             if ($strip) {
+                $config = preg_replace("/\s{2,}/u", " ", $config);
                 $dom = new fDOMDocument();
+                $dom->preserveWhiteSpace = FALSE;
                 $dom->loadXML($config);
                 foreach($dom->query('//comment()') as $c) {
                     $c->parentNode->removeChild($c);
                 }
-                $dom->preserveWhiteSpace = FALSE;
                 $dom->formatOutput = TRUE;
-                $dom->loadXML($dom->saveXML());
                 $config = $dom->saveXML();
             }
             echo $config;

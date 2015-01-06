@@ -34,7 +34,7 @@
 
          -->
 
-        <!--  Additional configuration for the collecting process (parse of php code, generation of xml data) -->
+        <!--  Additional configuration for the collecting process (parsing of php code, generation of xml data) -->
         <collector publiconly="false" backend="parser">
             <!--  @publiconly - Flag to disable/enable processing of non public methods and members -->
             <!--  @backend    - The collector backend to use, currently only shipping with 'parser' -->
@@ -63,13 +63,20 @@
             <enrich base="${basedir}/build">
                 <!-- @base - (Base-)Directory of datafiles used for enrich process -->
 
-                <!-- add build information - this should always be enabled -->
-                <source type="build" />
+                <!--<source type="...">-->
+                <!-- @type - the handler for the enrichment -->
+                <!--         known types by default are: build, checkstyle, git, phpcs, phploc, phpunit, pmd -->
+
+                <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
+                <!-- <file name="path/to/log.xml" /> -->
+                <!--</source> -->
 
                 <!-- add phploc output -->
-                <!-- <source type="phploc" /> -->
+                <!--
+                <source type="phploc" />
+                -->
 
-                <!-- add git vcs information -->
+                <!-- git vcs information -->
                 <!--
                 <source type="git">
                     <git binary="/usr/bin/git" />
@@ -77,23 +84,12 @@
                 </source>
                 -->
 
-                <!-- enrichment source -->
-                <!--<source type="checkstyle">-->
-                    <!-- @type - the handler for the enrichment -->
-                    <!--         known types by default are: checkstyle, pmd, clover, phpunit -->
-
-                    <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
-                    <!-- <file name="logs/checkstyle.xml" /> -->
-                <!--</source> -->
-
-                <!-- enrichment source -->
-                <!--<source type="phpcs">-->
-                <!-- @type - the handler for the enrichment -->
-                <!--         known types by default are: checkstyle, pmd, clover, phpunit, phpcs -->
-
-                <!-- every enrichment source can have additional configuration nodes, most probably need a logfile -->
-                <!-- <file name="logs/phpcs.xml" /> -->
-                <!--</source> -->
+                <!-- PHP Code Sniffer findings -->
+                <!--
+                <source type="phpcs">
+                    <file name="logs/phpcs.xml" />
+                </source>
+                -->
 
                 <!-- PHPMessDetector -->
                 <!--
@@ -102,15 +98,18 @@
                 </source>
                 -->
 
-                <!-- PHPUnit -->
-                <!--
-                <source type="phpunit">  -->
+                <!-- PHPUnit Coverage XML -->
+                <!-- <source type="phpunit">  -->
                     <!-- <coverage path="" /> -->
                     <!--           @path - the directory where the xml code coverage report can be found -->
-
                     <!--<filter directory="${phpDox.project.source}" />-->
                     <!-- @directory - path of the phpunit config whitelist filter directory -->
                 <!--</source>-->
+                <!--
+                <source type="phpunit">
+                    <filter directory="${phpDox.project.source}" />
+                </source>
+                -->
 
             </enrich>
 
