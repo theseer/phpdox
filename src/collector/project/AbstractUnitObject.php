@@ -539,7 +539,7 @@ namespace TheSeer\phpDox\Collector {
 
         private function adjustStaticResolution(fDOMElement $ctx) {
             $container = $ctx->queryOne('.//phpdox:docblock/phpdox:return|.//phpdox:docblock/phpdox:var');
-            if ($container->getAttribute('resolution') !== 'static') {
+            if (!$container || $container->getAttribute('resolution') !== 'static') {
                 return;
             }
             $type = $container->queryOne('phpdox:type');
