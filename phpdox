@@ -59,6 +59,7 @@ if (!$found) {
     die(1);
 }
 
-(new TheSeer\phpDox\Factory())->getCLI()->run(
+$factory = new TheSeer\phpDox\Factory();
+$factory->getCLI()->run(
     new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
 );
