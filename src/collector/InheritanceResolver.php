@@ -91,7 +91,7 @@ namespace TheSeer\phpDox\Collector {
                             $extendedUnit = $this->getUnitByName($name);
                             $this->processExtends($unit, $extendedUnit);
                         } catch (ProjectException $e) {
-                            $this->addUnresolved($unit->getName(), $name);
+                            $this->addUnresolved($unit, $name);
                         }
                     }
                 }
@@ -101,7 +101,7 @@ namespace TheSeer\phpDox\Collector {
                             $implementsUnit = $this->getUnitByName($implements);
                             $this->processImplements($unit, $implementsUnit);
                         } catch (ProjectException $e) {
-                            $this->addUnresolved($unit->getName(), $implements);
+                            $this->addUnresolved($unit, $implements);
                         }
                     }
                 }
@@ -115,7 +115,7 @@ namespace TheSeer\phpDox\Collector {
                                 $traitUnit
                             );
                         } catch (ProjectException $e) {
-                            $this->addUnresolved($unit->getName(), $traitName);
+                            $this->addUnresolved($unit, $traitName);
                         }
                     }
                 }
@@ -135,7 +135,8 @@ namespace TheSeer\phpDox\Collector {
             return $this->unresolved;
         }
 
-        private function addUnresolved($unitName, $missingUnit) {
+        private function addUnresolved(AbstractUnitObject $unit, $missingUnit) {
+            $unitName = $unit->getName();
             if (isset($this->unresolved[$unitName])) {
                 if (!is_array($this->unresolved[$unitName])) {
                     $this->unresolved[$unitName] = array($this->unresolved[$unitName]);
@@ -144,6 +145,8 @@ namespace TheSeer\phpDox\Collector {
             } else {
                 $this->unresolved[$unitName] = $missingUnit;
             }
+            $unit->markDependencyAsUnresolved($missingUnit);
+            $this->project->registerForSaving($unit);
         }
 
         private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends) {
@@ -159,7 +162,7 @@ namespace TheSeer\phpDox\Collector {
                         $extendedUnit = $this->getUnitByName($name);
                         $this->processExtends($unit, $extendedUnit, $extendedUnit);
                     } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $extends->getExtends());
+                        $this->addUnresolved($unit, $extends->getExtends());
                     }
                 }
             }
@@ -170,7 +173,7 @@ namespace TheSeer\phpDox\Collector {
                         $implementsUnit = $this->getUnitByName($implements);
                         $this->processImplements($unit, $implementsUnit, $implementsUnit);
                     } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $implements);
+                        $this->addUnresolved($unit, $implements);
                     }
                 }
             }
@@ -185,7 +188,7 @@ namespace TheSeer\phpDox\Collector {
                             $traitUnit
                         );
                     } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $traitName);
+                        $this->addUnresolved($unit, $traitName);
                     }
                 }
             }
@@ -205,7 +208,7 @@ namespace TheSeer\phpDox\Collector {
                         $implementsUnit = $this->getUnitByName($implementing);
                         $this->processExtends($unit, $implementsUnit, $implementsUnit);
                     } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $implementing);
+                        $this->addUnresolved($unit, $implementing);
                     }
                 }
             }
@@ -224,7 +227,7 @@ namespace TheSeer\phpDox\Collector {
                         $extendedUnit = $this->getUnitByName($name);
                         $this->processExtends($unit, $extendedUnit, $extendedUnit);
                     } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $trait->getExtends());
+                        $this->addUnresolved($unit, $trait->getExtends());
                     }
                 }
             }
@@ -239,7 +242,7 @@ namespace TheSeer\phpDox\Collector {
                             $traitUnit
                         );
                     } catch (ProjectException $e) {
-                        $this->addUnresolved($unit->getName(), $traitName);
+                        $this->addUnresolved($unit, $traitName);
                     }
                 }
             }

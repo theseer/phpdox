@@ -337,6 +337,16 @@ namespace TheSeer\phpDox\Collector {
         }
 
         /**
+         * @param string $dependency
+         */
+        public function markDependencyAsUnresolved($dependency) {
+            $depNode = $this->rootNode->queryOne(
+                sprintf('//phpdox:implements[@full="%1$s"]|//phpdox:extends[@full="%1$s"]|//phpdox:uses[@full="%1$s"]', $dependency)
+            );
+            $depNode->setAttribute('unresolved', 'true');
+        }
+
+        /**
          *
          */
         public function addMethod($name) {

@@ -156,7 +156,7 @@
                 —
                 <xsl:choose>
                     <xsl:when test="$param/@type = 'object'">
-                        <a href="#"><xsl:value-of select="$docparam/pdx:type/@full" /></a>
+                        <xsl:copy-of select="pdxf:link($docparam/pdx:type, '', $docparam/pdx:type/@full)" />
                     </xsl:when>
                     <xsl:when test="$param/@type = '{unknown}'">
                         <xsl:value-of select="$docparam/@type" />

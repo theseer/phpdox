@@ -95,7 +95,7 @@
                 <h4>Extends</h4>
                 <ul>
                     <xsl:for-each select="$unit/pdx:extends">
-                        <li><a href="{$base}{$dir}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                        <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -103,7 +103,7 @@
                 <h4>Extended by</h4>
                 <ul>
                     <xsl:for-each select="$unit/pdx:extender/*">
-                        <li><a href="{$base}{$dir}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                        <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -111,7 +111,7 @@
                 <h4>Uses</h4>
                 <ul>
                     <xsl:for-each select="$unit/pdx:uses">
-                        <li><a href="{$base}traits/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                        <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -119,7 +119,7 @@
                 <h4>Implements</h4>
                 <ul>
                     <xsl:for-each select="$unit/pdx:implements">
-                        <li><a href="{$base}interfaces/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                        <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -127,7 +127,7 @@
                 <h4>Implemented by</h4>
                 <ul>
                     <xsl:for-each select="$unit/pdx:implementor">
-                        <li><a href="{$base}classes/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a></li>
+                        <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -136,7 +136,6 @@
                 <ul>
                     <xsl:for-each select="$unit/pdx:users/*">
                         <li><xsl:copy-of select="pdxf:link(., '', @full)" /></li>
-                        <!--<a href="{$base}{local-name(.)}/{translate(@full, '\', '_')}.{$extension}"><xsl:value-of select="@full" /></a>-->
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -292,7 +291,8 @@
                 —
                 <xsl:choose>
                     <xsl:when test="pdx:docblock/pdx:var/@type = 'object'">
-                        <a href="#"><xsl:value-of select="pdx:docblock/pdx:var/pdx:type/@full" /></a>
+                        <xsl:variable name="ctx" select="pdx:docblock/pdx:var/pdx:type" />
+                        <xsl:copy-of select="pdxf:link($ctx, '', $ctx/@full)" />
                     </xsl:when>
                     <xsl:otherwise><xsl:value-of select="pdx:docblock/pdx:var/@type" /></xsl:otherwise>
                 </xsl:choose>

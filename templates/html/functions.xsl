@@ -41,7 +41,12 @@
             </xsl:choose>
         </xsl:variable>
 
-        <func:result><a title="{$ctx/@full}" href="{$link}"><xsl:value-of select="$text" /></a></func:result>
+        <func:result>
+            <xsl:choose>
+                <xsl:when test="$ctx/@unresolved = 'true'"><xsl:value-of select="$text" /></xsl:when>
+                <xsl:otherwise><a title="{$ctx/@full}" href="{$link}"><xsl:value-of select="$text" /></a></xsl:otherwise>
+            </xsl:choose>
+        </func:result>
     </func:function>
 
     <func:function name="pdxf:nl2br">
