@@ -37,6 +37,7 @@
 namespace TheSeer\phpDox\DocBlock {
 
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\phpDox\FactoryInterface;
 
     class Factory {
 
@@ -147,11 +148,6 @@ namespace TheSeer\phpDox\DocBlock {
             }
         }
 
-    }
-
-    class FactoryException extends \Exception {
-        const InvalidType = 1;
-        const UnknownType = 2;
     }
 
 }

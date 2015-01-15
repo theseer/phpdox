@@ -67,10 +67,10 @@ namespace TheSeer\phpDox {
          */
         private $instances = array();
 
-        /**
-         * @var
-         */
-        private $config;
+
+
+
+
 
         /**
          * @var string
@@ -276,25 +276,6 @@ namespace TheSeer\phpDox {
             return $this->instances['DocblockParser'];
         }
 
-    }
-
-    /**
-     *
-     */
-    class FactoryException extends \Exception {
-
-        /**
-         *
-         */
-        const NoClassDefined = 1;
-        /**
-         *
-         */
-        const NotInstantiable = 2;
-        /**
-         *
-         */
-        const NoConstructor = 3;
     }
 
 }

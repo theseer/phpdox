@@ -200,6 +200,4 @@ EOF;
 
     }
 
-    class CLIOptionsException extends \Exception {}
-
 }
