@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config" silent="false">
 
-    <project name="phpDox-issue172" source="${basedir}/src" workdir="${basedir}/xml">
+    <project name="phpDox @return static and @return self annotation" source="${basedir}/src" workdir="${basedir}/xml">
 
         <collector publiconly="false" backend="parser" />
 

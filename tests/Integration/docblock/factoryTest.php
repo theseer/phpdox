@@ -98,29 +98,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
             );
         }
 
-        /**
-         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceByMap
-         * @uses TheSeer\phpDox\Tests\Integration\DocBlock\FactoryProxy
-         */
-        public function testGetInstanceByMapHandlingAFactory() {
-
-            $factoryStub = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\Factory')
-                ->setMethods(array('getInstanceFor'))
-                ->setMockClassName('GnuFactory')
-                ->getMock();
-            $factoryStub
-                ->expects($this->once())
-                ->method('getInstanceFor')
-                ->will($this->returnValue(new \stdClass));
-
-            $factory = new FactoryProxy();
-            $factory->addParserFactory('GnuFactory', $factoryStub);
-            $this->assertInstanceOf(
-                '\stdClass',
-                $factory->getInstanceByMap($factory->parserMap, 'GnuFactory')
-            );
-        }
-
         /*********************************************************************/
         /* Dataprovider                                                      */
         /*********************************************************************/
