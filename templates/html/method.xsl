@@ -137,7 +137,7 @@
                     <li><a href="#tasks">Tasks</a></li>
                 </xsl:if>
                 <xsl:if test="$unit/@start"><!-- hack: test for start line == we know something about this class -->
-                    <li><a href="{$base}source/{$unit/pdx:file/@relative}.xhtml#line{$method/@start}">Source</a></li>
+                    <li><a href="{$base}source/{$unit/pdx:file/@relative}.{$extension}#line{$method/@start}">Source</a></li>
                 </xsl:if>
 
             </ul>
