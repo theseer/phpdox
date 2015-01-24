@@ -123,13 +123,6 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         /* Dataprovider                                                      */
         /*********************************************************************/
 
-        public static function verifyTypeClassDataprovider() {
-            return array(
-                'Invalid type' => array(42, 'string'),
-                'unknown type' => array(42, 'integer'),
-            );
-        }
-
         public static function addParserClassDataprovider() {
             return array(
                 'wrong annotation type' => array(array(), 'Gnu'),
