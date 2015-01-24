@@ -86,35 +86,37 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
         }
 
         /**
-         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+         * @covers TheSeer\phpDox\DocBlock\Factory::getDocBlock
          * @uses TheSeer\phpDox\DocBlock\DocBlock
          */
         public function testGetInstanceForDocBlock() {
             $factory = new Factory();
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\DocBlock\\DocBlock',
-                $factory->getInstanceFor('DocBlock')
+                $factory->getDocBlock()
             );
         }
 
         /**
-         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+         * @covers TheSeer\phpDox\DocBlock\Factory::getInlineProcessor
          * @uses TheSeer\phpDox\DocBlock\InlineProcessor
          */
         public function testGetInstanceForInlineProcessor() {
             $factory = new Factory();
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\DocBlock\\InlineProcessor',
-                $factory->getInstanceFor('InlineProcessor', new fDOMDocument()));
+                $factory->getInlineProcessor(new fDOMDocument()));
         }
 
         /**
-         * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
-         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+         * @covers TheSeer\phpDox\DocBlock\Factory::getParserInstanceFor
          */
-        public function testGetInstanceForExpectingFactoryException() {
+        public function testGetParserInstanceForExpectingFactoryException() {
             $factory = new Factory();
-            $factory->getInstanceFor('invalid Parser');
+            $this->assertInstanceOf(
+                'TheSeer\\phpDox\\DocBlock\\GenericParser',
+                $factory->getParserInstanceFor('invalid Parser')
+            );
         }
 
         /*********************************************************************/
