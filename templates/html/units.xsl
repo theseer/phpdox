@@ -74,10 +74,7 @@
         <xsl:param name="class" />
 
         <xsl:choose>
-            <xsl:when test="$class//pu:coverage/@executable = 0">
-                <xsl:attribute name="class">testresult-EMPTY</xsl:attribute>EMPTY</xsl:when>
-
-            <xsl:otherwise>
+            <xsl:when test="$class//pu:coverage/@coverage != 0 or $class//pu:coverage/@executable != 0">
                 <xsl:variable name="result" select="$class//pu:result" />
                 <xsl:choose>
                     <!-- all 0 or skipped or incomplete -->
@@ -91,10 +88,12 @@
                     <!-- everything 0 except passed -->
                     <xsl:when test="sum($result/@*) = $result/@passed and $result/@passed != 0">
                         <xsl:attribute name="class">testresult-PASSED</xsl:attribute>PASSED</xsl:when>
-
                 </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- interfaces, empty classes and/or absence of coverage data -->
+                <xsl:attribute name="class">testresult-EMPTY</xsl:attribute>EMPTY
             </xsl:otherwise>
-
         </xsl:choose>
 
     </xsl:template>
