@@ -104,20 +104,17 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          */
         public function testGetInstanceByMapHandlingAFactory() {
 
-            $factoryStub = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\Factory')
-                ->setMethods(array('getInstanceFor'))
-                ->setMockClassName('GnuFactory')
-                ->getMock();
-            $factoryStub
+            $factoryMock = $this->getMock('TheSeer\\phpDox\\FactoryInterface');
+            $factoryMock
                 ->expects($this->once())
                 ->method('getInstanceFor')
                 ->will($this->returnValue(new \stdClass));
 
             $factory = new FactoryProxy();
-            $factory->addParserFactory('GnuFactory', $factoryStub);
+
             $this->assertInstanceOf(
                 '\stdClass',
-                $factory->getInstanceByMap($factory->parserMap, 'GnuFactory')
+                $factory->getInstanceByMap(array('GnuFactory' => $factoryMock), 'GnuFactory')
             );
         }
 
@@ -174,20 +171,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
     }
 
     class FactoryProxy extends Factory {
-
-        public $parserMap = array(
-            'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
-            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
-
-            'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
-            'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
-            'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
-
-            'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser'
-        );
-
         public function getInstanceByMap($map, $name, $annotation = null) {
             return parent::getInstanceByMap($map, $name, $annotation);
         }
