@@ -39,6 +39,7 @@
 namespace TheSeer\phpDox\Tests\Integration {
 
     use TheSeer\phpDox\Factory;
+    use TheSeer\phpDox\FileInfo;
 
     /**
      * Class FactoryTest
@@ -60,7 +61,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         public function testGetApplication() {
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Application',
-                $this->factory->getInstanceFor('Application')
+                $this->factory->getApplication()
             );
         }
 
@@ -69,10 +70,27 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @uses TheSeer\phpDox\Collector\Collector
          */
         public function testGetCollector() {
-            $dir1 = new \TheSeer\phpDox\FileInfo('');
+            $fileInfo = new FileInfo('/path/to/file');
+
+            $config = $this->getMockBuilder('TheSeer\phpDox\CollectorConfig')
+                ->disableOriginalConstructor()
+                ->getMock();
+
+            $config->expects($this->once())
+                ->method('getSourceDirectory')
+                ->will($this->returnValue($fileInfo));
+
+            $config->expects($this->once())
+                ->method('getWorkDirectory')
+                ->will($this->returnValue($fileInfo));
+
+            $config->expects($this->once())
+                ->method('getBackend')
+                ->will($this->returnValue('parser'));
+
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Collector\\Collector',
-                $this->factory->getInstanceFor('Collector', $dir1, $dir1)
+                $this->factory->getCollector($config)
             );
         }
 
@@ -83,7 +101,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         public function testGetGenerator() {
             $this->assertInstanceOf(
                 'TheSeer\\phpDox\\Generator\\Generator',
-                $this->factory->getInstanceFor('Generator')
+                $this->factory->getGenerator()
             );
         }
 
@@ -92,7 +110,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @uses TheSeer\phpDox\DocBlock\Factory
          */
         public function testgetDoclockFactory() {
-            $docBlock = $this->factory->getInstanceFor('DocblockFactory');
+            $docBlock = $this->factory->getDocblockFactory();
 
             // lazy initialization included
             $this->assertInstanceOf(
@@ -100,7 +118,7 @@ namespace TheSeer\phpDox\Tests\Integration {
                 $docBlock
             );
 
-            $this->assertSame($docBlock, $this->factory->getInstanceFor('DocblockFactory'));
+            $this->assertSame($docBlock, $this->factory->getDocblockFactory());
         }
 
         /**
@@ -108,7 +126,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @uses TheSeer\phpDox\DocBlock\Parser
          */
         public function testgetDoclockParser() {
-            $docBlock = $this->factory->getInstanceFor('DocblockParser');
+            $docBlock = $this->factory->getDocblockParser();
 
             // lazy initialization included
             $this->assertInstanceOf(
@@ -116,7 +134,7 @@ namespace TheSeer\phpDox\Tests\Integration {
                 $docBlock
             );
 
-            $this->assertSame($docBlock, $this->factory->getInstanceFor('DocblockParser'));
+            $this->assertSame($docBlock, $this->factory->getDocblockParser());
         }
 
     }
