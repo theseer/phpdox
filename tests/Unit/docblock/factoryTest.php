@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2015 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -112,27 +112,21 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
                 $factory->getInlineProcessor(new fDOMDocument()));
         }
 
-        /*
-         * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
-         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceFor
+        /**
+         * @covers TheSeer\phpDox\DocBlock\Factory::getParserInstanceFor
+         * @uses TheSeer\phpDox\DocBlock\GenericParser
          */
-        /*
-        public function testGetInstanceForExpectingFactoryException() {
+        public function testGetParserInstanceForUnknownNameReturnsGenericParser() {
             $factory = new Factory();
-            $factory->getIgetInstanceFor('invalid Parser');
+            $this->assertInstanceOf(
+                'TheSeer\\phpDox\\DocBlock\\GenericParser',
+                $factory->getParserInstanceFor('Unknown Name Parser')
+            );
         }
-        */
 
         /*********************************************************************/
         /* Dataprovider                                                      */
         /*********************************************************************/
-
-        public static function verifyTypeClassDataprovider() {
-            return array(
-                'Invalid type' => array(42, 'string'),
-                'unknown type' => array(42, 'integer'),
-            );
-        }
 
         public static function addParserClassDataprovider() {
             return array(
