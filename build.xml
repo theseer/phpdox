@@ -94,7 +94,7 @@
 
         <exec executable="bash" outputproperty="version">
             <arg value="-c"/>
-            <arg value="${basedir}/phpdox.php --version | awk 'BEGIN { ORS = &quot;&quot;; } {print $2}'"/>
+            <arg value="${basedir}/phpdox --version | awk 'BEGIN { ORS = &quot;&quot;; } {print $2}'"/>
         </exec>
 
         <move file="${basedir}/build/phar/phpdox-${version}.phar" tofile="${basedir}/build/pear/_tmp/phpdox.phar" />
@@ -121,7 +121,7 @@
 
     <target name="api">
         <delete dir="${basedir}/build/api" />
-        <exec executable="${basedir}/phpdox.php" />
+        <exec executable="${basedir}/phpdox" />
     </target>
 
     <target name="phar" description="Create PHAR archive of phpDox and its dependencies">
