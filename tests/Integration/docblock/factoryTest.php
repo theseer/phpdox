@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2015 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -98,6 +98,26 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
             );
         }
 
+        /**
+         * @covers TheSeer\phpDox\DocBlock\Factory::getInstanceByMap
+         * @uses TheSeer\phpDox\Tests\Integration\DocBlock\FactoryProxy
+         */
+        public function testGetInstanceByMapHandlingAFactory() {
+
+            $factoryMock = $this->getMock('TheSeer\\phpDox\\FactoryInterface');
+            $factoryMock
+                ->expects($this->once())
+                ->method('getInstanceFor')
+                ->will($this->returnValue(new \stdClass));
+
+            $factory = new FactoryProxy();
+
+            $this->assertInstanceOf(
+                '\stdClass',
+                $factory->getInstanceByMap(array('GnuFactory' => $factoryMock), 'GnuFactory')
+            );
+        }
+
         /*********************************************************************/
         /* Dataprovider                                                      */
         /*********************************************************************/
@@ -151,20 +171,6 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
     }
 
     class FactoryProxy extends Factory {
-
-        public $parserMap = array(
-            'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
-            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
-
-            'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
-            'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
-            'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
-
-            'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser'
-        );
-
         public function getInstanceByMap($map, $name, $annotation = null) {
             return parent::getInstanceByMap($map, $name, $annotation);
         }

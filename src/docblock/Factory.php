@@ -67,11 +67,12 @@ namespace TheSeer\phpDox\DocBlock {
          * Register a parser factory.
          *
          * @param string $annotation Identifier of the parser within the registry.
-         * @param \TheSeer\phpDox\FactoryInterface $factory Instance of the factory to be registered.
+         * @param \TheSeer\phpDox\FactoryInterface|string $factory Instance of FactoryInterface to be registered or FQCN
+         *        of the object to be created.
          *
-         * @throws FactoryException in case either one or both arguments are not of type string.
+         * @throws FactoryException in case $annotation is not a string.
          */
-        public function addParserFactory($annotation, FactoryInterface $factory) {
+        public function addParserFactory($annotation, $factory) {
             $this->verifyType($annotation);
             $this->parserMap[$annotation] = $factory;
         }
