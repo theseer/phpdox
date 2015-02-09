@@ -40,7 +40,6 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
 
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\phpDox\DocBlock\InvalidElement;
-    use TheSeer\phpDox\Tests\phpDox_TestCase;
 
     /**
      * Class InvalidElementTest
@@ -49,7 +48,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
      * @uses TheSeer\phpDox\DocBlock\InvalidElement
      * @uses TheSeer\phpDox\DocBlock\GenericElement
      */
-    class InvalidElementTest extends phpDox_TestCase {
+    class InvalidElementTest extends \PHPUnit_Framework_TestCase {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\InvalidElement::asDom

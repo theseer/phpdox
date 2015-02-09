@@ -94,8 +94,7 @@ namespace TheSeer\phpDox {
                     );
                 }
 
-                // the 'alternative' namespace http://phpdox.net/config is kept for compat reasons
-                if ($root->namespaceURI != 'http://xml.phpdox.net/config' && $root->namespaceURI != 'http://phpdox.net/config') {
+                if ($root->namespaceURI != 'http://xml.phpdox.net/config' || $root->localName != 'phpdox') {
                     throw new ConfigLoaderException(
                         "File '$fname' is not a valid phpDox configuration.",
                         ConfigLoaderException::WrongNamespace

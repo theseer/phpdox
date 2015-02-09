@@ -3,11 +3,12 @@ namespace TheSeer\phpDox {
 
     class ConfigException extends \Exception {
 
-        const ProjectNotFound = 1;
-        const NoCollectorSection = 2;
-        const NoGeneratorSection = 3;
-        const OverrideNotAllowed = 4;
-        const PropertyNotFound = 5;
+        const InvalidDataStructure = 1;
+        const ProjectNotFound = 2;
+        const NoCollectorSection = 3;
+        const NoGeneratorSection = 4;
+        const OverrideNotAllowed = 5;
+        const PropertyNotFound = 6;
 
     }
 

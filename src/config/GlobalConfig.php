@@ -60,6 +60,10 @@ namespace TheSeer\phpDox {
          * @param FileInfo     $file  FileInfo of the cfg file
          */
         public function __construct(fDOMDocument $cfg, FileInfo $file) {
+            if ($cfg->documentElement->nodeName != 'phpdox' ||
+                $cfg->documentElement->namespaceURI != 'http://xml.phpdox.net/config') {
+                throw new ConfigException("Not a valid phpDox configuration", ConfigException::InvalidDataStructure);
+            }
             $this->cfg = $cfg;
             $this->file = $file;
         }
@@ -76,9 +80,6 @@ namespace TheSeer\phpDox {
          */
         public function isSilentMode() {
             $root = $this->cfg->queryOne('/cfg:phpdox');
-            if (!$root instanceOf \DomNode) {
-                return false;
-            }
             return $root->getAttribute('silent', 'false') === 'true';
         }
 
@@ -110,7 +111,7 @@ namespace TheSeer\phpDox {
          * @return mixed
          * @throws ConfigException
          */
-        protected function runResolver($ctx) {
+        private function runResolver($ctx) {
             if (defined('PHPDOX_HOME')) {
                 $home = PHPDOX_HOME;
             } else {
@@ -162,7 +163,7 @@ namespace TheSeer\phpDox {
          *
          * @return mixed
          */
-        protected function resolveValue($value, Array $vars, $line) {
+        private function resolveValue($value, Array $vars, $line) {
             $result = preg_replace_callback('/\${(.*?)}/',
                 function($matches) use ($vars, $line) {
                     if (!isset($vars[$matches[1]])) {
