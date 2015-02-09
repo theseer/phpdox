@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+
+    <bootstrap>
+        <require file="/path/to/fileA.php" />
+        <require file="/path/to/fileB.php" />
+    </bootstrap>
+
+</phpdox>
