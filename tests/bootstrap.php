@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2015 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,7 +31,7 @@
  *
  * @package    phpDox
  * @subpackage Tests
- * @author     Bastian Feder <phpdox@bastian-feder.de>
+ * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
@@ -39,6 +39,4 @@
 require __DIR__ . '/../src/autoload.php';
 $vendor = __DIR__ . '/../vendor';
 require __DIR__ . '/../src/vendor.php';
-
-require __DIR__ . '/phpDoxTestCase.php';
 
