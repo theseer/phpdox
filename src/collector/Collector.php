@@ -48,7 +48,7 @@ namespace TheSeer\phpDox\Collector {
     class Collector {
 
         /**
-         * @var \TheSeer\phpDox\ProgressLogger
+         * @var ProgressLogger
          */
         private $logger;
 
@@ -69,7 +69,7 @@ namespace TheSeer\phpDox\Collector {
 
 
         /**
-         * @param \TheSeer\phpDox\ProgressLogger  $logger
+         * @param ProgressLogger  $logger
          * @param Project $project
          */
         public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend) {

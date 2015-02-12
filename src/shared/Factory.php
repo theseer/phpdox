@@ -57,25 +57,12 @@ namespace TheSeer\phpDox {
         /**
          * @var array
          */
-        private $loggerMap = array(
-            'silent' => '\\TheSeer\\phpDox\\ProgressLogger',
-            'shell' => '\\TheSeer\\phpDox\\ShellProgressLogger'
-        );
-
-        /**
-         * @var array
-         */
         private $instances = array();
 
         /**
-         * @var string
+         * @var bool
          */
-        private $loggerType = 'shell';
-
-        /**
-         * @var ProgressLogger
-         */
-        private $logger;
+        private $isSilentMode = false;
 
         /**
          * @param array $map
@@ -86,15 +73,8 @@ namespace TheSeer\phpDox {
             }
         }
 
-        /**
-         * @param string $name
-         * @throws FactoryException
-         */
-        public function setLoggerType($name) {
-            if (!isset($this->loggerMap[$name])) {
-                throw new FactoryException("No logger class for type '$name'", FactoryException::NoClassDefined);
-            }
-            $this->loggerType = $name;
+        public function activateSilentMode() {
+            $this->isSilentMode = true;
         }
 
         /**
@@ -128,7 +108,7 @@ namespace TheSeer\phpDox {
         /**
          * @return DirectoryScanner
          */
-        public function getDirectoryScanner() {
+        private function getDirectoryScanner() {
             return new DirectoryScanner();
         }
 
@@ -142,7 +122,7 @@ namespace TheSeer\phpDox {
         /**
          * @return BootstrapApi
          */
-        public function getBootstrapApi() {
+        private function getBootstrapApi() {
             return new BootstrapApi($this->getBackendFactory(), $this->getDocblockFactory(), $this->getEnricherFactory(), $this->getEngineFactory(), $this->getLogger());
         }
 
@@ -150,10 +130,18 @@ namespace TheSeer\phpDox {
          * @return ProgressLogger
          */
         public function getLogger() {
-            if (!$this->logger) {
-                $this->logger = new $this->loggerMap[$this->loggerType]();
+            if (!isset($this->instances['logger'])) {
+                $this->instances['logger'] = $this->isSilentMode ? $this->getSilentProgressLogger() : $this->getShellProgressLogger();
             }
-            return $this->logger;
+            return $this->instances['logger'];
+        }
+
+        private function getSilentProgressLogger() {
+            return new SilentProgressLogger();
+        }
+
+        private function getShellProgressLogger() {
+            return new ShellProgressLogger();
         }
 
         /**

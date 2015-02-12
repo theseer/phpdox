@@ -40,7 +40,7 @@ namespace TheSeer\phpDox {
     /**
      * Generic progress logger
      */
-    class ProgressLogger {
+    class SilentProgressLogger implements ProgressLogger {
 
         /**
          * @var array

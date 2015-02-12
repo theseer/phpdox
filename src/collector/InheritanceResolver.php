@@ -46,7 +46,7 @@ namespace TheSeer\phpDox\Collector {
     class InheritanceResolver {
 
         /**
-         * @var \TheSeer\phpDox\ProgressLogger
+         * @var ProgressLogger
          */
         private $logger;
 
@@ -67,10 +67,21 @@ namespace TheSeer\phpDox\Collector {
          */
         private $unresolved = array();
 
+        /**
+         * @param ProgressLogger $logger
+         */
         public function __construct(ProgressLogger $logger) {
             $this->logger = $logger;
         }
 
+        /**
+         * @param array             $changed
+         * @param Project           $project
+         * @param InheritanceConfig $config
+         *
+         * @throws ProjectException
+         * @throws UnitObjectException
+         */
         public function resolve(Array $changed, Project $project, InheritanceConfig $config) {
             if (count($changed) == 0) {
                 return;

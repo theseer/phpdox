@@ -50,7 +50,7 @@ namespace TheSeer\phpDox\Generator {
     class Generator {
 
         /**
-         * @var \TheSeer\phpDox\ProgressLogger
+         * @var ProgressLogger
          */
         private $logger;
 

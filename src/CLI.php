@@ -103,10 +103,9 @@ namespace TheSeer\phpDox {
 
                 /** @var $config GlobalConfig */
                 if ($config->isSilentMode()) {
-                    $this->factory->setLoggerType('silent');
+                    $this->factory->activateSilentMode();
                 } else {
                     $this->showVersion();
-                    $this->factory->setLoggerType('shell');
                 }
 
                 $logger = $this->factory->getLogger();

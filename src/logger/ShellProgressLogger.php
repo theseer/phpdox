@@ -40,7 +40,7 @@ namespace TheSeer\phpDox {
     /**
      * Shell output based logger
      */
-    class ShellProgressLogger extends ProgressLogger {
+    class ShellProgressLogger extends SilentProgressLogger {
 
         /**
          * @param $state

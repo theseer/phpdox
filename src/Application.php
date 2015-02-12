@@ -63,7 +63,7 @@ namespace TheSeer\phpDox {
          * Constructor of PHPDox Application
          *
          * @param Factory   $factory   Factory instance
-         * @param ProgressLogger $logger Instance of the ProgressLogger class
+         * @param ProgressLogger $logger Instance of the SilentProgressLogger class
          */
         public function __construct(Factory $factory, ProgressLogger $logger) {
             $this->factory = $factory;
