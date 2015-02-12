@@ -58,6 +58,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\configexception' => '/config/ConfigException.php',
                 'theseer\\phpdox\\configloader' => '/config/ConfigLoader.php',
                 'theseer\\phpdox\\configloaderexception' => '/config/ConfigLoaderException.php',
+                'theseer\\phpdox\\configskeleton' => '/config/ConfigSkeleton.php',
                 'theseer\\phpdox\\directorycleaner' => '/shared/DirectoryCleaner.php',
                 'theseer\\phpdox\\directorycleanerexception' => '/shared/DirectoryCleanerException.php',
                 'theseer\\phpdox\\docblock\\descriptionparser' => '/docblock/parser/DescriptionParser.php',

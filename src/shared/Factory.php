@@ -67,11 +67,6 @@ namespace TheSeer\phpDox {
          */
         private $instances = array();
 
-
-
-
-
-
         /**
          * @var string
          */
@@ -102,7 +97,6 @@ namespace TheSeer\phpDox {
             $this->loggerType = $name;
         }
 
-
         /**
          * @return ErrorHandler
          */
@@ -122,6 +116,13 @@ namespace TheSeer\phpDox {
          */
         public function getConfigLoader() {
             return new ConfigLoader();
+        }
+
+
+        public function getConfigSkeleton() {
+            return new ConfigSkeleton(
+                new FileInfo(__DIR__ . '/../config/skeleton.xml')
+            );
         }
 
         /**

@@ -209,19 +209,8 @@ namespace TheSeer\phpDox {
         }
 
         private function showSkeletonConfig($strip) {
-            $config = file_get_contents(__DIR__ . '/config/skeleton.xml');
-            if ($strip) {
-                $config = preg_replace("/\s{2,}/u", " ", $config);
-                $dom = new fDOMDocument();
-                $dom->preserveWhiteSpace = FALSE;
-                $dom->loadXML($config);
-                foreach($dom->query('//comment()') as $c) {
-                    $c->parentNode->removeChild($c);
-                }
-                $dom->formatOutput = TRUE;
-                $config = $dom->saveXML();
-            }
-            echo $config;
+            $skel = $this->factory->getConfigSkeleton();
+            echo $strip ? $skel->renderStripped() : $skel->render();
         }
 
         private function showList($title, Array $list) {
