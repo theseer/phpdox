@@ -60,7 +60,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         /**
          * @covers TheSeer\phpDox\Factory::getApplication
          * @uses TheSeer\phpDox\Application
-         * @uses TheSeer\phpDox\ProgressLogger
+         * @uses TheSeer\phpDox\SilentProgressLogger
          */
         public function testGetApplication() {
             $this->assertInstanceOf(
@@ -71,7 +71,7 @@ namespace TheSeer\phpDox\Tests\Integration {
 
         /**
          * @covers TheSeer\phpDox\Factory::getCollector
-         * @uses TheSeer\phpDox\ProgressLogger
+         * @uses TheSeer\phpDox\SilentProgressLogger
          * @uses TheSeer\phpDox\FileInfo
          * @uses TheSeer\phpDox\Collector\Collector
          * @uses TheSeer\phpDox\Collector\IndexCollection
@@ -82,7 +82,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @uses TheSeer\phpDox\DocBlock\Parser
          */
         public function testGetCollector() {
-            $config = $this->getMockBuilder(\TheSeer\phpDox\CollectorConfig::class)
+            $config = $this->getMockBuilder('TheSeer\\phpDox\\CollectorConfig')
                     ->disableOriginalConstructor()
                     ->getMock();
 
@@ -107,7 +107,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         /**
          * @covers TheSeer\phpDox\Factory::getGenerator
          * @uses TheSeer\phpDox\Generator\Generator
-         * @uses TheSeer\phpDox\ProgressLogger
+         * @uses TheSeer\phpDox\SilentProgressLogger
          */
         public function testGetGenerator() {
             $this->assertInstanceOf(

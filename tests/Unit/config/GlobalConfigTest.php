@@ -99,7 +99,7 @@ namespace TheSeer\phpDox {
         public function testGetCustomBootstrapFilesReturnsEmptyCollectionByDefault() {
             $this->init('empty');
             $result = $this->config->getCustomBootstrapFiles();
-            $this->assertInstanceOf(FileInfoCollection::class, $result);
+            $this->assertInstanceOf('TheSeer\\phpDox\\FileInfoCollection', $result);
             $this->assertEmpty($result);
         }
 
