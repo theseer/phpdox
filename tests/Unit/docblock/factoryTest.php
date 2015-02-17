@@ -58,7 +58,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\Factory::addParserFactory
          */
         public function testAddParserFactory() {
-            $mock = $this->getMock(\TheSeer\phpdox\FactoryInterface::class);
+            $mock = $this->getMock('TheSeer\\phpdox\\FactoryInterface');
             $this->factory->addParserFactory('Tux', $mock);
             $this->assertAttributeContains($mock, 'parserMap', $this->factory);
         }
@@ -68,7 +68,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
          * @covers TheSeer\phpDox\DocBlock\Factory::addParserFactory
          */
         public function testAddParserFactoryExpectingFactoryException() {
-            $mock = $this->getMock(\TheSeer\phpdox\FactoryInterface::class);
+            $mock = $this->getMock('TheSeer\\phpdox\\FactoryInterface');
             $this->factory->addParserFactory(array(), $mock);
         }
 
