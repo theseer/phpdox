@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+
+    <project name="a" />
+    <project name="b" enabled="false" />
+
+</phpdox>

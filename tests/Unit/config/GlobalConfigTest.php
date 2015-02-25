@@ -38,7 +38,16 @@ namespace TheSeer\phpDox {
 
     use TheSeer\fDOM\fDOMDocument;
 
+    /**
+     * Class GlobalConfigTest
+     *
+     * @covers TheSeer\phpDox\GlobalConfig
+     * @uses TheSeer\fDom\fDOMDocument
+     * @uses TheSeer\phpDox\FileInfo
+     */
     class GlobalConfigTest extends \PHPUnit_Framework_TestCase {
+
+        private $baseDir;
 
         /**
          * @var FileInfo
@@ -55,8 +64,13 @@ namespace TheSeer\phpDox {
          */
         private $config;
 
+        public function __construct($name = NULL, array $data = array(), $dataName = '') {
+            parent::__construct($name, $data, $dataName);
+            $this->baseDir = realpath(__DIR__ . '/../../data/config') . '/';
+        }
+
         private function init($cfgName) {
-            $this->fileInfo = new FileInfo(__DIR__ . '/../../data/config/' . $cfgName . '.xml');
+            $this->fileInfo = new FileInfo($this->baseDir . $cfgName . '.xml');
             $this->cfgDom = new fDOMDocument();
             $this->cfgDom->load($this->fileInfo->getPathname());
             $this->cfgDom->registerNamespace('cfg', 'http://xml.phpdox.net/config');
@@ -96,6 +110,9 @@ namespace TheSeer\phpDox {
             $this->assertFalse($this->config->isSilentMode());
         }
 
+        /**
+         * @uses TheSeer\phpDox\FileInfoCollection
+         */
         public function testGetCustomBootstrapFilesReturnsEmptyCollectionByDefault() {
             $this->init('empty');
             $result = $this->config->getCustomBootstrapFiles();
@@ -103,6 +120,9 @@ namespace TheSeer\phpDox {
             $this->assertEmpty($result);
         }
 
+        /**
+         * @uses TheSeer\phpDox\FileInfoCollection
+         */
         public function testCustomBootstrapFilesCanBeRetrieved() {
             $this->init('bootstrap');
             $result = $this->config->getCustomBootstrapFiles();
@@ -111,6 +131,95 @@ namespace TheSeer\phpDox {
             foreach($result as $pos => $entry) {
                 $this->assertEquals($expected[$pos], $entry->getPathname());
             }
+        }
+
+        /**
+         * @uses TheSeer\phpDox\ProjectConfig
+         * @uses TheSeer\phpDox\Version
+         */
+        public function testNamedProjectlistCanBeRetrieved() {
+            $this->init('named-projects');
+            $results = $this->config->getProjects();
+            $this->assertCount(2, $results);
+            $this->assertInstanceOf('TheSeer\\phpDox\\ProjectConfig', $results['a']);
+            $this->assertInstanceOf('TheSeer\\phpDox\\ProjectConfig', $results['b']);
+        }
+
+        /**
+         * @uses TheSeer\phpDox\ProjectConfig
+         * @uses TheSeer\phpDox\Version
+         */
+        public function testIndexedProjectListCanBeRetrieved() {
+            $this->init('indexed-projects');
+            $results = $this->config->getProjects();
+            $this->assertCount(2, $results);
+            $this->assertInstanceOf('TheSeer\\phpDox\\ProjectConfig', $results[0]);
+            $this->assertInstanceOf('TheSeer\\phpDox\\ProjectConfig', $results[1]);
+        }
+
+        /**
+         * @uses TheSeer\phpDox\ProjectConfig
+         * @uses TheSeer\phpDox\Version
+         */
+            public function testProjectListDoesNotIncludeDisabledProjects() {
+            $this->init('disabled-projects');
+            $results = $this->config->getProjects();
+            $this->assertCount(1, $results);
+            $this->assertInstanceOf('TheSeer\\phpDox\\ProjectConfig', $results['a']);
+        }
+
+        /**
+         * @dataProvider resolverSrcProvider
+         * @uses TheSeer\phpDox\ProjectConfig
+         * @uses TheSeer\phpDox\Version
+         */
+        public function testSourceVariableGetsResolvedCorrectly($expected, $file) {
+            $this->init('resolver/' .  $file);
+            /** @var ProjectConfig[] $projects */
+            $projects = $this->config->getProjects();
+            $this->assertEquals($expected, current($projects)->getWorkDirectory()->getPathname());
+        }
+
+        public function resolverSrcProvider() {
+            return array(
+                'phpDox.project.source' => array('source','src'),
+                'phpDox.project.source[undefined]' => array('src','src-undefined'),
+            );
+        }
+
+        /**
+         * @dataProvider resolverProvider
+         * @uses TheSeer\phpDox\ProjectConfig
+         * @uses TheSeer\phpDox\Version
+         */
+        public function testVariablesGetResolvedCorrectly($expected, $file) {
+            $this->init('resolver/' .  $file);
+            /** @var ProjectConfig[] $projects */
+            $projects = $this->config->getProjects();
+            $this->assertEquals($expected, current($projects)->getSourceDirectory()->getPathname());
+        }
+
+        public function resolverProvider() {
+
+            return array(
+                'basedir' => array( $this->baseDir . 'resolver', 'basedir'),
+
+                'phpDox.home' => array( realpath(__DIR__ . '/../../..'), 'home'),
+                'phpDox.file' => array( $this->baseDir . 'resolver/file.xml', 'file'),
+                'phpDox.version' => array(Version::getVersion(), 'phpdox-version'),
+
+                'phpDox.project.name' => array('projectname', 'named'),
+                'phpDox.project.name[undefined]' => array('unnamed', 'named-undefined'),
+
+//                'phpDox.project.source' => array('source','src'),
+//                'phpDox.project.source[undefined]' => array('src','src-undefined'),
+                'phpDox.project.workdir' => array('output','workdir'),
+                'phpDox.project.workdir[undefined]' => array('xml','workdir-undefined'),
+
+                'phpDox.php.version' => array(PHP_VERSION, 'php-version')
+
+                // @todo Add properties, recursive resolving
+            );
         }
     }
 }
