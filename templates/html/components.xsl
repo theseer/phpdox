@@ -42,13 +42,13 @@
                     <li class="separator"><a href="{$base}namespaces.{$extension}">Namespaces</a></li>
                 </xsl:if>
                 <xsl:if test="$hasInterfaces = 'Y'">
-                    <li><a href="{$base}interfaces.{$extension}">Interfaces</a></li>
+                    <li class="separator"><a href="{$base}interfaces.{$extension}">Interfaces</a></li>
                 </xsl:if>
                 <xsl:if test="$hasClasses = 'Y'">
-                    <li><a href="{$base}classes.{$extension}">Classes</a></li>
+                    <li class="separator"><a href="{$base}classes.{$extension}">Classes</a></li>
                 </xsl:if>
                 <xsl:if test="$hasTraits = 'Y'">
-                    <li><a href="{$base}traits.{$extension}">Traits</a></li>
+                    <li class="separator"><a href="{$base}traits.{$extension}">Traits</a></li>
                 </xsl:if>
                 <li class="separator"><a href="{$base}source/index.{$extension}">Source</a></li>
                 <!--<li class="separator"><a href="{$base}reports/index.{$extension}">Reports</a></li>-->
