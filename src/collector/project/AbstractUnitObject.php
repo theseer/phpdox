@@ -257,7 +257,7 @@ namespace TheSeer\phpDox\Collector {
          * @return bool
          */
         public function hasImplements() {
-            return $this->rootNode->query('phpdox:interface')->length > 0;
+            return $this->rootNode->query('phpdox:implements')->length > 0;
         }
 
         /**
