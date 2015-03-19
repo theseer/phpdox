@@ -54,7 +54,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         private $factory;
 
         protected function setUp() {
-            $this->factory = new Factory();
+            $this->factory = new Factory(new FileInfo(__DIR__));
         }
 
         /**

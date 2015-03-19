@@ -59,7 +59,7 @@ if (!$found) {
     die(1);
 }
 
-$factory = new TheSeer\phpDox\Factory();
+$factory = new TheSeer\phpDox\Factory(new \TheSeer\phpDox\FileInfo(__DIR__));
 $factory->getCLI()->run(
     new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
 );

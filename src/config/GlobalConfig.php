@@ -43,6 +43,12 @@ namespace TheSeer\phpDox {
     class GlobalConfig {
 
         /**
+         * Directory of phpDox home
+         * @var Fileinfo
+         */
+        private $homeDir;
+
+        /**
          * @var fDOMDocument
          */
         private $cfg;
@@ -59,11 +65,12 @@ namespace TheSeer\phpDox {
          * @param fDOMDocument $cfg   A configuration dom
          * @param FileInfo     $file  FileInfo of the cfg file
          */
-        public function __construct(fDOMDocument $cfg, FileInfo $file) {
+        public function __construct(FileInfo $home, fDOMDocument $cfg, FileInfo $file) {
             if ($cfg->documentElement->nodeName != 'phpdox' ||
                 $cfg->documentElement->namespaceURI != 'http://xml.phpdox.net/config') {
                 throw new ConfigException("Not a valid phpDox configuration", ConfigException::InvalidDataStructure);
             }
+            $this->homeDir = $home;
             $this->cfg = $cfg;
             $this->file = $file;
         }
@@ -112,16 +119,10 @@ namespace TheSeer\phpDox {
          * @throws ConfigException
          */
         private function runResolver($ctx) {
-            if (defined('PHPDOX_HOME')) {
-                $home = PHPDOX_HOME;
-            } else {
-                $home = realpath(__DIR__.'/../../');
-            }
-
             $vars = array(
                 'basedir' => $ctx->getAttribute('basedir', dirname($this->file->getRealPath())),
 
-                'phpDox.home' => $home,
+                'phpDox.home' => $this->homeDir->getPathname(),
                 'phpDox.file' => $this->file->getPathname(),
                 'phpDox.version' => Version::getVersion(),
 
@@ -146,7 +147,6 @@ namespace TheSeer\phpDox {
                     throw new ConfigException("Cannot overwrite existing property '$name' in line $line", ConfigException::OverrideNotAllowed);
                 }
                 $vars[$name] =  $this->resolveValue($property->getAttribute('value'), $vars, $line);
-
             }
 
             foreach($ctx->query('.//*[not(name()="property")]/@*|@*') as $attr) {
@@ -157,23 +157,20 @@ namespace TheSeer\phpDox {
         }
 
         /**
-         * @param       $value
-         * @param array $vars
-         * @param       $line
+         * @param string   $value
+         * @param string[] $vars
+         * @param int      $line
          *
-         * @return mixed
+         * @return string
          */
         private function resolveValue($value, Array $vars, $line) {
             $result = preg_replace_callback('/\${(.*?)}/',
                 function($matches) use ($vars, $line) {
                     if (!isset($vars[$matches[1]])) {
-                        throw new ConfigException("No value for property '{$matches[1]} found in line $line", ConfigException::PropertyNotFound);
+                        throw new ConfigException("No value for property '{$matches[1]}' found in line $line", ConfigException::PropertyNotFound);
                     }
                     return $vars[$matches[1]];
                 }, $value);
-            if (preg_match('/\${(.*?)}/', $result)) {
-                $result = $this->resolveValue($result, $vars, $line);
-            }
             return $result;
         }
 

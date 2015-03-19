@@ -74,7 +74,7 @@ namespace TheSeer\phpDox {
             $this->cfgDom = new fDOMDocument();
             $this->cfgDom->load($this->fileInfo->getPathname());
             $this->cfgDom->registerNamespace('cfg', 'http://xml.phpdox.net/config');
-            $this->config = new GlobalConfig($this->cfgDom, $this->fileInfo);
+            $this->config = new GlobalConfig(new FileInfo('/tmp'), $this->cfgDom, $this->fileInfo);
         }
 
         /**
@@ -200,26 +200,47 @@ namespace TheSeer\phpDox {
         }
 
         public function resolverProvider() {
-
             return array(
                 'basedir' => array( $this->baseDir . 'resolver', 'basedir'),
 
-                'phpDox.home' => array( realpath(__DIR__ . '/../../..'), 'home'),
+                'phpDox.home' => array( '/tmp', 'home'),
                 'phpDox.file' => array( $this->baseDir . 'resolver/file.xml', 'file'),
                 'phpDox.version' => array(Version::getVersion(), 'phpdox-version'),
+
+                'multi' => array( '/tmp ' . Version::getVersion(), 'multi'),
 
                 'phpDox.project.name' => array('projectname', 'named'),
                 'phpDox.project.name[undefined]' => array('unnamed', 'named-undefined'),
 
-//                'phpDox.project.source' => array('source','src'),
-//                'phpDox.project.source[undefined]' => array('src','src-undefined'),
                 'phpDox.project.workdir' => array('output','workdir'),
                 'phpDox.project.workdir[undefined]' => array('xml','workdir-undefined'),
 
-                'phpDox.php.version' => array(PHP_VERSION, 'php-version')
+                'phpDox.php.version' => array(PHP_VERSION, 'php-version'),
 
-                // @todo Add properties, recursive resolving
+                'property-global' => array('propvalue', 'property-global'),
+                'property-project' => array('propvalue', 'property-project'),
+
+                'property-recursive' => array(Version::getVersion(), 'property-recursive')
             );
         }
+
+        /**
+         * @dataProvider exceptionProvider
+         * @uses TheSeer\phpDox\Version
+         */
+        public function testInvalidPropertyRequestThrowsException($file, $code) {
+            $this->init('resolver/' .  $file);
+            $this->setExpectedException('TheSeer\\phpDox\\ConfigException', $code);
+            $this->config->getProjects();
+        }
+
+        public function exceptionProvider() {
+            return array(
+                'property-internal' => array('property-internal', ConfigException::OverrideNotAllowed),
+                'property-overwrite' => array('property-overwrite', ConfigException::OverrideNotAllowed),
+                'property-undefined' => array('property-undefined', ConfigException::PropertyNotFound)
+            );
+        }
+
     }
 }

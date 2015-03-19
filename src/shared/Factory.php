@@ -50,9 +50,9 @@ namespace TheSeer\phpDox {
     class Factory {
 
         /**
-         * @var array
+         * @var FileInfo
          */
-        private $map = array();
+        private $homeDir;
 
         /**
          * @var array
@@ -67,10 +67,8 @@ namespace TheSeer\phpDox {
         /**
          * @param array $map
          */
-        public function __construct(array $map = NULL) {
-            if ($map !== NULL) {
-                $this->map = $map;
-            }
+        public function __construct(FileInfo $home) {
+            $this->homeDir = $home;
         }
 
         public function activateSilentMode() {
@@ -95,7 +93,7 @@ namespace TheSeer\phpDox {
          * @return ConfigLoader
          */
         public function getConfigLoader() {
-            return new ConfigLoader();
+            return new ConfigLoader($this->homeDir);
         }
 
 

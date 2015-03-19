@@ -44,6 +44,18 @@ namespace TheSeer\phpDox {
     class ConfigLoader {
 
         /**
+         * @var FileInfo
+         */
+        private $homeDir;
+
+        /**
+         * @param FileInfo $homeDir
+         */
+        public function __construct(FileInfo $homeDir) {
+            $this->homeDir = $homeDir;
+        }
+
+        /**
          * @param $fname
          *
          * @return GlobalConfig
@@ -108,7 +120,7 @@ namespace TheSeer\phpDox {
                         ConfigLoaderException::WrongType);
                 }
 
-                return new GlobalConfig($dom, new FileInfo($fname));
+                return new GlobalConfig($this->homeDir, $dom, new FileInfo($fname));
             } catch (fDOMException $e) {
                 throw new ConfigLoaderException(
                     "Parsing config file '$fname' failed.",

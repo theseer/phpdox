@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+
+    <property name="test" value="propvalue" />
+    <project source="${test}" />
+
+</phpdox>
