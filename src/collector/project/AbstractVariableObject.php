@@ -106,6 +106,10 @@ namespace TheSeer\phpDox\Collector {
             $this->ctx->setAttribute('default', $value);
         }
 
+        public function setConstant($const) {
+            $this->ctx->setAttribute('constant', $const);
+        }
+
         /**
          * @param $type
          */

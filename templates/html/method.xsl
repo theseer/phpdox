@@ -189,6 +189,7 @@
 
     <xsl:template name="parameter">
         <xsl:param name="param" />
+
         <xsl:if test="$param/@default">[</xsl:if>
         <xsl:choose>
             <xsl:when test="$param/@type = 'object'">
@@ -213,10 +214,13 @@
         </xsl:choose>
         <xsl:if test="$param/@byreference = 'true'">&amp;</xsl:if>
         $<xsl:value-of select="$param/@name" />
-        <xsl:if test="$param/@default"> = <xsl:value-of select="$param/@default" /></xsl:if>
+        <xsl:if test="$param/@default"> = <xsl:choose>
+            <xsl:when test="$param/@default = ''"><xsl:value-of select="$param/@constant" /></xsl:when>
+            <xsl:otherwise><xsl:value-of select="$param/@default" /></xsl:otherwise>
+        </xsl:choose></xsl:if>
         <xsl:if test="$param/following-sibling::pdx:parameter">,
             <xsl:call-template name="parameter">
-                <xsl:with-param name="param" select="$param/following-sibling::pdx:parameter" />
+                <xsl:with-param name="param" select="($param/following-sibling::pdx:parameter)[1]" />
             </xsl:call-template>
         </xsl:if>
         <xsl:if test="$param/@default">]</xsl:if>

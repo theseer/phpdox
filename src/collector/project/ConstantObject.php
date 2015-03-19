@@ -45,6 +45,7 @@ namespace TheSeer\phpDox\Collector {
 
         public function __construct(fDOMElement $ctx) {
             $this->ctx = $ctx;
+            $this->setType('{unknown}');
         }
 
         public function export() {
@@ -57,6 +58,14 @@ namespace TheSeer\phpDox\Collector {
 
         public function setValue($value) {
             $this->ctx->setAttribute('value', $value);
+        }
+
+        public function setType($type) {
+            $this->ctx->setAttribute('type', $type);
+        }
+
+        public function setConstantReference($const) {
+            $this->ctx->setAttribute('constant', $const);
         }
 
         public function setDocBlock(DocBlock $docblock) {

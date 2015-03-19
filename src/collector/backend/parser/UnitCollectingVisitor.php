@@ -280,7 +280,15 @@ namespace TheSeer\phpDox\Collector\Backend {
         private function processClassConstant(NodeType\ClassConst $node) {
             $constNode = $node->consts[0];
             $const = $this->unit->addConstant($constNode->name);
-            $const->setValue($constNode->getAttribute('originalValue'));
+
+            $resolved = $this->resolveExpressionValue($constNode->value);
+
+            $const->setType($resolved['type']);
+            $const->setValue($resolved['value']);
+            if (isset($resolved['constant'])) {
+                $const->setConstantReference($resolved['constant']);
+            }
+
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
                 $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
@@ -330,6 +338,83 @@ namespace TheSeer\phpDox\Collector\Backend {
             $variable->setType($type);
         }
 
+        private function resolveExpressionValue(\PhpParser\Node\Expr $expr) {
+            if ($expr instanceof \PhpParser\Node\Scalar\String) {
+                return array(
+                    'type' => 'string',
+                    'value' => $expr->getAttribute('originalValue')
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Scalar\LNumber ||
+                $expr instanceof \PhpParser\Node\Expr\UnaryMinus ||
+                $expr instanceof \PhpParser\Node\Expr\UnaryPlus) {
+                return array(
+                    'type' => 'integer',
+                    'value' => $expr->getAttribute('originalValue')
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Scalar\DNumber) {
+                return array(
+                    'type' => 'float',
+                    'value' => $expr->getAttribute('originalValue')
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Expr\Array_) {
+                return array(
+                    'type' => 'array',
+                    'value' => '' // @todo add array2xml?
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Expr\ClassConstFetch) {
+                return array(
+                    'type' => '{unknown}',
+                    'value' => '',
+                    'constant' => join('\\', $expr->class->parts) . '::' . $expr->name
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Expr\ConstFetch) {
+                $reference = join('\\', $expr->name->parts);
+                if (in_array(strtolower($reference),array('true','false'))) {
+                    return array(
+                        'type' => 'boolean',
+                        'value' => $reference
+                    );
+                }
+                return array(
+                    'type' => '{unknown}',
+                    'value' => '',
+                    'constant' => join('\\', $expr->name->parts)
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Scalar\MagicConst\Line) {
+                return array(
+                    'type' => 'integer',
+                    'value' => '',
+                    'constant' => $expr->getName()
+                );
+            }
+
+            if ($expr instanceof \PhpParser\Node\Scalar\MagicConst) {
+                return array(
+                    'type' => 'string',
+                    'value' => '',
+                    'constant' => $expr->getName()
+                );
+            }
+
+            $type = get_class($expr);
+            $line = $expr->startLine;
+            $file = $this->result->getFileName();
+            throw new ParseErrorException("Unexpected expression type '$type' for value in line $line of file '$file'", ParseErrorException::UnexpectedExpr);
+
+        }
+
         /**
          * @param AbstractVariableObject     $variable
          * @param \PhpParser\Node\Expr       $default
@@ -339,78 +424,12 @@ namespace TheSeer\phpDox\Collector\Backend {
             if ($default === NULL) {
                 return;
             }
-            if ($default instanceof \PhpParser\Node\Scalar\String) {
-                $variable->setDefault($default->getAttribute('originalValue'));
-                if ($variable->getType() == '{unknown}') {
-                    $variable->setType('string');
-                }
-                return;
+            $resolved = $this->resolveExpressionValue($default);
+            $variable->setType($resolved['type']);
+            $variable->setDefault($resolved['value']);
+            if (isset($resolved['constant'])) {
+                $variable->setConstant($resolved['constant']);
             }
-            if ($default instanceof \PhpParser\Node\Scalar\LNumber ||
-                $default instanceof \PhpParser\Node\Expr\UnaryMinus ||
-                $default instanceof \PhpParser\Node\Expr\UnaryPlus) {
-                $variable->setDefault($default->getAttribute('originalValue'));
-                if ($variable->getType() == '{unknown}') {
-                    $variable->setType('integer');
-                }
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\DNumber) {
-                $variable->setDefault($default->getAttribute('originalValue'));
-                if ($variable->getType() == '{unknown}') {
-                    $variable->setType('float');
-                }
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Expr\Array_) {
-                //var_dump($default);
-                //$parameter->setDefault(join('\\', $default->items));
-                if ($variable->getType() == '{unknown}') {
-                    $variable->setType('array');
-                }
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Expr\ClassConstFetch) {
-                $variable->setDefault(join('\\', $default->class->parts) . '::' . $default->name);
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Expr\ConstFetch) {
-                $variable->setDefault(join('\\', $default->name->parts));
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\Trait_) {
-                $variable->setName('__TRAIT__');
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\Class_) {
-                $variable->setDefault('__CLASS__');
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\Method) {
-                $variable->setName('__METHOD__');
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\Dir) {
-                $variable->setName('__DIR__');
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\File) {
-                $variable->setName('__FILE__');
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\Function_) {
-                $variable->setName('__FUNC__');
-                return;
-            }
-            if ($default instanceof \PhpParser\Node\Scalar\MagicConst\Line) {
-                $variable->setName('__LINE__');
-                return;
-            }
-
-            $type = get_class($default);
-            $line = $default->startLine;
-            $file = $this->result->getFileName();
-            throw new ParseErrorException("Unexpected expression type '$type' for default value in line $line of file '$file'", ParseErrorException::UnexpectedExpr);
         }
 
     }

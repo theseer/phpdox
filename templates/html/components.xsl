@@ -241,7 +241,10 @@
                 <xsl:for-each select="//pdx:constant">
                     <tr>
                         <td id="{@name}"><xsl:value-of select="@name" /></td>
-                        <td><xsl:value-of select="@value" /></td>
+                        <td><xsl:choose>
+                            <xsl:when test="@value = ''"><xsl:value-of select="@constant" /></xsl:when>
+                            <xsl:otherwise><xsl:value-of select="@value" /></xsl:otherwise>
+                        </xsl:choose></td>
                     </tr>
                 </xsl:for-each>
             </tbody>

@@ -36,7 +36,10 @@
                 <ul class="none">
                     <li>// constants</li>
                     <xsl:for-each select="$unit/pdx:constant">
-                        <li>const <xsl:value-of select="@name" /> = <xsl:value-of select="@value" />;</li>
+                        <li>const <xsl:value-of select="@name" /> = <xsl:choose>
+                            <xsl:when test="@value = ''"><xsl:value-of select="@constant" /></xsl:when>
+                            <xsl:otherwise><xsl:value-of select="@value" /></xsl:otherwise>
+                        </xsl:choose>;</li>
                     </xsl:for-each>
                 </ul>
             </xsl:if>
@@ -45,18 +48,24 @@
             <ul class="none">
                 <li>// Inherited constants from <xsl:copy-of select="pdxf:link(., '', @name)" /></li>
                 <xsl:for-each select="pdx:constant">
-                    <li>const <a href="#{@name}"><xsl:value-of select="@name" /></a> = <xsl:value-of select="@value" />;</li>
+                    <li>const <a href="#{@name}"><xsl:value-of select="@name" /></a> = <xsl:choose>
+                        <xsl:when test="@value = ''"><xsl:value-of select="@constant" /></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="@value" /></xsl:otherwise>
+                    </xsl:choose>;</li>
                 </xsl:for-each>
             </ul>
             </xsl:for-each>
-
 
             <xsl:if test="$unit/pdx:member">
             <ul class="none">
                 <li>// members</li>
                 <xsl:for-each select="$unit/pdx:member">
                     <li>
-                        <xsl:value-of select="@visibility" /><xsl:if test="@static = 'true'">&#160;static</xsl:if><xsl:call-template name="vartype" />&#160;<a href="#members">$<xsl:value-of select="@name" /></a>;
+                        <xsl:value-of select="@visibility" /><xsl:if test="@static = 'true'">&#160;static</xsl:if><xsl:call-template name="vartype" />&#160;<a href="#members">$<xsl:value-of select="@name" /></a><xsl:if test="@default or @constant"> =
+                        <xsl:choose>
+                            <xsl:when test="@default = ''"> <xsl:value-of select="@constant" /></xsl:when>
+                            <xsl:otherwise><xsl:value-of select="@default" /></xsl:otherwise>
+                    </xsl:choose></xsl:if>;
                     </li>
                 </xsl:for-each>
             </ul>
