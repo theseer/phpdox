@@ -10,13 +10,22 @@ namespace TheSeer\phpDox {
         }
 
         private function ensureRequiredExtensionsLoaded() {
-            $required = array('tokenizer', 'iconv', 'fileinfo', 'libxml', 'dom', 'xsl', 'mbstring');
+            $required = array('tokenizer', 'iconv', 'fileinfo', 'libxml', 'dom', 'xsl', 'mbstring','pcre');
             $missing = array();
 
             foreach ($required as $test) {
                 if (!extension_loaded($test)) {
                     $missing[] = sprintf('ext/%s not installed/enabled', $test);
                 }
+            }
+
+            try {
+                $test = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
+                if ($test != '--') {
+                    throw new \ErrorException('PCRE unicode support broken.');
+                }
+            } catch(\ErrorException $e) {
+                $missing[] = 'PCRE installation does not support unicode / unicode properties.';
             }
 
             if (count($missing)) {
