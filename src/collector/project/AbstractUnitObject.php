@@ -343,6 +343,12 @@ namespace TheSeer\phpDox\Collector {
             $depNode = $this->rootNode->queryOne(
                 sprintf('//phpdox:implements[@full="%1$s"]|//phpdox:extends[@full="%1$s"]|//phpdox:uses[@full="%1$s"]', $dependency)
             );
+            if (!$depNode) {
+                throw new UnitObjectException(
+                    sprintf('No dependency "%s" found in unit %s', $dependency, $this->getName()),
+                    UnitObjectException::NoSuchDependency
+                );
+            }
             $depNode->setAttribute('unresolved', 'true');
         }
 

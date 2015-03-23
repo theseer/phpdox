@@ -36,6 +36,11 @@ namespace TheSeer\phpDox\Collector {
          */
         const NoSuchTrait = 6;
 
+        /**
+         *
+         */
+        const NoSuchDependency = 7;
+
     }
 
 }
