@@ -1,8 +1,9 @@
 phpDox
 ======
-
-*phpDox* is a documentation generator for generating API documentation in HTML format, for instance, from PHP source code.
-
+PHP Documentation Generator
+---------------------------
+*phpDox* is a documentation generator for PHP projects.
+This includes, but is not limited to, API documentation.
 
 [![Build Status](https://travis-ci.org/theseer/phpdox.svg?branch=master)](https://travis-ci.org/theseer/phpdox)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/theseer/phpdox/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/theseer/phpdox/?branch=master)
