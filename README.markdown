@@ -1,7 +1,6 @@
 phpDox
 ======
-PHP Documentation Generator
----------------------------
+
 *phpDox* is a documentation generator for PHP projects.
 This includes, but is not limited to, API documentation.
 
