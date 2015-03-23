@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+    <project name="/home/theseer/storage/php/phpdox/src">
+
+        <directory name="/home/theseer/storage/php/phpdox/tests/data/coverage/coverage">
+            <directory name="Helper">
+                <file name="SummaryFactory.php" href="Helper/SummaryFactory.php.xml">
+                    <totals>
+                        <lines total="72" comments="13" code="59" executable="25" executed="25" percent="100.00%"/>
+                        <methods count="3" tested="3" percent="100.00%"/>
+                        <functions count="0" tested="0" percent=""/>
+                        <classes count="1" tested="1" percent="100.00%"/>
+                        <traits count="0" tested="0" percent=""/>
+                    </totals>
+                </file>
+            </directory>
+        </directory>
+    </project>
+</phpunit>

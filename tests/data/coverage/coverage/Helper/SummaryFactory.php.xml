@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<phpunit xmlns="http://schema.phpunit.de/coverage/1.0">
+  <file name="SummaryFactory.php">
+    <totals>
+      <lines total="72" comments="13" code="59" executable="25" executed="25" percent="100.00%"/>
+      <methods count="3" tested="3" percent="100.00%"/>
+      <functions count="0" tested="0" percent=""/>
+      <classes count="1" tested="1" percent="100.00%"/>
+      <traits count="0" tested="0" percent=""/>
+    </totals>
+    <class name="SummaryFactory" start="7" executable="25" executed="25" crap="7">
+      <package full="" name="" sub="" category=""/>
+      <namespace name="Api\Helper"/>
+      <method name="createSummary" signature="createSummary($results)" start="18" end="29" crap="1" executable="7" executed="7" coverage="100"/>
+      <method name="parseBadges" signature="parse($results)" start="34" end="52" crap="3" executable="11" executed="11" coverage="100"/>
+      <method name="anonymous function" signature="anonymous function ( $result )" start="61" end="63" crap="1" executable="2" executed="2" coverage="100"/>
+      <method name="parseDistances" signature="parseDistances($results)" start="59" end="71" crap="2" executable="0" executed="0" coverage="100"/>
+    </class>
+    <coverage>
+      <line nr="20">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="21">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="23">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="24">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="25">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="26">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="28">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="36">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="38">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="39">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="40">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="41">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="42">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="44">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="48">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="50">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="51">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="52">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="62">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="63">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="65">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+      <line nr="66">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="67">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="68">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+      </line>
+      <line nr="70">
+        <covered by="SummaryFactoryTest::testGetSummary"/>
+        <covered by="SummaryFactoryTest::testGetSummaryWhenEmptyResult"/>
+      </line>
+    </coverage>
+  </file>
+</phpunit>
