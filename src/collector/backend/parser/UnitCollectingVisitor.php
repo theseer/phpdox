@@ -158,8 +158,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $this->unit->setDocBlock($block);
             }
 
-            /** @var NodeType\Class_ $node */
-            if (count($node->extends) > 0) {
+            if ($node->getType() != 'Stmt_Trait' && $node->extends != NULL) {
                 if (is_array($node->extends)) {
                     foreach($node->extends as $extends) {
                         $this->unit->addExtends(join('\\', $extends->parts));
@@ -170,7 +169,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
             }
 
-            if (count($node->implements) > 0) {
+            if ($node->getType() == 'Stmt_Class') {
                 foreach($node->implements as $implements) {
                     $this->unit->addImplements(join('\\', $implements->parts));
                 }
@@ -256,9 +255,6 @@ namespace TheSeer\phpDox\Collector\Backend {
                         }
                     }
                 }
-                if ($stmt->stmts) {
-                    $this->processInlineComments($method, $stmt->stmts);
-                }
             }
         }
 
@@ -299,7 +295,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         private function processProperty(NodeType\Property $node) {
             $property = $node->props[0];
             $member = $this->unit->addMember($property->name);
-            $this->setVariableType($member, $property->type);
+            $this->setVariableType($member, $node->type);
             $this->setVariableDefaultValue($member, $property->default);
             $visibility = 'public';
             if ($node->isPrivate()) {
@@ -339,7 +335,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         private function resolveExpressionValue(\PhpParser\Node\Expr $expr) {
-            if ($expr instanceof \PhpParser\Node\Scalar\String) {
+            if ($expr instanceof \PhpParser\Node\Scalar\String_) {
                 return array(
                     'type' => 'string',
                     'value' => $expr->getAttribute('originalValue')
@@ -409,7 +405,7 @@ namespace TheSeer\phpDox\Collector\Backend {
             }
 
             $type = get_class($expr);
-            $line = $expr->startLine;
+            $line = $expr->getLine();
             $file = $this->result->getFileName();
             throw new ParseErrorException("Unexpected expression type '$type' for value in line $line of file '$file'", ParseErrorException::UnexpectedExpr);
 
