@@ -42,11 +42,25 @@ namespace TheSeer\phpDox {
 
     class GeneratorConfig {
 
-        protected $builds;
-        protected $enrichers;
+        /**
+         * @var array
+         */
+        private $builds;
 
-        protected $ctx;
-        protected $project;
+        /**
+         * @var array
+         */
+        private $enrichers;
+
+        /**
+         * @var fDOMElement
+         */
+        private $ctx;
+
+        /**
+         * @var ProjectConfig
+         */
+        private $project;
 
         public function __construct(ProjectConfig $project, fDOMElement $ctx) {
             $this->project = $project;

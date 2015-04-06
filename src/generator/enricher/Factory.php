@@ -7,8 +7,15 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class Factory {
 
-        protected $enrichers = array();
-        protected $configs = array();
+        /**
+         * @var array
+         */
+        private $enrichers = array();
+
+        /**
+         * @var array
+         */
+        private $configs = array();
 
         public function addEnricherClass($name, $class) {
             $this->enrichers[$name] = $class;
