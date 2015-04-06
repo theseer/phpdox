@@ -53,6 +53,11 @@ namespace TheSeer\phpDox {
         private $environment;
 
         /**
+         * @var Version
+         */
+        private $version;
+
+        /**
          * Factory instance
          *
          * @var Factory
@@ -63,8 +68,9 @@ namespace TheSeer\phpDox {
          * @param Environment $env
          * @param Factory     $factory
          */
-        public function __construct(Environment $env, Factory $factory) {
+        public function __construct(Environment $env, Version $version, Factory $factory) {
             $this->environment = $env;
+            $this->version = $version;
             $this->factory = $factory;
         }
 
@@ -204,7 +210,7 @@ namespace TheSeer\phpDox {
                 return;
             }
             $shown = TRUE;
-            echo Version::getInfoString() . "\n\n";
+            echo $this->version->getInfoString() . "\n\n";
         }
 
         private function showSkeletonConfig($strip) {

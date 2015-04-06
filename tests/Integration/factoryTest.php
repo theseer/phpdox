@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2011 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2015 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,16 +35,17 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-
 namespace TheSeer\phpDox\Tests\Integration {
 
     use TheSeer\phpDox\Factory;
     use TheSeer\phpDox\FileInfo;
+    use TheSeer\phpDox\Version;
 
     /**
      * Class FactoryTest
      *
      * @covers TheSeer\phpDox\Factory
+     * @uses TheSeer\phpDox\version
      */
     class FactoryTest extends \PHPUnit_Framework_TestCase {
 
@@ -54,7 +55,7 @@ namespace TheSeer\phpDox\Tests\Integration {
         private $factory;
 
         protected function setUp() {
-            $this->factory = new Factory(new FileInfo(__DIR__));
+            $this->factory = new Factory(new FileInfo(__DIR__), new Version('0.0'));
         }
 
         /**

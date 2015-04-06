@@ -22,9 +22,10 @@ spl_autoload_register(
 Phar::mapPhar('phpdox.phar');
 define('PHPDOX_PHAR', 'phpdox.phar');
 
-TheSeer\phpDox\Version::setVersion('___VERSION___');
-
-$factory = new TheSeer\phpDox\Factory(new \TheSeer\phpDox\FileInfo('phar://' . PHPDOX_PHAR));
+$factory = new TheSeer\phpDox\Factory(
+    new \TheSeer\phpDox\FileInfo('phar://' . PHPDOX_PHAR),
+    new \TheSeer\phpDox\Version('___VERSION___')
+);
 $factory->getCLI()->run(
     new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
 );

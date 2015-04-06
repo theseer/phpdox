@@ -24,8 +24,14 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         private $buildInfo;
 
+        /**
+         * @var Version
+         */
+        private $version;
+
         public function __construct(EnrichConfig $config) {
             $this->enrichers = array_keys($config->getGeneratorConfig()->getActiveEnrichSources());
+            $this->version = $config->getVersion();
         }
 
         /**
@@ -83,9 +89,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $phpdoxNode = $dom->createElementNS(self::XMLNS, 'phpdox');
             $this->buildInfo->appendChild($phpdoxNode);
 
-            $phpdoxNode->setAttribute('version', Version::getVersion());
-            $phpdoxNode->setAttribute('info', Version::getInfoString());
-            $phpdoxNode->setAttribute('generated', Version::getGeneratedByString());
+            $phpdoxNode->setAttribute('version', $this->version->getVersion());
+            $phpdoxNode->setAttribute('info', $this->version->getInfoString());
+            $phpdoxNode->setAttribute('generated', $this->version->getGeneratedByString());
             $phpdoxNode->setAttribute('phar', defined('PHPDOX_PHAR') ? 'yes' : 'no');
 
             foreach($this->enrichers as $enricher) {

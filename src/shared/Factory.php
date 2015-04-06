@@ -55,6 +55,11 @@ namespace TheSeer\phpDox {
         private $homeDir;
 
         /**
+         * @var Version
+         */
+        private $version;
+
+        /**
          * @var array
          */
         private $instances = array();
@@ -67,8 +72,9 @@ namespace TheSeer\phpDox {
         /**
          * @param array $map
          */
-        public function __construct(FileInfo $home) {
+        public function __construct(FileInfo $home, Version $version) {
             $this->homeDir = $home;
+            $this->version = $version;
         }
 
         public function activateSilentMode() {
@@ -86,16 +92,15 @@ namespace TheSeer\phpDox {
          * @return CLI
          */
         public function getCLI() {
-            return new CLI(new Environment(), $this);
+            return new CLI(new Environment(), $this->version, $this);
         }
 
         /**
          * @return ConfigLoader
          */
         public function getConfigLoader() {
-            return new ConfigLoader($this->homeDir);
+            return new ConfigLoader($this->version, $this->homeDir);
         }
-
 
         public function getConfigSkeleton() {
             return new ConfigSkeleton(

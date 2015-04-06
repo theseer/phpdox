@@ -43,6 +43,11 @@ namespace TheSeer\phpDox {
     class GlobalConfig {
 
         /**
+         * @var Version
+         */
+        private $version;
+
+        /**
          * Directory of phpDox home
          * @var Fileinfo
          */
@@ -65,12 +70,13 @@ namespace TheSeer\phpDox {
          * @param fDOMDocument $cfg   A configuration dom
          * @param FileInfo     $file  FileInfo of the cfg file
          */
-        public function __construct(FileInfo $home, fDOMDocument $cfg, FileInfo $file) {
+        public function __construct(Version $version, FileInfo $home, fDOMDocument $cfg, FileInfo $file) {
             if ($cfg->documentElement->nodeName != 'phpdox' ||
                 $cfg->documentElement->namespaceURI != 'http://xml.phpdox.net/config') {
                 throw new ConfigException("Not a valid phpDox configuration", ConfigException::InvalidDataStructure);
             }
             $this->homeDir = $home;
+            $this->version = $version;
             $this->cfg = $cfg;
             $this->file = $file;
         }
@@ -107,7 +113,7 @@ namespace TheSeer\phpDox {
         public function getProjects() {
             $list = array();
             foreach ($this->cfg->query('//cfg:project[@enabled="true" or not(@enabled)]') as $pos => $project) {
-                $list[$project->getAttribute('name', $pos)] = new ProjectConfig($this->runResolver($project));
+                $list[$project->getAttribute('name', $pos)] = new ProjectConfig($this->version, $this->runResolver($project));
             }
             return $list;
         }
@@ -124,7 +130,7 @@ namespace TheSeer\phpDox {
 
                 'phpDox.home' => $this->homeDir->getPathname(),
                 'phpDox.file' => $this->file->getPathname(),
-                'phpDox.version' => Version::getVersion(),
+                'phpDox.version' => $this->version->getVersion(),
 
                 'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
                 'phpDox.project.source' => $ctx->getAttribute('source', 'src'),

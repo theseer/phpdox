@@ -44,6 +44,7 @@ namespace TheSeer\phpDox {
      * @covers TheSeer\phpDox\GlobalConfig
      * @uses TheSeer\fDom\fDOMDocument
      * @uses TheSeer\phpDox\FileInfo
+     * @uses TheSeer\phpDox\Version
      */
     class GlobalConfigTest extends \PHPUnit_Framework_TestCase {
 
@@ -64,17 +65,23 @@ namespace TheSeer\phpDox {
          */
         private $config;
 
+        /**
+         * @var Version
+         */
+        private $version;
+
         public function __construct($name = NULL, array $data = array(), $dataName = '') {
             parent::__construct($name, $data, $dataName);
             $this->baseDir = realpath(__DIR__ . '/../../data/config') . '/';
         }
 
         private function init($cfgName) {
+            $this->version = new Version('0.0');
             $this->fileInfo = new FileInfo($this->baseDir . $cfgName . '.xml');
             $this->cfgDom = new fDOMDocument();
             $this->cfgDom->load($this->fileInfo->getPathname());
             $this->cfgDom->registerNamespace('cfg', 'http://xml.phpdox.net/config');
-            $this->config = new GlobalConfig(new FileInfo('/tmp'), $this->cfgDom, $this->fileInfo);
+            $this->config = new GlobalConfig($this->version, new FileInfo('/tmp'), $this->cfgDom, $this->fileInfo);
         }
 
         /**
@@ -200,14 +207,15 @@ namespace TheSeer\phpDox {
         }
 
         public function resolverProvider() {
+            $version = new Version('0.0');
             return array(
                 'basedir' => array( $this->baseDir . 'resolver', 'basedir'),
 
                 'phpDox.home' => array( '/tmp', 'home'),
                 'phpDox.file' => array( $this->baseDir . 'resolver/file.xml', 'file'),
-                'phpDox.version' => array(Version::getVersion(), 'phpdox-version'),
+                'phpDox.version' => array($version->getVersion(), 'phpdox-version'),
 
-                'multi' => array( '/tmp ' . Version::getVersion(), 'multi'),
+                'multi' => array( '/tmp ' . $version->getVersion(), 'multi'),
 
                 'phpDox.project.name' => array('projectname', 'named'),
                 'phpDox.project.name[undefined]' => array('unnamed', 'named-undefined'),
@@ -220,7 +228,7 @@ namespace TheSeer\phpDox {
                 'property-global' => array('propvalue', 'property-global'),
                 'property-project' => array('propvalue', 'property-project'),
 
-                'property-recursive' => array(Version::getVersion(), 'property-recursive')
+                'property-recursive' => array($version->getVersion(), 'property-recursive')
             );
         }
 
