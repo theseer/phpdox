@@ -19,7 +19,7 @@ namespace TheSeer\phpDox {
                     continue;
                 }
                 if ($x->isDir()) {
-                    $this->clearDirectory(new FileInfo($x->getPathname()));
+                    $this->process(new FileInfo($x->getPathname()));
                 }
                 unlink($x->getPathname());
             }
