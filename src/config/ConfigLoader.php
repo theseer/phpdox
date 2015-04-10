@@ -43,6 +43,8 @@ namespace TheSeer\phpDox {
 
     class ConfigLoader {
 
+        const XMLNS = 'http://xml.phpdox.net/config';
+
         /**
          * @var FileInfo
          */
@@ -96,37 +98,27 @@ namespace TheSeer\phpDox {
          * @param $fname
          *
          * @return GlobalConfig
-         *
          * @throws ConfigLoaderException
          */
         private function createInstanceFor($fname) {
+            $dom = $this->loadFile($fname);
+            $this->ensureCorrectNamespace($dom);
+            $this->ensureCorrectRootNodeName($dom);
+            return new GlobalConfig($this->version, $this->homeDir, $dom, new FileInfo($fname));
+        }
+
+        /**
+         * @param $fname
+         *
+         * @return fDOMDocument
+         * @throws ConfigLoaderException
+         */
+        private function loadFile($fname) {
             try {
                 $dom = new fDOMDocument();
                 $dom->load($fname);
-
-                $root = $dom->documentElement;
-                if ($root->namespaceURI == 'http://phpdox.de/config') {
-                    throw new ConfigLoaderException(
-                        "File '$fname' uses an outdated xml namespace. Please update the xmlns to 'http://xml.phpdox.net/config'",
-                        ConfigLoaderException::OldNamespace
-                    );
-                }
-
-                if ($root->namespaceURI != 'http://xml.phpdox.net/config' || $root->localName != 'phpdox') {
-                    throw new ConfigLoaderException(
-                        "File '$fname' is not a valid phpDox configuration.",
-                        ConfigLoaderException::WrongNamespace
-                    );
-                }
-                $dom->registerNamespace('cfg', $root->namespaceURI);
-
-                if ($root->localName != 'phpdox') {
-                    throw new ConfigLoaderException(
-                        "File '$fname' is not a valid phpDox configuration.",
-                        ConfigLoaderException::WrongType);
-                }
-
-                return new GlobalConfig($this->version, $this->homeDir, $dom, new FileInfo($fname));
+                $dom->registerNamespace('cfg', self::XMLNS);
+                return $dom;
             } catch (fDOMException $e) {
                 throw new ConfigLoaderException(
                     "Parsing config file '$fname' failed.",
@@ -135,6 +127,40 @@ namespace TheSeer\phpDox {
                 );
             }
         }
+
+        /**
+         * @param fDOMDocument $dom
+         *
+         * @throws ConfigLoaderException
+         */
+        private function ensureCorrectNamespace(fDOMDocument $dom) {
+            if ($dom->documentElement->namespaceURI != self::XMLNS) {
+                throw new ConfigLoaderException(
+                    sprintf(
+                        "The configuratin file '%s' uses a wrong or outdated xml namespace.\n" .
+                        "Please ensure it uses 'http://xml.phpdox.net/config'",
+                        $dom->documentURI
+                    ), ConfigLoaderException::WrongNamespace
+                );
+            }
+        }
+
+        /**
+         * @param fDOMDocument $dom
+         *
+         * @throws ConfigLoaderException
+         */
+        private function ensureCorrectRootNodeName(fDOMDocument $dom) {
+            if ($dom->documentElement->localName != 'phpdox') {
+                throw new ConfigLoaderException(
+                    sprintf(
+                        "The file '%s' does not seem to be a phpdox configration file.",
+                        $dom->documentURI
+                    ), ConfigLoaderException::WrongType
+                );
+            }
+        }
+
     }
 
 }

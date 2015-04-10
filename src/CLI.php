@@ -184,7 +184,10 @@ namespace TheSeer\phpDox {
                 exit(3);
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
-                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\t" . $e->getMessage()."\n\nUsing --skel might get you started.\n\n");
+                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage(). "\n\n");
+                if ($e->getCode() == ConfigLoaderException::NeitherCandidateExists) {
+                    fwrite(STDERR, "Using --skel might get you started.\n\n");
+                }
                 exit(3);
             } catch (ConfigException $e) {
                 fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
