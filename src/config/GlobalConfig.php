@@ -67,8 +67,12 @@ namespace TheSeer\phpDox {
         /**
          * Constructor for global config
          *
-         * @param fDOMDocument $cfg   A configuration dom
-         * @param FileInfo     $file  FileInfo of the cfg file
+         * @param Version      $version
+         * @param FileInfo     $home
+         * @param fDOMDocument $cfg  A configuration dom
+         * @param FileInfo     $file FileInfo of the cfg file
+         *
+         * @throws ConfigException
          */
         public function __construct(Version $version, FileInfo $home, fDOMDocument $cfg, FileInfo $file) {
             if ($cfg->documentElement->nodeName != 'phpdox' ||
@@ -113,7 +117,7 @@ namespace TheSeer\phpDox {
         public function getProjects() {
             $list = array();
             foreach ($this->cfg->query('//cfg:project[@enabled="true" or not(@enabled)]') as $pos => $project) {
-                $list[$project->getAttribute('name', $pos)] = new ProjectConfig($this->version, $this->runResolver($project));
+                $list[$project->getAttribute('name', $pos)] = new ProjectConfig($this->version, $this->homeDir, $this->runResolver($project));
             }
             return $list;
         }

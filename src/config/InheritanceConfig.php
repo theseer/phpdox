@@ -54,13 +54,8 @@ namespace TheSeer\phpDox {
          * @return array
          */
         public function getDependencyDirectories() {
-
-            if (defined('PHPDOX_HOME')) {
-                $home = PHPDOX_HOME;
-            } else {
-                $home = realpath(__DIR__.'/../../');
-            }
-            $default = new FileInfo($home . '/dependencies/php');
+            $home = $this->config->getProjectConfig()->getHomeDirectory();
+            $default = new FileInfo($home->getPathname() . '/dependencies/php');
             $list = array($default);
             if (!$this->ctx) {
                 return $list;

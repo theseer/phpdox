@@ -50,6 +50,10 @@ namespace TheSeer\phpDox {
             $this->ctx = $ctx;
         }
 
+        public function getProjectConfig() {
+            return $this->project;
+        }
+
         public function getBackend() {
             if ($this->ctx->hasAttribute('backend')) {
                 return $this->ctx->getAttribute('backend', 'parser');

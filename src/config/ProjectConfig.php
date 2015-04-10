@@ -53,12 +53,18 @@ namespace TheSeer\phpDox {
         private $ctx;
 
         /**
+         * @var FileInfo
+         */
+        private $homeDir;
+
+        /**
          * Constructor for global config
          *
          * @param fDOMElement $ctx   Reference to <project> node
          */
-        public function __construct(Version $version, fDOMElement $ctx) {
+        public function __construct(Version $version, FileInfo $homeDir, fDOMElement $ctx) {
             $this->version = $version;
+            $this->homeDir = $homeDir;
             $this->ctx = $ctx;
         }
 
@@ -67,6 +73,13 @@ namespace TheSeer\phpDox {
          */
         public function getVersion() {
             return $this->version;
+        }
+
+        /**
+         * @return Fileinfo
+         */
+        public function getHomeDirectory() {
+            return $this->homeDir;
         }
 
         /**

@@ -40,12 +40,8 @@ namespace TheSeer\phpDox\Generator\Engine {
     class HtmlConfig extends \TheSeer\phpDox\BuildConfig {
 
         public function getTemplateDirectory() {
-            if (defined('PHPDOX_HOME')) {
-                $default = PHPDOX_HOME;
-            } else {
-                $default = realpath(__DIR__ . '/../../../..');
-            }
-            $default .= '/templates/html';
+            $default = $this->getGeneratorConfig()->getProjectConfig()->getHomeDirectory()->getPathname();
+            $default .=  '/templates/html';
             $node = $this->ctx->queryOne('cfg:template');
             if (!$node) {
                 return $default;
