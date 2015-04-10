@@ -85,7 +85,7 @@ namespace TheSeer\phpDox {
          * @return ErrorHandler
          */
         public function getErrorHandler() {
-            return new ErrorHandler();
+            return new ErrorHandler($this->version);
         }
 
         /**

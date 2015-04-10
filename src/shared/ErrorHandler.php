@@ -40,6 +40,20 @@ namespace TheSeer\phpDox {
     class ErrorHandler {
 
         /**
+         * @var Version
+         */
+        private $version;
+
+        /**
+         * ErrorHandler constructor.
+         *
+         * @param Version $version
+         */
+        public function __construct(Version $version) {
+            $this->version = $version;
+        }
+
+        /**
          * Init method
          *
          * Register shutdown, exception and error handler
@@ -108,7 +122,7 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, "\nIt most likely means you've found a bug, so please file a report for this\n");
             fwrite(STDERR, "and paste the following details and the stacktrace (if given) along:\n\n");
             fwrite(STDERR, "PHP Version: " . PHP_VERSION . " (" . PHP_OS . ")\n");
-            fwrite(STDERR, "PHPDox Version: " . Version::getVersion() . "\n");
+            fwrite(STDERR, "PHPDox Version: " . $this->version->getVersion() . "\n");
             $this->renderException($exception);
             fwrite(STDERR, "\n\n\n");
             exit(1);
