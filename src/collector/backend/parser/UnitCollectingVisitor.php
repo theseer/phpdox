@@ -234,12 +234,15 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $visibility = 'protected';
             }
             $method->setVisibility($visibility);
+
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
                 $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
                 $method->setDocBlock($block);
             }
+
             $this->processMethodParams($method, $node->params);
+
             if ($node->stmts) {
                 $this->processInlineComments($method, $node->stmts);
             }
@@ -270,7 +273,6 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $this->setVariableType($parameter, $param->type);
                 $this->setVariableDefaultValue($parameter, $param->default);
             }
-            //die();
         }
 
         private function processClassConstant(NodeType\ClassConst $node) {
@@ -295,8 +297,9 @@ namespace TheSeer\phpDox\Collector\Backend {
         private function processProperty(NodeType\Property $node) {
             $property = $node->props[0];
             $member = $this->unit->addMember($property->name);
-            $this->setVariableType($member, $node->type);
-            $this->setVariableDefaultValue($member, $property->default);
+            if ($node->props[0]->default) {
+                $this->setVariableDefaultValue($member, $node->props[0]->default);
+            }
             $visibility = 'public';
             if ($node->isPrivate()) {
                 $visibility = 'private';
