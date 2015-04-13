@@ -131,6 +131,13 @@ namespace TheSeer\phpDox\Collector {
                     }
                 }
 
+                $unitName = $unit->getName();
+                if (isset($this->unresolved[$unitName])) {
+                    foreach($this->unresolved[$unitName] as $missingUnit) {
+                        $unit->markDependencyAsUnresolved($missingUnit);
+                    }
+                }
+
                 $this->logger->progress('processed');
             }
 
@@ -148,15 +155,10 @@ namespace TheSeer\phpDox\Collector {
 
         private function addUnresolved(AbstractUnitObject $unit, $missingUnit) {
             $unitName = $unit->getName();
-            if (isset($this->unresolved[$unitName])) {
-                if (!is_array($this->unresolved[$unitName])) {
-                    $this->unresolved[$unitName] = array($this->unresolved[$unitName]);
-                }
-                $this->unresolved[$unitName][] = $missingUnit;
-            } else {
-                $this->unresolved[$unitName] = $missingUnit;
+            if (!isset($this->unresolved[$unitName])) {
+                $this->unresolved[$unitName] = array();
             }
-            $unit->markDependencyAsUnresolved($missingUnit);
+            $this->unresolved[$unitName][] = $missingUnit;
             $this->project->registerForSaving($unit);
         }
 
