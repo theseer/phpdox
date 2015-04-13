@@ -10,20 +10,29 @@ namespace TheSeer\phpDox {
                     DirectoryCleanerException::SecurityLimitation
                 );
             }
-            if (!file_exists($path)) {
+
+            if (!$path->exists()) {
                 return;
             }
-            $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path->getPathname()));
-            foreach($worker as $x) {
-                if($x->getFilename() == "." || $x->getFilename() == "..") {
-                    continue;
+
+            $worker = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator(
+                    $path->getPathname(),
+                    \FilesystemIterator::SKIP_DOTS
+                ),
+                \RecursiveIteratorIterator::CHILD_FIRST
+            );
+
+            foreach($worker as $entry) {
+                if ($entry->isDir() && !$entry->isLink()) {
+                    rmdir($entry->getPathname());
+                } else {
+                    unlink($entry->getPathname());
                 }
-                if ($x->isDir()) {
-                    $this->process(new FileInfo($x->getPathname()));
-                }
-                unlink($x->getPathname());
             }
+            rmdir($path);
         }
+
     }
 
 }
