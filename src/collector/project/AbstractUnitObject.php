@@ -455,6 +455,20 @@ namespace TheSeer\phpDox\Collector {
                 }
             }
 
+            if ($unit->hasImplements()) {
+                foreach($unit->getImplements() as $name) {
+                    $implements = $parent->appendElementNS( self::XMLNS, 'implements');
+                    $this->setName($name, $implements);
+                }
+            }
+
+            if ($unit->usesTraits()) {
+                foreach($unit->getUsedTraits() as $name) {
+                    $uses = $parent->appendElementNS( self::XMLNS, 'uses');
+                    $this->setName($name, $uses);
+                }
+            }
+
             foreach($unit->getConstants() as $constant) {
                 $parent->appendChild( $this->dom->importNode($constant->export(), TRUE) );
             }
@@ -499,6 +513,8 @@ namespace TheSeer\phpDox\Collector {
                     $this->setName($name, $extends);
                 }
             }
+
+
 
             foreach($trait->getConstants() as $constant) {
                 $container->appendChild( $this->dom->importNode($constant->export(), TRUE) );
