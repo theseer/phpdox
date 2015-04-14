@@ -514,8 +514,6 @@ namespace TheSeer\phpDox\Collector {
                 }
             }
 
-
-
             foreach($trait->getConstants() as $constant) {
                 $container->appendChild( $this->dom->importNode($constant->export(), TRUE) );
             }

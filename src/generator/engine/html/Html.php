@@ -179,7 +179,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $proc = $this->getXSLTProcessor('directory.xsl');
             $dirList = $treeDom->query('/phpdox:source//phpdox:dir');
             foreach($dirList as $dirNode) {
-                $dirNode->setAttributeNS('ctx://engine/html','ctx:engine', 'current');
+                $dirNode->setAttributeNS('ctx://engine/html', 'ctx:engine', 'current');
 
                 $parents = $dirNode->query('ancestor-or-self::phpdox:dir');
                 $elements = array();
@@ -192,7 +192,7 @@ namespace TheSeer\phpDox\Generator\Engine {
                 $proc->setParameter('', 'base', str_repeat('../', count($elements) - 1));
                 $this->saveDomDocument( $proc->transformToDoc($treeDom), join('/', $elements));
 
-                $dirNode->removeAttributeNS('ctx://engine/html','engine');
+                $dirNode->removeAttributeNS('ctx://engine/html', 'engine');
             }
         }
 

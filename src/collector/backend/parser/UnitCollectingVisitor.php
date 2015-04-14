@@ -378,7 +378,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
             if ($expr instanceof \PhpParser\Node\Expr\ConstFetch) {
                 $reference = join('\\', $expr->name->parts);
-                if (in_array(strtolower($reference),array('true','false'))) {
+                if (in_array(strtolower($reference), array('true', 'false'))) {
                     return array(
                         'type' => 'boolean',
                         'value' => $reference
