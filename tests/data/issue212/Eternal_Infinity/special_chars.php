@@ -1,8 +1,7 @@
 <?php
 class Test{
-	//This function contains special characters like € or •
+	//This function contains special characters like â‚¬ or â€¢
 	public function TestFunction(){
-		$teststring = "phpdox costs 0€ • yay •";
+		$teststring = "phpdox costs 0â‚¬ â€¢ yay â€¢";
 	}
 }
-?>
