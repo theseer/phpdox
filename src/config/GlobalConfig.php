@@ -181,6 +181,9 @@ namespace TheSeer\phpDox {
                     }
                     return $vars[$matches[1]];
                 }, $value);
+            if (preg_match('/\${(.*?)}/', $result)) {
+                $result = $this->resolveValue($result, $vars, $line);
+            }
             return $result;
         }
 
