@@ -126,6 +126,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         public function enrichEnd(PHPDoxEndEvent $event) {
             if ($this->cacheDirty) {
+                $path = dirname($this->config->getLogfilePath());
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
                 $this->cacheDom->save($this->config->getLogfilePath());
             }
         }
