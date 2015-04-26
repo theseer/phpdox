@@ -8,7 +8,7 @@
 * Preserve original name when alias is used
 * Trait usage now rendered and resolved
 * Added Token XML output
-* Added Source HTML output 
+* Added Source HTML output
 * Updated XSL Templates
 * Fix: Issue #214 (Oups... phpDox encountered a problem... with DirectoryCleaner)
 * Fix: Issue #211 (Compilation failed: support for \P, \p, and \X has not been compiled at offset 31)
@@ -16,13 +16,15 @@
 * Fix: Issue #190 (AbstractUnitObject.php (Line 542): Call to a member function getAttribute() on null)
 * Fix: Issue #178 (makedir() problem if not root user / AbstractEngine)
 * Fix: Issue #164, #165, #166 (TokenFileException - file not found)
-* Merge PR [#199](https://github.com/theseer/phpdox/pull/199): Fix the "Source" links extensions 
-* Merge PR [#198](https://github.com/theseer/phpdox/pull/198): Change build state logic 
+* Fix: Issue #218: Ensure git cache directory exists before trying to write to it
+* Merge PR [#199](https://github.com/theseer/phpdox/pull/199): Fix the "Source" links extensions
+* Merge PR [#198](https://github.com/theseer/phpdox/pull/198): Change build state logic
 * Merge PR [#196](https://github.com/theseer/phpdox/pull/196): fix array to string conversion notices
 * Merge PR [#194](https://github.com/theseer/phpdox/pull/194): Update phpdox
 * Merge PR [#183](https://github.com/theseer/phpdox/pull/183): Vendor directory location change for phpdox as dependency
 * Merge PR [#180](https://github.com/theseer/phpdox/pull/180): add PHPDOX_HOME, instead of PHPDOX_PHAR
 * Merge PR [#163](https://github.com/theseer/phpdox/pull/163): Drop now useless requirement on ZetaComponents
+* Merge PR [#219](https://github.com/theseer/phpdox/pull/219): Make GlobalConfig::resolveValue() recursive again
 
 ## phpDox 0.7.0 (11 Sep 2014)
 
@@ -82,7 +84,7 @@
 
 ## phpDox 0.6.1 (19 Dec 2013)
 
-* Updated XSL Templates 
+* Updated XSL Templates
 * Upgraded Dependencies (DirectoryScanner to 1.2.1)
 * Merge PR #122
 * Merge PR #119 (Fixes issue #118)
