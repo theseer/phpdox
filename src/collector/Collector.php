@@ -67,15 +67,22 @@ namespace TheSeer\phpDox\Collector {
          */
         private $backend;
 
+        /**
+         * @var string
+         */
+        private $encoding;
 
         /**
-         * @param ProgressLogger  $logger
-         * @param Project $project
+         * @param ProgressLogger   $logger
+         * @param Project          $project
+         * @param BackendInterface $backend
+         * @param                  $encoding
          */
-        public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend) {
+        public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend, $encoding) {
             $this->logger = $logger;
             $this->project = $project;
             $this->backend = $backend;
+            $this->encoding = $encoding;
         }
 
         /**
@@ -88,7 +95,7 @@ namespace TheSeer\phpDox\Collector {
             $srcDir = $this->project->getSourceDir();
             $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
 
-            $iterator = new SourceFileIterator($scanner($srcDir), $srcDir);
+            $iterator = new SourceFileIterator($scanner($srcDir), $srcDir, $this->encoding);
             foreach($iterator as $file) {
                 $needsProcessing = $this->project->addFile($file);
                 if (!$needsProcessing) {

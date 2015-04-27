@@ -199,7 +199,8 @@ namespace TheSeer\phpDox {
                     $config->getSourceDirectory(),
                     $config->getWorkDirectory()
                 ),
-                $this->getBackendFactory()->getInstanceFor($config->getBackend())
+                $this->getBackendFactory()->getInstanceFor($config->getBackend()),
+                $config->getFileEncoding()
             );
         }
 

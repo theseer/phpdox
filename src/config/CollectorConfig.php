@@ -75,6 +75,13 @@ namespace TheSeer\phpDox {
             return $this->project->getSourceDirectory();
         }
 
+        /**
+         * @return string
+         */
+        public function getFileEncoding() {
+            return $this->ctx->getAttribute('encoding', 'auto');
+        }
+
         public function isPublicOnlyMode() {
             if ($this->ctx->hasAttribute('publiconly')) {
                 return $this->ctx->getAttribute('publiconly', 'false') === 'true';

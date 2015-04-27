@@ -23,9 +23,15 @@ namespace TheSeer\phpDox\Collector {
          */
         private $srcDir;
 
-        public function __construct($file_name, FileInfo $srcDir = NULL) {
+        /**
+         * @var
+         */
+        private $encoding;
+
+        public function __construct($file_name, FileInfo $srcDir = NULL, $encoding = 'auto') {
             parent::__construct($file_name);
             $this->srcDir = $srcDir;
+            $this->encoding = $encoding;
         }
 
         /**
@@ -44,10 +50,12 @@ namespace TheSeer\phpDox\Collector {
                 return '';
             }
 
-            $info = new \finfo();
-            $encoding = $info->file((string)$this, FILEINFO_MIME_ENCODING);
+            if ($this->encoding == 'auto') {
+                $info = new \finfo();
+                $this->encoding = $info->file((string)$this, FILEINFO_MIME_ENCODING);
+            }
             try {
-                $source = iconv($encoding, 'UTF-8//TRANSLIT', $source);
+                $source = iconv($this->encoding, 'UTF-8//TRANSLIT', $source);
             } catch (\ErrorException $e) {
                 throw new SourceFileException('Encoding error - conversion to UTF-8 failed', SourceFileException::BadEncoding, $e);
             }

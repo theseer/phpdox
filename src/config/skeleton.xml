@@ -35,9 +35,10 @@
          -->
 
         <!--  Additional configuration for the collecting process (parsing of php code, generation of xml data) -->
-        <collector publiconly="false" backend="parser">
+        <collector publiconly="false" backend="parser" encoding="auto">
             <!--  @publiconly - Flag to disable/enable processing of non public methods and members -->
             <!--  @backend    - The collector backend to use, currently only shipping with 'parser' -->
+            <!--  @encoding   - Charset encoding of source files (overwrite default 'auto' if detection fails) -->
 
             <!--  <include / exclude filter for filelist generator, mask must follow fnmatch() requirements  -->
             <include mask="*.php" />

@@ -7,17 +7,24 @@ namespace TheSeer\phpDox\Collector {
 
         private $iterator;
         private $srcDir;
+        private $encoding;
 
-        public function __construct(\Iterator $iterator, $srcDir) {
+        /**
+         * @param \Iterator $iterator
+         * @param FileInfo  $srcDir
+         * @param string    $encoding
+         */
+        public function __construct(\Iterator $iterator, FileInfo $srcDir, $encoding) {
             $this->iterator = $iterator;
             $this->srcDir = $srcDir;
+            $this->encoding = $encoding;
         }
 
         /**
          * @return SourceFile
          */
         public function current() {
-            return new SourceFile($this->iterator->current()->getPathname(), $this->srcDir);
+            return new SourceFile($this->iterator->current()->getPathname(), $this->srcDir, $this->encoding);
         }
 
         /**
