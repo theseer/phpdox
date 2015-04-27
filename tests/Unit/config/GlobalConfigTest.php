@@ -228,7 +228,8 @@ namespace TheSeer\phpDox {
                 'property-global' => array('propvalue', 'property-global'),
                 'property-project' => array('propvalue', 'property-project'),
 
-                'property-recursive' => array($version->getVersion(), 'property-recursive')
+                'property-recursive' => array($version->getVersion(), 'property-recursive'),
+                'property-recursive-recursive' => array( $this->baseDir . 'resolver/xml', 'property-recursive-recursive')
             );
         }
 
