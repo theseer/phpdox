@@ -3,7 +3,7 @@
 
     <project name="phpDox-issue212" source="${basedir}/src" workdir="${basedir}/xml">
 
-        <collector publiconly="false" backend="parser" />
+        <collector publiconly="false" backend="parser" encoding="WINDOWS-1252" />
 
         <generator output="${basedir}/docs">
             <build engine="html" enabled="true" output="html" />
