@@ -56,13 +56,13 @@ if (!$found) {
         'wget http://getcomposer.org/composer.phar' . PHP_EOL .
         'php composer.phar install' . PHP_EOL
     );
-    die(1);
+    exit(1);
 }
 
 $factory = new TheSeer\phpDox\Factory(
     new \TheSeer\phpDox\FileInfo(__DIR__),
     new \TheSeer\phpDox\Version('0.8.0-dev')
 );
-$factory->getCLI()->run(
+exit($factory->getCLI()->run(
     new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
-);
+));

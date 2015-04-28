@@ -47,6 +47,10 @@ namespace TheSeer\phpDox {
 
     class CLI {
 
+        const ExitOK = 0;
+        const ExitExecError = 1;
+        const ExitParamError = 3;
+
         /**
          * @var Environment
          */
@@ -86,17 +90,17 @@ namespace TheSeer\phpDox {
                 if ($options->showHelp() === TRUE) {
                     $this->showVersion();
                     echo $options->getHelpScreen();
-                    exit(0);
+                    return self::ExitOK;
                 }
 
                 if ($options->showVersion() === TRUE) {
                     $this->showVersion();
-                    exit(0);
+                    return self::ExitOK;
                 }
 
                 if ($options->generateSkel() === TRUE) {
                     $this->showSkeletonConfig($options->generateStrippedSkel());
-                    exit(0);
+                    return self::ExitOK;
                 }
 
                 $cfgLoader = $this->factory->getConfigLoader();
@@ -144,7 +148,7 @@ namespace TheSeer\phpDox {
                 }
 
                 if ($options->listBackends() || $options->listEngines() || $options->listEnrichers()) {
-                    exit(0);
+                    return self::ExitOK;
                 }
 
                 foreach($config->getProjects() as $projectName => $projectConfig) {
@@ -170,31 +174,32 @@ namespace TheSeer\phpDox {
                 }
 
                 $logger->buildSummary();
+                return self::ExitOK;
 
             } catch (EnvironmentException $e) {
                 $this->showVersion();
                 fwrite(STDERR, 'Sorry, but your PHP environment is currently not able to run phpDox due to');
                 fwrite(STDERR, "\nthe following issue(s):\n\n" . $e->getMessage() . "\n\n");
                 fwrite(STDERR, "Please adjust your PHP configuration and try again.\n\n");
-                exit(3);
+                return self::ExitParamError;
             } catch (CLIOptionsException $e) {
                 $this->showVersion();
                 fwrite(STDERR, $e->getMessage()."\n\n");
                 fwrite(STDERR, $options->getHelpScreen());
-                exit(3);
+                return self::ExitParamError;
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
                 fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage(). "\n\n");
                 if ($e->getCode() == ConfigLoaderException::NeitherCandidateExists) {
                     fwrite(STDERR, "Using --skel might get you started.\n\n");
                 }
-                exit(3);
+                return self::ExitParamError;
             } catch (ConfigException $e) {
                 fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
-                exit(3);
+                return self::ExitParamError;
             } catch (ApplicationException $e) {
                 fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");
-                exit(1);
+                return self::ExitExecError;
             } catch (\Exception $e) {
                 if ($e instanceof fDOMException) {
                     $e->toggleFullMessage(TRUE);
