@@ -163,6 +163,25 @@ h3 {
     text-align: right;
 }
 
+.nummeric a {
+    display: block;
+    background-color: #CCD;
+    padding: 0 0.5em;
+}
+
+.nummeric a:hover, .nummeric a:focus, .nummeric a:active {
+    background-color: #DDE;
+    outline: dotted 2px #AAB;
+}
+
+.nummeric a:hover {
+    outline-style: solid;
+}
+
+.nummeric a:active {
+    outline: solid 2px #667;
+}
+
 .percent {
     text-align: right;
     width:5em;
