@@ -53,8 +53,8 @@ Developer Installation
 
 In case you want to go bleeding edge or hack on the source, you will have to clone this repository.
 
-git clone git://github.com/theseer/phpdox.git
-composer install
+    git clone git://github.com/theseer/phpdox.git
+    composer install
 
 
 Usage Examples
