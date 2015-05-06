@@ -24,9 +24,10 @@ Requirements
 User Installation
 -----------------
 
-phpDox is shipping as a selfcontained executable phar archive. You can grab your copy here:
+phpDox is shipping as a selfcontained executable phar archive. You can grab your copy from the
+[releases](https://github.com/theseer/phpdox/releases/latest) section or directly here:
 
-- [Release 0.7.0](http://phpdox.de/releases/phpdox.phar)
+- [Release 0.8.0](http://phpdox.de/releases/phpdox.phar)
 
 Installation is simple:
 
@@ -40,7 +41,7 @@ You can now execute phpdox on the command line:
 
 If everything worked out, you should get an output like this:
 
-    phpDox 0.7.0 - Copyright (C) 2010 - 2014 by Arne Blankerts
+    phpDox 0.8.0 - Copyright (C) 2010 - 2015 by Arne Blankerts
 
 
 _Note: Starting with release 0.6.6 the pear package distribution is merely a wrapper for the selfcontained phar._
@@ -52,12 +53,8 @@ Developer Installation
 
 In case you want to go bleeding edge or hack on the source, you will have to clone this repository.
 
-_Note: The `phpdox.php` bootstrap file assumes that all depedencies have been installed using the PEAR Installer.
-In case you do clone the source repository and used composer for the dependency management, you have to use the provided
-wrapper in composer/bin/phpdox._
-
-    git clone git://github.com/theseer/phpdox.git
-    composer install
+git clone git://github.com/theseer/phpdox.git
+composer install
 
 
 Usage Examples
