@@ -31,9 +31,9 @@ phpDox is shipping as a selfcontained executable phar archive. You can grab your
 
 Installation is simple:
 
-    wget http://phpdox.de/releases/phpdox.phar
-    chmod +x phpdox.phar
-    sudo mv phpdox.phar /usr/bin/phpdox
+    wget https://github.com/theseer/phpdox/releases/download/0.8.0/phpdox-0.8.0.phar
+    chmod +x phpdox-0.8.0.phar
+    sudo mv phpdox-0.8.0.phar /usr/bin/phpdox
 
 You can now execute phpdox on the command line:
 
