@@ -47,6 +47,10 @@ namespace TheSeer\phpDox {
 
     class CLI {
 
+        const NO_ERROR_CODE = 0;
+        const EXECUTION_ERROR_CODE = 1;
+        const PARAMETER_ERROR_CODE = 3;
+
         /**
          * @var Environment
          */
@@ -65,6 +69,11 @@ namespace TheSeer\phpDox {
         private $factory;
 
         /**
+         * @var \Exception
+         */
+        private $lastException;
+
+        /**
          * @param Environment $env
          * @param Factory     $factory
          */
@@ -78,6 +87,7 @@ namespace TheSeer\phpDox {
          * Main executor for CLI process.
          */
         public function run(CLIOptions $options) {
+            $this->lastException = null;
             $errorHandler = $this->factory->getErrorHandler();
             $errorHandler->register();
             try {
@@ -86,17 +96,17 @@ namespace TheSeer\phpDox {
                 if ($options->showHelp() === TRUE) {
                     $this->showVersion();
                     echo $options->getHelpScreen();
-                    exit(0);
+                    return self::NO_ERROR_CODE;
                 }
 
                 if ($options->showVersion() === TRUE) {
                     $this->showVersion();
-                    exit(0);
+                    return self::NO_ERROR_CODE;
                 }
 
                 if ($options->generateSkel() === TRUE) {
                     $this->showSkeletonConfig($options->generateStrippedSkel());
-                    exit(0);
+                    return self::NO_ERROR_CODE;
                 }
 
                 $cfgLoader = $this->factory->getConfigLoader();
@@ -144,7 +154,7 @@ namespace TheSeer\phpDox {
                 }
 
                 if ($options->listBackends() || $options->listEngines() || $options->listEnrichers()) {
-                    exit(0);
+                    return self::NO_ERROR_CODE;
                 }
 
                 foreach($config->getProjects() as $projectName => $projectConfig) {
@@ -176,32 +186,46 @@ namespace TheSeer\phpDox {
                 fwrite(STDERR, 'Sorry, but your PHP environment is currently not able to run phpDox due to');
                 fwrite(STDERR, "\nthe following issue(s):\n\n" . $e->getMessage() . "\n\n");
                 fwrite(STDERR, "Please adjust your PHP configuration and try again.\n\n");
-                exit(3);
+                $this->lastException = $e;
+                return self::PARAMETER_ERROR_CODE;
             } catch (CLIOptionsException $e) {
                 $this->showVersion();
                 fwrite(STDERR, $e->getMessage()."\n\n");
                 fwrite(STDERR, $options->getHelpScreen());
-                exit(3);
+                $this->lastException = $e;
+                return self::PARAMETER_ERROR_CODE;
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
                 fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage(). "\n\n");
                 if ($e->getCode() == ConfigLoaderException::NeitherCandidateExists) {
                     fwrite(STDERR, "Using --skel might get you started.\n\n");
                 }
-                exit(3);
+                $this->lastException = $e;
+                return self::PARAMETER_ERROR_CODE;
             } catch (ConfigException $e) {
                 fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
-                exit(3);
+                $this->lastException = $e;
+                return self::PARAMETER_ERROR_CODE;
             } catch (ApplicationException $e) {
                 fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");
-                exit(1);
+                $this->lastException = $e;
+                return self::EXECUTION_ERROR_CODE;
             } catch (\Exception $e) {
                 if ($e instanceof fDOMException) {
                     $e->toggleFullMessage(TRUE);
                 }
                 $this->showVersion();
                 $errorHandler->handleException($e);
+                $this->lastException = $e;
+                return EXECUTION_ERROR_CODE;
             }
+        }
+
+        /**
+         * @return \Exception
+         */
+        public function getLastException() {
+            return $this->lastException;
         }
 
         /**
