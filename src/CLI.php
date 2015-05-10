@@ -224,8 +224,7 @@ namespace TheSeer\phpDox {
         /**
          * @return \Exception
          */
-        public function getLastException()
-        {
+        public function getLastException() {
             return $this->lastException;
         }
 
