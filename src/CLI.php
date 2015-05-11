@@ -49,7 +49,10 @@ namespace TheSeer\phpDox {
 
         const ExitOK = 0;
         const ExitExecError = 1;
+        const ExitEnvError = 2;
         const ExitParamError = 3;
+        const ExitConfigError = 4;
+        const ExitException = 5;
 
         /**
          * @var Environment
@@ -84,7 +87,9 @@ namespace TheSeer\phpDox {
         public function run(CLIOptions $options) {
             $errorHandler = $this->factory->getErrorHandler();
             $errorHandler->register();
+
             try {
+
                 $this->environment->ensureFitness();
 
                 if ($options->showHelp() === TRUE) {
@@ -103,15 +108,8 @@ namespace TheSeer\phpDox {
                     return self::ExitOK;
                 }
 
-                $cfgLoader = $this->factory->getConfigLoader();
-                $cfgFile = $options->configFile();
-                if ($cfgFile != '') {
-                    $config = $cfgLoader->load($cfgFile);
-                } else {
-                    $config = $cfgLoader->autodetect();
-                }
+                $config = $this->loadConfig($options);
 
-                /** @var $config GlobalConfig */
                 if ($config->isSilentMode()) {
                     $this->factory->activateSilentMode();
                 } else {
@@ -121,7 +119,6 @@ namespace TheSeer\phpDox {
                 $logger = $this->factory->getLogger();
                 $logger->log("Using config file '". $config->getConfigFile()->getPathname() . "'");
 
-                /** @var Application $app */
                 $app = $this->factory->getApplication();
 
                 $defBootstrapFiles = new FileInfoCollection();
@@ -153,7 +150,6 @@ namespace TheSeer\phpDox {
 
                 foreach($config->getProjects() as $projectName => $projectConfig) {
 
-                    /** @var ProjectConfig $projectConfig */
                     $logger->log("Starting to process project '$projectName'");
 
                     $app->runConfigChangeDetection(
@@ -181,7 +177,7 @@ namespace TheSeer\phpDox {
                 fwrite(STDERR, 'Sorry, but your PHP environment is currently not able to run phpDox due to');
                 fwrite(STDERR, "\nthe following issue(s):\n\n" . $e->getMessage() . "\n\n");
                 fwrite(STDERR, "Please adjust your PHP configuration and try again.\n\n");
-                return self::ExitParamError;
+                return self::ExitEnvError;
             } catch (CLIOptionsException $e) {
                 $this->showVersion();
                 fwrite(STDERR, $e->getMessage()."\n\n");
@@ -193,10 +189,10 @@ namespace TheSeer\phpDox {
                 if ($e->getCode() == ConfigLoaderException::NeitherCandidateExists) {
                     fwrite(STDERR, "Using --skel might get you started.\n\n");
                 }
-                return self::ExitParamError;
+                return self::ExitConfigError;
             } catch (ConfigException $e) {
                 fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
-                return self::ExitParamError;
+                return self::ExitConfigError;
             } catch (ApplicationException $e) {
                 fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");
                 return self::ExitExecError;
@@ -206,6 +202,7 @@ namespace TheSeer\phpDox {
                 }
                 $this->showVersion();
                 $errorHandler->handleException($e);
+                return self::ExitException;
             }
         }
 
@@ -232,6 +229,21 @@ namespace TheSeer\phpDox {
                 printf("   %s \t %s\n", $name, $desc);
             }
             echo "\n\n";
+        }
+
+        /**
+         * @param CLIOptions $options
+         *
+         * @return GlobalConfig
+         * @throws ConfigLoaderException
+         */
+        private function loadConfig(CLIOptions $options) {
+            $cfgLoader = $this->factory->getConfigLoader();
+            $cfgFile = $options->configFile();
+            if ($cfgFile != '') {
+                return $cfgLoader->load($cfgFile);
+            }
+            return $cfgLoader->autodetect();
         }
 
     }
