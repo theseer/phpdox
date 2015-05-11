@@ -40,7 +40,7 @@ namespace TheSeer\phpDox {
 
     class Bootstrap {
 
-        public function __construct(SilentProgressLogger $logger, BootstrapApi $api) {
+        public function __construct(ProgressLogger $logger, BootstrapApi $api) {
             $this->logger = $logger;
             $this->api = $api;
         }

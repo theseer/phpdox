@@ -106,7 +106,7 @@ namespace TheSeer\phpDox {
          *
          * @param FactoryInterface $factory
          */
-        public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, SilentProgressLogger $logger) {
+        public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
             $this->backendFactory = $bf;
             $this->engineFactory = $enf;
             $this->parserFactory = $df;

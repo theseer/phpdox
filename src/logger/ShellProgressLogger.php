@@ -40,18 +40,66 @@ namespace TheSeer\phpDox {
     /**
      * Shell output based logger
      */
-    class ShellProgressLogger extends SilentProgressLogger {
+    class ShellProgressLogger implements ProgressLogger {
+
+        /**
+         * @var array
+         */
+        private $stateChars;
+
+        /**
+         * @var int
+         */
+        private $totalCount = 0;
+        /**
+         * @var array
+         */
+        private $stateCount = array(
+            'processed' => 0,
+            'cached' => 0,
+            'failed' => 0
+        );
+
+        /**
+         * @param string $processed
+         * @param string $cached
+         * @param string $failed
+         */
+        public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
+            $this->stateChars = array(
+                'processed' => $processed,
+                'cached' => $cached,
+                'failed' => $failed
+            );
+        }
 
         /**
          * @param $state
+         * @throws ProgressLoggerException
          */
         public function progress($state) {
-            parent::progress($state);
+            if (!isset($this->stateChars[$state])) {
+                throw new ProgressLoggerException("Unkown progress state '$state'", ProgressLoggerException::UnknownState);
+            }
+            $this->stateCount[$state]++;
+            $this->totalCount++;
 
             echo $this->stateChars[$state];
             if ($this->totalCount % 50 == 0) {
                 echo "\t[". $this->totalCount . "]\n";
             }
+        }
+
+        /**
+         *
+         */
+        public function reset() {
+            $this->totalCount = 0;
+            $this->stateCount = array(
+                'processed' => 0,
+                'cached' => 0,
+                'failed' => 0
+            );
         }
 
         /**
@@ -83,7 +131,6 @@ namespace TheSeer\phpDox {
             echo \PHP_Timer::resourceUsage();
             echo "\n\n";
         }
-
 
     }
 
