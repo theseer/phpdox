@@ -1,6 +1,12 @@
 # Changelog of phpDox
 
-## phpDox 0.8.0 (?? Apr 2015)
+## phpDox 0.?.? (?? ??? ????)
+
+* Added new exit codes for issues with environment and config
+* Explicitly handle (crasher) exceptions with a dedicated exit code
+
+
+## phpDox 0.8.0 (06 May 2015)
 
 * Updated Dependency (PHPParser 1.2.2, fDOMDocument 1.6.0)
 * PHP 7 Compatiblity changes
