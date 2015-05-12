@@ -127,7 +127,7 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, "\n\n\n");
         }
 
-        protected function renderException(\Exception $exception) {
+        private function renderException(\Exception $exception) {
             if ($exception instanceof ErrorException) {
                 fwrite(STDERR, sprintf("ErrorException: %s \n", $exception->getErrorName()));
             } else {
