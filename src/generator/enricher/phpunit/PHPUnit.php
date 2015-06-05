@@ -79,7 +79,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         public function enrichTokenFile(TokenFileStartEvent $event) {
             try {
                 $tokenDom = $event->getTokenFile()->asDom();
-                $coverageDom = $this->loadConverageInformation($tokenDom);
+                $coverageDom = $this->loadCoverageInformation($tokenDom);
                 $coverage = $coverageDom->queryOne('//pu:coverage[pu:line]');
                 if ($coverage) {
                     $container = $this->getEnrichtmentContainer($tokenDom->documentElement, 'phpunit');
@@ -93,7 +93,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         private function enrichByFile(fDOMDocument $dom) {
             try {
-                $coverageDom = $this->loadConverageInformation($dom);
+                $coverageDom = $this->loadCoverageInformation($dom);
                 $this->processUnit($dom, $coverageDom);
             } catch (PHPUnitEnricherException $e) {
                 // Silently ignore for now
@@ -232,7 +232,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
          * @throws EnricherException
          * @throws PHPUnitEnricherException
          */
-        private function loadConverageInformation(fDOMDocument $dom) {
+        private function loadCoverageInformation(fDOMDocument $dom) {
             $fileNode = $dom->queryOne('//phpdox:file');
             if (!$fileNode) {
                 throw new PHPUnitEnricherException('No file header in event dom');
