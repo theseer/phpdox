@@ -307,6 +307,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $visibility = 'protected';
             }
             $member->setVisibility($visibility);
+            $member->setStatic($node->isStatic());
             $docComment = $node->getDocComment();
             if ($docComment !== NULL) {
                 $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
