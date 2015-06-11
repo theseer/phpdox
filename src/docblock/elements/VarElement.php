@@ -45,7 +45,8 @@ namespace TheSeer\phpDox\DocBlock {
          * @var string[]
          */
         private $types = array(
-            '', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int', 'float', 'string', 'boolean', 'resource'
+            '', 'null', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int',
+            'float', 'string', 'boolean', 'resource'
         );
 
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {

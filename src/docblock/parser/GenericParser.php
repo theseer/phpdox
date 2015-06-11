@@ -45,7 +45,8 @@ namespace TheSeer\phpDox\DocBlock {
         protected $payload;
 
         private $types = array(
-            '', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int', 'float', 'string', 'boolean', 'resource', 'static'
+            '', 'null', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int',
+            'float', 'string', 'boolean', 'resource'
         );
 
         public function __construct(Factory $factory, $name) {
