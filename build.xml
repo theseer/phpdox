@@ -26,7 +26,7 @@
             <arg line="-o src/vendor.php" />
             <arg line="-b vendor" />
             <arg line="-t ${basedir}/build/phpab/vendor.tpl" />
-            <arg path="vendor/phpunit/php-timer/PHP" />
+            <arg path="vendor/phpunit/php-timer/src" />
             <arg path="vendor/nikic/php-parser/lib" />
             <arg path="vendor/theseer/*/src" />
         </exec>
