@@ -7,7 +7,6 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'php_timer' => '/phpunit/php-timer/PHP/Timer.php',
                 'phpparser\\autoloader' => '/nikic/php-parser/lib/PhpParser/Autoloader.php',
                 'phpparser\\builder' => '/nikic/php-parser/lib/PhpParser/Builder.php',
                 'phpparser\\builder\\class_' => '/nikic/php-parser/lib/PhpParser/Builder/Class_.php',
