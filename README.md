@@ -27,7 +27,7 @@ User Installation
 phpDox is shipping as a selfcontained executable phar archive. You can grab your copy from the
 [releases](https://github.com/theseer/phpdox/releases/latest) section or directly here:
 
-- [Release 0.8.0](https://github.com/theseer/phpdox/releases/download/0.8.0/phpdox-0.8.0.phar) [734k - [gpg](https://github.com/theseer/phpdox/releases/download/0.8.0/phpdox-0.8.0.phar.asc)]
+- [Release 0.8.1](https://github.com/theseer/phpdox/releases/download/0.8.1/phpdox-0.8.1.phar) [734k - [gpg](https://github.com/theseer/phpdox/releases/download/0.8.0/phpdox-0.8.1.phar.asc)]
 
 Installation is simple:
 

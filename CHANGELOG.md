@@ -2,9 +2,18 @@
 
 ## phpDox 0.?.? (?? ??? ????)
 
+* No changes yet
+
+## phpDox 0.8.1 (30 Jun 2015)
+
+* Updated Dependency (PHPParser 1.3.0, PHP-Timer 1.0.6)
 * Added new exit codes for issues with environment and config
 * Explicitly handle (crasher) exceptions with a dedicated exit code
-
+* Fix: Issue #230 (collector does not detect "static" modifier)
+* Fix: Issue #232 (native "null" return type is parsed as "object")
+* Fix: Issue #235 (paths for php-timer changed)
+* Fix: Issue #225 (Error in GlobalConfig with hhvm)
+* Fix: Issue #226 (vendor include at binary file)
 
 ## phpDox 0.8.0 (06 May 2015)
 
