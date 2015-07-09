@@ -4,6 +4,10 @@
 
 * No changes yet
 
+## phpDox 0.8.1.1 (09 Jul 2015)
+
+* Fix phar building, remove pear building target
+
 ## phpDox 0.8.1 (30 Jun 2015)
 
 * Updated Dependency (PHPParser 1.3.0, PHP-Timer 1.0.6)
