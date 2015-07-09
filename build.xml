@@ -88,37 +88,6 @@
         </exec>
     </target>
 
-    <target name="pear" depends="phar" description="Create a PEAR archive of phpDox">
-        <delete dir="${basedir}/build/pear/_tmp"/>
-        <mkdir dir="${basedir}/build/pear/_tmp"/>
-
-        <exec executable="bash" outputproperty="version">
-            <arg value="-c"/>
-            <arg value="${basedir}/phpdox --version | awk 'BEGIN { ORS = &quot;&quot;; } {print $2}'"/>
-        </exec>
-
-        <move file="${basedir}/build/phar/phpdox-${version}.phar" tofile="${basedir}/build/pear/_tmp/phpdox.phar" />
-
-        <copy todir="${basedir}/build/pear/_tmp">
-            <fileset dir="${basedir}">
-                <include name="phpdox.bat"/>
-                <include name="package.xml" />
-            </fileset>
-        </copy>
-
-        <replace file="${basedir}/build/pear/_tmp/package.xml" token="%release%" value="${version}" />
-
-        <exec executable="bash" dir="${basedir}/build/pear/_tmp">
-            <arg value="-c" />
-            <arg value="pear package" />
-        </exec>
-
-        <move file="${basedir}/build/pear/_tmp/phpDox-${version}.tgz" todir="${basedir}/build/pear" />
-
-        <delete dir="${basedir}/build/pear/_tmp"/>
-
-    </target>
-
     <target name="api">
         <delete dir="${basedir}/build/api" />
         <exec executable="${basedir}/phpdox" />
@@ -155,7 +124,7 @@
         <copy todir="${basedir}/build/phar/_tmp/vendor">
             <fileset dir="${basedir}/vendor">
                 <include name="nikic/php-parser/lib/**" />
-                <include name="phpunit/php-timer/PHP/**" />
+                <include name="phpunit/php-timer/src/**" />
                 <include name="theseer/*/src/**" />
             </fileset>
         </copy>
