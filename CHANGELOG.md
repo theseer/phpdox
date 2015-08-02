@@ -2,7 +2,7 @@
 
 ## phpDox 0.?.? (?? ??? ????)
 
-* No changes yet
+* Added check if disable_functions forbids use of exec
 
 ## phpDox 0.8.1.1 (09 Jul 2015)
 
