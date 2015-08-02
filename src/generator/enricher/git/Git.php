@@ -46,12 +46,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         private $commitSha1;
 
         public function __construct(GitConfig $config) {
-            if (strpos(ini_get('disable_functions'), 'exec') !== false) {
-                throw new GitEnricherException(
-                    'The use of "exec" has been disabled in php.ini but is required for this enricher',
-                    GitEnricherException::ExecDisabled
-                );
-            }
+            $this->ensureExecFunctionEnabled();
             $this->config = $config;
         }
 
@@ -316,11 +311,18 @@ namespace TheSeer\phpDox\Generator\Enricher {
             return $this->cacheDom;
         }
 
+        /**
+         * @throws GitEnricherException
+         */
+        private function ensureExecFunctionEnabled() {
+            if (strpos(ini_get('disable_functions'), 'exec') !== FALSE) {
+                throw new GitEnricherException(
+                    'The use of "exec" has been disabled in php.ini but is required for this enricher',
+                    GitEnricherException::ExecDisabled
+                );
+            }
+        }
+
     }
 
-
-    class GitEnricherException extends EnricherException {
-        const ExecDisabled = 1;
-        const FetchingHistoryFailed = 2;
-    }
 }

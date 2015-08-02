@@ -134,7 +134,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\generator\\enricher\\fullenricherinterface' => '/generator/enricher/FullEnricherInterface.php',
                 'theseer\\phpdox\\generator\\enricher\\git' => '/generator/enricher/git/Git.php',
                 'theseer\\phpdox\\generator\\enricher\\gitconfig' => '/generator/enricher/git/GitConfig.php',
-                'theseer\\phpdox\\generator\\enricher\\gitenricherexception' => '/generator/enricher/git/Git.php',
+                'theseer\\phpdox\\generator\\enricher\\gitenricherexception' => '/generator/enricher/git/GitEnricherException.php',
                 'theseer\\phpdox\\generator\\enricher\\interfaceenricherinterface' => '/generator/enricher/InterfaceEnricherInterface.php',
                 'theseer\\phpdox\\generator\\enricher\\phpcs' => '/generator/enricher/phpcs/PHPCs.php',
                 'theseer\\phpdox\\generator\\enricher\\phpcsconfig' => '/generator/enricher/phpcs/PHPCsConfig.php',
@@ -223,6 +223,8 @@ spl_autoload_register(
         if (isset($classes[$cn])) {
             require __DIR__ . $classes[$cn];
         }
-    }
+    },
+    true,
+    false
 );
 // @codeCoverageIgnoreEnd
