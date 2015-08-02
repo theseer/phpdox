@@ -76,12 +76,12 @@ namespace TheSeer\phpDox {
         }
 
         private function initialize() {
-            if (!is_dir(__DIR__ . '/../../.git')) {
+            if (!is_dir(__DIR__ . '/../../.git') || strpos(ini_get('disable_functions'), 'exec') !== false) {
                 return $this->release;
             }
             $dir = getcwd();
             chdir(__DIR__);
-
+            
             $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
             $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
             chdir($dir);
