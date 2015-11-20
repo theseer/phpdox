@@ -72,3 +72,7 @@ As of version 0.4 phpDox requires an xml configuration file. In case a project y
 Sample invocation to parse and generate output based on the default phpdox.xml configuration file
 
     phpdox
+
+or you can tell `phpdox` what configuration file to use by calling switch `--file` or in short
+
+    phpdox -f path/to/phpdox.xml
