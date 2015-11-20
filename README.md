@@ -73,6 +73,6 @@ Sample invocation to parse and generate output based on the default phpdox.xml c
 
     phpdox
 
-You can specify configuration file
+or you can tell `phpdox` what configuration file to use by calling switch `--file` or in short
 
     phpdox -f path/to/phpdox.xml
