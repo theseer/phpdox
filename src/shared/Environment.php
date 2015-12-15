@@ -4,9 +4,9 @@ namespace TheSeer\phpDox {
     class Environment {
 
         public function ensureFitness() {
+            $this->ensureTimezoneSet();
             $this->ensureRequiredExtensionsLoaded();
             $this->disableXDebug();
-            $this->ensureTimezoneSet();
         }
 
         private function ensureRequiredExtensionsLoaded() {
@@ -48,7 +48,7 @@ namespace TheSeer\phpDox {
 
         private function ensureTimezoneSet() {
             if (!ini_get('date.timezone')) {
-                ini_set('date.timezone', 'UTC');
+                date_default_timezone_set('UTC');
             }
         }
     }
