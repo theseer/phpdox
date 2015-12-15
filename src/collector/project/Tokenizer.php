@@ -135,29 +135,9 @@ namespace TheSeer\phpDox\Collector {
             if ($token['value'] != '') {
                 $this->writer->startElement('token');
                 $this->writer->writeAttribute('name', $token['name']);
-                $this->writer->writeRaw( $this->encodeString($token['value']) );
+                $this->writer->writeRaw( htmlspecialchars($token['value'], ENT_NOQUOTES | ENT_DISALLOWED | ENT_XML1) );
                 $this->writer->endElement();
             }
-        }
-
-        private function encodeString($value) {
-            if (!defined('ENT_DISALLOWED')) {
-                /*
-                 * This is a bc workaround for PHP 5.3
-                 *
-                 * Relying on external code to prepare data properly is a bad idea, so we have to
-                 * prepare for code points that are invalid in XML.
-                 *
-                 * Because of the way the Tokenizer is called within phpDox though
-                 * invalid bytes shouldn't actually get to here (they get filtered in SourceFile).
-                 *
-                 * That means we should get away with this until PHP 5.3 support is dropped for good.
-                 *
-                 */
-                return htmlspecialchars($value, ENT_NOQUOTES | ENT_IGNORE);
-
-            }
-            return htmlspecialchars($value, ENT_NOQUOTES | ENT_DISALLOWED | ENT_XML1);
         }
     }
 
