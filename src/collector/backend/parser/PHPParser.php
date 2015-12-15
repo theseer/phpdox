@@ -38,6 +38,7 @@ namespace TheSeer\phpDox\Collector\Backend {
 
     use TheSeer\phpDox\Collector\SourceFile;
     use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
+    use PhpParser\ParserFactory;
 
     /**
      *
@@ -85,7 +86,7 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         private function getParserInstance() {
             if ($this->parser === NULL) {
-                $this->parser = new \PhpParser\Parser(new CustomLexer());
+                $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, new CustomLexer());
             }
             return $this->parser;
         }
