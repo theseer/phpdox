@@ -81,8 +81,8 @@ namespace TheSeer\phpDox {
             }
             $dir = getcwd();
             chdir(__DIR__);
-            
-            $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
+
+            $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'nul' : '/dev/null';
             $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
             chdir($dir);
             if ($rc === 0) {

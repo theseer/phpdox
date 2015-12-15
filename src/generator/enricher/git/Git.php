@@ -64,7 +64,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             $binary = $this->config->getGitBinary();
 
-            $devNull = mb_strtolower(mb_substr(PHP_OS, 0, 3)) == 'win' ? 'NUL' : '/dev/null';
+            $devNull = mb_strtolower(mb_substr(PHP_OS, 0, 3)) == 'win' ? 'nul' : '/dev/null';
 
             $cwd = getcwd();
             chdir($this->config->getSourceDirectory());
