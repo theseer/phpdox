@@ -39,6 +39,7 @@ namespace TheSeer\phpDox\Collector\Backend {
     use TheSeer\phpDox\Collector\SourceFile;
     use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
     use PhpParser\ParserFactory;
+    use TheSeer\phpDox\ErrorHandler;
 
     /**
      *
@@ -56,10 +57,16 @@ namespace TheSeer\phpDox\Collector\Backend {
         private $docblockParser = NULL;
 
         /**
+         * @var ErrorHandler
+         */
+        private $errorHandler;
+
+        /**
          * @param DocblockParser $parser
          */
-        public function __construct(DocblockParser $parser) {
+        public function __construct(DocblockParser $parser, ErrorHandler $errorHandler) {
             $this->docblockParser = $parser;
+            $this->errorHandler = $errorHandler;
         }
 
         /**
@@ -74,10 +81,14 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $result = new ParseResult($sourceFile);
                 $parser = $this->getParserInstance();
                 $nodes = $parser->parse($sourceFile->getSource());
+                if (!$nodes) {
+                    throw new ParseErrorException("Parser didn't return any nodes", ParseErrorException::GeneralParseError);
+                }
                 $this->getTraverserInstance($result)->traverse($nodes);
                 return $result;
             } catch (\Exception $e) {
-                throw new ParseErrorException('Something went wrwong', ParseErrorException::GeneralParseError, $e);
+                $this->errorHandler->clearLastError();
+                throw new ParseErrorException('Internal Error during parsing', ParseErrorException::GeneralParseError, $e);
             }
         }
 

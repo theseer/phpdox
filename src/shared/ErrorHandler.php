@@ -103,7 +103,7 @@ namespace TheSeer\phpDox {
          * @return void
          */
         public function handleShutdown() {
-            $error = error_get_last();
+            $error = $this->getLastError();
             if ($error) {
                 $exception = new ErrorException($error['message'], $error['type'], 0, $error['file'], $error['line']);
                 $this->handleException($exception);
@@ -164,6 +164,30 @@ namespace TheSeer\phpDox {
                 $this->renderException($nested);
             }
 
+        }
+
+        public function clearLastError() {
+            if (function_exists('error_clear_last')) {
+                error_clear_last();
+            } else {
+                set_error_handler(function () { return false; }, 0);
+                @trigger_error('');
+                restore_error_handler();
+            }
+        }
+
+        /**
+         * This method implements a workaround for PHP < 7 where no error_clear_last() exists
+         * by considering a last error of type E_USER_NOTICE as "cleared".
+         *
+         * @return array
+         */
+        private function getLastError() {
+            $error = error_get_last();
+            if ($error && $error['type'] == E_USER_NOTICE) {
+                return [];
+            }
+            return $error;
         }
     }
 
