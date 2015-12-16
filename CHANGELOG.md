@@ -1,8 +1,12 @@
 # Changelog of phpDox
 
-## phpDox 0.?.? (?? ??? ????)
+## phpDox 0.9.0 (?? ??? ????)
 
 * Added check if disable_functions forbids use of exec
+* Updated to PHPParser 2.0.0
+* Raised minimum PHP version to 5.4 due to PHPParser 2.0.0
+* Removed PHP 5.3 support
+* Fix: Issue #244 (Error : Unterminated comment starting line 1)
 
 ## phpDox 0.8.1.1 (09 Jul 2015)
 
