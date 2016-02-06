@@ -95,7 +95,7 @@ namespace TheSeer\phpDox\DocBlock {
             $block = str_replace(array("\r\n", "\r"), "\n", mb_substr($block, 3, -2));
             $raw = array();
             foreach(explode("\n", $block) as $line) {
-                $line = preg_replace('/^\s*\* ?/', '', $line);
+                $line = preg_replace('/^\s*\*? ?/', '', $line);
                 $raw[] = rtrim($line, " \n\t*");
             }
             return $raw;
