@@ -111,6 +111,14 @@ h3 {
     min-height: 14em;
 }
 
+.styled #index {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  color: #000;
+  margin: 0;
+  min-height: 0;
+  padding: 0;
+}
+
 #index h1 {
     text-shadow: 0px -1px 0 #555555;
 }
