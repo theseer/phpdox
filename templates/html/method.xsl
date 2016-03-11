@@ -21,7 +21,7 @@
     <xsl:template match="/">
         <html lang="en">
             <xsl:call-template name="head">
-                <xsl:with-param name="title" select="'Test Method'" />
+                <xsl:with-param name="title" select="concat($unit/@full, '::', $methodName)" />
             </xsl:call-template>
             <body>
                 <xsl:call-template name="nav" />
