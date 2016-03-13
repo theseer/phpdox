@@ -159,6 +159,11 @@ EOF;
             $argName = '';
             foreach($argv as $arg) {
                 if ($arg[0] == '-') {
+                    if (strlen($arg) == 1) {
+                        throw new CLIOptionsException(
+                            sprintf('Syntax error while parsing option (unnamed switch or option)')
+                        );
+                    }
                     if ($arg[1] == '-') {
                         $argName = mb_substr($arg, 2);
                         if (!in_array($argName, $options)) {
