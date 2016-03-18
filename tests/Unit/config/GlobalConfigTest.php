@@ -239,7 +239,7 @@ namespace TheSeer\phpDox {
          */
         public function testInvalidPropertyRequestThrowsException($file, $code) {
             $this->init('resolver/' .  $file);
-            $this->setExpectedException('TheSeer\\phpDox\\ConfigException', $code);
+            $this->expectException('TheSeer\\phpDox\\ConfigException', $code);
             $this->config->getProjects();
         }
 
