@@ -41,6 +41,7 @@
             <!--  @encoding   - Charset encoding of source files (overwrite default 'auto' if detection fails) -->
 
             <!--  <include / exclude filter for filelist generator, mask must follow fnmatch() requirements  -->
+            <!--  Multiple elements can be added to define more than one mask per filter -->
             <include mask="*.php" />
             <exclude mask="" />
 
