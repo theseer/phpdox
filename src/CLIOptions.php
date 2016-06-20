@@ -195,7 +195,7 @@ EOF;
                 }
                 if (!$valueExcepted) {
                     throw new CLIOptionsException(
-                        sprintf('Value for option "%s" provided but none exepected', $argName)
+                        sprintf('Value for option "%s" provided but none expected', $argName)
                     );
                 }
                 $this->parsed[$argName] = $arg;
