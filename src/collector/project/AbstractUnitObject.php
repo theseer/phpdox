@@ -514,6 +514,13 @@ namespace TheSeer\phpDox\Collector {
                 }
             }
 
+            if ($trait->usesTraits()) {
+                foreach($trait->getUsedTraits() as $name) {
+                    $used = $container->appendElementNS( self::XMLNS, 'uses');
+                    $this->setName($name, $used);
+                }
+            }
+
             foreach($trait->getConstants() as $constant) {
                 $container->appendChild( $this->dom->importNode($constant->export(), TRUE) );
             }
