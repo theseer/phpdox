@@ -1,12 +1,15 @@
 # Changelog of phpDox
 
-## phpDox 0.9.0 (?? ??? ????)
+## phpDox 0.9.0 (26 AUG 2016)
 
 * Added check if disable_functions forbids use of exec
-* Updated to PHPParser 2.0.0
-* Raised minimum PHP version to 5.4 due to PHPParser 2.0.0
+* Updated to PHPParser 3.0.0
+* Raised minimum PHP version to 5.5 due to PHPParser 3
 * Removed PHP 5.3 support
+* Update Error handling to support PHP7's \Throwable
 * Fix: Issue #244 (Error : Unterminated comment starting line 1)
+* Fix: Issue #243 (Trait in Trait causes UnitObjectException if the nested trait is missing)
+* Fix: Issue #266 (Page Title "phpdox - Test Method")
 
 ## phpDox 0.8.1.1 (09 Jul 2015)
 
