@@ -113,11 +113,11 @@ namespace TheSeer\phpDox {
         /**
          * System Exception Handler
          *
-         * @param \Exception $exception The exception to handle
+         * @param \Exception|\Throwable $exception The exception to handle
          *
          * @return void
          */
-        public function handleException(\Exception $exception) {
+        public function handleException($exception) {
             fwrite(STDERR, "\n\nOups... phpDox encountered a problem and has terminated!\n");
             fwrite(STDERR, "\nIt most likely means you've found a bug, so please file a report for this\n");
             fwrite(STDERR, "and paste the following details and the stacktrace (if given) along:\n\n");
@@ -127,7 +127,10 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, "\n\n\n");
         }
 
-        private function renderException(\Exception $exception) {
+        /**
+         * @param \Exception|\Throwable $exception
+         */
+        private function renderException($exception) {
             if ($exception instanceof ErrorException) {
                 fwrite(STDERR, sprintf("ErrorException: %s \n", $exception->getErrorName()));
             } else {

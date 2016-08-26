@@ -203,6 +203,10 @@ namespace TheSeer\phpDox {
                 $this->showVersion();
                 $errorHandler->handleException($e);
                 return self::ExitException;
+            } catch (\Throwable $e) {
+                $this->showVersion();
+                $errorHandler->handleException($e);
+                return self::ExitException;
             }
         }
 
