@@ -214,12 +214,12 @@
                     </tr>
                     <tr>
                         <td class="indent">Average Class Length</td>
-                        <td class="nummeric"><xsl:value-of select="round($phploc/pdx:llocByNoc)" /></td>
+                        <td class="nummeric"><xsl:value-of select="round($phploc/pdx:classLlocAvg)" /></td>
                         <td/>
                     </tr>
                     <tr>
                         <td class="indent">Average Method Length</td>
-                        <td class="nummeric"><xsl:value-of select="round($phploc/pdx:llocByNom)" /></td>
+                        <td class="nummeric"><xsl:value-of select="round($phploc/pdx:methodLlocAvg)" /></td>
                         <td/>
                     </tr>
                     <tr>
