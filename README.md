@@ -10,7 +10,7 @@ This includes, but is not limited to, API documentation.
 Requirements
 ------------
 
-- PHP Version 5.3.3+
+- PHP Version 5.5+
   - ext/dom
   - ext/xsl
   - ext/iconv and [libiconv version >= 2.12](http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
@@ -27,13 +27,13 @@ User Installation
 phpDox is shipping as a selfcontained executable phar archive. You can grab your copy from the
 [releases](https://github.com/theseer/phpdox/releases/latest) section or directly here:
 
-- [Release 0.8.1](https://github.com/theseer/phpdox/releases/download/0.8.1/phpdox-0.8.1.phar) [734k - [gpg](https://github.com/theseer/phpdox/releases/download/0.8.0/phpdox-0.8.1.phar.asc)]
+- [Release 0.9.0](https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar) [762k - [gpg](https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar.asc)]
 
 Installation is simple:
 
-    wget https://github.com/theseer/phpdox/releases/download/0.8.0/phpdox-0.8.0.phar
-    chmod +x phpdox-0.8.0.phar
-    sudo mv phpdox-0.8.0.phar /usr/bin/phpdox
+    wget https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar
+    chmod +x phpdox-0.9.0.phar
+    sudo mv phpdox-0.9.0.phar /usr/bin/phpdox
 
 You can now execute phpdox on the command line:
 
@@ -41,7 +41,7 @@ You can now execute phpdox on the command line:
 
 If everything worked out, you should get an output like this:
 
-    phpDox 0.8.0 - Copyright (C) 2010 - 2015 by Arne Blankerts
+    phpDox 0.9.0 - Copyright (C) 2010 - 2016 by Arne Blankerts
 
 
 _Note: Starting with release 0.6.6 the pear package distribution is merely a wrapper for the selfcontained phar._
