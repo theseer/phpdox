@@ -3,7 +3,7 @@ namespace TheSeer\phpDox\Generator {
 
     use TheSeer\fDOM\fDOMElement;
 
-    class bMemberObject {
+    class MemberObject {
 
         /**
          * @var fDOMElement
@@ -19,15 +19,15 @@ namespace TheSeer\phpDox\Generator {
         }
 
         public function isPublic() {
-            return $this->node->getAttribute('visibility', 'public') === 'public';
+            return $this->node->getAttribute('visibility', 'public') == 'public';
         }
 
         public function isPrivate() {
-            return $this->node->getAttribute('visibility', 'private') === 'private';
+            return $this->node->getAttribute('visibility', 'public') == 'private';
         }
 
         public function isProtected() {
-            return $this->node->getAttribute('visibility', 'protected') === 'protected';
+            return $this->node->getAttribute('visibility', 'public') == 'protected';
         }
 
     }
