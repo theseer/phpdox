@@ -35,11 +35,22 @@ namespace TheSeer\phpDox\Generator\Enricher {
             if ($path != '') { $path .= '/'; }
             $coverage = $this->context->queryOne('cfg:coverage');
             if ($coverage && $coverage->hasAttribute('path')) {
+                $cfgPath = $coverage->getAttribute('path');
+                if ($cfgPath[0] === '/') {
+                    $path = '';
+                }
                 $path .= $coverage->getAttribute('path');
             } else {
                 $path .= 'coverage';
             }
             return new FileInfo($path);
+        }
+
+        /**
+         * @return FileInfo
+         */
+        public function getSourceDirectory() {
+            return $this->generator->getProjectConfig()->getSourceDirectory();
         }
 
     }

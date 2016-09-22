@@ -21,10 +21,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
         private $coveragePath;
 
         /**
+         * @var FileInfo
+         */
+        private $sourceDirectory;
+        /**
          * @var fDOMDocument
          */
         private $index;
-
 
         private $results = array();
         private $coverage = array();
@@ -36,6 +39,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
          */
         public function __construct(PHPUnitConfig $config) {
             $this->coveragePath = $config->getCoveragePath();
+            $this->sourceDirectory = $config->getSourceDirectory();
+
             $this->index = $this->loadXML('index.xml');
         }
 
@@ -56,6 +61,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     if (!$classNode) {
                         continue;
                     }
+                    /** @var fDOMElement $classNode */
                     $container = $this->getEnrichtmentContainer($classNode, 'phpunit');
                     $resultNode = $container->appendElementNS(self::XMLNS, 'result');
                     foreach($results as $key => $value) {
@@ -154,7 +160,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 'INCOMPLETE'  => 0,
                 'FAILURE'  => 0,
                 'ERROR'  => 0,
-                'RISKY'  => 0
+                'RISKY'  => 0,
+                'WARNING' => 0
             );
 
             $methods = $unit->query('/phpdox:*/phpdox:constructor|/phpdox:*/phpdox:destructor|/phpdox:*/phpdox:method');
@@ -216,15 +223,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         /**
-         * @return FileInfo
-         */
-        private function getSourceDirectory() {
-            $baseDir = $this->index->queryOne('//pu:project/pu:directory');
-            $srcDir = new FileInfo($baseDir->getAttribute('name'));
-            return $srcDir;
-        }
-
-        /**
          * @param fDOMDocument $dom
          *
          * @return fDOMDocument
@@ -239,13 +237,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             $fileInfo = new FileInfo($fileNode->getAttribute('path'));
-            $srcDir = $this->getSourceDirectory();
-
-            $paths = explode('/', (string)$fileInfo->getRelative($srcDir));
+            $paths = explode('/', (string)$fileInfo->getRelative($this->sourceDirectory));
             $file = $fileNode->getAttribute('file');
             $paths = array_slice($paths, 1);
 
-            $query = sprintf('//pu:project/pu:directory[@name = "%s"]', $srcDir->getRealPath());
+            $query = sprintf('//pu:project/pu:directory');
             foreach ($paths as $path) {
                 $query .= sprintf('/pu:directory[@name = "%s"]', $path);
             }
@@ -256,8 +252,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 throw new PHPUnitEnricherException('No coverage information for file');
             }
 
-            $refDom = $this->loadXML($phpunitFileNode->getAttribute('href'));
-            return $refDom;
+            return $this->loadXML($phpunitFileNode->getAttribute('href'));
         }
     }
 
