@@ -104,8 +104,6 @@
                 <!-- <source type="phpunit">  -->
                     <!-- <coverage path="" /> -->
                     <!--           @path - the directory where the xml code coverage report can be found -->
-                    <!--<filter directory="${phpDox.project.source}" />-->
-                    <!-- @directory - path of the phpunit config whitelist filter directory -->
                 <!--</source>-->
                 <!--
                 <source type="phpunit">
