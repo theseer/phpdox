@@ -118,13 +118,20 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $fname = (string)$this->coveragePath . '/' . $fname;
                 if (!file_exists($fname)) {
                     throw new EnricherException(
-                        sprintf('PHPUnit xml file "%s" not found.', $fname),
+                        sprintf('PHPUnit coverage xml file "%s" not found.', $fname),
                         EnricherException::LoadError
                     );
                 }
                 $dom = new fDOMDocument();
                 $dom->load($fname);
-                $dom->registerNamespace('pu', 'http://schema.phpunit.de/coverage/1.0');
+
+                if ($dom->documentElement->namespaceURI != self::XMLNS) {
+                    throw new EnricherException(
+                        'Wrong namspace - not a PHPUnit code coverage file',
+                        EnricherException::LoadError
+                    );
+                }
+                $dom->registerNamespace('pu', self::XMLNS);
                 return $dom;
             } catch (fDOMException $e) {
                 throw new EnricherException(
