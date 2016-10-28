@@ -59,7 +59,7 @@ $found = false;
 foreach(array(__DIR__ . '/vendor', __DIR__ . '/../..') as $vendor) {
     if (file_exists($vendor . '/autoload.php')) {
         $found = true;
-        require __DIR__ . '/src/vendor.php';
+        require $vendor . '/autoload.php';
     }
 }
 
