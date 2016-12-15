@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionGenerator" namespace="" name="ReflectionGenerator">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a ReflectionGenerator object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="generator" optional="false" byreference="false" type="object" class="Generator"/>
+  </constructor>
+  <method name="getExecutingFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the file name of the currently executing generator"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getExecutingGenerator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the executing Generator object"/>
+      <return type="Generator"/>
+    </docblock>
+  </method>
+  <method name="getExecutingLine" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the currently executing line of the generator"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFunction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the function name of the generator"/>
+      <return type="ReflectionFunctionAbstract"/>
+    </docblock>
+  </method>
+  <method name="getThis" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the $this value of the generator"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getTrace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the trace of the executing generator"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

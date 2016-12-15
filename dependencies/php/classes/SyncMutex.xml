@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SyncMutex" namespace="" name="SyncMutex">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new SyncMutex object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Waits for an exclusive lock"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unlocks the mutex"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="all" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+</class>

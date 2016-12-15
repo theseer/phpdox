@@ -85,10 +85,22 @@
   </method>
   <method name="__get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Acess the field as a property"/>
+      <description compact="Access the field as a property"/>
       <return type="SolrDocumentField"/>
     </docblock>
     <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getChildDocuments" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array of child documents (SolrDocument)"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getChildDocumentsCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of child documents"/>
+      <return type="integer"/>
+    </docblock>
   </method>
   <method name="getField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -113,6 +125,12 @@
     <docblock>
       <description compact="Returns a SolrInputDocument equivalent of the object"/>
       <return type="SolrInputDocument"/>
+    </docblock>
+  </method>
+  <method name="hasChildDocuments" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks whether the document has any child documents"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="__isset" abstract="false" static="false" visibility="public" final="false">

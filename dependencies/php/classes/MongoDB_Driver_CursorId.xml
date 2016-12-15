@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\CursorId" namespace="" name="MongoDB\Driver\CursorId">
+  <constructor name="__construct" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Create a new CursorId (not used)"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="String representation of the cursor ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

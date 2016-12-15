@@ -121,7 +121,7 @@
   <method name="deleteMulti" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Delete multiple items"/>
-      <return type="bool"/>
+      <return type="array"/>
     </docblock>
     <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="time" optional="true" byreference="false" type="int"/>

@@ -25,6 +25,11 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <constant name="SYSTEM_SERVLET_TYPE" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <constant name="DEFAULT_SEARCH_SERVLET" value="select">
     <docblock>
       <var type="string"/>
@@ -50,13 +55,18 @@
       <var type="string"/>
     </docblock>
   </constant>
+  <constant name="DEFAULT_SYSTEM_SERVLET" value="admin/system">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
   <method name="addDocument" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Adds a document to the index"/>
       <return type="SolrUpdateResponse"/>
     </docblock>
     <parameter name="doc" optional="false" byreference="false" type="object" class="SolrInputDocument"/>
-    <parameter name="allowDups" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
     <parameter name="commitWithin" optional="true" byreference="false" type="int"/>
   </method>
   <method name="addDocuments" abstract="false" static="false" visibility="public" final="false">
@@ -65,7 +75,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="docs" optional="false" byreference="false" type="object" class="array"/>
-    <parameter name="allowDups" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
     <parameter name="commitWithin" optional="true" byreference="false" type="int"/>
   </method>
   <method name="commit" abstract="false" static="false" visibility="public" final="false">
@@ -73,9 +83,9 @@
       <description compact="Finalizes all add/deletes made to the index"/>
       <return type="SolrUpdateResponse"/>
     </docblock>
-    <parameter name="maxSegments" optional="true" byreference="false" type="int"/>
-    <parameter name="waitFlush" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="softCommit" optional="true" byreference="false" type="object" class="bool"/>
     <parameter name="waitSearcher" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="expungeDeletes" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -118,6 +128,20 @@
       <return type="void"/>
     </docblock>
   </destructor>
+  <method name="getById" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Document By Id. Utilizes Solr Realtime Get (RTG)."/>
+      <return type="SolrQueryResponse"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getByIds" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Documents by their Ids. Utilizes Solr Realtime Get (RTG)."/>
+      <return type="SolrQueryResponse"/>
+    </docblock>
+    <parameter name="ids" optional="false" byreference="false" type="object" class="array"/>
+  </method>
   <method name="getDebug" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the debug data for the last connection attempt"/>
@@ -136,7 +160,7 @@
       <return type="SolrUpdateResponse"/>
     </docblock>
     <parameter name="maxSegments" optional="true" byreference="false" type="int"/>
-    <parameter name="waitFlush" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="softCommit" optional="true" byreference="false" type="object" class="bool"/>
     <parameter name="waitSearcher" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="ping" abstract="false" static="false" visibility="public" final="false">
@@ -155,7 +179,7 @@
   <method name="request" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sends a raw update request"/>
-      <return type="void"/>
+      <return type="SolrUpdateResponse"/>
     </docblock>
     <parameter name="raw_request" optional="false" byreference="false" type="string"/>
   </method>
@@ -179,6 +203,12 @@
     </docblock>
     <parameter name="type" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="system" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve Solr Server information"/>
+      <return type="void"/>
+    </docblock>
   </method>
   <method name="threads" abstract="false" static="false" visibility="public" final="false">
     <docblock>

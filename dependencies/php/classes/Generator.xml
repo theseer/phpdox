@@ -7,6 +7,12 @@
       <return type="mixed"/>
     </docblock>
   </method>
+  <method name="getReturn" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the return value of a generator"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the yielded key"/>
@@ -27,15 +33,15 @@
   </method>
   <method name="send" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Send a value to the generator">Sends the given value to the generator as the result of the yield expression and resumes execution of the generator.</description>
+      <description compact="Send a value to the generator">Sends the given value to the generator as the result of the current yield expression and resumes execution of the generator.</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="throw" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Throw an exception into the generator"/>
-      <return type="void"/>
+      <description compact="Throw an exception into the generator">Throws an exception into the generator and resumes execution of the generator. The behavior will be the same as if the current yield expression was replaced with a throw $exception statement.</description>
+      <return type="mixed"/>
     </docblock>
     <parameter name="exception" optional="false" byreference="false" type="object" class="Exception"/>
   </method>

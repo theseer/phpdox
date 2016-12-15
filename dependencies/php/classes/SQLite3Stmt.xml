@@ -5,7 +5,7 @@
       <description compact="Binds a parameter to a statement variable"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="sql_param" optional="false" byreference="false" type="string"/>
+    <parameter name="sql_param" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="param" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="type" optional="true" byreference="false" type="int"/>
   </method>
@@ -14,7 +14,7 @@
       <description compact="Binds the value of a parameter to a statement variable"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="sql_param" optional="false" byreference="false" type="string"/>
+    <parameter name="sql_param" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="type" optional="true" byreference="false" type="int"/>
   </method>
@@ -32,7 +32,7 @@
   </method>
   <method name="execute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Executes a prepared statement and returns a result set object"/>
+      <description compact="Executes a prepared statement and returns a result set object">Executes a prepared statement and returns a result set object.</description>
       <return type="SQLite3Result"/>
     </docblock>
   </method>
@@ -40,6 +40,12 @@
     <docblock>
       <description compact="Returns the number of parameters within the prepared statement"/>
       <return type="int"/>
+    </docblock>
+  </method>
+  <method name="readOnly" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="reset" abstract="false" static="false" visibility="public" final="false">

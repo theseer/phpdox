@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="FANNConnection" namespace="" name="FANNConnection">
+  <member name="from_neuron" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The neuron where the connection starts."/>
+    </docblock>
+  </member>
+  <member name="to_neuron" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The neuron where the connection ends."/>
+    </docblock>
+  </member>
+  <member name="weight" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The weight of the connection."/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The connection constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="from_neuron" optional="false" byreference="false" type="int"/>
+    <parameter name="to_neuron" optional="false" byreference="false" type="int"/>
+    <parameter name="weight" optional="false" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="getFromNeuron" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the postions of starting neuron."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getToNeuron" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the postions of terminating neuron"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getWeight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the connection weight"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setWeight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the connections weight">Sets the connection weight.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="weight" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

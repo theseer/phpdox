@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Weight" namespace="" name="UI\Draw\Text\Font\Weight">
+  <constant name="Thin" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UltraLight" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Light" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Book" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Normal" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Medium" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SemiBold" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Bold" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UltraBold" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Heavy" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UltraHeavy" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

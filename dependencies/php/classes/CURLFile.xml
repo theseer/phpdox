@@ -3,24 +3,24 @@
   <member name="name" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="Name of the file to be uploaded."/>
     </docblock>
   </member>
   <member name="mime" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="MIME type of the file (default is application/octet-stream)."/>
     </docblock>
   </member>
   <member name="postname" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="The name of the file in the upload data (defaults to the name property)."/>
     </docblock>
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Create the CURLFile object"/>
+      <description compact="Create a CURLFile object">Object oriented style</description>
       <return type="void"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoCursorInterface" namespace="" name="MongoCursorInterface">
+  <extends name="Iterator" full="Iterator"/>
+  <method name="batchSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Limits the number of elements returned in one batch."/>
+      <return type="MongoCursorInterface"/>
+    </docblock>
+    <parameter name="batchSize" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="dead" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if there are results that have not yet been sent from the database"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the read preference for this query"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="info" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets information about the cursor's creation and iteration"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read preference for this query"/>
+      <return type="MongoCursorInterface"/>
+    </docblock>
+    <parameter name="read_preference" optional="false" byreference="false" type="string"/>
+    <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="timeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a client-side timeout for this query"/>
+      <return type="MongoCursorInterface"/>
+    </docblock>
+    <parameter name="ms" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="scalar"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+</interface>

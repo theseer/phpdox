@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SolrDisMaxQuery" namespace="" name="SolrDisMaxQuery">
+  <implements name="Serializable" full="Serializable"/>
+  <constant name="ORDER_ASC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ORDER_DESC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FACET_SORT_INDEX" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FACET_SORT_COUNT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TERMS_SORT_INDEX" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TERMS_SORT_COUNT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="addBigramPhraseField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a Phrase Bigram Field (pf2 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="boost" optional="false" byreference="false" type="string"/>
+    <parameter name="slop" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addBoostQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a boost query field with value and optional boost (bq parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="boost" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addPhraseField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a Phrase Field (pf parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="boost" optional="false" byreference="false" type="string"/>
+    <parameter name="slop" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addQueryField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a query field with optional boost (qf parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="boost" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addTrigramPhraseField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a Trigram Phrase Field (pf3 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="boost" optional="false" byreference="false" type="string"/>
+    <parameter name="slop" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addUserField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a field to User Fields Parameter (uf)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Class Constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="q" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="removeBigramPhraseField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes phrase bigram field (pf2 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeBoostQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a boost query partial by field name (bq)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removePhraseField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a Phrase Field (pf parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeQueryField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a Query Field (qf parameter)">Removes a Query Field (qf parameter) from the field list added by SolrDisMaxQuery::addQueryField</description>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeTrigramPhraseField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a Trigram Phrase Field (pf3 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeUserField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes a field from The User Fields Parameter (uf)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setBigramPhraseFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets Bigram Phrase Fields and their boosts (and slops) using pf2 parameter"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="fields" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setBigramPhraseSlop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets Bigram Phrase Slop (ps2 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="slop" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setBoostFunction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a Boost Function (bf parameter).">Sets Boost Function (bf parameter).</description>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="function" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setBoostQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Directly Sets Boost Query Parameter (bq)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="q" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setMinimumMatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Minimum &quot;Should&quot; Match (mm)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPhraseFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets  Phrase Fields and their boosts (and slops) using pf2 parameter"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="fields" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setPhraseSlop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the default slop on phrase queries (ps parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="slop" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setQueryAlt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Query Alternate (q.alt parameter)">Set Query Alternate (q.alt parameter)</description>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="q" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setQueryPhraseSlop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="specifies the amount of slop permitted on phrase queries explicitly included in the user's query string (qf parameter)">The Query Phrase Slop is the amount of slop permitted on phrase queries explicitly included in the user's query string with the qf parameter.</description>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="slop" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTieBreaker" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets Tie Breaker parameter (tie parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="tieBreaker" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTrigramPhraseFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Directly Sets Trigram Phrase Fields (pf3 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="fields" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTrigramPhraseSlop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets Trigram Phrase Slop (ps3 parameter)"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="slop" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setUserFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets User Fields parameter (uf)">Sets User Fields parameter (uf)</description>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+    <parameter name="fields" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="useDisMaxQueryParser" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Switch QueryParser to be DisMax Query Parser"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+  </method>
+  <method name="useEDisMaxQueryParser" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Switch QueryParser to be EDisMax"/>
+      <return type="SolrDisMaxQuery"/>
+    </docblock>
+  </method>
+  <method name="addExpandFilterQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fq" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addExpandSortField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="order" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addFacetDateField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="dateField" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addFacetDateOther" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="addFacetField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addFacetQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="facetQuery" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addFilterQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fq" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addGroupField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addGroupFunction" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addGroupQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addGroupSortField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="order" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="addHighlightField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addMltField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addMltQueryField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="boost" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="addSortField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="order" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="addStatsFacet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addStatsField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="collapse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="collapseFunction" optional="false" byreference="false" type="object" class="SolrCollapseFunction"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="q" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="getExpand" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getExpandFilterQueries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getExpandQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getExpandRows" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getExpandSortFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFacet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getFacetDateEnd" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetDateFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFacetDateGap" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetDateHardEnd" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetDateOther" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetDateStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFacetLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetMinCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetMissing" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetPrefix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFacetQueries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFacetSort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getFilterQueries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getGroup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getGroupCachePercent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getGroupFacet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getGroupFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getGroupFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getGroupFunctions" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getGroupLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getGroupMain" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getGroupNGroups" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getGroupOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getGroupQueries" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getGroupSortFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getGroupTruncate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getHighlight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getHighlightAlternateField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getHighlightFormatter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightFragmenter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightFragsize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightHighlightMultiTerm" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getHighlightMaxAlternateFieldLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightMaxAnalyzedChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getHighlightMergeContiguous" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightRegexMaxAnalyzedChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getHighlightRegexPattern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getHighlightRegexSlop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getHighlightRequireFieldMatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getHighlightSimplePost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightSimplePre" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightSnippets" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getHighlightUsePhraseHighlighter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getMlt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getMltBoost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getMltCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getMltMaxNumQueryTerms" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltMaxNumTokens" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltMaxWordLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltMinDocFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltMinTermFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltMinWordLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getMltQueryFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRows" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSortFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getStats" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getStatsFacets" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getStatsFields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getTerms" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getTermsField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTermsIncludeLowerBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getTermsIncludeUpperBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getTermsLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTermsLowerBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTermsMaxCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTermsMinCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTermsPrefix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTermsReturnRaw" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getTermsSort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTermsUpperBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getTimeAllowed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="removeExpandFilterQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fq" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeExpandSortField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeFacetDateField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeFacetDateOther" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="removeFacetField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeFacetQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeFilterQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fq" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeHighlightField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeMltField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeMltQueryField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="queryField" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeSortField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeStatsFacet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeStatsField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setEchoHandler" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setEchoParams" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setExpand" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setExpandQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="q" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setExpandRows" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setExplainOther" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setFacet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setFacetDateEnd" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetDateGap" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetDateHardEnd" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetDateStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetEnumCacheMinDefaultFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="frequency" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="limit" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetMinCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="mincount" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetMissing" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetPrefix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setFacetSort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="facetSort" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setGroup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setGroupCachePercent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="percent" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setGroupFacet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setGroupFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setGroupLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setGroupMain" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setGroupNGroups" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setGroupOffset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setGroupTruncate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setHighlight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setHighlightAlternateField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightFormatter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="formatter" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightFragmenter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fragmenter" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightFragsize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightHighlightMultiTerm" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setHighlightMaxAlternateFieldLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fieldLength" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightMaxAnalyzedChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setHighlightMergeContiguous" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightRegexMaxAnalyzedChars" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="maxAnalyzedChars" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setHighlightRegexPattern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightRegexSlop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="factor" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setHighlightRequireFieldMatch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setHighlightSimplePost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="simplePost" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightSimplePre" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="simplePre" optional="false" byreference="false" type="string"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightSnippets" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+    <parameter name="field_override" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setHighlightUsePhraseHighlighter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setMlt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setMltBoost" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setMltCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="count" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMltMaxNumQueryTerms" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMltMaxNumTokens" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMltMaxWordLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="maxWordLength" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMltMinDocFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="minDocFrequency" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMltMinTermFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="minTermFrequency" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setMltMinWordLength" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="minWordLength" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setOmitHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setQuery" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRows" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="rows" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setShowDebugInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="start" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setStats" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setTerms" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setTermsField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="fieldname" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTermsIncludeLowerBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setTermsIncludeUpperBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setTermsLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="limit" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTermsLowerBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="lowerBound" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTermsMaxCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="frequency" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTermsMinCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="frequency" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTermsPrefix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="prefix" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTermsReturnRaw" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="flag" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setTermsSort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="sortType" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTermsUpperBound" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="upperBound" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTimeAllowed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="SolrQuery"/>
+    </docblock>
+    <parameter name="timeAllowed" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

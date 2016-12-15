@@ -6,7 +6,7 @@
       <var type="string"/>
     </docblock>
   </constant>
-  <constant name="COOKIE" value="&quot;l, d-M-y H:i:s T&quot;">
+  <constant name="COOKIE" value="&quot;l, d-M-Y H:i:s T&quot;">
     <docblock>
       <var type="string"/>
     </docblock>
@@ -73,7 +73,7 @@
   </method>
   <method name="createFromFormat" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns new DateTime object formatted according to the specified format">Object oriented style</description>
+      <description compact="Parses a time string according to a specified format">Object oriented style</description>
       <return type="DateTime"/>
     </docblock>
     <parameter name="format" optional="false" byreference="false" type="string"/>

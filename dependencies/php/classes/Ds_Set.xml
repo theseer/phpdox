@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Ds\Set" namespace="" name="Ds\Set">
+  <implements name="Ds\Collection" full="Ds\Collection"/>
+  <constant name="MIN_CAPACITY" value="16">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds values to the set.">Adds all given values to the set that haven't already been added.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="allocate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Allocates enough memory for a required capacity."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="capacity" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="capacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current capacity."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all values."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="contains" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determines if the set contains all values.">Determines if the set contains all values.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a shallow copy of the set."/>
+      <return type="Ds\Set"/>
+    </docblock>
+  </method>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new set using values that aren't in another set.">Creates a new set using values that aren't in another set.</description>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="set" optional="false" byreference="false" type="object" class="Ds\Set"/>
+  </method>
+  <method name="filter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Creates a new set using a callable to&#10;    determine which values to include.&#10;  "/>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="first" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the first value in the set."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value at a given index."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="intersect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new set by intersecting values with another set.">Creates a new set using values common to both the current instance and another set. In other words, returns a copy of the current instance with all values removed that are not in the other set.</description>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="set" optional="false" byreference="false" type="object" class="Ds\Set"/>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the set is empty"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="join" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Joins all values together as a string."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="glue" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="last" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the last value in the set."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the result of adding all given values to the set."/>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="values" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="reduce" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reduces the set to a single value using a callback function."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="initial" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all given values from the set."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="reverse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Reverses the set in-place.&#10;  "/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="reversed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a reversed copy."/>
+      <return type="Ds\Set"/>
+    </docblock>
+  </method>
+  <method name="slice" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns a sub-set of a given range.&#10;  "/>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Sorts the set in-place.&#10; "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="sorted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a sorted copy."/>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="sum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the sum of all values in the set.">Returns the sum of all values in the set.</description>
+      <return type="number"/>
+    </docblock>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Converts the set to an array.&#10;  ">Converts the set to an array.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="union" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new set using values from the current instance and another set.">Creates a new set that contains the values of the current instance as well as the values of another set.</description>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="set" optional="false" byreference="false" type="object" class="Ds\Set"/>
+  </method>
+  <method name="xor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new set using values in either the current instance or in another set, but not in both.">Creates a new set containing values in the current instance as well as another set, but not in both.</description>
+      <return type="Ds\Set"/>
+    </docblock>
+    <parameter name="set" optional="false" byreference="false" type="object" class="Ds\Set"/>
+  </method>
+</class>

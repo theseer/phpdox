@@ -138,6 +138,12 @@
       <return type="array"/>
     </docblock>
   </method>
+  <method name="getReturnType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReflectionType"/>
+    </docblock>
+  </method>
   <method name="getShortName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -154,6 +160,12 @@
     <docblock>
       <description compact=""/>
       <return type="array"/>
+    </docblock>
+  </method>
+  <method name="hasReturnType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="inNamespace" abstract="false" static="false" visibility="public" final="false">
@@ -187,6 +199,12 @@
     </docblock>
   </method>
   <method name="isUserDefined" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVariadic" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>

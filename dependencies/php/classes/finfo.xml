@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="finfo" namespace="" name="finfo">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alias of finfo_open"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+    <parameter name="magic_file" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="buffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alias of finfo_buffer()"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="string" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
+  </method>
+  <method name="file" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alias of finfo_file()"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="file_name" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
+  </method>
+  <method name="set_flags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Alias of finfo_set_flags()"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

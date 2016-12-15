@@ -82,7 +82,7 @@
   </method>
   <method name="stream_close" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Close an resource">This method is called in response to fclose.</description>
+      <description compact="Close a resource">This method is called in response to fclose.</description>
       <return type="void"/>
     </docblock>
   </method>
@@ -94,7 +94,7 @@
   </method>
   <method name="stream_flush" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Flushes the output">This method is called in response to fflush.</description>
+      <description compact="Flushes the output">This method is called in response to fflush and when the stream is being closed while any unflushed data has been written to it before.</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -107,7 +107,7 @@
   </method>
   <method name="stream_metadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Change stream options"/>
+      <description compact="Change stream metadata"/>
       <return type="bool"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>

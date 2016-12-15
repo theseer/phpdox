@@ -27,7 +27,7 @@
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Check if curent position is valid"/>
+      <description compact="Check if current position is valid"/>
       <return type="ReturnType"/>
     </docblock>
   </method>

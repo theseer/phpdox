@@ -19,7 +19,7 @@
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get a row"/>
-      <return type="void"/>
+      <return type="array"/>
     </docblock>
     <parameter name="keys" optional="false" byreference="false" type="object" class="mixed"/>
   </method>

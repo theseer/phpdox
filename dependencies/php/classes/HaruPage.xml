@@ -357,7 +357,7 @@
   </method>
   <method name="measureText" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Calculate the number of characters which can be included within the specified width"/>
+      <description compact="Calculate the byte length of characters which can be included on one line of the specified width"/>
       <return type="int"/>
     </docblock>
     <parameter name="text" optional="false" byreference="false" type="string"/>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="HRTime\Unit" namespace="" name="HRTime\Unit">
+  <constant name="SECOND" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MILLISECOND" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MICROSECOND" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NANOSECOND" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

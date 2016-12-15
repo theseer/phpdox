@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Italic" namespace="" name="UI\Draw\Text\Font\Italic">
+  <constant name="Normal" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Oblique" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Italic" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

@@ -11,13 +11,13 @@
   <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Return the inner iterator's children contained in a RecursiveFilterIterator"/>
-      <return type="void"/>
+      <return type="RecursiveFilterIterator"/>
     </docblock>
   </method>
   <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Check whether the inner iterator's current element has children"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="accept" abstract="false" static="false" visibility="public" final="false">

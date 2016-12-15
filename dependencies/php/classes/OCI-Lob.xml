@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="OCI-Lob" namespace="" name="OCI-Lob">
+  <method name="append" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Appends data from the large object to another large object">Appends data from the large object to the end of another large object.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="lob_from" optional="false" byreference="false" type="object" class="OCI-Lob"/>
+  </method>
+  <method name="close" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Closes LOB descriptor"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="eof" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Tests for end-of-file on a large object's descriptor"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="erase" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Erases a specified portion of the internal LOB data">Erases a specified portion of the internal LOB data starting at a specified offset. If called without parameters, it erases all LOB data.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="export" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Exports LOB's contents to a file"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="flush" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Flushes/writes buffer of the LOB to the server"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="flag" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="free" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Frees resources associated with the LOB descriptor"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getBuffering" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns current state of buffering for the large object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="import" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Imports file data to the LOB"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="load" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns large object's contents"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="read" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Reads part of the large object">Reads length bytes from the current position of LOB's internal pointer.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="length" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="rewind" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Moves the internal pointer to the beginning of the large object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="save" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Saves data to the large object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="seek" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Sets the internal pointer of the large object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+    <parameter name="whence" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setBuffering" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Changes current state of buffering for the large object">Sets the buffering for the large object, depending on the value of the on_off parameter.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="on_off" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="size" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns size of large object"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="tell" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the current position of internal pointer of large object"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="truncate" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Truncates large object"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="write" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Writes data to the large object"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="writeTemporary" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Writes a temporary large object">Creates a temporary large object and writes data to it.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="lob_type" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

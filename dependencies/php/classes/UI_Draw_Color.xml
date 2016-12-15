@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Color" namespace="" name="UI\Draw\Color">
+  <constant name="Red" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Green" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Blue" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Alpha" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="r" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Provides access to the red channel"/>
+    </docblock>
+  </member>
+  <member name="g" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Provides access to the green channel"/>
+    </docblock>
+  </member>
+  <member name="b" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Provides access to the blue channel"/>
+    </docblock>
+  </member>
+  <member name="a" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Provides access to the alpha channel"/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct new Color"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="true" byreference="false" type="object" class="UI\Draw\Color"/>
+  </constructor>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct new Color"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="true" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="getChannel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Color Manipulation"/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="channel" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setChannel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Color Manipulation"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="channel" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

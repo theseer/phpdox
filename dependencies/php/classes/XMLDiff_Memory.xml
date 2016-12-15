@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="XMLDiff\Memory" namespace="" name="XMLDiff\Memory">
+  <extends name="XMLDiff\Base" full="XMLDiff\Base"/>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Diff two XML documents"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="from" optional="false" byreference="false" type="string"/>
+    <parameter name="to" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Produce merged XML document"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="src" optional="false" byreference="false" type="string"/>
+    <parameter name="diff" optional="false" byreference="false" type="string"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="nsname" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="from" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="to" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="src" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="diff" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="MongoId" namespace="" name="MongoId">
-  <member name="id" static="false" visibility="public">
+  <member name="$id" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact=""/>
@@ -12,7 +12,7 @@
       <description compact="Creates a new id"/>
       <return type="void"/>
     </docblock>
-    <parameter name="id" optional="true" byreference="false" type="string"/>
+    <parameter name="id" optional="true" byreference="false" type="object" class="string|MongoId"/>
   </constructor>
   <method name="getHostname" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -37,6 +37,13 @@
       <description compact="Gets the number of seconds since the epoch that this id was created"/>
       <return type="int"/>
     </docblock>
+  </method>
+  <method name="isValid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if a value is a valid ObjectId"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="__set_state" abstract="false" static="false" visibility="public" final="false">
     <docblock>

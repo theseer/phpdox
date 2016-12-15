@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Pool" namespace="" name="Pool">
+  <member name="size" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="maximum number of Workers this Pool can use"/>
+    </docblock>
+  </member>
+  <member name="class" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="the class of the Worker"/>
+    </docblock>
+  </member>
+  <member name="workers" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="references to Workers"/>
+    </docblock>
+  </member>
+  <member name="work" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="references to Threaded objects submitted to the Pool"/>
+    </docblock>
+  </member>
+  <member name="ctor" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="the arguments for constructor of new Workers"/>
+    </docblock>
+  </member>
+  <member name="last" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="offset in workers of the last Worker used"/>
+    </docblock>
+  </member>
+  <method name="collect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Collect references to completed tasks"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="collector" optional="false" byreference="false" type="object" class="Callable"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new Pool of Workers"/>
+      <return type="Pool"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="class" optional="false" byreference="false" type="string"/>
+    <parameter name="ctor" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="resize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resize the Pool"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="shutdown" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Shutdown all Workers"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="submit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Submits an object for execution"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="task" optional="false" byreference="false" type="object" class="Threaded"/>
+  </method>
+  <method name="submitTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Submits an object for execution"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="worker" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="task" optional="false" byreference="false" type="object" class="Threaded"/>
+  </method>
+</class>

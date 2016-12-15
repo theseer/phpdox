@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\BulkWrite" namespace="" name="MongoDB\Driver\BulkWrite">
+  <implements name="Countable" full="Countable"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new BulkWrite"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Count number of write operations in the bulk"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a delete operation to the bulk"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filter" optional="false" byreference="false" type="object" class="array|object"/>
+    <parameter name="deleteOptions" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="insert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add an insert operation to the bulk"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="document" optional="false" byreference="false" type="object" class="array|object"/>
+  </method>
+  <method name="update" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add an update operation to the bulk"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filter" optional="false" byreference="false" type="object" class="array|object"/>
+    <parameter name="newObj" optional="false" byreference="false" type="object" class="array|object"/>
+    <parameter name="updateOptions" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+</class>

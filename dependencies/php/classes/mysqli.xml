@@ -25,7 +25,7 @@
     <default>null</default>
     <docblock>
       <description compact="Object oriented style">Object oriented style</description>
-      <var type="string"/>
+      <var type="int"/>
     </docblock>
   </member>
   <member name="mysqli-&gt;connect_error" static="false">
@@ -402,6 +402,7 @@
       <description compact="Transfers a result set from the last query">Object oriented style</description>
       <return type="mysqli_result"/>
     </docblock>
+    <parameter name="option" optional="true" byreference="false" type="int"/>
   </method>
   <method name="use_result" abstract="false" static="false" final="false">
     <docblock>

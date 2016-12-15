@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Unserializable" namespace="" name="MongoDB\BSON\Unserializable">
+  <method name="bsonUnserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs the object from a BSON array or document">Called during unserialization of the object from BSON. The properties of the BSON array or document will be passed to the method as an array.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</interface>

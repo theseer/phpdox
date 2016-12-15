@@ -37,8 +37,15 @@
       <return type="array"/>
     </docblock>
     <parameter name="pipeline" optional="false" byreference="false" type="object" class="array"/>
-    <parameter name="op" optional="true" byreference="false" type="object" class="array"/>
-    <parameter name="..." optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="aggregateCursor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute an aggregation pipeline command and retrieve results through a cursor"/>
+      <return type="MongoCommandCursor"/>
+    </docblock>
+    <parameter name="command" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="batchInsert" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -62,15 +69,22 @@
       <return type="int"/>
     </docblock>
     <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
-    <parameter name="limit" optional="true" byreference="false" type="int"/>
-    <parameter name="skip" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="createDBRef" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates a database reference"/>
       <return type="array"/>
     </docblock>
-    <parameter name="a" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="document_or_id" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="createIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Creates an index on the specified field(s) if it does not already exist.&#10;  ">Creates an index on the specified field(s) if it does not already exist. Fields may be indexed with a direction (e.g. ascending or descending) or a special type (e.g. text, geospatial, hashed).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="deleteIndex" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -101,7 +115,7 @@
   </method>
   <method name="ensureIndex" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Creates an index on the given field(s), or does nothing if the index &#10;   already exists&#10;  "/>
+      <description compact="&#10;   Creates an index on the specified field(s) if it does not already exist.&#10;  ">This method is deprecated since version 1.5.0. Please use MongoCollection::createIndex instead.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="key|keys" optional="false" byreference="false" type="object" class="string|array"/>
@@ -109,7 +123,7 @@
   </method>
   <method name="find" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Querys this collection, returning a MongoCursor&#10;  for the result set"/>
+      <description compact="Queries this collection, returning a MongoCursor&#10;  for the result set"/>
       <return type="MongoCursor"/>
     </docblock>
     <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
@@ -127,11 +141,12 @@
   </method>
   <method name="findOne" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Querys this collection, returning a single element"/>
+      <description compact="Queries this collection, returning a single element"/>
       <return type="array"/>
     </docblock>
     <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="fields" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="__get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -171,6 +186,12 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="getWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the write concern for this collection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="group" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Performs an operation similar to SQL's GROUP BY command"/>
@@ -186,8 +207,15 @@
       <description compact="Inserts a document into the collection"/>
       <return type="bool|array"/>
     </docblock>
-    <parameter name="a" optional="false" byreference="false" type="object" class="array|object"/>
+    <parameter name="document" optional="false" byreference="false" type="object" class="array|object"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="parallelCollectionScan" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array of cursors to iterator over a full collection in parallel">This method returns an array of a maximum of num_cursors cursors. An iteration over one of the returned cursors results in a partial set of documents for a collection. Iteration over all the returned cursors results in getting every document back from the collection.</description>
+      <return type="array[MongoCommandCursor]"/>
+    </docblock>
+    <parameter name="num_cursors" optional="false" byreference="false" type="int"/>
   </method>
   <method name="remove" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -202,7 +230,7 @@
       <description compact="Saves a document to this collection"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="a" optional="false" byreference="false" type="object" class="array|object"/>
+    <parameter name="document" optional="false" byreference="false" type="object" class="array|object"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
@@ -219,6 +247,14 @@
       <return type="bool"/>
     </docblock>
     <parameter name="ok" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the write concern for this database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="w" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="wtimeout" optional="true" byreference="false" type="int"/>
   </method>
   <method name="toIndexString" abstract="false" static="false" final="false">
     <docblock>

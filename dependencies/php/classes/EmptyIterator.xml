@@ -4,13 +4,13 @@
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The current() method"/>
-      <return type="void"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The key() method"/>
-      <return type="void"/>
+      <return type="scalar"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
@@ -28,7 +28,7 @@
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The valid() method"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

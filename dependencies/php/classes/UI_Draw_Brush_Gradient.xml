@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Brush\Gradient" namespace="" name="UI\Draw\Brush\Gradient">
+  <extends name="UI\Draw\Brush\Gradient" full="UI\Draw\Brush\Gradient"/>
+  <method name="addStop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop Manipulation"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="color" optional="false" byreference="false" type="object" class="UI\Draw\Color"/>
+  </method>
+  <method name="addStop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop Manipulation"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="color" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="delStop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop Manipulation"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setStop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop Manipulation"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="position" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="color" optional="false" byreference="false" type="object" class="UI\Draw\Color"/>
+  </method>
+  <method name="setStop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop Manipulation"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="position" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="color" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getColor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="UI\Draw\Color"/>
+    </docblock>
+  </method>
+  <method name="setColor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="UI\Draw\Color"/>
+  </method>
+  <method name="setColor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

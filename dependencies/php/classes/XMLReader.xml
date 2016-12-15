@@ -259,7 +259,7 @@
   <method name="lookupNamespace" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Lookup namespace for a prefix"/>
-      <return type="bool"/>
+      <return type="string"/>
     </docblock>
     <parameter name="prefix" optional="false" byreference="false" type="string"/>
   </method>
@@ -333,7 +333,7 @@
   </method>
   <method name="readOuterXML" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve XML from current node, including it self"/>
+      <description compact="Retrieve XML from current node, including itself"/>
       <return type="string"/>
     </docblock>
   </method>

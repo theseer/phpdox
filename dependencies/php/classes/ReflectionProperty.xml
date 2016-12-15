@@ -64,7 +64,7 @@
   </method>
   <method name="getDocComment" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets doc comment"/>
+      <description compact="Gets the property doc comment"/>
       <return type="string"/>
     </docblock>
   </method>
@@ -85,11 +85,11 @@
       <description compact="Gets value"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="object" optional="true" byreference="false" type="object" class="object"/>
   </method>
   <method name="isDefault" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if default value "/>
+      <description compact="Checks if property is a default property"/>
       <return type="bool"/>
     </docblock>
   </method>

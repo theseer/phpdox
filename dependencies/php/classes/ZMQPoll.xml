@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ZMQPoll" namespace="" name="ZMQPoll">
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add item to the poll set"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="entry" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="type" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clear the poll set"/>
+      <return type="ZMQPoll"/>
+    </docblock>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Count items in the poll set"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getLastErrors" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get poll errors"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="poll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Poll the items"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="readable" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="writable" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove item from poll set"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="item" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

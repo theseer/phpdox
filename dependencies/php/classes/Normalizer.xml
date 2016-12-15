@@ -6,7 +6,7 @@
       <return type="bool"/>
     </docblock>
     <parameter name="input" optional="false" byreference="false" type="string"/>
-    <parameter name="form" optional="true" byreference="false" type="string"/>
+    <parameter name="form" optional="true" byreference="false" type="int"/>
   </method>
   <method name="normalize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -14,6 +14,6 @@
       <return type="string"/>
     </docblock>
     <parameter name="input" optional="false" byreference="false" type="string"/>
-    <parameter name="form" optional="true" byreference="false" type="string"/>
+    <parameter name="form" optional="true" byreference="false" type="int"/>
   </method>
 </class>

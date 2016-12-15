@@ -70,7 +70,7 @@
   </method>
   <method name="loadFromFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="This factory method creates a hash from a file">This factory method creates a new hash from a definition file on disk. The file format consists of a signature 'QH\0x12\0', the number of elements as a 32 bit signed integer in system Endianness, an unsigned 32 bit integer containing the number of element data to follow in characters. This element data contains all the strings. After the header and the strings, the elements follow in pairs of two unsigned 32 bit integers where the first one is the key, and the second one the index in the the element data string. An example could be:</description>
+      <description compact="This factory method creates a hash from a file">This factory method creates a new hash from a definition file on disk. The file format consists of a signature 'QH\0x12\0', the number of elements as a 32 bit signed integer in system Endianness, an unsigned 32 bit integer containing the number of element data to follow in characters. This element data contains all the strings. After the header and the strings, the elements follow in pairs of two unsigned 32 bit integers where the first one is the key, and the second one the index in the element data string. An example could be:</description>
       <return type="QuickHashIntStringHash"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>

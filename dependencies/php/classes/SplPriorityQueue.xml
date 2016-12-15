@@ -29,7 +29,7 @@
   </method>
   <method name="extract" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Extracts a node from top of the heap and sift up."/>
+      <description compact="Extracts a node from top of the heap and shift up."/>
       <return type="mixed"/>
     </docblock>
   </method>

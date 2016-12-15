@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Decimal128" namespace="" name="MongoDB\BSON\Decimal128">
+  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct a new Decimal128"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the string representation of this Decimal128"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

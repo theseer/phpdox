@@ -12,7 +12,7 @@
   </method>
   <method name="addServer" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Add a memcached server to connection pool">Memcache::addServer adds a server to the connection pool. The connection, which was opened using Memcache::addServer will be automatically closed at the end of script execution, you can also close it manually with Memcache::close. You can also use the memcache_add_server function.</description>
+      <description compact="Add a memcached server to connection pool">Memcache::addServer adds a server to the connection pool. You can also use the memcache_add_server function.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="host" optional="false" byreference="false" type="string"/>
@@ -64,7 +64,7 @@
   </method>
   <method name="get" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Retrieve item from the server">Memcache::get returns previously stored data if an item with such key exists on the server at this moment.</description>
+      <description compact="Retrieve item from the server">Memcache::get returns previously stored data of an item, if such key exists on the server at this moment.</description>
       <return type="string"/>
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>

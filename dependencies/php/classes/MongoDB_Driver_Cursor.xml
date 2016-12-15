@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Cursor" namespace="" name="MongoDB\Driver\Cursor">
+  <implements name="Traversable" full="Traversable"/>
+  <constructor name="__construct" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Create a new Cursor (not used)"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the ID for this cursor"/>
+      <return type="MongoDB\Driver\CursorId"/>
+    </docblock>
+  </method>
+  <method name="getServer" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the server associated with this cursor"/>
+      <return type="MongoDB\Driver\Server"/>
+    </docblock>
+  </method>
+  <method name="isDead" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if the cursor is still open on the server">Returns whether the cursor is still open on the server (i.e. the server has more results that have yet to be sent to the client).</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setTypeMap" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Sets a type map to use for BSON unserialization"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="typemap" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an array containing all results for this cursor"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

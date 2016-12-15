@@ -35,7 +35,7 @@
     </docblock>
     <parameter name="message" optional="true" byreference="false" type="string"/>
     <parameter name="code" optional="true" byreference="false" type="int"/>
-    <parameter name="previous" optional="true" byreference="false" type="object" class="Exception"/>
+    <parameter name="previous" optional="true" byreference="false" type="object" class="Throwable"/>
   </constructor>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
     <docblock>

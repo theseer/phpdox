@@ -7,9 +7,15 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="create_sid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return a new session ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Destroy a session">Destroys a session. Called by internally by PHP with session_regenerate_id (assuming the $destory is set to TRUE, by session_destroy or when session_decode fails.</description>
+      <description compact="Destroy a session">Destroys a session. Called internally by PHP with session_regenerate_id (assuming the $destroy is set to TRUE, by session_destroy or when session_decode fails.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="session_id" optional="false" byreference="false" type="string"/>
@@ -27,7 +33,7 @@
       <return type="bool"/>
     </docblock>
     <parameter name="save_path" optional="false" byreference="false" type="string"/>
-    <parameter name="session_id" optional="false" byreference="false" type="string"/>
+    <parameter name="session_name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="read" abstract="false" static="false" visibility="public" final="false">
     <docblock>

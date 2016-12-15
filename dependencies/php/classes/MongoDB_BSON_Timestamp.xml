@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Timestamp" namespace="" name="MongoDB\BSON\Timestamp">
+  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct a new Timestamp"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="increment" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="timestamp" optional="false" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the string representation of this Timestamp"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\MultilineEntry" namespace="" name="UI\Controls\MultilineEntry">
+  <extends name="UI\Control" full="UI\Control"/>
+  <constant name="Wrap" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NoWrap" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Multiline Entry"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="type" optional="true" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Text"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getText" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Text"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="isReadOnly" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read Only Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="onChange" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Change Handler"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setReadOnly" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Read Only"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="readOnly" optional="false" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="setText" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Text"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="UI\Control"/>
+    </docblock>
+  </method>
+  <method name="getTopLevel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hide" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVisible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="parent" optional="false" byreference="false" type="object" class="UI\Control"/>
+  </method>
+  <method name="show" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

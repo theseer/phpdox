@@ -163,6 +163,12 @@
       <return type="float"/>
     </docblock>
   </method>
+  <method name="getFontStretch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="getFontStyle" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Returns the font style"/>
@@ -259,6 +265,24 @@
       <return type="string"/>
     </docblock>
   </method>
+  <method name="getTextInterlineSpacing" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getTextInterwordSpacing" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getTextKerning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="float"/>
+    </docblock>
+  </method>
   <method name="getTextUnderColor" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Returns the text under color"/>
@@ -330,7 +354,7 @@
   </method>
   <method name="pathCurveToQuadraticBezierSmoothAbsolute" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Draws a quadratic Bezier curve"/>
+      <description compact="Draws a quadratic Bezier curve">Draws a quadratic Bezier curve (using absolute coordinates) from the current point to (x,y). The control point is assumed to be the reflection of the control point on the previous command relative to the current point. (If there is no previous command or if the previous command was not a DrawPathCurveToQuadraticBezierAbsolute, DrawPathCurveToQuadraticBezierRelative, DrawPathCurveToQuadraticBezierSmoothAbsolut or DrawPathCurveToQuadraticBezierSmoothRelative, assume the control point is coincident with the current point.). At the end of the command, the new current point becomes the final (x,y) coordinate pair used in the polybezier.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
@@ -338,7 +362,7 @@
   </method>
   <method name="pathCurveToQuadraticBezierSmoothRelative" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Draws a quadratic Bezier curve"/>
+      <description compact="Draws a quadratic Bezier curve">Draws a quadratic Bezier curve (using relative coordinates) from the current point to (x, y). The control point is assumed to be the reflection of the control point on the previous command relative to the current point. (If there is no previous command or if the previous command was not a DrawPathCurveToQuadraticBezierAbsolute, DrawPathCurveToQuadraticBezierRelative, DrawPathCurveToQuadraticBezierSmoothAbsolut or DrawPathCurveToQuadraticBezierSmoothRelative, assume the control point is coincident with the current point). At the end of the command, the new current point becomes the final (x, y) coordinate pair used in the polybezier.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
@@ -566,6 +590,12 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="resetVectorGraphics" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+  </method>
   <method name="rotate" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Applies the specified rotation to the current coordinate space"/>
@@ -698,6 +728,14 @@
     </docblock>
     <parameter name="gravity" optional="false" byreference="false" type="int"/>
   </method>
+  <method name="setResolution" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x_resolution" optional="false" byreference="false" type="string"/>
+    <parameter name="y_resolution" optional="false" byreference="false" type="string"/>
+  </method>
   <method name="setStrokeAlpha" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Specifies the opacity of stroked object outlines"/>
@@ -798,10 +836,31 @@
   </method>
   <method name="setTextEncoding" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Specifies specifies the text code set"/>
+      <description compact="Specifies the text code set"/>
       <return type="bool"/>
     </docblock>
     <parameter name="encoding" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setTextInterlineSpacing" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="spacing" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTextInterwordSpacing" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="spacing" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTextKerning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="kerning" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setTextUnderColor" abstract="false" static="false" final="false">
     <docblock>

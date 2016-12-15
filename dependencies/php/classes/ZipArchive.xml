@@ -60,6 +60,24 @@
     <parameter name="localname" optional="false" byreference="false" type="string"/>
     <parameter name="contents" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="addGlob" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Add files from a directory by glob pattern"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="pattern" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="addPattern" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Add files from a directory by PCRE pattern"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="pattern" optional="false" byreference="false" type="string"/>
+    <parameter name="path" optional="true" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <method name="close" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Close the active archive (opened or newly created)"/>
@@ -109,6 +127,26 @@
       <return type="string"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="GetExternalAttributesIndex" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="opsys" optional="false" byreference="false" type="int"/>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getExternalAttributesName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Retrieve the external attributes of an entry defined by its name"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="opsys" optional="false" byreference="false" type="int"/>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getFromIndex" abstract="false" static="false" final="false">
@@ -204,6 +242,51 @@
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="comment" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setCompressionIndex" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the compression method of an entry defined by its index"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="comp_method" optional="false" byreference="false" type="int"/>
+    <parameter name="comp_flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setCompressionName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the compression method of an entry defined by its name"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="comp_method" optional="false" byreference="false" type="int"/>
+    <parameter name="comp_flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setExternalAttributesIndex" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the external attributes of an entry defined by its index"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="opsys" optional="false" byreference="false" type="int"/>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setExternalAttributesName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the external attributes of an entry defined by its name"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="opsys" optional="false" byreference="false" type="int"/>
+    <parameter name="attr" optional="false" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setPassword" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the password for the active archive"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="password" optional="false" byreference="false" type="string"/>
   </method>
   <method name="statIndex" abstract="false" static="false" final="false">
     <docblock>

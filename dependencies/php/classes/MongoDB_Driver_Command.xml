@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Command" namespace="" name="MongoDB\Driver\Command">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Create a new Command"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="document" optional="false" byreference="false" type="object" class="array|object"/>
+  </constructor>
+</class>

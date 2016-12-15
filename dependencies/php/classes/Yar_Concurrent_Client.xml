@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Yar_Concurrent_Client" namespace="" name="Yar_Concurrent_Client">
+  <member name="_callstack" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_callback" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_error_callback" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="call" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register a concurrent call"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="uri" optional="false" byreference="false" type="string"/>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
+    <parameter name="parameters" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="loop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send all calls"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="error_callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clean all registered calls"/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+</class>

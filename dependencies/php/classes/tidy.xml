@@ -56,7 +56,7 @@
   </method>
   <method name="getOptDoc" abstract="false" static="false" final="false">
     <docblock>
-      <description compact=""/>
+      <description compact="&#10;   Returns the documentation for the given option name&#10;  ">Object oriented style</description>
       <return type="string"/>
     </docblock>
     <parameter name="optname" optional="false" byreference="false" type="string"/>

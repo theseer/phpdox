@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="Ds\Hashable" namespace="" name="Ds\Hashable">
+  <method name="equals" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determines whether an object is equal to the current instance.">Determines whether another object is equal to the current instance.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="obj" optional="false" byreference="false" type="object" class="object"/>
+  </method>
+  <method name="hash" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a scalar value to be used as a hash value.">Returns a scalar value to be used as the hash value of the objects.</description>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+</interface>

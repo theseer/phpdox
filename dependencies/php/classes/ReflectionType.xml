@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionType" namespace="" name="ReflectionType">
+  <method name="allowsNull" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if null is allowed"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isBuiltin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if it is a built-in type"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="To string"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

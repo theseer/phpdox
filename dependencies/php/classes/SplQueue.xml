@@ -27,6 +27,14 @@
     </docblock>
     <parameter name="mode" optional="false" byreference="false" type="int"/>
   </method>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="newval" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
   <method name="bottom" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>

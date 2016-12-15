@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoInsertBatch" namespace="" name="MongoInsertBatch">
+  <extends name="MongoWriteBatch" full="MongoWriteBatch"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="collection" optional="false" byreference="false" type="object" class="MongoCollection"/>
+    <parameter name="write_options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="item" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="write_options" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

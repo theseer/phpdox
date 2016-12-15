@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Server" namespace="" name="MongoDB\Driver\Server">
+  <constant name="TYPE_UNKNOWN" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_STANDALONE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_MONGOS" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_POSSIBLE_PRIMARY" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_RS_PRIMARY" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_RS_SECONDARY" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_RS_ARBITER" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_RS_OTHER" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_RS_GHOST" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Create a new Server (not used)"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="executeBulkWrite" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute one or more write operations on this server">Executes one or more write operations on this server.</description>
+      <return type="MongoDB\Driver\WriteResult"/>
+    </docblock>
+    <parameter name="namespace" optional="false" byreference="false" type="string"/>
+    <parameter name="bulk" optional="false" byreference="false" type="object" class="MongoDB\Driver\BulkWrite"/>
+    <parameter name="writeConcern" optional="true" byreference="false" type="object" class="MongoDB\Driver\WriteConcern"/>
+  </method>
+  <method name="executeCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command on this server">Executes command on this server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+  </method>
+  <method name="executeQuery" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database query on this server">Executes query on this server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="namespace" optional="false" byreference="false" type="string"/>
+    <parameter name="query" optional="false" byreference="false" type="object" class="MongoDB\Driver\Query"/>
+    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+  </method>
+  <method name="getHost" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the hostname of this server"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getInfo" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an array of information about this server"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getLatency" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the latency of this server"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPort" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the port on which this server is listening"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTags" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an array of tags describing this server in a replica set"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an integer denoting the type of this server"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isArbiter" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this server is an arbiter member of a replica set"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isHidden" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this server is a hidden member of a replica set"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPassive" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this server is a passive member of a replica set"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPrimary" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this server is a primary member of a replica set"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isSecondary" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this server is a secondary member of a replica set"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

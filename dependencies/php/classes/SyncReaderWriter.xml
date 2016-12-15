@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SyncReaderWriter" namespace="" name="SyncReaderWriter">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new SyncReaderWriter object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
+    <parameter name="autounlock" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+  <method name="readlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Waits for a read lock"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="readunlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases a read lock"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="writelock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Waits for an exclusive write lock"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="writeunlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases a write lock"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

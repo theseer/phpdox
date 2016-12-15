@@ -63,6 +63,14 @@
       <var type="string"/>
     </docblock>
   </member>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Constructs a new mysqli_stmt object">This method constructs a new mysqli_stmt object.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="link" optional="false" byreference="false" type="object" class="mysqli"/>
+    <parameter name="query" optional="true" byreference="false" type="string"/>
+  </constructor>
   <method name="attr_get" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Used to get the current value of a statement attribute">Object oriented style</description>

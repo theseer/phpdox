@@ -23,4 +23,12 @@
     <parameter name="newthis" optional="false" byreference="false" type="object" class="object"/>
     <parameter name="newscope" optional="true" byreference="false" type="object" class="mixed"/>
   </method>
+  <method name="call" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Binds and calls the closure"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="newthis" optional="false" byreference="false" type="object" class="object"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
 </class>

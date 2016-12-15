@@ -39,16 +39,22 @@
   </constructor>
   <method name="dispatch" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Dispatch pending events"/>
+      <description compact="Dispatch pending events">Wait for events to become active, and run their callbacks. The same as EventBase::loop with no flags set.</description>
       <return type="void"/>
     </docblock>
   </method>
   <method name="exit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Stop dispatching events"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="free" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Free resources allocated for this event base">Deallocates resources allocated by libevent for the EventBase object.</description>
+      <return type="void"/>
+    </docblock>
   </method>
   <method name="getFeatures" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -61,7 +67,6 @@
       <description compact="Returns event method in use"/>
       <return type="string"/>
     </docblock>
-    <parameter name="cfg" optional="true" byreference="false" type="object" class="EventConfig"/>
   </method>
   <method name="getTimeOfDayCached" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -72,18 +77,18 @@
   <method name="gotExit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if the event loop was told to exit"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="gotStop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if the event loop was told to exit"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="loop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Dispatch pending events"/>
+      <description compact="Dispatch pending events">Wait for events to become active, and run their callbacks.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
@@ -93,14 +98,13 @@
       <description compact="Sets number of priorities per event base"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="n_priorities" optional="false" byreference="false" type="string"/>
+    <parameter name="n_priorities" optional="false" byreference="false" type="int"/>
   </method>
   <method name="reInit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Re-initialize event base(after a fork)."/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="base" optional="false" byreference="false" type="string"/>
   </method>
   <method name="stop" abstract="false" static="false" visibility="public" final="false">
     <docblock>

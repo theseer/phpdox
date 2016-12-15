@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ZMQ" namespace="" name="ZMQ">
+  <constant name="SOCKET_PAIR" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_PUB" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_SUB" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_REQ" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_REP" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_XREQ" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_XREP" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_PUSH" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_PULL" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_ROUTER" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_DEALER" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_XPUB" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_XSUB" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKET_STREAM" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_HWM" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_SNDHWM" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RCVHWM" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_AFFINITY" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_IDENTITY" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_SUBSCRIBE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_UNSUBSCRIBE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RATE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RECOVERY_IVL" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RECONNECT_IVL" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RECONNECT_IVL_MAX" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_MCAST_LOOP" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_SNDBUF" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RCVBUF" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RCVMORE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_TYPE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_LINGER" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_BACKLOG" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_MAXMSGSIZE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_SNDTIMEO" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_RCVTIMEO" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_IPV4ONLY" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_LAST_ENDPOINT" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_TCP_KEEPALIVE_IDLE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_TCP_KEEPALIVE_CNT" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_TCP_KEEPALIVE_INTVL" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_TCP_ACCEPT_FILTER" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_TCP_ACCEPT_FILTER" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_DELAY_ATTACH_ON_CONNECT" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_XPUB_VERBOSE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_ROUTER_RAW" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SOCKOPT_IPV6" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CTXOPT_MAX_SOCKETS" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="POLL_IN" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="POLL_OUT" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MODE_NOBLOCK" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MODE_DONTWAIT" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MODE_SNDMORE" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERR_INTERNAL" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERR_EAGAIN" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERR_ENOTSUP" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERR_EFSM" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERR_ETERM" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="ZMQ constructor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+</class>

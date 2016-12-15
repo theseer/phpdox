@@ -83,7 +83,7 @@
   <method name="drain" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Removes specified number of bytes from the front of the buffer&#10;  without copying it anywhere"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="len" optional="false" byreference="false" type="int"/>
   </method>
@@ -130,9 +130,9 @@
   <method name="pullup" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Linearizes data within buffer&#10;  and returns it's contents as a string">"Linearizes" the first size bytes of the buffer, copying or moving them as needed to ensure that they are all contiguous and occupying the same chunk of memory. If size is negative, the function linearizes the entire buffer.</description>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
-    <parameter name="size" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
   </method>
   <method name="read" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -144,7 +144,7 @@
   <method name="read" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Read data from an evbuffer and drain the bytes read"/>
-      <return type="string"/>
+      <return type="int"/>
     </docblock>
     <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="howmuch" optional="false" byreference="false" type="int"/>
@@ -152,9 +152,9 @@
   <method name="readLine" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Extracts a line from the front of the buffer"/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
-    <parameter name="eol_style" optional="false" byreference="false" type="string"/>
+    <parameter name="eol_style" optional="false" byreference="false" type="int"/>
   </method>
   <method name="search" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -197,7 +197,7 @@
   <method name="write" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Write contents of the buffer to a file or socket"/>
-      <return type="void"/>
+      <return type="int"/>
     </docblock>
     <parameter name="fd" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="howmuch" optional="true" byreference="false" type="int"/>

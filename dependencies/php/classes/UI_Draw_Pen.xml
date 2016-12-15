@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Pen" namespace="" name="UI\Draw\Pen">
+  <method name="clip" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Clip a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+  </method>
+  <method name="fill" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fill a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+    <parameter name="with" optional="false" byreference="false" type="object" class="UI\Draw\Brush"/>
+  </method>
+  <method name="fill" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fill a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+    <parameter name="with" optional="false" byreference="false" type="object" class="UI\Draw\Color"/>
+  </method>
+  <method name="fill" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fill a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+    <parameter name="with" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="restore" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Restore"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="save" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Save"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="stroke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stroke a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+    <parameter name="with" optional="false" byreference="false" type="object" class="UI\Draw\Brush"/>
+    <parameter name="stroke" optional="false" byreference="false" type="object" class="UI\Draw\Stroke"/>
+  </method>
+  <method name="stroke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stroke a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+    <parameter name="with" optional="false" byreference="false" type="object" class="UI\Draw\Color"/>
+    <parameter name="stroke" optional="false" byreference="false" type="object" class="UI\Draw\Stroke"/>
+  </method>
+  <method name="stroke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stroke a Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
+    <parameter name="with" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="stroke" optional="false" byreference="false" type="object" class="UI\Draw\Stroke"/>
+  </method>
+  <method name="transform" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Matrix Transform"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="UI\Draw\Matrix"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw Text at Point"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="layout" optional="false" byreference="false" type="object" class="UI\Draw\Text\Layout"/>
+  </method>
+</class>

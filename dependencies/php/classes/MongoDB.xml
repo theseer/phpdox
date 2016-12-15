@@ -21,7 +21,7 @@
       <description compact="&#10;       The number of servers to replicate a change to before returning success.&#10;       Inherited by instances of MongoCollection derived&#10;       from this.  w functionality is only available in &#10;       version 1.5.1+ of the MongoDB server and 1.0.8+ of the driver.&#10;      ">
        The number of servers to replicate a change to before returning success.
        Inherited by instances of MongoCollection derived
-       from this.  w functionality is only available in
+       from this.  w functionality is only available in 
        version 1.5.1+ of the MongoDB server and 1.0.8+ of the driver.
       </description>
       <var type="integer"/>
@@ -31,9 +31,9 @@
     <default>null</default>
     <docblock>
       <description compact="&#10;       The number of milliseconds to wait for MongoDB::$w &#10;       replications to take place.  Inherited by instances of&#10;       MongoCollection derived from this. &#10;       w functionality is only available in version 1.5.1+ of&#10;       the MongoDB server and 1.0.8+ of the driver.&#10;      ">
-       The number of milliseconds to wait for MongoDB::$w
+       The number of milliseconds to wait for MongoDB::$w 
        replications to take place.  Inherited by instances of
-       MongoCollection derived from this.
+       MongoCollection derived from this. 
        w functionality is only available in version 1.5.1+ of
        the MongoDB server and 1.0.8+ of the driver.
       </description>
@@ -55,6 +55,7 @@
     </docblock>
     <parameter name="command" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="hash" optional="true" byreference="false" type="string"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -78,7 +79,7 @@
       <return type="array"/>
     </docblock>
     <parameter name="collection" optional="false" byreference="false" type="string"/>
-    <parameter name="a" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="document_or_id" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="drop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -95,7 +96,7 @@
   </method>
   <method name="execute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Runs JavaScript code on the database server.">The Mongo database server runs a JavaScript engine. This method allows you to run arbitary JavaScript on the database. This can be useful if you want touch a number of collections lightly, or process some results on the database side to reduce the amount that has to be sent to the client.</description>
+      <description compact="Runs JavaScript code on the database server [deprecated]">The eval command, which this method invokes, is deprecated in MongoDB 3.0+.</description>
       <return type="array"/>
     </docblock>
     <parameter name="code" optional="false" byreference="false" type="object" class="mixed"/>
@@ -114,12 +115,19 @@
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getCollectionNames" abstract="false" static="false" visibility="public" final="false">
+  <method name="getCollectionInfo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get all collections from this database"/>
+      <description compact="Returns information about collections in this database"/>
       <return type="array"/>
     </docblock>
-    <parameter name="includeSystemCollections" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getCollectionNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets an array of names for all collections in this database"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="getDBRef" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -153,6 +161,12 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="getWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the write concern for this database"/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="lastError" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Check if there was an error on the most recent db operation performed"/>
@@ -161,10 +175,10 @@
   </method>
   <method name="listCollections" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets an array of all MongoCollections for this database"/>
+      <description compact="Gets an array of MongoCollection objects for all collections in this database"/>
       <return type="array"/>
     </docblock>
-    <parameter name="includeSystemCollections" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="prevError" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -214,6 +228,14 @@
       <return type="bool"/>
     </docblock>
     <parameter name="ok" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the write concern for this database"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="w" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="wtimeout" optional="true" byreference="false" type="int"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>

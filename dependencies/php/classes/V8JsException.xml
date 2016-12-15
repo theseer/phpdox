@@ -68,7 +68,7 @@
   <method name="getJsSourceLine" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="The getJsSourceLine purpose"/>
-      <return type="int"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getJsTrace" abstract="false" static="false" visibility="public" final="true">

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SolrCollapseFunction" namespace="" name="SolrCollapseFunction">
+  <constant name="NULLPOLICY_IGNORE" value="ignore">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="NULLPOLICY_EXPAND" value="expand">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="NULLPOLICY_COLLAPSE" value="collapse">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="field" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the field that is being collapsed on."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getHint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns collapse hint"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMax" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns max parameter"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getMin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns min parameter"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getNullPolicy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns null policy"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns size parameter"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="setField" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the field to collapse on"/>
+      <return type="SolrCollapseFunction"/>
+    </docblock>
+    <parameter name="fieldName" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setHint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets collapse hint"/>
+      <return type="SolrCollapseFunction"/>
+    </docblock>
+    <parameter name="hint" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setMax" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Selects the group heads by the max value of a numeric field or function query."/>
+      <return type="SolrCollapseFunction"/>
+    </docblock>
+    <parameter name="max" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setMin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the initial size of the collapse data structures when collapsing on a numeric field only"/>
+      <return type="SolrCollapseFunction"/>
+    </docblock>
+    <parameter name="min" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setNullPolicy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the NULL Policy"/>
+      <return type="SolrCollapseFunction"/>
+    </docblock>
+    <parameter name="nullPolicy" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the initial size of the collapse data structures when collapsing on a numeric field only."/>
+      <return type="SolrCollapseFunction"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a string representing the constructed collapse function"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

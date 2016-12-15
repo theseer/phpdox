@@ -11,7 +11,7 @@
       <description compact="Creates a new DatePeriod object"/>
       <return type="void"/>
     </docblock>
-    <parameter name="start" optional="false" byreference="false" type="object" class="DateTime"/>
+    <parameter name="start" optional="false" byreference="false" type="object" class="DateTimeInterface"/>
     <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
     <parameter name="recurrences" optional="false" byreference="false" type="int"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
@@ -21,9 +21,9 @@
       <description compact="Creates a new DatePeriod object"/>
       <return type="void"/>
     </docblock>
-    <parameter name="start" optional="false" byreference="false" type="object" class="DateTime"/>
+    <parameter name="start" optional="false" byreference="false" type="object" class="DateTimeInterface"/>
     <parameter name="interval" optional="false" byreference="false" type="object" class="DateInterval"/>
-    <parameter name="end" optional="false" byreference="false" type="object" class="DateTime"/>
+    <parameter name="end" optional="false" byreference="false" type="object" class="DateTimeInterface"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </constructor>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
@@ -34,4 +34,22 @@
     <parameter name="isostr" optional="false" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="int"/>
   </constructor>
+  <method name="getDateInterval" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Gets the interval&#10;  ">Object oriented style</description>
+      <return type="DateInterval"/>
+    </docblock>
+  </method>
+  <method name="getEndDate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Gets the end date&#10;  ">Object oriented style</description>
+      <return type="DateTimeInterface"/>
+    </docblock>
+  </method>
+  <method name="getStartDate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Gets the start date&#10;  ">Object oriented style</description>
+      <return type="DateTimeInterface"/>
+    </docblock>
+  </method>
 </class>

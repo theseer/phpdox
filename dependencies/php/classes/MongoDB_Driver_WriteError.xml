@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteError" namespace="" name="MongoDB\Driver\WriteError">
+  <method name="getCode" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the WriteError's error code"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getIndex" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the index of the write operation corresponding to this WriteError"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getInfo" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns additional metadata for the WriteError"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the WriteError's error message"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

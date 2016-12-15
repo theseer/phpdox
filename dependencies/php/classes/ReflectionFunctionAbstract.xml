@@ -85,6 +85,12 @@
       <return type="array"/>
     </docblock>
   </method>
+  <method name="getReturnType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the specified return type of a function"/>
+      <return type="ReflectionType"/>
+    </docblock>
+  </method>
   <method name="getShortName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets function short name"/>
@@ -101,6 +107,12 @@
     <docblock>
       <description compact="Gets static variables"/>
       <return type="array"/>
+    </docblock>
+  </method>
+  <method name="hasReturnType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the function has a specified return type"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="inNamespace" abstract="false" static="false" visibility="public" final="false">
@@ -136,6 +148,12 @@
   <method name="isUserDefined" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if user defined"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVariadic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the function is variadic"/>
       <return type="bool"/>
     </docblock>
   </method>

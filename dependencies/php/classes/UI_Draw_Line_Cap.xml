@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Line\Cap" namespace="" name="UI\Draw\Line\Cap">
+  <constant name="Flat" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Round" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Square" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

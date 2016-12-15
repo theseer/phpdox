@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="HRTime\StopWatch" namespace="" name="HRTime\StopWatch">
+  <extends name="HRTime\PerformanceCounter" full="HRTime\PerformanceCounter"/>
+  <method name="getElapsedTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get elapsed time for all intervals."/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="unit" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getLastElapsedTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get elapsed time for the last interval."/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="unit" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getElapsedTicks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLastElapsedTicks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

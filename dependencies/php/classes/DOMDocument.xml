@@ -342,6 +342,7 @@
       <return type="bool"/>
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="schemaValidateSource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -349,6 +350,7 @@
       <return type="bool"/>
     </docblock>
     <parameter name="source" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="validate" abstract="false" static="false" visibility="public" final="false">
     <docblock>

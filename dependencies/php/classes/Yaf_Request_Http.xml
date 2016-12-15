@@ -7,11 +7,13 @@
       <return type="void"/>
     </docblock>
   </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __construct purpose"/>
+      <description compact="Constructor of Yaf_Request_Http"/>
       <return type="void"/>
     </docblock>
+    <parameter name="request_uri" optional="true" byreference="false" type="string"/>
+    <parameter name="base_uri" optional="true" byreference="false" type="string"/>
   </constructor>
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -23,7 +25,7 @@
   </method>
   <method name="getCookie" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve Cookie varialbe"/>
+      <description compact="Retrieve Cookie variable"/>
       <return type="mixed"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>

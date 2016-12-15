@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Menu" namespace="" name="UI\Menu">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Menu"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Menu Item"/>
+      <return type="UI\MenuItem"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="appendAbout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append About Menu Item"/>
+      <return type="UI\MenuItem"/>
+    </docblock>
+    <parameter name="type" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="appendCheck" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Checkable Menu Item"/>
+      <return type="UI\MenuItem"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="appendPreferences" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Preferences Menu Item"/>
+      <return type="UI\MenuItem"/>
+    </docblock>
+    <parameter name="type" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="appendQuit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Quit Menu Item"/>
+      <return type="UI\MenuItem"/>
+    </docblock>
+    <parameter name="type" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="appendSeparator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Menu Item Separator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

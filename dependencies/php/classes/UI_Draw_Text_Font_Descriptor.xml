@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Descriptor" namespace="" name="UI\Draw\Text\Font\Descriptor">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Font Descriptor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="family" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="weight" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="italic" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="stretch" optional="true" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="getFamily" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Font Family"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getItalic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Style Detection"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Size Detection"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getStretch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Style Detection"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getWeight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Weight Detection"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

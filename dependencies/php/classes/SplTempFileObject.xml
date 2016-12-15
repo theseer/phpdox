@@ -8,16 +8,6 @@
     </docblock>
     <parameter name="max_memory" optional="true" byreference="false" type="int"/>
   </constructor>
-  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
-    <parameter name="filename" optional="false" byreference="false" type="string"/>
-    <parameter name="open_mode" optional="true" byreference="false" type="string"/>
-    <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
-    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
-  </constructor>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -86,6 +76,14 @@
     <parameter name="fields" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="delimiter" optional="true" byreference="false" type="string"/>
     <parameter name="enclosure" optional="true" byreference="false" type="string"/>
+    <parameter name="escape" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="fread" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="length" optional="false" byreference="false" type="int"/>
   </method>
   <method name="fscanf" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font" namespace="" name="UI\Draw\Text\Font">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Font"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="descriptor" optional="false" byreference="false" type="object" class="UI\Draw\Text\Font\Descriptor"/>
+  </constructor>
+  <method name="getAscent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Font Metrics"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getDescent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Font Metrics"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getLeading" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Font Metrics"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getUnderlinePosition" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Font Metrics"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getUnderlineThickness" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Font Metrics"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+</class>

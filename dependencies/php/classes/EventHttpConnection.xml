@@ -9,6 +9,7 @@
     <parameter name="dns_base" optional="false" byreference="false" type="object" class="EventDnsBase"/>
     <parameter name="address" optional="false" byreference="false" type="string"/>
     <parameter name="port" optional="false" byreference="false" type="int"/>
+    <parameter name="ctx" optional="true" byreference="false" type="object" class="EventSslContext"/>
   </constructor>
   <method name="getBase" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -32,6 +33,14 @@
     <parameter name="req" optional="false" byreference="false" type="object" class="EventHttpRequest"/>
     <parameter name="type" optional="false" byreference="false" type="int"/>
     <parameter name="uri" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setCloseCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set callback for connection close"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setLocalAddress" abstract="false" static="false" visibility="public" final="false">
     <docblock>

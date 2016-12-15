@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\MenuItem" namespace="" name="UI\MenuItem">
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disable Menu Item"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enable Menu Item"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isChecked" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Detect Checked"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="onClick" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="On Click Callback"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setChecked" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Checked"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="checked" optional="false" byreference="false" type="object" class="boolean"/>
+  </method>
+</class>

@@ -2,7 +2,7 @@
 <interface xmlns="http://xml.phpdox.net/src" full="ArrayAccess" namespace="" name="ArrayAccess">
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Whether a offset exists">Whether or not an offset exists.</description>
+      <description compact="Whether an offset exists">Whether or not an offset exists.</description>
       <return type="boolean"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="object" class="mixed"/>
@@ -16,7 +16,7 @@
   </method>
   <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Offset to set"/>
+      <description compact="Assign a value to the specified offset"/>
       <return type="void"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="object" class="mixed"/>
@@ -24,7 +24,7 @@
   </method>
   <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Offset to unset">Unsets an offset.</description>
+      <description compact="Unset an offset">Unsets an offset.</description>
       <return type="void"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="object" class="mixed"/>

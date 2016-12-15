@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Yar_Server" namespace="" name="Yar_Server">
+  <member name="_executor" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Register a server"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="obj" optional="false" byreference="false" type="object" class="Object"/>
+  </constructor>
+  <method name="handle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Start RPC Server">Start a RPC HTTP server, and ready for accpet RPC requests. Usual RPC calls will be issued as HTTP POST requests. If a HTTP GET request is issued to the uri, the service information (commented section above) will be printed on the page</description>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+</class>

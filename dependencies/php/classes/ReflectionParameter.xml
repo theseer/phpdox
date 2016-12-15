@@ -44,7 +44,7 @@
   </method>
   <method name="getClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get class"/>
+      <description compact="Get the type hinted class"/>
       <return type="ReflectionClass"/>
     </docblock>
   </method>
@@ -57,7 +57,7 @@
   <method name="getDeclaringFunction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets declaring function"/>
-      <return type="ReflectionFunction"/>
+      <return type="ReflectionFunctionAbstract"/>
     </docblock>
   </method>
   <method name="getDefaultValue" abstract="false" static="false" visibility="public" final="false">
@@ -82,6 +82,18 @@
     <docblock>
       <description compact="Gets parameter position"/>
       <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a parameter's type"/>
+      <return type="ReflectionType"/>
+    </docblock>
+  </method>
+  <method name="hasType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if parameter has a type"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isArray" abstract="false" static="false" visibility="public" final="false">
@@ -117,6 +129,12 @@
   <method name="isPassedByReference" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if passed by reference"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVariadic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the parameter is variadic"/>
       <return type="bool"/>
     </docblock>
   </method>

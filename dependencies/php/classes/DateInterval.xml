@@ -52,7 +52,12 @@
   <member name="days" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       If the DateInterval object was created by&#10;       DateTime::diff, then this is the total number of&#10;       days between the start and end dates. Otherwise,&#10;       days will be FALSE.&#10;      "/>
+      <description compact="&#10;       If the DateInterval object was created by&#10;       DateTime::diff, then this is the total number of&#10;       days between the start and end dates. Otherwise,&#10;       days will be FALSE.&#10;      ">
+       If the DateInterval object was created by
+       DateTime::diff, then this is the total number of
+       days between the start and end dates. Otherwise,
+       days will be FALSE.
+      </description>
       <var type="mixed"/>
     </docblock>
   </member>

@@ -41,7 +41,7 @@
       <description compact="Constructor of Yaf_View_Simple"/>
       <return type="void"/>
     </docblock>
-    <parameter name="tempalte_dir" optional="false" byreference="false" type="string"/>
+    <parameter name="template_dir" optional="false" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="display" abstract="false" static="false" visibility="public" final="false">

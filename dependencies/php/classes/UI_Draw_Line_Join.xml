@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Line\Join" namespace="" name="UI\Draw\Line\Join">
+  <constant name="Miter" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Round" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Bevel" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+</class>

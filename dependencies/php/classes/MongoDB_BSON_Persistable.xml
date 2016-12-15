@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Persistable" namespace="" name="MongoDB\BSON\Persistable">
+  <implements name="MongoDB\BSON\Unserializable" full="MongoDB\BSON\Unserializable"/>
+  <method name="bsonSerialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array|object"/>
+    </docblock>
+  </method>
+  <method name="bsonUnserialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="MongoCursor" namespace="" name="MongoCursor">
-  <implements name="Iterator" full="Iterator"/>
+  <implements name="MongoCursorInterface" full="MongoCursorInterface"/>
   <member name="slaveOkay" static="false">
     <default>null</default>
     <docblock>
@@ -15,7 +15,7 @@
   <member name="timeout" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Set timeout in milliseconds for all database responses.  To wait forever,&#10;       use -1. Can be overridden with MongoCursor::timeout.&#10;       This does not cause the MongoDB server to cancel the operation, it just&#10;       causes the driver to stop waiting for a response and throw a&#10;       MongoCursorTimeoutException.&#10;      "/>
+      <description compact="&#10;       Set timeout in milliseconds for all database responses. Use&#10;       -1 to wait forever. Can be overridden with&#10;       MongoCursor::timeout. This does not cause the&#10;       MongoDB server to cancel the operation; it only instructs the driver to&#10;       stop waiting for a response and throw a&#10;       MongoCursorTimeoutException after a set time.&#10;      "/>
       <var type="integer"/>
     </docblock>
   </member>
@@ -66,7 +66,7 @@
   </method>
   <method name="dead" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if there are documents that have not been sent yet from the database for this cursor">The database sends responses in batches of documents, up to 4MB of documents per response. This method checks if the database has more batches or if the result set has been exhausted.</description>
+      <description compact="Checks if there are results that have not yet been sent from the database">The database sends responses in batches of documents, up to 4MB of documents per response. This method checks if the database has more batches or if the result set has been exhausted.</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -91,7 +91,7 @@
   </method>
   <method name="getNext" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Return the next object to which this cursor points, and advance the cursor"/>
+      <description compact="Advances the cursor to the next result, and returns that result"/>
       <return type="array"/>
     </docblock>
   </method>
@@ -123,14 +123,14 @@
   </method>
   <method name="info" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the query, fields, limit, and skip for this cursor"/>
+      <description compact="Gets information about the cursor's creation and iteration"/>
       <return type="array"/>
     </docblock>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the current result's _id"/>
-      <return type="string"/>
+      <description compact="Returns the current result's _id, or its index within the result set"/>
+      <return type="string|int"/>
     </docblock>
   </method>
   <method name="limit" abstract="false" static="false" visibility="public" final="false">
@@ -140,10 +140,17 @@
     </docblock>
     <parameter name="num" optional="false" byreference="false" type="int"/>
   </method>
+  <method name="maxTimeMS" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a server-side timeout for this query"/>
+      <return type="MongoCursor"/>
+    </docblock>
+    <parameter name="ms" optional="false" byreference="false" type="int"/>
+  </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Advances the cursor to the next result"/>
-      <return type="void"/>
+      <description compact="Advances the cursor to the next result, and returns that result"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="partial" abstract="false" static="false" visibility="public" final="false">
@@ -176,7 +183,7 @@
   <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the read preference for this query"/>
-      <return type="bool"/>
+      <return type="MongoCursor"/>
     </docblock>
     <parameter name="read_preference" optional="false" byreference="false" type="string"/>
     <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
@@ -190,14 +197,14 @@
   </method>
   <method name="slaveOkay" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets whether this query can be done on a secondary">Calling this will make the driver route reads to secondaries if: You are using a replica set and You created a MongoClient instance using the option "replicaSet" =&gt; "setName" and There is a healthy secondary that can be reached by the driver. You can check which server was used for this query by calling MongoCursor::info after running the query. It's server field will show which server the query was sent to.</description>
+      <description compact="Sets whether this query can be done on a secondary [deprecated]">This method is deprecated since version 1.5.0. Instead, please use MongoCursor::setReadPreference and .</description>
       <return type="MongoCursor"/>
     </docblock>
     <parameter name="okay" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="snapshot" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Use snapshot mode for the query">Use snapshot mode for the query. Snapshot mode assures no duplicates are returned, or objects missed, which were present at both the start and end of the query's execution (if an object is new during the query, or deleted during the query, it may or may not be returned, even with snapshot mode).</description>
+      <description compact="Use snapshot mode for the query">Use snapshot mode for the query. Snapshot mode ensures that a document will not be returned more than once because an intervening write operation results in a move of the document. Documents inserted or deleted during the lifetime of the cursor may or may not be returned, irrespective of snapshot mode.</description>
       <return type="MongoCursor"/>
     </docblock>
   </method>
@@ -217,7 +224,7 @@
   </method>
   <method name="timeout" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets a client-side timeout for this query">A timeout can be set at any time and will affect subsequent queries on the cursor, including fetching more results from the database. For example, to wait forever for an initial response but timeout after 100 ms for subsequent results, one could say: &lt;?php $cursor = $collection-&gt;find(); // $cursor-&gt;hasNext() executes the query. No timeout has been set, so the // program will wait as long as necessary for a response. while ($cursor-&gt;hasNext()) { $cursor-&gt;timeout(100); // now the timeout has been set, so if the cursor needs to get more results // from the database, it will only wait 100 ms for the database's reply try { print_r($cursor-&gt;getNext()); } catch(MongoCursorTimeoutException $e) { echo "query took too long!"; } } ?&gt;</description>
+      <description compact="Sets a client-side timeout for this query"/>
       <return type="MongoCursor"/>
     </docblock>
     <parameter name="ms" optional="false" byreference="false" type="int"/>

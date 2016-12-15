@@ -37,11 +37,11 @@
   </constant>
   <method name="areConfusable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if a given text contains any confusable characters"/>
+      <description compact="Checks if given strings can be confused"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="s1" optional="false" byreference="false" type="string"/>
-    <parameter name="s2" optional="false" byreference="false" type="string"/>
+    <parameter name="str1" optional="false" byreference="false" type="string"/>
+    <parameter name="str2" optional="false" byreference="false" type="string"/>
     <parameter name="error" optional="true" byreference="false" type="string"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
@@ -70,6 +70,6 @@
       <description compact="Set the checks to run"/>
       <return type="void"/>
     </docblock>
-    <parameter name="checks" optional="false" byreference="false" type="string"/>
+    <parameter name="checks" optional="false" byreference="false" type="object" class="long"/>
   </method>
 </class>

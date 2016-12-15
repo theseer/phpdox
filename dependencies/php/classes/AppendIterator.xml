@@ -23,7 +23,7 @@
   <method name="getArrayIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the ArrayIterator"/>
-      <return type="void"/>
+      <return type="ArrayIterator"/>
     </docblock>
   </method>
   <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">

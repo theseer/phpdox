@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ZMQSocket" namespace="" name="ZMQSocket">
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Bind the socket"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="dsn" optional="false" byreference="false" type="string"/>
+    <parameter name="force" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect the socket"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="dsn" optional="false" byreference="false" type="string"/>
+    <parameter name="force" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Construct a new ZMQSocket"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="context" optional="false" byreference="false" type="object" class="ZMQContext"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
+    <parameter name="persistent_id" optional="true" byreference="false" type="string"/>
+    <parameter name="on_new_socket" optional="true" byreference="false" type="object" class="callback"/>
+  </constructor>
+  <method name="disconnect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disconnect a socket"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="dsn" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getEndpoints" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get list of endpoints"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getPersistentId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the persistent id"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSocketType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the socket type"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getSockOpt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get socket option"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="isPersistent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether the socket is persistent"/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="recv" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Receives a message"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="recvMulti" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Receives a multipart message"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="send" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a message"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="send" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sends a message"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setSockOpt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a socket option"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="unbind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unbind the socket"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="dsn" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

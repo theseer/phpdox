@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Exception\WriteException" namespace="" name="MongoDB\Driver\Exception\WriteException">
+  <implements name="MongoDB\Driver\Exception\Exception" full="MongoDB\Driver\Exception\Exception"/>
+  <member name="writeResult" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       The MongoDB\Driver\WriteResult associated with&#10;       the failed write operation.&#10;      "/>
+      <var type="MongoDB\Driver\WriteResult"/>
+    </docblock>
+  </member>
+  <member name="message" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The exception message"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="code" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The exception code"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="file" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The filename where the exception was created"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="line" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The line where the exception was created"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <method name="getWriteResult" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the WriteResult for the failed write operation"/>
+      <return type="MongoDB\Driver\WriteResult"/>
+    </docblock>
+  </method>
+  <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="Exception"/>
+    </docblock>
+  </method>
+  <method name="getCode" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getFile" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLine" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTrace" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getTraceAsString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__clone" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

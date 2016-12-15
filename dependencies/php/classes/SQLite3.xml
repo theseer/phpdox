@@ -38,6 +38,14 @@
     <parameter name="final_callback" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="argument_count" optional="true" byreference="false" type="int"/>
   </method>
+  <method name="createCollation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Registers a PHP function for use as an SQL collating function"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
   <method name="createFunction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Registers a PHP function for use as an SQL scalar function"/>
@@ -47,9 +55,16 @@
     <parameter name="callback" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="argument_count" optional="true" byreference="false" type="int"/>
   </method>
+  <method name="enableExceptions" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="&#10;   Enable throwing exceptions&#10;  "/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="enableExceptions" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
   <method name="escapeString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns a string that has been properly escaped"/>
+      <description compact="Returns a string that has been properly escaped">Returns a string that has been properly escaped for safe inclusion in an SQL statement.</description>
       <return type="string"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
@@ -94,6 +109,16 @@
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="encryption_key" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Opens an SQLite database"/>
+      <return type="resource"/>
+    </docblock>
+    <parameter name="table" optional="false" byreference="false" type="string"/>
+    <parameter name="column" optional="false" byreference="false" type="string"/>
+    <parameter name="rowid" optional="false" byreference="false" type="int"/>
+    <parameter name="dbname" optional="true" byreference="false" type="string"/>
   </method>
   <method name="prepare" abstract="false" static="false" visibility="public" final="false">
     <docblock>

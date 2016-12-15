@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Manager" namespace="" name="MongoDB\Driver\Manager">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Create new MongoDB Manager"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="uri" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="driverOptions" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="executeBulkWrite" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute one or more write operations">Executes one or more write operations on the primary server.</description>
+      <return type="MongoDB\Driver\WriteResult"/>
+    </docblock>
+    <parameter name="namespace" optional="false" byreference="false" type="string"/>
+    <parameter name="bulk" optional="false" byreference="false" type="object" class="MongoDB\Driver\BulkWrite"/>
+    <parameter name="writeConcern" optional="true" byreference="false" type="object" class="MongoDB\Driver\WriteConcern"/>
+  </method>
+  <method name="executeCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command"/>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+  </method>
+  <method name="executeQuery" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database query"/>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="namespace" optional="false" byreference="false" type="string"/>
+    <parameter name="query" optional="false" byreference="false" type="object" class="MongoDB\Driver\Query"/>
+    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+  </method>
+  <method name="getServers" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Return the servers to which this manager is connected">Returns an array of MongoDB\Driver\Server instances to which this manager is connected.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="selectServer" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Select a server matching a read preference"/>
+      <return type="MongoDB\Driver\Server"/>
+    </docblock>
+    <parameter name="readPreference" optional="false" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+  </method>
+</class>

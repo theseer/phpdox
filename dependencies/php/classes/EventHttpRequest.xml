@@ -76,6 +76,12 @@
       <return type="void"/>
     </docblock>
   </method>
+  <method name="closeConnection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes associated HTTP connection"/>
+      <return type="void"/>
+    </docblock>
+  </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs EventHttpRequest object"/>
@@ -98,10 +104,22 @@
       <return type="void"/>
     </docblock>
   </method>
+  <method name="closeConnection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes associated HTTP connection"/>
+      <return type="EventBufferEvent"/>
+    </docblock>
+  </method>
   <method name="getCommand" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the request command(method)"/>
       <return type="void"/>
+    </docblock>
+  </method>
+  <method name="closeConnection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Closes associated HTTP connection"/>
+      <return type="EventHttpConnection"/>
     </docblock>
   </method>
   <method name="getHost" abstract="false" static="false" visibility="public" final="false">
@@ -130,13 +148,13 @@
   </method>
   <method name="getOutputHeaders" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns associative array of the input headers"/>
+      <description compact="Returns associative array of the output headers"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="getResponseCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the the response code"/>
+      <description compact="Returns the response code"/>
       <return type="int"/>
     </docblock>
   </method>

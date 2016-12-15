@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Box" namespace="" name="UI\Controls\Box">
+  <extends name="UI\Control" full="UI\Control"/>
+  <constant name="Vertical" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Horizontal" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="controls" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Contains controls, should not be manipulated directly&#10;      "/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Box"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="orientation" optional="true" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append Control"/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="control" optional="false" byreference="false" type="object" class="Control"/>
+    <parameter name="stretchy" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete Control"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getOrientation" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Orientation"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="isPadded" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Padding Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setPadded" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Padding"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="padded" optional="false" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="UI\Control"/>
+    </docblock>
+  </method>
+  <method name="getTopLevel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hide" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVisible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="parent" optional="false" byreference="false" type="object" class="UI\Control"/>
+  </method>
+  <method name="show" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Ds\Queue" namespace="" name="Ds\Queue">
+  <implements name="Ds\Collection" full="Ds\Collection"/>
+  <constant name="MIN_CAPACITY" value="8">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <method name="allocate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Allocates enough memory for a required capacity.">Ensures that enough memory is allocated for a required capacity. This removes the need to reallocate the internal as values are added.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="capacity" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="capacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current capacity."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all values."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a shallow copy of the queue."/>
+      <return type="Ds\Queue"/>
+    </docblock>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the queue is empty"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="peek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value at the front of the queue."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes and returns the value at the front of the queue."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pushes values into the queue."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Converts the queue to an array.&#10;  ">Converts the queue to an array.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

@@ -56,7 +56,7 @@
   <method name="countNameservers" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the number of configured nameservers"/>
-      <return type="void"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="loadHosts" abstract="false" static="false" visibility="public" final="false">

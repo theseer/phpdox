@@ -39,7 +39,7 @@
   <member name="internalSubset" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The internal subset as a string, or null if there is none. This is&#10;       does not contain the delimiting square brackets.&#10;      "/>
+      <description compact="&#10;       The internal subset as a string, or null if there is none. This&#10;       does not contain the delimiting square brackets.&#10;      "/>
       <var type="string"/>
     </docblock>
   </member>

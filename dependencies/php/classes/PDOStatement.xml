@@ -53,7 +53,7 @@
   </method>
   <method name="debugDumpParams" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Dump an SQL prepared command&#10;  ">Dumps the informations contained by a prepared statement directly on the output. It will provide the SQL query in use, the number of parameters used (Params), the list of parameters, with their name, type (paramtype) as an integer, their key name or position, the value, and the position in the query (if this is supported by the PDO driver, otherwise, it will be -1).</description>
+      <description compact="&#10;   Dump an SQL prepared command&#10;  ">Dumps the information contained by a prepared statement directly on the output. It will provide the SQL query in use, the number of parameters used (Params), the list of parameters with their key name or position, their name, their position in the query (if this is supported by the PDO driver, otherwise, it will be -1), type (param_type) as an integer, and a boolean value is_param.</description>
       <return type="void"/>
     </docblock>
   </method>
@@ -71,7 +71,7 @@
   </method>
   <method name="execute" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Executes a prepared statement&#10;  ">Execute the prepared statement. If the prepared statement included parameter markers, you must either: call PDOStatement::bindParam to bind PHP variables to the parameter markers: bound variables pass their value as input and receive the output value, if any, of their associated parameter markers or pass an array of input-only parameter values</description>
+      <description compact="&#10;   Executes a prepared statement&#10;  ">Execute the prepared statement. If the prepared statement included parameter markers, either: PDOStatement::bindParam and/or PDOStatement::bindValue has to be called to bind either variables or values (respectively) to the parameter markers. Bound variables pass their value as input and receive the output value, if any, of their associated parameter markers or an array of input-only parameter values has to be passed</description>
       <return type="bool"/>
     </docblock>
     <parameter name="input_parameters" optional="true" byreference="false" type="object" class="array"/>
@@ -96,14 +96,14 @@
   </method>
   <method name="fetchColumn" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Returns a single column from the next row of a result set&#10;  "/>
-      <return type="string"/>
+      <description compact="&#10;   Returns a single column from the next row of a result set&#10;  ">Returns a single column from the next row of a result set or FALSE if there are no more rows.</description>
+      <return type="mixed"/>
     </docblock>
     <parameter name="column_number" optional="true" byreference="false" type="int"/>
   </method>
   <method name="fetchObject" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Fetches the next row and returns it as an object."/>
+      <description compact="Fetches the next row and returns it as an object.">Fetches the next row and returns it as an object. This function is an alternative to PDOStatement::fetch with PDO::FETCH_CLASS or PDO::FETCH_OBJ style.</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="class_name" optional="true" byreference="false" type="string"/>

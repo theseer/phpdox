@@ -39,14 +39,14 @@
   <method name="containsIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if an iterator is attached"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
   </method>
   <method name="countIterators" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the number of attached iterator instances"/>
-      <return type="void"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
@@ -65,7 +65,7 @@
   <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Gets the flag information"/>
-      <return type="void"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
@@ -96,7 +96,7 @@
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks the validity of sub iterators"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

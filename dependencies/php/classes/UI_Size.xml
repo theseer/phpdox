@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Size" namespace="" name="UI\Size">
+  <member name="width" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Holds the width, can be read/written directly&#10;      "/>
+    </docblock>
+  </member>
+  <member name="height" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Holds the height, can be read/written directly&#10;      "/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Size"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="getHeight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves Height"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getWidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrives Width"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="of" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Point Coercion"/>
+      <return type="UI\Size"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="of" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Point Coercion"/>
+      <return type="UI\Size"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+  </method>
+  <method name="setHeight" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Height"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setWidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Width"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

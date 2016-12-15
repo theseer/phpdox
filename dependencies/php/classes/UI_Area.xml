@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Area" namespace="" name="UI\Area">
+  <extends name="UI\Control" full="UI\Control"/>
+  <constant name="Ctrl" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Alt" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Shift" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Super" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Down" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Up" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="onDraw" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Draw Callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="pen" optional="false" byreference="false" type="object" class="UI\Draw\Pen"/>
+    <parameter name="areaSize" optional="false" byreference="false" type="object" class="UI\Size"/>
+    <parameter name="clipPoint" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="clipSize" optional="false" byreference="false" type="object" class="UI\Size"/>
+  </method>
+  <method name="onKey" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Key Callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="ext" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="flags" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="onMouse" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Mouse Callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="areaPoint" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="areaSize" optional="false" byreference="false" type="object" class="UI\Size"/>
+    <parameter name="flags" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="redraw" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Redraw Area"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="scrollTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Area Scroll"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="size" optional="false" byreference="false" type="object" class="UI\Size"/>
+  </method>
+  <method name="setSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Size"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="UI\Size"/>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="UI\Control"/>
+    </docblock>
+  </method>
+  <method name="getTopLevel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hide" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVisible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="parent" optional="false" byreference="false" type="object" class="UI\Control"/>
+  </method>
+  <method name="show" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

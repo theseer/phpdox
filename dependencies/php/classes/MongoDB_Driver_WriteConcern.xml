@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteConcern" namespace="" name="MongoDB\Driver\WriteConcern">
+  <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
+  <constant name="MAJORITY" value="majority">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <method name="bsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an object for BSON serialization"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct immutable WriteConcern"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="w" optional="false" byreference="false" type="object" class="string|int"/>
+    <parameter name="wtimeout" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="journal" optional="true" byreference="false" type="object" class="boolean"/>
+  </constructor>
+  <method name="getJournal" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the WriteConcern's &quot;journal&quot; option"/>
+      <return type="bool|null"/>
+    </docblock>
+  </method>
+  <method name="getW" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the WriteConcern's &quot;w&quot; option"/>
+      <return type="string|int|null"/>
+    </docblock>
+  </method>
+  <method name="getWtimeout" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the WriteConcern's &quot;wtimeout&quot; option"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

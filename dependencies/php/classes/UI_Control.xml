@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Control" namespace="" name="UI\Control">
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destroy Control"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="disable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Disable Control"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="enable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enable Control"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Parent Control"/>
+      <return type="UI\Control"/>
+    </docblock>
+  </method>
+  <method name="getTopLevel" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Top Level"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="hide" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Hide Control"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine if Control is enabled"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isVisible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine if Control is visible"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setParent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Parent Control"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="parent" optional="false" byreference="false" type="object" class="UI\Control"/>
+  </method>
+  <method name="show" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Control Show"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

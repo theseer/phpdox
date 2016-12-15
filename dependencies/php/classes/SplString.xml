@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="SplString" namespace="" name="SplString">
   <extends name="SplType" full="SplType"/>
-  <constant name="__default" value="0">
+  <constant name="__default" value="''">
     <docblock>
-      <var type="integer"/>
+      <var type="string"/>
     </docblock>
   </constant>
   <constructor name="__construct" abstract="false" static="false" final="false">

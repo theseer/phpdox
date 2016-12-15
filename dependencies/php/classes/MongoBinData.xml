@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="MongoBinData" namespace="" name="MongoBinData">
+  <constant name="GENERIC" value="0">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
   <constant name="FUNC" value="1">
     <docblock>
       <var type="int"/>
@@ -11,6 +16,11 @@
     </docblock>
   </constant>
   <constant name="UUID" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="UUID_RFC4122" value="4">
     <docblock>
       <var type="int"/>
     </docblock>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\ObjectID" namespace="" name="MongoDB\BSON\ObjectID">
+  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct a new ObjectID"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="id" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the hexidecimal representation of this ObjectID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

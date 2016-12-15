@@ -1,0 +1,3434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="IntlChar" namespace="" name="IntlChar">
+  <constant name="UNICODE_VERSION" value="6.3">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="CODEPOINT_MIN" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CODEPOINT_MAX" value="1114111">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NO_NUMERIC_VALUE" value="-123456789">
+    <docblock>
+      <var type="float"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_ALPHABETIC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BINARY_START" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_ASCII_HEX_DIGIT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BIDI_CONTROL" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BIDI_MIRRORED" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DASH" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DEFAULT_IGNORABLE_CODE_POINT" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DEPRECATED" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DIACRITIC" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_EXTENDER" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_FULL_COMPOSITION_EXCLUSION" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_GRAPHEME_BASE" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_GRAPHEME_EXTEND" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_GRAPHEME_LINK" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_HEX_DIGIT" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_HYPHEN" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_ID_CONTINUE" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_ID_START" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_IDEOGRAPHIC" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_IDS_BINARY_OPERATOR" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_IDS_TRINARY_OPERATOR" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_JOIN_CONTROL" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_LOGICAL_ORDER_EXCEPTION" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_LOWERCASE" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_MATH" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NONCHARACTER_CODE_POINT" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_QUOTATION_MARK" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_RADICAL" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SOFT_DOTTED" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_TERMINAL_PUNCTUATION" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_UNIFIED_IDEOGRAPH" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_UPPERCASE" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_WHITE_SPACE" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_XID_CONTINUE" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_XID_START" value="33">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CASE_SENSITIVE" value="34">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_S_TERM" value="35">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_VARIATION_SELECTOR" value="36">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFD_INERT" value="37">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFKD_INERT" value="38">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFC_INERT" value="39">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFKC_INERT" value="40">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SEGMENT_STARTER" value="41">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_PATTERN_SYNTAX" value="42">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_PATTERN_WHITE_SPACE" value="43">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_POSIX_ALNUM" value="44">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_POSIX_BLANK" value="45">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_POSIX_GRAPH" value="46">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_POSIX_PRINT" value="47">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_POSIX_XDIGIT" value="48">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CASED" value="49">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CASE_IGNORABLE" value="50">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CHANGES_WHEN_LOWERCASED" value="51">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CHANGES_WHEN_UPPERCASED" value="52">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CHANGES_WHEN_TITLECASED" value="53">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CHANGES_WHEN_CASEFOLDED" value="54">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CHANGES_WHEN_CASEMAPPED" value="55">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CHANGES_WHEN_NFKC_CASEFOLDED" value="56">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BINARY_LIMIT" value="57">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BIDI_CLASS" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_INT_START" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BLOCK" value="4097">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CANONICAL_COMBINING_CLASS" value="4098">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DECOMPOSITION_TYPE" value="4099">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_EAST_ASIAN_WIDTH" value="4100">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_GENERAL_CATEGORY" value="4101">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_JOINING_GROUP" value="4102">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_JOINING_TYPE" value="4103">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_LINE_BREAK" value="4104">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NUMERIC_TYPE" value="4105">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SCRIPT" value="4106">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_HANGUL_SYLLABLE_TYPE" value="4107">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFD_QUICK_CHECK" value="4108">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFKD_QUICK_CHECK" value="4109">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFC_QUICK_CHECK" value="4110">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NFKC_QUICK_CHECK" value="4111">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_LEAD_CANONICAL_COMBINING_CLASS" value="4112">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_TRAIL_CANONICAL_COMBINING_CLASS" value="4113">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_GRAPHEME_CLUSTER_BREAK" value="4114">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SENTENCE_BREAK" value="4115">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_WORD_BREAK" value="4116">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BIDI_PAIRED_BRACKET_TYPE" value="4117">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_INT_LIMIT" value="4118">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_GENERAL_CATEGORY_MASK" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_MASK_START" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_MASK_LIMIT" value="8193">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NUMERIC_VALUE" value="12288">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DOUBLE_START" value="12288">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_DOUBLE_LIMIT" value="12289">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_AGE" value="16384">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_STRING_START" value="16384">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BIDI_MIRRORING_GLYPH" value="16385">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_CASE_FOLDING" value="16386">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_ISO_COMMENT" value="16387">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_LOWERCASE_MAPPING" value="16388">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NAME" value="16389">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SIMPLE_CASE_FOLDING" value="16390">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SIMPLE_LOWERCASE_MAPPING" value="16391">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SIMPLE_TITLECASE_MAPPING" value="16392">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SIMPLE_UPPERCASE_MAPPING" value="16393">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_TITLECASE_MAPPING" value="16394">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_UNICODE_1_NAME" value="16395">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_UPPERCASE_MAPPING" value="16396">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_BIDI_PAIRED_BRACKET" value="16397">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_STRING_LIMIT" value="16398">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_SCRIPT_EXTENSIONS" value="28672">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_OTHER_PROPERTY_START" value="28672">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_OTHER_PROPERTY_LIMIT" value="28673">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_INVALID_CODE" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_UNASSIGNED" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_GENERAL_OTHER_TYPES" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_UPPERCASE_LETTER" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_LOWERCASE_LETTER" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_TITLECASE_LETTER" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_MODIFIER_LETTER" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_OTHER_LETTER" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_NON_SPACING_MARK" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_ENCLOSING_MARK" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_COMBINING_SPACING_MARK" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_DECIMAL_DIGIT_NUMBER" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_LETTER_NUMBER" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_OTHER_NUMBER" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_SPACE_SEPARATOR" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_LINE_SEPARATOR" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_PARAGRAPH_SEPARATOR" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_CONTROL_CHAR" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_FORMAT_CHAR" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_PRIVATE_USE_CHAR" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_SURROGATE" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_DASH_PUNCTUATION" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_START_PUNCTUATION" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_END_PUNCTUATION" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_CONNECTOR_PUNCTUATION" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_OTHER_PUNCTUATION" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_MATH_SYMBOL" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_CURRENCY_SYMBOL" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_MODIFIER_SYMBOL" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_OTHER_SYMBOL" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_INITIAL_PUNCTUATION" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_FINAL_PUNCTUATION" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_CATEGORY_CHAR_CATEGORY_COUNT" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_LEFT_TO_RIGHT" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_RIGHT_TO_LEFT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_EUROPEAN_NUMBER" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_EUROPEAN_NUMBER_SEPARATOR" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_EUROPEAN_NUMBER_TERMINATOR" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_ARABIC_NUMBER" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_COMMON_NUMBER_SEPARATOR" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_BLOCK_SEPARATOR" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_SEGMENT_SEPARATOR" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_WHITE_SPACE_NEUTRAL" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_OTHER_NEUTRAL" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_LEFT_TO_RIGHT_EMBEDDING" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_LEFT_TO_RIGHT_OVERRIDE" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_RIGHT_TO_LEFT_ARABIC" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_RIGHT_TO_LEFT_EMBEDDING" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_RIGHT_TO_LEFT_OVERRIDE" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_POP_DIRECTIONAL_FORMAT" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_DIR_NON_SPACING_MARK" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_BOUNDARY_NEUTRAL" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_FIRST_STRONG_ISOLATE" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_LEFT_TO_RIGHT_ISOLATE" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_RIGHT_TO_LEFT_ISOLATE" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_POP_DIRECTIONAL_ISOLATE" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_DIRECTION_CHAR_DIRECTION_COUNT" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_NO_BLOCK" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BASIC_LATIN" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LATIN_1_SUPPLEMENT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LATIN_EXTENDED_A" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LATIN_EXTENDED_B" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_IPA_EXTENSIONS" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SPACING_MODIFIER_LETTERS" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COMBINING_DIACRITICAL_MARKS" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GREEK" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CYRILLIC" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARMENIAN" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HEBREW" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARABIC" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SYRIAC" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_THAANA" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_DEVANAGARI" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BENGALI" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GURMUKHI" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GUJARATI" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ORIYA" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAMIL" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TELUGU" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KANNADA" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MALAYALAM" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SINHALA" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_THAI" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LAO" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TIBETAN" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MYANMAR" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GEORGIAN" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HANGUL_JAMO" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ETHIOPIC" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CHEROKEE" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS" value="33">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OGHAM" value="34">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_RUNIC" value="35">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KHMER" value="36">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MONGOLIAN" value="37">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LATIN_EXTENDED_ADDITIONAL" value="38">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GREEK_EXTENDED" value="39">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GENERAL_PUNCTUATION" value="40">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPERSCRIPTS_AND_SUBSCRIPTS" value="41">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CURRENCY_SYMBOLS" value="42">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COMBINING_MARKS_FOR_SYMBOLS" value="43">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LETTERLIKE_SYMBOLS" value="44">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_NUMBER_FORMS" value="45">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARROWS" value="46">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MATHEMATICAL_OPERATORS" value="47">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MISCELLANEOUS_TECHNICAL" value="48">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CONTROL_PICTURES" value="49">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OPTICAL_CHARACTER_RECOGNITION" value="50">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ENCLOSED_ALPHANUMERICS" value="51">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BOX_DRAWING" value="52">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BLOCK_ELEMENTS" value="53">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GEOMETRIC_SHAPES" value="54">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MISCELLANEOUS_SYMBOLS" value="55">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_DINGBATS" value="56">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BRAILLE_PATTERNS" value="57">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_RADICALS_SUPPLEMENT" value="58">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KANGXI_RADICALS" value="59">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_IDEOGRAPHIC_DESCRIPTION_CHARACTERS" value="60">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_SYMBOLS_AND_PUNCTUATION" value="61">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HIRAGANA" value="62">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KATAKANA" value="63">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BOPOMOFO" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HANGUL_COMPATIBILITY_JAMO" value="65">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KANBUN" value="66">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BOPOMOFO_EXTENDED" value="67">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ENCLOSED_CJK_LETTERS_AND_MONTHS" value="68">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_COMPATIBILITY" value="69">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A" value="70">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_UNIFIED_IDEOGRAPHS" value="71">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_YI_SYLLABLES" value="72">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_YI_RADICALS" value="73">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HANGUL_SYLLABLES" value="74">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HIGH_SURROGATES" value="75">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HIGH_PRIVATE_USE_SURROGATES" value="76">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LOW_SURROGATES" value="77">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PRIVATE_USE_AREA" value="78">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PRIVATE_USE" value="78">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_COMPATIBILITY_IDEOGRAPHS" value="79">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ALPHABETIC_PRESENTATION_FORMS" value="80">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARABIC_PRESENTATION_FORMS_A" value="81">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COMBINING_HALF_MARKS" value="82">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_COMPATIBILITY_FORMS" value="83">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SMALL_FORM_VARIANTS" value="84">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARABIC_PRESENTATION_FORMS_B" value="85">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SPECIALS" value="86">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HALFWIDTH_AND_FULLWIDTH_FORMS" value="87">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OLD_ITALIC" value="88">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GOTHIC" value="89">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_DESERET" value="90">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BYZANTINE_MUSICAL_SYMBOLS" value="91">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MUSICAL_SYMBOLS" value="92">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MATHEMATICAL_ALPHANUMERIC_SYMBOLS" value="93">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B" value="94">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT" value="95">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAGS" value="96">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CYRILLIC_SUPPLEMENT" value="97">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CYRILLIC_SUPPLEMENTARY" value="97">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAGALOG" value="98">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HANUNOO" value="99">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BUHID" value="100">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAGBANWA" value="101">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A" value="102">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPPLEMENTAL_ARROWS_A" value="103">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPPLEMENTAL_ARROWS_B" value="104">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B" value="105">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPPLEMENTAL_MATHEMATICAL_OPERATORS" value="106">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KATAKANA_PHONETIC_EXTENSIONS" value="107">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_VARIATION_SELECTORS" value="108">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPPLEMENTARY_PRIVATE_USE_AREA_A" value="109">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPPLEMENTARY_PRIVATE_USE_AREA_B" value="110">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LIMBU" value="111">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAI_LE" value="112">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KHMER_SYMBOLS" value="113">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PHONETIC_EXTENSIONS" value="114">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MISCELLANEOUS_SYMBOLS_AND_ARROWS" value="115">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_YIJING_HEXAGRAM_SYMBOLS" value="116">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LINEAR_B_SYLLABARY" value="117">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LINEAR_B_IDEOGRAMS" value="118">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_AEGEAN_NUMBERS" value="119">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_UGARITIC" value="120">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SHAVIAN" value="121">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OSMANYA" value="122">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CYPRIOT_SYLLABARY" value="123">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAI_XUAN_JING_SYMBOLS" value="124">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_VARIATION_SELECTORS_SUPPLEMENT" value="125">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ANCIENT_GREEK_MUSICAL_NOTATION" value="126">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ANCIENT_GREEK_NUMBERS" value="127">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARABIC_SUPPLEMENT" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BUGINESE" value="129">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_STROKES" value="130">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COMBINING_DIACRITICAL_MARKS_SUPPLEMENT" value="131">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COPTIC" value="132">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ETHIOPIC_EXTENDED" value="133">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ETHIOPIC_SUPPLEMENT" value="134">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GEORGIAN_SUPPLEMENT" value="135">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_GLAGOLITIC" value="136">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KHAROSHTHI" value="137">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MODIFIER_TONE_LETTERS" value="138">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_NEW_TAI_LUE" value="139">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OLD_PERSIAN" value="140">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PHONETIC_EXTENSIONS_SUPPLEMENT" value="141">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUPPLEMENTAL_PUNCTUATION" value="142">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SYLOTI_NAGRI" value="143">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TIFINAGH" value="144">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_VERTICAL_FORMS" value="145">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_NKO" value="146">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BALINESE" value="147">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LATIN_EXTENDED_C" value="148">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LATIN_EXTENDED_D" value="149">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PHAGS_PA" value="150">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PHOENICIAN" value="151">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CUNEIFORM" value="152">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CUNEIFORM_NUMBERS_AND_PUNCTUATION" value="153">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COUNTING_ROD_NUMERALS" value="154">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUNDANESE" value="155">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LEPCHA" value="156">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OL_CHIKI" value="157">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CYRILLIC_EXTENDED_A" value="158">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_VAI" value="159">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CYRILLIC_EXTENDED_B" value="160">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SAURASHTRA" value="161">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KAYAH_LI" value="162">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_REJANG" value="163">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CHAM" value="164">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ANCIENT_SYMBOLS" value="165">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PHAISTOS_DISC" value="166">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LYCIAN" value="167">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CARIAN" value="168">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LYDIAN" value="169">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MAHJONG_TILES" value="170">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_DOMINO_TILES" value="171">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SAMARITAN" value="172">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED" value="173">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAI_THAM" value="174">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_VEDIC_EXTENSIONS" value="175">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_LISU" value="176">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BAMUM" value="177">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COMMON_INDIC_NUMBER_FORMS" value="178">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_DEVANAGARI_EXTENDED" value="179">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HANGUL_JAMO_EXTENDED_A" value="180">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_JAVANESE" value="181">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MYANMAR_EXTENDED_A" value="182">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAI_VIET" value="183">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MEETEI_MAYEK" value="184">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_HANGUL_JAMO_EXTENDED_B" value="185">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_IMPERIAL_ARAMAIC" value="186">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OLD_SOUTH_ARABIAN" value="187">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_AVESTAN" value="188">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_INSCRIPTIONAL_PARTHIAN" value="189">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_INSCRIPTIONAL_PAHLAVI" value="190">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_OLD_TURKIC" value="191">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_RUMI_NUMERAL_SYMBOLS" value="192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KAITHI" value="193">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_EGYPTIAN_HIEROGLYPHS" value="194">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ENCLOSED_ALPHANUMERIC_SUPPLEMENT" value="195">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ENCLOSED_IDEOGRAPHIC_SUPPLEMENT" value="196">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C" value="197">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MANDAIC" value="198">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BATAK" value="199">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ETHIOPIC_EXTENDED_A" value="200">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BRAHMI" value="201">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_BAMUM_SUPPLEMENT" value="202">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_KANA_SUPPLEMENT" value="203">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_PLAYING_CARDS" value="204">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS" value="205">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_EMOTICONS" value="206">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TRANSPORT_AND_MAP_SYMBOLS" value="207">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ALCHEMICAL_SYMBOLS" value="208">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D" value="209">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARABIC_EXTENDED_A" value="210">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS" value="211">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_CHAKMA" value="212">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MEETEI_MAYEK_EXTENSIONS" value="213">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MEROITIC_CURSIVE" value="214">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MEROITIC_HIEROGLYPHS" value="215">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_MIAO" value="216">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SHARADA" value="217">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SORA_SOMPENG" value="218">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_SUNDANESE_SUPPLEMENT" value="219">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_TAKRI" value="220">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_COUNT" value="221">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BLOCK_CODE_INVALID_CODE" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BPT_NONE" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BPT_OPEN" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BPT_CLOSE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BPT_COUNT" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_NEUTRAL" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_AMBIGUOUS" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_HALFWIDTH" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_FULLWIDTH" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_NARROW" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_WIDE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EA_COUNT" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNICODE_CHAR_NAME" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNICODE_10_CHAR_NAME" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="EXTENDED_CHAR_NAME" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_NAME_ALIAS" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHAR_NAME_CHOICE_COUNT" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SHORT_PROPERTY_NAME" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LONG_PROPERTY_NAME" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="PROPERTY_NAME_CHOICE_COUNT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_NONE" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_CANONICAL" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_COMPAT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_CIRCLE" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_FINAL" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_FONT" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_FRACTION" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_INITIAL" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_ISOLATED" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_MEDIAL" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_NARROW" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_NOBREAK" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_SMALL" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_SQUARE" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_SUB" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_SUPER" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_VERTICAL" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_WIDE" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DT_COUNT" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_NON_JOINING" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_JOIN_CAUSING" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_DUAL_JOINING" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_LEFT_JOINING" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_RIGHT_JOINING" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_TRANSPARENT" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JT_COUNT" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_NO_JOINING_GROUP" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_AIN" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_ALAPH" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_ALEF" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_BEH" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_BETH" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_DAL" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_DALATH_RISH" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_E" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_FEH" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_FINAL_SEMKATH" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_GAF" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_GAMAL" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_HAH" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_TEH_MARBUTA_GOAL" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_HAMZA_ON_HEH_GOAL" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_HE" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_HEH" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_HEH_GOAL" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_HETH" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_KAF" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_KAPH" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_KNOTTED_HEH" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_LAM" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_LAMADH" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_MEEM" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_MIM" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_NOON" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_NUN" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_PE" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_QAF" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_QAPH" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_REH" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_REVERSED_PE" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SAD" value="33">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SADHE" value="34">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SEEN" value="35">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SEMKATH" value="36">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SHIN" value="37">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SWASH_KAF" value="38">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_SYRIAC_WAW" value="39">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_TAH" value="40">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_TAW" value="41">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_TEH_MARBUTA" value="42">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_TETH" value="43">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_WAW" value="44">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_YEH" value="45">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_YEH_BARREE" value="46">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_YEH_WITH_TAIL" value="47">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_YUDH" value="48">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_YUDH_HE" value="49">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_ZAIN" value="50">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_FE" value="51">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_KHAPH" value="52">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_ZHAIN" value="53">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_BURUSHASKI_YEH_BARREE" value="54">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_FARSI_YEH" value="55">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_NYA" value="56">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_ROHINGYA_YEH" value="57">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="JG_COUNT" value="58">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_OTHER" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_CONTROL" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_CR" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_EXTEND" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_L" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_LF" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_LV" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_LVT" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_T" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_V" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_SPACING_MARK" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_PREPEND" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_REGIONAL_INDICATOR" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="GCB_COUNT" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_OTHER" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_ALETTER" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_FORMAT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_KATAKANA" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_MIDLETTER" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_MIDNUM" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_NUMERIC" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_EXTENDNUMLET" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_CR" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_EXTEND" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_LF" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_MIDNUMLET" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_NEWLINE" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_REGIONAL_INDICATOR" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_HEBREW_LETTER" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_SINGLE_QUOTE" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_DOUBLE_QUOTE" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WB_COUNT" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_OTHER" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_ATERM" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_CLOSE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_FORMAT" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_LOWER" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_NUMERIC" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_OLETTER" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_SEP" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_SP" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_STERM" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_UPPER" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_CR" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_EXTEND" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_LF" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_SCONTINUE" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SB_COUNT" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_UNKNOWN" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_AMBIGUOUS" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_ALPHABETIC" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_BREAK_BOTH" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_BREAK_AFTER" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_BREAK_BEFORE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_MANDATORY_BREAK" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_CONTINGENT_BREAK" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_CLOSE_PUNCTUATION" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_COMBINING_MARK" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_CARRIAGE_RETURN" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_EXCLAMATION" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_GLUE" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_HYPHEN" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_IDEOGRAPHIC" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_INSEPARABLE" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_INSEPERABLE" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_INFIX_NUMERIC" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_LINE_FEED" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_NONSTARTER" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_NUMERIC" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_OPEN_PUNCTUATION" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_POSTFIX_NUMERIC" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_PREFIX_NUMERIC" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_QUOTATION" value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_COMPLEX_CONTEXT" value="24">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_SURROGATE" value="25">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_SPACE" value="26">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_BREAK_SYMBOLS" value="27">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_ZWSPACE" value="28">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_NEXT_LINE" value="29">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_WORD_JOINER" value="30">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_H2" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_H3" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_JL" value="33">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_JT" value="34">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_JV" value="35">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_CLOSE_PARENTHESIS" value="36">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_CONDITIONAL_JAPANESE_STARTER" value="37">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_HEBREW_LETTER" value="38">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_REGIONAL_INDICATOR" value="39">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="LB_COUNT" value="40">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NT_NONE" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NT_DECIMAL" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NT_DIGIT" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NT_NUMERIC" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NT_COUNT" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_NOT_APPLICABLE" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_LEADING_JAMO" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_VOWEL_JAMO" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_TRAILING_JAMO" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_LV_SYLLABLE" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_LVT_SYLLABLE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="HST_COUNT" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="charAge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the &quot;age&quot; of the code point">Gets the "age" of the code point.</description>
+      <return type="array"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="charDigitValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the decimal digit value of a decimal digit character">Returns the decimal digit value of a decimal digit character.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="charDirection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get bidirectional category value for a code point">Returns the bidirectional category value for the code point, which is used in the Unicode bidirectional algorithm (UAX #9).</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="charFromName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Find Unicode character by name and return its code point value">Finds a Unicode character by its name and returns its code point value.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="characterName" optional="false" byreference="false" type="string"/>
+    <parameter name="nameChoice" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="charMirror" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the &quot;mirror-image&quot; character for a code point">Maps the specified character to a "mirror-image" character.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="charName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve the name of a Unicode character">Retrieves the name of a Unicode character.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="nameChoice" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="charType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the general category value for a code point"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="chr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return Unicode character by code point value">Returns a string containing the character specified by the Unicode code point value.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="digit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the decimal digit value of a code point for a given radix">Returns the decimal digit value of the code point in the specified radix.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="string"/>
+    <parameter name="radix" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="enumCharNames" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enumerate all assigned Unicode characters within a range">Enumerate all assigned Unicode characters between the start and limit code points (start inclusive, limit exclusive) and call a function for each, passing the code point value and the character name.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="start" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="limit" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="nameChoice" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="enumCharTypes" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enumerate all code points with their Unicode general categories">Enumerates efficiently all code points with their Unicode general categories. This is useful for building data structures, for enumerating all assigned code points, etc.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="foldCase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Perform case folding on a code point"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="forDigit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get character representation for a given digit and radix">Determines the character representation for a specific digit in the specified radix.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="digit" optional="false" byreference="false" type="int"/>
+    <parameter name="radix" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getBidiPairedBracket" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the paired bracket character for a code point">Maps the specified character to its paired bracket character.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getBlockCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the Unicode allocation block containing a code point"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getCombiningClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the combining class of a code point"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getFC_NFKC_Closure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the FC_NFKC_Closure property for a code point"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getIntPropertyMaxValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the max value for a Unicode property"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getIntPropertyMinValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the min value for a Unicode property"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getIntPropertyValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the value for a Unicode property for a code point"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getNumericValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the numeric value for a Unicode code point">Gets the numeric value for a Unicode code point as defined in the Unicode Character Database.</description>
+      <return type="float"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="getPropertyEnum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the property constant value for a given property name">Returns the property constant value for a given property name, as specified in the Unicode database file PropertyAliases.txt. Short, long, and any other variants are recognized.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="alias" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getPropertyName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the Unicode name for a property">Returns the Unicode name for a given property, as given in the Unicode database file PropertyAliases.txt.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+    <parameter name="nameChoice" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getPropertyValueEnum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the property value for a given value name">Returns the property value integer for a given value name, as specified in the Unicode database file PropertyValueAliases.txt. Short, long, and any other variants are recognized.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getPropertyValueName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the Unicode name for a property value">Returns the Unicode name for a given property value, as given in the Unicode database file PropertyValueAliases.txt.</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+    <parameter name="nameChoice" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="getUnicodeVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the Unicode version">Gets the Unicode version information.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="hasBinaryProperty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check a binary Unicode property for a code point">Checks a binary Unicode property for a code point.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="property" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="isalnum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is an alphanumeric character"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isalpha" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a letter character"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isbase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a base character">Determines whether the specified code point is a base character. TRUE for general categories "L" (letters), "N" (numbers), "Mc" (spacing combining marks), and "Me" (enclosing marks).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isblank" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a &quot;blank&quot; or &quot;horizontal space&quot; character">Determines whether the specified code point is a "blank" or "horizontal space", a character that visibly separates words on a line.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="iscntrl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a control character">Determines whether the specified code point is a control character.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isdefined" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether the code point is defined">Determines whether the specified code point is "defined", which usually means that it is assigned a character.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isdigit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a digit character">Determines whether the specified code point is a digit character.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isgraph" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a graphic character">Determines whether the specified code point is a "graphic" character (printable, excluding spaces).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isIDIgnorable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is an ignorable character">Determines if the specified character should be regarded as an ignorable character in an identifier.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isIDPart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is permissible in an identifier">Determines if the specified character is permissible in an identifier.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isIDStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is permissible as the first character in an identifier">Determines if the specified character is permissible as the first character in an identifier according to Unicode (The Unicode Standard, Version 3.0, chapter 5.16 Identifiers).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isISOControl" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is an ISO control code">Determines whether the specified code point is an ISO control code.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isJavaIDPart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is permissible in a Java identifier">Determines if the specified character is permissible in a Java identifier.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isJavaIDStart" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is permissible as the first character in a Java identifier">Determines if the specified character is permissible as the start of a Java identifier.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isJavaSpaceChar" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a space character according to Java">Determine if the specified code point is a space character according to Java.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="islower" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a lowercase letter">Determines whether the specified code point has the general category "Ll" (lowercase letter).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isMirrored" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point has the Bidi_Mirrored property">Determines whether the code point has the Bidi_Mirrored property.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isprint" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a printable character">Determines whether the specified code point is a printable character.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="ispunct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is punctuation character">Determines whether the specified code point is a punctuation character.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isspace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a space character"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="istitle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a titlecase letter">Determines whether the specified code point is a titlecase letter.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isUAlphabetic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point has the Alphabetic Unicode property">Check if a code point has the Alphabetic Unicode property.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isULowercase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point has the Lowercase Unicode property">Check if a code point has the Lowercase Unicode property.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isupper" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point has the general category &quot;Lu&quot; (uppercase letter)">Determines whether the specified code point has the general category "Lu" (uppercase letter).</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isUUppercase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point has the Uppercase Unicode property">Check if a code point has the Uppercase Unicode property.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isUWhiteSpace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point has the White_Space Unicode property">Check if a code point has the White_Space Unicode property.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isWhitespace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a whitespace character according to ICU">Determines if the specified code point is a whitespace character according to ICU.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isxdigit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if code point is a hexadecimal digit">Determines whether the specified code point is a hexadecimal digit.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="ord" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return Unicode code point value of character">Returns the Unicode code point value of the given character.</description>
+      <return type="int"/>
+    </docblock>
+    <parameter name="character" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="tolower" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Make Unicode character lowercase"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="totitle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Make Unicode character titlecase"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="toupper" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Make Unicode character uppercase"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="codepoint" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

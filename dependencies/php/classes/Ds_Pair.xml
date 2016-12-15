@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Ds\Pair" namespace="" name="Ds\Pair">
+  <implements name="JsonSerializable" full="JsonSerializable"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new instance."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="true" byreference="false" type="object" class="mixed"/>
+  </constructor>
+</class>

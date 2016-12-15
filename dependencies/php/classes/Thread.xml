@@ -1,97 +1,184 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="Thread" namespace="" name="Thread">
-  <method name="getCreatorId" abstract="false" static="false" visibility="public" final="true">
+  <implements name="Countable" full="Countable"/>
+  <method name="detach" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execution">Detaches the referenced Thread from the calling context, dangerous!</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getCreatorId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Identification"/>
-      <return type="long"/>
+      <return type="integer"/>
     </docblock>
   </method>
-  <method name="getThreadId" abstract="false" static="false" visibility="public" final="true">
+  <method name="getCurrentThread" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Identification"/>
-      <return type="long"/>
+      <return type="Thread"/>
     </docblock>
   </method>
-  <method name="isJoined" abstract="false" static="false" visibility="public" final="true">
+  <method name="getCurrentThreadId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Identification"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getThreadId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Identification"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="globally" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execution"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="isJoined" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="State Detection"/>
       <return type="boolean"/>
     </docblock>
   </method>
-  <method name="isRunning" abstract="false" static="false" visibility="public" final="true">
+  <method name="isStarted" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="State Detection"/>
       <return type="boolean"/>
     </docblock>
   </method>
-  <method name="isStarted" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact="State Detection"/>
-      <return type="boolean"/>
-    </docblock>
-  </method>
-  <method name="isTerminated" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact="State Detection"/>
-      <return type="boolean"/>
-    </docblock>
-  </method>
-  <method name="isWaiting" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact="State Detection"/>
-      <return type="boolean"/>
-    </docblock>
-  </method>
-  <method name="join" abstract="false" static="false" visibility="public" final="true">
+  <method name="join" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Synchronization"/>
       <return type="boolean"/>
     </docblock>
   </method>
-  <method name="lock" abstract="false" static="false" visibility="public" final="true">
+  <method name="kill" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Synchronization"/>
+      <description compact="Execution">Forces the referenced Thread to terminate</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execution"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="chunk" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="preserve" optional="false" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="extend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="from" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Threaded"/>
+    </docblock>
+    <parameter name="run" optional="false" byreference="false" type="object" class="Closure"/>
+    <parameter name="construct" optional="true" byreference="false" type="object" class="Closure"/>
+    <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="getTerminationInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
       <return type="boolean"/>
     </docblock>
   </method>
-  <method name="notify" abstract="false" static="false" visibility="public" final="true">
+  <method name="isTerminated" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Synchronization"/>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="isWaiting" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="from" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="notify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
       <return type="boolean"/>
     </docblock>
   </method>
   <method name="run" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Execution"/>
+      <description compact=""/>
       <return type="void"/>
     </docblock>
   </method>
-  <method name="start" abstract="false" static="false" visibility="public" final="true">
+  <method name="shift" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Execution"/>
-      <return type="boolean"/>
+      <description compact=""/>
+      <return type="mixed"/>
     </docblock>
-    <parameter name="options" optional="true" byreference="false" type="object" class="long"/>
   </method>
-  <method name="synchronized" abstract="false" static="false" visibility="public" final="true">
+  <method name="synchronized" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Synchronization"/>
+      <description compact=""/>
       <return type="mixed"/>
     </docblock>
     <parameter name="block" optional="false" byreference="false" type="object" class="Closure"/>
     <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
   </method>
-  <method name="unlock" abstract="false" static="false" visibility="public" final="true">
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Synchronization"/>
+      <description compact=""/>
       <return type="boolean"/>
     </docblock>
   </method>
-  <method name="wait" abstract="false" static="false" visibility="public" final="true">
+  <method name="wait" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Synchronization"/>
+      <description compact=""/>
       <return type="boolean"/>
     </docblock>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="long"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="integer"/>
   </method>
 </class>

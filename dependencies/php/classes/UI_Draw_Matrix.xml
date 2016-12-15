@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Matrix" namespace="" name="UI\Draw\Matrix">
+  <method name="invert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Invert Matrix"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isInvertible" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Invertible Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="multiply" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Multiply Matrix"/>
+      <return type="UI\Draw\Matrix"/>
+    </docblock>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="UI\Draw\Matrix"/>
+  </method>
+  <method name="rotate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rotate Matrix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="amount" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="scale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Scale Matrix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="center" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+  </method>
+  <method name="skew" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Skew Matrix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="amount" optional="false" byreference="false" type="object" class="UI\Point"/>
+  </method>
+  <method name="translate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Translate Matrix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+  </method>
+</class>

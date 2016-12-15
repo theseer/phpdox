@@ -43,14 +43,25 @@
   <member name="connected" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="&#10;       This property will be set to TRUE if we have a open connection to&#10;       the database, FALSE otherwise. If the connection is to a replica set,&#10;       this property will only be TRUE if the driver has a connection to a&#10;       node matching the current read preference. This property does not take&#10;       authentication into account.&#10;      ">
+       This property will be set to TRUE if we have a open connection to
+       the database, FALSE otherwise. If the connection is to a replica set,
+       this property will only be TRUE if the driver has a connection to a
+       node matching the current read preference. This property does not take
+       authentication into account.
+      </description>
       <var type="boolean"/>
     </docblock>
   </member>
   <member name="status" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact=""/>
+      <description compact="&#10;       This property is no longer used and will be set to NULL In driver&#10;       versions 1.1.x and earlier, this may be set to a string value (e.g.&#10;       &quot;recycled&quot;, &quot;new&quot;) when persistent&#10;       connections are used.&#10;      ">
+       This property is no longer used and will be set to NULL In driver
+       versions 1.1.x and earlier, this may be set to a string value (e.g.
+       "recycled", "new") when persistent
+       connections are used.
+      </description>
       <var type="string"/>
     </docblock>
   </member>
@@ -73,6 +84,7 @@
     </docblock>
     <parameter name="server" optional="true" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="driver_options" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="close" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -119,6 +131,12 @@
       <return type="array"/>
     </docblock>
   </method>
+  <method name="getWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the write concern for this connection"/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="killCursor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Kills a specific cursor on the server"/>
@@ -155,6 +173,14 @@
     </docblock>
     <parameter name="read_preference" optional="false" byreference="false" type="string"/>
     <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the write concern for this connection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="w" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="wtimeout" optional="true" byreference="false" type="int"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>

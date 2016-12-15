@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoWriteBatch" namespace="" name="MongoWriteBatch">
+  <constant name="COMMAND_INSERT" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="COMMAND_UPDATE" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="COMMAND_DELETE" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Creates a new batch of write operations">Constructs a new MongoWriteBatch.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="collection" optional="false" byreference="false" type="object" class="MongoCollection"/>
+    <parameter name="batch_type" optional="true" byreference="false" type="string"/>
+    <parameter name="write_options" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a write operation to a batch">Adds a write operation to the batch.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="item" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Executes a batch of write operations"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="write_options" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

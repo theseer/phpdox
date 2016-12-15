@@ -28,6 +28,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="base" optional="false" byreference="false" type="object" class="EventBase"/>
+    <parameter name="ctx" optional="true" byreference="false" type="object" class="EventSslContext"/>
   </constructor>
   <method name="removeServerAlias" abstract="false" static="false" visibility="public" final="false">
     <docblock>

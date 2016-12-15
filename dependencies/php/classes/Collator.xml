@@ -54,7 +54,7 @@
       <description compact="Get the locale name of the collator">Object oriented style</description>
       <return type="string"/>
     </docblock>
-    <parameter name="type" optional="true" byreference="false" type="int"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getSortKey" abstract="false" static="false" visibility="public" final="false">
     <docblock>

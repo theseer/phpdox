@@ -10,7 +10,7 @@
   <member name="nodeValue" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="The value of this node, depending on its type"/>
+      <description compact="&#10;       The value of this node, depending on its type.&#10;       Contrary to the W3C specification, the node value of&#10;       DOMElement nodes is equal to DOMNode::textContent instead&#10;       of NULL.&#10;      "/>
       <var type="string"/>
     </docblock>
   </member>
@@ -24,7 +24,7 @@
   <member name="parentNode" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="The parent of this node"/>
+      <description compact="The parent of this node. If there is no such node, this returns NULL."/>
       <var type="DOMNode"/>
     </docblock>
   </member>
@@ -108,7 +108,7 @@
   <member name="textContent" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="This attribute returns the text content of this node and its descendants."/>
+      <description compact="The text content of this node and its descendants."/>
       <var type="string"/>
     </docblock>
   </member>

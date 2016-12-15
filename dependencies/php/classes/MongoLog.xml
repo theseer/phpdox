@@ -30,7 +30,12 @@
       <var type="int"/>
     </docblock>
   </constant>
-  <constant name="POOL" value="2">
+  <constant name="POOL" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="CON" value="2">
     <docblock>
       <var type="int"/>
     </docblock>
@@ -50,13 +55,19 @@
       <var type="int"/>
     </docblock>
   </constant>
-  <member name="level" static="false" visibility="public">
+  <member name="callback" static="false">
     <default>null</default>
     <docblock>
       <var type="int"/>
     </docblock>
   </member>
-  <member name="module" static="false" visibility="public">
+  <member name="level" static="false">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="module" static="false">
     <default>null</default>
     <docblock>
       <var type="int"/>
@@ -64,39 +75,39 @@
   </member>
   <method name="getCallback" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve the previously set callback function name"/>
-      <return type="void"/>
+      <description compact="Gets the previously set callback function"/>
+      <return type="callable"/>
     </docblock>
   </method>
   <method name="getLevel" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the log level"/>
+      <description compact="Gets the level(s) currently being logged"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="getModule" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the modules currently being logged"/>
+      <description compact="Gets the module(s) currently being logged"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="setCallback" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Set a callback function to be called on events"/>
+      <description compact="Sets a callback function to be invoked for events"/>
       <return type="void"/>
     </docblock>
     <parameter name="log_function" optional="false" byreference="false" type="object" class="callable"/>
   </method>
   <method name="setLevel" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets logging level">This function can be used to set how verbose logging should be and the types of activities that should be logged. Use the constants described in the MongoLog section with bitwise operators to specify levels.</description>
+      <description compact="Sets the level(s) to be logged">This function can be used to control logging verbosity and the types of activities that should be logged. The MongoLog level constants may be used with bitwise operators to specify multiple levels.</description>
       <return type="void"/>
     </docblock>
     <parameter name="level" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setModule" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets driver functionality to log">This function can be used to set which parts of the driver's functionality should be logged. Use the constants described in the MongoLog section with bitwise operators to specify modules.</description>
+      <description compact="Sets the module(s) to be logged">This function can be used to set which driver modules should be logged. The MongoLog module constants may be used with bitwise operators to specify multiple modules.</description>
       <return type="void"/>
     </docblock>
     <parameter name="module" optional="false" byreference="false" type="int"/>

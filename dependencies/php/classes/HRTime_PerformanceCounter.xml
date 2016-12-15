@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="HRTime\PerformanceCounter" namespace="" name="HRTime\PerformanceCounter">
+  <method name="getElapsedTicks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get elapsed ticks for all intervals."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getFrequency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Timer frequency in ticks per second"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getLastElapsedTicks" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get elapsed ticks for the last interval."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether the measurement is running."/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Start time measurement"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop time measurement"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

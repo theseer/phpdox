@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteResult" namespace="" name="MongoDB\Driver\WriteResult">
+  <method name="getDeletedCount" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the number of documents deleted"/>
+      <return type="int|null"/>
+    </docblock>
+  </method>
+  <method name="getInsertedCount" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the number of documents inserted (excluding upserts)"/>
+      <return type="int|null"/>
+    </docblock>
+  </method>
+  <method name="getMatchedCount" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the number of documents selected for update"/>
+      <return type="int|null"/>
+    </docblock>
+  </method>
+  <method name="getModifiedCount" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the number of existing documents updated"/>
+      <return type="int|null"/>
+    </docblock>
+  </method>
+  <method name="getServer" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the server associated with this write result"/>
+      <return type="MongoDB\Driver\Server"/>
+    </docblock>
+  </method>
+  <method name="getUpsertedCount" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the number of documents inserted by an upsert"/>
+      <return type="int|null"/>
+    </docblock>
+  </method>
+  <method name="getUpsertedIds" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an array of identifiers for upserted documents"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getWriteConcernError" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns any write concern error that occurred"/>
+      <return type="MongoDB\Driver\WriteConcernError|null"/>
+    </docblock>
+  </method>
+  <method name="getWriteErrors" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns any write errors that occurred"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="isAcknowledged" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns whether the write was acknowledged"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

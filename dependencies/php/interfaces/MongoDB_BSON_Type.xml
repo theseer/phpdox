@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Type" namespace="" name="MongoDB\BSON\Type"/>

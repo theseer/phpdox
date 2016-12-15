@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Stroke" namespace="" name="UI\Draw\Stroke">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Stroke"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cap" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="join" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="thickness" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="miterLimit" optional="true" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="getCap" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Line Cap"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getJoin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Line Join"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="getMiterLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Miter Limit"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getThickness" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Thickness"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="setCap" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Line Cap"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cap" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setJoin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Line Join"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="join" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setMiterLimit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Miter Limit"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="limit" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setThickness" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Thickness"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="thickness" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

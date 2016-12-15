@@ -88,6 +88,12 @@
     <parameter name="prefix" optional="false" byreference="false" type="string"/>
     <parameter name="ns" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the string content"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="xpath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Runs XPath query on XML data"/>

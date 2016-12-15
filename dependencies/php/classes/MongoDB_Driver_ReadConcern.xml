@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\ReadConcern" namespace="" name="MongoDB\Driver\ReadConcern">
+  <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
+  <constant name="LINEARIZABLE" value="linearizable">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="LOCAL" value="local">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="MAJORITY" value="majority">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <method name="bsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns an object for BSON serialization"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct immutable ReadConcern"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="level" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getLevel" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the ReadConcern's &quot;level&quot; option"/>
+      <return type="string|null"/>
+    </docblock>
+  </method>
+</class>

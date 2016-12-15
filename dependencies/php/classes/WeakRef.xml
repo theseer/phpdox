@@ -5,11 +5,11 @@
       <description compact="Constructs a new weak reference"/>
       <return type="void"/>
     </docblock>
-    <parameter name="object" optional="true" byreference="false" type="object" class="object"/>
+    <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
   </constructor>
   <method name="acquire" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Acquires a strong reference on that object"/>
+      <description compact="Acquires a strong reference on that object">Acquires a strong reference on that object, virtually turning the weak reference into a strong one.</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -21,7 +21,7 @@
   </method>
   <method name="release" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Releases a previously acquired reference"/>
+      <description compact="Releases a previously acquired reference">Releases a previously acquired reference, potentially turning a strong reference back into a weak reference.</description>
       <return type="bool"/>
     </docblock>
   </method>

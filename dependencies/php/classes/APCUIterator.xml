@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="APCUIterator" namespace="" name="APCUIterator">
+  <implements name="Iterator" full="Iterator"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs an APCUIterator iterator object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="search" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="format" optional="true" byreference="false" type="int"/>
+    <parameter name="chunk_size" optional="true" byreference="false" type="int"/>
+    <parameter name="list" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get current item"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getTotalCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get total count"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTotalHits" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get total cache hits"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTotalSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get total cache size"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get iterator key"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move pointer to next item"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewinds iterator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if current position is valid"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Ds\Stack" namespace="" name="Ds\Stack">
+  <implements name="Ds\Collection" full="Ds\Collection"/>
+  <method name="allocate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Allocates enough memory for a required capacity."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="capacity" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="capacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current capacity."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all values."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a shallow copy of the stack."/>
+      <return type="Ds\Stack"/>
+    </docblock>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the stack is empty"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="peek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value at the top of the stack."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes and returns the value at the top of the stack."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pushes values onto the stack."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Converts the stack to an array.&#10;  ">Converts the stack to an array.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

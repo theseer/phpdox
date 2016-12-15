@@ -3,9 +3,16 @@
   <namespace name="">
     <class name="Exception" xml="classes/Exception.xml"/>
     <class name="ErrorException" xml="classes/ErrorException.xml"/>
+    <class name="Error" xml="classes/Error.xml"/>
+    <class name="ArithmeticError" xml="classes/ArithmeticError.xml"/>
+    <class name="AssertionError" xml="classes/AssertionError.xml"/>
+    <class name="DivisionByZeroError" xml="classes/DivisionByZeroError.xml"/>
+    <class name="ParseError" xml="classes/ParseError.xml"/>
+    <class name="TypeError" xml="classes/TypeError.xml"/>
     <class name="Closure" xml="classes/Closure.xml"/>
     <class name="Generator" xml="classes/Generator.xml"/>
     <class name="APCIterator" xml="classes/APCIterator.xml"/>
+    <class name="APCUIterator" xml="classes/APCUIterator.xml"/>
     <class name="WeakRef" xml="classes/WeakRef.xml"/>
     <class name="WeakMap" xml="classes/WeakMap.xml"/>
     <class name="KTaglib_MPEG_File" xml="classes/KTaglib_MPEG_File.xml"/>
@@ -14,11 +21,6 @@
     <class name="KTaglib_ID3v2_Tag" xml="classes/KTaglib_ID3v2_Tag.xml"/>
     <class name="KTaglib_ID3v2_Frame" xml="classes/KTaglib_ID3v2_Frame.xml"/>
     <class name="KTaglib_ID3v2_AttachedPictureFrame" xml="classes/KTaglib_ID3v2_AttachedPictureFrame.xml"/>
-    <class name="DateTime" xml="classes/DateTime.xml"/>
-    <class name="DateTimeImmutable" xml="classes/DateTimeImmutable.xml"/>
-    <class name="DateTimeZone" xml="classes/DateTimeZone.xml"/>
-    <class name="DateInterval" xml="classes/DateInterval.xml"/>
-    <class name="DatePeriod" xml="classes/DatePeriod.xml"/>
     <class name="Phar" xml="classes/Phar.xml"/>
     <class name="PharData" xml="classes/PharData.xml"/>
     <class name="PharFileInfo" xml="classes/PharFileInfo.xml"/>
@@ -34,6 +36,7 @@
     <class name="MongoDB" xml="classes/MongoDB.xml"/>
     <class name="MongoCollection" xml="classes/MongoCollection.xml"/>
     <class name="MongoCursor" xml="classes/MongoCursor.xml"/>
+    <class name="MongoCommandCursor" xml="classes/MongoCommandCursor.xml"/>
     <class name="MongoId" xml="classes/MongoId.xml"/>
     <class name="MongoCode" xml="classes/MongoCode.xml"/>
     <class name="MongoDate" xml="classes/MongoDate.xml"/>
@@ -48,6 +51,10 @@
     <class name="MongoGridFS" xml="classes/MongoGridFS.xml"/>
     <class name="MongoGridFSFile" xml="classes/MongoGridFSFile.xml"/>
     <class name="MongoGridFSCursor" xml="classes/MongoGridFSCursor.xml"/>
+    <class name="MongoWriteBatch" xml="classes/MongoWriteBatch.xml"/>
+    <class name="MongoInsertBatch" xml="classes/MongoInsertBatch.xml"/>
+    <class name="MongoUpdateBatch" xml="classes/MongoUpdateBatch.xml"/>
+    <class name="MongoDeleteBatch" xml="classes/MongoDeleteBatch.xml"/>
     <class name="MongoLog" xml="classes/MongoLog.xml"/>
     <class name="MongoPool" xml="classes/MongoPool.xml"/>
     <class name="Mongo" xml="classes/Mongo.xml"/>
@@ -57,6 +64,44 @@
     <class name="MongoCursorTimeoutException" xml="classes/MongoCursorTimeoutException.xml"/>
     <class name="MongoConnectionException" xml="classes/MongoConnectionException.xml"/>
     <class name="MongoGridFSException" xml="classes/MongoGridFSException.xml"/>
+    <class name="MongoDuplicateKeyException" xml="classes/MongoDuplicateKeyException.xml"/>
+    <class name="MongoProtocolException" xml="classes/MongoProtocolException.xml"/>
+    <class name="MongoExecutionTimeoutException" xml="classes/MongoExecutionTimeoutException.xml"/>
+    <class name="MongoWriteConcernException" xml="classes/MongoWriteConcernException.xml"/>
+    <class name="MongoDB\Driver\Manager" xml="classes/MongoDB_Driver_Manager.xml"/>
+    <class name="MongoDB\Driver\Command" xml="classes/MongoDB_Driver_Command.xml"/>
+    <class name="MongoDB\Driver\Query" xml="classes/MongoDB_Driver_Query.xml"/>
+    <class name="MongoDB\Driver\BulkWrite" xml="classes/MongoDB_Driver_BulkWrite.xml"/>
+    <class name="MongoDB\Driver\WriteConcern" xml="classes/MongoDB_Driver_WriteConcern.xml"/>
+    <class name="MongoDB\Driver\ReadPreference" xml="classes/MongoDB_Driver_ReadPreference.xml"/>
+    <class name="MongoDB\Driver\ReadConcern" xml="classes/MongoDB_Driver_ReadConcern.xml"/>
+    <class name="MongoDB\Driver\Cursor" xml="classes/MongoDB_Driver_Cursor.xml"/>
+    <class name="MongoDB\Driver\CursorId" xml="classes/MongoDB_Driver_CursorId.xml"/>
+    <class name="MongoDB\Driver\Server" xml="classes/MongoDB_Driver_Server.xml"/>
+    <class name="MongoDB\Driver\WriteConcernError" xml="classes/MongoDB_Driver_WriteConcernError.xml"/>
+    <class name="MongoDB\Driver\WriteError" xml="classes/MongoDB_Driver_WriteError.xml"/>
+    <class name="MongoDB\Driver\WriteResult" xml="classes/MongoDB_Driver_WriteResult.xml"/>
+    <class name="MongoDB\BSON\Binary" xml="classes/MongoDB_BSON_Binary.xml"/>
+    <class name="MongoDB\BSON\Decimal128" xml="classes/MongoDB_BSON_Decimal128.xml"/>
+    <class name="MongoDB\BSON\Javascript" xml="classes/MongoDB_BSON_Javascript.xml"/>
+    <class name="MongoDB\BSON\MaxKey" xml="classes/MongoDB_BSON_MaxKey.xml"/>
+    <class name="MongoDB\BSON\MinKey" xml="classes/MongoDB_BSON_MinKey.xml"/>
+    <class name="MongoDB\BSON\ObjectID" xml="classes/MongoDB_BSON_ObjectID.xml"/>
+    <class name="MongoDB\BSON\Regex" xml="classes/MongoDB_BSON_Regex.xml"/>
+    <class name="MongoDB\BSON\Timestamp" xml="classes/MongoDB_BSON_Timestamp.xml"/>
+    <class name="MongoDB\BSON\UTCDateTime" xml="classes/MongoDB_BSON_UTCDateTime.xml"/>
+    <class name="MongoDB\BSON\Persistable" xml="classes/MongoDB_BSON_Persistable.xml"/>
+    <class name="MongoDB\Driver\Exception\AuthenticationException" xml="classes/MongoDB_Driver_Exception_AuthenticationException.xml"/>
+    <class name="MongoDB\Driver\Exception\BulkWriteException" xml="classes/MongoDB_Driver_Exception_BulkWriteException.xml"/>
+    <class name="MongoDB\Driver\Exception\ConnectionException" xml="classes/MongoDB_Driver_Exception_ConnectionException.xml"/>
+    <class name="MongoDB\Driver\Exception\ConnectionTimeoutException" xml="classes/MongoDB_Driver_Exception_ConnectionTimeoutException.xml"/>
+    <class name="MongoDB\Driver\Exception\ExecutionTimeoutException" xml="classes/MongoDB_Driver_Exception_ExecutionTimeoutException.xml"/>
+    <class name="MongoDB\Driver\Exception\InvalidArgumentException" xml="classes/MongoDB_Driver_Exception_InvalidArgumentException.xml"/>
+    <class name="MongoDB\Driver\Exception\LogicException" xml="classes/MongoDB_Driver_Exception_LogicException.xml"/>
+    <class name="MongoDB\Driver\Exception\RuntimeException" xml="classes/MongoDB_Driver_Exception_RuntimeException.xml"/>
+    <class name="MongoDB\Driver\Exception\SSLConnectionException" xml="classes/MongoDB_Driver_Exception_SSLConnectionException.xml"/>
+    <class name="MongoDB\Driver\Exception\UnexpectedValueException" xml="classes/MongoDB_Driver_Exception_UnexpectedValueException.xml"/>
+    <class name="MongoDB\Driver\Exception\WriteException" xml="classes/MongoDB_Driver_Exception_WriteException.xml"/>
     <class name="mysqli" xml="classes/mysqli.xml"/>
     <class name="mysqli_stmt" xml="classes/mysqli_stmt.xml"/>
     <class name="mysqli_result" xml="classes/mysqli_result.xml"/>
@@ -65,6 +110,8 @@
     <class name="mysqli_sql_exception" xml="classes/mysqli_sql_exception.xml"/>
     <class name="MysqlndUhConnection" xml="classes/MysqlndUhConnection.xml"/>
     <class name="MysqlndUhPreparedStatement" xml="classes/MysqlndUhPreparedStatement.xml"/>
+    <class name="OCI-Collection" xml="classes/OCI-Collection.xml"/>
+    <class name="OCI-Lob" xml="classes/OCI-Lob.xml"/>
     <class name="SQLite3" xml="classes/SQLite3.xml"/>
     <class name="SQLite3Stmt" xml="classes/SQLite3Stmt.xml"/>
     <class name="SQLite3Result" xml="classes/SQLite3Result.xml"/>
@@ -73,7 +120,15 @@
     <class name="TokyoTyrantQuery" xml="classes/TokyoTyrantQuery.xml"/>
     <class name="TokyoTyrantIterator" xml="classes/TokyoTyrantIterator.xml"/>
     <class name="tokyotyrantexception" xml="classes/tokyotyrantexception.xml"/>
+    <class name="DateTime" xml="classes/DateTime.xml"/>
+    <class name="DateTimeZone" xml="classes/DateTimeZone.xml"/>
+    <class name="DateInterval" xml="classes/DateInterval.xml"/>
+    <class name="DatePeriod" xml="classes/DatePeriod.xml"/>
+    <class name="HRTime\PerformanceCounter" xml="classes/HRTime_PerformanceCounter.xml"/>
+    <class name="HRTime\StopWatch" xml="classes/HRTime_StopWatch.xml"/>
+    <class name="HRTime\Unit" xml="classes/HRTime_Unit.xml"/>
     <class name="Directory" xml="classes/Directory.xml"/>
+    <class name="finfo" xml="classes/finfo.xml"/>
     <class name="Gender\Gender" xml="classes/Gender_Gender.xml"/>
     <class name="Collator" xml="classes/Collator.xml"/>
     <class name="NumberFormatter" xml="classes/NumberFormatter.xml"/>
@@ -91,6 +146,7 @@
     <class name="IntlCodePointBreakIterator" xml="classes/IntlCodePointBreakIterator.xml"/>
     <class name="IntlPartsIterator" xml="classes/IntlPartsIterator.xml"/>
     <class name="UConverter" xml="classes/UConverter.xml"/>
+    <class name="IntlChar" xml="classes/IntlChar.xml"/>
     <class name="IntlException" xml="classes/IntlException.xml"/>
     <class name="IntlIterator" xml="classes/IntlIterator.xml"/>
     <class name="Cairo" xml="classes/Cairo.xml"/>
@@ -140,6 +196,8 @@
     <class name="ImagickDraw" xml="classes/ImagickDraw.xml"/>
     <class name="ImagickPixel" xml="classes/ImagickPixel.xml"/>
     <class name="ImagickPixelIterator" xml="classes/ImagickPixelIterator.xml"/>
+    <class name="ImagickKernel" xml="classes/ImagickKernel.xml"/>
+    <class name="GMP" xml="classes/GMP.xml"/>
     <class name="Lapack" xml="classes/Lapack.xml"/>
     <class name="lapackexception" xml="classes/lapackexception.xml"/>
     <class name="HaruException" xml="classes/HaruException.xml"/>
@@ -183,11 +241,19 @@
     <class name="EvStat" xml="classes/EvStat.xml"/>
     <class name="EvTimer" xml="classes/EvTimer.xml"/>
     <class name="EvWatcher" xml="classes/EvWatcher.xml"/>
+    <class name="Threaded" xml="classes/Threaded.xml"/>
     <class name="Thread" xml="classes/Thread.xml"/>
     <class name="Worker" xml="classes/Worker.xml"/>
-    <class name="Stackable" xml="classes/Stackable.xml"/>
+    <class name="Collectable" xml="classes/Collectable.xml"/>
+    <class name="Pool" xml="classes/Pool.xml"/>
     <class name="Mutex" xml="classes/Mutex.xml"/>
     <class name="Cond" xml="classes/Cond.xml"/>
+    <class name="SyncMutex" xml="classes/SyncMutex.xml"/>
+    <class name="SyncSemaphore" xml="classes/SyncSemaphore.xml"/>
+    <class name="SyncEvent" xml="classes/SyncEvent.xml"/>
+    <class name="SyncReaderWriter" xml="classes/SyncReaderWriter.xml"/>
+    <class name="SyncSharedMemory" xml="classes/SyncSharedMemory.xml"/>
+    <class name="FANNConnection" xml="classes/FANNConnection.xml"/>
     <class name="Judy" xml="classes/Judy.xml"/>
     <class name="Lua" xml="classes/Lua.xml"/>
     <class name="LuaClosure" xml="classes/LuaClosure.xml"/>
@@ -286,11 +352,6 @@
     <class name="Yaf_Exception_LoadFailed_Controller" xml="classes/Yaf_Exception_LoadFailed_Controller.xml"/>
     <class name="Yaf_Exception_LoadFailed_Action" xml="classes/Yaf_Exception_LoadFailed_Action.xml"/>
     <class name="Yaf_Exception_LoadFailed_View" xml="classes/Yaf_Exception_LoadFailed_View.xml"/>
-    <class name="AMQPConnection" xml="classes/AMQPConnection.xml"/>
-    <class name="AMQPChannel" xml="classes/AMQPChannel.xml"/>
-    <class name="AMQPExchange" xml="classes/AMQPExchange.xml"/>
-    <class name="AMQPQueue" xml="classes/AMQPQueue.xml"/>
-    <class name="AMQPEnvelope" xml="classes/AMQPEnvelope.xml"/>
     <class name="chdb" xml="classes/chdb.xml"/>
     <class name="CURLFile" xml="classes/CURLFile.xml"/>
     <class name="Event" xml="classes/Event.xml"/>
@@ -310,13 +371,6 @@
     <class name="GearmanTask" xml="classes/GearmanTask.xml"/>
     <class name="GearmanWorker" xml="classes/GearmanWorker.xml"/>
     <class name="GearmanException" xml="classes/GearmanException.xml"/>
-    <class name="HttpDeflateStream" xml="classes/HttpDeflateStream.xml"/>
-    <class name="HttpInflateStream" xml="classes/HttpInflateStream.xml"/>
-    <class name="HttpMessage" xml="classes/HttpMessage.xml"/>
-    <class name="HttpQueryString" xml="classes/HttpQueryString.xml"/>
-    <class name="HttpRequest" xml="classes/HttpRequest.xml"/>
-    <class name="HttpRequestPool" xml="classes/HttpRequestPool.xml"/>
-    <class name="HttpResponse" xml="classes/HttpResponse.xml"/>
     <class name="Memcache" xml="classes/Memcache.xml"/>
     <class name="Memcached" xml="classes/Memcached.xml"/>
     <class name="MemcachedException" xml="classes/MemcachedException.xml"/>
@@ -333,6 +387,12 @@
     <class name="VarnishAdmin" xml="classes/VarnishAdmin.xml"/>
     <class name="VarnishStat" xml="classes/VarnishStat.xml"/>
     <class name="VarnishLog" xml="classes/VarnishLog.xml"/>
+    <class name="ZMQ" xml="classes/ZMQ.xml"/>
+    <class name="ZMQContext" xml="classes/ZMQContext.xml"/>
+    <class name="ZMQSocket" xml="classes/ZMQSocket.xml"/>
+    <class name="ZMQPoll" xml="classes/ZMQPoll.xml"/>
+    <class name="ZMQDevice" xml="classes/ZMQDevice.xml"/>
+    <class name="Zookeeper" xml="classes/Zookeeper.xml"/>
     <class name="SolrUtils" xml="classes/SolrUtils.xml"/>
     <class name="SolrInputDocument" xml="classes/SolrInputDocument.xml"/>
     <class name="SolrDocument" xml="classes/SolrDocument.xml"/>
@@ -347,12 +407,24 @@
     <class name="SolrParams" xml="classes/SolrParams.xml"/>
     <class name="SolrModifiableParams" xml="classes/SolrModifiableParams.xml"/>
     <class name="SolrQuery" xml="classes/SolrQuery.xml"/>
+    <class name="SolrDisMaxQuery" xml="classes/SolrDisMaxQuery.xml"/>
+    <class name="SolrCollapseFunction" xml="classes/SolrCollapseFunction.xml"/>
     <class name="SolrException" xml="classes/SolrException.xml"/>
     <class name="SolrClientException" xml="classes/SolrClientException.xml"/>
+    <class name="SolrServerException" xml="classes/SolrServerException.xml"/>
     <class name="SolrIllegalArgumentException" xml="classes/SolrIllegalArgumentException.xml"/>
     <class name="SolrIllegalOperationException" xml="classes/SolrIllegalOperationException.xml"/>
+    <class name="SolrMissingMandatoryParameterException" xml="classes/SolrMissingMandatoryParameterException.xml"/>
     <class name="SphinxClient" xml="classes/SphinxClient.xml"/>
     <class name="SessionHandler" xml="classes/SessionHandler.xml"/>
+    <class name="Ds\Vector" xml="classes/Ds_Vector.xml"/>
+    <class name="Ds\Deque" xml="classes/Ds_Deque.xml"/>
+    <class name="Ds\Map" xml="classes/Ds_Map.xml"/>
+    <class name="Ds\Pair" xml="classes/Ds_Pair.xml"/>
+    <class name="Ds\Set" xml="classes/Ds_Set.xml"/>
+    <class name="Ds\Stack" xml="classes/Ds_Stack.xml"/>
+    <class name="Ds\Queue" xml="classes/Ds_Queue.xml"/>
+    <class name="Ds\PriorityQueue" xml="classes/Ds_PriorityQueue.xml"/>
     <class name="QuickHashIntSet" xml="classes/QuickHashIntSet.xml"/>
     <class name="QuickHashIntHash" xml="classes/QuickHashIntHash.xml"/>
     <class name="QuickHashStringIntHash" xml="classes/QuickHashStringIntHash.xml"/>
@@ -367,6 +439,8 @@
     <class name="ReflectionObject" xml="classes/ReflectionObject.xml"/>
     <class name="ReflectionParameter" xml="classes/ReflectionParameter.xml"/>
     <class name="ReflectionProperty" xml="classes/ReflectionProperty.xml"/>
+    <class name="ReflectionType" xml="classes/ReflectionType.xml"/>
+    <class name="ReflectionGenerator" xml="classes/ReflectionGenerator.xml"/>
     <class name="ReflectionException" xml="classes/ReflectionException.xml"/>
     <class name="OAuth" xml="classes/OAuth.xml"/>
     <class name="OAuthProvider" xml="classes/OAuthProvider.xml"/>
@@ -377,6 +451,11 @@
     <class name="SoapHeader" xml="classes/SoapHeader.xml"/>
     <class name="SoapParam" xml="classes/SoapParam.xml"/>
     <class name="SoapVar" xml="classes/SoapVar.xml"/>
+    <class name="Yar_Server" xml="classes/Yar_Server.xml"/>
+    <class name="Yar_Client" xml="classes/Yar_Client.xml"/>
+    <class name="Yar_Concurrent_Client" xml="classes/Yar_Concurrent_Client.xml"/>
+    <class name="Yar_Server_Exception" xml="classes/Yar_Server_Exception.xml"/>
+    <class name="Yar_Client_Exception" xml="classes/Yar_Client_Exception.xml"/>
     <class name="DOMAttr" xml="classes/DOMAttr.xml"/>
     <class name="DOMCdataSection" xml="classes/DOMCdataSection.xml"/>
     <class name="DOMCharacterData" xml="classes/DOMCharacterData.xml"/>
@@ -399,14 +478,72 @@
     <class name="libXMLError" xml="classes/libXMLError.xml"/>
     <class name="SimpleXMLElement" xml="classes/SimpleXMLElement.xml"/>
     <class name="SimpleXMLIterator" xml="classes/SimpleXMLIterator.xml"/>
+    <class name="XMLDiff\Base" xml="classes/XMLDiff_Base.xml"/>
+    <class name="XMLDiff\DOM" xml="classes/XMLDiff_DOM.xml"/>
+    <class name="XMLDiff\Memory" xml="classes/XMLDiff_Memory.xml"/>
+    <class name="XMLDiff\File" xml="classes/XMLDiff_File.xml"/>
     <class name="XMLReader" xml="classes/XMLReader.xml"/>
     <class name="XSLTProcessor" xml="classes/XSLTProcessor.xml"/>
+    <class name="UI\Point" xml="classes/UI_Point.xml"/>
+    <class name="UI\Size" xml="classes/UI_Size.xml"/>
+    <class name="UI\Window" xml="classes/UI_Window.xml"/>
+    <class name="UI\Control" xml="classes/UI_Control.xml"/>
+    <class name="UI\Menu" xml="classes/UI_Menu.xml"/>
+    <class name="UI\MenuItem" xml="classes/UI_MenuItem.xml"/>
+    <class name="UI\Area" xml="classes/UI_Area.xml"/>
+    <class name="UI\Executor" xml="classes/UI_Executor.xml"/>
+    <class name="UI\Controls\Tab" xml="classes/UI_Controls_Tab.xml"/>
+    <class name="UI\Controls\Check" xml="classes/UI_Controls_Check.xml"/>
+    <class name="UI\Controls\Button" xml="classes/UI_Controls_Button.xml"/>
+    <class name="UI\Controls\ColorButton" xml="classes/UI_Controls_ColorButton.xml"/>
+    <class name="UI\Controls\Label" xml="classes/UI_Controls_Label.xml"/>
+    <class name="UI\Controls\Entry" xml="classes/UI_Controls_Entry.xml"/>
+    <class name="UI\Controls\MultilineEntry" xml="classes/UI_Controls_MultilineEntry.xml"/>
+    <class name="UI\Controls\Spin" xml="classes/UI_Controls_Spin.xml"/>
+    <class name="UI\Controls\Slider" xml="classes/UI_Controls_Slider.xml"/>
+    <class name="UI\Controls\Progress" xml="classes/UI_Controls_Progress.xml"/>
+    <class name="UI\Controls\Separator" xml="classes/UI_Controls_Separator.xml"/>
+    <class name="UI\Controls\Combo" xml="classes/UI_Controls_Combo.xml"/>
+    <class name="UI\Controls\EditableCombo" xml="classes/UI_Controls_EditableCombo.xml"/>
+    <class name="UI\Controls\Radio" xml="classes/UI_Controls_Radio.xml"/>
+    <class name="UI\Controls\Picker" xml="classes/UI_Controls_Picker.xml"/>
+    <class name="UI\Controls\Form" xml="classes/UI_Controls_Form.xml"/>
+    <class name="UI\Controls\Grid" xml="classes/UI_Controls_Grid.xml"/>
+    <class name="UI\Controls\Group" xml="classes/UI_Controls_Group.xml"/>
+    <class name="UI\Controls\Box" xml="classes/UI_Controls_Box.xml"/>
+    <class name="UI\Draw\Pen" xml="classes/UI_Draw_Pen.xml"/>
+    <class name="UI\Draw\Path" xml="classes/UI_Draw_Path.xml"/>
+    <class name="UI\Draw\Matrix" xml="classes/UI_Draw_Matrix.xml"/>
+    <class name="UI\Draw\Color" xml="classes/UI_Draw_Color.xml"/>
+    <class name="UI\Draw\Stroke" xml="classes/UI_Draw_Stroke.xml"/>
+    <class name="UI\Draw\Brush" xml="classes/UI_Draw_Brush.xml"/>
+    <class name="UI\Draw\Brush\Gradient" xml="classes/UI_Draw_Brush_Gradient.xml"/>
+    <class name="UI\Draw\Brush\LinearGradient" xml="classes/UI_Draw_Brush_LinearGradient.xml"/>
+    <class name="UI\Draw\Brush\RadialGradient" xml="classes/UI_Draw_Brush_RadialGradient.xml"/>
+    <class name="UI\Draw\Text\Layout" xml="classes/UI_Draw_Text_Layout.xml"/>
+    <class name="UI\Draw\Text\Font" xml="classes/UI_Draw_Text_Font.xml"/>
+    <class name="UI\Draw\Text\Font\Descriptor" xml="classes/UI_Draw_Text_Font_Descriptor.xml"/>
+    <class name="UI\Draw\Text\Font\Weight" xml="classes/UI_Draw_Text_Font_Weight.xml"/>
+    <class name="UI\Draw\Text\Font\Italic" xml="classes/UI_Draw_Text_Font_Italic.xml"/>
+    <class name="UI\Draw\Text\Font\Stretch" xml="classes/UI_Draw_Text_Font_Stretch.xml"/>
+    <class name="UI\Draw\Line\Cap" xml="classes/UI_Draw_Line_Cap.xml"/>
+    <class name="UI\Draw\Line\Join" xml="classes/UI_Draw_Line_Join.xml"/>
+    <class name="UI\Key" xml="classes/UI_Key.xml"/>
+    <class name="UI\Exception\InvalidArgumentException" xml="classes/UI_Exception_InvalidArgumentException.xml"/>
+    <class name="UI\Exception\RuntimeException" xml="classes/UI_Exception_RuntimeException.xml"/>
     <class name="Counter" xml="classes/Counter.xml"/>
     <interface name="Traversable" xml="interfaces/Traversable.xml"/>
     <interface name="Iterator" xml="interfaces/Iterator.xml"/>
     <interface name="IteratorAggregate" xml="interfaces/IteratorAggregate.xml"/>
+    <interface name="Throwable" xml="interfaces/Throwable.xml"/>
     <interface name="ArrayAccess" xml="interfaces/ArrayAccess.xml"/>
     <interface name="Serializable" xml="interfaces/Serializable.xml"/>
+    <interface name="MongoCursorInterface" xml="interfaces/MongoCursorInterface.xml"/>
+    <interface name="MongoDB\BSON\Type" xml="interfaces/MongoDB_BSON_Type.xml"/>
+    <interface name="MongoDB\BSON\Serializable" xml="interfaces/MongoDB_BSON_Serializable.xml"/>
+    <interface name="MongoDB\BSON\Unserializable" xml="interfaces/MongoDB_BSON_Unserializable.xml"/>
+    <interface name="MongoDB\Driver\Exception\Exception" xml="interfaces/MongoDB_Driver_Exception_Exception.xml"/>
+    <interface name="DateTimeImmutable" xml="interfaces/DateTimeImmutable.xml"/>
     <interface name="DateTimeInterface" xml="interfaces/DateTimeInterface.xml"/>
     <interface name="JsonSerializable" xml="interfaces/JsonSerializable.xml"/>
     <interface name="Countable" xml="interfaces/Countable.xml"/>
@@ -419,6 +556,9 @@
     <interface name="Yaf_Route_Interface" xml="interfaces/Yaf_Route_Interface.xml"/>
     <interface name="Yaf_Router" xml="interfaces/Yaf_Router.xml"/>
     <interface name="SessionHandlerInterface" xml="interfaces/SessionHandlerInterface.xml"/>
+    <interface name="Ds\Collection" xml="interfaces/Ds_Collection.xml"/>
+    <interface name="Ds\Hashable" xml="interfaces/Ds_Hashable.xml"/>
+    <interface name="Ds\Sequence" xml="interfaces/Ds_Sequence.xml"/>
     <interface name="Reflector" xml="interfaces/Reflector.xml"/>
   </namespace>
 </index>

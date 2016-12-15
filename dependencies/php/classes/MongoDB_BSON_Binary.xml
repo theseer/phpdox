@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Binary" namespace="" name="MongoDB\BSON\Binary">
+  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+  <constant name="TYPE_GENERIC" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_FUNCTION" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_OLD_BINARY" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_OLD_UUID" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_UUID" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_MD5" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_USER_DEFINED" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct a new Binary"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="getData" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Binary's data"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Binary's type"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+</class>

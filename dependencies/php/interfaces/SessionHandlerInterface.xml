@@ -18,7 +18,7 @@
       <description compact="Cleanup old sessions"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="maxlifetime" optional="false" byreference="false" type="string"/>
+    <parameter name="maxlifetime" optional="false" byreference="false" type="int"/>
   </method>
   <method name="open" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -26,7 +26,7 @@
       <return type="bool"/>
     </docblock>
     <parameter name="save_path" optional="false" byreference="false" type="string"/>
-    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="session_name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="read" abstract="false" static="false" visibility="public" final="false">
     <docblock>

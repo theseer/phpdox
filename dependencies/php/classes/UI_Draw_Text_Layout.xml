@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Layout" namespace="" name="UI\Draw\Text\Layout">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Text Layout"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
+    <parameter name="font" optional="false" byreference="false" type="object" class="UI\Draw\Text\Font"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="setColor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Color"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="UI\Draw\Color"/>
+    <parameter name="start" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="end" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setColor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Color"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="start" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="end" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setWidth" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Width"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

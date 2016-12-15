@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ZMQContext" namespace="" name="ZMQContext">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Construct a new ZMQContext object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="io_threads" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="is_persistent" optional="true" byreference="false" type="object" class="boolean"/>
+  </constructor>
+  <method name="getOpt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get context option"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getSocket" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new socket"/>
+      <return type="ZMQSocket"/>
+    </docblock>
+    <parameter name="type" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="persistent_id" optional="true" byreference="false" type="string"/>
+    <parameter name="on_new_socket" optional="true" byreference="false" type="object" class="callback"/>
+  </method>
+  <method name="isPersistent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Whether the context is persistent"/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="setOpt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a socket option"/>
+      <return type="ZMQContext"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

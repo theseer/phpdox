@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Ds\Map" namespace="" name="Ds\Map">
+  <implements name="Ds\Collection" full="Ds\Collection"/>
+  <constant name="MIN_CAPACITY" value="16">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <method name="allocate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Allocates enough memory for a required capacity."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="capacity" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="apply" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Updates all values by applying a callback function to each value."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="capacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current capacity."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all values."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a shallow copy of the map."/>
+      <return type="Ds\Map"/>
+    </docblock>
+  </method>
+  <method name="diff" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new map using keys that aren't in another map.">Returns the result of removing all keys from the current instance that are present in a given map.</description>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="map" optional="false" byreference="false" type="object" class="Ds\Map"/>
+  </method>
+  <method name="filter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Creates a new map using a callable to determine which pairs to include.&#10;  "/>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="first" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the first pair in the map."/>
+      <return type="Ds\Pair"/>
+    </docblock>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value for a given key.">Returns the value for a given key, or an optional default value if the key could not be found.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="default" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="hasKey" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determines whether the map contains a given key."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="hasValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determines whether the map contains a given value."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="intersect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new map by intersecting keys with another map.">Creates a new map containing the pairs of the current instance whose keys are also present in the given map. In other words, returns a copy of the current instance with all keys removed that are not also in the other map.</description>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="map" optional="false" byreference="false" type="object" class="Ds\Map"/>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the map is empty"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="keys" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a set of the map's keys."/>
+      <return type="Ds\Set"/>
+    </docblock>
+  </method>
+  <method name="ksort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Sorts the map in-place by key.&#10; "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="ksorted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a copy, sorted by key."/>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="last" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the last pair of the map."/>
+      <return type="Ds\Pair"/>
+    </docblock>
+  </method>
+  <method name="map" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the result of applying a callback to each value."/>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the result of adding all given associations.">Returns the result of associating all keys of a given traversable object or array with their corresponding values, combined with the current instance.</description>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="values" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="pairs" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a sequence containing all the pairs of the map."/>
+      <return type="Ds\Sequence"/>
+    </docblock>
+  </method>
+  <method name="put" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Associates a key with a value.">Associates a key with a value, overwriting a previous association if one exists.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="putAll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Associates all key-value pairs of a traversable object or array.">Associates all key-value pairs of a traversable object or array.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="pairs" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="reduce" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reduces the map to a single value using a callback function."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="initial" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes and returns a value by key.">Removes and returns a value by key, or return an optional default value if the key could not be found.</description>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="default" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="reverse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Reverses the map in-place.&#10;  "/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="reversed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a reversed copy."/>
+      <return type="Ds\Map"/>
+    </docblock>
+  </method>
+  <method name="skip" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the pair at a given positional index."/>
+      <return type="Ds\Pair"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="slice" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns a subset of the map defined by a starting index and length.&#10;  "/>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Sorts the map in-place by value.&#10; "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="sorted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a copy, sorted by value."/>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="sum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the sum of all values in the map.">Returns the sum of all values in the map.</description>
+      <return type="number"/>
+    </docblock>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Converts the map to an array.&#10;  ">Converts the map to an array.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="union" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new map using values from the current instance and another map.">Creates a new map that contains the pairs of the current instance as well as the pairs of another map.</description>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="map" optional="false" byreference="false" type="object" class="Ds\Map"/>
+  </method>
+  <method name="values" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a sequence of the map's values."/>
+      <return type="Ds\Sequence"/>
+    </docblock>
+  </method>
+  <method name="xor" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Creates a new map using keys of either the current instance or of another map, but not of both.">Creates a new map containing keys of the current instance as well as another map, but not of both.</description>
+      <return type="Ds\Map"/>
+    </docblock>
+    <parameter name="map" optional="false" byreference="false" type="object" class="Ds\Map"/>
+  </method>
+</class>

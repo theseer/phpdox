@@ -30,6 +30,20 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <method name="addChildDocument" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds a child document for block indexing"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="child" optional="false" byreference="false" type="object" class="SolrInputDocument"/>
+  </method>
+  <method name="addChildDocuments" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds an array of child documents"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="docs" optional="false" byreference="false" type="object" class="array"/>
+  </method>
   <method name="addField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Adds a field to the document"/>
@@ -83,6 +97,18 @@
       <return type="float"/>
     </docblock>
   </method>
+  <method name="getChildDocuments" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns an array of child documents (SolrInputDocument)"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getChildDocumentsCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the number of child documents"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
   <method name="getField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieves a field by name"/>
@@ -107,6 +133,12 @@
     <docblock>
       <description compact="Returns an array containing all the fields in the document"/>
       <return type="array"/>
+    </docblock>
+  </method>
+  <method name="hasChildDocuments" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns true if the document has any child documents"/>
+      <return type="boolean"/>
     </docblock>
   </method>
   <method name="merge" abstract="false" static="false" visibility="public" final="false">

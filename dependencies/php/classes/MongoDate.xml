@@ -20,6 +20,12 @@
     <parameter name="sec" optional="true" byreference="false" type="int"/>
     <parameter name="usec" optional="true" byreference="false" type="int"/>
   </constructor>
+  <method name="toDateTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a DateTime object representing this date"/>
+      <return type="DateTime"/>
+    </docblock>
+  </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a string representation of this date"/>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SyncEvent" namespace="" name="SyncEvent">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new SyncEvent object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="true" byreference="false" type="string"/>
+    <parameter name="manual" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="prefire" optional="true" byreference="false" type="object" class="bool"/>
+  </constructor>
+  <method name="fire" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Fires/sets the event"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resets a manual event"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="wait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Waits for the event to be fired/set"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

@@ -35,7 +35,7 @@
   <method name="getResource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a resource that can be used to read the stored file">This method returns a stream resource that can be used with all file functions in PHP that deal with reading files. The contents of the file are pulled out of MongoDB on the fly, so that the whole file does not have to be loaded into memory first.</description>
-      <return type="stream"/>
+      <return type="resource"/>
     </docblock>
   </method>
   <method name="getSize" abstract="false" static="false" visibility="public" final="false">

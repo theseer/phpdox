@@ -27,7 +27,7 @@
   </method>
   <constructor name="__construct" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="The __construct purpose"/>
+      <description compact="Constructor of Yaf_Session"/>
       <return type="void"/>
     </docblock>
   </constructor>

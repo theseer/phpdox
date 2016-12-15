@@ -43,7 +43,7 @@
   <method name="getfillcolor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the fill color"/>
-      <return type="void"/>
+      <return type="GmagickPixel"/>
     </docblock>
   </method>
   <method name="getfillopacity" abstract="false" static="false" visibility="public" final="false">
@@ -55,7 +55,7 @@
   <method name="getfont" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the font"/>
-      <return type="string"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="getfontsize" abstract="false" static="false" visibility="public" final="false">
@@ -79,7 +79,7 @@
   <method name="getstrokecolor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the color used for stroking object outlines"/>
-      <return type="void"/>
+      <return type="GmagickPixel"/>
     </docblock>
   </method>
   <method name="getstrokeopacity" abstract="false" static="false" visibility="public" final="false">
@@ -103,7 +103,7 @@
   <method name="gettextencoding" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the code set used for text annotations"/>
-      <return type="string"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="line" abstract="false" static="false" visibility="public" final="false">
@@ -180,7 +180,7 @@
       <description compact="Sets the fill color to be used for drawing filled objects. "/>
       <return type="GmagickDraw"/>
     </docblock>
-    <parameter name="color" optional="false" byreference="false" type="string"/>
+    <parameter name="color" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setfillopacity" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -222,7 +222,7 @@
       <description compact="Sets the color used for stroking object outlines. "/>
       <return type="GmagickDraw"/>
     </docblock>
-    <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
+    <parameter name="color" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setstrokeopacity" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -247,7 +247,7 @@
   </method>
   <method name="settextencoding" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Specifies specifies the text code set"/>
+      <description compact="Specifies the text code set"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="encoding" optional="false" byreference="false" type="string"/>

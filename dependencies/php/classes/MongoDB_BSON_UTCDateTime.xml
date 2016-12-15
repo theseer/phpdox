@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\UTCDateTime" namespace="" name="MongoDB\BSON\UTCDateTime">
+  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct a new UTCDateTime"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="milliseconds" optional="false" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="toDateTime" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the DateTime representation of this UTCDateTime"/>
+      <return type="DateTime"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the string representation of this UTCDateTime"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

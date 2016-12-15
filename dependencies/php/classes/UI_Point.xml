@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Point" namespace="" name="UI\Point">
+  <member name="x" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Holds the X co-ordinate, can be read/written directly&#10;      "/>
+    </docblock>
+  </member>
+  <member name="y" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="&#10;       Holds the Y co-ordinate, can be read/written directly&#10;      "/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Point"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+  </constructor>
+  <method name="at" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Size Coercion"/>
+      <return type="UI\Point"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="at" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Size Coercion"/>
+      <return type="UI\Point"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="UI\Size"/>
+  </method>
+  <method name="getX" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves X"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getY" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieves Y"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="setX" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set X"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setY" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set Y"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

@@ -5,7 +5,7 @@
       <description compact="SoapVar constructor"/>
       <return type="void"/>
     </docblock>
-    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="encoding" optional="false" byreference="false" type="string"/>
     <parameter name="type_name" optional="true" byreference="false" type="string"/>
     <parameter name="type_namespace" optional="true" byreference="false" type="string"/>

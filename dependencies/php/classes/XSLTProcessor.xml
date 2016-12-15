@@ -20,10 +20,10 @@
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="importStylesheet" abstract="false" static="false" final="false">
+  <method name="importStylesheet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Import stylesheet"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="stylesheet" optional="false" byreference="false" type="object" class="object"/>
   </method>
@@ -85,6 +85,6 @@
       <description compact="Transform to XML"/>
       <return type="string"/>
     </docblock>
-    <parameter name="doc" optional="false" byreference="false" type="object" class="DOMDocument"/>
+    <parameter name="doc" optional="false" byreference="false" type="object" class="object"/>
   </method>
 </class>

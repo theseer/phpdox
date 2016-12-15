@@ -120,7 +120,7 @@
   <method name="serialize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Serialize an ArrayObject"/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="setFlags" abstract="false" static="false" visibility="public" final="false">

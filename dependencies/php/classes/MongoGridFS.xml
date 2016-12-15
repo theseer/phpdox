@@ -30,8 +30,8 @@
   </constructor>
   <method name="delete" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Delete a file from the database"/>
-      <return type="bool"/>
+      <description compact="Remove a file and its chunks from the database"/>
+      <return type="bool|array"/>
     </docblock>
     <parameter name="id" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
@@ -71,11 +71,12 @@
     </docblock>
     <parameter name="filename" optional="false" byreference="false" type="string"/>
     <parameter name="metadata" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="remove" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Removes files from the collections"/>
-      <return type="bool"/>
+      <description compact="Remove files and their chunks from the database"/>
+      <return type="bool|array"/>
     </docblock>
     <parameter name="criteria" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
@@ -94,7 +95,7 @@
       <description compact="Stores a file in the database"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="filename" optional="false" byreference="false" type="object" class="string|resource"/>
     <parameter name="metadata" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>

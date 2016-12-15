@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Serializable" namespace="" name="MongoDB\BSON\Serializable">
+  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+  <method name="bsonSerialize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Provides an array or document to serialize as BSON">Called during serialization of the object to BSON. The method must return an array or stdClass.</description>
+      <return type="array|object"/>
+    </docblock>
+  </method>
+</interface>

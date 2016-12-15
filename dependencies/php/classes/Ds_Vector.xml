@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Ds\Vector" namespace="" name="Ds\Vector">
+  <implements name="Ds\Sequence" full="Ds\Sequence"/>
+  <constant name="MIN_CAPACITY" value="10">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <method name="allocate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Allocates enough memory for a required capacity."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="capacity" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="apply" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Updates all values by applying a callback function to each value."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="capacity" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current capacity."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes all values."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="contains" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determines if the vector contains given values."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a shallow copy of the vector."/>
+      <return type="Ds\Vector"/>
+    </docblock>
+  </method>
+  <method name="filter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Creates a new vector using a callable to&#10;    determine which values to include.&#10; "/>
+      <return type="Ds\Vector"/>
+    </docblock>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="find" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Attempts to find a value's index.&#10;  "/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="first" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the first value in the vector."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the value at a given index."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="insert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Inserts values at a given index."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns whether the vector is empty"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="join" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Joins all values together as a string."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="glue" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="last" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the last value."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="map" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the result of applying a callback to each value."/>
+      <return type="Ds\Vector"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="merge" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the result of adding all given values to the vector."/>
+      <return type="Ds\Vector"/>
+    </docblock>
+    <parameter name="values" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes and returns the last value."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds values to the end of the vector."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="...values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="reduce" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reduces the vector to a single value using a callback function."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="initial" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes and returns a value by index."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="reverse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Reverses the vector in-place.&#10;  "/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="reversed" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a reversed copy."/>
+      <return type="Ds\Vector"/>
+    </docblock>
+  </method>
+  <method name="rotate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rotates the vector by a given number of rotations."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="rotations" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Updates a value at a given index."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="shift" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Removes and returns the first value."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="slice" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;   Returns a sub-vector of a given range.&#10;  "/>
+      <return type="Ds\Vector"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Sorts the vector in-place.&#10; "/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="sorted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns a sorted copy."/>
+      <return type="Ds\Vector"/>
+    </docblock>
+    <parameter name="comparator" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="sum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the sum of all values in the vector.">Returns the sum of all values in the vector.</description>
+      <return type="number"/>
+    </docblock>
+  </method>
+  <method name="toArray" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="&#10;    Converts the vector to an array.&#10;  ">Converts the vector to an array.</description>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="unshift" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Adds values to the front of the vector."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="values" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

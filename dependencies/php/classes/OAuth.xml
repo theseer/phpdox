@@ -97,6 +97,7 @@
     <parameter name="access_token_url" optional="false" byreference="false" type="string"/>
     <parameter name="auth_session_handle" optional="true" byreference="false" type="string"/>
     <parameter name="verifier_token" optional="true" byreference="false" type="string"/>
+    <parameter name="http_method" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getCAPath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -138,6 +139,7 @@
     </docblock>
     <parameter name="request_token_url" optional="false" byreference="false" type="string"/>
     <parameter name="callback_url" optional="true" byreference="false" type="string"/>
+    <parameter name="http_method" optional="true" byreference="false" type="string"/>
   </method>
   <method name="setAuthType" abstract="false" static="false" visibility="public" final="false">
     <docblock>

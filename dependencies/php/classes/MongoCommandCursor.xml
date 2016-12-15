@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoCommandCursor" namespace="" name="MongoCommandCursor">
+  <implements name="MongoCursorInterface" full="MongoCursorInterface"/>
+  <method name="batchSize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Limits the number of elements returned in one batch."/>
+      <return type="MongoCommandCursor"/>
+    </docblock>
+    <parameter name="batchSize" optional="false" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new command cursor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="MongoClient"/>
+    <parameter name="ns" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="createFromDocument" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new command cursor from an existing command response document"/>
+      <return type="MongoCommandCursor"/>
+    </docblock>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="MongoClient"/>
+    <parameter name="hash" optional="false" byreference="false" type="string"/>
+    <parameter name="document" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current element"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="dead" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if there are results that have not yet been sent from the database"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the read preference for this command"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="info" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets information about the cursor's creation and iteration"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the current result's index within the result set"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Advances the cursor to the next result"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Executes the command and resets the cursor to the start of the result set"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="setReadPreference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the read preference for this command"/>
+      <return type="MongoCommandCursor"/>
+    </docblock>
+    <parameter name="read_preference" optional="false" byreference="false" type="string"/>
+    <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="timeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets a client-side timeout for this command"/>
+      <return type="MongoCommandCursor"/>
+    </docblock>
+    <parameter name="ms" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if the cursor is reading a valid result."/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

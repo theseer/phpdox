@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Path" namespace="" name="UI\Draw\Path">
+  <constant name="Winding" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Alternate" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Path"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="addRectangle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw a Rectangle"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="size" optional="false" byreference="false" type="object" class="UI\Size"/>
+  </method>
+  <method name="arcTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw an Arc"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sweep" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="negative" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="bezierTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw Bezier Curve"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sweep" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="negative" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="closeFigure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close Figure"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="end" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Finalize Path"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="lineTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw a Line"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sweep" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="negative" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="newFigure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw Figure"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+  </method>
+  <method name="newFigureWithArc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Draw Figure with Arc"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="point" optional="false" byreference="false" type="object" class="UI\Point"/>
+    <parameter name="radius" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="sweep" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="negative" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+</class>

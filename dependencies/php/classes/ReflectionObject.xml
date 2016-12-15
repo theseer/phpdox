@@ -154,7 +154,7 @@
   <method name="getParentClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="object"/>
+      <return type="ReflectionClass"/>
     </docblock>
   </method>
   <method name="getProperties" abstract="false" static="false" visibility="public" final="false">
@@ -250,6 +250,12 @@
     </docblock>
   </method>
   <method name="isAbstract" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isAnonymous" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="bool"/>

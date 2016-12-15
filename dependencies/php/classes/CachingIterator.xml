@@ -37,7 +37,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="iterator" optional="false" byreference="false" type="object" class="Iterator"/>
-    <parameter name="flags" optional="true" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -53,14 +53,14 @@
   </method>
   <method name="getCache" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getCache purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve the contents of the cache">Retrieve the contents of the cache.</description>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get flags used"/>
-      <return type="void"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">
@@ -127,7 +127,7 @@
       <description compact="The setFlags purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="flags" optional="false" byreference="false" type="object" class="bitmask"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>

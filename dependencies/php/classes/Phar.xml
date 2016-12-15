@@ -18,7 +18,7 @@
   </method>
   <method name="addFromString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Add a file from the filesystem to the phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Add a file from a string to the phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="localname" optional="false" byreference="false" type="string"/>
@@ -163,7 +163,7 @@
   </method>
   <method name="extractTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Extract the contents of a phar archive to a directory">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Extract the contents of a phar archive to a directory"/>
       <return type="bool"/>
     </docblock>
     <parameter name="pathto" optional="false" byreference="false" type="string"/>

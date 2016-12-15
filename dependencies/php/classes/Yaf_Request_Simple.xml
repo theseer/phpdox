@@ -17,11 +17,16 @@
       <return type="void"/>
     </docblock>
   </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __construct purpose"/>
+      <description compact="Constructor of Yaf_Request_Simple"/>
       <return type="void"/>
     </docblock>
+    <parameter name="method" optional="true" byreference="false" type="string"/>
+    <parameter name="module" optional="true" byreference="false" type="string"/>
+    <parameter name="controller" optional="true" byreference="false" type="string"/>
+    <parameter name="action" optional="true" byreference="false" type="string"/>
+    <parameter name="params" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>

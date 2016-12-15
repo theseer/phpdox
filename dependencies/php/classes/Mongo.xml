@@ -96,6 +96,12 @@
       <return type="array"/>
     </docblock>
   </method>
+  <method name="getWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="killCursor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -132,6 +138,14 @@
     </docblock>
     <parameter name="read_preference" optional="false" byreference="false" type="string"/>
     <parameter name="tags" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setWriteConcern" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="w" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="wtimeout" optional="true" byreference="false" type="int"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="UI\Executor" namespace="" name="UI\Executor">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Executor"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Executor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="microseconds" optional="false" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new Executor"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="seconds" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="microseconds" optional="false" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="kill" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop Executor"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="onExecute" abstract="false" static="false" visibility="protected" final="false">
+    <docblock>
+      <description compact="Execution Callback"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setInterval" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Interval Manipulation"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="microseconds" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setInterval" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Interval Manipulation"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="seconds" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="microseconds" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="Yaf_Route_Static" namespace="" name="Yaf_Route_Static">
   <implements name="Yaf_Router" full="Yaf_Router"/>
+  <method name="assemble" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assemble a url"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="info" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <method name="match" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The match purpose"/>

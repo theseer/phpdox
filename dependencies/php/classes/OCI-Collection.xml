@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="OCI-Collection" namespace="" name="OCI-Collection">
+  <method name="append" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Appends element to the collection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="assign" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Assigns a value to the collection from another existing collection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="from" optional="false" byreference="false" type="object" class="OCI-Collection"/>
+  </method>
+  <method name="assignElem" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Assigns a value to the element of the collection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="free" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Frees the resources associated with the collection object"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getElem" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns value of the element"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="max" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns the maximum number of elements in the collection"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="size" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Returns size of the collection"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="trim" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Trims elements from the end of the collection"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="num" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

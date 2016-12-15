@@ -165,14 +165,14 @@
   </method>
   <method name="setFileClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the class name used with SplFileInfo::openFile"/>
+      <description compact="Sets the class used with SplFileInfo::openFile"/>
       <return type="void"/>
     </docblock>
     <parameter name="class_name" optional="true" byreference="false" type="string"/>
   </method>
   <method name="setInfoClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the class used with getFileInfo and getPathInfo"/>
+      <description compact="Sets the class used with SplFileInfo::getFileInfo and SplFileInfo::getPathInfo"/>
       <return type="void"/>
     </docblock>
     <parameter name="class_name" optional="true" byreference="false" type="string"/>

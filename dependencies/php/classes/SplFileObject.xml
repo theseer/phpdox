@@ -21,16 +21,6 @@
       <var type="integer"/>
     </docblock>
   </constant>
-  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Construct a new file object."/>
-      <return type="void"/>
-    </docblock>
-    <parameter name="filename" optional="false" byreference="false" type="string"/>
-    <parameter name="open_mode" optional="true" byreference="false" type="string"/>
-    <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
-    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
-  </constructor>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve current line of file"/>
@@ -99,6 +89,14 @@
     <parameter name="fields" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="delimiter" optional="true" byreference="false" type="string"/>
     <parameter name="enclosure" optional="true" byreference="false" type="string"/>
+    <parameter name="escape" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="fread" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read from file"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="length" optional="false" byreference="false" type="int"/>
   </method>
   <method name="fscanf" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -151,7 +149,7 @@
   </method>
   <method name="getCsvControl" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get the delimiter and enclosure character for CSV"/>
+      <description compact="Get the delimiter, enclosure and escape character for CSV"/>
       <return type="array"/>
     </docblock>
   </method>
@@ -200,7 +198,7 @@
   </method>
   <method name="setCsvControl" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Set the delimiter and enclosure character for CSV"/>
+      <description compact="Set the delimiter, enclosure and escape character for CSV"/>
       <return type="void"/>
     </docblock>
     <parameter name="delimiter" optional="true" byreference="false" type="string"/>

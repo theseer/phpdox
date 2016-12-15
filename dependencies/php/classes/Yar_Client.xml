@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Yar_Client" namespace="" name="Yar_Client">
+  <member name="_protocol" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_uri" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_options" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="_running" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="__call" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Call service"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
+    <parameter name="parameters" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Create a client"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="url" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="setOpt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set calling contexts"/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="object" class="number"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

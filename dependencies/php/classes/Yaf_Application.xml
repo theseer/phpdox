@@ -38,7 +38,7 @@
   </member>
   <method name="app" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrive an Application instance"/>
+      <description compact="Retrieve an Application instance"/>
       <return type="void"/>
     </docblock>
   </method>

@@ -19,6 +19,14 @@
       <description compact=""/>
     </docblock>
   </member>
+  <method name="assemble" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assemble a url"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="info" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
+  </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Yaf_Route_Rewrite constructor"/>
@@ -34,6 +42,14 @@
       <return type="bool"/>
     </docblock>
     <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>
+  </method>
+  <method name="assemble" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="info" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="query" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="route" abstract="false" static="false" visibility="public" final="false">
     <docblock>

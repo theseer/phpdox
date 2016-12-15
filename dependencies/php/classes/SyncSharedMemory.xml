@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SyncSharedMemory" namespace="" name="SyncSharedMemory">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a new SyncSharedMemory object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+  </constructor>
+  <method name="first" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check to see if the object is the first instance system-wide of named shared memory"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Copy data from named shared memory"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="start" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="length" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="size" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the size of the named shared memory"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Copy data to named shared memory"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="string" optional="true" byreference="false" type="string"/>
+    <parameter name="start" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

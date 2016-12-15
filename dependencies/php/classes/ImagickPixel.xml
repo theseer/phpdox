@@ -34,8 +34,14 @@
   </method>
   <method name="getColorCount" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Returns the color count associated with this color"/>
+      <description compact="Returns the color count associated with this color">Returns the color count associated with this color.</description>
       <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getColorQuantum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="getColorValue" abstract="false" static="false" final="false">
@@ -45,11 +51,39 @@
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="int"/>
   </method>
+  <method name="getColorValueQuantum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
   <method name="getHSL" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Returns the normalized HSL color of the ImagickPixel object"/>
       <return type="array"/>
     </docblock>
+  </method>
+  <method name="getIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isPixelSimilar" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Check the distance between this color and another"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="object" class="ImagickPixel"/>
+    <parameter name="fuzz" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="isPixelSimilarQuantum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="string"/>
+    <parameter name="fuzz" optional="true" byreference="false" type="string"/>
   </method>
   <method name="isSimilar" abstract="false" static="false" final="false">
     <docblock>
@@ -66,6 +100,13 @@
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="setcolorcount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="colorCount" optional="false" byreference="false" type="string"/>
+  </method>
   <method name="setColorValue" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Sets the normalized value of one of the channels"/>
@@ -73,6 +114,14 @@
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setColorValueQuantum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="color" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setHSL" abstract="false" static="false" final="false">
     <docblock>
@@ -82,5 +131,12 @@
     <parameter name="hue" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="saturation" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="luminosity" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
 </class>

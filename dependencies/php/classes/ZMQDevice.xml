@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ZMQDevice" namespace="" name="ZMQDevice">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Construct a new device"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="frontend" optional="false" byreference="false" type="object" class="ZMQSocket"/>
+    <parameter name="backend" optional="false" byreference="false" type="object" class="ZMQSocket"/>
+    <parameter name="listener" optional="true" byreference="false" type="object" class="ZMQSocket"/>
+  </constructor>
+  <method name="getIdleTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the idle timeout"/>
+      <return type="ZMQDevice"/>
+    </docblock>
+  </method>
+  <method name="getTimerTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the timer timeout"/>
+      <return type="ZMQDevice"/>
+    </docblock>
+  </method>
+  <method name="run" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run the new device"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="setIdleCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the idle callback function"/>
+      <return type="ZMQDevice"/>
+    </docblock>
+    <parameter name="cb_func" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="user_data" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setIdleTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the idle timeout"/>
+      <return type="ZMQDevice"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="setTimerCallback" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the timer callback function"/>
+      <return type="ZMQDevice"/>
+    </docblock>
+    <parameter name="cb_func" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="user_data" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="setTimerTimeout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the timer timeout"/>
+      <return type="ZMQDevice"/>
+    </docblock>
+    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

@@ -33,7 +33,7 @@
   <member name="io_interval" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Higher&#10;       io_interval&#10;       allows&#10;       libev&#10;       to spend more time collecting&#10;       EvIo&#10;       events, so more events can be handled per iteration, at the cost of&#10;       increasing latency. Timeouts (both&#10;       EvPeriodic&#10;       and&#10;       EvTimer&#10;       ) will not be affected. Setting this to a non-zero value will introduce&#10;       an additional&#10;       sleep()&#10;       call into most loop iterations. The sleep time ensures that&#10;       libev&#10;       will not poll for&#10;       EvIo&#10;       events events more often than once per this interval, on average. Many&#10;       programs can usually benefit by setting the&#10;       io_interval&#10;       to a value near&#10;       0.1&#10;       , which is often enough for interactive servers(not for games). It&#10;       usually doesn't make much sense to set it to a lower value than&#10;       0.01&#10;       , as this approaches the timing granularity of most systems.&#10;      ">
+      <description compact="&#10;       Higher&#10;       io_interval&#10;       allows&#10;       libev&#10;       to spend more time collecting&#10;       EvIo&#10;       events, so more events can be handled per iteration, at the cost of&#10;       increasing latency. Timeouts (both&#10;       EvPeriodic&#10;       and&#10;       EvTimer&#10;       ) will not be affected. Setting this to a non-zero value will introduce&#10;       an additional&#10;       sleep()&#10;       call into most loop iterations. The sleep time ensures that&#10;       libev&#10;       will not poll for&#10;       EvIo&#10;       events more often than once per this interval, on average. Many&#10;       programs can usually benefit by setting the&#10;       io_interval&#10;       to a value near&#10;       0.1&#10;       , which is often enough for interactive servers(not for games). It&#10;       usually doesn't make much sense to set it to a lower value than&#10;       0.01&#10;       , as this approaches the timing granularity of most systems.&#10;      ">
        Higher
        io_interval
        allows
@@ -52,7 +52,7 @@
        libev
        will not poll for
        EvIo
-       events events more often than once per this interval, on average. Many
+       events more often than once per this interval, on average. Many
        programs can usually benefit by setting the
        io_interval
        to a value near

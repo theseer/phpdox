@@ -43,7 +43,7 @@
   </method>
   <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the value for the property"/>
+      <description compact="Unsets the value for the property"/>
       <return type="void"/>
     </docblock>
     <parameter name="property_name" optional="false" byreference="false" type="string"/>

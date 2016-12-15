@@ -20,7 +20,7 @@
       <description compact="Tells libevent to avoid specific event method"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="method" optional="false" byreference="false" type="int"/>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
