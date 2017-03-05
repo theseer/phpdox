@@ -12,8 +12,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class CheckStyle extends AbstractEnricher implements ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface {
 
-        private $config;
-        private $findings = NULL;
+        protected $config;
+        protected $findings = NULL;
+
+        const FINDINGS_XPATH = '/checkstyle/file';
+        const XML_STYLE = 'checkstyle';
 
         public function __construct(CheckStyleConfig $config) {
             $this->config = $config;
@@ -57,12 +60,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
                 $dom = new fDOMDocument();
                 $dom->load($xmlFile);
-                foreach($dom->query('/checkstyle/file') as $file) {
+                foreach($dom->query(static::FINDINGS_XPATH) as $file) {
                     $this->findings[$file->getAttribute('name')] = $file->query('*');
                 }
             } catch (fDOMException $e) {
                 throw new EnricherException(
-                    'Parsing checkstyle logfile failed: ' . $e->getMessage(),
+                    sprintf('Parsing %s logfile failed: %s', static::XML_STYLE, $e->getMessage()),
                     EnricherException::LoadError
                 );
             }

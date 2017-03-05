@@ -12,42 +12,14 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
     class PHPCs extends CheckStyle {
 
-        private $config;
-        private $findings = NULL;
         const XMLNS = 'http://xml.phpdox.net/src';
-
-        public function __construct(PHPCsConfig $config) {
-            $this->config = $config;
-            $this->loadFindings($config->getLogFilePath());
-        }
+        const FINDINGS_XPATH = '/phpcs/file';
 
         /**
          * @return string
          */
         public function getName() {
             return 'PHPCS XML';
-        }
-
-        private function loadFindings($xmlFile) {
-            $this->findings = array();
-            try {
-                if (!file_exists($xmlFile)) {
-                    throw new EnricherException(
-                        sprintf('Logfile "%s" not found.', $xmlFile),
-                        EnricherException::LoadError
-                    );
-                }
-                $dom = new fDOMDocument();
-                $dom->load($xmlFile);
-                foreach($dom->query('/phpcs/file') as $file) {
-                    $this->findings[$file->getAttribute('name')] = $file->query('*');
-                }
-            } catch (fDOMException $e) {
-                throw new EnricherException(
-                    'Parsing phpcs logfile failed: ' . $e->getMessage(),
-                    EnricherException::LoadError
-                );
-            }
         }
 
         protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding) {
