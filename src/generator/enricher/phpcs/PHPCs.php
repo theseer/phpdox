@@ -3,12 +3,6 @@
 namespace TheSeer\phpDox\Generator\Enricher {
 
     use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMElement;
-    use TheSeer\fDOM\fDOMException;
-    use TheSeer\phpDox\Generator\AbstractUnitObject;
-    use TheSeer\phpDox\Generator\ClassStartEvent;
-    use TheSeer\phpDox\Generator\InterfaceStartEvent;
-    use TheSeer\phpDox\Generator\TraitStartEvent;
 
     class PHPCs extends CheckStyle {
 
