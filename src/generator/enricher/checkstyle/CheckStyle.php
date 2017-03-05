@@ -88,9 +88,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         }
 
-        protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding) {
-            $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
-            $enrichFinding = $dom->createElementNS(self::XMLNS, $finding->getAttribute('severity', 'error'));
+        protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding, $elementName = null) {
+            $enrichment    = $this->getEnrichtmentContainer($ref, 'checkstyle');
+            $enrichFinding = $dom->createElementNS(static::XMLNS, ($elementName ?: $finding->getAttribute('severity', 'error')));
             $enrichment->appendChild($enrichFinding);
             foreach($finding->attributes as $attr) {
                 if ($attr->localName == 'severity') {
@@ -98,6 +98,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
                 $enrichFinding->setAttributeNode($dom->importNode($attr, true));
             }
+            return $enrichFinding;
         }
     }
 
