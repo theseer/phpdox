@@ -5,6 +5,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
     use TheSeer\fDOM\fDOMException;
+    use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\Generator\AbstractUnitObject;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceStartEvent;
@@ -58,7 +59,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $dom = new fDOMDocument();
                 $dom->load($xmlFile);
                 foreach($dom->query('/pmd/file') as $file) {
-                    $this->violations[$file->getAttribute('name')] = $file->query('*');
+                    $fileInfo = new FileInfo($file->getAttribute('name'));
+                    $this->violations[$fileInfo->getPathname()] = $file->query('*');
                 }
             } catch (fDOMException $e) {
                 throw new EnricherException(
