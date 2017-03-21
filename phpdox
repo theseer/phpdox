@@ -44,7 +44,7 @@ if (!defined('HHVM_VERSION') && (version_compare(phpversion(), '5.5', 'lt'))) {
     fwrite(
         STDERR,
         sprintf(
-            "Phive requires PHP 5.5 or later; " .
+            "phpDox requires PHP 5.5 or later; " .
             "Upgrading to the latest version of PHP is highly recommended. (Version used: %s)\n\n",
             phpversion()
         )

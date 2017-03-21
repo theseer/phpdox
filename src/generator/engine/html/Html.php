@@ -231,7 +231,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->genericMethodBuild(
                 $event->getClass()->asDom(),
                 'classes',
-                $event->getClass()->getFullname(),
+                $event->getClass()->getFullName(),
                 $event->getMethod()->getName()
             );
         }
