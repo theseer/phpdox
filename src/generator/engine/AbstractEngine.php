@@ -47,8 +47,10 @@ namespace TheSeer\phpDox\Generator\Engine {
         protected function getXSLTProcessor($template) {
             $tpl = new fDomDocument();
             $tpl->load($template);
-            $xsl = new fXSLTProcessor($tpl);
-            return $xsl;
+            if (stripos(PHP_OS, 'Linux') !== 0) {
+                $this->resolveImports($tpl);
+            }
+            return new fXSLTProcessor($tpl);
         }
 
         protected function clearDirectory($path) {
@@ -91,6 +93,27 @@ namespace TheSeer\phpDox\Generator\Engine {
                     mkdir(dirname($target), 0777, true);
                 }
                 copy($x->getPathname(), $target);
+            }
+        }
+
+        private function resolveImports(fDOMDocument $doc) {
+            $doc->registerNamespace('xsl', 'http://www.w3.org/1999/XSL/Transform');
+            $baseDir = dirname($doc->documentURI);
+            $baseElement = $doc->documentElement;
+            foreach($doc->query('/xsl:stylesheet/xsl:import') as $importNode) {
+                /** @var $importNode \DOMElement */
+                $import = new fDOMDocument();
+                $import->load($baseDir . '/' . $importNode->getAttribute('href'));
+
+                $newParent = $importNode->parentNode;
+                foreach ($import->documentElement->childNodes as $child) {
+                    if ($child->localName === 'output') {
+                        continue;
+                    }
+                    $importedChild = $doc->importNode($child, true);
+                    $newParent->insertBefore($importedChild, $importNode);
+                }
+                $newParent->removeChild($importNode);
             }
         }
 

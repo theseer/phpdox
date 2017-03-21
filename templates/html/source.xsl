@@ -1,9 +1,16 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:pdx="http://xml.phpdox.net/src"
+                xmlns:pdxf="http://xml.phpdox.net/functions"
+                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
+                xmlns:func="http://exslt.org/functions"
+                xmlns:idx="http://xml.phpdox.net/src"
+                xmlns:git="http://xml.phpdox.net/gitlog"
+                xmlns:ctx="ctx://engine/html"
                 xmlns:token="http://xml.phpdox.net/token"
                 xmlns:src="http://xml.phpdox.net/src"
-                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
-                xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="token src">
+                extension-element-prefixes="func"
+                exclude-result-prefixes="idx pdx pdxf pu git ctx token src">
 
     <xsl:import href="components.xsl" />
     <xsl:import href="functions.xsl" />
