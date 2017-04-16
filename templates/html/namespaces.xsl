@@ -44,7 +44,7 @@
 
     <xsl:template match="idx:namespace">
         <tr>
-            <td>\<xsl:value-of select="@name" /></td>
+            <td>\<a href="{$base}classes.{$extension}#{translate(@name, '\', '_')}"><xsl:value-of select="@name" /></a></td>
             <td class="nummeric">
                 <xsl:call-template name="countlink">
                     <xsl:with-param name="ctx" select="idx:interface" />
