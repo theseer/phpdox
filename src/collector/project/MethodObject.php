@@ -165,6 +165,16 @@ namespace TheSeer\phpDox\Collector {
 
         }
 
+        /**
+         * @param string $name
+         *
+         * @return ReturnTypeObject
+         */
+        public function setReturnType($name) {
+            $returnType = new ReturnTypeObject($this->ctx->appendElementNS(self::XMLNS, 'return'));
+            $returnType->setType($name);
+            return $returnType;
+        }
 
         /**
          * @param string $name

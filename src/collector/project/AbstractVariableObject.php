@@ -55,7 +55,7 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @var array
          */
-        private $types = array('{unknown}', 'object', 'array','integer','float','string','boolean','resource');
+        private $types = array('{unknown}', 'object', 'array', 'int', 'integer','float','string','bool','boolean','resource','callable');
 
         /**
          * @param fDOMElement $ctx
@@ -135,5 +135,8 @@ namespace TheSeer\phpDox\Collector {
             return $this->ctx->getAttribute('type');
         }
 
+        protected function addInternalType($type) {
+            $this->types[] = $type;
+        }
     }
 }

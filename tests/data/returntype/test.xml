@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config" silent="false">
+
+    <project name="phpDox-returntype" source="${basedir}/src" workdir="${basedir}/xml">
+
+        <collector publiconly="false" backend="parser" />
+
+        <generator output="${basedir}/docs">
+            <build engine="html" enabled="true" output="html" />
+            <build engine="xml" enabled="true" output="xml" />
+        </generator>
+
+    </project>
+
+</phpdox>

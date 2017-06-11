@@ -36,6 +36,7 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use TheSeer\DirectoryScanner\Exception;
     use TheSeer\phpDox\Collector\AbstractUnitObject;
     use TheSeer\phpDox\Collector\AbstractVariableObject;
     use TheSeer\phpDox\Collector\InlineComment;
@@ -227,6 +228,8 @@ namespace TheSeer\phpDox\Collector\Backend {
             $method->setFinal($node->isFinal());
             $method->setStatic($node->isStatic());
 
+            $this->processMethodReturnType($method, $node->getReturnType());
+
             $visibility = 'public';
             if ($node->isPrivate()) {
                 $visibility = 'private';
@@ -246,6 +249,31 @@ namespace TheSeer\phpDox\Collector\Backend {
             if ($node->stmts) {
                 $this->processInlineComments($method, $node->stmts);
             }
+        }
+
+        private function processMethodReturnType(MethodObject $method, $returnType) {
+            if ($returnType === null) {
+                return;
+            }
+
+            if (in_array($returnType, ['void','float','int','string','bool','callable','array'])) {
+                $returnTypeObject = $method->setReturnType($returnType);
+                $returnTypeObject->setNullable(false);
+                return;
+            }
+
+            if ($returnType instanceof \PhpParser\Node\Name\FullyQualified) {
+                $returnTypeObject = $method->setReturnType($returnType->toString());
+                $returnTypeObject->setNullable(false);
+                return;
+            }
+
+            if ($returnType instanceof \PhpParser\Node\NullableType) {
+                $returnTypeObject = $method->setReturnType($returnType->type);
+                $returnTypeObject->setNullable(true);
+                return;
+            }
+            throw new ParseErrorException("Unexpected return type definition", ParseErrorException::UnexpectedExpr);
         }
 
         private function processInlineComments(MethodObject $method, array $stmts) {

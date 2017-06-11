@@ -45,6 +45,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\collector\\parameterobject' => '/collector/project/ParameterObject.php',
                 'theseer\\phpdox\\collector\\project' => '/collector/project/Project.php',
                 'theseer\\phpdox\\collector\\projectexception' => '/collector/project/ProjectException.php',
+                'theseer\\phpdox\\collector\\returntypeobject' => '/collector/project/ReturnTypeObject.php',
                 'theseer\\phpdox\\collector\\sourcecollection' => '/collector/project/SourceCollection.php',
                 'theseer\\phpdox\\collector\\sourcecollectionexception' => '/collector/project/SourceCollectionException.php',
                 'theseer\\phpdox\\collector\\sourcefile' => '/collector/project/SourceFile.php',
