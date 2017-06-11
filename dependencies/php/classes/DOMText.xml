@@ -4,7 +4,7 @@
   <member name="wholeText" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Holds all the text of logically-adjacent (not separated by Element, &#10;       Comment or Processing Instruction) Text nodes.&#10;      "/>
+      <description compact="Holds all the text of logically-adjacent (not separated by Element, Comment or Processing Instruction) Text nodes."/>
       <var type="string"/>
     </docblock>
   </member>

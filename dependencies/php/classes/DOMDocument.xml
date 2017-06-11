@@ -4,14 +4,14 @@
   <member name="actualEncoding" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Deprecated. Actual encoding of the document,&#10;       is a readonly equivalent to&#10;       encoding.&#10;      "/>
+      <description compact="Deprecated. Actual encoding of the document, is a readonly equivalent to encoding."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="config" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Deprecated. Configuration used when&#10;       DOMDocument::normalizeDocument is&#10;       invoked.&#10;      "/>
+      <description compact="Deprecated. Configuration used when DOMDocument::normalizeDocument is invoked."/>
       <var type="DOMConfiguration"/>
     </docblock>
   </member>
@@ -25,7 +25,7 @@
   <member name="documentElement" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       This is a convenience attribute that allows direct access to the&#10;       child node that is the document element of the document.&#10;      "/>
+      <description compact="This is a convenience attribute that allows direct access to the child node that is the document element of the document."/>
       <var type="DOMElement"/>
     </docblock>
   </member>
@@ -39,7 +39,7 @@
   <member name="encoding" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Encoding of the document, as specified by the XML declaration. This&#10;       attribute is not present in the final DOM Level 3 specification, but&#10;       is the only way of manipulating XML document encoding in this&#10;       implementation.&#10;      "/>
+      <description compact="Encoding of the document, as specified by the XML declaration. This attribute is not present in the final DOM Level 3 specification, but is the only way of manipulating XML document encoding in this implementation."/>
       <var type="string"/>
     </docblock>
   </member>
@@ -53,7 +53,7 @@
   <member name="implementation" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The DOMImplementation object that handles &#10;       this document.&#10;      "/>
+      <description compact="The DOMImplementation object that handles this document."/>
       <var type="DOMImplementation"/>
     </docblock>
   </member>
@@ -67,21 +67,21 @@
   <member name="recover" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Proprietary. Enables recovery mode, i.e. trying&#10;       to parse non-well formed documents. This attribute is not part of&#10;       the DOM specification and is specific to libxml.&#10;      "/>
+      <description compact="Proprietary. Enables recovery mode, i.e. trying to parse non-well formed documents. This attribute is not part of the DOM specification and is specific to libxml."/>
       <var type="bool"/>
     </docblock>
   </member>
   <member name="resolveExternals" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Set it to TRUE to load external entities from a doctype &#10;       declaration. This is useful for including character entities in&#10;       your XML document.&#10;      "/>
+      <description compact="Set it to TRUE to load external entities from a doctype declaration. This is useful for including character entities in your XML document."/>
       <var type="bool"/>
     </docblock>
   </member>
   <member name="standalone" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Deprecated. Whether or not the document is&#10;       standalone, as specified by the XML declaration, corresponds to&#10;       xmlStandalone.&#10;      "/>
+      <description compact="Deprecated. Whether or not the document is standalone, as specified by the XML declaration, corresponds to xmlStandalone."/>
       <var type="bool"/>
     </docblock>
   </member>
@@ -95,7 +95,7 @@
   <member name="substituteEntities" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Proprietary. Whether or not to substitute&#10;       entities. This attribute is not part of&#10;       the DOM specification and is specific to libxml.&#10;      "/>
+      <description compact="Proprietary. Whether or not to substitute entities. This attribute is not part of the DOM specification and is specific to libxml."/>
       <var type="bool"/>
     </docblock>
   </member>
@@ -109,28 +109,28 @@
   <member name="version" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Deprecated. Version of XML, corresponds to&#10;       xmlVersion.&#10;      "/>
+      <description compact="Deprecated. Version of XML, corresponds to xmlVersion."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="xmlEncoding" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An attribute specifying, as part of the XML declaration, the&#10;       encoding of this document. This is NULL when unspecified or when it&#10;       is not known, such as when the Document was created in memory.&#10;      "/>
+      <description compact="An attribute specifying, as part of the XML declaration, the encoding of this document. This is NULL when unspecified or when it is not known, such as when the Document was created in memory."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="xmlStandalone" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An attribute specifying, as part of the XML declaration, whether&#10;       this document is standalone. This is FALSE when unspecified.&#10;      "/>
+      <description compact="An attribute specifying, as part of the XML declaration, whether this document is standalone. This is FALSE when unspecified."/>
       <var type="bool"/>
     </docblock>
   </member>
   <member name="xmlVersion" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An attribute specifying, as part of the XML declaration, the&#10;       version number of this document. If there is no declaration and if&#10;       this document supports the &quot;XML&quot; feature, the value is &quot;1.0&quot;.&#10;      "/>
+      <description compact="An attribute specifying, as part of the XML declaration, the version number of this document. If there is no declaration and if this document supports the &quot;XML&quot; feature, the value is &quot;1.0&quot;."/>
       <var type="string"/>
     </docblock>
   </member>

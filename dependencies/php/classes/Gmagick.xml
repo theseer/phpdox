@@ -5,14 +5,14 @@
       <description compact="Adds new image to Gmagick object image list"/>
       <return type="Gmagick"/>
     </docblock>
-    <parameter name="Gmagick" optional="false" byreference="false" type="object" class="Gmagick"/>
+    <parameter name="source" optional="false" byreference="false" type="object" class="Gmagick"/>
   </method>
   <method name="addnoiseimage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Adds random noise to the image"/>
       <return type="Gmagick"/>
     </docblock>
-    <parameter name="NOISE" optional="false" byreference="false" type="int"/>
+    <parameter name="noise_type" optional="false" byreference="false" type="int"/>
   </method>
   <method name="annotateimage" abstract="false" static="false" visibility="public" final="false">
     <docblock>

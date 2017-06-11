@@ -33,7 +33,7 @@
   <member name="pending" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Whether event is pending. See&#10;       About event persistence&#10;       .&#10;      "/>
+      <description compact="Whether event is pending. See About event persistence ."/>
       <var type="bool"/>
     </docblock>
   </member>

@@ -4,7 +4,7 @@
   <member name="code" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       SNMPlibrary error code. Use Exception::getCode to access it.&#10;      "/>
+      <description compact="SNMPlibrary error code. Use Exception::getCode to access it."/>
       <var type="string"/>
     </docblock>
   </member>
@@ -45,7 +45,7 @@
   <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
-      <return type="Exception"/>
+      <return type="Throwable"/>
     </docblock>
   </method>
   <method name="getCode" abstract="false" static="false" visibility="public" final="true">

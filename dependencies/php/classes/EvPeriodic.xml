@@ -4,37 +4,37 @@
   <member name="offset" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       When repeating, this contains the offset value, otherwise this is the&#10;       absolute point in time(the offset value passed to&#10;       EvPeriodic::set&#10;       , although&#10;       libev&#10;       might modify this value for better numerical stability).&#10;      "/>
+      <description compact="When repeating, this contains the offset value, otherwise this is the absolute point in time(the offset value passed to EvPeriodic::set , although libev might modify this value for better numerical stability)."/>
     </docblock>
   </member>
   <member name="interval" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The current interval value. Can be modified any time, but changes only&#10;       take effect when the periodic timer fires or&#10;       EvPeriodic::again&#10;       is being called.&#10;      "/>
+      <description compact="The current interval value. Can be modified any time, but changes only take effect when the periodic timer fires or EvPeriodic::again is being called."/>
     </docblock>
   </member>
   <member name="is_active" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . TRUE if the watcher is active. FALSE otherwise.&#10;      "/>
+      <description compact="Readonly . TRUE if the watcher is active. FALSE otherwise."/>
     </docblock>
   </member>
   <member name="data" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       User custom data associated with the watcher&#10;      "/>
+      <description compact="User custom data associated with the watcher"/>
     </docblock>
   </member>
   <member name="is_pending" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       .TRUE if the watcher is pending, i.e. it has outstanding events, but&#10;       its callback has not yet been invoked. FALSE otherwise. As long, as a&#10;       watcher is pending(but not active), one must&#10;       not&#10;       change its priority.&#10;      "/>
+      <description compact="Readonly .TRUE if the watcher is pending, i.e. it has outstanding events, but its callback has not yet been invoked. FALSE otherwise. As long, as a watcher is pending(but not active), one must not change its priority."/>
     </docblock>
   </member>
   <member name="priority" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Integer&#10;       between&#10;       Ev::MINPRI&#10;       and&#10;       Ev::MAXPRI&#10;       . Pending watchers with higher priority will be invoked before watchers&#10;       with lower priority, but priority will not keep watchers from being&#10;       executed(except for&#10;       EvIdle&#10;       watchers).&#10;       EvIdle&#10;       watchers provide functionality to suppress invocation when higher&#10;       priority events are pending.&#10;      "/>
+      <description compact="Integer between Ev::MINPRI and Ev::MAXPRI . Pending watchers with higher priority will be invoked before watchers with lower priority, but priority will not keep watchers from being executed(except for EvIdle watchers). EvIdle watchers provide functionality to suppress invocation when higher priority events are pending."/>
     </docblock>
   </member>
   <method name="again" abstract="false" static="false" visibility="public" final="false">

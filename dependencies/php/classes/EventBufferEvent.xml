@@ -68,28 +68,28 @@
   <member name="fd" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Numeric file descriptor associated with the buffer event. Normally&#10;       represents a bound socket. Equals to NULL, if there is no file&#10;       descriptor(socket) associated with the buffer event.&#10;      "/>
+      <description compact="Numeric file descriptor associated with the buffer event. Normally represents a bound socket. Equals to NULL, if there is no file descriptor(socket) associated with the buffer event."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="priority" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The priority of the events used to implement the buffer event.&#10;      "/>
+      <description compact="The priority of the events used to implement the buffer event."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="input" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Underlying input buffer object(&#10;       EventBuffer&#10;       )&#10;      "/>
+      <description compact="Underlying input buffer object( EventBuffer )"/>
       <var type="EventBuffer"/>
     </docblock>
   </member>
   <member name="output" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Underlying output buffer object(&#10;       EventBuffer&#10;       )&#10;      "/>
+      <description compact="Underlying output buffer object( EventBuffer )"/>
       <var type="EventBuffer"/>
     </docblock>
   </member>

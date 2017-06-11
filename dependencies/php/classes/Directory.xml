@@ -3,14 +3,14 @@
   <member name="path" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The directory that was opened.&#10;      "/>
+      <description compact="The directory that was opened."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="handle" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Can be used with other directory functions such as&#10;       readdir, rewinddir and&#10;       closedir.&#10;      "/>
+      <description compact="Can be used with other directory functions such as readdir, rewinddir and closedir."/>
       <var type="resource"/>
     </docblock>
   </member>

@@ -18,12 +18,19 @@
   </method>
   <method name="createFromFormat" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns new DateTimeImmutable object formatted according to the specified format">Object oriented style</description>
+      <description compact="Parses a time string according to a specified format">Object oriented style</description>
       <return type="DateTimeImmutable"/>
     </docblock>
     <parameter name="format" optional="false" byreference="false" type="string"/>
     <parameter name="time" optional="false" byreference="false" type="string"/>
     <parameter name="timezone" optional="true" byreference="false" type="object" class="DateTimeZone"/>
+  </method>
+  <method name="createFromMutable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns new DateTimeImmutable object encapsulating the given DateTime object"/>
+      <return type="DateTimeImmutable"/>
+    </docblock>
+    <parameter name="datetime" optional="false" byreference="false" type="object" class="DateTime"/>
   </method>
   <method name="getLastErrors" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -33,7 +40,7 @@
   </method>
   <method name="modify" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Alters the timestamp"/>
+      <description compact="Creates a new object with modified timestamp"/>
       <return type="DateTimeImmutable"/>
     </docblock>
     <parameter name="modify" optional="false" byreference="false" type="string"/>

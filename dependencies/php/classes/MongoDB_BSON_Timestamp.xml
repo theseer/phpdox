@@ -9,10 +9,29 @@
     <parameter name="increment" optional="false" byreference="false" type="object" class="integer"/>
     <parameter name="timestamp" optional="false" byreference="false" type="object" class="integer"/>
   </constructor>
+  <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns a representation that can be converted to JSON"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Serialize a Timestamp"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the string representation of this Timestamp"/>
       <return type="string"/>
     </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Unserialize a Timestamp"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
   </method>
 </class>

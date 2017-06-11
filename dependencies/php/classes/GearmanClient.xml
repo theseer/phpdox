@@ -256,7 +256,7 @@
   </method>
   <method name="setCompleteCallback" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Set a function to be called on task completion"/>
+      <description compact="Set a function to be called on task completion">Use to set a function to be called when a GearmanTask is completed, or when GearmanJob::sendComplete is invoked by a worker (whichever happens first).</description>
       <return type="bool"/>
     </docblock>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>

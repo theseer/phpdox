@@ -3,77 +3,49 @@
   <member name="data" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Custom data attached to loop&#10;      "/>
+      <description compact="Custom data attached to loop"/>
     </docblock>
   </member>
   <member name="backend" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . The&#10;       backend flags&#10;       indicating the event backend in use.&#10;      "/>
+      <description compact="Readonly . The backend flags indicating the event backend in use."/>
     </docblock>
   </member>
   <member name="is_default_loop" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . TRUE if it is the default event loop.&#10;      "/>
+      <description compact="Readonly . TRUE if it is the default event loop."/>
     </docblock>
   </member>
   <member name="iteration" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The current iteration count of the loop. See&#10;       Ev::iteration&#10;      "/>
+      <description compact="The current iteration count of the loop. See Ev::iteration"/>
     </docblock>
   </member>
   <member name="pending" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of pending watchers.&#10;       0&#10;       indicates that there are no watchers pending.&#10;      "/>
+      <description compact="The number of pending watchers. 0 indicates that there are no watchers pending."/>
     </docblock>
   </member>
   <member name="io_interval" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Higher&#10;       io_interval&#10;       allows&#10;       libev&#10;       to spend more time collecting&#10;       EvIo&#10;       events, so more events can be handled per iteration, at the cost of&#10;       increasing latency. Timeouts (both&#10;       EvPeriodic&#10;       and&#10;       EvTimer&#10;       ) will not be affected. Setting this to a non-zero value will introduce&#10;       an additional&#10;       sleep()&#10;       call into most loop iterations. The sleep time ensures that&#10;       libev&#10;       will not poll for&#10;       EvIo&#10;       events more often than once per this interval, on average. Many&#10;       programs can usually benefit by setting the&#10;       io_interval&#10;       to a value near&#10;       0.1&#10;       , which is often enough for interactive servers(not for games). It&#10;       usually doesn't make much sense to set it to a lower value than&#10;       0.01&#10;       , as this approaches the timing granularity of most systems.&#10;      ">
-       Higher
-       io_interval
-       allows
-       libev
-       to spend more time collecting
-       EvIo
-       events, so more events can be handled per iteration, at the cost of
-       increasing latency. Timeouts (both
-       EvPeriodic
-       and
-       EvTimer
-       ) will not be affected. Setting this to a non-zero value will introduce
-       an additional
-       sleep()
-       call into most loop iterations. The sleep time ensures that
-       libev
-       will not poll for
-       EvIo
-       events more often than once per this interval, on average. Many
-       programs can usually benefit by setting the
-       io_interval
-       to a value near
-       0.1
-       , which is often enough for interactive servers(not for games). It
-       usually doesn't make much sense to set it to a lower value than
-       0.01
-       , as this approaches the timing granularity of most systems.
-      </description>
+      <description compact="Higher io_interval allows libev to spend more time collecting EvIo events, so more events can be handled per iteration, at the cost of increasing latency. Timeouts (both EvPeriodic and EvTimer ) will not be affected. Setting this to a non-zero value will introduce an additional sleep() call into most loop iterations. The sleep time ensures that libev will not poll for EvIo events more often than once per this interval, on average. Many programs can usually benefit by setting the io_interval to a value near 0.1 , which is often enough for interactive servers(not for games). It usually doesn't make much sense to set it to a lower value than 0.01 , as this approaches the timing granularity of most systems.">Higher io_interval allows libev to spend more time collecting EvIo events, so more events can be handled per iteration, at the cost of increasing latency. Timeouts (both EvPeriodic and EvTimer ) will not be affected. Setting this to a non-zero value will introduce an additional sleep() call into most loop iterations. The sleep time ensures that libev will not poll for EvIo events more often than once per this interval, on average. Many programs can usually benefit by setting the io_interval to a value near 0.1 , which is often enough for interactive servers(not for games). It usually doesn't make much sense to set it to a lower value than 0.01 , as this approaches the timing granularity of most systems.</description>
     </docblock>
   </member>
   <member name="timeout_interval" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Higher&#10;       timeout_interval&#10;       allows&#10;       libev&#10;       to spend more time collecting timeouts, at the expense of increased&#10;       latency/jitter/inexactness(the watcher callback will be called later).&#10;       EvIo&#10;       watchers will not be affected. Setting this to a non-null value will&#10;       not introduce any overhead in&#10;       libev&#10;       . See also&#10;       FUNCTIONS&#10;      CONTROLLING EVENT LOOPS&#10;       .&#10;      "/>
+      <description compact="Higher timeout_interval allows libev to spend more time collecting timeouts, at the expense of increased latency/jitter/inexactness(the watcher callback will be called later). EvIo watchers will not be affected. Setting this to a non-null value will not introduce any overhead in libev . See also FUNCTIONS CONTROLLING EVENT LOOPS ."/>
     </docblock>
   </member>
   <member name="depth" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The recursion depth. See&#10;       Ev::depth&#10;       .&#10;      "/>
+      <description compact="The recursion depth. See Ev::depth ."/>
     </docblock>
   </member>
   <method name="backend" abstract="false" static="false" visibility="public" final="false">

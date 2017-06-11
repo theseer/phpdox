@@ -88,14 +88,14 @@
   <member name="local_cert" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Path to local certificate file on filesystem. It must be a PEM-encoded&#10;       file which contains certificate. It can optionally contain the&#10;       certificate chain of issuers.&#10;      "/>
+      <description compact="Path to local certificate file on filesystem. It must be a PEM-encoded file which contains certificate. It can optionally contain the certificate chain of issuers."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="local_pk" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Path to local private key file&#10;      "/>
+      <description compact="Path to local private key file"/>
       <var type="string"/>
     </docblock>
   </member>

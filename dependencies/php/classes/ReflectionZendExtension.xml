@@ -4,7 +4,7 @@
   <member name="name" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Name of the extension. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+      <description compact="Name of the extension. Read-only, throws ReflectionException in attempt to write."/>
     </docblock>
   </member>
   <method name="__clone" abstract="false" static="false" final="true">

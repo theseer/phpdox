@@ -4,14 +4,14 @@
   <member name="errorInfo" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Corresponds to PDO::errorInfo or&#10;       PDOStatement::errorInfo&#10;      "/>
+      <description compact="Corresponds to PDO::errorInfo or PDOStatement::errorInfo"/>
       <var type="array"/>
     </docblock>
   </member>
   <member name="code" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       SQLSTATE error code. Use&#10;       Exception::getCode to access it.&#10;      "/>
+      <description compact="SQLSTATE error code. Use Exception::getCode to access it."/>
       <var type="string"/>
     </docblock>
   </member>
@@ -52,7 +52,7 @@
   <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
-      <return type="Exception"/>
+      <return type="Throwable"/>
     </docblock>
   </method>
   <method name="getCode" abstract="false" static="false" visibility="public" final="true">

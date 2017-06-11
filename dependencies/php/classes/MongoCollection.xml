@@ -13,21 +13,21 @@
   <member name="db" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The &quot;parent&quot; database for this collection.&#10;      "/>
+      <description compact="The &quot;parent&quot; database for this collection."/>
       <var type="MongoDB"/>
     </docblock>
   </member>
   <member name="w" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of servers to replicate a change to before returning success.&#10;       Value is inherited from the parent database. The &#10;       MongoDB class has a more detailed description of&#10;       how w works.&#10;      "/>
+      <description compact="The number of servers to replicate a change to before returning success. Value is inherited from the parent database. The MongoDB class has a more detailed description of how w works."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="wtimeout" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of milliseconds to wait for $this-&gt;w &#10;       replications to take place.  Value is inherited from the parent database.&#10;       The MongoDB class has a more detailed description &#10;       of how wtimeout works.&#10;      "/>
+      <description compact="The number of milliseconds to wait for $this-&gt;w replications to take place. Value is inherited from the parent database. The MongoDB class has a more detailed description of how wtimeout works."/>
       <var type="integer"/>
     </docblock>
   </member>

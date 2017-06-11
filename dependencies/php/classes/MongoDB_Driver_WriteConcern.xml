@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteConcern" namespace="" name="MongoDB\Driver\WriteConcern">
   <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
-  <constant name="MAJORITY" value="majority">
+  <constant name="MAJORITY" value="&quot;majority&quot;">
     <docblock>
       <var type="string"/>
     </docblock>

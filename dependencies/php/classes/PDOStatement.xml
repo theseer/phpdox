@@ -4,7 +4,7 @@
   <member name="queryString" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Used query string.&#10;      "/>
+      <description compact="Used query string."/>
       <var type="string"/>
     </docblock>
   </member>
@@ -118,7 +118,7 @@
   </method>
   <method name="getColumnMeta" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Returns metadata for a column in a result set&#10;  "/>
+      <description compact="&#10;   Returns metadata for a column in a result set&#10;  ">Retrieves the metadata for a 0-indexed column in a result set as an associative array.</description>
       <return type="array"/>
     </docblock>
     <parameter name="column" optional="false" byreference="false" type="int"/>

@@ -23,7 +23,7 @@
   <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
-      <return type="Exception"/>
+      <return type="Throwable"/>
     </docblock>
   </method>
   <method name="getCode" abstract="false" static="false" visibility="public" final="true">

@@ -14,7 +14,7 @@
   </method>
   <method name="getFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the file in which the exception occurred"/>
+      <description compact="Gets the file in which the exception was created"/>
       <return type="string"/>
     </docblock>
   </method>

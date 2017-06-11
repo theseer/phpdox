@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="Collectable" namespace="" name="Collectable">
+  <extends name="Threaded" full="Threaded"/>
+  <method name="isGarbage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine whether an object has been marked as garbage"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="setGarbage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Mark an object as garbage"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</interface>

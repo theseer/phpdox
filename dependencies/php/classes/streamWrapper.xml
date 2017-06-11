@@ -3,10 +3,7 @@
   <member name="context" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The current context, or NULL if no&#10;       context was passed to the caller function.&#10;      ">
-       The current context, or NULL if no
-       context was passed to the caller function.
-      </description>
+      <description compact="The current context, or NULL if no context was passed to the caller function.">The current context, or NULL if no context was passed to the caller function.</description>
       <var type="resource"/>
     </docblock>
   </member>

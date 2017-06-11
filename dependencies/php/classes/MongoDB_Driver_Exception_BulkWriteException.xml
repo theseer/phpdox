@@ -4,7 +4,7 @@
   <member name="writeResult" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The MongoDB\Driver\WriteResult associated with&#10;       the failed write operation.&#10;      "/>
+      <description compact="The MongoDB\Driver\WriteResult associated with the failed write operation."/>
       <var type="MongoDB\Driver\WriteResult"/>
     </docblock>
   </member>
@@ -51,7 +51,7 @@
   <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>
-      <return type="Exception"/>
+      <return type="Throwable"/>
     </docblock>
   </method>
   <method name="getCode" abstract="false" static="false" visibility="public" final="true">

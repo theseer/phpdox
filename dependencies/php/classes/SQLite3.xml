@@ -54,6 +54,7 @@
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="argument_count" optional="true" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="enableExceptions" abstract="false" static="false" final="false">
     <docblock>

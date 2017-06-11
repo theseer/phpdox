@@ -3,13 +3,13 @@
   <member name="_routes" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;      registered routes stack&#10;      "/>
+      <description compact="registered routes stack"/>
     </docblock>
   </member>
   <member name="_current" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       after routing phase, this indicated the name of which route&#10;       is used to route current request.&#10;&#10;       you can get this name by&#10;       Yaf_Router::getCurrentRoute.&#10;      "/>
+      <description compact="after routing phase, this indicated the name of which route is used to route current request. you can get this name by Yaf_Router::getCurrentRoute."/>
     </docblock>
   </member>
   <method name="addConfig" abstract="false" static="false" visibility="public" final="false">

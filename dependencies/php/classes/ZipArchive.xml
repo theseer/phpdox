@@ -261,6 +261,24 @@
     <parameter name="comp_method" optional="false" byreference="false" type="int"/>
     <parameter name="comp_flags" optional="true" byreference="false" type="int"/>
   </method>
+  <method name="setEncryptionIndex" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the encryption method of an entry defined by its index"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setEncryptionName" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Set the encryption method of an entry defined by its name"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="method" optional="false" byreference="false" type="int"/>
+    <parameter name="password" optional="true" byreference="false" type="string"/>
+  </method>
   <method name="setExternalAttributesIndex" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Set the external attributes of an entry defined by its index"/>

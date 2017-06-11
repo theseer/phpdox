@@ -4,7 +4,7 @@
   <member name="controls" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Contains controls, should not be manipulated directly&#10;      "/>
+      <description compact="Contains controls, should not be manipulated directly"/>
     </docblock>
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">

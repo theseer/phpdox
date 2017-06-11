@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="Worker" namespace="" name="Worker">
   <implements name="Traversable" full="Traversable"/>
+  <method name="collect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Collect references to completed tasks"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="collector" optional="true" byreference="false" type="object" class="Callable"/>
+  </method>
   <method name="getStacked" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Stack Analysis"/>
-      <return type="integer"/>
+      <description compact="Gets the remaining stack size"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="isShutdown" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="State Detection"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isWorking" abstract="false" static="false" visibility="public" final="false">
@@ -21,23 +28,22 @@
   </method>
   <method name="shutdown" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Synchronization"/>
-      <return type="boolean"/>
+      <description compact="Shutdown the worker"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="stack" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Stacking"/>
-      <return type="integer"/>
+      <description compact="Stacking work"/>
+      <return type="int"/>
     </docblock>
     <parameter name="work" optional="false" byreference="false" type="object" class="Threaded"/>
   </method>
   <method name="unstack" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Stacking"/>
-      <return type="integer"/>
+      <description compact="Unstacking work"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="work" optional="true" byreference="false" type="object" class="Threaded"/>
   </method>
   <method name="detach" abstract="false" static="false" visibility="public" final="false">
     <docblock>

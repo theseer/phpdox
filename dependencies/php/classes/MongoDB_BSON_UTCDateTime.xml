@@ -6,8 +6,20 @@
       <description compact="Construct a new UTCDateTime"/>
       <return type="void"/>
     </docblock>
-    <parameter name="milliseconds" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="milliseconds" optional="true" byreference="false" type="object" class="integer|float|string|DateTimeInterface"/>
   </constructor>
+  <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns a representation that can be converted to JSON"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Serialize a UTCDateTime"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="toDateTime" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the DateTime representation of this UTCDateTime"/>
@@ -19,5 +31,12 @@
       <description compact="Returns the string representation of this UTCDateTime"/>
       <return type="string"/>
     </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Unserialize a UTCDateTime"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
   </method>
 </class>

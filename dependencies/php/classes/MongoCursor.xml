@@ -4,18 +4,14 @@
   <member name="slaveOkay" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       If the query should have the &quot;slaveOkay&quot; flag set, which allows reads on&#10;       the secondary (secondaries are, by default, just for backup and not&#10;       queried). Can be overridden with MongoCursor::slaveOkay.&#10;      ">
-       If the query should have the "slaveOkay" flag set, which allows reads on
-       the secondary (secondaries are, by default, just for backup and not
-       queried). Can be overridden with MongoCursor::slaveOkay.
-      </description>
+      <description compact="If the query should have the &quot;slaveOkay&quot; flag set, which allows reads on the secondary (secondaries are, by default, just for backup and not queried). Can be overridden with MongoCursor::slaveOkay.">If the query should have the "slaveOkay" flag set, which allows reads on the secondary (secondaries are, by default, just for backup and not queried). Can be overridden with MongoCursor::slaveOkay.</description>
       <var type="boolean"/>
     </docblock>
   </member>
   <member name="timeout" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Set timeout in milliseconds for all database responses. Use&#10;       -1 to wait forever. Can be overridden with&#10;       MongoCursor::timeout. This does not cause the&#10;       MongoDB server to cancel the operation; it only instructs the driver to&#10;       stop waiting for a response and throw a&#10;       MongoCursorTimeoutException after a set time.&#10;      "/>
+      <description compact="Set timeout in milliseconds for all database responses. Use -1 to wait forever. Can be overridden with MongoCursor::timeout. This does not cause the MongoDB server to cancel the operation; it only instructs the driver to stop waiting for a response and throw a MongoCursorTimeoutException after a set time."/>
       <var type="integer"/>
     </docblock>
   </member>

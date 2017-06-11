@@ -3,13 +3,13 @@
   <member name="width" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Holds the width, can be read/written directly&#10;      "/>
+      <description compact="Holds the width, can be read/written directly"/>
     </docblock>
   </member>
   <member name="height" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Holds the height, can be read/written directly&#10;      "/>
+      <description compact="Holds the height, can be read/written directly"/>
     </docblock>
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">

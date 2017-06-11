@@ -121,6 +121,7 @@
     <class name="TokyoTyrantIterator" xml="classes/TokyoTyrantIterator.xml"/>
     <class name="tokyotyrantexception" xml="classes/tokyotyrantexception.xml"/>
     <class name="DateTime" xml="classes/DateTime.xml"/>
+    <class name="DateTimeImmutable" xml="classes/DateTimeImmutable.xml"/>
     <class name="DateTimeZone" xml="classes/DateTimeZone.xml"/>
     <class name="DateInterval" xml="classes/DateInterval.xml"/>
     <class name="DatePeriod" xml="classes/DatePeriod.xml"/>
@@ -244,7 +245,6 @@
     <class name="Threaded" xml="classes/Threaded.xml"/>
     <class name="Thread" xml="classes/Thread.xml"/>
     <class name="Worker" xml="classes/Worker.xml"/>
-    <class name="Collectable" xml="classes/Collectable.xml"/>
     <class name="Pool" xml="classes/Pool.xml"/>
     <class name="Mutex" xml="classes/Mutex.xml"/>
     <class name="Cond" xml="classes/Cond.xml"/>
@@ -543,8 +543,8 @@
     <interface name="MongoDB\BSON\Serializable" xml="interfaces/MongoDB_BSON_Serializable.xml"/>
     <interface name="MongoDB\BSON\Unserializable" xml="interfaces/MongoDB_BSON_Unserializable.xml"/>
     <interface name="MongoDB\Driver\Exception\Exception" xml="interfaces/MongoDB_Driver_Exception_Exception.xml"/>
-    <interface name="DateTimeImmutable" xml="interfaces/DateTimeImmutable.xml"/>
     <interface name="DateTimeInterface" xml="interfaces/DateTimeInterface.xml"/>
+    <interface name="Collectable" xml="interfaces/Collectable.xml"/>
     <interface name="JsonSerializable" xml="interfaces/JsonSerializable.xml"/>
     <interface name="Countable" xml="interfaces/Countable.xml"/>
     <interface name="OuterIterator" xml="interfaces/OuterIterator.xml"/>

@@ -4,42 +4,42 @@
   <member name="publicId" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The public identifier associated with the entity if specified, and&#10;       NULL otherwise.&#10;      "/>
+      <description compact="The public identifier associated with the entity if specified, and NULL otherwise."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="systemId" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The system identifier associated with the entity if specified, and&#10;       NULL otherwise. This may be an absolute URI or not.&#10;      "/>
+      <description compact="The system identifier associated with the entity if specified, and NULL otherwise. This may be an absolute URI or not."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="notationName" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       For unparsed entities, the name of the notation for the entity. For&#10;       parsed entities, this is NULL.&#10;      "/>
+      <description compact="For unparsed entities, the name of the notation for the entity. For parsed entities, this is NULL."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="actualEncoding" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An attribute specifying the encoding used for this entity at the&#10;       time of parsing, when it is an external parsed entity. This is&#10;       NULL if it an entity from the internal subset or if it is not &#10;       known.&#10;      "/>
+      <description compact="An attribute specifying the encoding used for this entity at the time of parsing, when it is an external parsed entity. This is NULL if it an entity from the internal subset or if it is not known."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="encoding" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An attribute specifying, as part of the text declaration, the&#10;       encoding of this entity, when it is an external parsed entity. This&#10;       is NULL otherwise.&#10;      "/>
+      <description compact="An attribute specifying, as part of the text declaration, the encoding of this entity, when it is an external parsed entity. This is NULL otherwise."/>
       <var type="string"/>
     </docblock>
   </member>
   <member name="version" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An attribute specifying, as part of the text declaration, the&#10;       version number of this entity, when it is an external parsed&#10;       entity. This is NULL otherwise.&#10;      "/>
+      <description compact="An attribute specifying, as part of the text declaration, the version number of this entity, when it is an external parsed entity. This is NULL otherwise."/>
       <var type="string"/>
     </docblock>
   </member>

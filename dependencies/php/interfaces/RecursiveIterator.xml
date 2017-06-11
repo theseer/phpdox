@@ -9,7 +9,7 @@
   </method>
   <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns if an iterator can be created fot the current entry."/>
+      <description compact="Returns if an iterator can be created for the current entry"/>
       <return type="bool"/>
     </docblock>
   </method>

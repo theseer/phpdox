@@ -46,7 +46,7 @@
   <method name="getPrevious" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns previous Exception"/>
-      <return type="Exception"/>
+      <return type="Throwable"/>
     </docblock>
   </method>
   <method name="getCode" abstract="false" static="false" visibility="public" final="true">
@@ -57,13 +57,13 @@
   </method>
   <method name="getFile" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Gets the file in which the exception occurred"/>
+      <description compact="Gets the file in which the exception was created"/>
       <return type="string"/>
     </docblock>
   </method>
   <method name="getLine" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Gets the line in which the exception occurred"/>
+      <description compact="Gets the line in which the exception was created"/>
       <return type="int"/>
     </docblock>
   </method>

@@ -4,7 +4,7 @@
   <member name="length" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of nodes in the map. The range of valid child node &#10;       indices is 0 to length - 1 inclusive.&#10;      "/>
+      <description compact="The number of nodes in the map. The range of valid child node indices is 0 to length - 1 inclusive."/>
       <var type="int"/>
     </docblock>
   </member>

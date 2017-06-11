@@ -45,14 +45,14 @@
   <member name="exceptions_enabled" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Controls which failures will raise SNMPException instead of&#10;       warning. Use bitwise OR'ed SNMP::ERRNO_* constants.&#10;       By default all SNMP exceptions are disabled.&#10;      "/>
+      <description compact="Controls which failures will raise SNMPException instead of warning. Use bitwise OR'ed SNMP::ERRNO_* constants. By default all SNMP exceptions are disabled."/>
       <var type="int"/>
     </docblock>
   </member>
   <member name="info" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="Read-only property with remote agent configuration: hostname,&#10;      port, default timeout, default retries count"/>
+      <description compact="Read-only property with remote agent configuration: hostname, port, default timeout, default retries count"/>
       <var type="array"/>
     </docblock>
   </member>

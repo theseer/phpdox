@@ -9,4 +9,41 @@
     <parameter name="code" optional="false" byreference="false" type="string"/>
     <parameter name="scope" optional="true" byreference="false" type="object" class="array|object"/>
   </constructor>
+  <method name="getCode" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Javascript's code"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getScope" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Javascript's scope document"/>
+      <return type="object|null"/>
+    </docblock>
+  </method>
+  <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns a representation that can be converted to JSON"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Serialize a Javascript"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Javascript's code"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Unserialize a Javascript"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
 </class>

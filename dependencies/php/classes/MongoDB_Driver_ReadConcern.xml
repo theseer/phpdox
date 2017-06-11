@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\ReadConcern" namespace="" name="MongoDB\Driver\ReadConcern">
   <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
-  <constant name="LINEARIZABLE" value="linearizable">
+  <constant name="LINEARIZABLE" value="&quot;linearizable&quot;">
     <docblock>
       <var type="string"/>
     </docblock>
   </constant>
-  <constant name="LOCAL" value="local">
+  <constant name="LOCAL" value="&quot;local&quot;">
     <docblock>
       <var type="string"/>
     </docblock>
   </constant>
-  <constant name="MAJORITY" value="majority">
+  <constant name="MAJORITY" value="&quot;majority&quot;">
     <docblock>
       <var type="string"/>
     </docblock>

@@ -3,61 +3,63 @@
   <member name="y" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Number of years.&#10;      "/>
+      <description compact="Number of years."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="m" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Number of months.&#10;      "/>
+      <description compact="Number of months."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="d" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Number of days.&#10;      "/>
+      <description compact="Number of days."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="h" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Number of hours.&#10;      "/>
+      <description compact="Number of hours."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="i" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Number of minutes.&#10;      "/>
+      <description compact="Number of minutes."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="s" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Number of seconds.&#10;      "/>
+      <description compact="Number of seconds."/>
       <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="f" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Number of microseconds, as a fraction of a second."/>
+      <var type="float"/>
     </docblock>
   </member>
   <member name="invert" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Is 1 if the interval&#10;       represents a negative time period and&#10;       0 otherwise.&#10;       See DateInterval::format.&#10;      "/>
+      <description compact="Is 1 if the interval represents a negative time period and 0 otherwise. See DateInterval::format."/>
       <var type="integer"/>
     </docblock>
   </member>
   <member name="days" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       If the DateInterval object was created by&#10;       DateTime::diff, then this is the total number of&#10;       days between the start and end dates. Otherwise,&#10;       days will be FALSE.&#10;      ">
-       If the DateInterval object was created by
-       DateTime::diff, then this is the total number of
-       days between the start and end dates. Otherwise,
-       days will be FALSE.
-      </description>
+      <description compact="If the DateInterval object was created by DateTime::diff, then this is the total number of days between the start and end dates. Otherwise, days will be FALSE.">If the DateInterval object was created by DateTime::diff, then this is the total number of days between the start and end dates. Otherwise, days will be FALSE.</description>
       <var type="mixed"/>
     </docblock>
   </member>

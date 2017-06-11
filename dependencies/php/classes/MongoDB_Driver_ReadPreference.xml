@@ -26,6 +26,16 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <constant name="NO_MAX_STALENESS" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SMALLEST_MAX_STALENESS_SECONDS" value="90">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <method name="bsonSerialize" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns an object for BSON serialization"/>
@@ -39,7 +49,14 @@
     </docblock>
     <parameter name="mode" optional="false" byreference="false" type="int"/>
     <parameter name="tagSets" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
+  <method name="getMaxStalenessSeconds" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the ReadPreference's &quot;maxStalenessSeconds&quot; option"/>
+      <return type="integer"/>
+    </docblock>
+  </method>
   <method name="getMode" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the ReadPreference's &quot;mode&quot; option"/>

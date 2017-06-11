@@ -4,31 +4,31 @@
   <member name="signum" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Signal number. See the constants exported by&#10;       pcntl&#10;       extension. See also&#10;       signal(7)&#10;       man page.&#10;      "/>
+      <description compact="Signal number. See the constants exported by pcntl extension. See also signal(7) man page."/>
     </docblock>
   </member>
   <member name="is_active" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . TRUE if the watcher is active. FALSE otherwise.&#10;      "/>
+      <description compact="Readonly . TRUE if the watcher is active. FALSE otherwise."/>
     </docblock>
   </member>
   <member name="data" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       User custom data associated with the watcher&#10;      "/>
+      <description compact="User custom data associated with the watcher"/>
     </docblock>
   </member>
   <member name="is_pending" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       .TRUE if the watcher is pending, i.e. it has outstanding events, but&#10;       its callback has not yet been invoked. FALSE otherwise. As long, as a&#10;       watcher is pending(but not active), one must&#10;       not&#10;       change its priority.&#10;      "/>
+      <description compact="Readonly .TRUE if the watcher is pending, i.e. it has outstanding events, but its callback has not yet been invoked. FALSE otherwise. As long, as a watcher is pending(but not active), one must not change its priority."/>
     </docblock>
   </member>
   <member name="priority" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Integer&#10;       between&#10;       Ev::MINPRI&#10;       and&#10;       Ev::MAXPRI&#10;       . Pending watchers with higher priority will be invoked before watchers&#10;       with lower priority, but priority will not keep watchers from being&#10;       executed(except for&#10;       EvIdle&#10;       watchers).&#10;       EvIdle&#10;       watchers provide functionality to suppress invocation when higher&#10;       priority events are pending.&#10;      "/>
+      <description compact="Integer between Ev::MINPRI and Ev::MAXPRI . Pending watchers with higher priority will be invoked before watchers with lower priority, but priority will not keep watchers from being executed(except for EvIdle watchers). EvIdle watchers provide functionality to suppress invocation when higher priority events are pending."/>
     </docblock>
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">

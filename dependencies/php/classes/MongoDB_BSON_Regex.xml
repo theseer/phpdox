@@ -7,12 +7,12 @@
       <return type="void"/>
     </docblock>
     <parameter name="pattern" optional="false" byreference="false" type="string"/>
-    <parameter name="flags" optional="false" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="string"/>
   </constructor>
   <method name="getFlags" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the Regex's flags"/>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getPattern" abstract="false" static="false" visibility="public" final="true">
@@ -21,10 +21,29 @@
       <return type="string"/>
     </docblock>
   </method>
+  <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns a representation that can be converted to JSON"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Serialize a Regex"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the string representation of this Regex"/>
       <return type="string"/>
     </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Unserialize a Regex"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
   </method>
 </class>

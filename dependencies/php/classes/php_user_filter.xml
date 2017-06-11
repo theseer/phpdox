@@ -3,7 +3,7 @@
   <member name="filtername" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Name of the filter registered by&#10;       stream_filter_append.&#10;      "/>
+      <description compact="Name of the filter registered by stream_filter_append."/>
     </docblock>
   </member>
   <member name="params" static="false" visibility="public">

@@ -4,37 +4,37 @@
   <member name="path" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . The path to wait for status changes on.&#10;      "/>
+      <description compact="Readonly . The path to wait for status changes on."/>
     </docblock>
   </member>
   <member name="interval" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . Hint on how quickly a change is expected to be detected and should&#10;       normally be specified as&#10;       0.0&#10;       to let&#10;       libev&#10;       choose a suitable value.&#10;      "/>
+      <description compact="Readonly . Hint on how quickly a change is expected to be detected and should normally be specified as 0.0 to let libev choose a suitable value."/>
     </docblock>
   </member>
   <member name="is_active" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       . TRUE if the watcher is active. FALSE otherwise.&#10;      "/>
+      <description compact="Readonly . TRUE if the watcher is active. FALSE otherwise."/>
     </docblock>
   </member>
   <member name="data" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       User custom data associated with the watcher&#10;      "/>
+      <description compact="User custom data associated with the watcher"/>
     </docblock>
   </member>
   <member name="is_pending" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Readonly&#10;       .TRUE if the watcher is pending, i.e. it has outstanding events, but&#10;       its callback has not yet been invoked. FALSE otherwise. As long, as a&#10;       watcher is pending(but not active), one must&#10;       not&#10;       change its priority.&#10;      "/>
+      <description compact="Readonly .TRUE if the watcher is pending, i.e. it has outstanding events, but its callback has not yet been invoked. FALSE otherwise. As long, as a watcher is pending(but not active), one must not change its priority."/>
     </docblock>
   </member>
   <member name="priority" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Integer&#10;       between&#10;       Ev::MINPRI&#10;       and&#10;       Ev::MAXPRI&#10;       . Pending watchers with higher priority will be invoked before watchers&#10;       with lower priority, but priority will not keep watchers from being&#10;       executed(except for&#10;       EvIdle&#10;       watchers).&#10;       EvIdle&#10;       watchers provide functionality to suppress invocation when higher&#10;       priority events are pending.&#10;      "/>
+      <description compact="Integer between Ev::MINPRI and Ev::MAXPRI . Pending watchers with higher priority will be invoked before watchers with lower priority, but priority will not keep watchers from being executed(except for EvIdle watchers). EvIdle watchers provide functionality to suppress invocation when higher priority events are pending."/>
     </docblock>
   </member>
   <method name="attr" abstract="false" static="false" visibility="public" final="false">

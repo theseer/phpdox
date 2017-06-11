@@ -52,14 +52,14 @@
   <member name="attribute" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An array of string, representing&#10;       the attributes names (as keys) of the current node.&#10;      "/>
+      <description compact="An array of string, representing the attributes names (as keys) of the current node."/>
       <var type="array"/>
     </docblock>
   </member>
   <member name="child" static="false">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       An array of tidyNode, representing&#10;       the children of the current node.&#10;      "/>
+      <description compact="An array of tidyNode, representing the children of the current node."/>
       <var type="array"/>
     </docblock>
   </member>

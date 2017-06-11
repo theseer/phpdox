@@ -24,13 +24,13 @@
   <member name="name" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Name of the property. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+      <description compact="Name of the property. Read-only, throws ReflectionException in attempt to write."/>
     </docblock>
   </member>
   <member name="class" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Name of the class where the property is defined. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+      <description compact="Name of the class where the property is defined. Read-only, throws ReflectionException in attempt to write."/>
     </docblock>
   </member>
   <method name="__clone" abstract="false" static="false" final="true">
@@ -70,7 +70,7 @@
   </method>
   <method name="getModifiers" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets modifiers"/>
+      <description compact="Gets the property modifiers"/>
       <return type="int"/>
     </docblock>
   </method>

@@ -337,7 +337,7 @@
       <description compact=""/>
       <return type="int"/>
     </docblock>
-    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar&gt;"/>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
     <parameter name="field" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getActualMaximum" abstract="false" static="false" visibility="public" final="false">

@@ -5,8 +5,8 @@
       <description compact="Create new MongoDB Manager"/>
       <return type="void"/>
     </docblock>
-    <parameter name="uri" optional="false" byreference="false" type="string"/>
-    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="uri" optional="true" byreference="false" type="string"/>
+    <parameter name="uriOptions" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="driverOptions" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="executeBulkWrite" abstract="false" static="false" visibility="public" final="true">
@@ -36,15 +36,33 @@
     <parameter name="query" optional="false" byreference="false" type="object" class="MongoDB\Driver\Query"/>
     <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
   </method>
+  <method name="getReadConcern" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Return the ReadConcern for the Manager"/>
+      <return type="MongoDB\Driver\ReadConcern"/>
+    </docblock>
+  </method>
+  <method name="getReadPreference" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Return the ReadPreference for the Manager"/>
+      <return type="MongoDB\Driver\ReadPreference"/>
+    </docblock>
+  </method>
   <method name="getServers" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Return the servers to which this manager is connected">Returns an array of MongoDB\Driver\Server instances to which this manager is connected.</description>
       <return type="array"/>
     </docblock>
   </method>
+  <method name="getWriteConcern" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Return the WriteConcern for the Manager"/>
+      <return type="MongoDB\Driver\WriteConcern"/>
+    </docblock>
+  </method>
   <method name="selectServer" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Select a server matching a read preference"/>
+      <description compact="Select a server matching a read preference">Selects a MongoDB\Driver\Server matching readPreference. This may be used to preselect a server in order to perform version checking before executing an operation.</description>
       <return type="MongoDB\Driver\Server"/>
     </docblock>
     <parameter name="readPreference" optional="false" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>

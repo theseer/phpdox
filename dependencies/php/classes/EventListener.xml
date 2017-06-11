@@ -28,7 +28,7 @@
   <member name="fd" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Numeric file descriptor of the underlying socket. (Added in&#10;       event-1.6.0&#10;       .)&#10;      "/>
+      <description compact="Numeric file descriptor of the underlying socket. (Added in event-1.6.0 .)"/>
       <var type="int"/>
     </docblock>
   </member>

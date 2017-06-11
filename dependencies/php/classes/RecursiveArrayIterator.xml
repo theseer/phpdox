@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="RecursiveArrayIterator" namespace="" name="RecursiveArrayIterator">
   <implements name="RecursiveIterator" full="RecursiveIterator"/>
+  <constant name="" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns an iterator for the current entry if it is an array or an object."/>

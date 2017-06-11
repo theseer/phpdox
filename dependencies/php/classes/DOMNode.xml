@@ -10,7 +10,7 @@
   <member name="nodeValue" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The value of this node, depending on its type.&#10;       Contrary to the W3C specification, the node value of&#10;       DOMElement nodes is equal to DOMNode::textContent instead&#10;       of NULL.&#10;      "/>
+      <description compact="The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to DOMNode::textContent instead of NULL."/>
       <var type="string"/>
     </docblock>
   </member>
@@ -31,14 +31,14 @@
   <member name="childNodes" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       A DOMNodeList that contains all&#10;       children of this node. If there are no children, this is an empty&#10;       DOMNodeList.&#10;      "/>
+      <description compact="A DOMNodeList that contains all children of this node. If there are no children, this is an empty DOMNodeList."/>
       <var type="DOMNodeList"/>
     </docblock>
   </member>
   <member name="firstChild" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The first child of this node. If there is no such node, this&#10;       returns NULL.&#10;      "/>
+      <description compact="The first child of this node. If there is no such node, this returns NULL."/>
       <var type="DOMNode"/>
     </docblock>
   </member>
@@ -52,21 +52,21 @@
   <member name="previousSibling" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The node immediately preceding this node. If there is no such&#10;       node, this returns NULL.&#10;      "/>
+      <description compact="The node immediately preceding this node. If there is no such node, this returns NULL."/>
       <var type="DOMNode"/>
     </docblock>
   </member>
   <member name="nextSibling" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The node immediately following this node. If there is no such&#10;       node, this returns NULL.&#10;      "/>
+      <description compact="The node immediately following this node. If there is no such node, this returns NULL."/>
       <var type="DOMNode"/>
     </docblock>
   </member>
   <member name="attributes" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       A DOMNamedNodeMap containing the&#10;       attributes of this node (if it is a DOMElement)&#10;       or NULL otherwise.&#10;      "/>
+      <description compact="A DOMNamedNodeMap containing the attributes of this node (if it is a DOMElement) or NULL otherwise."/>
       <var type="DOMNamedNodeMap"/>
     </docblock>
   </member>
@@ -101,7 +101,7 @@
   <member name="baseURI" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The absolute base URI of this node or NULL if the implementation&#10;       wasn't able to obtain an absolute URI.&#10;      "/>
+      <description compact="The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI."/>
       <var type="string"/>
     </docblock>
   </member>

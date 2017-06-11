@@ -3,31 +3,31 @@
   <member name="actions" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;      You can also define a action method in a separate PHP script by using&#10;      this property and Yaf_Action_Abstract.&#10;      &#10;       define action in a separate file&#10;        &#10;&#10;&lt;?php&#10;class IndexController extends Yaf_Controller_Abstract {&#10;    protected $actions = array(&#10;        /** now dummyAction is defined in a separate file */&#10;        &quot;dummy&quot; =&gt; &quot;actions/Dummy_action.php&quot;,&#10;    );&#10;&#10;    /* action method may have arguments */&#10;    public indexAction($name, $id) {&#10;       /* $name and $id are unsafe raw data */&#10;       assert($name == $this-&gt;getRequest()-&gt;getParam(&quot;name&quot;));&#10;       assert($id   == $this-&gt;_request-&gt;getParam(&quot;id&quot;));&#10;    }&#10;}&#10;?&gt;&#10;&#10;        &#10;      &#10;      &#10;       Dummy_action.php&#10;        &#10;&#10;&lt;?php&#10;class DummyAction extends Yaf_Action_Abstract {&#10;    /* a action class shall define this method  as the entry point */&#10;    public execute() {&#10;    }&#10;}&#10;?&gt;&#10;&#10;        &#10;      &#10;      "/>
+      <description compact="You can also define a action method in a separate PHP script by using this property and Yaf_Action_Abstract. define action in a separate file &lt;?php class IndexController extends Yaf_Controller_Abstract { protected $actions = array( /** now dummyAction is defined in a separate file */ &quot;dummy&quot; =&gt; &quot;actions/Dummy_action.php&quot;, ); /* action method may have arguments */ public indexAction($name, $id) { /* $name and $id are unsafe raw data */ assert($name == $this-&gt;getRequest()-&gt;getParam(&quot;name&quot;)); assert($id == $this-&gt;_request-&gt;getParam(&quot;id&quot;)); } } ?&gt; Dummy_action.php &lt;?php class DummyAction extends Yaf_Action_Abstract { /* a action class shall define this method as the entry point */ public execute() { } } ?&gt;"/>
     </docblock>
   </member>
   <member name="_module" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;        module name&#10;      "/>
+      <description compact="module name"/>
     </docblock>
   </member>
   <member name="_name" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;        controller name&#10;      "/>
+      <description compact="controller name"/>
     </docblock>
   </member>
   <member name="_request" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;      current request object&#10;      "/>
+      <description compact="current request object"/>
     </docblock>
   </member>
   <member name="_response" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;      current response object&#10;      "/>
+      <description compact="current response object"/>
     </docblock>
   </member>
   <member name="_invoke_args" static="false" visibility="protected">
@@ -39,7 +39,7 @@
   <member name="_view" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;      view engine object&#10;      "/>
+      <description compact="view engine object"/>
     </docblock>
   </member>
   <method name="__clone" abstract="false" static="false" final="true">

@@ -39,9 +39,9 @@
   <method name="collect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Collect references to completed tasks"/>
-      <return type="void"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="collector" optional="false" byreference="false" type="object" class="Callable"/>
+    <parameter name="collector" optional="true" byreference="false" type="object" class="Callable"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -49,7 +49,7 @@
       <return type="Pool"/>
     </docblock>
     <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="class" optional="false" byreference="false" type="string"/>
+    <parameter name="class" optional="true" byreference="false" type="string"/>
     <parameter name="ctor" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="resize" abstract="false" static="false" visibility="public" final="false">
@@ -61,23 +61,23 @@
   </method>
   <method name="shutdown" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Shutdown all Workers"/>
+      <description compact="Shutdown all workers"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="submit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Submits an object for execution"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
     <parameter name="task" optional="false" byreference="false" type="object" class="Threaded"/>
   </method>
   <method name="submitTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Submits an object for execution"/>
-      <return type="integer"/>
+      <description compact="Submits a task to a specific worker for execution"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="worker" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="worker" optional="false" byreference="false" type="int"/>
     <parameter name="task" optional="false" byreference="false" type="object" class="Threaded"/>
   </method>
 </class>

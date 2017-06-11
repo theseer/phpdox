@@ -4,7 +4,7 @@
   <member name="sqlstate" static="false" visibility="protected">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The sql state with the error.&#10;      "/>
+      <description compact="The sql state with the error."/>
       <var type="string"/>
     </docblock>
   </member>

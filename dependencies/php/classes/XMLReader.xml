@@ -113,7 +113,7 @@
   <member name="attributeCount" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of attributes on the node&#10;      "/>
+      <description compact="The number of attributes on the node"/>
       <var type="int"/>
     </docblock>
   </member>

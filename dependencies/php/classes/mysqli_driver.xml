@@ -38,7 +38,7 @@
   <member name="report_mode" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Set to MYSQLI_REPORT_OFF,&#10;       MYSQLI_REPORT_ALL or any combination of&#10;       MYSQLI_REPORT_STRICT (throw Exceptions for errors),&#10;       MYSQLI_REPORT_ERROR (report errors) and&#10;       MYSQLI_REPORT_INDEX (errors regarding indexes).&#10;       See also mysqli_report.&#10;      "/>
+      <description compact="Set to MYSQLI_REPORT_OFF, MYSQLI_REPORT_ALL or any combination of MYSQLI_REPORT_STRICT (throw Exceptions for errors), MYSQLI_REPORT_ERROR (report errors) and MYSQLI_REPORT_INDEX (errors regarding indexes). See also mysqli_report."/>
       <var type="int"/>
     </docblock>
   </member>

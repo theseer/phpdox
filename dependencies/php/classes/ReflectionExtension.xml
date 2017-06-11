@@ -4,7 +4,7 @@
   <member name="name" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Name of the extension, same as calling the &#10;       ReflectionExtension::getName &#10;       method.&#10;      "/>
+      <description compact="Name of the extension, same as calling the ReflectionExtension::getName method."/>
     </docblock>
   </member>
   <method name="__clone" abstract="false" static="false" final="true">

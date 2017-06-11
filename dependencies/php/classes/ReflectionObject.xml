@@ -19,7 +19,7 @@
   <member name="name" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       Name of the object's class. Read-only, throws&#10;       ReflectionException in attempt to write.&#10;      "/>
+      <description compact="Name of the object's class. Read-only, throws ReflectionException in attempt to write."/>
     </docblock>
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">

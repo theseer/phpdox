@@ -960,7 +960,7 @@
       <return type="array"/>
     </docblock>
     <parameter name="pattern" optional="true" byreference="false" type="string"/>
-    <parameter name="only_names" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="include_values" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getImageProperties" abstract="false" static="false" final="false">
     <docblock>
@@ -968,7 +968,7 @@
       <return type="array"/>
     </docblock>
     <parameter name="pattern" optional="true" byreference="false" type="string"/>
-    <parameter name="only_names" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="include_values" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getImageProperty" abstract="false" static="false" final="false">
     <docblock>
@@ -1183,7 +1183,7 @@
   </method>
   <method name="getSize" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Returns the size associated with the Imagick object"/>
+      <description compact="Returns the size associated with the Imagick object">Get the size in pixels associated with the Imagick object, previously set by Imagick::setSize.</description>
       <return type="array"/>
     </docblock>
   </method>
@@ -2474,7 +2474,7 @@
   <method name="textureImage" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Repeatedly tiles the texture image"/>
-      <return type="bool"/>
+      <return type="Imagick"/>
     </docblock>
     <parameter name="texture_wand" optional="false" byreference="false" type="object" class="Imagick"/>
   </method>

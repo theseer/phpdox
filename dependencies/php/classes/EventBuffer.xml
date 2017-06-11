@@ -33,14 +33,14 @@
   <member name="length" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of bytes stored in an event buffer.&#10;      "/>
+      <description compact="The number of bytes stored in an event buffer."/>
       <var type="int"/>
     </docblock>
   </member>
   <member name="contiguous_space" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="&#10;       The number of bytes stored contiguously at the front of the buffer. The&#10;       bytes in a buffer may be stored in multiple separate chunks of memory;&#10;       the property returns the number of bytes currently stored in the first&#10;       chunk.&#10;      "/>
+      <description compact="The number of bytes stored contiguously at the front of the buffer. The bytes in a buffer may be stored in multiple separate chunks of memory; the property returns the number of bytes currently stored in the first chunk."/>
       <var type="int"/>
     </docblock>
   </member>
