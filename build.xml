@@ -4,24 +4,22 @@
 
     <target name="clean" description="Clean up and create artifact directories">
         <delete dir="${basedir}/build/api"/>
-        <delete dir="${basedir}/build/code-browser"/>
         <delete dir="${basedir}/build/coverage"/>
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
 
         <mkdir dir="${basedir}/build/api"/>
-        <mkdir dir="${basedir}/build/code-browser"/>
         <mkdir dir="${basedir}/build/coverage"/>
         <mkdir dir="${basedir}/build/logs"/>
         <mkdir dir="${basedir}/build/pdepend"/>
     </target>
 
     <target name="phpab">
-        <exec executable="phpab">
+        <exec executable="${basedir}/tools/phpab">
             <arg line="--cache ${basedir}/build/phpab/autoload.cache -o src/autoload.php" />
             <arg path="src" />
         </exec>
-        <exec executable="phpab">
+        <exec executable="${basedir}/tools/phpab">
             <arg line="--cache ${basedir}/build/phpab/autoload.cache" />
             <arg line="-o src/vendor.php" />
             <arg line="-b vendor" />
@@ -33,33 +31,11 @@
     </target>
 
     <target name="phpunit" description="Run unit tests using PHPUnit and generates junit.xml and clover.xml">
-        <exec executable="phpunit" failonerror="true"/>
-    </target>
-
-    <target name="parallelTasks"
-            description="Run the pdepend, phpmd, phpcpd, phpcs and phploc tasks in parallel using a maximum of 2 threads.">
-        <parallel threadCount="2">
-            <sequential>
-                <antcall target="pdepend"/>
-                <antcall target="phpmd"/>
-            </sequential>
-            <antcall target="phpcpd"/>
-            <antcall target="phpcs"/>
-            <antcall target="phploc"/>
-        </parallel>
-    </target>
-
-    <target name="pdepend" description="Generate jdepend.xml and software metrics charts using PHP_Depend">
-        <exec executable="pdepend">
-            <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
-              --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
-              --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
-              ${source}"/>
-        </exec>
+        <exec executable="${basedir}/tools/phpunit" failonerror="true"/>
     </target>
 
     <target name="phpmd" description="Generate pmd.xml using PHPMD">
-        <exec executable="phpmd">
+        <exec executable="${basedir}/tools/phpmd">
             <arg line="${source}
               xml
               codesize,design,naming,unusedcode
@@ -68,13 +44,13 @@
     </target>
 
     <target name="phpcpd" description="Generate pmd-cpd.xml using PHPCPD">
-        <exec executable="phpcpd">
+        <exec executable="${basedir}/tools/phpcpd">
             <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml ${source}"/>
         </exec>
     </target>
 
     <target name="phploc" description="Generate phploc.xml">
-        <exec executable="phploc">
+        <exec executable="${basedir}/tools/phploc">
             <arg line="--count-tests --log-xml ${basedir}/build/logs/phploc.xml ${source} tests"/>
         </exec>
     </target>
@@ -144,7 +120,7 @@
             </fileset>
         </delete>
 
-        <exec executable="phpab" failonerror="true">
+        <exec executable="${basedir}/tools/phpab" failonerror="true">
             <arg value="--var"/>
             <arg value="VERSION=${version}"/>
             <arg value="--all"/>
@@ -163,5 +139,5 @@
         <delete dir="${basedir}/build/phar/_tmp"/>
     </target>
 
-    <target name="build" depends="clean,parallelTasks,phpunit"/>
+    <target name="build" depends="clean,phpab,phpunit"/>
 </project>
