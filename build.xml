@@ -130,5 +130,26 @@
         <delete dir="${basedir}/build/phar/_tmp"/>
     </target>
 
+
+    <target name="release" description="Make a release based on latest tag">
+    
+        <exec executable="bash" outputproperty="version">
+            <arg value="-c"/>
+            <arg value="${basedir}/build/phar/phpdox*.phar --version | awk 'BEGIN { ORS = &quot;&quot;; } {print $2}'"/>
+        </exec>
+
+        <exec executable="gpg">
+            <arg value="--local-user" />
+            <arg value="arne@blankerts.de" />
+            <arg value="--detach-sign" />
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg path="${basedir}/build/phar/phpdox-${version}.phar.asc" />
+            <arg path="${basedir}/build/phar/phpdox-${version}.phar" />
+        </exec>
+
+    </target>
+
+
     <target name="build" depends="clean,phpab,phpunit"/>
 </project>
