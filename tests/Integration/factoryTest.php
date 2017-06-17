@@ -37,6 +37,7 @@
  */
 namespace TheSeer\phpDox\Tests\Integration {
 
+    use TheSeer\phpDox\CollectorConfig;
     use TheSeer\phpDox\Factory;
     use TheSeer\phpDox\FileInfo;
     use TheSeer\phpDox\Version;
@@ -47,7 +48,7 @@ namespace TheSeer\phpDox\Tests\Integration {
      * @covers TheSeer\phpDox\Factory
      * @uses TheSeer\phpDox\version
      */
-    class FactoryTest extends \PHPUnit_Framework_TestCase {
+    class FactoryTest extends \PHPUnit\Framework\TestCase {
 
         /**
          * @var Factory
@@ -83,7 +84,7 @@ namespace TheSeer\phpDox\Tests\Integration {
          * @uses TheSeer\phpDox\DocBlock\Parser
          */
         public function testGetCollector() {
-            $config = $this->getMockBuilder('TheSeer\\phpDox\\CollectorConfig')
+            $config = $this->getMockBuilder(CollectorConfig::class)
                     ->disableOriginalConstructor()
                     ->getMock();
 

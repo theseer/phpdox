@@ -2,7 +2,7 @@
 use TheSeer\phpDox\Generator\Enricher;
 use TheSeer\phpDox\Generator\Enricher\PHPUnitConfig;
 
-class PHPUnitEnricherTest extends \PHPUnit_Framework_TestCase {
+class PHPUnitEnricherTest extends \PHPUnit\Framework\TestCase {
 
 
     public function testCoverageInformationIsImportedProperly() {

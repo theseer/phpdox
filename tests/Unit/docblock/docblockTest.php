@@ -44,7 +44,7 @@ namespace TheSeer\phpDox\DocBlock {
      * @covers TheSeer\phpDox\DocBlock\DocBlock
      * @uses TheSeer\phpDox\DocBlock\GenericElement
      */
-    class DocBlockTest extends \PHPUnit_Framework_TestCase {
+    class DocBlockTest extends \PHPUnit\Framework\TestCase {
 
         /**
          * @var DocBlock

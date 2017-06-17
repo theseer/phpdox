@@ -46,7 +46,7 @@ namespace TheSeer\phpDox {
      * @uses TheSeer\phpDox\FileInfo
      * @uses TheSeer\phpDox\Version
      */
-    class GlobalConfigTest extends \PHPUnit_Framework_TestCase {
+    class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
 
         private $baseDir;
 

@@ -39,13 +39,14 @@
 namespace TheSeer\phpDox\Tests\Integration\DocBlock {
 
     use TheSeer\phpDox\DocBlock\Factory;
+    use TheSeer\phpDox\FactoryInterface;
 
     /**
      * Class FactoryTest
      *
      * @covers TheSeer\phpDox\DocBlock\Factory
      */
-    class FactoryTest extends \PHPUnit_Framework_TestCase {
+    class FactoryTest extends \PHPUnit\Framework\TestCase {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\Factory::getElementInstanceFor
@@ -104,7 +105,7 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
          */
         public function testGetInstanceByMapHandlingAFactory() {
 
-            $factoryMock = $this->getMock('TheSeer\\phpDox\\FactoryInterface');
+            $factoryMock = $this->createMock(FactoryInterface::class);
             $factoryMock
                 ->expects($this->once())
                 ->method('getInstanceFor')

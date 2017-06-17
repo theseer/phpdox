@@ -36,7 +36,7 @@
  */
 namespace TheSeer\phpDox {
 
-    class DirectoryCleanerTest extends \PHPUnit_Framework_TestCase {
+    class DirectoryCleanerTest extends \PHPUnit\Framework\TestCase {
 
         /**
          * @var DirectoryCleaner

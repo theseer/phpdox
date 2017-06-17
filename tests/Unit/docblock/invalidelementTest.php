@@ -48,14 +48,14 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock {
      * @uses TheSeer\phpDox\DocBlock\InvalidElement
      * @uses TheSeer\phpDox\DocBlock\GenericElement
      */
-    class InvalidElementTest extends \PHPUnit_Framework_TestCase {
+    class InvalidElementTest extends \PHPUnit\Framework\TestCase {
 
         /**
          * @covers TheSeer\phpDox\DocBlock\InvalidElement::asDom
          */
         public function testElementCanBeSerializedToDom() {
             $dom = new fDOMDocument();
-            $element = new InvalidElement($this->getMock('TheSeer\phpDox\DocBlock\Factory'), 'test');
+            $element = new InvalidElement($this->createMock(\TheSeer\phpDox\DocBlock\Factory::class), 'test');
 
             $this->assertEquals(
                 '<invalid xmlns="http://xml.phpdox.net/src" annotation="test"/>',
