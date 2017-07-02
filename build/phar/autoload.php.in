@@ -22,6 +22,8 @@ spl_autoload_register(
 Phar::mapPhar('phpdox.phar');
 define('PHPDOX_PHAR', 'phpdox.phar');
 
+require 'phar://phpdox.phar/phpdox/runtimecheck.php';
+
 $factory = new TheSeer\phpDox\Factory(
     new \TheSeer\phpDox\FileInfo('phar://' . PHPDOX_PHAR),
     new \TheSeer\phpDox\Version('___VERSION___')
