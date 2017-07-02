@@ -40,7 +40,19 @@
  *
  */
 
-require __DIR__ . '/src/runtimecheck.php';
+if (!defined('HHVM_VERSION') && (version_compare(phpversion(), '5.5', 'lt'))) {
+    fwrite(
+        STDERR,
+        sprintf(
+            "phpDox requires PHP 5.5 or later; " .
+            "Upgrading to the latest version of PHP is highly recommended. (Version used: %s)\n\n",
+            phpversion()
+        )
+    );
+
+    die(1);
+}
+
 require __DIR__ . '/src/autoload.php';
 
 $found = false;
@@ -61,7 +73,7 @@ if (!$found) {
 
 $factory = new TheSeer\phpDox\Factory(
     new \TheSeer\phpDox\FileInfo(__DIR__),
-    new \TheSeer\phpDox\Version('0.10.1')
+    new \TheSeer\phpDox\Version('0.11.0-dev')
 );
 exit($factory->getCLI()->run(
     new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
