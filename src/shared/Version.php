@@ -68,7 +68,7 @@ namespace TheSeer\phpDox {
         }
 
         public function getInfoString() {
-            return 'phpDox ' . $this->getVersion() . " - Copyright (C) 2010 - " . date('Y') . " by Arne Blankerts";
+            return 'phpDox ' . $this->getVersion() . " - Copyright (C) 2010 - " . date('Y') . " by Arne Blankerts and Contributors";
         }
 
         public function getGeneratedByString() {
