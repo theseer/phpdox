@@ -2,7 +2,9 @@ phpDox
 ======
 
 *phpDox* is a documentation generator for PHP projects.
-This includes, but is not limited to, API documentation.
+This includes, but is not limited to, API documentation. The main focus is on enriching
+the generated documentation with additional details like code coverage, complexity information
+and more.
 
 [![Build Status](https://travis-ci.org/theseer/phpdox.svg?branch=master)](https://travis-ci.org/theseer/phpdox)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/theseer/phpdox/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/theseer/phpdox/?branch=master)
@@ -10,7 +12,7 @@ This includes, but is not limited to, API documentation.
 Requirements
 ------------
 
-- PHP Version 5.5+
+- PHP Version 5.5+ (PHP 7.x recommended)
   - ext/dom
   - ext/xsl
   - ext/iconv and [libiconv version >= 2.12](http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)
@@ -21,32 +23,40 @@ Requirements
 - [PHP_Timer](http://github.com/sebastianbergmann/php-timer)
 
 
-User Installation
+Phar Installation
 -----------------
 
 phpDox is shipping as a selfcontained executable phar archive. You can grab your copy from the
-[releases](https://github.com/theseer/phpdox/releases/latest) section or directly here:
+[releases](https://github.com/theseer/phpdox/releases/latest) section or install using [phive](https://phar.io):
 
-- [Release 0.9.0](https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar) [762k - [gpg](https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar.asc)]
-
-Installation is simple:
-
-    wget https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar
-    chmod +x phpdox-0.9.0.phar
-    sudo mv phpdox-0.9.0.phar /usr/bin/phpdox
+    phive install phpdox
 
 You can now execute phpdox on the command line:
 
-    phpdox --version
+    tools/phpdox --version
 
 If everything worked out, you should get an output like this:
 
-    phpDox 0.9.0 - Copyright (C) 2010 - 2016 by Arne Blankerts
-
-
-_Note: Starting with release 0.6.6 the pear package distribution is merely a wrapper for the selfcontained phar._
+    phpDox 0.10.1 - Copyright (C) 2010 - 2017 by Arne Blankerts and Contributors
 
 _Note: Some Linux distributions ship PHP with ext/suhosin and disabled phar execution. To make use of phpDox in such an environment, you need to enable phar execution by adding phar to the executor white list: suhosin.executor.include.whitelist="phar"_
+
+
+Composer Installation
+---------------------
+
+Additionally, phpDox can be installed via composer:
+
+    composer require --dev theseer/phpdox 
+
+You can now execute phpdox on the command line:
+
+    vendor/bin/phpdox --version
+
+If everything worked out, you should get an output like this:
+
+    phpDox 0.10.1 - Copyright (C) 2010 - 2017 by Arne Blankerts and Contributors
+
 
 Developer Installation
 ----------------------
