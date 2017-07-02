@@ -110,11 +110,15 @@ namespace TheSeer\phpDox\Collector {
             $this->ctx->setAttribute('constant', $const);
         }
 
+        public function isInternalType($type) {
+            return in_array(mb_strtolower($type), $this->types);
+        }
+
         /**
          * @param $type
          */
         public function setType($type) {
-            if (!in_array(mb_strtolower($type), $this->types)) {
+            if (!$this->isInternalType($type)) {
                 $parts = explode('\\', $type);
                 $local = array_pop($parts);
                 $namespace = join('\\', $parts);
@@ -133,6 +137,10 @@ namespace TheSeer\phpDox\Collector {
          */
         public function getType() {
             return $this->ctx->getAttribute('type');
+        }
+
+        public function setNullable($isNullable) {
+            $this->ctx->setAttribute('nullable', $isNullable ? 'true' : 'false');
         }
 
         protected function addInternalType($type) {

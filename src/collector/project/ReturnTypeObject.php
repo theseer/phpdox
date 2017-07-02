@@ -45,10 +45,6 @@ namespace TheSeer\phpDox\Collector {
             $this->addInternalType('void');
         }
 
-        public function setNullable($isNullable) {
-            $this->ctx->setAttribute('nullable', $isNullable ? 'true' : 'false');
-        }
-
     }
 
 }

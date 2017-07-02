@@ -36,7 +36,6 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
-    use TheSeer\DirectoryScanner\Exception;
     use TheSeer\phpDox\Collector\AbstractUnitObject;
     use TheSeer\phpDox\Collector\AbstractVariableObject;
     use TheSeer\phpDox\Collector\InlineComment;
@@ -92,13 +91,15 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         /**
          * @param \PhpParser\Node $node
+         *
+         * @return int|null|\PhpParser\Node|void
          */
         public function enterNode(\PhpParser\Node $node) {
             if ($node instanceof NodeType\Namespace_ && $node->name != NULL) {
-                $this->namespace = join('\\', $node->name->parts);
+                $this->namespace = implode('\\', $node->name->parts);
                 $this->aliasMap['::context'] = $this->namespace;
             } else if ($node instanceof NodeType\UseUse) {
-                $this->aliasMap[$node->alias] = join('\\', $node->name->parts);
+                $this->aliasMap[$node->alias] = implode('\\', $node->name->parts);
             } else if ($node instanceof NodeType\Class_) {
                 $this->aliasMap['::unit'] = (string)$node->namespacedName;
                 $this->unit = $this->result->addClass((string)$node->namespacedName);
@@ -129,6 +130,8 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         /**
          * @param \PhpParser\Node $node
+         *
+         * @return false|int|null|\PhpParser\Node|\PhpParser\Node[]|void
          */
         public function leaveNode(\PhpParser\Node $node) {
             if ($node instanceof NodeType\Class_
@@ -159,20 +162,13 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $this->unit->setDocBlock($block);
             }
 
-            if ($node->getType() != 'Stmt_Trait' && $node->extends != NULL) {
-                if (is_array($node->extends)) {
-                    foreach($node->extends as $extends) {
-                        $this->unit->addExtends(join('\\', $extends->parts));
-                    }
-                } else {
-                    $this->unit->addExtends(join('\\', $node->extends->parts));
-                }
-
+            if ($node->getType() !== 'Stmt_Trait' && $node->extends != NULL) {
+                $this->unit->addExtends(implode('\\', $node->extends->parts));
             }
 
-            if ($node->getType() == 'Stmt_Class') {
+            if ($node->getType() === 'Stmt_Class') {
                 foreach($node->implements as $implements) {
-                    $this->unit->addImplements(join('\\', $implements->parts));
+                    $this->unit->addImplements(implode('\\', $implements->parts));
                 }
             }
         }
@@ -345,22 +341,30 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         private function setVariableType(AbstractVariableObject $variable, $type = NULL) {
+            if ($type instanceof \PhpParser\Node\NullableType) {
+                $variable->setNullable(true);
+                $type = $type->type;
+            }
+
             if ($type === NULL) {
                 $variable->setType('{unknown}');
                 return;
             }
-            if ($type === 'array') {
-                $variable->setType('array');
+
+            if ($variable->isInternalType($type)) {
+                $variable->setType($type);
                 return;
             }
+
             if ($type instanceof \PhpParser\Node\Name\FullyQualified) {
                 $variable->setType( (string)$type);
                 return;
             }
+
             $type = (string)$type;
             if (isset($this->aliasMap[$type])) {
                 $type = $this->aliasMap[$type];
-            } elseif ($type[0]!='\\') {
+            } elseif ($type[0]!=='\\') {
                 $type = $this->namespace . '\\' . $type;
             }
             $variable->setType($type);
@@ -401,12 +405,17 @@ namespace TheSeer\phpDox\Collector\Backend {
                 return array(
                     'type' => '{unknown}',
                     'value' => '',
-                    'constant' => join('\\', $expr->class->parts) . '::' . $expr->name
+                    'constant' => implode('\\', $expr->class->parts) . '::' . $expr->name
                 );
             }
 
             if ($expr instanceof \PhpParser\Node\Expr\ConstFetch) {
-                $reference = join('\\', $expr->name->parts);
+                $reference = implode('\\', $expr->name->parts);
+                if (strtolower($reference) === 'null') {
+                    return array(
+                        'value' => 'NULL'
+                    );
+                }
                 if (in_array(strtolower($reference), array('true', 'false'))) {
                     return array(
                         'type' => 'boolean',
@@ -416,7 +425,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 return array(
                     'type' => '{unknown}',
                     'value' => '',
-                    'constant' => join('\\', $expr->name->parts)
+                    'constant' => implode('\\', $expr->name->parts)
                 );
             }
 
@@ -452,9 +461,14 @@ namespace TheSeer\phpDox\Collector\Backend {
             if ($default === NULL) {
                 return;
             }
+
             $resolved = $this->resolveExpressionValue($default);
-            $variable->setType($resolved['type']);
             $variable->setDefault($resolved['value']);
+
+            if (isset($resolved['type'])) {
+                $variable->setType($resolved['type']);
+            }
+
             if (isset($resolved['constant'])) {
                 $variable->setConstant($resolved['constant']);
             }
