@@ -158,7 +158,13 @@ namespace TheSeer\phpDox\Collector {
                 $this->logger->progress('processed');
                 return true;
             } catch (ParseErrorException $e) {
-                $this->parseErrors[$file->getPathname()] = $e->getPrevious()->getMessage();
+                $previous = $e->getPrevious();
+                $this->parseErrors[$file->getPathname()] = sprintf(
+                    '%s [%s:%d]',
+                    $previous->getMessage(),
+                    basename($previous->getFile()),
+                    $previous->getLine()
+                );
                 $this->logger->progress('failed');
                 return false;
             } catch (\Exception $e) {
