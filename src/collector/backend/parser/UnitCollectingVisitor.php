@@ -162,8 +162,15 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $this->unit->setDocBlock($block);
             }
 
-            if ($node->getType() !== 'Stmt_Trait' && $node->extends != NULL) {
-                $this->unit->addExtends(implode('\\', $node->extends->parts));
+            if ($node->getType() != 'Stmt_Trait' && $node->extends !== NULL) {
+                if (is_array($node->extends)) {
+                    $extendsArray = $node->extends;
+                    foreach ($extendsArray as $extends) {
+                        $this->unit->addExtends(implode('\\', $extends->parts));
+                    }
+                } else {
+                    $this->unit->addExtends(implode('\\', $node->extends->parts));
+                }
             }
 
             if ($node->getType() === 'Stmt_Class') {
@@ -305,10 +312,12 @@ namespace TheSeer\phpDox\Collector\Backend {
 
             $resolved = $this->resolveExpressionValue($constNode->value);
 
-            $const->setType($resolved['type']);
             $const->setValue($resolved['value']);
             if (isset($resolved['constant'])) {
                 $const->setConstantReference($resolved['constant']);
+            }
+            if (isset($resolved['type'])) {
+                $const->setType($resolved['type']);
             }
 
             $docComment = $node->getDocComment();
