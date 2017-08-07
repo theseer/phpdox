@@ -272,11 +272,27 @@ namespace TheSeer\phpDox\Collector\Backend {
             }
 
             if ($returnType instanceof \PhpParser\Node\NullableType) {
-                $returnTypeObject = $method->setReturnType($returnType->type);
+                if ((string)$returnType->type === 'self') {
+                    $returnTypeObject = $method->setReturnType($this->unit->getName());
+                } else {
+                    $returnTypeObject = $method->setReturnType($returnType->type);
+                }
                 $returnTypeObject->setNullable(true);
                 return;
             }
-            throw new ParseErrorException("Unexpected return type definition", ParseErrorException::UnexpectedExpr);
+
+            if ($returnType instanceof \PhpParser\Node\Name) {
+                $returnTypeObject = $method->setReturnType(
+                    $this->unit->getName()
+                );
+                $returnTypeObject->setNullable(false);
+                return;
+            }
+
+            throw new ParseErrorException(
+                sprintf("Unexpected return type definition %s",
+                    get_class($returnType)
+                ),ParseErrorException::UnexpectedExpr);
         }
 
         private function processInlineComments(MethodObject $method, array $stmts) {
