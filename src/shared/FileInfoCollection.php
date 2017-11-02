@@ -11,7 +11,7 @@ namespace TheSeer\phpDox {
         /**
          * @var FileInfo[]
          */
-        private $data;
+        private $data = [];
 
         /**
          * @var int
