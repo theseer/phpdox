@@ -68,13 +68,13 @@ namespace TheSeer\phpDox {
             touch( $path . '/../test-g.txt' );
             touch( $path . '/../../test-f.txt' );
 
-            $this->assertTrue(file_exists($path. '/test-h.txt'));
-            $this->assertTrue(is_dir($path));
+            $this->assertFileExists($path. '/test-h.txt');
+            $this->assertDirectoryExists($path);
 
             $this->cleaner->process(new FileInfo($base));
 
-            $this->assertFalse(file_exists($path. '/test-h.txt'), 'File vanished');
-            $this->assertFalse(is_dir($base), 'Directory vanished');
+            $this->assertFileNotExists($path. '/test-h.txt', 'File vanished');
+            $this->assertDirectoryNotExists($base, 'Directory vanished');
 
         }
 
