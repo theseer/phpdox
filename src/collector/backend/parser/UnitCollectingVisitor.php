@@ -482,6 +482,16 @@ namespace TheSeer\phpDox\Collector\Backend {
                 );
             }
 
+            if ($expr instanceof BinaryOp) {
+                $code = (new \PhpParser\PrettyPrinter\Standard)->prettyPrint([$expr]);
+
+                return array(
+                    'type' => 'expression',
+                    'value' => substr($code,0,-1)
+                );
+
+            }
+
             $type = get_class($expr);
             $line = $expr->getLine();
             $file = $this->result->getFileName();
