@@ -36,6 +36,18 @@
      */
 namespace TheSeer\phpDox\Collector\Backend {
 
+    use PhpParser\Node\Expr;
+    use PhpParser\Node\Expr\Array_;
+    use PhpParser\Node\Expr\BinaryOp;
+    use PhpParser\Node\Expr\ClassConstFetch;
+    use PhpParser\Node\Expr\ConstFetch;
+    use PhpParser\Node\Expr\UnaryMinus;
+    use PhpParser\Node\Expr\UnaryPlus;
+    use PhpParser\Node\NullableType;
+    use PhpParser\Node\Scalar\DNumber;
+    use PhpParser\Node\Scalar\LNumber;
+    use PhpParser\Node\Scalar\MagicConst;
+    use PhpParser\Node\Scalar\String_;
     use TheSeer\phpDox\Collector\AbstractUnitObject;
     use TheSeer\phpDox\Collector\AbstractVariableObject;
     use TheSeer\phpDox\Collector\InlineComment;
@@ -271,7 +283,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 return;
             }
 
-            if ($returnType instanceof \PhpParser\Node\NullableType) {
+            if ($returnType instanceof NullableType) {
                 if ((string)$returnType->type === 'self') {
                     $returnTypeObject = $method->setReturnType($this->unit->getName());
                 } else {
@@ -366,7 +378,7 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         private function setVariableType(AbstractVariableObject $variable, $type = NULL) {
-            if ($type instanceof \PhpParser\Node\NullableType) {
+            if ($type instanceof NullableType) {
                 $variable->setNullable(true);
                 $type = $type->type;
             }
@@ -395,38 +407,38 @@ namespace TheSeer\phpDox\Collector\Backend {
             $variable->setType($type);
         }
 
-        private function resolveExpressionValue(\PhpParser\Node\Expr $expr) {
-            if ($expr instanceof \PhpParser\Node\Scalar\String_) {
+        private function resolveExpressionValue(Expr $expr) {
+            if ($expr instanceof String_) {
                 return array(
                     'type' => 'string',
                     'value' => $expr->getAttribute('originalValue')
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Scalar\LNumber ||
-                $expr instanceof \PhpParser\Node\Expr\UnaryMinus ||
-                $expr instanceof \PhpParser\Node\Expr\UnaryPlus) {
+            if ($expr instanceof LNumber ||
+                $expr instanceof UnaryMinus ||
+                $expr instanceof UnaryPlus) {
                 return array(
                     'type' => 'integer',
                     'value' => $expr->getAttribute('originalValue')
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Scalar\DNumber) {
+            if ($expr instanceof DNumber) {
                 return array(
                     'type' => 'float',
                     'value' => $expr->getAttribute('originalValue')
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Expr\Array_) {
+            if ($expr instanceof Array_) {
                 return array(
                     'type' => 'array',
                     'value' => '' // @todo add array2xml?
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Expr\ClassConstFetch) {
+            if ($expr instanceof ClassConstFetch) {
                 return array(
                     'type' => '{unknown}',
                     'value' => '',
@@ -434,7 +446,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Expr\ConstFetch) {
+            if ($expr instanceof ConstFetch) {
                 $reference = implode('\\', $expr->name->parts);
                 if (strtolower($reference) === 'null') {
                     return array(
@@ -454,7 +466,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Scalar\MagicConst\Line) {
+            if ($expr instanceof MagicConst\Line) {
                 return array(
                     'type' => 'integer',
                     'value' => '',
@@ -462,7 +474,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 );
             }
 
-            if ($expr instanceof \PhpParser\Node\Scalar\MagicConst) {
+            if ($expr instanceof MagicConst) {
                 return array(
                     'type' => 'string',
                     'value' => '',
@@ -478,11 +490,12 @@ namespace TheSeer\phpDox\Collector\Backend {
         }
 
         /**
-         * @param AbstractVariableObject     $variable
-         * @param \PhpParser\Node\Expr       $default
-         * @return string
+         * @param AbstractVariableObject $variable
+         * @param Expr                   $default
+         *
+         * @throws ParseErrorException
          */
-        private function setVariableDefaultValue(AbstractVariableObject $variable, \PhpParser\Node\Expr $default = NULL) {
+        private function setVariableDefaultValue(AbstractVariableObject $variable, Expr $default = NULL) {
             if ($default === NULL) {
                 return;
             }
@@ -498,6 +511,5 @@ namespace TheSeer\phpDox\Collector\Backend {
                 $variable->setConstant($resolved['constant']);
             }
         }
-
     }
 }
