@@ -1,0 +1,4 @@
+/**
+ * @constant Invoice is solved - meaning invoice is paid and all related
+ *           bookings are set to solved
+ */

@@ -97,7 +97,8 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock {
                 array('var_no_body'),
                 array('var_only'),
                 array('var_only_single_line'),
-                array('version')
+                array('version'),
+                array('multiline_annotation')
             );
         }
     }

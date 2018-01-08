@@ -63,8 +63,9 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         public function getObject(array $buffer) {
-            $obj = $this->buildObject('generic', $buffer);
-            $obj->setValue($this->payload);
+            $this->payload .= ' ' . implode(' ', array_map('trim', $buffer));
+            $obj = $this->buildObject('generic', []);
+            $obj->setValue(trim($this->payload));
             return $obj;
         }
 
