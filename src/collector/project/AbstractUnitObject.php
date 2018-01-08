@@ -287,7 +287,7 @@ namespace TheSeer\phpDox\Collector {
          *
          * @return bool
          */
-        public function usesTtrait($name) {
+        public function usesTrait($name) {
             return $this->rootNode->query(sprintf('phpdox:uses[@full="%s"]', $name))->length > 0;
         }
 
@@ -332,6 +332,15 @@ namespace TheSeer\phpDox\Collector {
                     sprintf('Trait "%s" not used', $name),
                     UnitObjectException::NoSuchTrait
                 );
+            }
+            return new TraitUseObject($node);
+        }
+
+        public function getAmbiguousTraitUse() {
+            $node = $this->rootNode->queryOne('phpdox:ambiguous[@type="trait-alias"]');
+            if (!$node) {
+                $node = $this->rootNode->appendElementNS(self::XMLNS, 'ambiguous');
+                $node->setAttribute('type','trait-alias');
             }
             return new TraitUseObject($node);
         }
@@ -531,6 +540,7 @@ namespace TheSeer\phpDox\Collector {
                 $container->appendChild($memberNode);
             }
 
+            $ambiguousContainer = $this->dom->queryOne('//phpdox:ambiguous[@type="trait-alias"]');
             foreach($trait->getExportedMethods() as $method) {
                 $methodName = $method->getName();
                 $methodNode = $this->dom->importNode($method->export(), TRUE);
@@ -540,6 +550,22 @@ namespace TheSeer\phpDox\Collector {
                 }
 
                 $this->adjustStaticResolution($methodNode);
+
+                if ($ambiguousContainer !== NULL) {
+                    $ambiguousMethod = $ambiguousContainer->queryOne(
+                        sprintf('phpdox:alias[@method="%s"]', $methodName)
+                    );
+                    if ($ambiguousMethod !== null) {
+                        $usesNode = $this->dom->queryOne(
+                            sprintf('//phpdox:uses[@full="%s"]', $trait->getName())
+                        );
+                        $usesNode->appendChild($ambiguousMethod);
+                        if ($ambiguousContainer->query('phpdox:alias')->length === 0) {
+                            $ambiguousContainer->parentNode->removeChild($ambiguousContainer);
+                            $ambiguousContainer = NULL;
+                        }
+                    }
+                }
 
                 $aliasNode = NULL;
                 if ($use->isAliased($methodName)) {

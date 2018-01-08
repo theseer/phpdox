@@ -43,6 +43,7 @@ namespace TheSeer\phpDox\Collector\Backend {
     use PhpParser\Node\Expr\ConstFetch;
     use PhpParser\Node\Expr\UnaryMinus;
     use PhpParser\Node\Expr\UnaryPlus;
+    use PhpParser\Node\Name\FullyQualified;
     use PhpParser\Node\NullableType;
     use PhpParser\Node\Scalar\DNumber;
     use PhpParser\Node\Scalar\LNumber;
@@ -201,27 +202,40 @@ namespace TheSeer\phpDox\Collector\Backend {
 
             foreach($node->adaptations as $adaptation) {
                 if ($adaptation instanceof NodeType\TraitUseAdaptation\Alias) {
-                    $traitUse = $this->getTraitUse((string)$adaptation->trait);
+                    if ($adaptation->trait instanceof FullyQualified) {
+                        $traitUse = $this->getTraitUse((string)$adaptation->trait);
+                    } else if (count($node->traits) === 1) {
+                        $traitUse = $this->getTraitUse( (string)$node->traits[0]);
+                    } else {
+                        $traitUse = $this->unit->getAmbiguousTraitUse();
+                    }
+
                     $traitUse->addAlias(
                         $adaptation->method,
                         $adaptation->newName,
                         $adaptation->newModifier ? $this->modifier[$adaptation->newModifier] : NULL
                     );
-                } elseif ($adaptation instanceof NodeType\TraitUseAdaptation\Precedence) {
+
+                    continue;
+                }
+
+                if ($adaptation instanceof NodeType\TraitUseAdaptation\Precedence) {
                     $traitUse = $this->getTraitUse((string)$adaptation->insteadof[0]);
                     $traitUse->addExclude($adaptation->method);
-                } else {
-                    throw new ParseErrorException(
-                        sprintf('Unexpected adaption type %s', get_class($adaptation)),
-                        ParseErrorException::UnexpectedExpr
-                    );
+
+                    continue;
                 }
+
+                throw new ParseErrorException(
+                    sprintf('Unexpected adaption type %s', get_class($adaptation)),
+                    ParseErrorException::UnexpectedExpr
+                );
             }
 
         }
 
         private function getTraitUse($traitName) {
-            if (!$this->unit->usesTtrait($traitName)) {
+            if (!$this->unit->usesTrait($traitName)) {
                 throw new ParseErrorException(
                     sprintf('Referenced trait "%s" not used', $traitName),
                     ParseErrorException::GeneralParseError
