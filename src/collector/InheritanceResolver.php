@@ -37,8 +37,8 @@
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\InheritanceConfig;
+    use TheSeer\phpDox\ProgressLogger;
 
     /**
      * Inheritance resolving class
@@ -66,6 +66,11 @@ namespace TheSeer\phpDox\Collector {
          * @var array
          */
         private $unresolved = array();
+
+        /**
+         * @var array
+         */
+        private $errors = array();
 
         /**
          * @param ProgressLogger $logger
@@ -153,6 +158,22 @@ namespace TheSeer\phpDox\Collector {
             return $this->unresolved;
         }
 
+        public function hasErrors() {
+            return count($this->errors) > 0;
+        }
+
+        public function getErrors() {
+            return $this->errors;
+        }
+
+        private function addError(AbstractUnitObject $unit, $errorInfo) {
+            $unitName = $unit->getName();
+            if (!isset($this->errors[$unitName])) {
+                $this->errors[$unitName] = array();
+            }
+            $this->errors[$unitName][] = $errorInfo;
+        }
+
         private function addUnresolved(AbstractUnitObject $unit, $missingUnit) {
             $unitName = $unit->getName();
             if (!isset($this->unresolved[$unitName])) {
@@ -212,6 +233,17 @@ namespace TheSeer\phpDox\Collector {
             $this->project->registerForSaving($unit);
             $this->project->registerForSaving($implements);
 
+            if (!$implements instanceof InterfaceObject) {
+                $this->addError(
+                    $unit,
+                    sprintf(
+                        'Trying to implement "%s" which is a %s',
+                        $implements->getName(),
+                        $implements->getType()
+                    )
+                );
+                return;
+            }
             $implements->addImplementor($unit);
             $unit->importExports($implements, 'interface');
 

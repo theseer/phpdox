@@ -153,6 +153,13 @@ namespace TheSeer\phpDox {
                         $this->logger->log(' - ' . $class . ' (missing ' . $missing . ')');
                     }
                 }
+
+                if ($resolver->hasErrors()) {
+                    $this->logger->log('The following unit(s) caused errors during inheritance resolution:');
+                    foreach($resolver->getErrors() as $class => $error) {
+                        $this->logger->log(' - ' . $class . ': ' . implode(', ', $error));
+                    }
+                }
             }
             $this->logger->log("Collector process completed\n");
         }
