@@ -64,7 +64,7 @@ namespace TheSeer\phpDox {
          * @return int
          */
         public function count() {
-            return count($this->data);
+            return count((array) $this->data);
         }
 
     }
