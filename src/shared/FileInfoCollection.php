@@ -16,7 +16,7 @@ namespace TheSeer\phpDox {
         /**
          * @var int
          */
-        private $pos;
+        private $pos = 0;
 
         /**
          * @param FileInfo $file
@@ -27,8 +27,12 @@ namespace TheSeer\phpDox {
 
         /**
          * @return FileInfo
+         * @throws \TheSeer\phpDox\FileInfoCollectionException
          */
         public function current() {
+            if (!isset($this->data[$this->pos])) {
+                throw new FileInfoCollectionException('Empty collection');
+            }
             return $this->data[$this->pos];
         }
 
