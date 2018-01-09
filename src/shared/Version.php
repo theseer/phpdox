@@ -79,15 +79,23 @@ namespace TheSeer\phpDox {
             if (!is_dir(__DIR__ . '/../../.git') || strpos(ini_get('disable_functions'), 'exec') !== false) {
                 return $this->release;
             }
+
             $dir = getcwd();
             chdir(__DIR__);
 
-            $devNull = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'nul' : '/dev/null';
-            $git = exec('command -p git describe --always --dirty 2>'.$devNull, $foo, $rc);
+            $devNull = '/dev/null';
+            $cmd = 'command -p git';
+            if (strtolower(substr(PHP_OS, 0, 3)) === 'win') {
+                $devNull = 'nul';
+                $cmd = 'git.exe';
+            }
+
+            $git = exec($cmd . ' describe --always --dirty 2>'.$devNull, $foo, $rc);
             chdir($dir);
             if ($rc === 0) {
                 return $git;
             }
+
             return $this->release;
         }
     }
