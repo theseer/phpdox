@@ -1,5 +1,25 @@
 # Changelog of phpDox
 
+## phpDox 0.11.0 (To be released)
+
+Note: This is going to be the last version that supports running under PHP 5.x 
+
+### Changed
+* Upgraded dependencies: Now using PHP-Parser 3.1+
+* The publicOnly mode now actually works
+
+### Merged
+* [#310](https://github.com/theseer/phpdox/pull/310): Make the build reproducible
+* [#319](https://github.com/theseer/phpdox/pull/319):Fixed: #315 count(): Parameter must be an array or an object that implements Countable
+
+### Fixed
+* [#320](https://github.com/theseer/phpdox/issues/320): Multiline annotation for class constants fails to add subsequent lines
+* [#315](https://github.com/theseer/phpdox/issues/315): count(): Parameter must be an array or an object that implements Countable (Thanks to @cristicotet, @swmarc)
+* [#313](https://github.com/theseer/phpdox/issues/313): Parsing of concatenated constants in classes fails
+* [#312](https://github.com/theseer/phpdox/issues/312): Alias for trait causes error
+* [#284](https://github.com/theseer/phpdox/issues/284): Error in Generator
+
+
 ## phpDox 0.10.1 (2 Juli 2017)
 
 ### Changed
