@@ -33,45 +33,30 @@
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
+namespace TheSeer\phpDox\Collector\Backend {
 
-namespace TheSeer\phpDox {
+    use PhpParser\Node;
+    use PhpParser\NodeVisitorAbstract;
+    use PhpParser\Node\Stmt as NodeType;
 
-    use TheSeer\fDOM\fDOMElement;
-
-    class InheritanceConfig {
-
-        protected $ctx;
-        protected $config;
-
-        public function __construct(CollectorConfig $config, fDOMElement $ctx = NULL) {
-            $this->config = $config;
-            $this->ctx = $ctx;
-        }
-
-        public function isPublicOnlyMode() {
-            return $this->config->isPublicOnlyMode();
-        }
+    class PublicOnlyVisitor extends NodeVisitorAbstract {
 
         /**
-         * @return array
+         * @param Node $node
+         *
+         * @return int|Node
          */
-        public function getDependencyDirectories() {
-            $home = $this->config->getProjectConfig()->getHomeDirectory();
-            $default = new FileInfo($home->getPathname() . '/dependencies/php');
-            $list = array($default);
-            if (!$this->ctx) {
-                return $list;
+        public function enterNode(Node $node) {
+            if (($node instanceof NodeType\Property ||
+                $node instanceof NodeType\ClassMethod ||
+                $node instanceof NodeType\ClassConst) && !$node->isPublic()) {
+
+                return new NodeType\Nop();
             }
-            foreach($this->ctx->query('cfg:dependency') as $dep) {
-                if ($dep->hasAttribute('path')) {
-                    $list[] = new FileInfo($dep->getAttribute('path'));
-                }
-            }
-            return $list;
+
+            return $node;
         }
 
     }
-
 }

@@ -44,9 +44,11 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         /**
          * @param SourceFile $sourceFile
+         * @param bool $publicOnly
+         *
          * @return ParseResult
          */
-        public function parse(SourceFile $sourceFile);
+        public function parse(SourceFile $sourceFile, $publicOnly);
 
     }
 }

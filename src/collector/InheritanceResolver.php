@@ -266,6 +266,8 @@ namespace TheSeer\phpDox\Collector {
             $this->dependencyStack = array(
                 $this->project,
             );
+
+            $publicOnlyMode = $this->config->isPublicOnlyMode();
             foreach($this->config->getDependencyDirectories() as $depDir) {
                 $idxName = $depDir . '/index.xml';
                 if (!file_exists($idxName)) {
@@ -274,7 +276,7 @@ namespace TheSeer\phpDox\Collector {
                 }
                 $dom = new fDOMDocument();
                 $dom->load($idxName);
-                $this->dependencyStack[] = new Dependency($dom, $this->project);
+                $this->dependencyStack[] = new Dependency($dom, $this->project, $publicOnlyMode);
             }
         }
 

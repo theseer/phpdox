@@ -73,16 +73,23 @@ namespace TheSeer\phpDox\Collector {
         private $encoding;
 
         /**
+         * @var bool
+         */
+        private $publicOnly;
+
+        /**
          * @param ProgressLogger   $logger
          * @param Project          $project
          * @param BackendInterface $backend
-         * @param                  $encoding
+         * @param string           $encoding
+         * @param bool             $publicOnly
          */
-        public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend, $encoding) {
+        public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend, $encoding, $publicOnly) {
             $this->logger = $logger;
             $this->project = $project;
             $this->backend = $backend;
             $this->encoding = $encoding;
+            $this->publicOnly = $publicOnly;
         }
 
         /**
@@ -138,7 +145,7 @@ namespace TheSeer\phpDox\Collector {
                     $this->logger->progress('processed');
                     return true;
                 }
-                $result = $this->backend->parse($file);
+                $result = $this->backend->parse($file, $this->publicOnly);
 
                 if ($result->hasClasses()) {
                     foreach($result->getClasses() as $class) {

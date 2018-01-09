@@ -27,6 +27,7 @@ spl_autoload_register(
                 'theseer\\phpdox\\collector\\backend\\parseresult' => '/collector/backend/ParseResult.php',
                 'theseer\\phpdox\\collector\\backend\\parseresultexception' => '/collector/backend/ParseResultException.php',
                 'theseer\\phpdox\\collector\\backend\\phpparser' => '/collector/backend/parser/PHPParser.php',
+                'theseer\\phpdox\\collector\\backend\\publiconlyvisitor' => '/collector/backend/parser/PublicOnlyVisitor.php',
                 'theseer\\phpdox\\collector\\backend\\sourcefileexception' => '/collector/backend/SourceFileException.php',
                 'theseer\\phpdox\\collector\\backend\\unitcollectingvisitor' => '/collector/backend/parser/UnitCollectingVisitor.php',
                 'theseer\\phpdox\\collector\\classobject' => '/collector/project/ClassObject.php',

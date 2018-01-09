@@ -72,11 +72,13 @@ namespace TheSeer\phpDox\Collector\Backend {
         /**
          *
          * @param SourceFile $sourceFile
+         * @param bool $publicOnly
          *
          * @throws ParseErrorException
          * @return ParseResult
          */
-        public function parse(SourceFile $sourceFile) {
+        public function parse(SourceFile $sourceFile, $publicOnly) {
+
             try {
                 $result = new ParseResult($sourceFile);
                 $parser = $this->getParserInstance();
@@ -84,7 +86,7 @@ namespace TheSeer\phpDox\Collector\Backend {
                 if (!$nodes) {
                     throw new ParseErrorException("Parser didn't return any nodes", ParseErrorException::GeneralParseError);
                 }
-                $this->getTraverserInstance($result)->traverse($nodes);
+                $this->getTraverserInstance($result, $publicOnly)->traverse($nodes);
                 return $result;
             } catch (\Exception $e) {
                 $this->errorHandler->clearLastError();
@@ -104,12 +106,16 @@ namespace TheSeer\phpDox\Collector\Backend {
 
         /**
          * @param ParseResult $result
+         * @param bool $publicOnly
          *
          * @return \PhpParser\NodeTraverser
          */
-        private function getTraverserInstance(ParseResult $result) {
+        private function getTraverserInstance(ParseResult $result, $publicOnly) {
             $traverser = new \PhpParser\NodeTraverser();
             $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
+            if ($publicOnly === true) {
+                $traverser->addVisitor(new PublicOnlyVisitor());
+            }
             $traverser->addVisitor(new UnitCollectingVisitor($this->docblockParser, $result));
             return $traverser;
         }

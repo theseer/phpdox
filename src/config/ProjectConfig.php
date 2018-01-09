@@ -100,6 +100,11 @@ namespace TheSeer\phpDox {
          * @return bool
          */
         public function isPublicOnlyMode() {
+            var_dump(
+                $this->ctx->saveXML(),
+                $this->ctx->getAttribute('publiconly', 'false'),
+                $this->ctx->getAttribute('publiconly', 'false') === 'true'
+            );
             return $this->ctx->getAttribute('publiconly', 'false') === 'true';
         }
 

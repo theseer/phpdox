@@ -200,7 +200,8 @@ namespace TheSeer\phpDox {
                     $config->getWorkDirectory()
                 ),
                 $this->getBackendFactory()->getInstanceFor($config->getBackend()),
-                $config->getFileEncoding()
+                $config->getFileEncoding(),
+                $config->isPublicOnlyMode()
             );
         }
 

@@ -6,15 +6,32 @@ namespace TheSeer\phpDox\Collector {
 
     class Dependency {
 
+        /**
+         * @var fDOMDocument
+         */
         private $index;
+
+        /**
+         * @var Project
+         */
         private $project;
+
+        /**
+         * @var string
+         */
         private $baseDir;
 
-        public function __construct(fDOMDocument $dom, Project $project) {
+        /**
+         * @var bool
+         */
+        private $publicOnlyMode;
+
+        public function __construct(fDOMDocument $dom, Project $project, $publicOnlyMode) {
             $this->index = $dom;
             $this->baseDir = dirname(urldecode($dom->documentURI));
             $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
             $this->project = $project;
+            $this->publicOnlyMode = $publicOnlyMode;
         }
 
         public function getUnitByName($name) {
@@ -33,6 +50,12 @@ namespace TheSeer\phpDox\Collector {
 
             $dom = new fDOMDocument();
             $dom->load( $this->baseDir . '/' . $indexNode->getAttribute('xml'));
+
+            if ($this->publicOnlyMode) {
+                foreach($dom->query('//*[@visibility and not(@visibility = "public")]') as $node) {
+                    $node->parentNode->removeChild($node);
+                }
+            }
 
             switch ($indexNode->localName) {
                 case 'interface': {

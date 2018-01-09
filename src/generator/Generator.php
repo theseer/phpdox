@@ -67,11 +67,6 @@ namespace TheSeer\phpDox\Generator {
         );
 
         /**
-         * @var bool
-         */
-        private $publicOnly;
-
-        /**
          * @var string
          */
         private $xmlDir;
@@ -132,9 +127,8 @@ namespace TheSeer\phpDox\Generator {
          * @param Project $project
          * @param bool    $publicOnly
          */
-        public function run(Project $project, $publicOnly = FALSE) {
+        public function run(Project $project) {
             $this->xmlDir     = $project->getXmlDir();
-            $this->publicOnly = $publicOnly;
             $this->project    = $project;
 
             $this->handleEvent(new PHPDoxStartEvent($project->getIndex(), $project->getSourceTree()));
@@ -281,16 +275,10 @@ namespace TheSeer\phpDox\Generator {
             }
 
             foreach($class->getMembers() as $member) {
-                if ($this->publicOnly && !$member->isPublic()) {
-                    continue;
-                }
                 $this->handleEvent(new ClassMemberEvent($member, $class));
             }
 
             foreach($class->getMethods() as $method) {
-                if ($this->publicOnly && !$method->isPublic()) {
-                    continue;
-                }
                 $this->handleEvent(new ClassMethodEvent($method, $class));
             }
             $this->handleEvent(new ClassEndEvent($class));
@@ -302,7 +290,6 @@ namespace TheSeer\phpDox\Generator {
          */
         private function processTrait(TraitEntry $traitEntry) {
             $trait = $traitEntry->getTraitObject($this->xmlDir);
-
             $this->handleEvent(new TraitStartEvent($trait));
 
             foreach($trait->getConstants() as $constant) {
@@ -310,16 +297,10 @@ namespace TheSeer\phpDox\Generator {
             }
 
             foreach($trait->getMembers() as $member) {
-                if ($this->publicOnly && !$member->isPublic()) {
-                    continue;
-                }
                 $this->handleEvent(new TraitMemberEvent($member, $trait));
             }
 
             foreach($trait->getMethods() as $method) {
-                if ($this->publicOnly && !$method->isPublic()) {
-                    continue;
-                }
                 $this->handleEvent(new TraitMethodEvent($method, $trait));
             }
             $this->handleEvent(new TraitEndEvent($trait));
