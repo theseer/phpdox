@@ -1,6 +1,6 @@
 # Changelog of phpDox
 
-## phpDox 0.11.0 (To be released)
+## phpDox 0.11.0 (10 January 2018)
 
 Note: This is going to be the last version that supports running under PHP 5.x 
 
@@ -17,10 +17,12 @@ Note: This is going to be the last version that supports running under PHP 5.x
 * [#315](https://github.com/theseer/phpdox/issues/315): count(): Parameter must be an array or an object that implements Countable (Thanks to @cristicotet, @swmarc)
 * [#313](https://github.com/theseer/phpdox/issues/313): Parsing of concatenated constants in classes fails
 * [#312](https://github.com/theseer/phpdox/issues/312): Alias for trait causes error
+* [#299](https://github.com/theseer/phpdox/issues/299): Run phpdox with a cloned repository on Windows
 * [#284](https://github.com/theseer/phpdox/issues/284): Error in Generator
+* [#242](https://github.com/theseer/phpdox/issues/242): Call to undefined method TheSeer\phpDox\Collector\ClassObject::addImplementor() 
 
 
-## phpDox 0.10.1 (2 Juli 2017)
+## phpDox 0.10.1 (2 July 2017)
 
 ### Changed
 * Added warning to output if PHP <7.0 is used
@@ -61,7 +63,7 @@ Note: This is going to be the last version that supports running under PHP 5.x
 * Fix: Issue #243 (Trait in Trait causes UnitObjectException if the nested trait is missing)
 * Fix: Issue #266 (Page Title "phpdox - Test Method")
 
-## phpDox 0.8.1.1 (09 Juli 2015)
+## phpDox 0.8.1.1 (09 July 2015)
 
 * Fix phar building, remove pear building target
 
