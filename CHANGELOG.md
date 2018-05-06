@@ -1,8 +1,14 @@
 # Changelog of phpDox
 
-## phpDox 0.11.0 (10 January 2018)
+## phpDox 0.11.1 (7 May 2018)
 
-Note: This is going to be the last version that supports running under PHP 5.x 
+Note: 0.11.x is the last series of releases that supports running under PHP 5.x 
+
+### Fixed
+* [#332](https://github.com/theseer/phpdox/issues/332): PHPUnit Enricher: classnode is always null
+
+
+## phpDox 0.11.0 (10 January 2018)
 
 ### Changed
 * Upgraded dependencies: Now using PHP-Parser 3.1+
