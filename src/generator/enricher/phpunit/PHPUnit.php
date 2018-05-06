@@ -132,6 +132,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     );
                 }
                 $dom->registerNamespace('pu', self::XMLNS);
+
                 return $dom;
             } catch (fDOMException $e) {
                 throw new EnricherException(
@@ -148,8 +149,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $classNamespace = $unit->documentElement->getAttribute('namespace');
 
             $classNode = $coverage->queryOne(
-                sprintf('//pu:class[@name = "%s" and pu:namespace[@name = "%s"]]', $className, $classNamespace)
+                sprintf('//pu:class[@name = "%2$s\%1$s" or (@name = "%1$s" and pu:namespace[@name = "%2$s"])]', $className, $classNamespace)
             );
+
             if (!$classNode) {
                 // This class seems to be newer than the last phpunit run
                 return;
