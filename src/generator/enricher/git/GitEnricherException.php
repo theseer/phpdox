@@ -5,6 +5,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         const ExecDisabled = 1;
         const FetchingHistoryFailed = 2;
+        const GitVersionTooOld = 3;
     }
 
 }

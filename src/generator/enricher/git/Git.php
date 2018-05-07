@@ -47,6 +47,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         public function __construct(GitConfig $config) {
             $this->ensureExecFunctionEnabled();
+            $this->ensureGitVersionSupported($config->getGitBinary());
             $this->config = $config;
         }
 
@@ -320,6 +321,20 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     'The use of "exec" has been disabled in php.ini but is required for this enricher',
                     GitEnricherException::ExecDisabled
                 );
+            }
+        }
+
+        private function ensureGitVersionSupported($binary) {
+            $output = exec(sprintf('%s --version', $binary));
+            $parts = explode(' ', $output);
+            $version = array_pop($parts);
+
+            if (version_compare($version, '1.7.2', '<=')) {
+                throw new GitEnricherException(
+                    sprintf('Your version of GIT is too old. Please upgrade to at least version 1.7.2 (Found: %s)', $version),
+                    GitEnricherException::GitVersionTooOld
+                );
+
             }
         }
 
