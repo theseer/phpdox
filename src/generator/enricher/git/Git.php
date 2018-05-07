@@ -329,7 +329,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $parts = explode(' ', $output);
             $version = array_pop($parts);
 
-            if (version_compare($version, '1.7.2', '<=')) {
+            if (version_compare($version, '1.7.2', '<')) {
                 throw new GitEnricherException(
                     sprintf('Your version of GIT is too old. Please upgrade to at least version 1.7.2 (Found: %s)', $version),
                     GitEnricherException::GitVersionTooOld
