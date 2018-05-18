@@ -13,12 +13,18 @@ namespace TheSeer\phpDox\Generator\Enricher {
     class PHPUnit extends AbstractEnricher implements
         EndEnricherInterface, ClassEnricherInterface, TraitEnricherInterface, TokenFileEnricherInterface {
 
-        const XMLNS = 'http://schema.phpunit.de/coverage/1.0';
+        const XMLNS_HTTP = 'http://schema.phpunit.de/coverage/1.0';
+        const XMLNS_HTTPS = 'https://schema.phpunit.de/coverage/1.0';
 
         /**
          * @var Fileinfo
          */
         private $coveragePath;
+
+        /**
+         * @var string
+         */
+        private $namespaceURI;
 
         /**
          * @var FileInfo
@@ -63,7 +69,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     }
                     /** @var fDOMElement $classNode */
                     $container = $this->getEnrichtmentContainer($classNode, 'phpunit');
-                    $resultNode = $container->appendElementNS(self::XMLNS, 'result');
+                    $resultNode = $container->appendElementNS($this->namespaceURI, 'result');
                     foreach($results as $key => $value) {
                         $resultNode->setAttribute(mb_strtolower($key), $value);
                     }
@@ -125,13 +131,16 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $dom = new fDOMDocument();
                 $dom->load($fname);
 
-                if ($dom->documentElement->namespaceURI != self::XMLNS) {
+                $this->namespaceURI = $dom->documentElement->namespaceURI;
+
+                if (!in_array($this->namespaceURI, [self::XMLNS_HTTP, self::XMLNS_HTTPS])) {
                     throw new EnricherException(
                         'Wrong namspace - not a PHPUnit code coverage file',
                         EnricherException::LoadError
                     );
                 }
-                $dom->registerNamespace('pu', self::XMLNS);
+
+                $dom->registerNamespace('pu', $this->namespaceURI);
 
                 return $dom;
             } catch (fDOMException $e) {
@@ -156,7 +165,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 // This class seems to be newer than the last phpunit run
                 return;
             }
-            $coverageTarget = $enrichment->appendElementNS(self::XMLNS, 'coverage');
+            $coverageTarget = $enrichment->appendElementNS($this->namespaceURI, 'coverage');
             foreach(array('executable','executed', 'crap') as $attr) {
                 $coverageTarget->appendChild(
                     $coverageTarget->ownerDocument->importNode($classNode->getAttributeNode($attr))
@@ -181,7 +190,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $end = $method->getAttribute('end');
 
                 $enrichment = $this->getEnrichtmentContainer($method, 'phpunit');
-                $coverageTarget = $enrichment->appendElementNS(self::XMLNS, 'coverage');
+                $coverageTarget = $enrichment->appendElementNS($this->namespaceURI, 'coverage');
 
                 /** @var fDOMElement $coverageMethod */
                 $coverageMethod = $coverage->queryOne(
