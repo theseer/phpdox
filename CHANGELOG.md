@@ -1,8 +1,15 @@
 # Changelog of phpDox
 
-## phpDox 0.11.1 (7 May 2018)
+## phpDox 0.11.2 (22 May 2018)
 
 Note: 0.11.x is the last series of releases that supports running under PHP 5.x 
+
+### Fixed
+* [#333](https://github.com/theseer/phpdox/issues/333): PHPUnit Enricher: Wrong namspace - not a PHPUnit code coverage file
+* [#325](https://github.com/theseer/phpdox/issues/325): Git Enricher does not work properly with Git 1.7.1
+
+
+## phpDox 0.11.1 (7 May 2018)
 
 ### Fixed
 * [#332](https://github.com/theseer/phpdox/issues/332): PHPUnit Enricher: classnode is always null

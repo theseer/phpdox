@@ -37,7 +37,7 @@ You can now execute phpdox on the command line:
 
 If everything worked out, you should get an output like this:
 
-    phpDox 0.11.1 - Copyright (C) 2010 - 2018 by Arne Blankerts and Contributors
+    phpDox 0.11.2 - Copyright (C) 2010 - 2018 by Arne Blankerts and Contributors
 
 _Note: Some Linux distributions ship PHP with ext/suhosin and disabled phar execution. To make use of phpDox in such an environment, you need to enable phar execution by adding phar to the executor white list: suhosin.executor.include.whitelist="phar"_
 
@@ -55,7 +55,7 @@ You can now execute phpdox on the command line:
 
 If everything worked out, you should get an output like this:
 
-    phpDox 0.11.1 - Copyright (C) 2010 - 2018 by Arne Blankerts and Contributors
+    phpDox 0.11.2 - Copyright (C) 2010 - 2018 by Arne Blankerts and Contributors
 
 
 Developer Installation
