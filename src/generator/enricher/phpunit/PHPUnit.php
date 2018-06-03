@@ -173,6 +173,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             $result = array(
+                'UNKNOWN' => 0,
                 'PASSED'  => 0,
                 'SKIPPED'  => 0,
                 'INCOMPLETE'  => 0,
