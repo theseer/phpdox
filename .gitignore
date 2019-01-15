@@ -10,3 +10,4 @@
 /tests/data/*/xml
 /tests/data/*/docs
 /tools
+.php_cs.cache
