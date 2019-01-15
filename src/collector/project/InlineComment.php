@@ -50,7 +50,7 @@ namespace TheSeer\phpDox\Collector {
                     switch(mb_strtolower($matches[1])) {
                         case 'var': {
                             // we ignore @var comments as they are IDE support only
-                            continue;
+                            continue 2;
                         }
                         case 'fixme':
                         case 'todo': {
