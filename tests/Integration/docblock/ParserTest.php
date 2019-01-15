@@ -3,9 +3,9 @@ namespace TheSeer\phpDox\Tests\Integration\DocBlock;
 
 use PHPUnit\Framework\TestCase;
 use TheSeer\fDOM\fDOMDocument;
+use TheSeer\phpDox\DocBlock\DocBlock;
 use TheSeer\phpDox\DocBlock\Factory;
 use TheSeer\phpDox\DocBlock\Parser;
-use TheSeer\phpDox\DocBlock\DocBlock;
 
 /**
  * Class ParserTest

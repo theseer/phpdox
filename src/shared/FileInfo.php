@@ -2,7 +2,6 @@
 namespace TheSeer\phpDox;
 
 class FileInfo extends \SplFileInfo {
-
     public function __toString(): string {
         return $this->getPathname();
     }

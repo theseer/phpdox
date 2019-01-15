@@ -47,7 +47,7 @@ class IndexCollection {
     }
 
     public function findUnitNodesBySrcFile(string $path): \DOMNodeList {
-        $src = \mb_substr($path, \mb_strlen( (string)$this->srcDir) + 1);
+        $src = \mb_substr($path, \mb_strlen((string)$this->srcDir) + 1);
 
         return $this->getRootElement()->query(\sprintf('//*[@src="%s"]', $src));
     }

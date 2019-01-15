@@ -20,7 +20,7 @@ abstract class AbstractEngine implements EngineInterface {
 
     protected function clearDirectory($path): void {
         $cleaner = new DirectoryCleaner();
-        $cleaner->process(new FileInfo( (string)$path));
+        $cleaner->process(new FileInfo((string)$path));
     }
 
     protected function saveDomDocument(\DOMDocument $dom, $filename, $format = true) {

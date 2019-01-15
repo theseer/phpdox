@@ -61,7 +61,7 @@ abstract class AbstractVariableObject {
     }
 
     public function isInternalType($type) {
-        return \in_array(\mb_strtolower( (string)$type), $this->types);
+        return \in_array(\mb_strtolower((string)$type), $this->types);
     }
 
     /**

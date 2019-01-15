@@ -1,7 +1,6 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
-use DOMNodeList;
 use TheSeer\fDOM\fDOMDocument;
 use TheSeer\phpDox\FileInfo;
 
@@ -52,7 +51,7 @@ class Project {
         return $this->index->query('count(//phpdox:namespace[not(@name="/")])') > 0;
     }
 
-    public function getNamespaces(): NamespaceCollection  {
+    public function getNamespaces(): NamespaceCollection {
         return new NamespaceCollection($this->index->query('//phpdox:namespace'));
     }
 

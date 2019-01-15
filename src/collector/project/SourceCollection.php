@@ -105,7 +105,7 @@ class SourceCollection {
 
         foreach ($this->collection as $path => $file) {
             $pathInfo = new FileInfo($path);
-            $dirs     = \explode('/', \dirname( (string)$pathInfo->getRelative($this->srcDir)));
+            $dirs     = \explode('/', \dirname((string)$pathInfo->getRelative($this->srcDir)));
             $dirs[0]  = $this->srcDir->getRealPath();
             $ctx      = $root;
 
