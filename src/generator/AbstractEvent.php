@@ -35,18 +35,18 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    /**
-     * Class AbstractEvent
-     */
-    abstract class AbstractEvent {
+/**
+ * Class AbstractEvent
+ */
+abstract class AbstractEvent {
 
-        public function getType() {
-            return $this->getEventName();
-        }
-
-        abstract protected function getEventName();
+    public function getType() {
+        return $this->getEventName();
     }
 
+    abstract protected function getEventName();
 }
+
+

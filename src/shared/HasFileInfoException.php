@@ -35,20 +35,20 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    abstract class HasFileInfoException extends \Exception {
+abstract class HasFileInfoException extends \Exception {
 
-        protected $file;
+    protected $file;
 
-        public function __construct($message, $code, \Exception $previous, \SPLFileInfo $file) {
-            parent::__construct($message, $code, $previous);
-            $this->file = $file;
-        }
-
-        public function getFileInfo() {
-            return $this->file;
-        }
+    public function __construct($message, $code, \Exception $previous, \SPLFileInfo $file) {
+        parent::__construct($message, $code, $previous);
+        $this->file = $file;
     }
 
+    public function getFileInfo() {
+        return $this->file;
+    }
 }
+
+

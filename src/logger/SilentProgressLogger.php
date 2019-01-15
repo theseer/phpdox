@@ -35,28 +35,28 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    /**
-     * Silent progress logger
-     */
-    class SilentProgressLogger implements ProgressLogger {
+/**
+ * Silent progress logger
+ */
+class SilentProgressLogger implements ProgressLogger {
 
-        public function progress($state) {
-        }
+    public function progress($state) {
+    }
 
-        public function reset() {
-        }
+    public function reset() {
+    }
 
-        public function completed() {
-        }
+    public function completed() {
+    }
 
-        public function log($msg) {
-        }
+    public function log($msg) {
+    }
 
-        public function buildSummary() {
-        }
-
+    public function buildSummary() {
     }
 
 }
+
+

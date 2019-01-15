@@ -36,68 +36,68 @@
  *
  */
 
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\fDOM\fDOMElement;
+use TheSeer\fDOM\fDOMElement;
 
-    /**
-     * @package    phpDox
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
-     */
-    class BuildConfig {
+/**
+ * @package    phpDox
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ */
+class BuildConfig {
 
-        protected $ctx;
+    protected $ctx;
 
-        protected $generator;
+    protected $generator;
 
-        protected $project;
+    protected $project;
 
-        public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
-            $this->generator = $generator;
-            $this->project = $generator->getProjectConfig();
-            $this->ctx = $ctx;
+    public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
+        $this->generator = $generator;
+        $this->project = $generator->getProjectConfig();
+        $this->ctx = $ctx;
+    }
+
+    public function getGeneratorConfig() {
+        return $this->generator;
+    }
+
+    public function getBuildNode() {
+        return $this->ctx;
+    }
+
+    public function getProjectNode() {
+        return $this->ctx->parentNode->parentNode;
+    }
+
+    public function getEngine() {
+        return $this->ctx->getAttribute('engine');
+    }
+
+    public function getWorkDirectory() {
+        return $this->project->getWorkDirectory();
+    }
+
+    public function getOutputDirectory() {
+        $path = '';
+        if ($this->ctx->parentNode->hasAttribute('output')) {
+            $path = $this->ctx->parentNode->getAttribute('output', 'docs');
         }
-
-        public function getGeneratorConfig() {
-            return $this->generator;
-        }
-
-        public function getBuildNode() {
-            return $this->ctx;
-        }
-
-        public function getProjectNode() {
-            return $this->ctx->parentNode->parentNode;
-        }
-
-        public function getEngine() {
-            return $this->ctx->getAttribute('engine');
-        }
-
-        public function getWorkDirectory() {
-            return $this->project->getWorkDirectory();
-        }
-
-        public function getOutputDirectory() {
-            $path = '';
-            if ($this->ctx->parentNode->hasAttribute('output')) {
-                $path = $this->ctx->parentNode->getAttribute('output', 'docs');
+        if ($this->ctx->hasAttribute('output')) {
+            if ($path != '') {
+                $path .= '/';
             }
-            if ($this->ctx->hasAttribute('output')) {
-                if ($path != '') {
-                    $path .= '/';
-                }
-                $path .= $this->ctx->getAttribute('output');
-            }
-            return new FileInfo($path);
+            $path .= $this->ctx->getAttribute('output');
         }
+        return new FileInfo($path);
+    }
 
-        public function getSourceDirectory() {
-            return $this->project->getSourceDirectory();
-        }
-
+    public function getSourceDirectory() {
+        return $this->project->getSourceDirectory();
     }
 
 }
+
+

@@ -34,20 +34,20 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    class InterfaceObject extends AbstractUnitObject {
+class InterfaceObject extends AbstractUnitObject {
 
-        protected $rootName = 'interface';
+    protected $rootName = 'interface';
 
-        public function addImplementor(AbstractUnitObject $unit) {
-            if ($this->getRootNode()->queryOne(sprintf('phpdox:implementor[@full = "%s"]', $unit->getName())) !== null) {
-                return;
-            }
-            $implementor = $this->addToContainer('implementors', $unit->getType());
-            $this->setName($unit->getName(), $implementor);
-
+    public function addImplementor(AbstractUnitObject $unit) {
+        if ($this->getRootNode()->queryOne(sprintf('phpdox:implementor[@full = "%s"]', $unit->getName())) !== null) {
+            return;
         }
-    }
+        $implementor = $this->addToContainer('implementors', $unit->getType());
+        $this->setName($unit->getName(), $implementor);
 
+    }
 }
+
+

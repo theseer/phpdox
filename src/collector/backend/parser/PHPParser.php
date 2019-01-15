@@ -34,91 +34,91 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    use PhpParser\ParserFactory;
-    use TheSeer\phpDox\Collector\SourceFile;
-    use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
-    use TheSeer\phpDox\ErrorHandler;
+use PhpParser\ParserFactory;
+use TheSeer\phpDox\Collector\SourceFile;
+use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
+use TheSeer\phpDox\ErrorHandler;
+
+/**
+ *
+ */
+class PHPParser implements BackendInterface {
+
+    /**
+     * @var \PhpParser\Parser
+     */
+    private $parser = null;
+
+    /**
+     * @var DocblockParser
+     */
+    private $docblockParser = null;
+
+    /**
+     * @var ErrorHandler
+     */
+    private $errorHandler;
+
+    /**
+     * @param DocblockParser $parser
+     */
+    public function __construct(DocblockParser $parser, ErrorHandler $errorHandler) {
+        $this->docblockParser = $parser;
+        $this->errorHandler = $errorHandler;
+    }
 
     /**
      *
+     * @param SourceFile $sourceFile
+     * @param bool       $publicOnly
+     *
+     * @throws ParseErrorException
+     * @return ParseResult
      */
-    class PHPParser implements BackendInterface {
+    public function parse(SourceFile $sourceFile, $publicOnly) {
 
-        /**
-         * @var \PhpParser\Parser
-         */
-        private $parser = null;
-
-        /**
-         * @var DocblockParser
-         */
-        private $docblockParser = null;
-
-        /**
-         * @var ErrorHandler
-         */
-        private $errorHandler;
-
-        /**
-         * @param DocblockParser $parser
-         */
-        public function __construct(DocblockParser $parser, ErrorHandler $errorHandler) {
-            $this->docblockParser = $parser;
-            $this->errorHandler = $errorHandler;
-        }
-
-        /**
-         *
-         * @param SourceFile $sourceFile
-         * @param bool       $publicOnly
-         *
-         * @throws ParseErrorException
-         * @return ParseResult
-         */
-        public function parse(SourceFile $sourceFile, $publicOnly) {
-
-            try {
-                $result = new ParseResult($sourceFile);
-                $parser = $this->getParserInstance();
-                $nodes = $parser->parse($sourceFile->getSource());
-                if (!$nodes) {
-                    throw new ParseErrorException("Parser didn't return any nodes", ParseErrorException::GeneralParseError);
-                }
-                $this->getTraverserInstance($result, $publicOnly)->traverse($nodes);
-                return $result;
-            } catch (\Exception $e) {
-                $this->errorHandler->clearLastError();
-                throw new ParseErrorException('Internal Error during parsing', ParseErrorException::GeneralParseError, $e);
+        try {
+            $result = new ParseResult($sourceFile);
+            $parser = $this->getParserInstance();
+            $nodes = $parser->parse($sourceFile->getSource());
+            if (!$nodes) {
+                throw new ParseErrorException("Parser didn't return any nodes", ParseErrorException::GeneralParseError);
             }
-        }
-
-        /**
-         * @return \PhpParser\Parser
-         */
-        private function getParserInstance() {
-            if ($this->parser === null) {
-                $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, new CustomLexer());
-            }
-            return $this->parser;
-        }
-
-        /**
-         * @param ParseResult $result
-         * @param bool        $publicOnly
-         *
-         * @return \PhpParser\NodeTraverser
-         */
-        private function getTraverserInstance(ParseResult $result, $publicOnly) {
-            $traverser = new \PhpParser\NodeTraverser();
-            $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
-            if ($publicOnly === true) {
-                $traverser->addVisitor(new PublicOnlyVisitor());
-            }
-            $traverser->addVisitor(new UnitCollectingVisitor($this->docblockParser, $result));
-            return $traverser;
+            $this->getTraverserInstance($result, $publicOnly)->traverse($nodes);
+            return $result;
+        } catch (\Exception $e) {
+            $this->errorHandler->clearLastError();
+            throw new ParseErrorException('Internal Error during parsing', ParseErrorException::GeneralParseError, $e);
         }
     }
 
+    /**
+     * @return \PhpParser\Parser
+     */
+    private function getParserInstance() {
+        if ($this->parser === null) {
+            $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, new CustomLexer());
+        }
+        return $this->parser;
+    }
+
+    /**
+     * @param ParseResult $result
+     * @param bool        $publicOnly
+     *
+     * @return \PhpParser\NodeTraverser
+     */
+    private function getTraverserInstance(ParseResult $result, $publicOnly) {
+        $traverser = new \PhpParser\NodeTraverser();
+        $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
+        if ($publicOnly === true) {
+            $traverser->addVisitor(new PublicOnlyVisitor());
+        }
+        $traverser->addVisitor(new UnitCollectingVisitor($this->docblockParser, $result));
+        return $traverser;
+    }
 }
+
+

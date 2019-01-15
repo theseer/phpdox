@@ -1,9 +1,9 @@
 <?php
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    class DirectoryCleanerException extends \Exception {
+class DirectoryCleanerException extends \Exception {
 
-        const SecurityLimitation = 1;
-    }
-
+    const SecurityLimitation = 1;
 }
+
+

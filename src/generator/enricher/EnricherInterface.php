@@ -35,15 +35,15 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Enricher {
+namespace TheSeer\phpDox\Generator\Enricher;
 
-    interface EnricherInterface {
+interface EnricherInterface {
 
-        /**
-         * @return string
-         */
-        public function getName();
-
-    }
+    /**
+     * @return string
+     */
+    public function getName();
 
 }
+
+

@@ -34,122 +34,122 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    use TheSeer\phpDox\Collector\ClassObject;
-    use TheSeer\phpDox\Collector\InterfaceObject;
-    use TheSeer\phpDox\Collector\TraitObject;
+use TheSeer\phpDox\Collector\ClassObject;
+use TheSeer\phpDox\Collector\InterfaceObject;
+use TheSeer\phpDox\Collector\TraitObject;
+
+/**
+ *
+ */
+class ParseResult {
 
     /**
-     *
+     * @var \SplFileInfo
      */
-    class ParseResult {
+    private $file;
 
-        /**
-         * @var \SplFileInfo
-         */
-        private $file;
+    /**
+     * @var ClassObject[]
+     */
+    private $classes = [];
 
-        /**
-         * @var ClassObject[]
-         */
-        private $classes = [];
+    /**
+     * @var InterfaceObject[]
+     */
+    private $interfaces = [];
 
-        /**
-         * @var InterfaceObject[]
-         */
-        private $interfaces = [];
+    /**
+     * @var TraitObject[]
+     */
+    private $traits = [];
 
-        /**
-         * @var TraitObject[]
-         */
-        private $traits = [];
-
-        /**
-         * @param \SplFileInfo $file
-         */
-        public function __construct(\SplFileInfo $file) {
-            $this->file = $file;
-        }
-
-        public function getFileName() {
-            return $this->file->getRealPath();
-        }
-
-        /**
-         * @param $name
-         *
-         * @return ClassObject
-         */
-        public function addClass($name) {
-            $obj = new ClassObject($name, $this->file);
-            $this->classes[$name] = $obj;
-            return $obj;
-        }
-
-        /**
-         * @param $name
-         *
-         * @return InterfaceObject
-         */
-        public function addInterface($name) {
-            $obj = new InterfaceObject($name, $this->file);
-            $this->interfaces[$name] = $obj;
-            return $obj;
-        }
-
-        /**
-         * @param $name
-         *
-         * @return TraitObject
-         */
-        public function addTrait($name) {
-            $obj = new TraitObject($name, $this->file);
-            $this->traits[$name] = $obj;
-            return $obj;
-        }
-
-        /**
-         * @return bool
-         */
-        public function hasClasses() {
-            return count($this->classes) > 0;
-        }
-
-        /**
-         * @return bool
-         */
-        public function hasInterfaces() {
-            return count($this->interfaces) > 0;
-        }
-
-        /**
-         * @return bool
-         */
-        public function hasTraits() {
-            return count($this->traits) > 0;
-        }
-
-        /**
-         * @return ClassObject[]
-         */
-        public function getClasses() {
-            return $this->classes;
-        }
-
-        /**
-         * @return InterfaceObject[]
-         */
-        public function getInterfaces() {
-            return $this->interfaces;
-        }
-
-        /**
-         * @return TraitObject[]
-         */
-        public function getTraits() {
-            return $this->traits;
-        }
+    /**
+     * @param \SplFileInfo $file
+     */
+    public function __construct(\SplFileInfo $file) {
+        $this->file = $file;
     }
 
+    public function getFileName() {
+        return $this->file->getRealPath();
+    }
+
+    /**
+     * @param $name
+     *
+     * @return ClassObject
+     */
+    public function addClass($name) {
+        $obj = new ClassObject($name, $this->file);
+        $this->classes[$name] = $obj;
+        return $obj;
+    }
+
+    /**
+     * @param $name
+     *
+     * @return InterfaceObject
+     */
+    public function addInterface($name) {
+        $obj = new InterfaceObject($name, $this->file);
+        $this->interfaces[$name] = $obj;
+        return $obj;
+    }
+
+    /**
+     * @param $name
+     *
+     * @return TraitObject
+     */
+    public function addTrait($name) {
+        $obj = new TraitObject($name, $this->file);
+        $this->traits[$name] = $obj;
+        return $obj;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasClasses() {
+        return count($this->classes) > 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInterfaces() {
+        return count($this->interfaces) > 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasTraits() {
+        return count($this->traits) > 0;
+    }
+
+    /**
+     * @return ClassObject[]
+     */
+    public function getClasses() {
+        return $this->classes;
+    }
+
+    /**
+     * @return InterfaceObject[]
+     */
+    public function getInterfaces() {
+        return $this->interfaces;
+    }
+
+    /**
+     * @return TraitObject[]
+     */
+    public function getTraits() {
+        return $this->traits;
+    }
 }
+
+

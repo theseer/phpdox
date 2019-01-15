@@ -36,131 +36,131 @@
  *
  */
 
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMException;
+use TheSeer\fDOM\fDOMDocument;
+use TheSeer\fDOM\fDOMException;
 
-    class ConfigLoader {
+class ConfigLoader {
 
-        const XMLNS = 'http://xml.phpdox.net/config';
+    const XMLNS = 'http://xml.phpdox.net/config';
 
-        /**
-         * @var FileInfo
-         */
-        private $homeDir;
+    /**
+     * @var FileInfo
+     */
+    private $homeDir;
 
-        /**
-         * @var Version
-         */
-        private $version;
+    /**
+     * @var Version
+     */
+    private $version;
 
-        /**
-         * @param FileInfo $homeDir
-         */
-        public function __construct(Version $version, FileInfo $homeDir) {
-            $this->version = $version;
-            $this->homeDir = $homeDir;
+    /**
+     * @param FileInfo $homeDir
+     */
+    public function __construct(Version $version, FileInfo $homeDir) {
+        $this->version = $version;
+        $this->homeDir = $homeDir;
+    }
+
+    /**
+     * @param $fname
+     *
+     * @return GlobalConfig
+     * @throws ConfigLoaderException
+     */
+    public function load($fname) {
+        if (!file_exists($fname)) {
+            throw new ConfigLoaderException("Config file '$fname' not found", ConfigLoaderException::NotFound);
         }
+        return $this->createInstanceFor($fname);
+    }
 
-        /**
-         * @param $fname
-         *
-         * @return GlobalConfig
-         * @throws ConfigLoaderException
-         */
-        public function load($fname) {
+    /**
+     * @return GlobalConfig
+     * @throws ConfigLoaderException
+     */
+    public function autodetect() {
+        $candidates = [
+            './phpdox.xml',
+            './phpdox.xml.dist'
+        ];
+        foreach ($candidates as $fname) {
             if (!file_exists($fname)) {
-                throw new ConfigLoaderException("Config file '$fname' not found", ConfigLoaderException::NotFound);
+                continue;
             }
             return $this->createInstanceFor($fname);
         }
+        throw new ConfigLoaderException("None of the candidate files found", ConfigLoaderException::NeitherCandidateExists);
+    }
 
-        /**
-         * @return GlobalConfig
-         * @throws ConfigLoaderException
-         */
-        public function autodetect() {
-            $candidates = [
-                './phpdox.xml',
-                './phpdox.xml.dist'
-            ];
-            foreach ($candidates as $fname) {
-                if (!file_exists($fname)) {
-                    continue;
-                }
-                return $this->createInstanceFor($fname);
-            }
-            throw new ConfigLoaderException("None of the candidate files found", ConfigLoaderException::NeitherCandidateExists);
+    /**
+     * @param $fname
+     *
+     * @return GlobalConfig
+     * @throws ConfigLoaderException
+     */
+    private function createInstanceFor($fname) {
+        $dom = $this->loadFile($fname);
+        $this->ensureCorrectNamespace($dom);
+        $this->ensureCorrectRootNodeName($dom);
+        return new GlobalConfig($this->version, $this->homeDir, $dom, new FileInfo($fname));
+    }
+
+    /**
+     * @param $fname
+     *
+     * @return fDOMDocument
+     * @throws ConfigLoaderException
+     */
+    private function loadFile($fname) {
+        try {
+            $dom = new fDOMDocument();
+            $dom->load($fname);
+            $dom->registerNamespace('cfg', self::XMLNS);
+            return $dom;
+        } catch (fDOMException $e) {
+            throw new ConfigLoaderException(
+                "Parsing config file '$fname' failed.",
+                ConfigLoaderException::ParseError,
+                $e
+            );
         }
+    }
 
-        /**
-         * @param $fname
-         *
-         * @return GlobalConfig
-         * @throws ConfigLoaderException
-         */
-        private function createInstanceFor($fname) {
-            $dom = $this->loadFile($fname);
-            $this->ensureCorrectNamespace($dom);
-            $this->ensureCorrectRootNodeName($dom);
-            return new GlobalConfig($this->version, $this->homeDir, $dom, new FileInfo($fname));
+    /**
+     * @param fDOMDocument $dom
+     *
+     * @throws ConfigLoaderException
+     */
+    private function ensureCorrectNamespace(fDOMDocument $dom) {
+        if ($dom->documentElement->namespaceURI != self::XMLNS) {
+            throw new ConfigLoaderException(
+                sprintf(
+                    "The configuratin file '%s' uses a wrong or outdated xml namespace.\n" .
+                    "Please ensure it uses 'http://xml.phpdox.net/config'",
+                    $dom->documentURI
+                ), ConfigLoaderException::WrongNamespace
+            );
         }
+    }
 
-        /**
-         * @param $fname
-         *
-         * @return fDOMDocument
-         * @throws ConfigLoaderException
-         */
-        private function loadFile($fname) {
-            try {
-                $dom = new fDOMDocument();
-                $dom->load($fname);
-                $dom->registerNamespace('cfg', self::XMLNS);
-                return $dom;
-            } catch (fDOMException $e) {
-                throw new ConfigLoaderException(
-                    "Parsing config file '$fname' failed.",
-                    ConfigLoaderException::ParseError,
-                    $e
-                );
-            }
+    /**
+     * @param fDOMDocument $dom
+     *
+     * @throws ConfigLoaderException
+     */
+    private function ensureCorrectRootNodeName(fDOMDocument $dom) {
+        if ($dom->documentElement->localName != 'phpdox') {
+            throw new ConfigLoaderException(
+                sprintf(
+                    "The file '%s' does not seem to be a phpdox configration file.",
+                    $dom->documentURI
+                ), ConfigLoaderException::WrongType
+            );
         }
-
-        /**
-         * @param fDOMDocument $dom
-         *
-         * @throws ConfigLoaderException
-         */
-        private function ensureCorrectNamespace(fDOMDocument $dom) {
-            if ($dom->documentElement->namespaceURI != self::XMLNS) {
-                throw new ConfigLoaderException(
-                    sprintf(
-                        "The configuratin file '%s' uses a wrong or outdated xml namespace.\n" .
-                        "Please ensure it uses 'http://xml.phpdox.net/config'",
-                        $dom->documentURI
-                    ), ConfigLoaderException::WrongNamespace
-                );
-            }
-        }
-
-        /**
-         * @param fDOMDocument $dom
-         *
-         * @throws ConfigLoaderException
-         */
-        private function ensureCorrectRootNodeName(fDOMDocument $dom) {
-            if ($dom->documentElement->localName != 'phpdox') {
-                throw new ConfigLoaderException(
-                    sprintf(
-                        "The file '%s' does not seem to be a phpdox configration file.",
-                        $dom->documentURI
-                    ), ConfigLoaderException::WrongType
-                );
-            }
-        }
-
     }
 
 }
+
+

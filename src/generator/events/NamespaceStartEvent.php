@@ -35,24 +35,24 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class NamespaceStartEvent extends AbstractEvent {
+class NamespaceStartEvent extends AbstractEvent {
 
-        private $namespace;
+    private $namespace;
 
-        public function __construct(NamespaceEntry $namespace) {
-            $this->namespace = $namespace;
-        }
+    public function __construct(NamespaceEntry $namespace) {
+        $this->namespace = $namespace;
+    }
 
-        public function getNamespace() {
-            return $this->namespace;
-        }
+    public function getNamespace() {
+        return $this->namespace;
+    }
 
-        protected function getEventName() {
-            return 'namespace.start';
-        }
-
+    protected function getEventName() {
+        return 'namespace.start';
     }
 
 }
+
+

@@ -1,23 +1,23 @@
 <?php
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
+
+/**
+ *
+ */
+class FactoryException extends \Exception {
 
     /**
      *
      */
-    class FactoryException extends \Exception {
-
-        /**
-         *
-         */
-        const NoClassDefined = 1;
-        /**
-         *
-         */
-        const NotInstantiable = 2;
-        /**
-         *
-         */
-        const NoConstructor = 3;
-    }
-
+    const NoClassDefined = 1;
+    /**
+     *
+     */
+    const NotInstantiable = 2;
+    /**
+     *
+     */
+    const NoConstructor = 3;
 }
+
+

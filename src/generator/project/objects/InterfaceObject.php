@@ -1,8 +1,8 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class InterfaceObject extends AbstractUnitObject {
-
-    }
+class InterfaceObject extends AbstractUnitObject {
 
 }
+
+

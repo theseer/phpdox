@@ -35,31 +35,31 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class PHPDoxStartEvent extends AbstractEvent {
+class PHPDoxStartEvent extends AbstractEvent {
 
-        private $index;
+    private $index;
 
-        private $tree;
+    private $tree;
 
-        public function __construct(Index $index, SourceTree $tree) {
-            $this->index = $index;
-            $this->tree = $tree;
-        }
+    public function __construct(Index $index, SourceTree $tree) {
+        $this->index = $index;
+        $this->tree = $tree;
+    }
 
-        public function getIndex() {
-            return $this->index;
-        }
+    public function getIndex() {
+        return $this->index;
+    }
 
-        public function getTree() {
-            return $this->tree;
-        }
+    public function getTree() {
+        return $this->tree;
+    }
 
-        protected function getEventName() {
-            return 'phpdox.start';
-        }
-
+    protected function getEventName() {
+        return 'phpdox.start';
     }
 
 }
+
+

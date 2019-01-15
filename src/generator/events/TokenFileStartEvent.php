@@ -1,28 +1,28 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TokenFileStartEvent extends AbstractEvent {
+class TokenFileStartEvent extends AbstractEvent {
 
-        /**
-         * @var TokenFile
-         */
-        private $tokenFile;
+    /**
+     * @var TokenFile
+     */
+    private $tokenFile;
 
-        public function __construct(TokenFile $tokenFile) {
-            $this->tokenFile = $tokenFile;
-        }
+    public function __construct(TokenFile $tokenFile) {
+        $this->tokenFile = $tokenFile;
+    }
 
-        /**
-         * @return TokenFile
-         */
-        public function getTokenFile() {
-            return $this->tokenFile;
-        }
+    /**
+     * @return TokenFile
+     */
+    public function getTokenFile() {
+        return $this->tokenFile;
+    }
 
-        protected function getEventName() {
-            return 'token.file.start';
-        }
-
+    protected function getEventName() {
+        return 'token.file.start';
     }
 
 }
+
+

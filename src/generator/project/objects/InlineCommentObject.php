@@ -1,23 +1,23 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    use TheSeer\fDOM\fDOMElement;
+use TheSeer\fDOM\fDOMElement;
 
-    class InlineCommentObject {
+class InlineCommentObject {
 
-        /**
-         * @var fDOMElement
-         */
-        private $node;
+    /**
+     * @var fDOMElement
+     */
+    private $node;
 
-        public function __construct(fDOMElement $node) {
-            $this->node = $node;
-        }
+    public function __construct(fDOMElement $node) {
+        $this->node = $node;
+    }
 
-        public function asDom() {
-            return $this->node;
-        }
-
+    public function asDom() {
+        return $this->node;
     }
 
 }
+
+

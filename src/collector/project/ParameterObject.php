@@ -34,16 +34,16 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    /**
-     *
-     */
-    class ParameterObject extends AbstractVariableObject {
+/**
+ *
+ */
+class ParameterObject extends AbstractVariableObject {
 
-        public function setByReference($isRef) {
-            $this->ctx->setAttribute('byreference', $isRef ? 'true' : 'false');
-        }
+    public function setByReference($isRef) {
+        $this->ctx->setAttribute('byreference', $isRef ? 'true' : 'false');
     }
-
 }
+
+

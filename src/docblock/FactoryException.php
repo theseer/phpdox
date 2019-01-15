@@ -1,10 +1,10 @@
 <?php
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox\DocBlock;
 
-    class FactoryException extends \Exception {
+class FactoryException extends \Exception {
 
-        const InvalidType = 1;
-        const UnknownType = 2;
-    }
-
+    const InvalidType = 1;
+    const UnknownType = 2;
 }
+
+

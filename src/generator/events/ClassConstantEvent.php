@@ -35,25 +35,25 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class ClassConstantEvent extends ConstantEvent {
+class ClassConstantEvent extends ConstantEvent {
 
-        private $class;
+    private $class;
 
-        public function __construct(ConstantObject $constant, ClassObject $class) {
-            parent::__construct($constant);
-            $this->class = $class;
-        }
+    public function __construct(ConstantObject $constant, ClassObject $class) {
+        parent::__construct($constant);
+        $this->class = $class;
+    }
 
-        public function getClass() {
-            return $this->class;
-        }
+    public function getClass() {
+        return $this->class;
+    }
 
-        protected function getEventName() {
-            return 'class.constant';
-        }
-
+    protected function getEventName() {
+        return 'class.constant';
     }
 
 }
+
+

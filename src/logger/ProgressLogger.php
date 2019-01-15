@@ -1,37 +1,37 @@
 <?php
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
+
+/**
+ * Generic progress logger
+ */
+interface ProgressLogger {
 
     /**
-     * Generic progress logger
+     * @param $state
+     *
+     * @throws ProgressLoggerException
      */
-    interface ProgressLogger {
+    public function progress($state);
 
-        /**
-         * @param $state
-         *
-         * @throws ProgressLoggerException
-         */
-        public function progress($state);
+    /**
+     *
+     */
+    public function reset();
 
-        /**
-         *
-         */
-        public function reset();
+    /**
+     *
+     */
+    public function completed();
 
-        /**
-         *
-         */
-        public function completed();
+    /**
+     * @param $msg
+     */
+    public function log($msg);
 
-        /**
-         * @param $msg
-         */
-        public function log($msg);
+    /**
+     *
+     */
+    public function buildSummary();
 
-        /**
-         *
-         */
-        public function buildSummary();
-
-    }
 }
+

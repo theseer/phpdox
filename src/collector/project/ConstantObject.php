@@ -34,48 +34,48 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    use TheSeer\fDOM\fDOMElement;
-    use TheSeer\phpDox\DocBlock\DocBlock;
+use TheSeer\fDOM\fDOMElement;
+use TheSeer\phpDox\DocBlock\DocBlock;
 
-    class ConstantObject {
+class ConstantObject {
 
-        protected $ctx;
+    protected $ctx;
 
-        public function __construct(fDOMElement $ctx) {
-            $this->ctx = $ctx;
-            $this->setType('{unknown}');
-        }
-
-        public function export() {
-            return $this->ctx;
-        }
-
-        public function setName($name) {
-            $this->ctx->setAttribute('name', $name);
-        }
-
-        public function setValue($value) {
-            $this->ctx->setAttribute('value', $value);
-        }
-
-        public function setType($type) {
-            $this->ctx->setAttribute('type', $type);
-        }
-
-        public function setConstantReference($const) {
-            $this->ctx->setAttribute('constant', $const);
-        }
-
-        public function setDocBlock(DocBlock $docblock) {
-            $docNode = $docblock->asDom($this->ctx->ownerDocument);
-            if ($this->ctx->hasChildNodes()) {
-                $this->ctx->insertBefore($docblock, $this->ctx->firstChild);
-                return;
-            }
-            $this->ctx->appendChild($docNode);
-        }
-
+    public function __construct(fDOMElement $ctx) {
+        $this->ctx = $ctx;
+        $this->setType('{unknown}');
     }
+
+    public function export() {
+        return $this->ctx;
+    }
+
+    public function setName($name) {
+        $this->ctx->setAttribute('name', $name);
+    }
+
+    public function setValue($value) {
+        $this->ctx->setAttribute('value', $value);
+    }
+
+    public function setType($type) {
+        $this->ctx->setAttribute('type', $type);
+    }
+
+    public function setConstantReference($const) {
+        $this->ctx->setAttribute('constant', $const);
+    }
+
+    public function setDocBlock(DocBlock $docblock) {
+        $docNode = $docblock->asDom($this->ctx->ownerDocument);
+        if ($this->ctx->hasChildNodes()) {
+            $this->ctx->insertBefore($docblock, $this->ctx->firstChild);
+            return;
+        }
+        $this->ctx->appendChild($docNode);
+    }
+
 }
+

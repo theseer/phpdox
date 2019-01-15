@@ -1,9 +1,9 @@
 <?php
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    class MethodObjectException extends \Exception {
+class MethodObjectException extends \Exception {
 
-        const InvalidVisibility = 1;
-    }
-
+    const InvalidVisibility = 1;
 }
+
+

@@ -1,15 +1,15 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class InlineCommentCollection extends AbstractCollection {
+class InlineCommentCollection extends AbstractCollection {
 
-        /**
-         * @return MethodObject
-         */
-        public function current() {
-            return new InlineCommentObject($this->getCurrentNode());
-        }
-
+    /**
+     * @return MethodObject
+     */
+    public function current() {
+        return new InlineCommentObject($this->getCurrentNode());
     }
 
 }
+
+

@@ -35,24 +35,24 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class InterfaceEndEvent extends AbstractEvent {
+class InterfaceEndEvent extends AbstractEvent {
 
-        private $interface;
+    private $interface;
 
-        public function __construct(InterfaceObject $interface) {
-            $this->interface = $interface;
-        }
+    public function __construct(InterfaceObject $interface) {
+        $this->interface = $interface;
+    }
 
-        public function getInterface() {
-            return $this->interface;
-        }
+    public function getInterface() {
+        return $this->interface;
+    }
 
-        protected function getEventName() {
-            return 'interface.end';
-        }
-
+    protected function getEventName() {
+        return 'interface.end';
     }
 
 }
+
+

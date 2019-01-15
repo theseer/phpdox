@@ -35,31 +35,31 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class NamespaceInterfacesStartEvent extends AbstractEvent {
+class NamespaceInterfacesStartEvent extends AbstractEvent {
 
-        private $interfaces;
+    private $interfaces;
 
-        private $namespace;
+    private $namespace;
 
-        public function __construct(InterfaceCollection $interfaces, $namespace) {
-            $this->interfaces = $interfaces;
-            $this->namespace = $namespace;
-        }
+    public function __construct(InterfaceCollection $interfaces, $namespace) {
+        $this->interfaces = $interfaces;
+        $this->namespace = $namespace;
+    }
 
-        public function getInterfaces() {
-            return $this->interfaces;
-        }
+    public function getInterfaces() {
+        return $this->interfaces;
+    }
 
-        public function getNamespace() {
-            return $this->namespace;
-        }
+    public function getNamespace() {
+        return $this->namespace;
+    }
 
-        protected function getEventName() {
-            return 'namespace.interfaces.start';
-        }
-
+    protected function getEventName() {
+        return 'namespace.interfaces.start';
     }
 
 }
+
+

@@ -34,11 +34,11 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    class ClassObject extends AbstractUnitObject {
+class ClassObject extends AbstractUnitObject {
 
-        protected $rootName = 'class';
-    }
-
+    protected $rootName = 'class';
 }
+
+

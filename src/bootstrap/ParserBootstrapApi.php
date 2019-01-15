@@ -35,28 +35,28 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
+use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
 
-    class ParserBootstrapApi {
+class ParserBootstrapApi {
 
-        private $annotation;
+    private $annotation;
 
-        private $factory;
+    private $factory;
 
-        public function __construct($annotation, DocBlockFactory $factory) {
-            $this->annotation = $annotation;
-            $this->factory = $factory;
-        }
-
-        public function implementedByClass($class) {
-            $this->factory->addParserClass($this->annotation, $class);
-        }
-
-        public function instantiatedByFactory(FactoryInterface $factory) {
-            $this->factory->addParserFactory($this->annotation, $factory);
-        }
-
+    public function __construct($annotation, DocBlockFactory $factory) {
+        $this->annotation = $annotation;
+        $this->factory = $factory;
     }
+
+    public function implementedByClass($class) {
+        $this->factory->addParserClass($this->annotation, $class);
+    }
+
+    public function instantiatedByFactory(FactoryInterface $factory) {
+        $this->factory->addParserFactory($this->annotation, $factory);
+    }
+
 }
+

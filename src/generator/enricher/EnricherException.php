@@ -35,11 +35,11 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Enricher {
+namespace TheSeer\phpDox\Generator\Enricher;
 
-    class EnricherException extends \Exception {
+class EnricherException extends \Exception {
 
-        const LoadError = 1;
-    }
-
+    const LoadError = 1;
 }
+
+

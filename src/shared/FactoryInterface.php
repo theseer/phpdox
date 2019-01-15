@@ -35,11 +35,11 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    interface FactoryInterface {
+interface FactoryInterface {
 
-        public function getInstanceFor($name);
-    }
-
+    public function getInstanceFor($name);
 }
+
+

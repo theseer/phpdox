@@ -36,53 +36,53 @@
  *
  */
 
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\fDOM\fDOMElement;
+use TheSeer\fDOM\fDOMElement;
+
+/**
+ * @package    phpDox
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ */
+class EnrichConfig {
 
     /**
-     * @package    phpDox
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
+     * @var fDOMElement
      */
-    class EnrichConfig {
+    private $ctx;
 
-        /**
-         * @var fDOMElement
-         */
-        private $ctx;
+    /**
+     * @var GeneratorConfig
+     */
+    private $generator;
 
-        /**
-         * @var GeneratorConfig
-         */
-        private $generator;
+    public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
+        $this->generator = $generator;
+        $this->ctx = $ctx;
+    }
 
-        public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
-            $this->generator = $generator;
-            $this->ctx = $ctx;
-        }
+    public function getGeneratorConfig() {
+        return $this->generator;
+    }
 
-        public function getGeneratorConfig() {
-            return $this->generator;
-        }
+    public function getEnrichNode() {
+        return $this->ctx;
+    }
 
-        public function getEnrichNode() {
-            return $this->ctx;
-        }
+    public function getProjectNode() {
+        return $this->ctx->parentNode->parentNode;
+    }
 
-        public function getProjectNode() {
-            return $this->ctx->parentNode->parentNode;
-        }
+    public function getType() {
+        return $this->ctx->getAttribute('type');
+    }
 
-        public function getType() {
-            return $this->ctx->getAttribute('type');
-        }
-
-        public function getVersion() {
-            return $this->getGeneratorConfig()->getProjectConfig()->getVersion();
-        }
-
+    public function getVersion() {
+        return $this->getGeneratorConfig()->getProjectConfig()->getVersion();
     }
 
 }
+
+

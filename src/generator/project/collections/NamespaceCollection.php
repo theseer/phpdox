@@ -1,15 +1,15 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class NamespaceCollection extends AbstractCollection {
+class NamespaceCollection extends AbstractCollection {
 
-        /**
-         * @return NamespaceEntry
-         */
-        public function current() {
-            return new NamespaceEntry($this->getCurrentNode());
-        }
-
+    /**
+     * @return NamespaceEntry
+     */
+    public function current() {
+        return new NamespaceEntry($this->getCurrentNode());
     }
 
 }
+
+

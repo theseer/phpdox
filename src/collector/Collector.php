@@ -34,150 +34,150 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    use TheSeer\DirectoryScanner\DirectoryScanner;
-    use TheSeer\phpDox\Collector\Backend\BackendInterface;
-    use TheSeer\phpDox\Collector\Backend\ParseErrorException;
-    use TheSeer\phpDox\FileInfo;
-    use TheSeer\phpDox\ProgressLogger;
+use TheSeer\DirectoryScanner\DirectoryScanner;
+use TheSeer\phpDox\Collector\Backend\BackendInterface;
+use TheSeer\phpDox\Collector\Backend\ParseErrorException;
+use TheSeer\phpDox\FileInfo;
+use TheSeer\phpDox\ProgressLogger;
+
+/**
+ * Collector processing class
+ */
+class Collector {
 
     /**
-     * Collector processing class
+     * @var ProgressLogger
      */
-    class Collector {
+    private $logger;
 
-        /**
-         * @var ProgressLogger
-         */
-        private $logger;
+    /**
+     * @var Project
+     */
+    private $project;
 
-        /**
-         * @var Project
-         */
-        private $project;
+    /**
+     * @var array
+     */
+    private $parseErrors = [];
 
-        /**
-         * @var array
-         */
-        private $parseErrors = [];
+    /**
+     * @var BackendInterface
+     */
+    private $backend;
 
-        /**
-         * @var BackendInterface
-         */
-        private $backend;
+    /**
+     * @var string
+     */
+    private $encoding;
 
-        /**
-         * @var string
-         */
-        private $encoding;
+    /**
+     * @var bool
+     */
+    private $publicOnly;
 
-        /**
-         * @var bool
-         */
-        private $publicOnly;
+    /**
+     * @param ProgressLogger   $logger
+     * @param Project          $project
+     * @param BackendInterface $backend
+     * @param string           $encoding
+     * @param bool             $publicOnly
+     */
+    public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend, $encoding, $publicOnly) {
+        $this->logger = $logger;
+        $this->project = $project;
+        $this->backend = $backend;
+        $this->encoding = $encoding;
+        $this->publicOnly = $publicOnly;
+    }
 
-        /**
-         * @param ProgressLogger   $logger
-         * @param Project          $project
-         * @param BackendInterface $backend
-         * @param string           $encoding
-         * @param bool             $publicOnly
-         */
-        public function __construct(ProgressLogger $logger, Project $project, BackendInterface $backend, $encoding, $publicOnly) {
-            $this->logger = $logger;
-            $this->project = $project;
-            $this->backend = $backend;
-            $this->encoding = $encoding;
-            $this->publicOnly = $publicOnly;
-        }
+    /**
+     * @param DirectoryScanner $scanner
+     *
+     * @return Project
+     */
+    public function run(DirectoryScanner $scanner) {
 
-        /**
-         * @param DirectoryScanner $scanner
-         *
-         * @return Project
-         */
-        public function run(DirectoryScanner $scanner) {
+        $srcDir = $this->project->getSourceDir();
+        $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
 
-            $srcDir = $this->project->getSourceDir();
-            $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
-
-            $iterator = new SourceFileIterator($scanner($srcDir), $srcDir, $this->encoding);
-            foreach ($iterator as $file) {
-                $needsProcessing = $this->project->addFile($file);
-                if (!$needsProcessing) {
-                    $this->logger->progress('cached');
-                    continue;
-                }
-                if (!$this->processFile($file)) {
-                    $this->project->removeFile($file);
-                }
+        $iterator = new SourceFileIterator($scanner($srcDir), $srcDir, $this->encoding);
+        foreach ($iterator as $file) {
+            $needsProcessing = $this->project->addFile($file);
+            if (!$needsProcessing) {
+                $this->logger->progress('cached');
+                continue;
             }
-            $this->logger->completed();
-            return $this->project;
+            if (!$this->processFile($file)) {
+                $this->project->removeFile($file);
+            }
         }
+        $this->logger->completed();
+        return $this->project;
+    }
 
-        /**
-         * @return bool
-         */
-        public function hasParseErrors() {
-            return count($this->parseErrors) > 0;
-        }
+    /**
+     * @return bool
+     */
+    public function hasParseErrors() {
+        return count($this->parseErrors) > 0;
+    }
 
-        /**
-         * @return array
-         */
-        public function getParseErrors() {
-            return $this->parseErrors;
-        }
+    /**
+     * @return array
+     */
+    public function getParseErrors() {
+        return $this->parseErrors;
+    }
 
-        /**
-         * @param FileInfo $file
-         *
-         * @throws CollectorException
-         * @throws \TheSeer\phpDox\ProgressLoggerException
-         *
-         * @return bool
-         */
-        private function processFile(SourceFile $file) {
-            try {
-                if ($file->getSize() === 0) {
-                    $this->logger->progress('processed');
-                    return true;
-                }
-                $result = $this->backend->parse($file, $this->publicOnly);
-
-                if ($result->hasClasses()) {
-                    foreach ($result->getClasses() as $class) {
-                        $this->project->addClass($class);
-                    }
-                }
-                if ($result->hasInterfaces()) {
-                    foreach ($result->getInterfaces() as $interface) {
-                        $this->project->addInterface($interface);
-                    }
-                }
-                if ($result->hasTraits()) {
-                    foreach ($result->getTraits() as $trait) {
-                        $this->project->addTrait($trait);
-                    }
-                }
+    /**
+     * @param FileInfo $file
+     *
+     * @throws CollectorException
+     * @throws \TheSeer\phpDox\ProgressLoggerException
+     *
+     * @return bool
+     */
+    private function processFile(SourceFile $file) {
+        try {
+            if ($file->getSize() === 0) {
                 $this->logger->progress('processed');
                 return true;
-            } catch (ParseErrorException $e) {
-                $previous = $e->getPrevious();
-                $this->parseErrors[$file->getPathname()] = sprintf(
-                    '%s [%s:%d]',
-                    $previous->getMessage(),
-                    basename($previous->getFile()),
-                    $previous->getLine()
-                );
-                $this->logger->progress('failed');
-                return false;
-            } catch (\Exception $e) {
-                throw new CollectorException('Error while processing source file', CollectorException::ProcessingError, $e, $file);
             }
-        }
+            $result = $this->backend->parse($file, $this->publicOnly);
 
+            if ($result->hasClasses()) {
+                foreach ($result->getClasses() as $class) {
+                    $this->project->addClass($class);
+                }
+            }
+            if ($result->hasInterfaces()) {
+                foreach ($result->getInterfaces() as $interface) {
+                    $this->project->addInterface($interface);
+                }
+            }
+            if ($result->hasTraits()) {
+                foreach ($result->getTraits() as $trait) {
+                    $this->project->addTrait($trait);
+                }
+            }
+            $this->logger->progress('processed');
+            return true;
+        } catch (ParseErrorException $e) {
+            $previous = $e->getPrevious();
+            $this->parseErrors[$file->getPathname()] = sprintf(
+                '%s [%s:%d]',
+                $previous->getMessage(),
+                basename($previous->getFile()),
+                $previous->getLine()
+            );
+            $this->logger->progress('failed');
+            return false;
+        } catch (\Exception $e) {
+            throw new CollectorException('Error while processing source file', CollectorException::ProcessingError, $e, $file);
+        }
     }
+
 }
+

@@ -35,55 +35,55 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator\Engine;
 
-    use TheSeer\phpDox\BuildConfig;
-    use TheSeer\phpDox\FactoryInterface;
+use TheSeer\phpDox\BuildConfig;
+use TheSeer\phpDox\FactoryInterface;
 
-    class Factory {
+class Factory {
 
-        protected $engines = [];
+    protected $engines = [];
 
-        protected $configs = [];
+    protected $configs = [];
 
-        public function addEngineClass($name, $class) {
-            $this->engines[$name] = $class;
-        }
-
-        public function addEngineFactory($name, FactoryInterface $factory) {
-            $this->engines[$name] = $factory;
-        }
-
-        public function getEngineList() {
-            return array_keys($this->engines);
-        }
-
-        public function setConfigClass($name, $class) {
-            $this->configs[$name] = $class;
-        }
-
-        public function getInstanceFor(BuildConfig $buildCfg) {
-            $name = $buildCfg->getEngine();
-            if (!isset($this->engines[$name])) {
-                throw new FactoryException("Engine '$name' is not registered.", FactoryException::UnknownEngine);
-            }
-
-            if (isset($this->configs[$name])) {
-                $cfg = new $this->configs[$name]($buildCfg->getGeneratorConfig(), $buildCfg->getBuildNode());
-            } else {
-                $cfg = $buildCfg;
-            }
-
-            if ($this->engines[$name] instanceof FactoryInterface) {
-                return $this->engines[$name]->getInstanceFor($name, $cfg);
-            }
-            return new $this->engines[$name]($cfg);
-        }
-
+    public function addEngineClass($name, $class) {
+        $this->engines[$name] = $class;
     }
 
-    class FactoryException extends \Exception {
-
-        const UnknownEngine = 1;
+    public function addEngineFactory($name, FactoryInterface $factory) {
+        $this->engines[$name] = $factory;
     }
+
+    public function getEngineList() {
+        return array_keys($this->engines);
+    }
+
+    public function setConfigClass($name, $class) {
+        $this->configs[$name] = $class;
+    }
+
+    public function getInstanceFor(BuildConfig $buildCfg) {
+        $name = $buildCfg->getEngine();
+        if (!isset($this->engines[$name])) {
+            throw new FactoryException("Engine '$name' is not registered.", FactoryException::UnknownEngine);
+        }
+
+        if (isset($this->configs[$name])) {
+            $cfg = new $this->configs[$name]($buildCfg->getGeneratorConfig(), $buildCfg->getBuildNode());
+        } else {
+            $cfg = $buildCfg;
+        }
+
+        if ($this->engines[$name] instanceof FactoryInterface) {
+            return $this->engines[$name]->getInstanceFor($name, $cfg);
+        }
+        return new $this->engines[$name]($cfg);
+    }
+
 }
+
+class FactoryException extends \Exception {
+
+    const UnknownEngine = 1;
+}
+

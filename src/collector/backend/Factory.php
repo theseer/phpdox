@@ -34,39 +34,39 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    use TheSeer\phpDox\Factory as MasterFactory;
+use TheSeer\phpDox\Factory as MasterFactory;
 
-    class Factory {
+class Factory {
 
-        /** @var MasterFactory */
-        private $master;
+    /** @var MasterFactory */
+    private $master;
 
-        public function __construct(MasterFactory $factory) {
-            $this->master = $factory;
-        }
-
-        public function getInstanceFor($type) {
-            switch ($type) {
-                case 'parser':
-                    {
-                        return new PHPParser(
-                            $this->master->getDocblockParser(),
-                            $this->master->getErrorHandler()
-                        );
-                    }
-                default:
-                    {
-                        throw new FactoryException("'$type' is not a known backend.");
-                    }
-            }
-        }
-
+    public function __construct(MasterFactory $factory) {
+        $this->master = $factory;
     }
 
-    class FactoryException extends \Exception {
-
+    public function getInstanceFor($type) {
+        switch ($type) {
+            case 'parser':
+                {
+                    return new PHPParser(
+                        $this->master->getDocblockParser(),
+                        $this->master->getErrorHandler()
+                    );
+                }
+            default:
+                {
+                    throw new FactoryException("'$type' is not a known backend.");
+                }
+        }
     }
 
 }
+
+class FactoryException extends \Exception {
+
+}
+
+

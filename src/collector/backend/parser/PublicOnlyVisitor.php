@@ -34,29 +34,29 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    use PhpParser\Node;
-    use PhpParser\Node\Stmt as NodeType;
-    use PhpParser\NodeVisitorAbstract;
+use PhpParser\Node;
+use PhpParser\Node\Stmt as NodeType;
+use PhpParser\NodeVisitorAbstract;
 
-    class PublicOnlyVisitor extends NodeVisitorAbstract {
+class PublicOnlyVisitor extends NodeVisitorAbstract {
 
-        /**
-         * @param Node $node
-         *
-         * @return int|Node
-         */
-        public function enterNode(Node $node) {
-            if (($node instanceof NodeType\Property ||
-                    $node instanceof NodeType\ClassMethod ||
-                    $node instanceof NodeType\ClassConst) && !$node->isPublic()) {
+    /**
+     * @param Node $node
+     *
+     * @return int|Node
+     */
+    public function enterNode(Node $node) {
+        if (($node instanceof NodeType\Property ||
+                $node instanceof NodeType\ClassMethod ||
+                $node instanceof NodeType\ClassConst) && !$node->isPublic()) {
 
-                return new NodeType\Nop();
-            }
-
-            return $node;
+            return new NodeType\Nop();
         }
 
+        return $node;
     }
+
 }
+

@@ -34,11 +34,11 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    class CollectorException extends \TheSeer\phpDox\HasFileInfoException {
+class CollectorException extends \TheSeer\phpDox\HasFileInfoException {
 
-        const ProcessingError = 1;
-    }
-
+    const ProcessingError = 1;
 }
+
+

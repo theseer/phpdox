@@ -34,139 +34,139 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\fDOM\fDOMElement;
-    use TheSeer\phpDox\FileInfo;
+use TheSeer\fDOM\fDOMDocument;
+use TheSeer\fDOM\fDOMElement;
+use TheSeer\phpDox\FileInfo;
+
+/**
+ *
+ */
+class IndexCollection {
+
+    private $dom;
 
     /**
-     *
+     * @var FileInfo
      */
-    class IndexCollection {
+    private $srcDir;
 
-        private $dom;
+    public function __construct(FileInfo $srcDir) {
+        $this->srcDir = $srcDir;
+    }
 
-        /**
-         * @var FileInfo
-         */
-        private $srcDir;
-
-        public function __construct(FileInfo $srcDir) {
-            $this->srcDir = $srcDir;
+    private function getRootElement() {
+        if (!$this->dom instanceof fDOMDocument) {
+            $this->initDomDocument();
         }
+        return $this->dom->documentElement;
+    }
 
-        private function getRootElement() {
-            if (!$this->dom instanceof fDOMDocument) {
-                $this->initDomDocument();
+    private function initDomDocument() {
+        $this->dom = new fDOMDocument('1.0', 'UTF-8');
+        $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
+        $index = $this->dom->appendElementNS('http://xml.phpdox.net/src', 'index');
+        $index->setAttribute('basedir', $this->srcDir->getRealPath());
+    }
+
+    /**
+     * @param \TheSeer\fDOM\fDOMDocument $dom
+     *
+     * @return void
+     */
+    public function import(fDOMDocument $dom) {
+        $this->dom = $dom;
+        $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
+    }
+
+    /**
+     * This method exports all newly registered units into their respective files
+     * and updates the collection file accordingly
+     *
+     * @param string $xmlDir
+     *
+     * @return \TheSeer\fDOM\fDOMDocument
+     */
+    public function export() {
+        if (!$this->dom instanceof fDOMDocument) {
+            $this->initDomDocument();
+        }
+        return $this->dom;
+    }
+
+    /**
+     * @param ClassObject $class
+     */
+    public function addClass(ClassObject $class) {
+        $this->addUnit($class, 'class');
+    }
+
+    /**
+     * @param InterfaceObject $interface
+     */
+    public function addInterface(InterfaceObject $interface) {
+        $this->addUnit($interface, 'interface');
+    }
+
+    /**
+     * @param TraitObject $trait
+     */
+    public function addTrait(TraitObject $trait) {
+        $this->addUnit($trait, 'trait');
+    }
+
+    /**
+     * @param $path
+     *
+     * @return \DOMNodeList
+     */
+    public function findUnitNodesBySrcFile($path) {
+        $src = mb_substr($path, mb_strlen($this->srcDir) + 1);
+        return $this->getRootElement()->query(sprintf('//*[@src="%s"]', $src));
+    }
+
+    /**
+     * @param $namespace
+     * @param $name
+     *
+     * @return fDOMElement
+     */
+    public function findUnitNodeByName($namespace, $name) {
+        return $this->getRootElement()->queryOne(
+            sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $name));
+    }
+
+    /**
+     * @param AbstractUnitObject $unit
+     */
+    private function addUnit(AbstractUnitObject $unit, $type) {
+        $root = $this->getRootElement();
+
+        if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName())) {
+            $unitNode = $root->appendElementNS('http://xml.phpdox.net/src', $type);
+            $unitNode->setAttribute('name', $unit->getLocalName());
+
+            $src = $unit->getSourceFilename();
+            if ($src != '') {
+                $unitNode->setAttribute('src', $src->getRelative($this->srcDir, false));
             }
-            return $this->dom->documentElement;
-        }
 
-        private function initDomDocument() {
-            $this->dom = new fDOMDocument('1.0', 'UTF-8');
-            $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
-            $index = $this->dom->appendElementNS('http://xml.phpdox.net/src', 'index');
-            $index->setAttribute('basedir', $this->srcDir->getRealPath());
-        }
-
-        /**
-         * @param \TheSeer\fDOM\fDOMDocument $dom
-         *
-         * @return void
-         */
-        public function import(fDOMDocument $dom) {
-            $this->dom = $dom;
-            $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
-        }
-
-        /**
-         * This method exports all newly registered units into their respective files
-         * and updates the collection file accordingly
-         *
-         * @param string $xmlDir
-         *
-         * @return \TheSeer\fDOM\fDOMDocument
-         */
-        public function export() {
-            if (!$this->dom instanceof fDOMDocument) {
-                $this->initDomDocument();
+            $desc = $unit->getCompactDescription();
+            if ($desc != '') {
+                $unitNode->setAttribute('description', $desc);
             }
-            return $this->dom;
-        }
 
-        /**
-         * @param ClassObject $class
-         */
-        public function addClass(ClassObject $class) {
-            $this->addUnit($class, 'class');
-        }
-
-        /**
-         * @param InterfaceObject $interface
-         */
-        public function addInterface(InterfaceObject $interface) {
-            $this->addUnit($interface, 'interface');
-        }
-
-        /**
-         * @param TraitObject $trait
-         */
-        public function addTrait(TraitObject $trait) {
-            $this->addUnit($trait, 'trait');
-        }
-
-        /**
-         * @param $path
-         *
-         * @return \DOMNodeList
-         */
-        public function findUnitNodesBySrcFile($path) {
-            $src = mb_substr($path, mb_strlen($this->srcDir) + 1);
-            return $this->getRootElement()->query(sprintf('//*[@src="%s"]', $src));
-        }
-
-        /**
-         * @param $namespace
-         * @param $name
-         *
-         * @return fDOMElement
-         */
-        public function findUnitNodeByName($namespace, $name) {
-            return $this->getRootElement()->queryOne(
-                sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $name));
-        }
-
-        /**
-         * @param AbstractUnitObject $unit
-         */
-        private function addUnit(AbstractUnitObject $unit, $type) {
-            $root = $this->getRootElement();
-
-            if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName())) {
-                $unitNode = $root->appendElementNS('http://xml.phpdox.net/src', $type);
-                $unitNode->setAttribute('name', $unit->getLocalName());
-
-                $src = $unit->getSourceFilename();
-                if ($src != '') {
-                    $unitNode->setAttribute('src', $src->getRelative($this->srcDir, false));
-                }
-
-                $desc = $unit->getCompactDescription();
-                if ($desc != '') {
-                    $unitNode->setAttribute('description', $desc);
-                }
-
-                $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
-                $ctx = $root->queryOne($xpath);
-                if (!$ctx) {
-                    $ctx = $root->appendElementNS('http://xml.phpdox.net/src', 'namespace');
-                    $ctx->setAttribute('name', $unit->getNamespace());
-                }
-                $ctx->appendChild($unitNode);
+            $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
+            $ctx = $root->queryOne($xpath);
+            if (!$ctx) {
+                $ctx = $root->appendElementNS('http://xml.phpdox.net/src', 'namespace');
+                $ctx->setAttribute('name', $unit->getNamespace());
             }
+            $ctx->appendChild($unitNode);
         }
-
     }
 
 }
+
+

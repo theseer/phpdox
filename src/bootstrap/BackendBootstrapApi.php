@@ -35,30 +35,30 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
+use TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
 
-    class BackendBootstrapApi {
+class BackendBootstrapApi {
 
-        protected $name;
+    protected $name;
 
-        protected $factory;
+    protected $factory;
 
-        public function __construct($name, BackendFactory $factory) {
-            $this->name = $name;
-            $this->factory = $factory;
-        }
-
-        public function implementedByClass($class) {
-            $this->factory->addBackendClass($this->name, $class);
-            return $this;
-        }
-
-        public function instantiatedByFactory(FactoryInterface $factory) {
-            $this->factory->addBackendFactory($this->name, $factory);
-            return $this;
-        }
-
+    public function __construct($name, BackendFactory $factory) {
+        $this->name = $name;
+        $this->factory = $factory;
     }
+
+    public function implementedByClass($class) {
+        $this->factory->addBackendClass($this->name, $class);
+        return $this;
+    }
+
+    public function instantiatedByFactory(FactoryInterface $factory) {
+        $this->factory->addBackendFactory($this->name, $factory);
+        return $this;
+    }
+
 }
+

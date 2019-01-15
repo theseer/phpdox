@@ -1,21 +1,21 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    abstract class AbstractClassEvent extends AbstractEvent {
+abstract class AbstractClassEvent extends AbstractEvent {
 
-        private $class;
+    private $class;
 
-        public function __construct($class) {
-            $this->class = $class;
-        }
-
-        public function getClass() {
-            return $this->class;
-        }
-
-        public function getNamespace() {
-
-        }
+    public function __construct($class) {
+        $this->class = $class;
     }
 
+    public function getClass() {
+        return $this->class;
+    }
+
+    public function getNamespace() {
+
+    }
 }
+
+

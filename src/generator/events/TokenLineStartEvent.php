@@ -36,14 +36,14 @@
  *
  */
 
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TokenLineStartEvent extends AbstractEvent {
+class TokenLineStartEvent extends AbstractEvent {
 
-        protected function getEventName() {
-            return 'token.line.start';
-        }
-
+    protected function getEventName() {
+        return 'token.line.start';
     }
 
 }
+
+

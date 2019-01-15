@@ -1,9 +1,9 @@
 <?php
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    class SourceCollectionException extends \Exception {
+class SourceCollectionException extends \Exception {
 
-        const SourceNotFound = 1;
-    }
-
+    const SourceNotFound = 1;
 }
+
+

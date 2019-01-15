@@ -35,16 +35,16 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox\DocBlock;
 
-    class InheritdocAttribute extends GenericElement {
+class InheritdocAttribute extends GenericElement {
 
-        public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
-            $node = $ctx->createAttribute('inherit');
-            $node->appendChild($ctx->createTextNode('true'));
-            return $node;
-        }
-
+    public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
+        $node = $ctx->createAttribute('inherit');
+        $node->appendChild($ctx->createTextNode('true'));
+        return $node;
     }
 
 }
+
+

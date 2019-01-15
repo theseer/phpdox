@@ -35,24 +35,24 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class PHPDoxClassesEndEvent extends AbstractEvent {
+class PHPDoxClassesEndEvent extends AbstractEvent {
 
-        private $classes;
+    private $classes;
 
-        public function __construct(ClassCollection $classes) {
-            $this->classes = $classes;
-        }
+    public function __construct(ClassCollection $classes) {
+        $this->classes = $classes;
+    }
 
-        public function getClasses() {
-            return $this->classes;
-        }
+    public function getClasses() {
+        return $this->classes;
+    }
 
-        protected function getEventName() {
-            return 'phpdox.classes.end';
-        }
-
+    protected function getEventName() {
+        return 'phpdox.classes.end';
     }
 
 }
+
+

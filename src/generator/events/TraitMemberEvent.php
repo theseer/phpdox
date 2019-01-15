@@ -35,25 +35,25 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TraitMemberEvent extends MemberEvent {
+class TraitMemberEvent extends MemberEvent {
 
-        private $trait;
+    private $trait;
 
-        public function __construct(MemberObject $member, TraitObject $trait) {
-            parent::__construct($member);
-            $this->trait = $trait;
-        }
+    public function __construct(MemberObject $member, TraitObject $trait) {
+        parent::__construct($member);
+        $this->trait = $trait;
+    }
 
-        public function getTrait() {
-            return $this->trait;
-        }
+    public function getTrait() {
+        return $this->trait;
+    }
 
-        protected function getEventName() {
-            return 'trait.member';
-        }
-
+    protected function getEventName() {
+        return 'trait.member';
     }
 
 }
+
+

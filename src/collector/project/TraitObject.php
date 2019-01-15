@@ -34,20 +34,20 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    class TraitObject extends AbstractUnitObject {
+class TraitObject extends AbstractUnitObject {
 
-        protected $rootName = 'trait';
+    protected $rootName = 'trait';
 
-        public function addUser(AbstractUnitObject $unit) {
-            if ($this->getRootNode()->queryOne(sprintf('phpdox:users/phpdox:%s[@full = "%s"]', $unit->getType(), $unit->getName())) !== null) {
-                return;
-            }
-            $user = $this->addToContainer('users', $unit->getType());
-            $this->setName($unit->getName(), $user);
+    public function addUser(AbstractUnitObject $unit) {
+        if ($this->getRootNode()->queryOne(sprintf('phpdox:users/phpdox:%s[@full = "%s"]', $unit->getType(), $unit->getName())) !== null) {
+            return;
         }
-
+        $user = $this->addToContainer('users', $unit->getType());
+        $this->setName($unit->getName(), $user);
     }
 
 }
+
+

@@ -1,10 +1,10 @@
 <?php
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    class BootstrapException extends \Exception {
+class BootstrapException extends \Exception {
 
-        const RequireFailed = 1;
-
-    }
+    const RequireFailed = 1;
 
 }
+
+

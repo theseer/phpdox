@@ -1,12 +1,12 @@
 <?php
-namespace TheSeer\phpDox\Generator\Enricher {
+namespace TheSeer\phpDox\Generator\Enricher;
 
-    use TheSeer\phpDox\Generator\PHPDoxStartEvent;
+use TheSeer\phpDox\Generator\PHPDoxStartEvent;
 
-    interface StartEnricherInterface extends EnricherInterface {
+interface StartEnricherInterface extends EnricherInterface {
 
-        public function enrichStart(PHPDoxStartEvent $event);
-
-    }
+    public function enrichStart(PHPDoxStartEvent $event);
 
 }
+
+

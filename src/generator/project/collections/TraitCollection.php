@@ -1,15 +1,15 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TraitCollection extends AbstractCollection {
+class TraitCollection extends AbstractCollection {
 
-        /**
-         * @return TraitEntry
-         */
-        public function current() {
-            return new TraitEntry($this->getCurrentNode());
-        }
-
+    /**
+     * @return TraitEntry
+     */
+    public function current() {
+        return new TraitEntry($this->getCurrentNode());
     }
 
 }
+
+

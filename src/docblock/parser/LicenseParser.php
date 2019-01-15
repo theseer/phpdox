@@ -35,16 +35,16 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox\DocBlock;
 
-    class LicenseParser extends GenericParser {
+class LicenseParser extends GenericParser {
 
-        public function getObject(array $buffer) {
-            $obj = $this->buildObject('generic', $buffer);
-            $obj->setName($this->payload);
-            return $obj;
-        }
-
+    public function getObject(array $buffer) {
+        $obj = $this->buildObject('generic', $buffer);
+        $obj->setName($this->payload);
+        return $obj;
     }
 
 }
+
+

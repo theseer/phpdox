@@ -34,180 +34,180 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    use TheSeer\fDOM\fDOMElement;
-    use TheSeer\phpDox\DocBlock\DocBlock;
+use TheSeer\fDOM\fDOMElement;
+use TheSeer\phpDox\DocBlock\DocBlock;
+
+/**
+ *
+ */
+class MethodObject {
+
+    const XMLNS = 'http://xml.phpdox.net/src';
 
     /**
-     *
+     * @var \TheSeer\fDOM\fDOMElement
      */
-    class MethodObject {
+    private $ctx;
 
-        const XMLNS = 'http://xml.phpdox.net/src';
+    /**
+     * @var AbstractUnitObject
+     */
+    private $unit;
 
-        /**
-         * @var \TheSeer\fDOM\fDOMElement
-         */
-        private $ctx;
+    /**
+     * @param AbstractUnitObject $unit
+     * @param fDOMElement        $ctx
+     */
+    public function __construct(AbstractUnitObject $unit, fDOMElement $ctx) {
+        $this->unit = $unit;
+        $this->ctx = $ctx;
+    }
 
-        /**
-         * @var AbstractUnitObject
-         */
-        private $unit;
+    public function getOwner() {
+        return $this->unit;
+    }
 
-        /**
-         * @param AbstractUnitObject $unit
-         * @param fDOMElement        $ctx
-         */
-        public function __construct(AbstractUnitObject $unit, fDOMElement $ctx) {
-            $this->unit = $unit;
-            $this->ctx = $ctx;
+    public function export() {
+        return $this->ctx;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name) {
+        $this->ctx->setAttribute('name', $name);
+    }
+
+    public function getName() {
+        return $this->ctx->getAttribute('name');
+    }
+
+    /**
+     * @param int $startLine
+     */
+    public function setStartLine($startLine) {
+        $this->ctx->setAttribute('start', $startLine);
+    }
+
+    /**
+     * @param int $endLine
+     */
+    public function setEndLine($endLine) {
+        $this->ctx->setAttribute('end', $endLine);
+    }
+
+    /**
+     * @param boolean $isFinal
+     */
+    public function setFinal($isFinal) {
+        $this->ctx->setAttribute('final', $isFinal ? 'true' : 'false');
+    }
+
+    /**
+     * @param boolean $isAbstract
+     */
+    public function setAbstract($isAbstract) {
+        $this->ctx->setAttribute('abstract', $isAbstract ? 'true' : 'false');
+    }
+
+    /**
+     * @param boolean $isStatic
+     */
+    public function setStatic($isStatic) {
+        $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
+    }
+
+    /**
+     * @param string $visibility
+     */
+    public function setVisibility($visibility) {
+        if (!in_array($visibility, ['public', 'private', 'protected'])) {
+            throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
         }
+        $this->ctx->setAttribute('visibility', $visibility);
+    }
 
-        public function getOwner() {
-            return $this->unit;
+    /**
+     * @param DocBlock $docblock
+     */
+    public function setDocBlock(DocBlock $docblock) {
+        $docNode = $docblock->asDom($this->ctx->ownerDocument);
+
+        if ($this->ctx->hasChildNodes()) {
+            $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
+            return;
         }
+        $this->ctx->appendChild($docNode);
+    }
 
-        public function export() {
-            return $this->ctx;
+    public function hasInheritDoc() {
+        return $this->ctx->query('phpdox:docblock[@inherit="true"]')->length > 0;
+    }
+
+    public function inhertDocBlock(MethodObject $method) {
+        $inherit = $method->export()->queryOne('phpdox:docblock');
+        if (!$inherit) { // no docblock, no work ;)
+            return;
         }
-
-        /**
-         * @param string $name
-         */
-        public function setName($name) {
-            $this->ctx->setAttribute('name', $name);
-        }
-
-        public function getName() {
-            return $this->ctx->getAttribute('name');
-        }
-
-        /**
-         * @param int $startLine
-         */
-        public function setStartLine($startLine) {
-            $this->ctx->setAttribute('start', $startLine);
-        }
-
-        /**
-         * @param int $endLine
-         */
-        public function setEndLine($endLine) {
-            $this->ctx->setAttribute('end', $endLine);
-        }
-
-        /**
-         * @param boolean $isFinal
-         */
-        public function setFinal($isFinal) {
-            $this->ctx->setAttribute('final', $isFinal ? 'true' : 'false');
-        }
-
-        /**
-         * @param boolean $isAbstract
-         */
-        public function setAbstract($isAbstract) {
-            $this->ctx->setAttribute('abstract', $isAbstract ? 'true' : 'false');
-        }
-
-        /**
-         * @param boolean $isStatic
-         */
-        public function setStatic($isStatic) {
-            $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
-        }
-
-        /**
-         * @param string $visibility
-         */
-        public function setVisibility($visibility) {
-            if (!in_array($visibility, ['public', 'private', 'protected'])) {
-                throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
-            }
-            $this->ctx->setAttribute('visibility', $visibility);
-        }
-
-        /**
-         * @param DocBlock $docblock
-         */
-        public function setDocBlock(DocBlock $docblock) {
-            $docNode = $docblock->asDom($this->ctx->ownerDocument);
-
-            if ($this->ctx->hasChildNodes()) {
-                $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
-                return;
-            }
-            $this->ctx->appendChild($docNode);
-        }
-
-        public function hasInheritDoc() {
-            return $this->ctx->query('phpdox:docblock[@inherit="true"]')->length > 0;
-        }
-
-        public function inhertDocBlock(MethodObject $method) {
-            $inherit = $method->export()->queryOne('phpdox:docblock');
-            if (!$inherit) { // no docblock, no work ;)
-                return;
-            }
+        $docNode = $this->ctx->queryOne('phpdox:docblock');
+        if (!$docNode) {
+            $this->setDocBlock(new DocBlock());
             $docNode = $this->ctx->queryOne('phpdox:docblock');
-            if (!$docNode) {
-                $this->setDocBlock(new DocBlock());
-                $docNode = $this->ctx->queryOne('phpdox:docblock');
-            }
-
-            $container = $docNode->appendElementNS(self::XMLNS, 'inherited');
-            $container->setAttribute(
-                $method->getOwner()->getType(),
-                $method->getOwner()->getName()
-            );
-            $container->appendChild($this->ctx->ownerDocument->importNode($inherit, true));
-
         }
 
-        /**
-         * @param string $name
-         *
-         * @return ReturnTypeObject
-         */
-        public function setReturnType($name) {
-            $returnType = new ReturnTypeObject($this->ctx->appendElementNS(self::XMLNS, 'return'));
-            $returnType->setType($name);
-            return $returnType;
-        }
-
-        /**
-         * @param string $name
-         *
-         * @return ParameterObject
-         */
-        public function addParameter($name) {
-            $parameter = new ParameterObject($this->ctx->appendElementNS(self::XMLNS, 'parameter'));
-            $parameter->setName($name);
-            return $parameter;
-        }
-
-        /**
-         * @param InlineComment $InlineComment
-         */
-        public function addInlineComment(InlineComment $InlineComment) {
-            $this->getInlineContainer()->appendChild(
-                $InlineComment->asDom($this->ctx->ownerDocument)
-            );
-        }
-
-        /**
-         * @return fDOMElement
-         */
-        private function getInlineContainer() {
-            $node = $this->ctx->queryOne('phpdox:inline');
-            if ($node !== null) {
-                return $node;
-            }
-            return $this->ctx->appendElementNS(self::XMLNS, 'inline');
-        }
+        $container = $docNode->appendElementNS(self::XMLNS, 'inherited');
+        $container->setAttribute(
+            $method->getOwner()->getType(),
+            $method->getOwner()->getName()
+        );
+        $container->appendChild($this->ctx->ownerDocument->importNode($inherit, true));
 
     }
 
+    /**
+     * @param string $name
+     *
+     * @return ReturnTypeObject
+     */
+    public function setReturnType($name) {
+        $returnType = new ReturnTypeObject($this->ctx->appendElementNS(self::XMLNS, 'return'));
+        $returnType->setType($name);
+        return $returnType;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return ParameterObject
+     */
+    public function addParameter($name) {
+        $parameter = new ParameterObject($this->ctx->appendElementNS(self::XMLNS, 'parameter'));
+        $parameter->setName($name);
+        return $parameter;
+    }
+
+    /**
+     * @param InlineComment $InlineComment
+     */
+    public function addInlineComment(InlineComment $InlineComment) {
+        $this->getInlineContainer()->appendChild(
+            $InlineComment->asDom($this->ctx->ownerDocument)
+        );
+    }
+
+    /**
+     * @return fDOMElement
+     */
+    private function getInlineContainer() {
+        $node = $this->ctx->queryOne('phpdox:inline');
+        if ($node !== null) {
+            return $node;
+        }
+        return $this->ctx->appendElementNS(self::XMLNS, 'inline');
+    }
+
 }
+
+

@@ -35,24 +35,24 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class PHPDoxTraitsEndEvent extends AbstractEvent {
+class PHPDoxTraitsEndEvent extends AbstractEvent {
 
-        private $traits;
+    private $traits;
 
-        public function __construct(TraitCollection $traits) {
-            $this->traits = $traits;
-        }
+    public function __construct(TraitCollection $traits) {
+        $this->traits = $traits;
+    }
 
-        public function getTraits() {
-            return $this->traits;
-        }
+    public function getTraits() {
+        return $this->traits;
+    }
 
-        protected function getEventName() {
-            return 'phpdox.traits.end';
-        }
-
+    protected function getEventName() {
+        return 'phpdox.traits.end';
     }
 
 }
+
+

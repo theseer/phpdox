@@ -35,75 +35,75 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator\Engine;
 
-    use TheSeer\phpDox\BuildConfig;
-    use TheSeer\phpDox\Generator\AbstractEvent;
-    use TheSeer\phpDox\Generator\ClassStartEvent;
-    use TheSeer\phpDox\Generator\InterfaceStartEvent;
-    use TheSeer\phpDox\Generator\PHPDoxEndEvent;
-    use TheSeer\phpDox\Generator\TokenFileStartEvent;
-    use TheSeer\phpDox\Generator\TraitStartEvent;
+use TheSeer\phpDox\BuildConfig;
+use TheSeer\phpDox\Generator\AbstractEvent;
+use TheSeer\phpDox\Generator\ClassStartEvent;
+use TheSeer\phpDox\Generator\InterfaceStartEvent;
+use TheSeer\phpDox\Generator\PHPDoxEndEvent;
+use TheSeer\phpDox\Generator\TokenFileStartEvent;
+use TheSeer\phpDox\Generator\TraitStartEvent;
 
-    class Xml extends AbstractEngine {
+class Xml extends AbstractEngine {
 
-        private $outputDir;
+    private $outputDir;
 
-        public function __construct(BuildConfig $config) {
-            $this->outputDir = $config->getOutputDirectory();
-        }
+    public function __construct(BuildConfig $config) {
+        $this->outputDir = $config->getOutputDirectory();
+    }
 
-        public function registerEventHandlers(EventHandlerRegistry $registry) {
-            $registry->addHandler('phpdox.end', $this, 'handleIndex');
-            $registry->addHandler('class.start', $this, 'handle');
-            $registry->addHandler('trait.start', $this, 'handle');
-            $registry->addHandler('interface.start', $this, 'handle');
-            $registry->addHandler('token.file.start', $this, 'handleToken');
-        }
+    public function registerEventHandlers(EventHandlerRegistry $registry) {
+        $registry->addHandler('phpdox.end', $this, 'handleIndex');
+        $registry->addHandler('class.start', $this, 'handle');
+        $registry->addHandler('trait.start', $this, 'handle');
+        $registry->addHandler('interface.start', $this, 'handle');
+        $registry->addHandler('token.file.start', $this, 'handleToken');
+    }
 
-        public function handle(AbstractEvent $event) {
-            if ($event instanceof ClassStartEvent) {
-                $ctx = $event->getClass();
-                $path = 'classes';
+    public function handle(AbstractEvent $event) {
+        if ($event instanceof ClassStartEvent) {
+            $ctx = $event->getClass();
+            $path = 'classes';
+        } else {
+            if ($event instanceof TraitStartEvent) {
+                $ctx = $event->getTrait();
+                $path = 'traits';
             } else {
-                if ($event instanceof TraitStartEvent) {
-                    $ctx = $event->getTrait();
-                    $path = 'traits';
+                if ($event instanceof InterfaceStartEvent) {
+                    $ctx = $event->getInterface();
+                    $path = 'interfaces';
                 } else {
-                    if ($event instanceof InterfaceStartEvent) {
-                        $ctx = $event->getInterface();
-                        $path = 'interfaces';
-                    } else {
-                        throw new EngineException(
-                            'Unexpected Event of type ' . get_class($event),
-                            XMLEngineException::UnexpectedType
-                        );
-                    }
+                    throw new EngineException(
+                        'Unexpected Event of type ' . get_class($event),
+                        XMLEngineException::UnexpectedType
+                    );
                 }
             }
-            $dom = $ctx->asDom();
-            $this->saveDomDocument($dom,
-                $this->outputDir . '/' . $path . '/' . str_replace('\\', '_', $dom->documentElement->getAttribute('full')) . '.xml'
-            );
         }
-
-        public function handleIndex(PHPDoxEndEvent $event) {
-            $dom = $event->getIndex()->asDom();
-            $this->saveDomDocument($dom, $this->outputDir . '/index.xml');
-        }
-
-        public function handleToken(TokenFileStartEvent $event) {
-            $dom = $event->getTokenFile()->asDom();
-            $this->saveDomDocument($dom,
-                $this->outputDir . '/tokens/' . $dom->queryOne('//phpdox:file')->getAttribute('relative') . '.xml'
-            );
-
-        }
+        $dom = $ctx->asDom();
+        $this->saveDomDocument($dom,
+            $this->outputDir . '/' . $path . '/' . str_replace('\\', '_', $dom->documentElement->getAttribute('full')) . '.xml'
+        );
     }
 
-    class XMLEngineException extends EngineException {
-
-        const UnexpectedType = 2;
+    public function handleIndex(PHPDoxEndEvent $event) {
+        $dom = $event->getIndex()->asDom();
+        $this->saveDomDocument($dom, $this->outputDir . '/index.xml');
     }
 
+    public function handleToken(TokenFileStartEvent $event) {
+        $dom = $event->getTokenFile()->asDom();
+        $this->saveDomDocument($dom,
+            $this->outputDir . '/tokens/' . $dom->queryOne('//phpdox:file')->getAttribute('relative') . '.xml'
+        );
+
+    }
 }
+
+class XMLEngineException extends EngineException {
+
+    const UnexpectedType = 2;
+}
+
+

@@ -34,12 +34,12 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    class ParseErrorException extends \Exception {
+class ParseErrorException extends \Exception {
 
-        const GeneralParseError = 1;
-        const UnexpectedExpr = 2;
-    }
-
+    const GeneralParseError = 1;
+    const UnexpectedExpr = 2;
 }
+
+

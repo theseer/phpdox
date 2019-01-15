@@ -1,15 +1,15 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class ClassCollection extends AbstractCollection {
+class ClassCollection extends AbstractCollection {
 
-        /**
-         * @return ClassEntry
-         */
-        public function current() {
-            return new ClassEntry($this->getCurrentNode());
-        }
-
+    /**
+     * @return ClassEntry
+     */
+    public function current() {
+        return new ClassEntry($this->getCurrentNode());
     }
 
 }
+
+

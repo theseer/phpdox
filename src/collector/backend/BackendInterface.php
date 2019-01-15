@@ -34,22 +34,22 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    use TheSeer\phpDox\Collector\SourceFile;
+use TheSeer\phpDox\Collector\SourceFile;
+
+/**
+ *
+ */
+interface BackendInterface {
 
     /**
+     * @param SourceFile $sourceFile
+     * @param bool       $publicOnly
      *
+     * @return ParseResult
      */
-    interface BackendInterface {
+    public function parse(SourceFile $sourceFile, $publicOnly);
 
-        /**
-         * @param SourceFile $sourceFile
-         * @param bool       $publicOnly
-         *
-         * @return ParseResult
-         */
-        public function parse(SourceFile $sourceFile, $publicOnly);
-
-    }
 }
+

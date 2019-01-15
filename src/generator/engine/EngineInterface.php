@@ -35,11 +35,11 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator\Engine {
+namespace TheSeer\phpDox\Generator\Engine;
 
-    interface EngineInterface {
+interface EngineInterface {
 
-        public function registerEventHandlers(EventHandlerRegistry $registry);
+    public function registerEventHandlers(EventHandlerRegistry $registry);
 
-    }
 }
+

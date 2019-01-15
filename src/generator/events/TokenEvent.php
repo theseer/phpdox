@@ -35,14 +35,14 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TokenEvent extends AbstractEvent {
+class TokenEvent extends AbstractEvent {
 
-        protected function getEventName() {
-            return 'token';
-        }
-
+    protected function getEventName() {
+        return 'token';
     }
 
 }
+
+

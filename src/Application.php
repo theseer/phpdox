@@ -30,224 +30,224 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\phpDox\Collector\InheritanceResolver;
-    use TheSeer\phpDox\Generator\Enricher\EnricherException;
+use TheSeer\phpDox\Collector\InheritanceResolver;
+use TheSeer\phpDox\Generator\Enricher\EnricherException;
+
+/**
+ * The main Application class
+ *
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ * @link       http://phpDox.net
+ */
+class Application {
 
     /**
-     * The main Application class
+     * Logger for progress and error reporting
      *
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
-     * @link       http://phpDox.net
+     * @var ProgressLogger
      */
-    class Application {
+    private $logger;
 
-        /**
-         * Logger for progress and error reporting
-         *
-         * @var ProgressLogger
-         */
-        private $logger;
+    /**
+     * Factory instance
+     *
+     * @var Factory
+     */
+    private $factory;
 
-        /**
-         * Factory instance
-         *
-         * @var Factory
-         */
-        private $factory;
+    /**
+     * Constructor of PHPDox Application
+     *
+     * @param Factory        $factory Factory instance
+     * @param ProgressLogger $logger  Instance of the SilentProgressLogger class
+     */
+    public function __construct(Factory $factory, ProgressLogger $logger) {
+        $this->factory = $factory;
+        $this->logger = $logger;
+    }
 
-        /**
-         * Constructor of PHPDox Application
-         *
-         * @param Factory        $factory Factory instance
-         * @param ProgressLogger $logger  Instance of the SilentProgressLogger class
-         */
-        public function __construct(Factory $factory, ProgressLogger $logger) {
-            $this->factory = $factory;
-            $this->logger = $logger;
+    /**
+     * Run Bootstrap code for given list of bootstrap files
+     *
+     * @param FileInfoCollection $requires
+     *
+     * @return Bootstrap
+     */
+    public function runBootstrap(FileInfoCollection $requires) {
+        $bootstrap = $this->factory->getBootstrap();
+        $bootstrap->load($requires, true);
+        return $bootstrap;
+    }
+
+    public function runConfigChangeDetection(FileInfo $workDirectory, FileInfo $configFile) {
+        $index = new FileInfo((string)$workDirectory . '/index.xml');
+        if (!$index->exists() || ($index->getMTime() >= $configFile->getMTime())) {
+            return;
         }
+        $this->logger->log("Configuration change detected - cleaning cache");
+        $cleaner = $this->factory->getDirectoryCleaner();
+        $cleaner->process($workDirectory);
+    }
 
-        /**
-         * Run Bootstrap code for given list of bootstrap files
-         *
-         * @param FileInfoCollection $requires
-         *
-         * @return Bootstrap
-         */
-        public function runBootstrap(FileInfoCollection $requires) {
-            $bootstrap = $this->factory->getBootstrap();
-            $bootstrap->load($requires, true);
-            return $bootstrap;
-        }
+    /**
+     * Run collection process on given directory tree
+     *
+     * @param CollectorConfig $config Configuration options
+     *
+     * @throws ApplicationException
+     * @return void
+     */
+    public function runCollector(CollectorConfig $config) {
+        $this->logger->log("Starting collector");
 
-        public function runConfigChangeDetection(FileInfo $workDirectory, FileInfo $configFile) {
-            $index = new FileInfo((string)$workDirectory . '/index.xml');
-            if (!$index->exists() || ($index->getMTime() >= $configFile->getMTime())) {
-                return;
-            }
-            $this->logger->log("Configuration change detected - cleaning cache");
-            $cleaner = $this->factory->getDirectoryCleaner();
-            $cleaner->process($workDirectory);
-        }
-
-        /**
-         * Run collection process on given directory tree
-         *
-         * @param CollectorConfig $config Configuration options
-         *
-         * @throws ApplicationException
-         * @return void
-         */
-        public function runCollector(CollectorConfig $config) {
-            $this->logger->log("Starting collector");
-
-            $srcDir = $config->getSourceDirectory();
-            if (!$srcDir->isDir()) {
-                throw new ApplicationException(
-                    sprintf('Invalid src directory "%s" specified', $srcDir),
-                    ApplicationException::InvalidSrcDirectory
-                );
-            }
-
-            $collector = $this->factory->getCollector($config);
-
-            $scanner = $this->factory->getScanner(
-                $config->getIncludeMasks(),
-                $config->getExcludeMasks()
+        $srcDir = $config->getSourceDirectory();
+        if (!$srcDir->isDir()) {
+            throw new ApplicationException(
+                sprintf('Invalid src directory "%s" specified', $srcDir),
+                ApplicationException::InvalidSrcDirectory
             );
-            $project = $collector->run($scanner);
+        }
 
-            if ($collector->hasParseErrors()) {
-                $this->logger->log('The following file(s) had errors during processing and were excluded:');
-                foreach ($collector->getParseErrors() as $file => $message) {
-                    $this->logger->log(' - ' . $file . ' (' . $message . ')');
-                }
+        $collector = $this->factory->getCollector($config);
+
+        $scanner = $this->factory->getScanner(
+            $config->getIncludeMasks(),
+            $config->getExcludeMasks()
+        );
+        $project = $collector->run($scanner);
+
+        if ($collector->hasParseErrors()) {
+            $this->logger->log('The following file(s) had errors during processing and were excluded:');
+            foreach ($collector->getParseErrors() as $file => $message) {
+                $this->logger->log(' - ' . $file . ' (' . $message . ')');
             }
+        }
 
-            $this->logger->log(
-                sprintf("Saving results to directory '%s'", $config->getWorkDirectory())
-            );
-            $vanished = $project->cleanVanishedFiles();
-            if (count($vanished) > 0) {
-                $this->logger->log(sprintf("Removed %d vanished file(s) from project:", count($vanished)));
-                foreach ($vanished as $file) {
-                    $this->logger->log(' - ' . $file);
-                }
+        $this->logger->log(
+            sprintf("Saving results to directory '%s'", $config->getWorkDirectory())
+        );
+        $vanished = $project->cleanVanishedFiles();
+        if (count($vanished) > 0) {
+            $this->logger->log(sprintf("Removed %d vanished file(s) from project:", count($vanished)));
+            foreach ($vanished as $file) {
+                $this->logger->log(' - ' . $file);
             }
-            $changed = $project->save();
-            if ($config->doResolveInheritance()) {
-                /** @var $resolver InheritanceResolver */
-                $resolver = $this->factory->getInheritanceResolver();
-                $resolver->resolve($changed, $project, $config->getInheritanceConfig());
+        }
+        $changed = $project->save();
+        if ($config->doResolveInheritance()) {
+            /** @var $resolver InheritanceResolver */
+            $resolver = $this->factory->getInheritanceResolver();
+            $resolver->resolve($changed, $project, $config->getInheritanceConfig());
 
-                if ($resolver->hasUnresolved()) {
-                    $this->logger->log('The following unit(s) had missing dependencies during inheritance resolution:');
-                    foreach ($resolver->getUnresolved() as $class => $missing) {
-                        if (is_array($missing)) {
-                            $missing = join(', ', $missing);
-                        }
-                        $this->logger->log(' - ' . $class . ' (missing ' . $missing . ')');
+            if ($resolver->hasUnresolved()) {
+                $this->logger->log('The following unit(s) had missing dependencies during inheritance resolution:');
+                foreach ($resolver->getUnresolved() as $class => $missing) {
+                    if (is_array($missing)) {
+                        $missing = join(', ', $missing);
                     }
-                }
-
-                if ($resolver->hasErrors()) {
-                    $this->logger->log('The following unit(s) caused errors during inheritance resolution:');
-                    foreach ($resolver->getErrors() as $class => $error) {
-                        $this->logger->log(' - ' . $class . ': ' . implode(', ', $error));
-                    }
+                    $this->logger->log(' - ' . $class . ' (missing ' . $missing . ')');
                 }
             }
-            $this->logger->log("Collector process completed\n");
+
+            if ($resolver->hasErrors()) {
+                $this->logger->log('The following unit(s) caused errors during inheritance resolution:');
+                foreach ($resolver->getErrors() as $class => $error) {
+                    $this->logger->log(' - ' . $class . ': ' . implode(', ', $error));
+                }
+            }
+        }
+        $this->logger->log("Collector process completed\n");
+    }
+
+    /**
+     * Run Documentation generation process
+     *
+     * @param GeneratorConfig $config
+     *
+     * @throws ApplicationException
+     * @return void
+     */
+    public function runGenerator(GeneratorConfig $config) {
+        $this->logger->reset();
+        $this->logger->log("Starting generator");
+
+        $engineFactory = $this->factory->getEngineFactory();
+        $enricherFactory = $this->factory->getEnricherFactory();
+
+        $failed = array_diff($config->getRequiredEngines(), $engineFactory->getEngineList());
+        if (count($failed)) {
+            $list = join("', '", $failed);
+            throw new ApplicationException("The engine(s) '$list' is/are not registered", ApplicationException::UnknownEngine);
         }
 
-        /**
-         * Run Documentation generation process
-         *
-         * @param GeneratorConfig $config
-         *
-         * @throws ApplicationException
-         * @return void
-         */
-        public function runGenerator(GeneratorConfig $config) {
-            $this->logger->reset();
-            $this->logger->log("Starting generator");
+        $failed = array_diff($config->getRequiredEnrichers(), $enricherFactory->getEnricherList());
+        if (count($failed)) {
+            $list = join("', '", $failed);
+            throw new ApplicationException("The enricher(s) '$list' is/are not registered", ApplicationException::UnknownEnricher);
+        }
 
-            $engineFactory = $this->factory->getEngineFactory();
-            $enricherFactory = $this->factory->getEnricherFactory();
+        $generator = $this->factory->getGenerator();
 
-            $failed = array_diff($config->getRequiredEngines(), $engineFactory->getEngineList());
-            if (count($failed)) {
-                $list = join("', '", $failed);
-                throw new ApplicationException("The engine(s) '$list' is/are not registered", ApplicationException::UnknownEngine);
-            }
+        foreach ($config->getActiveBuilds() as $buildCfg) {
+            $generator->addEngine($engineFactory->getInstanceFor($buildCfg));
+        }
 
-            $failed = array_diff($config->getRequiredEnrichers(), $enricherFactory->getEnricherList());
-            if (count($failed)) {
-                $list = join("', '", $failed);
-                throw new ApplicationException("The enricher(s) '$list' is/are not registered", ApplicationException::UnknownEnricher);
-            }
-
-            $generator = $this->factory->getGenerator();
-
-            foreach ($config->getActiveBuilds() as $buildCfg) {
-                $generator->addEngine($engineFactory->getInstanceFor($buildCfg));
-            }
-
-            $this->logger->log('Loading enrichers');
-            foreach ($config->getActiveEnrichSources() as $type => $enrichCfg) {
-                try {
-                    $enricher = $enricherFactory->getInstanceFor($enrichCfg);
-                    $generator->addEnricher($enricher);
-                    $this->logger->log(
-                        sprintf('Enricher %s initialized successfully', $enricher->getName())
-                    );
-                } catch (EnricherException $e) {
-                    $this->logger->log(
-                        sprintf("Exception while initializing enricher %s:\n\n    %s\n",
-                            $type,
-                            $e->getMessage()
-                        )
-                    );
-                }
-            }
-
-            $pconfig = $config->getProjectConfig();
-
-            if (!file_exists($pconfig->getWorkDirectory() . '/index.xml')) {
-                throw new ApplicationException(
-                    'Workdirectory does not contain an index.xml file. Did you run the collector?',
-                    ApplicationException::IndexMissing
+        $this->logger->log('Loading enrichers');
+        foreach ($config->getActiveEnrichSources() as $type => $enrichCfg) {
+            try {
+                $enricher = $enricherFactory->getInstanceFor($enrichCfg);
+                $generator->addEnricher($enricher);
+                $this->logger->log(
+                    sprintf('Enricher %s initialized successfully', $enricher->getName())
+                );
+            } catch (EnricherException $e) {
+                $this->logger->log(
+                    sprintf("Exception while initializing enricher %s:\n\n    %s\n",
+                        $type,
+                        $e->getMessage()
+                    )
                 );
             }
+        }
 
-            if (!file_exists($pconfig->getWorkDirectory() . '/source.xml')) {
-                throw new ApplicationException(
-                    'Workdirectory does not contain an source.xml file. Did you run the collector?',
-                    ApplicationException::SourceMissing
-                );
-            }
+        $pconfig = $config->getProjectConfig();
 
-            $srcDir = $pconfig->getSourceDirectory();
-            if (!file_exists($srcDir) || !is_dir($srcDir)) {
-                throw new ApplicationException(
-                    sprintf('Invalid src directory "%s" specified', $srcDir),
-                    ApplicationException::InvalidSrcDirectory
-                );
-            }
-
-            $this->logger->log("Starting event loop.\n");
-            $generator->run(
-                new \TheSeer\phpDox\Generator\Project(
-                    $srcDir,
-                    $pconfig->getWorkDirectory()
-                )
+        if (!file_exists($pconfig->getWorkDirectory() . '/index.xml')) {
+            throw new ApplicationException(
+                'Workdirectory does not contain an index.xml file. Did you run the collector?',
+                ApplicationException::IndexMissing
             );
-            $this->logger->log("Generator process completed");
         }
 
+        if (!file_exists($pconfig->getWorkDirectory() . '/source.xml')) {
+            throw new ApplicationException(
+                'Workdirectory does not contain an source.xml file. Did you run the collector?',
+                ApplicationException::SourceMissing
+            );
+        }
+
+        $srcDir = $pconfig->getSourceDirectory();
+        if (!file_exists($srcDir) || !is_dir($srcDir)) {
+            throw new ApplicationException(
+                sprintf('Invalid src directory "%s" specified', $srcDir),
+                ApplicationException::InvalidSrcDirectory
+            );
+        }
+
+        $this->logger->log("Starting event loop.\n");
+        $generator->run(
+            new \TheSeer\phpDox\Generator\Project(
+                $srcDir,
+                $pconfig->getWorkDirectory()
+            )
+        );
+        $this->logger->log("Generator process completed");
     }
 
 }
+
+

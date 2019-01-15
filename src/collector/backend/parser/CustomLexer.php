@@ -34,33 +34,33 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    use PhpParser\Lexer\Emulative;
-    use PhpParser\Parser\Tokens;
+use PhpParser\Lexer\Emulative;
+use PhpParser\Parser\Tokens;
 
-    /**
-     * CustomLexer as suggest for workaround for issue 26 (https://github.com/nikic/PHP-Parser/issues/26)
-     */
-    class CustomLexer extends Emulative {
+/**
+ * CustomLexer as suggest for workaround for issue 26 (https://github.com/nikic/PHP-Parser/issues/26)
+ */
+class CustomLexer extends Emulative {
 
-        public function getNextToken(&$value = null, &$startAttributes = null, &$endAttributes = null) {
-            $tokenId = parent::getNextToken($value, $startAttributes, $endAttributes);
+    public function getNextToken(&$value = null, &$startAttributes = null, &$endAttributes = null) {
+        $tokenId = parent::getNextToken($value, $startAttributes, $endAttributes);
 
-            if ($tokenId == Tokens::T_CONSTANT_ENCAPSED_STRING
-                || $tokenId == Tokens::T_LNUMBER
-                || $tokenId == Tokens::T_DNUMBER
-            ) {
-                $endAttributes['originalValue'] = $value;
-            }
-            return $tokenId;
+        if ($tokenId == Tokens::T_CONSTANT_ENCAPSED_STRING
+            || $tokenId == Tokens::T_LNUMBER
+            || $tokenId == Tokens::T_DNUMBER
+        ) {
+            $endAttributes['originalValue'] = $value;
         }
+        return $tokenId;
+    }
 
-        protected function resetErrors() {
-            // kill PHPParser_Lexer's Error reset code as it breaks phpDox's error handling
-            return;
-        }
-
+    protected function resetErrors() {
+        // kill PHPParser_Lexer's Error reset code as it breaks phpDox's error handling
+        return;
     }
 
 }
+
+

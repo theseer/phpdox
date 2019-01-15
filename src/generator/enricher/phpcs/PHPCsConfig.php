@@ -1,11 +1,11 @@
 <?php
 
-namespace TheSeer\phpDox\Generator\Enricher {
+namespace TheSeer\phpDox\Generator\Enricher;
 
-    class PHPCsConfig extends CheckStyleConfig {
+class PHPCsConfig extends CheckStyleConfig {
 
-        protected $defaultFileName = 'phpcs.xml';
-
-    }
+    protected $defaultFileName = 'phpcs.xml';
 
 }
+
+

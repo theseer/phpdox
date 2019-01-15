@@ -34,164 +34,164 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    use TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
-    use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
-    use TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
-    use TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
+use TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
+use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
+use TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
+use TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
+
+/**
+ * Bootstrapping API for registering backends, generator engines and parsers
+ *
+ * This class provides the API for use within the bootstrap process to register
+ * collecting backends, additional parsers for annotations, generator engines for
+ * additional output formats as well as enrichment plugins
+ *
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ *
+ */
+class BootstrapApi {
 
     /**
-     * Bootstrapping API for registering backends, generator engines and parsers
+     * Reference to the BackendFactory instance
      *
-     * This class provides the API for use within the bootstrap process to register
-     * collecting backends, additional parsers for annotations, generator engines for
-     * additional output formats as well as enrichment plugins
-     *
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
-     *
+     * @var BackendFactory
      */
-    class BootstrapApi {
+    private $backendFactory;
 
-        /**
-         * Reference to the BackendFactory instance
-         *
-         * @var BackendFactory
-         */
-        private $backendFactory;
+    /**
+     * Reference to the EngineFactory instance
+     *
+     * @var EngineFactory
+     */
+    private $engineFactory;
 
-        /**
-         * Reference to the EngineFactory instance
-         *
-         * @var EngineFactory
-         */
-        private $engineFactory;
+    /**
+     * Reference to the DocblockParserFactory instance
+     *
+     * @var DocBlockFactory
+     */
+    private $parserFactory;
 
-        /**
-         * Reference to the DocblockParserFactory instance
-         *
-         * @var DocBlockFactory
-         */
-        private $parserFactory;
+    /**
+     * @var EnricherFactory
+     */
+    private $enricherFactory;
 
-        /**
-         * @var EnricherFactory
-         */
-        private $enricherFactory;
+    /**
+     * Array of registered engines
+     *
+     * @var array
+     */
+    private $engines = [];
 
-        /**
-         * Array of registered engines
-         *
-         * @var array
-         */
-        private $engines = [];
+    /**
+     * Array of registered enrichers
+     *
+     * @var array
+     */
+    private $enrichers = [];
 
-        /**
-         * Array of registered enrichers
-         *
-         * @var array
-         */
-        private $enrichers = [];
+    /**
+     * Array of registered backends
+     *
+     * @var array
+     */
+    private $backends = [];
 
-        /**
-         * Array of registered backends
-         *
-         * @var array
-         */
-        private $backends = [];
+    /**
+     * Constructor
+     *
+     * @param FactoryInterface $factory
+     */
+    public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
+        $this->backendFactory = $bf;
+        $this->engineFactory = $enf;
+        $this->parserFactory = $df;
+        $this->enricherFactory = $erf;
+        $this->logger = $logger;
+    }
 
-        /**
-         * Constructor
-         *
-         * @param FactoryInterface $factory
-         */
-        public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
-            $this->backendFactory = $bf;
-            $this->engineFactory = $enf;
-            $this->parserFactory = $df;
-            $this->enricherFactory = $erf;
-            $this->logger = $logger;
-        }
+    /**
+     * Get list of all registered generator engines
+     *
+     * @return array
+     */
+    public function getEngines() {
+        return $this->engines;
+    }
 
-        /**
-         * Get list of all registered generator engines
-         *
-         * @return array
-         */
-        public function getEngines() {
-            return $this->engines;
-        }
+    /**
+     * Get list of all registered enrichers
+     *
+     * @return array
+     */
+    public function getEnrichers() {
+        return $this->enrichers;
+    }
 
-        /**
-         * Get list of all registered enrichers
-         *
-         * @return array
-         */
-        public function getEnrichers() {
-            return $this->enrichers;
-        }
+    /**
+     * Get list of all registered collector backends
+     *
+     * @return array
+     */
+    public function getBackends() {
+        return $this->backends;
+    }
 
-        /**
-         * Get list of all registered collector backends
-         *
-         * @return array
-         */
-        public function getBackends() {
-            return $this->backends;
-        }
+    /**
+     * Register a new backend
+     *
+     * @param string $name        Name of the collector backend
+     * @param string $description A describing text
+     *
+     * @return BackendBootstrapApi
+     */
+    public function registerBackend($name, $description = 'no description set') {
+        $this->logger->log("Registered collector backend '$name'");
+        $this->backends[$name] = $description;
+        return new BackendBootstrapApi($name, $this->backendFactory);
+    }
 
-        /**
-         * Register a new backend
-         *
-         * @param string $name        Name of the collector backend
-         * @param string $description A describing text
-         *
-         * @return BackendBootstrapApi
-         */
-        public function registerBackend($name, $description = 'no description set') {
-            $this->logger->log("Registered collector backend '$name'");
-            $this->backends[$name] = $description;
-            return new BackendBootstrapApi($name, $this->backendFactory);
-        }
+    /**
+     * Register a new generator enginge
+     *
+     * @param string $name        Name of the generator engine
+     * @param string $description A describing text
+     *
+     * @return EngineBootstrapApi
+     */
+    public function registerEngine($name, $description) {
+        $this->logger->log("Registered output engine '$name'");
+        $this->engines[$name] = $description;
+        return new EngineBootstrapApi($name, $this->engineFactory);
+    }
 
-        /**
-         * Register a new generator enginge
-         *
-         * @param string $name        Name of the generator engine
-         * @param string $description A describing text
-         *
-         * @return EngineBootstrapApi
-         */
-        public function registerEngine($name, $description) {
-            $this->logger->log("Registered output engine '$name'");
-            $this->engines[$name] = $description;
-            return new EngineBootstrapApi($name, $this->engineFactory);
-        }
+    /**
+     * @param $annotation
+     *
+     * @return ParserBootstrapApi
+     */
+    public function registerParser($annotation) {
+        $this->logger->log("Registered parser for '$annotation' annotation");
+        return new ParserBootstrapApi($annotation, $this->parserFactory);
+    }
 
-        /**
-         * @param $annotation
-         *
-         * @return ParserBootstrapApi
-         */
-        public function registerParser($annotation) {
-            $this->logger->log("Registered parser for '$annotation' annotation");
-            return new ParserBootstrapApi($annotation, $this->parserFactory);
-        }
-
-        /**
-         * Register a new enricher
-         *
-         * @param string $name        Name of the enricher
-         * @param string $description A describing text
-         *
-         * @return EnricherBootstrapApi
-         */
-        public function registerEnricher($name, $description) {
-            $this->logger->log("Registered enricher '$name'");
-            $this->enrichers[$name] = $description;
-            return new EnricherBootstrapApi($name, $this->enricherFactory);
-        }
+    /**
+     * Register a new enricher
+     *
+     * @param string $name        Name of the enricher
+     * @param string $description A describing text
+     *
+     * @return EnricherBootstrapApi
+     */
+    public function registerEnricher($name, $description) {
+        $this->logger->log("Registered enricher '$name'");
+        $this->enrichers[$name] = $description;
+        return new EnricherBootstrapApi($name, $this->enricherFactory);
     }
 }
+

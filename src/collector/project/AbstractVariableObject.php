@@ -34,117 +34,117 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    use TheSeer\fDOM\fDOMElement;
+use TheSeer\fDOM\fDOMElement;
+
+/**
+ * Class AbstractVariableObject
+ *
+ * @package TheSeer\phpDox\Collector
+ */
+abstract class AbstractVariableObject {
+
+    const XMLNS = 'http://xml.phpdox.net/src';
 
     /**
-     * Class AbstractVariableObject
-     *
-     * @package TheSeer\phpDox\Collector
+     * @var \TheSeer\fDOM\fDOMElement
      */
-    abstract class AbstractVariableObject {
+    protected $ctx;
 
-        const XMLNS = 'http://xml.phpdox.net/src';
+    /**
+     * @var array
+     */
+    private $types = ['{unknown}', 'object', 'array', 'int', 'integer', 'float', 'string', 'bool', 'boolean', 'resource', 'callable'];
 
-        /**
-         * @var \TheSeer\fDOM\fDOMElement
-         */
-        protected $ctx;
+    /**
+     * @param fDOMElement $ctx
+     */
+    public function __construct(fDOMElement $ctx) {
+        $this->ctx = $ctx;
+    }
 
-        /**
-         * @var array
-         */
-        private $types = ['{unknown}', 'object', 'array', 'int', 'integer', 'float', 'string', 'bool', 'boolean', 'resource', 'callable'];
+    /**
+     * @return fDOMElement
+     */
+    public function export() {
+        return $this->ctx;
+    }
 
-        /**
-         * @param fDOMElement $ctx
-         */
-        public function __construct(fDOMElement $ctx) {
-            $this->ctx = $ctx;
+    /**
+     * @param $line
+     */
+    public function setLine($line) {
+        $this->ctx->setAttribute('line', $line);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLine() {
+        return $this->ctx->getAttribute('line');
+    }
+
+    /**
+     * @param $name
+     */
+    public function setName($name) {
+        $this->ctx->setAttribute('name', $name);
+    }
+
+    /**
+     * @return \DOMAttr
+     */
+    public function getName() {
+        return $this->ctx->getAttributeNode('name');
+    }
+
+    /**
+     * @param $value
+     */
+    public function setDefault($value) {
+        $this->ctx->setAttribute('default', $value);
+    }
+
+    public function setConstant($const) {
+        $this->ctx->setAttribute('constant', $const);
+    }
+
+    public function isInternalType($type) {
+        return in_array(mb_strtolower($type), $this->types);
+    }
+
+    /**
+     * @param $type
+     */
+    public function setType($type) {
+        if (!$this->isInternalType($type)) {
+            $parts = explode('\\', $type);
+            $local = array_pop($parts);
+            $namespace = join('\\', $parts);
+
+            $unit = $this->ctx->appendElementNS(self::XMLNS, 'type');
+            $unit->setAttribute('full', $type);
+            $unit->setAttribute('namespace', $namespace);
+            $unit->setAttribute('name', $local);
+            $type = 'object';
         }
+        $this->ctx->setAttribute('type', $type);
+    }
 
-        /**
-         * @return fDOMElement
-         */
-        public function export() {
-            return $this->ctx;
-        }
+    /**
+     * @return string
+     */
+    public function getType() {
+        return $this->ctx->getAttribute('type');
+    }
 
-        /**
-         * @param $line
-         */
-        public function setLine($line) {
-            $this->ctx->setAttribute('line', $line);
-        }
+    public function setNullable($isNullable) {
+        $this->ctx->setAttribute('nullable', $isNullable ? 'true' : 'false');
+    }
 
-        /**
-         * @return string
-         */
-        public function getLine() {
-            return $this->ctx->getAttribute('line');
-        }
-
-        /**
-         * @param $name
-         */
-        public function setName($name) {
-            $this->ctx->setAttribute('name', $name);
-        }
-
-        /**
-         * @return \DOMAttr
-         */
-        public function getName() {
-            return $this->ctx->getAttributeNode('name');
-        }
-
-        /**
-         * @param $value
-         */
-        public function setDefault($value) {
-            $this->ctx->setAttribute('default', $value);
-        }
-
-        public function setConstant($const) {
-            $this->ctx->setAttribute('constant', $const);
-        }
-
-        public function isInternalType($type) {
-            return in_array(mb_strtolower($type), $this->types);
-        }
-
-        /**
-         * @param $type
-         */
-        public function setType($type) {
-            if (!$this->isInternalType($type)) {
-                $parts = explode('\\', $type);
-                $local = array_pop($parts);
-                $namespace = join('\\', $parts);
-
-                $unit = $this->ctx->appendElementNS(self::XMLNS, 'type');
-                $unit->setAttribute('full', $type);
-                $unit->setAttribute('namespace', $namespace);
-                $unit->setAttribute('name', $local);
-                $type = 'object';
-            }
-            $this->ctx->setAttribute('type', $type);
-        }
-
-        /**
-         * @return string
-         */
-        public function getType() {
-            return $this->ctx->getAttribute('type');
-        }
-
-        public function setNullable($isNullable) {
-            $this->ctx->setAttribute('nullable', $isNullable ? 'true' : 'false');
-        }
-
-        protected function addInternalType($type) {
-            $this->types[] = $type;
-        }
+    protected function addInternalType($type) {
+        $this->types[] = $type;
     }
 }
+

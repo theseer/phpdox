@@ -1,9 +1,9 @@
 <?php
-namespace TheSeer\phpDox\Collector\Backend {
+namespace TheSeer\phpDox\Collector\Backend;
 
-    class ParseResultException extends \Exception {
+class ParseResultException extends \Exception {
 
-        const NoTokenDom = 1;
-    }
-
+    const NoTokenDom = 1;
 }
+
+

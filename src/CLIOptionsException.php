@@ -1,8 +1,8 @@
 <?php
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    class CLIOptionsException extends \Exception {
-
-    }
+class CLIOptionsException extends \Exception {
 
 }
+
+

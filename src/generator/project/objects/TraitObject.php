@@ -1,8 +1,8 @@
 <?php
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TraitObject extends ClassObject {
-
-    }
+class TraitObject extends ClassObject {
 
 }
+
+

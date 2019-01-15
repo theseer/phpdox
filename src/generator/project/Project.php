@@ -34,137 +34,137 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    use DOMNodeList;
-    use TheSeer\fDOM\fDOMDocument;
-    use TheSeer\phpDox\FileInfo;
+use DOMNodeList;
+use TheSeer\fDOM\fDOMDocument;
+use TheSeer\phpDox\FileInfo;
+
+/**
+ *
+ */
+class Project {
 
     /**
-     *
+     * @var string
      */
-    class Project {
+    private $xmlDir;
 
-        /**
-         * @var string
-         */
-        private $xmlDir;
+    /**
+     * @var string
+     */
+    private $srcDir;
 
-        /**
-         * @var string
-         */
-        private $srcDir;
+    /**
+     * @var fDOMDocument
+     */
+    private $source = null;
 
-        /**
-         * @var fDOMDocument
-         */
-        private $source = null;
+    /**
+     * @var fDOMDocument
+     */
+    private $index = null;
 
-        /**
-         * @var fDOMDocument
-         */
-        private $index = null;
-
-        /**
-         * @param FileInfo $srcDir
-         * @param FileInfo $xmlDir
-         */
-        public function __construct(FileInfo $srcDir, FileInfo $xmlDir) {
-            $this->xmlDir = $xmlDir;
-            $this->srcDir = $srcDir;
-            $this->initCollections();
-        }
-
-        /**
-         * @return FileInfo
-         */
-        public function getSourceDir() {
-            return $this->srcDir;
-        }
-
-        /**
-         * @return FileInfo
-         */
-        public function getXmlDir() {
-            return $this->xmlDir;
-        }
-
-        /**
-         * @return Index
-         */
-        public function getIndex() {
-            return new Index($this->index);
-        }
-
-        /**
-         * @return SourceTree
-         */
-        public function getSourceTree() {
-            return new SourceTree($this->source);
-        }
-
-        /**
-         * @return bool
-         */
-        public function hasNamespaces() {
-            return $this->index->query('count(//phpdox:namespace[not(@name="/")])') > 0;
-        }
-
-        /**
-         * @return DOMNodeList
-         */
-        public function getNamespaces() {
-            return new NamespaceCollection($this->index->query('//phpdox:namespace'));
-        }
-
-        /**
-         * @param string $namespace
-         *
-         * @return ClassCollection
-         */
-        public function getClasses($namespace = null) {
-            $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return new ClassCollection($this->index->query($root . 'phpdox:class'));
-        }
-
-        /**
-         * @param string $namespace
-         *
-         * @return TraitCollection
-         */
-        public function getTraits($namespace = null) {
-            $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return new TraitCollection($this->index->query($root . 'phpdox:trait'));
-        }
-
-        /**
-         * @param string $namespace
-         *
-         * @return InterfaceCollection
-         */
-        public function getInterfaces($namespace = null) {
-            $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
-            return new InterfaceCollection($this->index->query($root . 'phpdox:interface'));
-        }
-
-        /**
-         * @return void
-         */
-        private function initCollections() {
-            $this->source = new fDOMDocument();
-            $this->source->load($this->xmlDir . '/source.xml');
-            $this->source->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
-
-            $this->index = new fDOMDocument();
-            $this->index->load($this->xmlDir . '/index.xml');
-            $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
-        }
-
+    /**
+     * @param FileInfo $srcDir
+     * @param FileInfo $xmlDir
+     */
+    public function __construct(FileInfo $srcDir, FileInfo $xmlDir) {
+        $this->xmlDir = $xmlDir;
+        $this->srcDir = $srcDir;
+        $this->initCollections();
     }
 
-    class ProjectException extends \Exception {
-
-        const UnitNotFoundInIndex = 1;
-
+    /**
+     * @return FileInfo
+     */
+    public function getSourceDir() {
+        return $this->srcDir;
     }
+
+    /**
+     * @return FileInfo
+     */
+    public function getXmlDir() {
+        return $this->xmlDir;
+    }
+
+    /**
+     * @return Index
+     */
+    public function getIndex() {
+        return new Index($this->index);
+    }
+
+    /**
+     * @return SourceTree
+     */
+    public function getSourceTree() {
+        return new SourceTree($this->source);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasNamespaces() {
+        return $this->index->query('count(//phpdox:namespace[not(@name="/")])') > 0;
+    }
+
+    /**
+     * @return DOMNodeList
+     */
+    public function getNamespaces() {
+        return new NamespaceCollection($this->index->query('//phpdox:namespace'));
+    }
+
+    /**
+     * @param string $namespace
+     *
+     * @return ClassCollection
+     */
+    public function getClasses($namespace = null) {
+        $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+        return new ClassCollection($this->index->query($root . 'phpdox:class'));
+    }
+
+    /**
+     * @param string $namespace
+     *
+     * @return TraitCollection
+     */
+    public function getTraits($namespace = null) {
+        $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+        return new TraitCollection($this->index->query($root . 'phpdox:trait'));
+    }
+
+    /**
+     * @param string $namespace
+     *
+     * @return InterfaceCollection
+     */
+    public function getInterfaces($namespace = null) {
+        $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+        return new InterfaceCollection($this->index->query($root . 'phpdox:interface'));
+    }
+
+    /**
+     * @return void
+     */
+    private function initCollections() {
+        $this->source = new fDOMDocument();
+        $this->source->load($this->xmlDir . '/source.xml');
+        $this->source->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
+
+        $this->index = new fDOMDocument();
+        $this->index->load($this->xmlDir . '/index.xml');
+        $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
+    }
+
 }
+
+class ProjectException extends \Exception {
+
+    const UnitNotFoundInIndex = 1;
+
+}
+

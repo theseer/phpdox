@@ -34,37 +34,37 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox\Collector {
+namespace TheSeer\phpDox\Collector;
 
-    use TheSeer\phpDox\DocBlock\DocBlock;
+use TheSeer\phpDox\DocBlock\DocBlock;
 
-    class MemberObject extends AbstractVariableObject {
+class MemberObject extends AbstractVariableObject {
 
-        /**
-         * @param boolean $isStatic
-         */
-        public function setStatic($isStatic) {
-            $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
-        }
-
-        /**
-         * @param string $visibility
-         */
-        public function setVisibility($visibility) {
-            if (!in_array($visibility, ['public', 'private', 'protected'])) {
-                throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
-            }
-            $this->ctx->setAttribute('visibility', $visibility);
-        }
-
-        public function setDocBlock(DocBlock $docblock) {
-            $docNode = $docblock->asDom($this->ctx->ownerDocument);
-            if ($this->ctx->hasChildNodes()) {
-                $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
-                return;
-            }
-            $this->ctx->appendChild($docNode);
-        }
-
+    /**
+     * @param boolean $isStatic
+     */
+    public function setStatic($isStatic) {
+        $this->ctx->setAttribute('static', $isStatic ? 'true' : 'false');
     }
+
+    /**
+     * @param string $visibility
+     */
+    public function setVisibility($visibility) {
+        if (!in_array($visibility, ['public', 'private', 'protected'])) {
+            throw new MethodObjectException("'$visibility' is not valid'", MethodObjectException::InvalidVisibility);
+        }
+        $this->ctx->setAttribute('visibility', $visibility);
+    }
+
+    public function setDocBlock(DocBlock $docblock) {
+        $docNode = $docblock->asDom($this->ctx->ownerDocument);
+        if ($this->ctx->hasChildNodes()) {
+            $this->ctx->insertBefore($docNode, $this->ctx->firstChild);
+            return;
+        }
+        $this->ctx->appendChild($docNode);
+    }
+
 }
+

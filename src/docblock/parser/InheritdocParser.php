@@ -35,14 +35,14 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\DocBlock {
+namespace TheSeer\phpDox\DocBlock;
 
-    class InheritdocParser extends GenericParser {
+class InheritdocParser extends GenericParser {
 
-        public function getObject(array $buffer) {
-            return $this->buildObject('inheritdoc', $buffer);
-        }
-
+    public function getObject(array $buffer) {
+        return $this->buildObject('inheritdoc', $buffer);
     }
 
 }
+
+

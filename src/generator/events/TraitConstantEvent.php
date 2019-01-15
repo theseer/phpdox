@@ -35,25 +35,25 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TraitConstantEvent extends ConstantEvent {
+class TraitConstantEvent extends ConstantEvent {
 
-        private $trait;
+    private $trait;
 
-        public function __construct(ConstantObject $constant, TraitObject $trait) {
-            parent::__construct($constant);
-            $this->trait = $trait;
-        }
+    public function __construct(ConstantObject $constant, TraitObject $trait) {
+        parent::__construct($constant);
+        $this->trait = $trait;
+    }
 
-        public function getTrait() {
-            return $this->trait;
-        }
+    public function getTrait() {
+        return $this->trait;
+    }
 
-        protected function getEventName() {
-            return 'trait.constant';
-        }
-
+    protected function getEventName() {
+        return 'trait.constant';
     }
 
 }
+
+

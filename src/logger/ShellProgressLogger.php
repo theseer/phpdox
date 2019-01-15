@@ -35,105 +35,105 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
+
+/**
+ * Shell output based logger
+ */
+class ShellProgressLogger implements ProgressLogger {
 
     /**
-     * Shell output based logger
+     * @var array
      */
-    class ShellProgressLogger implements ProgressLogger {
+    private $stateChars;
 
-        /**
-         * @var array
-         */
-        private $stateChars;
+    /**
+     * @var int
+     */
+    private $totalCount = 0;
 
-        /**
-         * @var int
-         */
-        private $totalCount = 0;
+    /**
+     * @var array
+     */
+    private $stateCount = [
+        'processed' => 0,
+        'cached'    => 0,
+        'failed'    => 0
+    ];
 
-        /**
-         * @var array
-         */
-        private $stateCount = [
+    /**
+     * @param string $processed
+     * @param string $cached
+     * @param string $failed
+     */
+    public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
+        $this->stateChars = [
+            'processed' => $processed,
+            'cached'    => $cached,
+            'failed'    => $failed
+        ];
+    }
+
+    /**
+     * @param $state
+     *
+     * @throws ProgressLoggerException
+     */
+    public function progress($state) {
+        if (!isset($this->stateChars[$state])) {
+            throw new ProgressLoggerException("Unkown progress state '$state'", ProgressLoggerException::UnknownState);
+        }
+        $this->stateCount[$state]++;
+        $this->totalCount++;
+
+        echo $this->stateChars[$state];
+        if ($this->totalCount % 50 == 0) {
+            echo "\t[" . $this->totalCount . "]\n";
+        }
+    }
+
+    /**
+     *
+     */
+    public function reset() {
+        $this->totalCount = 0;
+        $this->stateCount = [
             'processed' => 0,
             'cached'    => 0,
             'failed'    => 0
         ];
+    }
 
-        /**
-         * @param string $processed
-         * @param string $cached
-         * @param string $failed
-         */
-        public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
-            $this->stateChars = [
-                'processed' => $processed,
-                'cached'    => $cached,
-                'failed'    => $failed
-            ];
+    /**
+     *
+     */
+    public function completed() {
+        $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
+        if ($pad != 0) {
+            echo str_pad('', $pad, ' ') . "\t[" . $this->totalCount . "]\n";
         }
+        echo "\n";
+    }
 
-        /**
-         * @param $state
-         *
-         * @throws ProgressLoggerException
-         */
-        public function progress($state) {
-            if (!isset($this->stateChars[$state])) {
-                throw new ProgressLoggerException("Unkown progress state '$state'", ProgressLoggerException::UnknownState);
-            }
-            $this->stateCount[$state]++;
-            $this->totalCount++;
-
-            echo $this->stateChars[$state];
-            if ($this->totalCount % 50 == 0) {
-                echo "\t[" . $this->totalCount . "]\n";
-            }
+    /**
+     * @param $msg
+     */
+    public function log($msg) {
+        if (func_num_args() > 1) {
+            $msg = vsprintf($msg, array_slice(func_get_args(), 1));
         }
+        echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
+    }
 
-        /**
-         *
-         */
-        public function reset() {
-            $this->totalCount = 0;
-            $this->stateCount = [
-                'processed' => 0,
-                'cached'    => 0,
-                'failed'    => 0
-            ];
-        }
-
-        /**
-         *
-         */
-        public function completed() {
-            $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad != 0) {
-                echo str_pad('', $pad, ' ') . "\t[" . $this->totalCount . "]\n";
-            }
-            echo "\n";
-        }
-
-        /**
-         * @param $msg
-         */
-        public function log($msg) {
-            if (func_num_args() > 1) {
-                $msg = vsprintf($msg, array_slice(func_get_args(), 1));
-            }
-            echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";
-        }
-
-        /**
-         *
-         */
-        public function buildSummary() {
-            echo "\n\n";
-            echo \PHP_Timer::resourceUsage();
-            echo "\n\n";
-        }
-
+    /**
+     *
+     */
+    public function buildSummary() {
+        echo "\n\n";
+        echo \PHP_Timer::resourceUsage();
+        echo "\n\n";
     }
 
 }
+
+

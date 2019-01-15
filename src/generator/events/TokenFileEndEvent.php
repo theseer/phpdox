@@ -35,14 +35,14 @@
  * @license    BSD License
  *
  */
-namespace TheSeer\phpDox\Generator {
+namespace TheSeer\phpDox\Generator;
 
-    class TokenFileEndEvent extends AbstractEvent {
+class TokenFileEndEvent extends AbstractEvent {
 
-        protected function getEventName() {
-            return 'token.line.end';
-        }
-
+    protected function getEventName() {
+        return 'token.line.end';
     }
 
 }
+
+
