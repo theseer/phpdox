@@ -124,7 +124,7 @@ class Tokenizer {
 
             for ($t = $this->lastLine + 1; $t < $token['line']; $t++) {
                 $this->writer->startElement('line');
-                $this->writer->writeAttribute('no', $t);
+                $this->writer->writeAttribute('no', (string)$t);
                 $this->writer->endElement();
             }
             $this->writer->startElement('line');
