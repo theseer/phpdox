@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
+use SebastianBergmann\Timer\Timer;
+
 /**
  * Shell output based logger
  */
@@ -86,7 +88,7 @@ class ShellProgressLogger implements ProgressLogger {
 
     public function buildSummary(): void {
         print "\n\n";
-        print \PHP_Timer::resourceUsage();
+        print Timer::resourceUsage();
         print "\n\n";
     }
 }
