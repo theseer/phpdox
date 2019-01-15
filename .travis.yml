@@ -4,11 +4,12 @@ os:
 language: php
 
 php:
-  - 5.6
-  - 7.0
   - 7.1
-  - 7.0snapshot
+  - 7.2
+  - 7.3
   - 7.1snapshot
+  - 7.2snapshot
+  - 7.3snapshot
   - master
 
 matrix:
@@ -26,7 +27,7 @@ before_install:
 
 install:
   - travis_retry composer install --no-interaction --prefer-source
-  - phive install --trust-gpg-keys 4AA394086372C20A,2A8299CE842DD38C phpab phpunit@^5.7
+  - phive install --trust-gpg-keys 4AA394086372C20A,2A8299CE842DD38C,E82B2FB314E9906E
 
 script: ./tools/phpunit
 
