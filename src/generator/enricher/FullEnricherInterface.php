@@ -6,8 +6,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
         InterfaceEnricherInterface,
         TraitEnricherInterface,
         ClassEnricherInterface,
-        EndEnricherInterface
-    {
+        EndEnricherInterface {
+
     }
 
 }

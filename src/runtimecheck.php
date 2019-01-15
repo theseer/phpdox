@@ -4,7 +4,7 @@ if (defined('HHVM_VERSION')) {
     fwrite(
         STDERR,
         "It seems like you are using HHVM to run phpDox.\nHHVM is no longer a supported environment." .
-             "Please consider using PHP 7.x.\n\n"
+        "Please consider using PHP 7.x.\n\n"
     );
     return;
 }

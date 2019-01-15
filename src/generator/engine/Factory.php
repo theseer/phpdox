@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,8 +42,9 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     class Factory {
 
-        protected $engines = array();
-        protected $configs = array();
+        protected $engines = [];
+
+        protected $configs = [];
 
         public function addEngineClass($name, $class) {
             $this->engines[$name] = $class;
@@ -82,6 +83,7 @@ namespace TheSeer\phpDox\Generator\Engine {
     }
 
     class FactoryException extends \Exception {
+
         const UnknownEngine = 1;
     }
 }

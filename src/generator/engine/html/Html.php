@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -39,9 +39,6 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     use TheSeer\fDom\fDomDocument;
     use TheSeer\fXSL\fXSLTProcessor;
-
-    use TheSeer\phpDox\FileInfo;
-    use TheSeer\phpDox\Generator\AbstractEvent;
     use TheSeer\phpDox\Generator\ClassMethodEvent;
     use TheSeer\phpDox\Generator\ClassStartEvent;
     use TheSeer\phpDox\Generator\InterfaceMethodEvent;
@@ -75,17 +72,27 @@ namespace TheSeer\phpDox\Generator\Engine {
         private $xslSource;
 
         private $templateDir;
+
         private $resourceDir;
+
         private $outputDir;
+
         private $projectNode;
+
         private $extension;
+
         private $workDir;
+
         private $sourceDir;
 
         private $hasNamespaces = false;
+
         private $hasInterfaces = false;
+
         private $hasTraits = false;
+
         private $hasClasses = false;
+
         private $hasReports;
 
         public function __construct(HtmlConfig $config) {
@@ -178,19 +185,19 @@ namespace TheSeer\phpDox\Generator\Engine {
         private function renderSourceIndexes(fDOMDocument $treeDom) {
             $proc = $this->getXSLTProcessor('directory.xsl');
             $dirList = $treeDom->query('/phpdox:source//phpdox:dir');
-            foreach($dirList as $dirNode) {
+            foreach ($dirList as $dirNode) {
                 $dirNode->setAttributeNS('ctx://engine/html', 'ctx:engine', 'current');
 
                 $parents = $dirNode->query('ancestor-or-self::phpdox:dir');
-                $elements = array();
-                foreach($parents as $parent) {
+                $elements = [];
+                foreach ($parents as $parent) {
                     $elements[] = $parent->getAttribute('name');
                 }
                 $elements[0] = $this->outputDir . '/source';
                 $elements[] = 'index.' . $this->extension;
 
                 $proc->setParameter('', 'base', str_repeat('../', count($elements) - 1));
-                $this->saveDomDocument( $proc->transformToDoc($treeDom), join('/', $elements));
+                $this->saveDomDocument($proc->transformToDoc($treeDom), join('/', $elements));
 
                 $dirNode->removeAttributeNS('ctx://engine/html', 'engine');
             }
@@ -199,7 +206,7 @@ namespace TheSeer\phpDox\Generator\Engine {
         public function buildFinish(PHPDoxEndEvent $event) {
             $this->renderIndexPages($event->getIndex()->asDom());
             $this->renderSourceIndexes($event->getTree()->asDom());
-            $this->copyStatic($this->resourceDir, $this->outputDir, TRUE);
+            $this->copyStatic($this->resourceDir, $this->outputDir, true);
         }
 
         public function buildClass(ClassStartEvent $event) {
@@ -263,7 +270,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->saveDomDocument(
                 $html,
                 $this->outputDir . '/source/' . $path . '.' . $this->extension,
-                FALSE
+                false
             );
 
         }
@@ -278,9 +285,9 @@ namespace TheSeer\phpDox\Generator\Engine {
             $this->saveDomDocument($html, $filename);
         }
 
-        private function classNameToFileName($class, $method = NULL) {
+        private function classNameToFileName($class, $method = null) {
             $name = str_replace('\\', '_', $class);
-            if ($method !== NULL) {
+            if ($method !== null) {
                 $name .= '/' . $method;
             }
             return $name . '.' . $this->extension;

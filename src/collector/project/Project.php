@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -59,20 +59,21 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @var SourceCollection
          */
-        private $source = NULL;
+        private $source = null;
 
         /**
          * @var IndexCollection
          */
-        private $index = NULL;
+        private $index = null;
 
         /**
          * @var SourceFile[]
          */
-        private $files  = array();
+        private $files = [];
 
-        private $saveUnits = array();
-        private $loadedUnits = array();
+        private $saveUnits = [];
+
+        private $loadedUnits = [];
 
         /**
          * @param $srcDir
@@ -100,6 +101,7 @@ namespace TheSeer\phpDox\Collector {
 
         /**
          * @param FileInfo $file
+         *
          * @return bool
          */
         public function addFile(SourceFile $file) {
@@ -171,6 +173,7 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @param $namespace
          * @param $name
+         *
          * @return fDOMElement
          */
         public function getUnitByName($name) {
@@ -187,24 +190,28 @@ namespace TheSeer\phpDox\Collector {
             }
 
             switch ($indexNode->localName) {
-                case 'interface': {
-                    $unit = new InterfaceObject();
-                    break;
-                }
-                case 'trait': {
-                    $unit = new TraitObject();
-                    break;
-                }
-                case 'class': {
-                    $unit = new ClassObject();
-                    break;
-                }
-                default: {
-                    throw new ProjectException(
-                        sprintf('Unexpected type "%s"', $indexNode->localName),
-                        ProjectException::UnexpectedType
-                    );
-                }
+                case 'interface':
+                    {
+                        $unit = new InterfaceObject();
+                        break;
+                    }
+                case 'trait':
+                    {
+                        $unit = new TraitObject();
+                        break;
+                    }
+                case 'class':
+                    {
+                        $unit = new ClassObject();
+                        break;
+                    }
+                default:
+                    {
+                        throw new ProjectException(
+                            sprintf('Unexpected type "%s"', $indexNode->localName),
+                            ProjectException::UnexpectedType
+                        );
+                    }
             }
 
             $dom = new fDOMDocument();
@@ -225,7 +232,6 @@ namespace TheSeer\phpDox\Collector {
             return $files;
         }
 
-
         public function registerForSaving(AbstractUnitObject $unit) {
             $this->saveUnits[$unit->getName()] = $unit;
         }
@@ -239,17 +245,17 @@ namespace TheSeer\phpDox\Collector {
 
                 $indexDom = $this->index->export();
                 $reportUnits = $this->saveUnits;
-                foreach($this->saveUnits as $unit) {
+                foreach ($this->saveUnits as $unit) {
                     $reportUnits = $this->saveUnit($map, $reportUnits, $unit);
                 }
-                $indexDom->formatOutput = TRUE;
-                $indexDom->preserveWhiteSpace = FALSE;
+                $indexDom->formatOutput = true;
+                $indexDom->preserveWhiteSpace = false;
                 $indexDom->save($this->xmlDir . '/index.xml');
 
                 $this->saveSources();
 
-                $this->saveUnits = array();
-                $this->files = array();
+                $this->saveUnits = [];
+                $this->files = [];
 
                 return $reportUnits;
             } catch (\Exception $e) {
@@ -267,7 +273,7 @@ namespace TheSeer\phpDox\Collector {
          * @return array
          */
         private function findAffectedUnits($fname) {
-            $affected = array();
+            $affected = [];
             $dom = new fDOMDocument();
             $dom->load($this->xmlDir . '/' . $fname);
             $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
@@ -275,13 +281,15 @@ namespace TheSeer\phpDox\Collector {
             if ($extends instanceof fDOMElement) {
                 try {
                     $affected[$extends->getAttribute('full')] = $this->getUnitByName($extends->getAttribute('full'));
-                } catch (ProjectException $e) {}
+                } catch (ProjectException $e) {
+                }
             }
             $implements = $dom->query('//phpdox:implements');
-            foreach($implements as $implement) {
+            foreach ($implements as $implement) {
                 try {
                     $affected[$implement->getAttribute('full')] = $this->getUnitByName($implement->getAttribute('full'));
-                } catch (ProjectException $e) {}
+                } catch (ProjectException $e) {
+                }
             }
             return $affected;
         }
@@ -301,8 +309,8 @@ namespace TheSeer\phpDox\Collector {
             }
             $name = str_replace('\\', '_', $unit->getName());
             $dom = $unit->export();
-            $dom->formatOutput = TRUE;
-            $dom->preserveWhiteSpace = FALSE;
+            $dom->formatOutput = true;
+            $dom->preserveWhiteSpace = false;
             $fname = $map[$dom->documentElement->localName] . '/' . $name . '.xml';
             try {
                 $dom->save($this->xmlDir . '/' . $fname);
@@ -328,15 +336,16 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function initDirectories() {
-            $map = array('class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces');
+            $map = ['class' => 'classes', 'trait' => 'traits', 'interface' => 'interfaces'];
             foreach ($map as $col) {
                 $path = $this->xmlDir . '/' . $col;
                 if (!file_exists($path)) {
-                    mkdir($path, 0777, TRUE);
+                    mkdir($path, 0777, true);
                 }
             }
             return $map;
         }
+
         /**
          * @return void
          */
@@ -363,7 +372,7 @@ namespace TheSeer\phpDox\Collector {
          * @param string $path
          */
         private function removeFileReferences($path) {
-            foreach($this->index->findUnitNodesBySrcFile($path) as $node) {
+            foreach ($this->index->findUnitNodesBySrcFile($path) as $node) {
                 /** @var $node \DOMElement */
                 $fname = $this->xmlDir . '/' . $node->getAttribute('xml');
                 if (file_exists($fname)) {
@@ -374,11 +383,11 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function saveSources() {
-            foreach($this->files as $file) {
+            foreach ($this->files as $file) {
                 $tokenDom = $file->getTokens();
-                $tokenDom->formatOutput = TRUE;
-                $tokenDom->preserveWhiteSpace = FALSE;
-                $relName = 'tokens/' . $file->getRelative($this->srcDir, FALSE) . '.xml';
+                $tokenDom->formatOutput = true;
+                $tokenDom->preserveWhiteSpace = false;
+                $relName = 'tokens/' . $file->getRelative($this->srcDir, false) . '.xml';
                 $fname = $this->xmlDir . '/' . $relName;
                 $dir = dirname($fname);
                 if (!file_exists($dir)) {
@@ -400,8 +409,8 @@ namespace TheSeer\phpDox\Collector {
             }
 
             $sourceDom = $this->source->export();
-            $sourceDom->formatOutput = TRUE;
-            $sourceDom->preserveWhiteSpace = FALSE;
+            $sourceDom->formatOutput = true;
+            $sourceDom->preserveWhiteSpace = false;
             $sourceDom->save($this->xmlDir . '/source.xml');
         }
 

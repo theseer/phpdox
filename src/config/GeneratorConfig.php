@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -73,8 +73,8 @@ namespace TheSeer\phpDox {
 
         public function getActiveBuilds() {
             if (!is_array($this->builds)) {
-                $this->builds = array();
-                foreach($this->ctx->query('cfg:build[@engine and (not(@enabled) or @enabled="true")]') as $ctx) {
+                $this->builds = [];
+                foreach ($this->ctx->query('cfg:build[@engine and (not(@enabled) or @enabled="true")]') as $ctx) {
                     $this->builds[] = new BuildConfig($this, $ctx);
                 }
             }
@@ -82,16 +82,16 @@ namespace TheSeer\phpDox {
         }
 
         public function getRequiredEngines() {
-            $engines = array();
-            foreach($this->getActiveBuilds() as $build) {
+            $engines = [];
+            foreach ($this->getActiveBuilds() as $build) {
                 $engines[] = $build->getEngine();
             }
             return array_unique($engines);
         }
 
         public function getRequiredEnrichers() {
-            $enrichers = array();
-            foreach($this->getActiveEnrichSources() as $source) {
+            $enrichers = [];
+            foreach ($this->getActiveEnrichSources() as $source) {
                 $enrichers[] = $source->getType();
             }
             return array_unique($enrichers);
@@ -99,8 +99,8 @@ namespace TheSeer\phpDox {
 
         public function getActiveEnrichSources() {
             if (!is_array($this->enrichers)) {
-                $this->enrichers = array();
-                foreach($this->ctx->query('cfg:enrich/cfg:source[@type and (not(@enabled) or @enabled="true")]') as $ctx) {
+                $this->enrichers = [];
+                foreach ($this->ctx->query('cfg:enrich/cfg:source[@type and (not(@enabled) or @enabled="true")]') as $ctx) {
                     $this->enrichers[$ctx->getAttribute('type')] = new EnrichConfig($this, $ctx);
                 }
                 if (!isset($this->enrichers['build'])) {

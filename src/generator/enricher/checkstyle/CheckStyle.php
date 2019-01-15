@@ -13,7 +13,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
     class CheckStyle extends AbstractEnricher implements ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface {
 
         protected $config;
-        protected $findings = NULL;
+
+        protected $findings = null;
 
         const FINDINGS_XPATH = '/checkstyle/file';
         const XML_STYLE = 'checkstyle';
@@ -50,7 +51,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function loadFindings($xmlFile) {
-            $this->findings = array();
+            $this->findings = [];
             try {
                 if (!file_exists($xmlFile)) {
                     throw new EnricherException(
@@ -60,7 +61,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
                 $dom = new fDOMDocument();
                 $dom->load($xmlFile);
-                foreach($dom->query(static::FINDINGS_XPATH) as $file) {
+                foreach ($dom->query(static::FINDINGS_XPATH) as $file) {
                     $this->findings[$file->getAttribute('name')] = $file->query('*');
                 }
             } catch (fDOMException $e) {
@@ -73,7 +74,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         private function processFindings(fDOMDocument $dom, \DOMNodeList $findings) {
 
-            foreach($findings as $finding) {
+            foreach ($findings as $finding) {
                 /** @var fDOMElement $finding */
                 $line = $finding->getAttribute('line');
                 $ref = $dom->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
@@ -89,10 +90,10 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         protected function processFinding(fDOMDocument $dom, $ref, \DOMElement $finding, $elementName = null) {
-            $enrichment    = $this->getEnrichtmentContainer($ref, 'checkstyle');
+            $enrichment = $this->getEnrichtmentContainer($ref, 'checkstyle');
             $enrichFinding = $dom->createElementNS(static::XMLNS, ($elementName ?: $finding->getAttribute('severity', 'error')));
             $enrichment->appendChild($enrichFinding);
-            foreach($finding->attributes as $attr) {
+            foreach ($finding->attributes as $attr) {
                 if ($attr->localName == 'severity') {
                     continue;
                 }

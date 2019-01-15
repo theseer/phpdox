@@ -6,7 +6,7 @@
     <!-- Additional bootstrap files to load for additional parsers, enrichers and/or engines -->
     <!-- Place as many require nodes as you feel like in this container -->
     <!-- syntax: <require file="/path/to/file.php" /> -->
-    <bootstrap />
+    <bootstrap/>
 
     <!-- A phpDox project to process, you can have multiple projects in one config file -->
     <project name="phpdox" source="${basedir}/src" workdir="${basedir}/build/phpdox/xml">
@@ -42,8 +42,8 @@
 
             <!--  <include / exclude filter for filelist generator, mask must follow fnmatch() requirements  -->
             <!--  Multiple elements can be added to define more than one mask per filter -->
-            <include mask="*.php" />
-            <exclude mask="" />
+            <include mask="*.php"/>
+            <exclude mask=""/>
 
             <!--  How to handle inheritance -->
             <inheritance resolve="true">
@@ -102,8 +102,8 @@
 
                 <!-- PHPUnit Coverage XML -->
                 <!-- <source type="phpunit">  -->
-                    <!-- <coverage path="" /> -->
-                    <!--           @path - the directory where the xml code coverage report can be found -->
+                <!-- <coverage path="" /> -->
+                <!--           @path - the directory where the xml code coverage report can be found -->
                 <!--</source>-->
                 <!--
                 <source type="phpunit">
@@ -122,8 +122,8 @@
 
             <!--  default engine "html" -->
             <build engine="html" enabled="true" output="html">
-                <template dir="${phpDox.home}/templates/html" />
-                <file extension="xhtml" />
+                <template dir="${phpDox.home}/templates/html"/>
+                <file extension="xhtml"/>
             </build>
 
         </generator>

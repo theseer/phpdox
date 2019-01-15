@@ -5,7 +5,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     use TheSeer\fDOM\fDOMException;
     use TheSeer\phpDox\Generator\PHPDoxStartEvent;
 
-    class PHPLoc extends  AbstractEnricher implements StartEnricherInterface {
+    class PHPLoc extends AbstractEnricher implements StartEnricherInterface {
 
         /**
          * @var fDOMDocument
@@ -29,7 +29,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             // Import nodes in a loop to fix empty namespaces until sebastian fixes phploc to generate
             // "proper" xml ;)
-            foreach($this->dom->documentElement->getElementsByTagName('*') as $node) {
+            foreach ($this->dom->documentElement->getElementsByTagName('*') as $node) {
                 /** @var \DOMNode $node */
 
                 $enrichment->appendChild(

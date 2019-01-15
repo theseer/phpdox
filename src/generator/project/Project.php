@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -58,12 +58,12 @@ namespace TheSeer\phpDox\Generator {
         /**
          * @var fDOMDocument
          */
-        private $source = NULL;
+        private $source = null;
 
         /**
          * @var fDOMDocument
          */
-        private $index = NULL;
+        private $index = null;
 
         /**
          * @param FileInfo $srcDir
@@ -88,7 +88,6 @@ namespace TheSeer\phpDox\Generator {
         public function getXmlDir() {
             return $this->xmlDir;
         }
-
 
         /**
          * @return Index
@@ -120,28 +119,31 @@ namespace TheSeer\phpDox\Generator {
 
         /**
          * @param string $namespace
+         *
          * @return ClassCollection
          */
-        public function getClasses($namespace = NULL) {
-            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+        public function getClasses($namespace = null) {
+            $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
             return new ClassCollection($this->index->query($root . 'phpdox:class'));
         }
 
         /**
          * @param string $namespace
+         *
          * @return TraitCollection
          */
-        public function getTraits($namespace = NULL) {
-            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+        public function getTraits($namespace = null) {
+            $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
             return new TraitCollection($this->index->query($root . 'phpdox:trait'));
         }
 
         /**
          * @param string $namespace
+         *
          * @return InterfaceCollection
          */
-        public function getInterfaces($namespace = NULL) {
-            $root = ($namespace !== NULL) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
+        public function getInterfaces($namespace = null) {
+            $root = ($namespace !== null) ? sprintf('//phpdox:namespace[@name="%s"]/', $namespace) : '//';
             return new InterfaceCollection($this->index->query($root . 'phpdox:interface'));
         }
 
@@ -159,7 +161,6 @@ namespace TheSeer\phpDox\Generator {
         }
 
     }
-
 
     class ProjectException extends \Exception {
 

@@ -42,6 +42,7 @@ namespace TheSeer\phpDox\Collector {
         public function getName() {
             return $this->ctx->getAttribute('full');
         }
+
         /**
          * @param int $startLine
          */
@@ -56,12 +57,11 @@ namespace TheSeer\phpDox\Collector {
             $this->ctx->setAttribute('end', $endLine);
         }
 
-
-        public function addAlias($originalName, $newName, $newModifier = NULL) {
+        public function addAlias($originalName, $newName, $newModifier = null) {
             $alias = $this->ctx->appendElementNS(self::XMLNS, 'alias');
             $alias->setAttribute('method', $originalName);
             $alias->setAttribute('as', $newName);
-            if ($newModifier !== NULL) {
+            if ($newModifier !== null) {
                 $alias->setAttribute('modifier', $newModifier);
             }
         }
@@ -73,14 +73,14 @@ namespace TheSeer\phpDox\Collector {
 
         public function isExcluded($methodName) {
             return $this->ctx->query(
-                sprintf('phpdox:exclude[@method = "%s"]', $methodName)
-            )->length > 0;
+                    sprintf('phpdox:exclude[@method = "%s"]', $methodName)
+                )->length > 0;
         }
 
         public function isAliased($methodName) {
             return $this->ctx->query(
-                sprintf('phpdox:alias[@method = "%s"]', $methodName)
-            )->length > 0;
+                    sprintf('phpdox:alias[@method = "%s"]', $methodName)
+                )->length > 0;
         }
 
         public function getAliasedName($methodName) {

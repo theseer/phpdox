@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -52,8 +52,8 @@ namespace TheSeer\phpDox {
          *
          * @throws BootstrapException
          */
-        public function load(FileInfoCollection $require, $silent = TRUE) {
-            foreach($require as $file) {
+        public function load(FileInfoCollection $require, $silent = true) {
+            foreach ($require as $file) {
                 /** @var FileInfo $file */
                 if (!$file->exists()) {
                     throw new BootstrapException(

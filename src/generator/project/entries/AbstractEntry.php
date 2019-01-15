@@ -1,8 +1,8 @@
 <?php
 namespace TheSeer\phpDox\Generator {
 
-    use TheSeer\fDOM\fDOMElement;
     use TheSeer\fDOM\fDOMDocument;
+    use TheSeer\fDOM\fDOMElement;
 
     abstract class AbstractEntry {
 
@@ -11,7 +11,7 @@ namespace TheSeer\phpDox\Generator {
          */
         private $node;
 
-        private $dom = array();
+        private $dom = [];
 
         public function __construct(fDOMElement $node) {
             $this->node = $node;

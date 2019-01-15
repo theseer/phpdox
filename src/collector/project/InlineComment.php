@@ -1,4 +1,5 @@
 <?php
+
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
@@ -9,13 +10,13 @@ namespace TheSeer\phpDox\Collector {
         const XMLNS = 'http://xml.phpdox.net/src';
 
         private $fragment;
+
         private $startLine;
 
         public function __construct($line, $comment) {
             $this->startLine = $line;
 
-            $dom = new fDOMDocument();
-            $this->fragment = $dom->createDocumentFragment();
+            $this->fragment = (new fDOMDocument())->createDocumentFragment();
             $this->parse(
                 $this->normalizeSplit($comment)
             );
@@ -30,9 +31,9 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function normalizeSplit($comment) {
-            $comment = str_replace(array("\r\n", "\n"), "\n", $comment);
-            $res = array();
-            foreach(explode("\n", trim($comment)) as $line) {
+            $comment = str_replace(["\r\n", "\n"], "\n", $comment);
+            $res = [];
+            foreach (explode("\n", trim($comment)) as $line) {
                 $line = trim($line);
                 preg_match('=//(.*)$|/\*{1,}(.*)\*/$|/\*{1,}(.*)$|^(.*)\*/$|#(.*)$|\*{1}(.*)$|^(.*)$=', $line, $matches);
                 $normalized = trim(end($matches));
@@ -44,22 +45,24 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function parse(array $comments) {
-            foreach($comments as $pos => $comment) {
+            foreach ($comments as $pos => $comment) {
                 preg_match('=^@{0,1}(todo|var|fixme):{0,1}(.*)=i', $comment, $matches);
                 if (count($matches) != 0) {
-                    switch(mb_strtolower($matches[1])) {
-                        case 'var': {
-                            // we ignore @var comments as they are IDE support only
-                            continue 2;
-                        }
+                    switch (mb_strtolower($matches[1])) {
+                        case 'var':
+                            {
+                                // we ignore @var comments as they are IDE support only
+                                continue 2;
+                            }
                         case 'fixme':
-                        case 'todo': {
-                            $node = $this->fragment->appendChild(
-                                $this->fragment->ownerDocument->createElementNS(self::XMLNS, mb_strtolower($matches[1]))
-                            );
-                            $node->setAttribute('value', trim($matches[2]));
-                            break;
-                        }
+                        case 'todo':
+                            {
+                                $node = $this->fragment->appendChild(
+                                    $this->fragment->ownerDocument->createElementNS(self::XMLNS, mb_strtolower($matches[1]))
+                                );
+                                $node->setAttribute('value', trim($matches[2]));
+                                break;
+                            }
                     }
                 } else {
                     $node = $this->fragment->appendChild(

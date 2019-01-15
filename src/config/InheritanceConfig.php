@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -43,9 +43,10 @@ namespace TheSeer\phpDox {
     class InheritanceConfig {
 
         protected $ctx;
+
         protected $config;
 
-        public function __construct(CollectorConfig $config, fDOMElement $ctx = NULL) {
+        public function __construct(CollectorConfig $config, fDOMElement $ctx = null) {
             $this->config = $config;
             $this->ctx = $ctx;
         }
@@ -60,11 +61,11 @@ namespace TheSeer\phpDox {
         public function getDependencyDirectories() {
             $home = $this->config->getProjectConfig()->getHomeDirectory();
             $default = new FileInfo($home->getPathname() . '/dependencies/php');
-            $list = array($default);
+            $list = [$default];
             if (!$this->ctx) {
                 return $list;
             }
-            foreach($this->ctx->query('cfg:dependency') as $dep) {
+            foreach ($this->ctx->query('cfg:dependency') as $dep) {
                 if ($dep->hasAttribute('path')) {
                     $list[] = new FileInfo($dep->getAttribute('path'));
                 }

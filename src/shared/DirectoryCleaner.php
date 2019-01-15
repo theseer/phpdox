@@ -23,7 +23,7 @@ namespace TheSeer\phpDox {
                 \RecursiveIteratorIterator::CHILD_FIRST
             );
 
-            foreach($worker as $entry) {
+            foreach ($worker as $entry) {
                 if ($entry->isDir() && !$entry->isLink()) {
                     rmdir($entry->getPathname());
                 } else {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -49,6 +49,7 @@ namespace TheSeer\phpDox {
 
         /**
          * Directory of phpDox home
+         *
          * @var Fileinfo
          */
         private $homeDir;
@@ -60,6 +61,7 @@ namespace TheSeer\phpDox {
 
         /**
          * File this config is based on
+         *
          * @var FileInfo
          */
         private $file;
@@ -105,8 +107,8 @@ namespace TheSeer\phpDox {
          */
         public function getCustomBootstrapFiles() {
             $files = new FileInfoCollection();
-            foreach($this->cfg->query('//cfg:bootstrap/cfg:require[@file]') as $require) {
-                $files->add(new FileInfo($require->getAttribute('file'))) ;
+            foreach ($this->cfg->query('//cfg:bootstrap/cfg:require[@file]') as $require) {
+                $files->add(new FileInfo($require->getAttribute('file')));
             }
             return $files;
         }
@@ -115,7 +117,7 @@ namespace TheSeer\phpDox {
          * @return array
          */
         public function getProjects() {
-            $list = array();
+            $list = [];
             foreach ($this->cfg->query('//cfg:project[@enabled="true" or not(@enabled)]') as $pos => $project) {
                 $list[$project->getAttribute('name', $pos)] = new ProjectConfig($this->version, $this->homeDir, $this->runResolver($project));
             }
@@ -129,23 +131,23 @@ namespace TheSeer\phpDox {
          * @throws ConfigException
          */
         private function runResolver($ctx) {
-            $vars = array(
+            $vars = [
                 'basedir' => $ctx->getAttribute('basedir', dirname($this->file->getRealPath())),
 
-                'phpDox.home' => $this->homeDir->getPathname(),
-                'phpDox.file' => $this->file->getPathname(),
+                'phpDox.home'    => $this->homeDir->getPathname(),
+                'phpDox.file'    => $this->file->getPathname(),
                 'phpDox.version' => $this->version->getVersion(),
 
-                'phpDox.project.name' => $ctx->getAttribute('name', 'unnamed'),
-                'phpDox.project.source' => $ctx->getAttribute('source', 'src'),
+                'phpDox.project.name'    => $ctx->getAttribute('name', 'unnamed'),
+                'phpDox.project.source'  => $ctx->getAttribute('source', 'src'),
                 'phpDox.project.workdir' => $ctx->getAttribute('workdir', 'xml'),
 
                 'phpDox.php.version' => PHP_VERSION,
 
-            );
+            ];
             $protected = array_keys($vars);
 
-            foreach($ctx->query('cfg:property|/cfg:phpdox/cfg:property') as $property) {
+            foreach ($ctx->query('cfg:property|/cfg:phpdox/cfg:property') as $property) {
                 /** @var $property \DOMElement */
                 $name = $property->getAttribute('name');
                 $line = $property->getLineNo();
@@ -156,10 +158,10 @@ namespace TheSeer\phpDox {
                 if (isset($vars[$name])) {
                     throw new ConfigException("Cannot overwrite existing property '$name' in line $line", ConfigException::OverrideNotAllowed);
                 }
-                $vars[$name] =  $this->resolveValue($property->getAttribute('value'), $vars, $line);
+                $vars[$name] = $this->resolveValue($property->getAttribute('value'), $vars, $line);
             }
 
-            foreach($ctx->query('.//*[not(name()="property")]/@*|@*') as $attr) {
+            foreach ($ctx->query('.//*[not(name()="property")]/@*|@*') as $attr) {
                 $attr->nodeValue = $this->resolveValue($attr->nodeValue, $vars, $attr->getLineNo());
             }
 
@@ -175,7 +177,7 @@ namespace TheSeer\phpDox {
          */
         private function resolveValue($value, Array $vars, $line) {
             $result = preg_replace_callback('/\${(.*?)}/',
-                function($matches) use ($vars, $line) {
+                function ($matches) use ($vars, $line) {
                     if (!isset($vars[$matches[1]])) {
                         throw new ConfigException("No value for property '{$matches[1]}' found in line $line", ConfigException::PropertyNotFound);
                     }

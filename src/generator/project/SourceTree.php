@@ -2,7 +2,6 @@
 namespace TheSeer\phpDox\Generator {
 
     use TheSeer\fDOM\fDOMDocument;
-    use Traversable;
 
     class SourceTree implements \IteratorAggregate {
 

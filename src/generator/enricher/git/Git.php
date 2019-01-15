@@ -12,6 +12,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     class Git extends AbstractEnricher implements FullEnricherInterface {
 
         const GITNS = 'http://xml.phpdox.net/gitlog';
+
         /**
          * @var bool
          */
@@ -23,7 +24,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
          *
          * @var array
          */
-        private $tokens = array('H','aE','aN','cE','cN','at','ct');
+        private $tokens = ['H', 'aE', 'aN', 'cE', 'cN', 'at', 'ct'];
 
         /**
          * @var GitConfig
@@ -69,7 +70,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
             $cwd = getcwd();
             chdir($this->config->getSourceDirectory());
-            $describe = exec($binary . ' describe --always --dirty 2>'.$devNull, $foo, $rc);
+            $describe = exec($binary . ' describe --always --dirty 2>' . $devNull, $foo, $rc);
             if ($rc !== 0) {
                 $enrichtment->appendChild(
                     $dom->createComment('Not a git repository or no git binary available')
@@ -79,20 +80,20 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return;
             }
 
-            exec($binary . ' tag 2>'.$devNull, $tags, $rc);
+            exec($binary . ' tag 2>' . $devNull, $tags, $rc);
             if (count($tags)) {
                 $tagsNode = $enrichtment->appendElementNS(self::GITNS, 'tags');
-                foreach($tags as $tagName) {
+                foreach ($tags as $tagName) {
                     $tag = $tagsNode->appendElementNS(self::GITNS, 'tag');
                     $tag->setAttribute('name', $tagName);
                 }
             }
 
             $currentBranch = 'master';
-            exec($binary . ' branch --no-color 2>'.$devNull, $branches, $rc);
+            exec($binary . ' branch --no-color 2>' . $devNull, $branches, $rc);
             if (count($branches)) {
                 $branchesNode = $enrichtment->appendElementNS(self::GITNS, 'branches');
-                foreach($branches as $branchName) {
+                foreach ($branches as $branchName) {
                     $branch = $branchesNode->appendElementNS(self::GITNS, 'branch');
                     if ($branchName[0] == '*') {
                         $branchName = trim(mb_substr($branchName, 1));
@@ -108,7 +109,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $current->setAttribute('describe', $describe);
             $current->setAttribute('branch', $currentBranch);
 
-            $this->commitSha1 = exec($binary . " rev-parse HEAD 2>".$devNull);
+            $this->commitSha1 = exec($binary . " rev-parse HEAD 2>" . $devNull);
             $current->setAttribute('commit', $this->commitSha1);
 
             chdir($cwd);
@@ -162,12 +163,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $count = 0;
                 $limit = $this->config->getLogLimit();
                 $log = $this->getLogHistory($fileNode->getAttribute('realpath'));
-                $block = array();
+                $block = [];
 
-                foreach($log as $line) {
+                foreach ($log as $line) {
                     if ($line == '[EOF]') {
                         $this->addCommit($enrichtment, $this->tokens, $block);
-                        $block = array();
+                        $block = [];
                         $count++;
                         if ($count > $limit) {
                             break;
@@ -211,7 +212,6 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $message->appendTextNode(trim(join("\n", $text)));
         }
 
-
         private function getLogHistory($filename) {
             /*
              * H:8283723b40725a91c684e27c0c0449b959a48740
@@ -246,16 +246,16 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         private function loadFromCache(fDOMElement $fileNode, fDOMElement $enrichment) {
             $dom = $this->getCacheDom();
-            $fields = array(
+            $fields = [
                 'path' => $fileNode->getAttribute('path'),
                 'file' => $fileNode->getAttribute('file')
-            );
+            ];
             $query = $dom->prepareQuery('//*[@path = :path and @file = :file]', $fields);
             $cacheNode = $dom->queryOne($query);
             if (!$cacheNode) {
                 return false;
             }
-            foreach($cacheNode->childNodes as $child) {
+            foreach ($cacheNode->childNodes as $child) {
                 $enrichment->appendChild(
                     $enrichment->ownerDocument->importNode($child, true)
                 );
@@ -266,12 +266,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
         private function addToCache(fDOMElement $fileNode, fDOMElement $enrichment) {
             $dom = $this->getCacheDom();
             $import = $dom->createElementNS(self::GITNS, 'file');
-            foreach($fileNode->attributes as $attr) {
+            foreach ($fileNode->attributes as $attr) {
                 $import->appendChild(
                     $dom->importNode($attr)
                 );
             }
-            foreach($enrichment->childNodes as $node) {
+            foreach ($enrichment->childNodes as $node) {
                 $import->appendChild(
                     $dom->importNode($node, true)
                 );
@@ -281,7 +281,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function getCacheDom() {
-            if ($this->cacheDom === NULL) {
+            if ($this->cacheDom === null) {
                 $this->cacheDom = new fDOMDocument();
                 $cacheFile = $this->config->getLogfilePath();
                 if (file_exists($cacheFile)) {
@@ -291,11 +291,11 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     $cwd = getcwd();
                     chdir($this->config->getSourceDirectory());
                     exec($this->config->getGitBinary() . ' diff --name-only ' . $sha1, $files, $rc);
-                    foreach($files as $file) {
-                        $fields = array(
+                    foreach ($files as $file) {
+                        $fields = [
                             'path' => dirname($file),
                             'file' => basename($file)
-                        );
+                        ];
                         $query = $this->cacheDom->prepareQuery('//*[@path = :path and @file = :file]', $fields);
                         $node = $this->cacheDom->queryOne($query);
                         if (!$node) {
@@ -316,7 +316,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
          * @throws GitEnricherException
          */
         private function ensureExecFunctionEnabled() {
-            if (strpos(ini_get('disable_functions'), 'exec') !== FALSE) {
+            if (strpos(ini_get('disable_functions'), 'exec') !== false) {
                 throw new GitEnricherException(
                     'The use of "exec" has been disabled in php.ini but is required for this enricher',
                     GitEnricherException::ExecDisabled

@@ -6,7 +6,9 @@ namespace TheSeer\phpDox\Collector {
     class SourceFileIterator implements \Iterator {
 
         private $iterator;
+
         private $srcDir;
+
         private $encoding;
 
         /**

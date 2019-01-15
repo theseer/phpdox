@@ -29,14 +29,14 @@ namespace TheSeer\phpDox {
          */
         public function renderStripped() {
             $dom = new fDOMDocument();
-            $dom->preserveWhiteSpace = FALSE;
+            $dom->preserveWhiteSpace = false;
             $dom->loadXML(
                 preg_replace("/\s{2,}/u", " ", $this->render())
             );
-            foreach($dom->query('//comment()') as $c) {
+            foreach ($dom->query('//comment()') as $c) {
                 $c->parentNode->removeChild($c);
             }
-            $dom->formatOutput = TRUE;
+            $dom->formatOutput = true;
             return $dom->saveXML();
         }
 

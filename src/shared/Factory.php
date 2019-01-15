@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -62,7 +62,7 @@ namespace TheSeer\phpDox {
         /**
          * @var array
          */
-        private $instances = array();
+        private $instances = [];
 
         /**
          * @var bool
@@ -164,9 +164,10 @@ namespace TheSeer\phpDox {
         /**
          * @param string|array $include
          * @param string|array $exclude
+         *
          * @return mixed|object
          */
-        public function getScanner($include, $exclude = NULL) {
+        public function getScanner($include, $exclude = null) {
             $scanner = $this->getDirectoryScanner();
 
             if (is_array($include)) {
@@ -175,7 +176,7 @@ namespace TheSeer\phpDox {
                 $scanner->addInclude($include);
             }
 
-            if ($exclude != NULL) {
+            if ($exclude != null) {
                 if (is_array($exclude)) {
                     $scanner->setExcludes($exclude);
                 } else {
@@ -258,7 +259,6 @@ namespace TheSeer\phpDox {
             }
             return $this->instances['EnricherFactory'];
         }
-
 
         /**
          * @return mixed

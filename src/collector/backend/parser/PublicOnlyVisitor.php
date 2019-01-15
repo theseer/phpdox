@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,8 +37,8 @@
 namespace TheSeer\phpDox\Collector\Backend {
 
     use PhpParser\Node;
-    use PhpParser\NodeVisitorAbstract;
     use PhpParser\Node\Stmt as NodeType;
+    use PhpParser\NodeVisitorAbstract;
 
     class PublicOnlyVisitor extends NodeVisitorAbstract {
 
@@ -49,8 +49,8 @@ namespace TheSeer\phpDox\Collector\Backend {
          */
         public function enterNode(Node $node) {
             if (($node instanceof NodeType\Property ||
-                $node instanceof NodeType\ClassMethod ||
-                $node instanceof NodeType\ClassConst) && !$node->isPublic()) {
+                    $node instanceof NodeType\ClassMethod ||
+                    $node instanceof NodeType\ClassConst) && !$node->isPublic()) {
 
                 return new NodeType\Nop();
             }

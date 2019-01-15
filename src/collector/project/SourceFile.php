@@ -28,7 +28,7 @@ namespace TheSeer\phpDox\Collector {
          */
         private $encoding;
 
-        public function __construct($file_name, FileInfo $srcDir = NULL, $encoding = 'auto') {
+        public function __construct($file_name, FileInfo $srcDir = null, $encoding = 'auto') {
             parent::__construct($file_name);
             $this->srcDir = $srcDir;
             $this->encoding = $encoding;
@@ -40,7 +40,7 @@ namespace TheSeer\phpDox\Collector {
          * @throws Backend\SourceFileException
          */
         public function getSource() {
-            if ($this->src !== NULL) {
+            if ($this->src !== null) {
                 return $this->src;
             }
 
@@ -63,9 +63,9 @@ namespace TheSeer\phpDox\Collector {
             // Replace xml relevant control characters by surrogates
             $this->src = preg_replace_callback(
                 '/(?![\x{000d}\x{000a}\x{0009}])\p{C}/u',
-                function(array $matches) {
+                function (array $matches) {
                     $unicodeChar = '\u' . (2400 + ord($matches[0]));
-                    return json_decode('"'.$unicodeChar.'"');
+                    return json_decode('"' . $unicodeChar . '"');
                 },
                 $source
             );
@@ -90,7 +90,7 @@ namespace TheSeer\phpDox\Collector {
          * @param fDOMDocument $ctx
          *
          * @return \TheSeer\fDOM\fDOMElement
-           */
+         */
         public function asNode(fDOMElement $ctx) {
             $fileNode = $ctx->ownerDocument->createElementNS(self::XMLNS, 'file');
             $fileNode->setAttribute('path', $this->getPath());
@@ -101,7 +101,7 @@ namespace TheSeer\phpDox\Collector {
             $fileNode->setAttribute('unixtime', $this->getMTime());
             $fileNode->setAttribute('sha1', sha1_file($this->getRealPath()));
             if ($this->srcDir instanceof FileInfo) {
-                $fileNode->setAttribute('relative', $this->getRelative($this->srcDir, FALSE));
+                $fileNode->setAttribute('relative', $this->getRelative($this->srcDir, false));
             }
             return $fileNode;
         }

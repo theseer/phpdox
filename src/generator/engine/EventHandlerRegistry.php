@@ -3,52 +3,52 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     class EventHandlerRegistry {
 
-        private $events = array(
-            'phpdox.start' => array(),
-            'phpdox.end' => array(),
+        private $events = [
+            'phpdox.start' => [],
+            'phpdox.end'   => [],
 
-            'phpdox.namespaces.start' => array(),
-            'phpdox.namespaces.end' => array(),
+            'phpdox.namespaces.start' => [],
+            'phpdox.namespaces.end'   => [],
 
-            'phpdox.classes.start' => array(),
-            'phpdox.classes.end' => array(),
-            'phpdox.traits.start' => array(),
-            'phpdox.traits.end' => array(),
-            'phpdox.interfaces.start' => array(),
-            'phpdox.interfaces.end' => array(),
+            'phpdox.classes.start'    => [],
+            'phpdox.classes.end'      => [],
+            'phpdox.traits.start'     => [],
+            'phpdox.traits.end'       => [],
+            'phpdox.interfaces.start' => [],
+            'phpdox.interfaces.end'   => [],
 
-            'namespace.start' => array(),
-            'namespace.classes.start' => array(),
-            'namespace.classes.end' => array(),
-            'namespace.traits.start' => array(),
-            'namespace.traits.end' => array(),
-            'namespace.interfaces.start' => array(),
-            'namespace.interfaces.end' => array(),
-            'namespace.end' => array(),
+            'namespace.start'            => [],
+            'namespace.classes.start'    => [],
+            'namespace.classes.end'      => [],
+            'namespace.traits.start'     => [],
+            'namespace.traits.end'       => [],
+            'namespace.interfaces.start' => [],
+            'namespace.interfaces.end'   => [],
+            'namespace.end'              => [],
 
-            'class.start' => array(),
-            'class.constant' => array(),
-            'class.member' => array(),
-            'class.method' => array(),
-            'class.end' => array(),
+            'class.start'    => [],
+            'class.constant' => [],
+            'class.member'   => [],
+            'class.method'   => [],
+            'class.end'      => [],
 
-            'trait.start' => array(),
-            'trait.constant' => array(),
-            'trait.member' => array(),
-            'trait.method' => array(),
-            'trait.end' => array(),
+            'trait.start'    => [],
+            'trait.constant' => [],
+            'trait.member'   => [],
+            'trait.method'   => [],
+            'trait.end'      => [],
 
-            'interface.start' => array(),
-            'interface.constant' => array(),
-            'interface.method' => array(),
-            'interface.end' => array(),
+            'interface.start'    => [],
+            'interface.constant' => [],
+            'interface.method'   => [],
+            'interface.end'      => [],
 
-            'token.file.start' => array(),
-            'token.line.start' => array(),
-            'token.token' => array(),
-            'token.line.end' => array(),
-            'token.file.end' => array()
-        );
+            'token.file.start' => [],
+            'token.line.start' => [],
+            'token.token'      => [],
+            'token.line.end'   => [],
+            'token.file.end'   => []
+        ];
 
         public function addHandler($eventType, $instance, $method) {
             if (!method_exists($instance, $method)) {
@@ -61,7 +61,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             if (isset($this->events[$eventType][$key])) {
                 throw new EventHandlerRegistryException("Handler already registered for this event", EventHandlerRegistryException::AlreadyRegistered);
             }
-            $this->events[$eventType][$key] = array($instance, $method);
+            $this->events[$eventType][$key] = [$instance, $method];
         }
 
         public function getHandlersForEvent($eventType) {
@@ -74,8 +74,8 @@ namespace TheSeer\phpDox\Generator\Engine {
 
     class EventHandlerRegistryException extends \Exception {
 
-        const MethodNotDefined  = 1;
-        const EventNotDefined   = 2;
+        const MethodNotDefined = 1;
+        const EventNotDefined = 2;
         const AlreadyRegistered = 4;
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -64,28 +64,28 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @var string
          */
-        protected $rootName = NULL;
+        protected $rootName = null;
 
         /**
          * @param string       $name
          * @param \SplFileInfo $file
          */
-        public function __construct($name = NULL, SourceFile $file = NULL) {
-            if ($this->rootName === NULL) {
+        public function __construct($name = null, SourceFile $file = null) {
+            if ($this->rootName === null) {
                 throw new UnitObjectException('No or invalid rootname set', UnitObjectException::InvalidRootname);
             }
             $this->dom = new fDOMDocument('1.0', 'UTF-8');
             $this->dom->registerNamespace('phpdox', self::XMLNS);
             $this->rootNode = $this->dom->createElementNS(self::XMLNS, $this->rootName);
             $this->dom->appendChild($this->rootNode);
-            if ($name !== NULL) {
+            if ($name !== null) {
                 $this->setName($name, $this->rootNode);
             }
-            if ($file !== NULL) {
+            if ($file !== null) {
                 $this->rootNode->appendChild($file->asNode($this->rootNode));
             }
-            $this->setAbstract(FALSE);
-            $this->setFinal(FALSE);
+            $this->setAbstract(false);
+            $this->setFinal(false);
         }
 
         /**
@@ -99,7 +99,6 @@ namespace TheSeer\phpDox\Collector {
             $ctx->setAttribute('namespace', $namespace);
             $ctx->setAttribute('name', $local);
         }
-
 
         protected function getRootNode() {
             return $this->rootNode;
@@ -216,7 +215,7 @@ namespace TheSeer\phpDox\Collector {
          * @return bool
          */
         public function hasExtends() {
-            return $this->rootNode->queryOne('phpdox:extends') !== NULL;
+            return $this->rootNode->queryOne('phpdox:extends') !== null;
         }
 
         /**
@@ -224,11 +223,11 @@ namespace TheSeer\phpDox\Collector {
          * @throws UnitObjectException
          */
         public function getExtends() {
-            if(!$this->hasExtends()) {
+            if (!$this->hasExtends()) {
                 throw new UnitObjectException('This unit does not extend any unit', UnitObjectException::NoExtends);
             }
-            $result = array();
-            foreach($this->rootNode->query('phpdox:extends') as $ext) {
+            $result = [];
+            foreach ($this->rootNode->query('phpdox:extends') as $ext) {
                 $result[] = $ext->getAttribute('full');
             }
             return $result;
@@ -238,7 +237,7 @@ namespace TheSeer\phpDox\Collector {
          * @param AbstractUnitObject $unit
          */
         public function addExtender(AbstractUnitObject $unit) {
-            if ($this->rootNode->queryOne(sprintf('phpdox:extenders/phpdox:*[@full = "%s"]', $unit->getName())) !== NULL) {
+            if ($this->rootNode->queryOne(sprintf('phpdox:extenders/phpdox:*[@full = "%s"]', $unit->getName())) !== null) {
                 return;
             }
             $extender = $this->addToContainer('extenders', 'extender');
@@ -268,8 +267,8 @@ namespace TheSeer\phpDox\Collector {
             if (!$this->hasImplements()) {
                 throw new UnitObjectException('This unit does not implement any interfaces', UnitObjectException::NoImplements);
             }
-            $result = array();
-            foreach($this->rootNode->query('phpdox:implements') as $impl) {
+            $result = [];
+            foreach ($this->rootNode->query('phpdox:implements') as $impl) {
                 $result[] = $impl->getAttribute('full');
             }
             return $result;
@@ -310,8 +309,8 @@ namespace TheSeer\phpDox\Collector {
             if (!$this->usesTraits()) {
                 throw new UnitObjectException('This unit does not use any traits', UnitObjectException::NoTraitsUsed);
             }
-            $result = array();
-            foreach($this->rootNode->query('phpdox:uses') as $trait) {
+            $result = [];
+            foreach ($this->rootNode->query('phpdox:uses') as $trait) {
                 $result[] = $trait->getAttribute('full');
             }
             return $result;
@@ -340,7 +339,7 @@ namespace TheSeer\phpDox\Collector {
             $node = $this->rootNode->queryOne('phpdox:ambiguous[@type="trait-alias"]');
             if (!$node) {
                 $node = $this->rootNode->appendElementNS(self::XMLNS, 'ambiguous');
-                $node->setAttribute('type','trait-alias');
+                $node->setAttribute('type', 'trait-alias');
             }
             return new TraitUseObject($node);
         }
@@ -367,15 +366,15 @@ namespace TheSeer\phpDox\Collector {
         public function addMethod($name) {
             switch ($name) {
                 case '__construct':
-                {
-                    $nodeName = 'constructor';
-                    break;
-                }
+                    {
+                        $nodeName = 'constructor';
+                        break;
+                    }
                 case '__destruct':
-                {
-                    $nodeName = 'destructor';
-                    break;
-                }
+                    {
+                        $nodeName = 'destructor';
+                        break;
+                    }
                 default:
                     $nodeName = 'method';
             }
@@ -388,9 +387,9 @@ namespace TheSeer\phpDox\Collector {
          * @return MethodObject[]
          */
         public function getExportedMethods() {
-            $result = array();
+            $result = [];
             $xpath = '(phpdox:constructor|phpdox:destructor|phpdox:method)[@visibility="public" or @visibility="protected"]';
-            foreach($this->rootNode->query($xpath) as $node) {
+            foreach ($this->rootNode->query($xpath) as $node) {
                 $result[] = new MethodObject($this, $node);
             }
             return $result;
@@ -411,9 +410,9 @@ namespace TheSeer\phpDox\Collector {
          * @return array
          */
         public function getExportedMembers() {
-            $result = array();
+            $result = [];
             $xpath = 'phpdox:member[@visibility="public" or @visibility="protected"]';
-            foreach($this->rootNode->query($xpath) as $node) {
+            foreach ($this->rootNode->query($xpath) as $node) {
                 $result[] = new MemberObject($node);
             }
             return $result;
@@ -434,9 +433,9 @@ namespace TheSeer\phpDox\Collector {
          * @return array
          */
         public function getConstants() {
-            $result = array();
+            $result = [];
             $xpath = 'phpdox:constant';
-            foreach($this->rootNode->query($xpath) as $node) {
+            foreach ($this->rootNode->query($xpath) as $node) {
                 $result[] = new ConstantObject($node);
             }
             return $result;
@@ -452,46 +451,46 @@ namespace TheSeer\phpDox\Collector {
                 $parent->parentNode->removeChild($parent);
             }
 
-            $parent = $this->rootNode->appendElementNS( self::XMLNS, $container);
+            $parent = $this->rootNode->appendElementNS(self::XMLNS, $container);
             $parent->setAttribute('full', $unit->getName());
             $parent->setAttribute('namespace', $unit->getNamespace());
             $parent->setAttribute('name', $unit->getLocalName());
 
             if ($unit->hasExtends()) {
-                foreach($unit->getExtends() as $name) {
-                    $extends = $parent->appendElementNS( self::XMLNS, 'extends');
+                foreach ($unit->getExtends() as $name) {
+                    $extends = $parent->appendElementNS(self::XMLNS, 'extends');
                     $this->setName($name, $extends);
                 }
             }
 
             if ($unit->hasImplements()) {
-                foreach($unit->getImplements() as $name) {
-                    $implements = $parent->appendElementNS( self::XMLNS, 'implements');
+                foreach ($unit->getImplements() as $name) {
+                    $implements = $parent->appendElementNS(self::XMLNS, 'implements');
                     $this->setName($name, $implements);
                 }
             }
 
             if ($unit->usesTraits()) {
-                foreach($unit->getUsedTraits() as $name) {
-                    $uses = $parent->appendElementNS( self::XMLNS, 'uses');
+                foreach ($unit->getUsedTraits() as $name) {
+                    $uses = $parent->appendElementNS(self::XMLNS, 'uses');
                     $this->setName($name, $uses);
                 }
             }
 
-            foreach($unit->getConstants() as $constant) {
-                $parent->appendChild( $this->dom->importNode($constant->export(), TRUE) );
+            foreach ($unit->getConstants() as $constant) {
+                $parent->appendChild($this->dom->importNode($constant->export(), true));
             }
 
-            foreach($unit->getExportedMembers() as $member) {
-                $memberNode = $this->dom->importNode($member->export(), TRUE);
+            foreach ($unit->getExportedMembers() as $member) {
+                $memberNode = $this->dom->importNode($member->export(), true);
                 $this->adjustStaticResolution($memberNode);
                 $parent->appendChild($memberNode);
             }
 
-            foreach($unit->getExportedMethods() as $method) {
-                $methodNode = $this->dom->importNode($method->export(), TRUE);
+            foreach ($unit->getExportedMethods() as $method) {
+                $methodNode = $this->dom->importNode($method->export(), true);
                 $this->adjustStaticResolution($methodNode);
-                $parent->appendChild( $methodNode );
+                $parent->appendChild($methodNode);
                 if ($this->hasMethod($method->getName())) {
                     $unitMethod = $this->getMethod($method->getName());
                     if ($unitMethod->hasInheritDoc()) {
@@ -513,37 +512,37 @@ namespace TheSeer\phpDox\Collector {
                 $container->parentNode->removeChild($container);
             }
 
-            $container = $this->rootNode->appendElementNS( self::XMLNS, 'trait');
+            $container = $this->rootNode->appendElementNS(self::XMLNS, 'trait');
             $this->setName($trait->getName(), $container);
 
             if ($trait->hasExtends()) {
-                foreach($trait->getExtends() as $name) {
-                    $extends = $container->appendElementNS( self::XMLNS, 'extends');
+                foreach ($trait->getExtends() as $name) {
+                    $extends = $container->appendElementNS(self::XMLNS, 'extends');
                     $this->setName($name, $extends);
                 }
             }
 
             if ($trait->usesTraits()) {
-                foreach($trait->getUsedTraits() as $name) {
-                    $used = $container->appendElementNS( self::XMLNS, 'uses');
+                foreach ($trait->getUsedTraits() as $name) {
+                    $used = $container->appendElementNS(self::XMLNS, 'uses');
                     $this->setName($name, $used);
                 }
             }
 
-            foreach($trait->getConstants() as $constant) {
-                $container->appendChild( $this->dom->importNode($constant->export(), TRUE) );
+            foreach ($trait->getConstants() as $constant) {
+                $container->appendChild($this->dom->importNode($constant->export(), true));
             }
 
-            foreach($trait->getExportedMembers() as $member) {
-                $memberNode = $this->dom->importNode($member->export(), TRUE);
+            foreach ($trait->getExportedMembers() as $member) {
+                $memberNode = $this->dom->importNode($member->export(), true);
                 $this->adjustStaticResolution($memberNode);
                 $container->appendChild($memberNode);
             }
 
             $ambiguousContainer = $this->dom->queryOne('//phpdox:ambiguous[@type="trait-alias"]');
-            foreach($trait->getExportedMethods() as $method) {
+            foreach ($trait->getExportedMethods() as $method) {
                 $methodName = $method->getName();
-                $methodNode = $this->dom->importNode($method->export(), TRUE);
+                $methodNode = $this->dom->importNode($method->export(), true);
 
                 if (!$use->isExcluded($methodName)) {
                     $container->appendChild($methodNode);
@@ -551,7 +550,7 @@ namespace TheSeer\phpDox\Collector {
 
                 $this->adjustStaticResolution($methodNode);
 
-                if ($ambiguousContainer !== NULL) {
+                if ($ambiguousContainer !== null) {
                     $ambiguousMethod = $ambiguousContainer->queryOne(
                         sprintf('phpdox:alias[@method="%s"]', $methodName)
                     );
@@ -562,12 +561,12 @@ namespace TheSeer\phpDox\Collector {
                         $usesNode->appendChild($ambiguousMethod);
                         if ($ambiguousContainer->query('phpdox:alias')->length === 0) {
                             $ambiguousContainer->parentNode->removeChild($ambiguousContainer);
-                            $ambiguousContainer = NULL;
+                            $ambiguousContainer = null;
                         }
                     }
                 }
 
-                $aliasNode = NULL;
+                $aliasNode = null;
                 if ($use->isAliased($methodName)) {
                     $aliasNode = $methodNode->cloneNode(true);
                     $aliasNode->setAttribute('original', $aliasNode->getAttribute('name'));
@@ -583,8 +582,8 @@ namespace TheSeer\phpDox\Collector {
 
         private function hasMethod($name) {
             return $this->dom->query(
-                sprintf('phpdox:method[@name="%s"]', $name)
-            )->length > 0;
+                    sprintf('phpdox:method[@name="%s"]', $name)
+                )->length > 0;
         }
 
         private function getMethod($name) {
@@ -609,7 +608,7 @@ namespace TheSeer\phpDox\Collector {
             if (!$type) {
                 return;
             }
-            foreach(array('full','namespace','name') as $attribute) {
+            foreach (['full', 'namespace', 'name'] as $attribute) {
                 $type->setAttribute($attribute, $this->rootNode->getAttribute($attribute));
             }
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -70,10 +70,10 @@ namespace TheSeer\phpDox {
          * @throws ConfigLoaderException
          */
         public function load($fname) {
-           if (!file_exists($fname)) {
-               throw new ConfigLoaderException("Config file '$fname' not found", ConfigLoaderException::NotFound);
-           }
-           return $this->createInstanceFor($fname);
+            if (!file_exists($fname)) {
+                throw new ConfigLoaderException("Config file '$fname' not found", ConfigLoaderException::NotFound);
+            }
+            return $this->createInstanceFor($fname);
         }
 
         /**
@@ -81,11 +81,11 @@ namespace TheSeer\phpDox {
          * @throws ConfigLoaderException
          */
         public function autodetect() {
-            $candidates = array(
-                    './phpdox.xml',
-                    './phpdox.xml.dist'
-            );
-            foreach($candidates as $fname) {
+            $candidates = [
+                './phpdox.xml',
+                './phpdox.xml.dist'
+            ];
+            foreach ($candidates as $fname) {
                 if (!file_exists($fname)) {
                     continue;
                 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -62,10 +62,10 @@ namespace TheSeer\phpDox {
          */
         public function register() {
             error_reporting(0);
-            ini_set('display_errors', FALSE);
-            register_shutdown_function(array($this, "handleShutdown"));
-            set_exception_handler(array($this, 'handleException'));
-            set_error_handler(array($this, 'handleError'), E_STRICT|E_NOTICE|E_WARNING|E_RECOVERABLE_ERROR|E_USER_ERROR);
+            ini_set('display_errors', false);
+            register_shutdown_function([$this, "handleShutdown"]);
+            set_exception_handler([$this, 'handleException']);
+            set_error_handler([$this, 'handleError'], E_STRICT | E_NOTICE | E_WARNING | E_RECOVERABLE_ERROR | E_USER_ERROR);
             class_exists('\TheSeer\phpDox\ErrorException', true);
         }
 
@@ -140,7 +140,7 @@ namespace TheSeer\phpDox {
             fwrite(STDERR, $exception->getMessage() . "\n\n");
 
             if ($exception instanceof HasFileInfoException) {
-                fwrite(STDERR, "\nException occured while processing file: " .  $exception->getFile()."\n\n");
+                fwrite(STDERR, "\nException occured while processing file: " . $exception->getFile() . "\n\n");
             }
 
             $trace = $exception->getTrace();
@@ -148,9 +148,9 @@ namespace TheSeer\phpDox {
             if (count($trace) == 0) {
                 fwrite(STDERR, 'No stacktrace available');
             }
-            foreach($trace as $pos => $entry) {
+            foreach ($trace as $pos => $entry) {
                 fwrite(STDERR,
-                    sprintf('#%1$d %2$s(%3$d): %4$s%5$s%6$s()'."\n",
+                    sprintf('#%1$d %2$s(%3$d): %4$s%5$s%6$s()' . "\n",
                         $pos,
                         isset($entry['file']) ? $entry['file'] : 'unknown',
                         isset ($entry['line']) ? $entry['line'] : '0',
@@ -162,7 +162,7 @@ namespace TheSeer\phpDox {
             }
 
             $nested = $exception->getPrevious();
-            if ($nested !== NULL) {
+            if ($nested !== null) {
                 fwrite(STDERR, "\n\n");
                 $this->renderException($nested);
             }
@@ -173,7 +173,9 @@ namespace TheSeer\phpDox {
             if (function_exists('error_clear_last')) {
                 error_clear_last();
             } else {
-                set_error_handler(function () { return false; }, 0);
+                set_error_handler(function () {
+                    return false;
+                }, 0);
                 @trigger_error('');
                 restore_error_handler();
             }

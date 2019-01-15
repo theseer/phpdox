@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -40,6 +40,7 @@ namespace TheSeer\phpDox\Generator {
     class PHPDoxEndEvent extends AbstractEvent {
 
         private $index;
+
         private $tree;
 
         public function __construct(Index $index, SourceTree $tree) {

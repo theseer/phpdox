@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -51,14 +51,15 @@ namespace TheSeer\phpDox {
          * @var int
          */
         private $totalCount = 0;
+
         /**
          * @var array
          */
-        private $stateCount = array(
+        private $stateCount = [
             'processed' => 0,
-            'cached' => 0,
-            'failed' => 0
-        );
+            'cached'    => 0,
+            'failed'    => 0
+        ];
 
         /**
          * @param string $processed
@@ -66,15 +67,16 @@ namespace TheSeer\phpDox {
          * @param string $failed
          */
         public function __construct($processed = '.', $cached = 'c', $failed = 'f') {
-            $this->stateChars = array(
+            $this->stateChars = [
                 'processed' => $processed,
-                'cached' => $cached,
-                'failed' => $failed
-            );
+                'cached'    => $cached,
+                'failed'    => $failed
+            ];
         }
 
         /**
          * @param $state
+         *
          * @throws ProgressLoggerException
          */
         public function progress($state) {
@@ -86,7 +88,7 @@ namespace TheSeer\phpDox {
 
             echo $this->stateChars[$state];
             if ($this->totalCount % 50 == 0) {
-                echo "\t[". $this->totalCount . "]\n";
+                echo "\t[" . $this->totalCount . "]\n";
             }
         }
 
@@ -95,11 +97,11 @@ namespace TheSeer\phpDox {
          */
         public function reset() {
             $this->totalCount = 0;
-            $this->stateCount = array(
+            $this->stateCount = [
                 'processed' => 0,
-                'cached' => 0,
-                'failed' => 0
-            );
+                'cached'    => 0,
+                'failed'    => 0
+            ];
         }
 
         /**
@@ -107,8 +109,8 @@ namespace TheSeer\phpDox {
          */
         public function completed() {
             $pad = (ceil($this->totalCount / 50) * 50) - $this->totalCount;
-            if ($pad !=0) {
-                echo str_pad('', $pad, ' ') . "\t[". $this->totalCount . "]\n";
+            if ($pad != 0) {
+                echo str_pad('', $pad, ' ') . "\t[" . $this->totalCount . "]\n";
             }
             echo "\n";
         }
@@ -117,7 +119,7 @@ namespace TheSeer\phpDox {
          * @param $msg
          */
         public function log($msg) {
-            if (func_num_args()>1) {
+            if (func_num_args() > 1) {
                 $msg = vsprintf($msg, array_slice(func_get_args(), 1));
             }
             echo "[" . date('d.m.Y - H:i:s') . '] ' . $msg . "\n";

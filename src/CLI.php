@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,7 +42,6 @@
  */
 namespace TheSeer\phpDox {
 
-    use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMException;
 
     class CLI {
@@ -92,18 +91,18 @@ namespace TheSeer\phpDox {
 
                 $this->environment->ensureFitness();
 
-                if ($options->showHelp() === TRUE) {
+                if ($options->showHelp() === true) {
                     $this->showVersion();
                     echo $options->getHelpScreen();
                     return self::ExitOK;
                 }
 
-                if ($options->showVersion() === TRUE) {
+                if ($options->showVersion() === true) {
                     $this->showVersion();
                     return self::ExitOK;
                 }
 
-                if ($options->generateSkel() === TRUE) {
+                if ($options->generateSkel() === true) {
                     $this->showSkeletonConfig($options->generateStrippedSkel());
                     return self::ExitOK;
                 }
@@ -117,7 +116,7 @@ namespace TheSeer\phpDox {
                 }
 
                 $logger = $this->factory->getLogger();
-                $logger->log("Using config file '". $config->getConfigFile()->getPathname() . "'");
+                $logger->log("Using config file '" . $config->getConfigFile()->getPathname() . "'");
 
                 $app = $this->factory->getApplication();
 
@@ -148,7 +147,7 @@ namespace TheSeer\phpDox {
                     return self::ExitOK;
                 }
 
-                foreach($config->getProjects() as $projectName => $projectConfig) {
+                foreach ($config->getProjects() as $projectName => $projectConfig) {
 
                     $logger->log("Starting to process project '$projectName'");
 
@@ -158,11 +157,11 @@ namespace TheSeer\phpDox {
                     );
 
                     if (!$options->generatorOnly()) {
-                        $app->runCollector( $projectConfig->getCollectorConfig() );
+                        $app->runCollector($projectConfig->getCollectorConfig());
                     }
 
                     if (!$options->collectorOnly()) {
-                        $app->runGenerator( $projectConfig->getGeneratorConfig() );
+                        $app->runGenerator($projectConfig->getGeneratorConfig());
                     }
 
                     $logger->log("Processing project '$projectName' completed.");
@@ -180,25 +179,25 @@ namespace TheSeer\phpDox {
                 return self::ExitEnvError;
             } catch (CLIOptionsException $e) {
                 $this->showVersion();
-                fwrite(STDERR, $e->getMessage()."\n\n");
+                fwrite(STDERR, $e->getMessage() . "\n\n");
                 fwrite(STDERR, $options->getHelpScreen());
                 return self::ExitParamError;
             } catch (ConfigLoaderException $e) {
                 $this->showVersion();
-                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage(). "\n\n");
+                fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage() . "\n\n");
                 if ($e->getCode() == ConfigLoaderException::NeitherCandidateExists) {
                     fwrite(STDERR, "Using --skel might get you started.\n\n");
                 }
                 return self::ExitConfigError;
             } catch (ConfigException $e) {
-                fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration xml file.\n\n");
+                fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage() . "\n\nPlease verify your configuration xml file.\n\n");
                 return self::ExitConfigError;
             } catch (ApplicationException $e) {
-                fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage()."\n\nPlease verify your configuration.\n\n");
+                fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage() . "\n\nPlease verify your configuration.\n\n");
                 return self::ExitExecError;
             } catch (\Exception $e) {
                 if ($e instanceof fDOMException) {
-                    $e->toggleFullMessage(TRUE);
+                    $e->toggleFullMessage(true);
                 }
                 $this->showVersion();
                 $errorHandler->handleException($e);
@@ -214,11 +213,11 @@ namespace TheSeer\phpDox {
          * Helper to output version information.
          */
         private function showVersion() {
-            static $shown = FALSE;
+            static $shown = false;
             if ($shown) {
                 return;
             }
-            $shown = TRUE;
+            $shown = true;
             echo $this->version->getInfoString() . "\n\n";
         }
 
@@ -229,7 +228,7 @@ namespace TheSeer\phpDox {
 
         private function showList($title, Array $list) {
             echo "\nThe following $title are registered:\n\n";
-            foreach($list as $name => $desc) {
+            foreach ($list as $name => $desc) {
                 printf("   %s \t %s\n", $name, $desc);
             }
             echo "\n\n";

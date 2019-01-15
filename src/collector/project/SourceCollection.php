@@ -1,45 +1,45 @@
 <?php
-    /**
-     * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
-     * All rights reserved.
-     *
-     * Redistribution and use in source and binary forms, with or without modification,
-     * are permitted provided that the following conditions are met:
-     *
-     *   * Redistributions of source code must retain the above copyright notice,
-     *     this list of conditions and the following disclaimer.
-     *
-     *   * Redistributions in binary form must reproduce the above copyright notice,
-     *     this list of conditions and the following disclaimer in the documentation
-     *     and/or other materials provided with the distribution.
-     *
-     *   * Neither the name of Arne Blankerts nor the names of contributors
-     *     may be used to endorse or promote products derived from this software
-     *     without specific prior written permission.
-     *
-     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-     * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
-     * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-     * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
-     * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
-     * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-     * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-     * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-     * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-     * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-     * POSSIBILITY OF SUCH DAMAGE.
-     *
-     * @package    phpDox
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
-     *
-     */
+/**
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ *   * Redistributions of source code must retain the above copyright notice,
+ *     this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright notice,
+ *     this list of conditions and the following disclaimer in the documentation
+ *     and/or other materials provided with the distribution.
+ *
+ *   * Neither the name of Arne Blankerts nor the names of contributors
+ *     may be used to endorse or promote products derived from this software
+ *     without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+ * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package    phpDox
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ *
+ */
 namespace TheSeer\phpDox\Collector {
 
-    use TheSeer\phpDox\FileInfo;
     use TheSeer\fDOM\fDOMDocument;
     use TheSeer\fDOM\fDOMElement;
+    use TheSeer\phpDox\FileInfo;
 
     class SourceCollection {
 
@@ -51,12 +51,12 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @var fDOMElement[]
          */
-        private $original = array();
+        private $original = [];
 
         /**
          * @var fDOMElement[]
          */
-        private $collection = array();
+        private $collection = [];
 
         private $workDom;
 
@@ -70,7 +70,7 @@ namespace TheSeer\phpDox\Collector {
         public function import(fDOMDocument $dom) {
             $dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
             $dir = $dom->queryOne('/phpdox:source/phpdox:dir');
-            if (!$dir)  {
+            if (!$dir) {
                 return;
             }
             $this->importDirNode($dir, '');
@@ -114,8 +114,8 @@ namespace TheSeer\phpDox\Collector {
         }
 
         public function getVanishedFiles() {
-            $list = array();
-            foreach(array_keys($this->original) as $path) {
+            $list = [];
+            foreach (array_keys($this->original) as $path) {
                 if (!isset($this->collection[$path])) {
                     $list[] = $path;
                 }
@@ -129,7 +129,7 @@ namespace TheSeer\phpDox\Collector {
             }
 
             $root = $this->workDom->documentElement;
-            while($root->hasChildNodes()) {
+            while ($root->hasChildNodes()) {
                 $root->nodeValue = null;
             }
 
@@ -146,10 +146,10 @@ namespace TheSeer\phpDox\Collector {
                     }
                     $ctx = $node;
                 }
-                $ctx->appendChild($this->workDom->importNode($file, TRUE));
+                $ctx->appendChild($this->workDom->importNode($file, true));
             }
 
-            $this->collection = array();
+            $this->collection = [];
 
             if ($collapse) {
                 $this->collapseDirectory();
@@ -158,11 +158,11 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function importDirNode(fDOMElement $dir, $path) {
-            $path .=  $dir->getAttribute('name');
-            foreach($dir->query('phpdox:file') as $file) {
-                $this->original[ $path . '/' . $file->getAttribute('name')] = $file;
+            $path .= $dir->getAttribute('name');
+            foreach ($dir->query('phpdox:file') as $file) {
+                $this->original[$path . '/' . $file->getAttribute('name')] = $file;
             }
-            foreach($dir->query('phpdox:dir') as $child) {
+            foreach ($dir->query('phpdox:dir') as $child) {
                 $this->importDirNode($child, $path . '/');
             }
         }
@@ -181,7 +181,7 @@ namespace TheSeer\phpDox\Collector {
             if ($first->query('phpdox:file')->length == 0 &&
                 $first->query('phpdox:dir')->length == 1) {
                 $dir = $first->queryOne('phpdox:dir');
-                foreach($dir->query('*') as $child) {
+                foreach ($dir->query('*') as $child) {
                     $first->appendChild($child);
                 }
                 $first->setAttribute('name', $first->getAttribute('name') . '/' . $dir->getAttribute('name'));

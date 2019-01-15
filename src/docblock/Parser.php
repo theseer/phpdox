@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -39,8 +39,10 @@ namespace TheSeer\phpDox\DocBlock {
     class Parser {
 
         protected $factory;
+
         protected $current = null;
-        protected $aliasMap = array();
+
+        protected $aliasMap = [];
 
         public function __construct(Factory $factory) {
             $this->factory = $factory;
@@ -52,11 +54,11 @@ namespace TheSeer\phpDox\DocBlock {
 
             $docBlock = $this->factory->getDocBlock();
             $lines = $this->prepare($block);
-            if (count($lines)>1) {
+            if (count($lines) > 1) {
                 $this->startParser('description');
             }
-            $buffer = array();
-            foreach($lines as $line) {
+            $buffer = [];
+            foreach ($lines as $line) {
                 if ($line == '' || $line == '/') {
                     if (count($buffer)) {
                         $buffer[] = '';
@@ -64,17 +66,17 @@ namespace TheSeer\phpDox\DocBlock {
                     continue;
                 }
 
-                if ($line[0]=='@') {
+                if ($line[0] == '@') {
                     if ($this->current !== null) {
                         $docBlock->appendElement(
                             $this->current->getObject($buffer)
                         );
                     }
-                    $buffer = array();
+                    $buffer = [];
 
                     preg_match('/^\@([a-zA-Z0-9_]+)(.*)$/', $line, $lineParts);
-                    $name      = ( isset( $lineParts[1] ) ? $lineParts[1] : '(undefined)');
-                    $payload   = ( isset( $lineParts[2] ) ? trim($lineParts[2]) : '' );
+                    $name = (isset($lineParts[1]) ? $lineParts[1] : '(undefined)');
+                    $payload = (isset($lineParts[2]) ? trim($lineParts[2]) : '');
 
                     $this->startParser($name, $payload);
                     continue;
@@ -92,16 +94,16 @@ namespace TheSeer\phpDox\DocBlock {
         }
 
         protected function prepare($block) {
-            $block = str_replace(array("\r\n", "\r"), "\n", mb_substr($block, 3, -2));
-            $raw = array();
-            foreach(explode("\n", $block) as $line) {
+            $block = str_replace(["\r\n", "\r"], "\n", mb_substr($block, 3, -2));
+            $raw = [];
+            foreach (explode("\n", $block) as $line) {
                 $line = preg_replace('/^\s*\*? ?/', '', $line);
                 $raw[] = rtrim($line, " \n\t*");
             }
             return $raw;
         }
 
-        protected function startParser($name, $payload = NULL) {
+        protected function startParser($name, $payload = null) {
             if (!preg_match('/^[a-zA-Z0-9-_\.]*$/', $name) || empty($name)) {
                 // TODO: errorlog
                 $this->current = $this->factory->getParserInstanceFor('invalid', $name);
@@ -109,7 +111,7 @@ namespace TheSeer\phpDox\DocBlock {
                 $this->current = $this->factory->getParserInstanceFor($name);
             }
             $this->current->setAliasMap($this->aliasMap);
-            if ($payload !== NULL) {
+            if ($payload !== null) {
                 $this->current->setPayload($payload);
             }
         }

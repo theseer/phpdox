@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,6 +42,7 @@ namespace TheSeer\phpDox\DocBlock {
     class InlineProcessor {
 
         protected $dom;
+
         protected $factory;
 
         protected $regex = '/(.*?)\{(\@(?>[^{}]+|(?R))*)\}|(.*)/m';
@@ -61,17 +62,17 @@ namespace TheSeer\phpDox\DocBlock {
                 return $this->dom->createTextNode($text);
             }
             $fragment = $this->dom->createDocumentFragment();
-            for($x=0; $x<$count; $x++) {
-                for($t=1; $t<=3; $t++) {
+            for ($x = 0; $x < $count; $x++) {
+                for ($t = 1; $t <= 3; $t++) {
                     if ($matches[$t][$x] == '') {
                         continue;
                     }
-                    if ($t==2) {
+                    if ($t == 2) {
                         $fragment->appendChild($this->processMatch($matches[$t][$x]));
                         continue;
                     }
                     $part = $matches[$t][$x];
-                    if ($t==3 && $part != '') {
+                    if ($t == 3 && $part != '') {
                         $part .= "\n";
                     }
                     $fragment->appendChild($this->dom->createTextNode($part));
@@ -95,8 +96,8 @@ namespace TheSeer\phpDox\DocBlock {
                 $parser->setPayload($parts[1]);
             }
 
-            $node = $parser->getObject(array())->asDom($this->dom);
-            foreach($node->childNodes as $child) {
+            $node = $parser->getObject([])->asDom($this->dom);
+            foreach ($node->childNodes as $child) {
                 if ($child instanceof \DOMText) {
                     $node->replaceChild($this->doParse($child->wholeText), $child);
                 }

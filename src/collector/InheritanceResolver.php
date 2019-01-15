@@ -1,39 +1,39 @@
 <?php
-    /**
-     * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
-     * All rights reserved.
-     *
-     * Redistribution and use in source and binary forms, with or without modification,
-     * are permitted provided that the following conditions are met:
-     *
-     *   * Redistributions of source code must retain the above copyright notice,
-     *     this list of conditions and the following disclaimer.
-     *
-     *   * Redistributions in binary form must reproduce the above copyright notice,
-     *     this list of conditions and the following disclaimer in the documentation
-     *     and/or other materials provided with the distribution.
-     *
-     *   * Neither the name of Arne Blankerts nor the names of contributors
-     *     may be used to endorse or promote products derived from this software
-     *     without specific prior written permission.
-     *
-     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-     * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
-     * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-     * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
-     * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
-     * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-     * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-     * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-     * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-     * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-     * POSSIBILITY OF SUCH DAMAGE.
-     *
-     * @package    phpDox
-     * @author     Arne Blankerts <arne@blankerts.de>
-     * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
-     * @license    BSD License
-     */
+/**
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ *   * Redistributions of source code must retain the above copyright notice,
+ *     this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright notice,
+ *     this list of conditions and the following disclaimer in the documentation
+ *     and/or other materials provided with the distribution.
+ *
+ *   * Neither the name of Arne Blankerts nor the names of contributors
+ *     may be used to endorse or promote products derived from this software
+ *     without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+ * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package    phpDox
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license    BSD License
+ */
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\fDOM\fDOMDocument;
@@ -60,17 +60,17 @@ namespace TheSeer\phpDox\Collector {
          */
         private $config;
 
-        private $dependencyStack = array();
+        private $dependencyStack = [];
 
         /**
          * @var array
          */
-        private $unresolved = array();
+        private $unresolved = [];
 
         /**
          * @var array
          */
-        private $errors = array();
+        private $errors = [];
 
         /**
          * @param ProgressLogger $logger
@@ -99,10 +99,10 @@ namespace TheSeer\phpDox\Collector {
 
             $this->setupDependencies();
 
-            foreach($changed as $unit) {
+            foreach ($changed as $unit) {
                 /** @var AbstractUnitObject $unit */
                 if ($unit->hasExtends()) {
-                    foreach($unit->getExtends() as $name) {
+                    foreach ($unit->getExtends() as $name) {
                         try {
                             $extendedUnit = $this->getUnitByName($name);
                             $this->processExtends($unit, $extendedUnit);
@@ -112,7 +112,7 @@ namespace TheSeer\phpDox\Collector {
                     }
                 }
                 if ($unit->hasImplements()) {
-                    foreach($unit->getImplements() as $implements) {
+                    foreach ($unit->getImplements() as $implements) {
                         try {
                             $implementsUnit = $this->getUnitByName($implements);
                             $this->processImplements($unit, $implementsUnit);
@@ -122,7 +122,7 @@ namespace TheSeer\phpDox\Collector {
                     }
                 }
                 if ($unit->usesTraits()) {
-                    foreach($unit->getUsedTraits() as $traitName) {
+                    foreach ($unit->getUsedTraits() as $traitName) {
                         try {
                             $traitUnit = $this->getUnitByName($traitName);
                             $this->processTraitUse(
@@ -138,7 +138,7 @@ namespace TheSeer\phpDox\Collector {
 
                 $unitName = $unit->getName();
                 if (isset($this->unresolved[$unitName])) {
-                    foreach($this->unresolved[$unitName] as $missingUnit) {
+                    foreach ($this->unresolved[$unitName] as $missingUnit) {
                         $unit->markDependencyAsUnresolved($missingUnit);
                     }
                 }
@@ -169,7 +169,7 @@ namespace TheSeer\phpDox\Collector {
         private function addError(AbstractUnitObject $unit, $errorInfo) {
             $unitName = $unit->getName();
             if (!isset($this->errors[$unitName])) {
-                $this->errors[$unitName] = array();
+                $this->errors[$unitName] = [];
             }
             $this->errors[$unitName][] = $errorInfo;
         }
@@ -177,7 +177,7 @@ namespace TheSeer\phpDox\Collector {
         private function addUnresolved(AbstractUnitObject $unit, $missingUnit) {
             $unitName = $unit->getName();
             if (!isset($this->unresolved[$unitName])) {
-                $this->unresolved[$unitName] = array();
+                $this->unresolved[$unitName] = [];
             }
             $this->unresolved[$unitName][] = $missingUnit;
             $this->project->registerForSaving($unit);
@@ -191,7 +191,7 @@ namespace TheSeer\phpDox\Collector {
             $unit->importExports($extends, 'parent');
 
             if ($extends->hasExtends()) {
-                foreach($extends->getExtends() as $name) {
+                foreach ($extends->getExtends() as $name) {
                     try {
                         $extendedUnit = $this->getUnitByName($name);
                         $this->processExtends($unit, $extendedUnit, $extendedUnit);
@@ -202,7 +202,7 @@ namespace TheSeer\phpDox\Collector {
             }
 
             if ($extends->hasImplements()) {
-                foreach($extends->getImplements() as $implements) {
+                foreach ($extends->getImplements() as $implements) {
                     try {
                         $implementsUnit = $this->getUnitByName($implements);
                         $this->processImplements($unit, $implementsUnit, $implementsUnit);
@@ -213,7 +213,7 @@ namespace TheSeer\phpDox\Collector {
             }
 
             if ($extends->usesTraits()) {
-                foreach($extends->getUsedTraits() as $traitName) {
+                foreach ($extends->getUsedTraits() as $traitName) {
                     try {
                         $traitUnit = $this->getUnitByName($traitName);
                         $this->processTraitUse(
@@ -248,7 +248,7 @@ namespace TheSeer\phpDox\Collector {
             $unit->importExports($implements, 'interface');
 
             if ($implements->hasImplements()) {
-                foreach($implements->getImplements() as $implementing) {
+                foreach ($implements->getImplements() as $implementing) {
                     try {
                         $implementsUnit = $this->getUnitByName($implementing);
                         $this->processExtends($unit, $implementsUnit, $implementsUnit);
@@ -267,7 +267,7 @@ namespace TheSeer\phpDox\Collector {
             $unit->importTraitExports($trait, $use);
 
             if ($trait->hasExtends()) {
-                foreach($trait->getExtends() as $name) {
+                foreach ($trait->getExtends() as $name) {
                     try {
                         $extendedUnit = $this->getUnitByName($name);
                         $this->processExtends($unit, $extendedUnit, $extendedUnit);
@@ -278,7 +278,7 @@ namespace TheSeer\phpDox\Collector {
             }
 
             if ($trait->usesTraits()) {
-                foreach($trait->getUsedTraits() as $traitName) {
+                foreach ($trait->getUsedTraits() as $traitName) {
                     try {
                         $traitUnit = $this->getUnitByName($traitName);
                         $this->processTraitUse(
@@ -295,12 +295,12 @@ namespace TheSeer\phpDox\Collector {
         }
 
         private function setupDependencies() {
-            $this->dependencyStack = array(
+            $this->dependencyStack = [
                 $this->project,
-            );
+            ];
 
             $publicOnlyMode = $this->config->isPublicOnlyMode();
-            foreach($this->config->getDependencyDirectories() as $depDir) {
+            foreach ($this->config->getDependencyDirectories() as $depDir) {
                 $idxName = $depDir . '/index.xml';
                 if (!file_exists($idxName)) {
                     $this->logger->log("'$idxName' not found - skipping dependency");
@@ -319,10 +319,11 @@ namespace TheSeer\phpDox\Collector {
          * @throws ProjectException
          */
         private function getUnitByName($name) {
-            foreach($this->dependencyStack as $dependency) {
+            foreach ($this->dependencyStack as $dependency) {
                 try {
                     return $dependency->getUnitByName($name);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
             throw new ProjectException("No unit with name '$name' found");
         }

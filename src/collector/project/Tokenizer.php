@@ -20,7 +20,7 @@ namespace TheSeer\phpDox\Collector {
          *
          * @var array
          */
-        private $map = array(
+        private $map = [
             '(' => 'T_PHPDOX_OPEN_BRACKET',
             ')' => 'T_PHPDOX_CLOSE_BRACKET',
             '[' => 'T_PHPDOX_OPEN_SQUARE',
@@ -49,7 +49,7 @@ namespace TheSeer\phpDox\Collector {
             '^' => 'T_PHPDOX_CARET',
             '~' => 'T_PHPDOX_TILDE',
             '`' => 'T_PHPDOX_BACKTICK'
-        );
+        ];
 
         /**
          * @param string $source
@@ -72,7 +72,7 @@ namespace TheSeer\phpDox\Collector {
             $this->lastLine = 1;
             $tokens = token_get_all($source);
 
-            foreach($tokens as $pos => $tok) {
+            foreach ($tokens as $pos => $tok) {
                 if (is_string($tok)) {
                     $line = 1;
                     $step = 1;
@@ -86,22 +86,22 @@ namespace TheSeer\phpDox\Collector {
                         $line = $tokens[$pos - $step][2];
                         $line += count(preg_split('/\R+/', $tokens[$pos - $step][1])) - 1;
                     }
-                    $token = array(
-                        'name' => $this->map[$tok],
+                    $token = [
+                        'name'  => $this->map[$tok],
                         'value' => $tok,
-                        'line' => $line
-                    );
+                        'line'  => $line
+                    ];
                     $this->addToken($token);
                 } else {
                     $line = $tok[2];
                     $values = preg_split('/\R+/Uu', $tok[1]);
 
-                    foreach($values as $v) {
-                        $token = array(
-                            'name' => token_name($tok[0]),
+                    foreach ($values as $v) {
+                        $token = [
+                            'name'  => token_name($tok[0]),
                             'value' => $v,
-                            'line' => $line
-                        );
+                            'line'  => $line
+                        ];
                         $this->addToken($token);
                         $line++;
                     }
@@ -122,7 +122,7 @@ namespace TheSeer\phpDox\Collector {
             if ($this->lastLine < $token['line']) {
                 $this->writer->endElement();
 
-                for($t=$this->lastLine + 1; $t<$token['line']; $t++) {
+                for ($t = $this->lastLine + 1; $t < $token['line']; $t++) {
                     $this->writer->startElement('line');
                     $this->writer->writeAttribute('no', $t);
                     $this->writer->endElement();
@@ -135,7 +135,7 @@ namespace TheSeer\phpDox\Collector {
             if ($token['value'] != '') {
                 $this->writer->startElement('token');
                 $this->writer->writeAttribute('name', $token['name']);
-                $this->writer->writeRaw( htmlspecialchars($token['value'], ENT_NOQUOTES | ENT_DISALLOWED | ENT_XML1) );
+                $this->writer->writeRaw(htmlspecialchars($token['value'], ENT_NOQUOTES | ENT_DISALLOWED | ENT_XML1));
                 $this->writer->endElement();
             }
         }

@@ -10,7 +10,6 @@ namespace TheSeer\phpDox\Generator {
             return new MemberCollection($this->asDom()->query('phpdox:member'));
         }
 
-
     }
 
 }

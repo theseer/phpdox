@@ -14,7 +14,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
     class PHPMessDetector extends AbstractEnricher implements ClassEnricherInterface, InterfaceEnricherInterface, TraitEnricherInterface {
 
         private $config;
-        private $violations = NULL;
+
+        private $violations = null;
 
         public function __construct(PHPMessDetectorConfig $config) {
             $this->config = $config;
@@ -48,7 +49,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function loadViolations($xmlFile) {
-            $this->violations = array();
+            $this->violations = [];
             try {
                 if (!file_exists($xmlFile)) {
                     throw new EnricherException(
@@ -58,7 +59,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 }
                 $dom = new fDOMDocument();
                 $dom->load($xmlFile);
-                foreach($dom->query('/pmd/file') as $file) {
+                foreach ($dom->query('/pmd/file') as $file) {
                     $fileInfo = new FileInfo($file->getAttribute('name'));
                     $this->violations[$fileInfo->getPathname()] = $file->query('*');
                 }
@@ -72,7 +73,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function processViolations(fDOMDocument $dom, \DOMNodeList $violations) {
-            foreach($violations as $violation) {
+            foreach ($violations as $violation) {
                 /** @var fDOMElement $violation */
                 $line = $violation->getAttribute('beginline');
                 $ref = $dom->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
@@ -87,12 +88,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 $enrichViolation = $dom->createElementNS(self::XMLNS, 'violation');
                 $enrichment->appendChild($enrichViolation);
                 $enrichViolation->setAttribute('message', trim($violation->nodeValue));
-                foreach($violation->attributes as $attr) {
+                foreach ($violation->attributes as $attr) {
                     $enrichViolation->setAttributeNode($dom->importNode($attr, true));
                 }
 
             }
-         }
+        }
     }
 
 }

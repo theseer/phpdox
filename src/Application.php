@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,6 @@
  */
 namespace TheSeer\phpDox {
 
-    use TheSeer\DirectoryScanner\DirectoryScanner;
     use TheSeer\phpDox\Collector\InheritanceResolver;
     use TheSeer\phpDox\Generator\Enricher\EnricherException;
 
@@ -55,6 +54,7 @@ namespace TheSeer\phpDox {
 
         /**
          * Factory instance
+         *
          * @var Factory
          */
         private $factory;
@@ -62,8 +62,8 @@ namespace TheSeer\phpDox {
         /**
          * Constructor of PHPDox Application
          *
-         * @param Factory   $factory   Factory instance
-         * @param ProgressLogger $logger Instance of the SilentProgressLogger class
+         * @param Factory        $factory Factory instance
+         * @param ProgressLogger $logger  Instance of the SilentProgressLogger class
          */
         public function __construct(Factory $factory, ProgressLogger $logger) {
             $this->factory = $factory;
@@ -83,9 +83,8 @@ namespace TheSeer\phpDox {
             return $bootstrap;
         }
 
-
         public function runConfigChangeDetection(FileInfo $workDirectory, FileInfo $configFile) {
-            $index = new FileInfo( (string)$workDirectory . '/index.xml');
+            $index = new FileInfo((string)$workDirectory . '/index.xml');
             if (!$index->exists() || ($index->getMTime() >= $configFile->getMTime())) {
                 return;
             }
@@ -123,7 +122,7 @@ namespace TheSeer\phpDox {
 
             if ($collector->hasParseErrors()) {
                 $this->logger->log('The following file(s) had errors during processing and were excluded:');
-                foreach($collector->getParseErrors() as $file => $message) {
+                foreach ($collector->getParseErrors() as $file => $message) {
                     $this->logger->log(' - ' . $file . ' (' . $message . ')');
                 }
             }
@@ -134,7 +133,7 @@ namespace TheSeer\phpDox {
             $vanished = $project->cleanVanishedFiles();
             if (count($vanished) > 0) {
                 $this->logger->log(sprintf("Removed %d vanished file(s) from project:", count($vanished)));
-                foreach($vanished as $file) {
+                foreach ($vanished as $file) {
                     $this->logger->log(' - ' . $file);
                 }
             }
@@ -146,7 +145,7 @@ namespace TheSeer\phpDox {
 
                 if ($resolver->hasUnresolved()) {
                     $this->logger->log('The following unit(s) had missing dependencies during inheritance resolution:');
-                    foreach($resolver->getUnresolved() as $class => $missing) {
+                    foreach ($resolver->getUnresolved() as $class => $missing) {
                         if (is_array($missing)) {
                             $missing = join(', ', $missing);
                         }
@@ -156,7 +155,7 @@ namespace TheSeer\phpDox {
 
                 if ($resolver->hasErrors()) {
                     $this->logger->log('The following unit(s) caused errors during inheritance resolution:');
-                    foreach($resolver->getErrors() as $class => $error) {
+                    foreach ($resolver->getErrors() as $class => $error) {
                         $this->logger->log(' - ' . $class . ': ' . implode(', ', $error));
                     }
                 }
@@ -181,8 +180,8 @@ namespace TheSeer\phpDox {
 
             $failed = array_diff($config->getRequiredEngines(), $engineFactory->getEngineList());
             if (count($failed)) {
-               $list = join("', '", $failed);
-               throw new ApplicationException("The engine(s) '$list' is/are not registered", ApplicationException::UnknownEngine);
+                $list = join("', '", $failed);
+                throw new ApplicationException("The engine(s) '$list' is/are not registered", ApplicationException::UnknownEngine);
             }
 
             $failed = array_diff($config->getRequiredEnrichers(), $enricherFactory->getEnricherList());
@@ -193,12 +192,12 @@ namespace TheSeer\phpDox {
 
             $generator = $this->factory->getGenerator();
 
-            foreach($config->getActiveBuilds() as $buildCfg) {
-                $generator->addEngine( $engineFactory->getInstanceFor($buildCfg) );
+            foreach ($config->getActiveBuilds() as $buildCfg) {
+                $generator->addEngine($engineFactory->getInstanceFor($buildCfg));
             }
 
             $this->logger->log('Loading enrichers');
-            foreach($config->getActiveEnrichSources() as $type => $enrichCfg) {
+            foreach ($config->getActiveEnrichSources() as $type => $enrichCfg) {
                 try {
                     $enricher = $enricherFactory->getInstanceFor($enrichCfg);
                     $generator->addEnricher($enricher);

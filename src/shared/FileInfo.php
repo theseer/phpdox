@@ -50,13 +50,13 @@ namespace TheSeer\phpDox {
          *
          * @return FileInfo
          */
-        public function getRelative(\SplFileInfo $relation, $inclusive = TRUE) {
+        public function getRelative(\SplFileInfo $relation, $inclusive = true) {
             $relPath = $this->getRealPath();
             $relationPath = $relation->getRealPath();
             if ($inclusive) {
                 $relationPath = dirname($relationPath);
             }
-            $relPath = mb_substr($relPath, mb_strlen($relationPath)+1);
+            $relPath = mb_substr($relPath, mb_strlen($relationPath) + 1);
             return new FileInfo($relPath);
         }
 
@@ -86,7 +86,7 @@ namespace TheSeer\phpDox {
          *
          * @throws FileInfoException
          */
-        public function getFileInfo($class_name = NULL) {
+        public function getFileInfo($class_name = null) {
             throw new FileInfoException("getFileInfo not implemented", FileInfoException::NotImplemented);
         }
 
@@ -95,7 +95,7 @@ namespace TheSeer\phpDox {
          *
          * @throws FileInfoException
          */
-        public function getPathInfo($class_name = NULL) {
+        public function getPathInfo($class_name = null) {
             throw new FileInfoException("getPathInfo not implemented", FileInfoException::NotImplemented);
         }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,8 +42,10 @@ namespace TheSeer\phpDox\DocBlock {
         protected $factory;
 
         protected $name;
+
         protected $body;
-        protected $attributes = array();
+
+        protected $attributes = [];
 
         public function __construct(Factory $factory, $name) {
             $this->factory = $factory;
@@ -73,7 +75,7 @@ namespace TheSeer\phpDox\DocBlock {
 
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
             $node = $ctx->createElementNS('http://xml.phpdox.net/src', mb_strtolower($this->name));
-            foreach($this->attributes as $attribute => $value) {
+            foreach ($this->attributes as $attribute => $value) {
                 if ($value != '') {
                     $node->setAttribute($attribute, $value);
                 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -41,34 +41,34 @@ namespace TheSeer\phpDox\DocBlock {
 
     class Factory {
 
-        private $parserMap = array(
+        private $parserMap = [
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
 
             'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
-            'param' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
-            'var' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'return' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'throws' => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'license' => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
+            'param'       => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
+            'var'         => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'return'      => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'throws'      => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'license'     => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
 
-            'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser',
+            'internal'   => 'TheSeer\\phpDox\\DocBlock\\InternalParser',
             'inheritdoc' => 'TheSeer\\phpDox\\DocBlock\\InheritdocParser'
-        );
+        ];
 
-        private $elementMap = array(
+        private $elementMap = [
             'inheritdoc' => 'TheSeer\\phpDox\\DocBlock\\InheritdocAttribute',
-            'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
-            'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericElement',
-            'var' => 'TheSeer\\phpDox\\DocBlock\\VarElement'
-        );
+            'invalid'    => 'TheSeer\\phpDox\\DocBlock\\InvalidElement',
+            'generic'    => 'TheSeer\\phpDox\\DocBlock\\GenericElement',
+            'var'        => 'TheSeer\\phpDox\\DocBlock\\VarElement'
+        ];
 
         /**
          * Register a parser factory.
          *
-         * @param string $annotation Identifier of the parser within the registry.
-         * @param \TheSeer\phpDox\FactoryInterface|string $factory Instance of FactoryInterface to be registered or FQCN
-         *        of the object to be created.
+         * @param string                                  $annotation Identifier of the parser within the registry.
+         * @param \TheSeer\phpDox\FactoryInterface|string $factory    Instance of FactoryInterface to be registered or FQCN
+         *                                                            of the object to be created.
          *
          * @throws FactoryException in case $annotation is not a string.
          */
@@ -125,23 +125,26 @@ namespace TheSeer\phpDox\DocBlock {
         /**
          * Verify the type of the given item matches the expected one.
          *
-         * @param mixed $item
+         * @param mixed  $item
          * @param string $type
+         *
          * @throws FactoryException in case the item type and the expected type do not match.
          */
         protected function verifyType($item, $type = 'string') {
             $match = true;
             switch (mb_strtolower($type)) {
-                case 'string': {
-                    if (!is_string($item)) {
-                        $match = false;
+                case 'string':
+                    {
+                        if (!is_string($item)) {
+                            $match = false;
+                        }
+                        break;
                     }
-                    break;
-                }
-                default: {
-                    throw new FactoryException('Unknown type chosen for verification', FactoryException::UnknownType);
-                    break;
-                }
+                default:
+                    {
+                        throw new FactoryException('Unknown type chosen for verification', FactoryException::UnknownType);
+                        break;
+                    }
             }
 
             if (!$match) {

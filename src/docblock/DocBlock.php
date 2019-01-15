@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -39,13 +39,13 @@ namespace TheSeer\phpDox\DocBlock {
 
     class DocBlock {
 
-        protected $elements = array();
+        protected $elements = [];
 
         public function appendElement(GenericElement $element) {
             $name = $element->getAnnotationName();
             if (isset($this->elements[$name])) {
                 if (!is_array($this->elements[$name])) {
-                    $this->elements[$name] = array($this->elements[$name]);
+                    $this->elements[$name] = [$this->elements[$name]];
                 }
                 $this->elements[$name][] = $element;
                 return;
@@ -66,14 +66,15 @@ namespace TheSeer\phpDox\DocBlock {
 
         /**
          * @param \TheSeer\fDOM\fDOMDocument $doc
+         *
          * @return \TheSeer\fDOM\fDOMElement
          */
         public function asDom(\TheSeer\fDOM\fDOMDocument $doc) {
             $node = $doc->createElementNS('http://xml.phpdox.net/src', 'docblock');
             // add lines and such?
-            foreach($this->elements as $element) {
+            foreach ($this->elements as $element) {
                 if (is_array($element)) {
-                    foreach($element as $el) {
+                    foreach ($element as $el) {
                         $node->appendChild($el->asDom($doc));
                     }
                     continue;

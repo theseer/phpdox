@@ -15,7 +15,6 @@ namespace TheSeer\phpDox\Generator {
             return new TraitObject($this->loadDocument($dir));
         }
 
-
     }
 
 }

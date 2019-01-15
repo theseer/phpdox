@@ -26,7 +26,7 @@ namespace TheSeer\phpDox\Generator {
 
         public function getRelativeName(FileInfo $path) {
             $file = new FileInfo($this->asDom()->getElementsByTagNameNS(SourceFile::XMLNS, 'file')->item(0)->getAttribute('realpath'));
-            return $file->getRelative($path, FALSE);
+            return $file->getRelative($path, false);
         }
 
         public function asDom() {
@@ -41,6 +41,7 @@ namespace TheSeer\phpDox\Generator {
     }
 
     class TokenFileException extends \Exception {
+
         const FileNotFound = 1;
     }
 

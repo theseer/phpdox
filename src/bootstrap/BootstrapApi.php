@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -36,10 +36,10 @@
  */
 namespace TheSeer\phpDox {
 
-    use \TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
-    use \TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
-    use \TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
-    use \TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
+    use TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
+    use TheSeer\phpDox\DocBlock\Factory as DocBlockFactory;
+    use TheSeer\phpDox\Generator\Engine\Factory as EngineFactory;
+    use TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
 
     /**
      * Bootstrapping API for registering backends, generator engines and parsers
@@ -86,20 +86,21 @@ namespace TheSeer\phpDox {
          *
          * @var array
          */
-        private $engines = array();
+        private $engines = [];
 
         /**
          * Array of registered enrichers
          *
          * @var array
          */
-        private $enrichers = array();
+        private $enrichers = [];
+
         /**
          * Array of registered backends
          *
          * @var array
          */
-        private $backends = array();
+        private $backends = [];
 
         /**
          * Constructor
@@ -158,8 +159,8 @@ namespace TheSeer\phpDox {
         /**
          * Register a new generator enginge
          *
-         * @param string $name         Name of the generator engine
-         * @param string $description  A describing text
+         * @param string $name        Name of the generator engine
+         * @param string $description A describing text
          *
          * @return EngineBootstrapApi
          */
@@ -171,6 +172,7 @@ namespace TheSeer\phpDox {
 
         /**
          * @param $annotation
+         *
          * @return ParserBootstrapApi
          */
         public function registerParser($annotation) {
@@ -181,8 +183,8 @@ namespace TheSeer\phpDox {
         /**
          * Register a new enricher
          *
-         * @param string $name         Name of the enricher
-         * @param string $description  A describing text
+         * @param string $name        Name of the enricher
+         * @param string $description A describing text
          *
          * @return EnricherBootstrapApi
          */

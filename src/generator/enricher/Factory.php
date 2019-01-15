@@ -10,12 +10,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
         /**
          * @var array
          */
-        private $enrichers = array();
+        private $enrichers = [];
 
         /**
          * @var array
          */
-        private $configs = array();
+        private $configs = [];
 
         public function addEnricherClass($name, $class) {
             $this->enrichers[$name] = $class;
@@ -54,6 +54,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
     }
 
     class FactoryException extends \Exception {
+
         const UnknownEnricher = 1;
     }
 

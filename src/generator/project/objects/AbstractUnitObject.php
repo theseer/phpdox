@@ -60,7 +60,6 @@ namespace TheSeer\phpDox\Generator {
             return new MethodCollection($this->dom->query('phpdox:constructor|phpdox:method|phpdox:destructor'));
         }
 
-
     }
 
 }

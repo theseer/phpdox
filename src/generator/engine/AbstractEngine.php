@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -78,14 +78,14 @@ namespace TheSeer\phpDox\Generator\Engine {
         }
 
         protected function copyStatic($path, $dest, $recursive = true) {
-            $len  = mb_strlen($path);
+            $len = mb_strlen($path);
             if ($recursive) {
                 $worker = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
             } else {
                 $worker = new \DirectoryIterator($path);
             }
-            foreach($worker as $x) {
-                if($x->isDir() && ($x->getFilename() == "." || $x->getFilename() == "..")) {
+            foreach ($worker as $x) {
+                if ($x->isDir() && ($x->getFilename() == "." || $x->getFilename() == "..")) {
                     continue;
                 }
                 $target = $dest . mb_substr($x->getPathname(), $len);
@@ -100,7 +100,7 @@ namespace TheSeer\phpDox\Generator\Engine {
             $doc->registerNamespace('xsl', 'http://www.w3.org/1999/XSL/Transform');
             $baseDir = dirname($doc->documentURI);
             $baseElement = $doc->documentElement;
-            foreach($doc->query('/xsl:stylesheet/xsl:import') as $importNode) {
+            foreach ($doc->query('/xsl:stylesheet/xsl:import') as $importNode) {
                 /** @var $importNode \DOMElement */
                 $import = new fDOMDocument();
                 $import->load($baseDir . '/' . $importNode->getAttribute('href'));
@@ -120,6 +120,7 @@ namespace TheSeer\phpDox\Generator\Engine {
     }
 
     class EngineException extends \Exception {
+
         const UnexpectedError = 1;
     }
 

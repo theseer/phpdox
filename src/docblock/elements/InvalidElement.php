@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -42,7 +42,7 @@ namespace TheSeer\phpDox\DocBlock {
         public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
             $node = $ctx->createElementNS('http://xml.phpdox.net/src', 'invalid');
             $node->setAttribute('annotation', $this->name);
-            foreach($this->attributes as $attribute => $value) {
+            foreach ($this->attributes as $attribute => $value) {
                 $node->setAttribute($attribute, $value);
             }
             if ($this->body !== null && $this->body !== '') {

@@ -39,7 +39,7 @@ namespace TheSeer\phpDox\Collector {
             $local = array_pop($parts);
             $namespace = join('\\', $parts);
             $indexNode = $this->index->queryOne(
-                    sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $local));
+                sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $local));
 
             if (!$indexNode) {
                 throw new DependencyException(
@@ -49,39 +49,43 @@ namespace TheSeer\phpDox\Collector {
             }
 
             $dom = new fDOMDocument();
-            $dom->load( $this->baseDir . '/' . $indexNode->getAttribute('xml'));
+            $dom->load($this->baseDir . '/' . $indexNode->getAttribute('xml'));
 
             if ($this->publicOnlyMode) {
-                foreach($dom->query('//*[@visibility and not(@visibility = "public")]') as $node) {
+                foreach ($dom->query('//*[@visibility and not(@visibility = "public")]') as $node) {
                     $node->parentNode->removeChild($node);
                 }
             }
 
             switch ($indexNode->localName) {
-                case 'interface': {
-                    $unit = new InterfaceObject();
-                    $unit->import($dom);
-                    $this->project->addInterface($unit);
-                    break;
-                }
-                case 'trait': {
-                    $unit = new TraitObject();
-                    $unit->import($dom);
-                    $this->project->addTrait($unit);
-                    break;
-                }
-                case 'class': {
-                    $unit = new ClassObject();
-                    $unit->import($dom);
-                    $this->project->addClass($unit);
-                    break;
-                }
-                default: {
-                    throw new DependencyException(
-                        sprintf("Invalid unit type '%s'", $indexNode->localName),
-                        DependencyException::InvalidUnitType
-                    );
-                }
+                case 'interface':
+                    {
+                        $unit = new InterfaceObject();
+                        $unit->import($dom);
+                        $this->project->addInterface($unit);
+                        break;
+                    }
+                case 'trait':
+                    {
+                        $unit = new TraitObject();
+                        $unit->import($dom);
+                        $this->project->addTrait($unit);
+                        break;
+                    }
+                case 'class':
+                    {
+                        $unit = new ClassObject();
+                        $unit->import($dom);
+                        $this->project->addClass($unit);
+                        break;
+                    }
+                default:
+                    {
+                        throw new DependencyException(
+                            sprintf("Invalid unit type '%s'", $indexNode->localName),
+                            DependencyException::InvalidUnitType
+                        );
+                    }
             }
 
             return $unit;

@@ -10,7 +10,6 @@ namespace TheSeer\phpDox\Generator {
             return new InterfaceEntry($this->getCurrentNode());
         }
 
-
     }
 
 }

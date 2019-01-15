@@ -32,7 +32,9 @@ namespace TheSeer\phpDox\Generator\Enricher {
             if ($this->context->parentNode->hasAttribute('base')) {
                 $path = $this->context->parentNode->getAttribute('base');
             }
-            if ($path != '') { $path .= '/'; }
+            if ($path != '') {
+                $path .= '/';
+            }
             $coverage = $this->context->queryOne('cfg:coverage');
             if ($coverage && $coverage->hasAttribute('path')) {
                 $cfgPath = $coverage->getAttribute('path');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -49,7 +49,9 @@ namespace TheSeer\phpDox {
     class BuildConfig {
 
         protected $ctx;
+
         protected $generator;
+
         protected $project;
 
         public function __construct(GeneratorConfig $generator, fDOMElement $ctx) {
@@ -84,7 +86,9 @@ namespace TheSeer\phpDox {
                 $path = $this->ctx->parentNode->getAttribute('output', 'docs');
             }
             if ($this->ctx->hasAttribute('output')) {
-                if ($path != '') { $path .= '/'; }
+                if ($path != '') {
+                    $path .= '/';
+                }
                 $path .= $this->ctx->getAttribute('output');
             }
             return new FileInfo($path);

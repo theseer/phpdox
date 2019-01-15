@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -41,8 +41,8 @@ namespace TheSeer\phpDox\Generator {
     use TheSeer\phpDox\Generator\Enricher\ClassEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\EndEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\EnricherInterface;
-    use TheSeer\phpDox\Generator\Enricher\StartEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\InterfaceEnricherInterface;
+    use TheSeer\phpDox\Generator\Enricher\StartEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\TokenFileEnricherInterface;
     use TheSeer\phpDox\Generator\Enricher\TraitEnricherInterface;
     use TheSeer\phpDox\ProgressLogger;
@@ -57,14 +57,14 @@ namespace TheSeer\phpDox\Generator {
         /**
          * @var array
          */
-        private $enrichers = array(
-            'phpdox.start'       => array(),
-            'class.start'        => array(),
-            'trait.start'        => array(),
-            'interface.start'    => array(),
-            'token.file.start'   => array(),
-            'phpdox.end'         => array()
-        );
+        private $enrichers = [
+            'phpdox.start'     => [],
+            'class.start'      => [],
+            'trait.start'      => [],
+            'interface.start'  => [],
+            'token.file.start' => [],
+            'phpdox.end'       => []
+        ];
 
         /**
          * @var string
@@ -128,8 +128,8 @@ namespace TheSeer\phpDox\Generator {
          * @param bool    $publicOnly
          */
         public function run(Project $project) {
-            $this->xmlDir     = $project->getXmlDir();
-            $this->project    = $project;
+            $this->xmlDir = $project->getXmlDir();
+            $this->project = $project;
 
             $this->handleEvent(new PHPDoxStartEvent($project->getIndex(), $project->getSourceTree()));
             if ($this->project->hasNamespaces()) {
@@ -144,11 +144,11 @@ namespace TheSeer\phpDox\Generator {
         }
 
         private function processTokenFiles(SourceTree $sourceTree) {
-            foreach($sourceTree as $tokenFile) {
+            foreach ($sourceTree as $tokenFile) {
                 $this->handleEvent(new TokenFileStartEvent($tokenFile));
-                foreach($tokenFile as $sourceLine) {
+                foreach ($tokenFile as $sourceLine) {
                     $this->handleEvent(new TokenLineStartEvent($tokenFile, $sourceLine));
-                    foreach($sourceLine as $token) {
+                    foreach ($sourceLine as $token) {
                         $this->handleEvent(new TokenEvent($sourceLine, $token));
                     }
                     $this->handleEvent(new TokenLineEndEvent($tokenFile, $sourceLine));
@@ -161,45 +161,51 @@ namespace TheSeer\phpDox\Generator {
          * @param AbstractEvent $event
          * @param bool          $progress
          */
-        private function handleEvent(AbstractEvent $event, $progress = TRUE) {
+        private function handleEvent(AbstractEvent $event, $progress = true) {
             $eventType = $event->getType();
             if (isset($this->enrichers[$eventType])) {
-                foreach($this->enrichers[$eventType] as $enricher) {
-                    switch($eventType) {
-                        case 'phpdox.start': {
-                            $enricher->enrichStart($event);
-                            break;
-                        }
-                        case 'class.start': {
-                            $enricher->enrichClass($event);
-                            break;
-                        }
-                        case 'interface.start': {
-                            $enricher->enrichInterface($event);
-                            break;
-                        }
-                        case 'trait.start': {
-                            $enricher->enrichTrait($event);
-                            break;
-                        }
-                        case 'token.file.start': {
-                            $enricher->enrichTokenFile($event);
-                            break;
-                        }
-                        case 'phpdox.end': {
-                            $enricher->enrichEnd($event);
-                            break;
-                        }
+                foreach ($this->enrichers[$eventType] as $enricher) {
+                    switch ($eventType) {
+                        case 'phpdox.start':
+                            {
+                                $enricher->enrichStart($event);
+                                break;
+                            }
+                        case 'class.start':
+                            {
+                                $enricher->enrichClass($event);
+                                break;
+                            }
+                        case 'interface.start':
+                            {
+                                $enricher->enrichInterface($event);
+                                break;
+                            }
+                        case 'trait.start':
+                            {
+                                $enricher->enrichTrait($event);
+                                break;
+                            }
+                        case 'token.file.start':
+                            {
+                                $enricher->enrichTokenFile($event);
+                                break;
+                            }
+                        case 'phpdox.end':
+                            {
+                                $enricher->enrichEnd($event);
+                                break;
+                            }
                     }
                 }
             }
-            foreach($this->handlerRegistry->getHandlersForEvent($event->getType()) as $callback) {
+            foreach ($this->handlerRegistry->getHandlersForEvent($event->getType()) as $callback) {
                 call_user_func($callback, $event);
             }
             if ($progress) {
                 $this->logger->progress('processed');
             }
-    }
+        }
 
         /**
          *
@@ -207,21 +213,21 @@ namespace TheSeer\phpDox\Generator {
         private function processGlobalOnly() {
             $classes = $this->project->getClasses();
             $this->handleEvent(new PHPDoxClassesStartEvent($classes));
-            foreach($classes as $class) {
+            foreach ($classes as $class) {
                 $this->processClass($class);
             }
             $this->handleEvent(new PHPDoxClassesEndEvent($classes));
 
             $traits = $this->project->getTraits();
             $this->handleEvent(new PHPDoxTraitsStartEvent($traits));
-            foreach($traits as $trait) {
+            foreach ($traits as $trait) {
                 $this->processTrait($trait);
             }
             $this->handleEvent(new PHPDoxTraitsEndEvent($traits));
 
             $interfaces = $this->project->getInterfaces();
             $this->handleEvent(new PHPDoxInterfacesStartEvent($interfaces));
-            foreach($interfaces as $interface) {
+            foreach ($interfaces as $interface) {
                 $this->processInterface($interface);
             }
             $this->handleEvent(new PHPDoxInterfacesEndEvent($interfaces));
@@ -234,26 +240,26 @@ namespace TheSeer\phpDox\Generator {
             $namespaces = $this->project->getNamespaces();
             $this->handleEvent(new PHPDoxNamespacesStartEvent($namespaces));
 
-            foreach($namespaces as $namespace) {
+            foreach ($namespaces as $namespace) {
                 $this->handleEvent(new NamespaceStartEvent($namespace));
 
                 $classes = $namespace->getClasses();
                 $this->handleEvent(new NamespaceClassesStartEvent($classes, $namespace));
-                foreach($classes as $class) {
+                foreach ($classes as $class) {
                     $this->processClass($class);
                 }
                 $this->handleEvent(new NamespaceClassesEndEvent($classes, $namespace));
 
                 $traits = $namespace->getTraits();
                 $this->handleEvent(new NamespaceTraitsStartEvent($traits, $namespace));
-                foreach($traits as $trait) {
+                foreach ($traits as $trait) {
                     $this->processTrait($trait);
                 }
                 $this->handleEvent(new NamespaceTraitsEndEvent($traits, $namespace));
 
                 $interfaces = $namespace->getInterfaces();
                 $this->handleEvent(new NamespaceInterfacesStartEvent($interfaces, $namespace));
-                foreach($interfaces as $interface) {
+                foreach ($interfaces as $interface) {
                     $this->processInterface($interface);
                 }
                 $this->handleEvent(new NamespaceInterfacesEndEvent($interfaces, $namespace));
@@ -270,15 +276,15 @@ namespace TheSeer\phpDox\Generator {
             $class = $entry->getClassObject($this->xmlDir);
             $this->handleEvent(new ClassStartEvent($class));
 
-            foreach($class->getConstants() as $constant) {
+            foreach ($class->getConstants() as $constant) {
                 $this->handleEvent(new ClassConstantEvent($constant, $class));
             }
 
-            foreach($class->getMembers() as $member) {
+            foreach ($class->getMembers() as $member) {
                 $this->handleEvent(new ClassMemberEvent($member, $class));
             }
 
-            foreach($class->getMethods() as $method) {
+            foreach ($class->getMethods() as $method) {
                 $this->handleEvent(new ClassMethodEvent($method, $class));
             }
             $this->handleEvent(new ClassEndEvent($class));
@@ -292,15 +298,15 @@ namespace TheSeer\phpDox\Generator {
             $trait = $traitEntry->getTraitObject($this->xmlDir);
             $this->handleEvent(new TraitStartEvent($trait));
 
-            foreach($trait->getConstants() as $constant) {
+            foreach ($trait->getConstants() as $constant) {
                 $this->handleEvent(new TraitConstantEvent($constant, $trait));
             }
 
-            foreach($trait->getMembers() as $member) {
+            foreach ($trait->getMembers() as $member) {
                 $this->handleEvent(new TraitMemberEvent($member, $trait));
             }
 
-            foreach($trait->getMethods() as $method) {
+            foreach ($trait->getMethods() as $method) {
                 $this->handleEvent(new TraitMethodEvent($method, $trait));
             }
             $this->handleEvent(new TraitEndEvent($trait));
@@ -314,11 +320,11 @@ namespace TheSeer\phpDox\Generator {
 
             $this->handleEvent(new InterfaceStartEvent($interface));
 
-            foreach($interface->getConstants() as $constant) {
+            foreach ($interface->getConstants() as $constant) {
                 $this->handleEvent(new InterfaceConstantEvent($constant, $interface));
             }
 
-            foreach($interface->getMethods() as $method) {
+            foreach ($interface->getMethods() as $method) {
                 $this->handleEvent(new InterfaceMethodEvent($method, $interface));
             }
 
@@ -328,6 +334,7 @@ namespace TheSeer\phpDox\Generator {
     }
 
     class GeneratorException extends \Exception {
+
         const UnknownEvent = 1;
         const AlreadyRegistered = 2;
     }

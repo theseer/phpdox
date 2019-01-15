@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,10 +37,10 @@
 namespace TheSeer\phpDox\Collector {
 
     use TheSeer\DirectoryScanner\DirectoryScanner;
-    use TheSeer\phpDox\FileInfo;
-    use TheSeer\phpDox\ProgressLogger;
     use TheSeer\phpDox\Collector\Backend\BackendInterface;
     use TheSeer\phpDox\Collector\Backend\ParseErrorException;
+    use TheSeer\phpDox\FileInfo;
+    use TheSeer\phpDox\ProgressLogger;
 
     /**
      * Collector processing class
@@ -60,7 +60,7 @@ namespace TheSeer\phpDox\Collector {
         /**
          * @var array
          */
-        private $parseErrors = array();
+        private $parseErrors = [];
 
         /**
          * @var BackendInterface
@@ -103,7 +103,7 @@ namespace TheSeer\phpDox\Collector {
             $this->logger->log("Scanning directory '{$srcDir}' for files to process\n");
 
             $iterator = new SourceFileIterator($scanner($srcDir), $srcDir, $this->encoding);
-            foreach($iterator as $file) {
+            foreach ($iterator as $file) {
                 $needsProcessing = $this->project->addFile($file);
                 if (!$needsProcessing) {
                     $this->logger->progress('cached');
@@ -148,17 +148,17 @@ namespace TheSeer\phpDox\Collector {
                 $result = $this->backend->parse($file, $this->publicOnly);
 
                 if ($result->hasClasses()) {
-                    foreach($result->getClasses() as $class) {
+                    foreach ($result->getClasses() as $class) {
                         $this->project->addClass($class);
                     }
                 }
                 if ($result->hasInterfaces()) {
-                    foreach($result->getInterfaces() as $interface) {
+                    foreach ($result->getInterfaces() as $interface) {
                         $this->project->addInterface($interface);
                     }
                 }
                 if ($result->hasTraits()) {
-                    foreach($result->getTraits() as $trait) {
+                    foreach ($result->getTraits() as $trait) {
                         $this->project->addTrait($trait);
                     }
                 }

@@ -16,13 +16,13 @@ namespace TheSeer\phpDox\Generator\Enricher {
         protected function getEnrichtmentContainer(fDOMElement $node, $type) {
             $dom = $node->ownerDocument;
             $container = $node->queryOne('phpdox:enrichments');
-            if(!$container) {
+            if (!$container) {
                 $container = $dom->createElementNS(self::XMLNS, 'enrichments');
                 $node->appendChild($container);
             }
 
             $enrichment = $container->queryOne(
-                $dom->prepareQuery('phpdox:enrichment[@type=:type]', array('type' => $type))
+                $dom->prepareQuery('phpdox:enrichment[@type=:type]', ['type' => $type])
             );
 
             if (!$enrichment) {

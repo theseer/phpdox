@@ -69,7 +69,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
 
         private function getGeneralBuildInfo() {
-            if ($this->buildInfo != NULL) {
+            if ($this->buildInfo != null) {
                 return $this->buildInfo;
             }
 
@@ -94,7 +94,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $phpdoxNode->setAttribute('generated', $this->version->getGeneratedByString());
             $phpdoxNode->setAttribute('phar', defined('PHPDOX_PHAR') ? 'yes' : 'no');
 
-            foreach($this->enrichers as $enricher) {
+            foreach ($this->enrichers as $enricher) {
                 $enricherNode = $phpdoxNode->appendElementNS(self::XMLNS, 'enricher');
                 $enricherNode->setAttribute('type', $enricher);
             }
@@ -105,12 +105,12 @@ namespace TheSeer\phpDox\Generator\Enricher {
             $phpNode->setAttribute('version', PHP_VERSION);
             $phpNode->setAttribute('os', PHP_OS);
 
-            foreach(get_loaded_extensions(true) as $extension) {
+            foreach (get_loaded_extensions(true) as $extension) {
                 $extNode = $dom->createElementNS(self::XMLNS, 'zendextension');
                 $extNode->setAttribute('name', $extension);
                 $phpNode->appendChild($extNode);
             }
-            foreach(get_loaded_extensions(false) as $extension) {
+            foreach (get_loaded_extensions(false) as $extension) {
                 $extNode = $dom->createElementNS(self::XMLNS, 'extension');
                 $extNode->setAttribute('name', $extension);
                 $phpNode->appendChild($extNode);

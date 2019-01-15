@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+ * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -43,6 +43,7 @@ namespace TheSeer\phpDox {
     class CollectorConfig {
 
         protected $ctx;
+
         protected $project;
 
         public function __construct(ProjectConfig $project, fDOMElement $ctx) {
@@ -102,7 +103,7 @@ namespace TheSeer\phpDox {
             if (!$inNode) {
                 return true;
             }
-            return $inNode->getAttribute('resolve', 'true')=='true';
+            return $inNode->getAttribute('resolve', 'true') == 'true';
         }
 
         public function getInheritanceConfig() {
@@ -110,8 +111,8 @@ namespace TheSeer\phpDox {
         }
 
         protected function getMasks($nodename) {
-            $list = array();
-            foreach($this->ctx->query('cfg:'.$nodename) as $node) {
+            $list = [];
+            foreach ($this->ctx->query('cfg:' . $nodename) as $node) {
                 $list[] = $node->getAttribute('mask');
             }
             return $list;

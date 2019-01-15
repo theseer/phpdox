@@ -30,13 +30,15 @@ namespace TheSeer\phpDox\Generator\Enricher {
          * @var FileInfo
          */
         private $sourceDirectory;
+
         /**
          * @var fDOMDocument
          */
         private $index;
 
-        private $results = array();
-        private $coverage = array();
+        private $results = [];
+
+        private $coverage = [];
 
         /**
          * @param PHPUnitConfig $config
@@ -59,8 +61,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
 
         public function enrichEnd(PHPDoxEndEvent $event) {
             $index = $event->getIndex()->asDom();
-            foreach($this->results as $namespace => $classes) {
-                foreach($classes as $class => $results) {
+            foreach ($this->results as $namespace => $classes) {
+                foreach ($classes as $class => $results) {
                     $classNode = $index->queryOne(
                         sprintf('//phpdox:namespace[@name = "%s"]/phpdox:class[@name = "%s"]', $namespace, $class)
                     );
@@ -70,7 +72,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     /** @var fDOMElement $classNode */
                     $container = $this->getEnrichtmentContainer($classNode, 'phpunit');
                     $resultNode = $container->appendElementNS($this->namespaceURI, 'result');
-                    foreach($results as $key => $value) {
+                    foreach ($results as $key => $value) {
                         $resultNode->setAttribute(mb_strtolower($key), $value);
                     }
                     $container->appendChild(
@@ -166,27 +168,27 @@ namespace TheSeer\phpDox\Generator\Enricher {
                 return;
             }
             $coverageTarget = $enrichment->appendElementNS($this->namespaceURI, 'coverage');
-            foreach(array('executable','executed', 'crap') as $attr) {
+            foreach (['executable', 'executed', 'crap'] as $attr) {
                 $coverageTarget->appendChild(
                     $coverageTarget->ownerDocument->importNode($classNode->getAttributeNode($attr))
                 );
             }
 
-            $result = array(
-                'UNKNOWN' => 0,
-                'PASSED'  => 0,
-                'SKIPPED'  => 0,
-                'INCOMPLETE'  => 0,
-                'FAILURE'  => 0,
-                'ERROR'  => 0,
-                'RISKY'  => 0,
-                'WARNING' => 0
-            );
+            $result = [
+                'UNKNOWN'    => 0,
+                'PASSED'     => 0,
+                'SKIPPED'    => 0,
+                'INCOMPLETE' => 0,
+                'FAILURE'    => 0,
+                'ERROR'      => 0,
+                'RISKY'      => 0,
+                'WARNING'    => 0
+            ];
 
             $methods = $unit->query('/phpdox:*/phpdox:constructor|/phpdox:*/phpdox:destructor|/phpdox:*/phpdox:method');
             $xp = $this->index->getDOMXPath();
 
-            foreach($methods as $method) {
+            foreach ($methods as $method) {
                 $start = $method->getAttribute('start');
                 $end = $method->getAttribute('end');
 
@@ -198,8 +200,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     sprintf('//pu:method[@start = "%d" and @end = "%d"]', $start, $end)
                 );
 
-                if ($coverageMethod != NULL) {
-                    foreach(array('executable','executed','coverage', 'crap') as $attr) {
+                if ($coverageMethod != null) {
+                    foreach (['executable', 'executed', 'coverage', 'crap'] as $attr) {
                         $coverageTarget->appendChild(
                             $coverageTarget->ownerDocument->importNode($coverageMethod->getAttributeNode($attr))
                         );
@@ -210,15 +212,15 @@ namespace TheSeer\phpDox\Generator\Enricher {
                     sprintf('//pu:coverage/pu:line[@nr >= "%d" and @nr <= "%d"]/pu:covered', $start, $end)
                 );
 
-                $seen = array();
-                foreach($coveredNodes as $coveredNode) {
+                $seen = [];
+                foreach ($coveredNodes as $coveredNode) {
                     $by = $coveredNode->getAttribute('by');
                     if (isset($seen[$by])) {
                         continue;
                     }
                     $seen[$by] = true;
 
-                    $name = $xp->prepare(':name', array('name' => $by));
+                    $name = $xp->prepare(':name', ['name' => $by]);
                     $test = $coverageTarget->appendChild(
                         $unit->importNode(
                             $this->index->queryOne(
@@ -234,8 +236,8 @@ namespace TheSeer\phpDox\Generator\Enricher {
             }
 
             if (!isset($this->results[$classNamespace])) {
-                $this->results[$classNamespace] = array();
-                $this->coverage[$classNamespace] = array();
+                $this->results[$classNamespace] = [];
+                $this->coverage[$classNamespace] = [];
             }
             $this->results[$classNamespace][$className] = $result;
             $this->coverage[$classNamespace][$className] = $coverageTarget->cloneNode(false);
@@ -275,7 +277,7 @@ namespace TheSeer\phpDox\Generator\Enricher {
         }
     }
 
-
     class PHPUnitEnricherException extends EnricherException {
+
     }
 }
