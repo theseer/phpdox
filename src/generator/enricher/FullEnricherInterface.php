@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator\Enricher;
 
 interface FullEnricherInterface extends
@@ -7,7 +7,4 @@ interface FullEnricherInterface extends
     TraitEnricherInterface,
     ClassEnricherInterface,
     EndEnricherInterface {
-
 }
-
-

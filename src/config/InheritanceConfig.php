@@ -1,78 +1,37 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- *
- */
-
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 use TheSeer\fDOM\fDOMElement;
 
 class InheritanceConfig {
-
     protected $ctx;
 
     protected $config;
 
     public function __construct(CollectorConfig $config, fDOMElement $ctx = null) {
         $this->config = $config;
-        $this->ctx = $ctx;
+        $this->ctx    = $ctx;
     }
 
     public function isPublicOnlyMode() {
         return $this->config->isPublicOnlyMode();
     }
 
-    /**
-     * @return array
-     */
-    public function getDependencyDirectories() {
-        $home = $this->config->getProjectConfig()->getHomeDirectory();
+    public function getDependencyDirectories(): array {
+        $home    = $this->config->getProjectConfig()->getHomeDirectory();
         $default = new FileInfo($home->getPathname() . '/dependencies/php');
-        $list = [$default];
+        $list    = [$default];
+
         if (!$this->ctx) {
             return $list;
         }
+
         foreach ($this->ctx->query('cfg:dependency') as $dep) {
             if ($dep->hasAttribute('path')) {
                 $list[] = new FileInfo($dep->getAttribute('path'));
             }
         }
+
         return $list;
     }
-
 }
-
-

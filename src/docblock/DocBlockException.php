@@ -1,9 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
 class DocBlockException extends \Exception {
-
-    const NotFound = 404;
+    public const NotFound = 404;
 }
-
-

@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMElement;
 
 class ConstantObject {
-
     /**
      * @var fDOMElement
      */
@@ -21,7 +20,4 @@ class ConstantObject {
     public function getValue() {
         return $this->node->getAttribute('value');
     }
-
 }
-
-

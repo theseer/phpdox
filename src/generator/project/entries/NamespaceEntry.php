@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 class NamespaceEntry extends AbstractEntry {
-
     public function getName() {
         return $this->getNode()->getAttribute('name');
     }
@@ -18,7 +17,4 @@ class NamespaceEntry extends AbstractEntry {
     public function getInterfaces() {
         return new InterfaceCollection($this->getNode()->query('phpdox:interface'));
     }
-
 }
-
-

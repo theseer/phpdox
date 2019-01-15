@@ -1,57 +1,22 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- */
-
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
 class ParamParser extends GenericParser {
-
     public function getObject(array $buffer) {
         $obj = $this->buildObject('var', $buffer);
 
-        $param = preg_split("/[\s,]+/", $this->payload, 3, PREG_SPLIT_NO_EMPTY);
-        switch (count($param)) {
+        $param = \preg_split("/[\s,]+/", $this->payload, 3, \PREG_SPLIT_NO_EMPTY);
+
+        switch (\count($param)) {
             case 3:
                 {
                     if ($param[0][0] == '$' || $param[1][0] == '$') {
                         $obj->setDescription($param[2]);
-                        // no break!
+                    // no break!
                     } else {
                         $obj->setDescription($param[1] . ' ' . $param[2]);
                         $obj->setType($this->lookupType($param[0]));
+
                         break;
                     }
                 }
@@ -64,6 +29,7 @@ class ParamParser extends GenericParser {
                         $obj->setType($this->lookupType($param[0]));
                         $obj->setVariable($param[1]);
                     }
+
                     break;
                 }
             case 1:
@@ -73,13 +39,11 @@ class ParamParser extends GenericParser {
                     } else {
                         $obj->setType($this->lookupType($param[0]));
                     }
+
                     break;
                 }
         }
 
         return $obj;
     }
-
 }
-
-

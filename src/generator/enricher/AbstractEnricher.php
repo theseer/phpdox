@@ -1,21 +1,18 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator\Enricher;
 
 use TheSeer\fDOM\fDOMElement;
 
 class AbstractEnricher {
-
-    const XMLNS = 'http://xml.phpdox.net/src';
+    public const XMLNS = 'http://xml.phpdox.net/src';
 
     /**
-     * @param fDOMElement $node
-     * @param             $type
-     *
-     * @return fDOMElement
+     * @param $type
      */
-    protected function getEnrichtmentContainer(fDOMElement $node, $type) {
-        $dom = $node->ownerDocument;
+    protected function getEnrichtmentContainer(fDOMElement $node, $type): fDOMElement {
+        $dom       = $node->ownerDocument;
         $container = $node->queryOne('phpdox:enrichments');
+
         if (!$container) {
             $container = $dom->createElementNS(self::XMLNS, 'enrichments');
             $node->appendChild($container);
@@ -34,5 +31,3 @@ class AbstractEnricher {
         return $enrichment;
     }
 }
-
-

@@ -1,15 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 class InlineCommentCollection extends AbstractCollection {
-
-    /**
-     * @return MethodObject
-     */
-    public function current() {
+    public function current(): MethodObject {
         return new InlineCommentObject($this->getCurrentNode());
     }
-
 }
-
-

@@ -1,26 +1,19 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMDocument;
 
 class AbstractUnitObject {
-
     /**
      * @var fDOMDocument
      */
     private $dom;
 
-    /**
-     * @param fDOMDocument $dom
-     */
     public function __construct(fDOMDocument $dom) {
         $this->dom = $dom;
     }
 
-    /**
-     * @return fDOMDocument
-     */
-    public function asDom() {
+    public function asDom(): fDOMDocument {
         return $this->dom;
     }
 
@@ -28,38 +21,25 @@ class AbstractUnitObject {
         return new InlineCommentCollection($this->dom->query('phpdox:inline'));
     }
 
-    /**
-     * @return string
-     */
-    public function getSourceFile() {
+    public function getSourceFile(): string {
         $file = $this->asDom()->queryOne('//phpdox:file');
+
         if (!$file) {
             return '';
         }
+
         return $file->getAttribute('realpath');
     }
 
-    /**
-     * @return string
-     */
-    public function getFullName() {
+    public function getFullName(): string {
         return $this->dom->documentElement->getAttribute('full');
     }
 
-    /**
-     * @return ConstantCollection
-     */
-    public function getConstants() {
+    public function getConstants(): ConstantCollection {
         return new ConstantCollection($this->dom->query('phpdox:constant'));
     }
 
-    /**
-     * @return MethodCollection
-     */
-    public function getMethods() {
+    public function getMethods(): MethodCollection {
         return new MethodCollection($this->dom->query('phpdox:constructor|phpdox:method|phpdox:destructor'));
     }
-
 }
-
-

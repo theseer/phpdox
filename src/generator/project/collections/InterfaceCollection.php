@@ -1,15 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 class InterfaceCollection extends AbstractCollection {
-
-    /**
-     * @return InterfaceEntry
-     */
-    public function current() {
+    public function current(): InterfaceEntry {
         return new InterfaceEntry($this->getCurrentNode());
     }
-
 }
-
-

@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMElement;
 
 abstract class AbstractCollection implements \Iterator {
-
     /**
      * @var \DOMNodeList
      */
@@ -20,20 +19,12 @@ abstract class AbstractCollection implements \Iterator {
     }
 
     /**
-     * @return fDOMElement
-     */
-    protected function getCurrentNode() {
-        return $this->nodeList->item($this->position);
-    }
-
-    /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Move forward to next element
      *
      * @link http://php.net/manual/en/iterator.next.php
-     * @return void Any returned value is ignored.
      */
-    public function next() {
+    public function next(): void {
         $this->position++;
     }
 
@@ -42,7 +33,8 @@ abstract class AbstractCollection implements \Iterator {
      * Return the key of the current element
      *
      * @link http://php.net/manual/en/iterator.key.php
-     * @return mixed scalar on success, or null on failure.
+     *
+     * @return mixed scalar on success, or null on failure
      */
     public function key() {
         return $this->position;
@@ -53,10 +45,11 @@ abstract class AbstractCollection implements \Iterator {
      * Checks if current position is valid
      *
      * @link http://php.net/manual/en/iterator.valid.php
-     * @return boolean The return value will be casted to boolean and then evaluated.
-     *       Returns true on success or false on failure.
+     *
+     * @return bool The return value will be casted to boolean and then evaluated.
+     *              Returns true on success or false on failure.
      */
-    public function valid() {
+    public function valid(): bool {
         return $this->nodeList->length > $this->position;
     }
 
@@ -65,12 +58,12 @@ abstract class AbstractCollection implements \Iterator {
      * Rewind the Iterator to the first element
      *
      * @link http://php.net/manual/en/iterator.rewind.php
-     * @return void Any returned value is ignored.
      */
-    public function rewind() {
+    public function rewind(): void {
         $this->position = 0;
     }
 
+    protected function getCurrentNode(): fDOMElement {
+        return $this->nodeList->item($this->position);
+    }
 }
-
-

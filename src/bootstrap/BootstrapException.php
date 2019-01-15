@@ -1,10 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class BootstrapException extends \Exception {
-
-    const RequireFailed = 1;
-
+    public const RequireFailed = 1;
 }
-
-

@@ -1,11 +1,9 @@
-<?php
-
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\fDOM\fDOMDocument;
 
 class Dependency {
-
     /**
      * @var fDOMDocument
      */
@@ -27,23 +25,24 @@ class Dependency {
     private $publicOnlyMode;
 
     public function __construct(fDOMDocument $dom, Project $project, $publicOnlyMode) {
-        $this->index = $dom;
-        $this->baseDir = dirname(urldecode($dom->documentURI));
+        $this->index   = $dom;
+        $this->baseDir = \dirname(\urldecode($dom->documentURI));
         $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
-        $this->project = $project;
+        $this->project        = $project;
         $this->publicOnlyMode = $publicOnlyMode;
     }
 
     public function getUnitByName($name) {
-        $parts = explode('\\', $name);
-        $local = array_pop($parts);
-        $namespace = join('\\', $parts);
+        $parts     = \explode('\\', $name);
+        $local     = \array_pop($parts);
+        $namespace = \implode('\\', $parts);
         $indexNode = $this->index->queryOne(
-            sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $local));
+            \sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $local)
+        );
 
         if (!$indexNode) {
             throw new DependencyException(
-                sprintf("Unit '%s' not found", $name),
+                \sprintf("Unit '%s' not found", $name),
                 DependencyException::UnitNotFound
             );
         }
@@ -63,6 +62,7 @@ class Dependency {
                     $unit = new InterfaceObject();
                     $unit->import($dom);
                     $this->project->addInterface($unit);
+
                     break;
                 }
             case 'trait':
@@ -70,6 +70,7 @@ class Dependency {
                     $unit = new TraitObject();
                     $unit->import($dom);
                     $this->project->addTrait($unit);
+
                     break;
                 }
             case 'class':
@@ -77,12 +78,13 @@ class Dependency {
                     $unit = new ClassObject();
                     $unit->import($dom);
                     $this->project->addClass($unit);
+
                     break;
                 }
             default:
                 {
                     throw new DependencyException(
-                        sprintf("Invalid unit type '%s'", $indexNode->localName),
+                        \sprintf("Invalid unit type '%s'", $indexNode->localName),
                         DependencyException::InvalidUnitType
                     );
                 }
@@ -90,7 +92,4 @@ class Dependency {
 
         return $unit;
     }
-
 }
-
-

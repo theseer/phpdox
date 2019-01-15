@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\phpDox\FileInfo;
 
 class SourceFileIterator implements \Iterator {
-
     private $iterator;
 
     private $srcDir;
@@ -12,20 +11,15 @@ class SourceFileIterator implements \Iterator {
     private $encoding;
 
     /**
-     * @param \Iterator $iterator
-     * @param FileInfo  $srcDir
-     * @param string    $encoding
+     * @param string $encoding
      */
     public function __construct(\Iterator $iterator, FileInfo $srcDir, $encoding) {
         $this->iterator = $iterator;
-        $this->srcDir = $srcDir;
+        $this->srcDir   = $srcDir;
         $this->encoding = $encoding;
     }
 
-    /**
-     * @return SourceFile
-     */
-    public function current() {
+    public function current(): SourceFile {
         return new SourceFile($this->iterator->current()->getPathname(), $this->srcDir, $this->encoding);
     }
 
@@ -34,9 +28,8 @@ class SourceFileIterator implements \Iterator {
      * Move forward to next element
      *
      * @link http://php.net/manual/en/iterator.next.php
-     * @return void Any returned value is ignored.
      */
-    public function next() {
+    public function next(): void {
         $this->iterator->next();
     }
 
@@ -45,7 +38,8 @@ class SourceFileIterator implements \Iterator {
      * Return the key of the current element
      *
      * @link http://php.net/manual/en/iterator.key.php
-     * @return mixed scalar on success, or null on failure.
+     *
+     * @return mixed scalar on success, or null on failure
      */
     public function key() {
         return $this->iterator->key();
@@ -56,10 +50,11 @@ class SourceFileIterator implements \Iterator {
      * Checks if current position is valid
      *
      * @link http://php.net/manual/en/iterator.valid.php
-     * @return boolean The return value will be casted to boolean and then evaluated.
-     *       Returns true on success or false on failure.
+     *
+     * @return bool The return value will be casted to boolean and then evaluated.
+     *              Returns true on success or false on failure.
      */
-    public function valid() {
+    public function valid(): bool {
         return $this->iterator->valid();
     }
 
@@ -68,12 +63,8 @@ class SourceFileIterator implements \Iterator {
      * Rewind the Iterator to the first element
      *
      * @link http://php.net/manual/en/iterator.rewind.php
-     * @return void Any returned value is ignored.
      */
-    public function rewind() {
+    public function rewind(): void {
         $this->iterator->rewind();
     }
-
 }
-
-

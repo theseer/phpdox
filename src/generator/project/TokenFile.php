@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -6,7 +6,6 @@ use TheSeer\phpDox\Collector\SourceFile;
 use TheSeer\phpDox\FileInfo;
 
 class TokenFile {
-
     /**
      * @var FileInfo
      */
@@ -17,7 +16,7 @@ class TokenFile {
     public function __construct(FileInfo $file) {
         if (!$file->exists()) {
             throw new TokenFileException(
-                sprintf("File '%s' not found", $file->getPathname()),
+                \sprintf("File '%s' not found", $file->getPathname()),
                 TokenFileException::FileNotFound
             );
         }
@@ -26,6 +25,7 @@ class TokenFile {
 
     public function getRelativeName(FileInfo $path) {
         $file = new FileInfo($this->asDom()->getElementsByTagNameNS(SourceFile::XMLNS, 'file')->item(0)->getAttribute('realpath'));
+
         return $file->getRelative($path, false);
     }
 
@@ -35,14 +35,11 @@ class TokenFile {
             $this->dom->load($this->file->getPathname());
             $this->dom->registerNamespace('phpdox', SourceFile::XMLNS);
         }
+
         return $this->dom;
     }
-
 }
 
 class TokenFileException extends \Exception {
-
-    const FileNotFound = 1;
+    public const FileNotFound = 1;
 }
-
-

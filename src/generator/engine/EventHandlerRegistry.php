@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator\Engine;
 
 class EventHandlerRegistry {
-
     private $events = [
         'phpdox.start' => [],
         'phpdox.end'   => [],
@@ -50,16 +49,18 @@ class EventHandlerRegistry {
         'token.file.end'   => []
     ];
 
-    public function addHandler($eventType, $instance, $method) {
-        if (!method_exists($instance, $method)) {
+    public function addHandler($eventType, $instance, $method): void {
+        if (!\method_exists($instance, $method)) {
             throw new EventHandlerRegistryException("Handler '$method' not defined", EventHandlerRegistryException::MethodNotDefined);
         }
+
         if (!isset($this->events[$eventType])) {
             throw new EventHandlerRegistryException("Event '$eventType' is not defined", EventHandlerRegistryException::EventNotDefined);
         }
-        $key = spl_object_hash($instance) . '::' . $method;
+        $key = \spl_object_hash($instance) . '::' . $method;
+
         if (isset($this->events[$eventType][$key])) {
-            throw new EventHandlerRegistryException("Handler already registered for this event", EventHandlerRegistryException::AlreadyRegistered);
+            throw new EventHandlerRegistryException('Handler already registered for this event', EventHandlerRegistryException::AlreadyRegistered);
         }
         $this->events[$eventType][$key] = [$instance, $method];
     }
@@ -68,15 +69,15 @@ class EventHandlerRegistry {
         if (!isset($this->events[$eventType])) {
             throw new EventHandlerRegistryException("Event '$eventType' is not defined", EventHandlerRegistryException::EventNotDefined);
         }
-        return array_values($this->events[$eventType]);
+
+        return \array_values($this->events[$eventType]);
     }
 }
 
 class EventHandlerRegistryException extends \Exception {
+    public const MethodNotDefined = 1;
 
-    const MethodNotDefined = 1;
-    const EventNotDefined = 2;
-    const AlreadyRegistered = 4;
+    public const EventNotDefined = 2;
+
+    public const AlreadyRegistered = 4;
 }
-
-

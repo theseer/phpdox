@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\fDOM\fDOMDocument;
 
 class Tokenizer {
-
     /**
      * @var \XMLWriter
      */
@@ -54,12 +53,9 @@ class Tokenizer {
     /**
      * @param string $source
      *
-     * @return fDOMDocument
-     *
      * @throws \TheSeer\fDOM\fDOMException
      */
-    public function toXML($source) {
-
+    public function toXML($source): fDOMDocument {
         $this->writer = new \XMLWriter();
         $this->writer->openMemory();
         $this->writer->setIndent(true);
@@ -67,24 +63,27 @@ class Tokenizer {
         $this->writer->startElement('source');
         $this->writer->writeAttribute('xmlns', 'http://xml.phpdox.net/token');
         $this->writer->startElement('line');
-        $this->writer->writeAttribute('no', 1);
+        $this->writer->writeAttribute('no', '1');
 
         $this->lastLine = 1;
-        $tokens = token_get_all($source);
+        $tokens         = \token_get_all($source);
 
         foreach ($tokens as $pos => $tok) {
-            if (is_string($tok)) {
+            if (\is_string($tok)) {
                 $line = 1;
                 $step = 1;
-                while (!is_array($tokens[$pos - $step])) {
+
+                while (!\is_array($tokens[$pos - $step])) {
                     $step++;
+
                     if (($pos - $step) == -1) {
                         break;
                     }
                 }
+
                 if ($pos - $step != -1) {
                     $line = $tokens[$pos - $step][2];
-                    $line += count(preg_split('/\R+/', $tokens[$pos - $step][1])) - 1;
+                    $line += \count(\preg_split('/\R+/', $tokens[$pos - $step][1])) - 1;
                 }
                 $token = [
                     'name'  => $this->map[$tok],
@@ -93,12 +92,12 @@ class Tokenizer {
                 ];
                 $this->addToken($token);
             } else {
-                $line = $tok[2];
-                $values = preg_split('/\R+/Uu', $tok[1]);
+                $line   = $tok[2];
+                $values = \preg_split('/\R+/Uu', $tok[1]);
 
                 foreach ($values as $v) {
                     $token = [
-                        'name'  => token_name($tok[0]),
+                        'name'  => \token_name($tok[0]),
                         'value' => $v,
                         'line'  => $line
                     ];
@@ -112,13 +111,14 @@ class Tokenizer {
         $this->writer->endElement();
         $this->writer->endDocument();
 
-        $dom = new fDOMDocument();
+        $dom                     = new fDOMDocument();
         $dom->preserveWhiteSpace = false;
         $dom->loadXML($this->writer->outputMemory());
+
         return $dom;
     }
 
-    private function addToken(array $token) {
+    private function addToken(array $token): void {
         if ($this->lastLine < $token['line']) {
             $this->writer->endElement();
 
@@ -128,17 +128,15 @@ class Tokenizer {
                 $this->writer->endElement();
             }
             $this->writer->startElement('line');
-            $this->writer->writeAttribute('no', $token['line']);
+            $this->writer->writeAttribute('no', (string)$token['line']);
             $this->lastLine = $token['line'];
         }
 
         if ($token['value'] != '') {
             $this->writer->startElement('token');
             $this->writer->writeAttribute('name', $token['name']);
-            $this->writer->writeRaw(htmlspecialchars($token['value'], ENT_NOQUOTES | ENT_DISALLOWED | ENT_XML1));
+            $this->writer->writeRaw(\htmlspecialchars($token['value'], \ENT_NOQUOTES | \ENT_DISALLOWED | \ENT_XML1));
             $this->writer->endElement();
         }
     }
 }
-
-

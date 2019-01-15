@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator\Enricher;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -12,55 +11,54 @@ use TheSeer\phpDox\Generator\InterfaceStartEvent;
 use TheSeer\phpDox\Generator\TraitStartEvent;
 
 class PHPMessDetector extends AbstractEnricher implements ClassEnricherInterface, InterfaceEnricherInterface, TraitEnricherInterface {
-
     private $config;
 
-    private $violations = null;
+    private $violations;
 
     public function __construct(PHPMessDetectorConfig $config) {
         $this->config = $config;
         $this->loadViolations($config->getLogFilePath());
     }
 
-    /**
-     * @return string
-     */
-    public function getName() {
+    public function getName(): string {
         return 'PHPMessDetector XML';
     }
 
-    public function enrichClass(ClassStartEvent $event) {
+    public function enrichClass(ClassStartEvent $event): void {
         $this->enrichUnit($event->getClass());
     }
 
-    public function enrichInterface(InterfaceStartEvent $event) {
+    public function enrichInterface(InterfaceStartEvent $event): void {
         $this->enrichUnit($event->getInterface());
     }
 
-    public function enrichTrait(TraitStartEvent $event) {
+    public function enrichTrait(TraitStartEvent $event): void {
         $this->enrichUnit($event->getTrait());
     }
 
-    public function enrichUnit(AbstractUnitObject $ctx) {
+    public function enrichUnit(AbstractUnitObject $ctx): void {
         $file = $ctx->getSourceFile();
+
         if (isset($this->violations[$file])) {
             $this->processViolations($ctx->asDom(), $this->violations[$file]);
         }
     }
 
-    private function loadViolations($xmlFile) {
+    private function loadViolations($xmlFile): void {
         $this->violations = [];
+
         try {
-            if (!file_exists($xmlFile)) {
+            if (!\file_exists($xmlFile)) {
                 throw new EnricherException(
-                    sprintf('Logfile "%s" not found.', $xmlFile),
+                    \sprintf('Logfile "%s" not found.', $xmlFile),
                     EnricherException::LoadError
                 );
             }
             $dom = new fDOMDocument();
             $dom->load($xmlFile);
+
             foreach ($dom->query('/pmd/file') as $file) {
-                $fileInfo = new FileInfo($file->getAttribute('name'));
+                $fileInfo                                   = new FileInfo($file->getAttribute('name'));
                 $this->violations[$fileInfo->getPathname()] = $file->query('*');
             }
         } catch (fDOMException $e) {
@@ -69,14 +67,14 @@ class PHPMessDetector extends AbstractEnricher implements ClassEnricherInterface
                 EnricherException::LoadError
             );
         }
-
     }
 
-    private function processViolations(fDOMDocument $dom, \DOMNodeList $violations) {
+    private function processViolations(fDOMDocument $dom, \DOMNodeList $violations): void {
         foreach ($violations as $violation) {
             /** @var fDOMElement $violation */
             $line = $violation->getAttribute('beginline');
-            $ref = $dom->queryOne(sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
+            $ref  = $dom->queryOne(\sprintf('//phpdox:*/*[@line = %d or (@start <= %d and @end >= %d)]', $line, $line, $line));
+
             if (!$ref) {
                 // One src file may contain multiple classes/traits/interfaces, so the
                 // finding might not apply to the current object since violations are based on filenames
@@ -84,16 +82,14 @@ class PHPMessDetector extends AbstractEnricher implements ClassEnricherInterface
                 continue;
             }
 
-            $enrichment = $this->getEnrichtmentContainer($ref, 'pmd');
+            $enrichment      = $this->getEnrichtmentContainer($ref, 'pmd');
             $enrichViolation = $dom->createElementNS(self::XMLNS, 'violation');
             $enrichment->appendChild($enrichViolation);
-            $enrichViolation->setAttribute('message', trim($violation->nodeValue));
+            $enrichViolation->setAttribute('message', \trim($violation->nodeValue));
+
             foreach ($violation->attributes as $attr) {
                 $enrichViolation->setAttributeNode($dom->importNode($attr, true));
             }
-
         }
     }
 }
-
-

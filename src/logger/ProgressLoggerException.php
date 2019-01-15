@@ -1,10 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class ProgressLoggerException extends \Exception {
-
-    const UnknownState = 1;
-
+    public const UnknownState = 1;
 }
-
-

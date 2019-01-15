@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 abstract class MemberEvent extends AbstractEvent {
-
     private $member;
 
     public function __construct(MemberObject $member) {
@@ -12,7 +11,4 @@ abstract class MemberEvent extends AbstractEvent {
     public function getMember() {
         return $this->member;
     }
-
 }
-
-

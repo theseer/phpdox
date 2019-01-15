@@ -1,46 +1,18 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
-/**
- *
- */
 class UnitObjectException extends \Exception {
+    public const InvalidRootname = 1;
 
-    /**
-     *
-     */
-    const InvalidRootname = 1;
+    public const NoExtends = 2;
 
-    /**
-     *
-     */
-    const NoExtends = 2;
+    public const NoImplements = 3;
 
-    /**
-     *
-     */
-    const NoImplements = 3;
+    public const NoTraitsUsed = 4;
 
-    /**
-     *
-     */
-    const NoTraitsUsed = 4;
+    public const NoSuchMethod = 5;
 
-    /**
-     *
-     */
-    const NoSuchMethod = 5;
+    public const NoSuchTrait = 6;
 
-    /**
-     *
-     */
-    const NoSuchTrait = 6;
-
-    /**
-     *
-     */
-    const NoSuchDependency = 7;
-
+    public const NoSuchDependency = 7;
 }
-
-

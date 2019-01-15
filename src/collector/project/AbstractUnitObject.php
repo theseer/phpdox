@@ -1,39 +1,4 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -41,15 +6,16 @@ use TheSeer\fDOM\fDOMElement;
 use TheSeer\phpDox\DocBlock\DocBlock;
 use TheSeer\phpDox\FileInfo;
 
-/**
- *
- */
 abstract class AbstractUnitObject {
-
     /**
      * PHPDOX Namespace
      */
-    const XMLNS = 'http://xml.phpdox.net/src';
+    public const XMLNS = 'http://xml.phpdox.net/src';
+
+    /**
+     * @var string
+     */
+    protected $rootName;
 
     /**
      * @var fDOMDocument
@@ -60,11 +26,6 @@ abstract class AbstractUnitObject {
      * @var fDOMElement
      */
     private $rootNode;
-
-    /**
-     * @var string
-     */
-    protected $rootName = null;
 
     /**
      * @param string       $name
@@ -78,9 +39,11 @@ abstract class AbstractUnitObject {
         $this->dom->registerNamespace('phpdox', self::XMLNS);
         $this->rootNode = $this->dom->createElementNS(self::XMLNS, $this->rootName);
         $this->dom->appendChild($this->rootNode);
+
         if ($name !== null) {
             $this->setName($name, $this->rootNode);
         }
+
         if ($file !== null) {
             $this->rootNode->appendChild($file->asNode($this->rootNode));
         }
@@ -88,34 +51,12 @@ abstract class AbstractUnitObject {
         $this->setFinal(false);
     }
 
-    /**
-     * @param $name
-     */
-    protected function setName($name, fDOMElement $ctx) {
-        $parts = explode('\\', $name);
-        $local = array_pop($parts);
-        $namespace = join('\\', $parts);
-        $ctx->setAttribute('full', $name);
-        $ctx->setAttribute('namespace', $namespace);
-        $ctx->setAttribute('name', $local);
-    }
-
-    protected function getRootNode() {
-        return $this->rootNode;
-    }
-
-    /**
-     * @return \TheSeer\fDOM\fDOMDocument
-     */
-    public function export() {
+    public function export(): fDOMDocument {
         return $this->dom;
     }
 
-    /**
-     * @param \TheSeer\fDOM\fDOMDocument $dom
-     */
-    public function import(fDOMDocument $dom) {
-        $this->dom = $dom;
+    public function import(fDOMDocument $dom): void {
+        $this->dom      = $dom;
         $this->rootNode = $dom->documentElement;
         $this->dom->registerNamespace('phpdox', self::XMLNS);
     }
@@ -124,81 +65,67 @@ abstract class AbstractUnitObject {
         return $this->rootNode->localName;
     }
 
-    /**
-     * @return string
-     */
-    public function getLocalName() {
+    public function getLocalName(): string {
         return $this->rootNode->getAttribute('name');
     }
 
-    /**
-     * @return string
-     */
-    public function getName() {
+    public function getName(): string {
         return $this->rootNode->getAttribute('full');
     }
 
-    /**
-     * @return string
-     */
-    public function getNamespace() {
+    public function getNamespace(): string {
         return $this->rootNode->getAttribute('namespace');
     }
 
-    /**
-     * @return FileInfo
-     */
-    public function getSourceFilename() {
+    public function getSourceFilename(): ?FileInfo {
         $file = $this->rootNode->queryOne('phpdox:file');
+
         if (!$file) {
-            return '';
+            return null;
         }
+
         return new FileInfo($file->getAttribute('path') . '/' . $file->getAttribute('file'));
     }
 
-    /**
-     * @return string
-     */
-    public function getCompactDescription() {
+    public function getCompactDescription(): string {
         $desc = $this->rootNode->queryOne('phpdox:docblock/phpdox:description');
+
         if (!$desc || !$desc->hasAttribute('compact')) {
             return '';
         }
+
         return $desc->getAttribute('compact');
     }
 
     /**
      * @param int $endLine
      */
-    public function setEndLine($endLine) {
+    public function setEndLine($endLine): void {
         $this->rootNode->setAttribute('end', $endLine);
     }
 
     /**
      * @param int $startLine
      */
-    public function setStartLine($startLine) {
+    public function setStartLine($startLine): void {
         $this->rootNode->setAttribute('start', $startLine);
     }
 
     /**
-     * @param boolean $isAbstract
+     * @param bool $isAbstract
      */
-    public function setAbstract($isAbstract) {
+    public function setAbstract($isAbstract): void {
         $this->rootNode->setAttribute('abstract', $isAbstract ? 'true' : 'false');
     }
 
     /**
-     * @param boolean $isFinal
+     * @param bool $isFinal
      */
-    public function setFinal($isFinal) {
+    public function setFinal($isFinal): void {
         $this->rootNode->setAttribute('final', $isFinal ? 'true' : 'false');
     }
 
-    /**
-     * @param \TheSeer\phpDox\DocBlock\DocBlock $docblock
-     */
-    public function setDocBlock(DocBlock $docblock) {
+    public function setDocBlock(DocBlock $docblock): void {
         $docNode = $docblock->asDom($this->dom);
         $this->rootNode->appendChild($docNode);
     }
@@ -206,20 +133,16 @@ abstract class AbstractUnitObject {
     /**
      * @param $name
      */
-    public function addExtends($name) {
+    public function addExtends($name): void {
         $extends = $this->rootNode->appendElementNS(self::XMLNS, 'extends');
         $this->setName($name, $extends);
     }
 
-    /**
-     * @return bool
-     */
-    public function hasExtends() {
+    public function hasExtends(): bool {
         return $this->rootNode->queryOne('phpdox:extends') !== null;
     }
 
     /**
-     * @return mixed
      * @throws UnitObjectException
      */
     public function getExtends() {
@@ -227,17 +150,16 @@ abstract class AbstractUnitObject {
             throw new UnitObjectException('This unit does not extend any unit', UnitObjectException::NoExtends);
         }
         $result = [];
+
         foreach ($this->rootNode->query('phpdox:extends') as $ext) {
             $result[] = $ext->getAttribute('full');
         }
+
         return $result;
     }
 
-    /**
-     * @param AbstractUnitObject $unit
-     */
-    public function addExtender(AbstractUnitObject $unit) {
-        if ($this->rootNode->queryOne(sprintf('phpdox:extenders/phpdox:*[@full = "%s"]', $unit->getName())) !== null) {
+    public function addExtender(self $unit): void {
+        if ($this->rootNode->queryOne(\sprintf('phpdox:extenders/phpdox:*[@full = "%s"]', $unit->getName())) !== null) {
             return;
         }
         $extender = $this->addToContainer('extenders', 'extender');
@@ -247,132 +169,128 @@ abstract class AbstractUnitObject {
     /**
      * @param $name
      */
-    public function addImplements($name) {
+    public function addImplements($name): void {
         $implements = $this->rootNode->appendElementNS(self::XMLNS, 'implements');
         $this->setName($name, $implements);
     }
 
-    /**
-     * @return bool
-     */
-    public function hasImplements() {
+    public function hasImplements(): bool {
         return $this->rootNode->query('phpdox:implements')->length > 0;
     }
 
     /**
-     * @return array
      * @throws UnitObjectException
      */
-    public function getImplements() {
+    public function getImplements(): array {
         if (!$this->hasImplements()) {
             throw new UnitObjectException('This unit does not implement any interfaces', UnitObjectException::NoImplements);
         }
         $result = [];
+
         foreach ($this->rootNode->query('phpdox:implements') as $impl) {
             $result[] = $impl->getAttribute('full');
         }
+
         return $result;
     }
 
-    /**
-     * @return bool
-     */
-    public function usesTraits() {
+    public function usesTraits(): bool {
         return $this->rootNode->query('phpdox:uses')->length > 0;
     }
 
     /**
      * @param $name
-     *
-     * @return bool
      */
-    public function usesTrait($name) {
-        return $this->rootNode->query(sprintf('phpdox:uses[@full="%s"]', $name))->length > 0;
+    public function usesTrait($name): bool {
+        return $this->rootNode->query(\sprintf('phpdox:uses[@full="%s"]', $name))->length > 0;
     }
 
     /**
      * @param string $name
-     *
-     * @return TraitUseObject
      */
-    public function addTrait($name) {
+    public function addTrait($name): TraitUseObject {
         $traituse = new TraitUseObject($this->rootNode->appendElementNS(self::XMLNS, 'uses'));
         $traituse->setName($name);
+
         return $traituse;
     }
 
     /**
-     * @return array
      * @throws UnitObjectException
      */
-    public function getUsedTraits() {
+    public function getUsedTraits(): array {
         if (!$this->usesTraits()) {
             throw new UnitObjectException('This unit does not use any traits', UnitObjectException::NoTraitsUsed);
         }
         $result = [];
+
         foreach ($this->rootNode->query('phpdox:uses') as $trait) {
             $result[] = $trait->getAttribute('full');
         }
+
         return $result;
     }
 
     /**
      * @param $name
      *
-     * @return TraitUseObject
      * @throws UnitObjectException
      */
-    public function getTraitUse($name) {
+    public function getTraitUse($name): TraitUseObject {
         $node = $this->rootNode->queryOne(
-            sprintf('phpdox:uses[@full="%s"]', $name)
+            \sprintf('phpdox:uses[@full="%s"]', $name)
         );
+
         if (!$node) {
             throw new UnitObjectException(
-                sprintf('Trait "%s" not used', $name),
+                \sprintf('Trait "%s" not used', $name),
                 UnitObjectException::NoSuchTrait
             );
         }
+
         return new TraitUseObject($node);
     }
 
     public function getAmbiguousTraitUse() {
         $node = $this->rootNode->queryOne('phpdox:ambiguous[@type="trait-alias"]');
+
         if (!$node) {
             $node = $this->rootNode->appendElementNS(self::XMLNS, 'ambiguous');
             $node->setAttribute('type', 'trait-alias');
         }
+
         return new TraitUseObject($node);
     }
 
     /**
      * @param string $dependency
      */
-    public function markDependencyAsUnresolved($dependency) {
+    public function markDependencyAsUnresolved($dependency): void {
         $depNode = $this->rootNode->queryOne(
-            sprintf('//phpdox:implements[@full="%1$s"]|//phpdox:extends[@full="%1$s"]|//phpdox:uses[@full="%1$s"]', $dependency)
+            \sprintf('//phpdox:implements[@full="%1$s"]|//phpdox:extends[@full="%1$s"]|//phpdox:uses[@full="%1$s"]', $dependency)
         );
+
         if (!$depNode) {
             throw new UnitObjectException(
-                sprintf('No dependency "%s" found in unit %s', $dependency, $this->getName()),
+                \sprintf('No dependency "%s" found in unit %s', $dependency, $this->getName()),
                 UnitObjectException::NoSuchDependency
             );
         }
         $depNode->setAttribute('unresolved', 'true');
     }
 
-    /**
-     *
-     */
     public function addMethod($name) {
         switch ($name) {
             case '__construct':
                 {
                     $nodeName = 'constructor';
+
                     break;
                 }
             case '__destruct':
                 {
                     $nodeName = 'destructor';
+
                     break;
                 }
             default:
@@ -380,73 +298,69 @@ abstract class AbstractUnitObject {
         }
         $method = new MethodObject($this, $this->rootNode->appendElementNS(self::XMLNS, $nodeName));
         $method->setName($name);
+
         return $method;
     }
 
     /**
      * @return MethodObject[]
      */
-    public function getExportedMethods() {
+    public function getExportedMethods(): array {
         $result = [];
-        $xpath = '(phpdox:constructor|phpdox:destructor|phpdox:method)[@visibility="public" or @visibility="protected"]';
+        $xpath  = '(phpdox:constructor|phpdox:destructor|phpdox:method)[@visibility="public" or @visibility="protected"]';
+
         foreach ($this->rootNode->query($xpath) as $node) {
             $result[] = new MethodObject($this, $node);
         }
+
         return $result;
     }
 
     /**
      * @param $name
-     *
-     * @return MemberObject
      */
-    public function addMember($name) {
+    public function addMember($name): MemberObject {
         $member = new MemberObject($this->rootNode->appendElementNS(self::XMLNS, 'member'));
         $member->setName($name);
+
         return $member;
     }
 
-    /**
-     * @return array
-     */
-    public function getExportedMembers() {
+    public function getExportedMembers(): array {
         $result = [];
-        $xpath = 'phpdox:member[@visibility="public" or @visibility="protected"]';
+        $xpath  = 'phpdox:member[@visibility="public" or @visibility="protected"]';
+
         foreach ($this->rootNode->query($xpath) as $node) {
             $result[] = new MemberObject($node);
         }
+
         return $result;
     }
 
     /**
      * @param $name
-     *
-     * @return ConstantObject
      */
-    public function addConstant($name) {
+    public function addConstant($name): ConstantObject {
         $const = new ConstantObject($this->rootNode->appendElementNS(self::XMLNS, 'constant'));
         $const->setName($name);
+
         return $const;
     }
 
-    /**
-     * @return array
-     */
-    public function getConstants() {
+    public function getConstants(): array {
         $result = [];
-        $xpath = 'phpdox:constant';
+        $xpath  = 'phpdox:constant';
+
         foreach ($this->rootNode->query($xpath) as $node) {
             $result[] = new ConstantObject($node);
         }
+
         return $result;
     }
 
-    /**
-     * @param AbstractUnitObject $unit
-     */
-    public function importExports(AbstractUnitObject $unit, $container = 'parent') {
+    public function importExports(self $unit, $container = 'parent'): void {
+        $parent = $this->rootNode->queryOne(\sprintf('//phpdox:%s[@full="%s"]', $container, $unit->getName()));
 
-        $parent = $this->rootNode->queryOne(sprintf('//phpdox:%s[@full="%s"]', $container, $unit->getName()));
         if ($parent instanceof fDOMElement) {
             $parent->parentNode->removeChild($parent);
         }
@@ -491,8 +405,10 @@ abstract class AbstractUnitObject {
             $methodNode = $this->dom->importNode($method->export(), true);
             $this->adjustStaticResolution($methodNode);
             $parent->appendChild($methodNode);
+
             if ($this->hasMethod($method->getName())) {
                 $unitMethod = $this->getMethod($method->getName());
+
                 if ($unitMethod->hasInheritDoc()) {
                     $unitMethod->inhertDocBlock($method);
                 }
@@ -500,14 +416,14 @@ abstract class AbstractUnitObject {
         }
     }
 
-    public function importTraitExports(AbstractUnitObject $trait, TraitUseObject $use) {
-
+    public function importTraitExports(self $trait, TraitUseObject $use): void {
         $container = $this->rootNode->queryOne(
-            sprintf(
+            \sprintf(
                 'phpdox:trait[@full="%s"]',
                 $trait->getName()
             )
         );
+
         if ($container instanceof fDOMElement) {
             $container->parentNode->removeChild($container);
         }
@@ -540,6 +456,7 @@ abstract class AbstractUnitObject {
         }
 
         $ambiguousContainer = $this->dom->queryOne('//phpdox:ambiguous[@type="trait-alias"]');
+
         foreach ($trait->getExportedMethods() as $method) {
             $methodName = $method->getName();
             $methodNode = $this->dom->importNode($method->export(), true);
@@ -552,13 +469,15 @@ abstract class AbstractUnitObject {
 
             if ($ambiguousContainer !== null) {
                 $ambiguousMethod = $ambiguousContainer->queryOne(
-                    sprintf('phpdox:alias[@method="%s"]', $methodName)
+                    \sprintf('phpdox:alias[@method="%s"]', $methodName)
                 );
+
                 if ($ambiguousMethod !== null) {
                     $usesNode = $this->dom->queryOne(
-                        sprintf('//phpdox:uses[@full="%s"]', $trait->getName())
+                        \sprintf('//phpdox:uses[@full="%s"]', $trait->getName())
                     );
                     $usesNode->appendChild($ambiguousMethod);
+
                     if ($ambiguousContainer->query('phpdox:alias')->length === 0) {
                         $ambiguousContainer->parentNode->removeChild($ambiguousContainer);
                         $ambiguousContainer = null;
@@ -567,66 +486,85 @@ abstract class AbstractUnitObject {
             }
 
             $aliasNode = null;
+
             if ($use->isAliased($methodName)) {
                 $aliasNode = $methodNode->cloneNode(true);
                 $aliasNode->setAttribute('original', $aliasNode->getAttribute('name'));
                 $aliasNode->setAttribute('name', $use->getAliasedName($methodName));
+
                 if ($use->hasAliasedModifier($methodName)) {
                     $aliasNode->setAttribute('visibility', $use->getAliasedModifier($methodName));
                 }
                 $container->appendChild($aliasNode);
             }
         }
-
     }
 
-    private function hasMethod($name) {
-        return $this->dom->query(
-                sprintf('phpdox:method[@name="%s"]', $name)
-            )->length > 0;
+    /**
+     * @param $name
+     */
+    protected function setName($name, fDOMElement $ctx): void {
+        $parts     = \explode('\\', $name);
+        $local     = \array_pop($parts);
+        $namespace = \implode('\\', $parts);
+        $ctx->setAttribute('full', $name);
+        $ctx->setAttribute('namespace', $namespace);
+        $ctx->setAttribute('name', $local);
     }
 
-    private function getMethod($name) {
-        $ctx = $this->dom->queryOne(
-            sprintf('phpdox:method[@name="%s"]', $name)
-        );
-        if (!$ctx) {
-            throw new UnitObjectException(
-                sprintf('Method "%s" not found', $name),
-                UnitObjectException::NoSuchMethod
-            );
-        }
-        return new MethodObject($this, $ctx);
-    }
-
-    private function adjustStaticResolution(fDOMElement $ctx) {
-        $container = $ctx->queryOne('.//phpdox:docblock/phpdox:return|.//phpdox:docblock/phpdox:var');
-        if (!$container || $container->getAttribute('resolution') !== 'static') {
-            return;
-        }
-        $type = $container->queryOne('phpdox:type');
-        if (!$type) {
-            return;
-        }
-        foreach (['full', 'namespace', 'name'] as $attribute) {
-            $type->setAttribute($attribute, $this->rootNode->getAttribute($attribute));
-        }
+    protected function getRootNode() {
+        return $this->rootNode;
     }
 
     /**
      * @param $containerName
      * @param $elementName
-     *
-     * @return fDOMElement
      */
-    protected function addToContainer($containerName, $elementName) {
+    protected function addToContainer($containerName, $elementName): fDOMElement {
         $container = $this->rootNode->queryOne('phpdox:' . $containerName);
+
         if (!$container) {
             $container = $this->rootNode->appendElementNS(self::XMLNS, $containerName);
         }
+
         return $container->appendElementNS(self::XMLNS, $elementName);
     }
 
+    private function hasMethod($name) {
+        return $this->dom->query(
+                \sprintf('phpdox:method[@name="%s"]', $name)
+            )->length > 0;
+    }
+
+    private function getMethod($name) {
+        $ctx = $this->dom->queryOne(
+            \sprintf('phpdox:method[@name="%s"]', $name)
+        );
+
+        if (!$ctx) {
+            throw new UnitObjectException(
+                \sprintf('Method "%s" not found', $name),
+                UnitObjectException::NoSuchMethod
+            );
+        }
+
+        return new MethodObject($this, $ctx);
+    }
+
+    private function adjustStaticResolution(fDOMElement $ctx): void {
+        $container = $ctx->queryOne('.//phpdox:docblock/phpdox:return|.//phpdox:docblock/phpdox:var');
+
+        if (!$container || $container->getAttribute('resolution') !== 'static') {
+            return;
+        }
+        $type = $container->queryOne('phpdox:type');
+
+        if (!$type) {
+            return;
+        }
+
+        foreach (['full', 'namespace', 'name'] as $attribute) {
+            $type->setAttribute($attribute, $this->rootNode->getAttribute($attribute));
+        }
+    }
 }
-
-

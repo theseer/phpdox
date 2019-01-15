@@ -1,39 +1,4 @@
-<?php
-/**
- * Copyright (c) 2010-2015 Arne Blankerts <arne@blankerts.de>
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
 use PHPUnit\Framework\TestCase;
@@ -43,10 +8,10 @@ use TheSeer\fDOM\fDOMDocument;
  * Class DocBlockTest
  *
  * @covers \TheSeer\phpDox\DocBlock\DocBlock
+ *
  * @uses   \TheSeer\phpDox\DocBlock\GenericElement
  */
 class DocBlockTest extends TestCase {
-
     /**
      * @var DocBlock
      */
@@ -57,7 +22,7 @@ class DocBlockTest extends TestCase {
      */
     private $element;
 
-    protected function setUp() {
+    protected function setUp(): void {
         $this->docBlock = new DocBlock();
 
         $this->element = $this->getMockBuilder('TheSeer\\phpDox\\DocBlock\\GenericElement')
@@ -69,7 +34,7 @@ class DocBlockTest extends TestCase {
             ->willReturn('stub');
     }
 
-    public function testHasElementByNameReturnsFalseIfNotPresent() {
+    public function testHasElementByNameReturnsFalseIfNotPresent(): void {
         $this->assertFalse($this->docBlock->hasElementByName('not-set'));
     }
 
@@ -77,7 +42,7 @@ class DocBlockTest extends TestCase {
      * @covers \TheSeer\phpDox\DocBlock\DocBlock::appendElement
      * @covers \TheSeer\phpDox\DocBlock\DocBlock::hasElementByName
      */
-    public function testElementCanBeAdded() {
+    public function testElementCanBeAdded(): void {
         $this->docBlock->appendElement($this->element);
         $this->assertTrue($this->docBlock->hasElementByName('stub'));
     }
@@ -85,7 +50,7 @@ class DocBlockTest extends TestCase {
     /**
      * @covers \TheSeer\phpDox\DocBlock\DocBlock::appendElement
      */
-    public function testSameTypeElementCanBeAddedMultipleTimes() {
+    public function testSameTypeElementCanBeAddedMultipleTimes(): void {
         $this->docBlock->appendElement($this->element);
         $this->docBlock->appendElement($this->element);
         $this->assertTrue($this->docBlock->hasElementByName('stub'));
@@ -96,19 +61,19 @@ class DocBlockTest extends TestCase {
      * @expectedException \TheSeer\phpDox\DocBlock\DocBlockException
      * @covers \TheSeer\phpDox\DocBlock\DocBlock::getElementByName
      */
-    public function testTryingToGetANonExistingElementThrowsException() {
+    public function testTryingToGetANonExistingElementThrowsException(): void {
         $this->docBlock->getElementByName('non-set');
     }
 
     /**
      * @covers \TheSeer\phpDox\DocBlock\DocBlock::getElementByName
      */
-    public function testElementCanBeRetreived() {
+    public function testElementCanBeRetreived(): void {
         $this->docBlock->appendElement($this->element);
         $this->assertEquals($this->element, $this->docBlock->getElementByName('stub'));
     }
 
-    public function testDocBlockCanBeSerializedToDom() {
+    public function testDocBlockCanBeSerializedToDom(): void {
         $dom = new fDOMDocument();
         $dom->registerNamespace('test', 'http://xml.phpdox.net/src');
         $this->element->expects($this->once())
@@ -124,7 +89,7 @@ class DocBlockTest extends TestCase {
         );
     }
 
-    public function testDocBlockWithMultipleOccurencesOfAnnotationCanBeSerializedToDom() {
+    public function testDocBlockWithMultipleOccurencesOfAnnotationCanBeSerializedToDom(): void {
         $dom = new fDOMDocument();
         $dom->registerNamespace('test', 'http://xml.phpdox.net/src');
 

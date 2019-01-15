@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator\Enricher;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -6,7 +6,6 @@ use TheSeer\fDOM\fDOMException;
 use TheSeer\phpDox\Generator\PHPDoxStartEvent;
 
 class PHPLoc extends AbstractEnricher implements StartEnricherInterface {
-
     /**
      * @var fDOMDocument
      */
@@ -16,21 +15,18 @@ class PHPLoc extends AbstractEnricher implements StartEnricherInterface {
         $this->loadXML($config->getLogFilePath());
     }
 
-    /**
-     * @return string
-     */
-    public function getName() {
+    public function getName(): string {
         return 'PHPLoc xml';
     }
 
-    public function enrichStart(PHPDoxStartEvent $event) {
-        $index = $event->getIndex()->asDom();
+    public function enrichStart(PHPDoxStartEvent $event): void {
+        $index      = $event->getIndex()->asDom();
         $enrichment = $this->getEnrichtmentContainer($index->documentElement, 'phploc');
 
         // Import nodes in a loop to fix empty namespaces until sebastian fixes phploc to generate
         // "proper" xml ;)
         foreach ($this->dom->documentElement->getElementsByTagName('*') as $node) {
-            /** @var \DOMNode $node */
+            /* @var \DOMNode $node */
 
             $enrichment->appendChild(
                 $index->createElementNS(
@@ -39,15 +35,14 @@ class PHPLoc extends AbstractEnricher implements StartEnricherInterface {
                     $node->nodeValue
                 )
             );
-
         }
     }
 
-    private function loadXML($fname) {
+    private function loadXML($fname): void {
         try {
-            if (!file_exists($fname)) {
+            if (!\file_exists($fname)) {
                 throw new EnricherException(
-                    sprintf('PHPLoc xml file "%s" not found.', $fname),
+                    \sprintf('PHPLoc xml file "%s" not found.', $fname),
                     EnricherException::LoadError
                 );
             }
@@ -61,5 +56,3 @@ class PHPLoc extends AbstractEnricher implements StartEnricherInterface {
         }
     }
 }
-
-

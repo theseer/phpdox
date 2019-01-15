@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class ErrorException extends \ErrorException {
-
     private $map = [
         \E_ERROR             => 'E_ERROR',
         \E_WARNING           => 'E_WARNING',
@@ -25,8 +24,7 @@ class ErrorException extends \ErrorException {
         if (isset($this->map[$this->code])) {
             return $this->map[$this->code];
         }
+
         return 'E_FATAL';
     }
 }
-
-

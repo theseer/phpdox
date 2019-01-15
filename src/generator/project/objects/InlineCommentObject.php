@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMElement;
 
 class InlineCommentObject {
-
     /**
      * @var fDOMElement
      */
@@ -17,7 +16,4 @@ class InlineCommentObject {
     public function asDom() {
         return $this->node;
     }
-
 }
-
-

@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 abstract class ConstantEvent extends AbstractEvent {
-
     private $constant;
 
     public function __construct(ConstantObject $constant) {
@@ -12,7 +11,4 @@ abstract class ConstantEvent extends AbstractEvent {
     public function getConstant() {
         return $this->constant;
     }
-
 }
-
-

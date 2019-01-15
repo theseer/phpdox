@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class DirectoryCleaner {
-
-    public function process(FileInfo $path) {
-        if (mb_strlen($path->getPathname()) < 5) {
+    public function process(FileInfo $path): void {
+        if (\mb_strlen($path->getPathname()) < 5) {
             throw new DirectoryCleanerException(
                 'For security reasons, path must be at least 5 chars long',
                 DirectoryCleanerException::SecurityLimitation
@@ -25,14 +24,11 @@ class DirectoryCleaner {
 
         foreach ($worker as $entry) {
             if ($entry->isDir() && !$entry->isLink()) {
-                rmdir($entry->getPathname());
+                \rmdir($entry->getPathname());
             } else {
-                unlink($entry->getPathname());
+                \unlink($entry->getPathname());
             }
         }
-        rmdir($path);
+        \rmdir($path->getPathname());
     }
-
 }
-
-

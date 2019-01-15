@@ -1,13 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class ApplicationException extends \Exception {
+    public const InvalidSrcDirectory = 1;
 
-    const InvalidSrcDirectory = 1;
-    const UnknownEngine = 2;
-    const UnknownEnricher = 3;
-    const IndexMissing = 4;
-    const SourceMissing = 5;
+    public const UnknownEngine = 2;
+
+    public const UnknownEnricher = 3;
+
+    public const IndexMissing = 4;
+
+    public const SourceMissing = 5;
 }
-
-

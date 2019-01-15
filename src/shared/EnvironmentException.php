@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class EnvironmentException extends \Exception {
+    public const ExtensionMissing = 1;
 
-    const ExtensionMissing = 1;
-    const VendorMissing = 2;
-
+    public const VendorMissing = 2;
 }

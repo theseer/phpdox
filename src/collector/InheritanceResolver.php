@@ -1,39 +1,4 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -44,7 +9,6 @@ use TheSeer\phpDox\ProgressLogger;
  * Inheritance resolving class
  */
 class InheritanceResolver {
-
     /**
      * @var ProgressLogger
      */
@@ -72,30 +36,23 @@ class InheritanceResolver {
      */
     private $errors = [];
 
-    /**
-     * @param ProgressLogger $logger
-     */
     public function __construct(ProgressLogger $logger) {
         $this->logger = $logger;
     }
 
     /**
-     * @param array             $changed
-     * @param Project           $project
-     * @param InheritanceConfig $config
-     *
      * @throws ProjectException
      * @throws UnitObjectException
      */
-    public function resolve(Array $changed, Project $project, InheritanceConfig $config) {
-        if (count($changed) == 0) {
+    public function resolve(array $changed, Project $project, InheritanceConfig $config): void {
+        if (\count($changed) == 0) {
             return;
         }
         $this->logger->reset();
         $this->logger->log("Resolving inheritance\n");
 
         $this->project = $project;
-        $this->config = $config;
+        $this->config  = $config;
 
         $this->setupDependencies();
 
@@ -111,6 +68,7 @@ class InheritanceResolver {
                     }
                 }
             }
+
             if ($unit->hasImplements()) {
                 foreach ($unit->getImplements() as $implements) {
                     try {
@@ -121,6 +79,7 @@ class InheritanceResolver {
                     }
                 }
             }
+
             if ($unit->usesTraits()) {
                 foreach ($unit->getUsedTraits() as $traitName) {
                     try {
@@ -137,6 +96,7 @@ class InheritanceResolver {
             }
 
             $unitName = $unit->getName();
+
             if (isset($this->unresolved[$unitName])) {
                 foreach ($this->unresolved[$unitName] as $missingUnit) {
                     $unit->markDependencyAsUnresolved($missingUnit);
@@ -151,7 +111,7 @@ class InheritanceResolver {
     }
 
     public function hasUnresolved() {
-        return count($this->unresolved) > 0;
+        return \count($this->unresolved) > 0;
     }
 
     public function getUnresolved() {
@@ -159,23 +119,25 @@ class InheritanceResolver {
     }
 
     public function hasErrors() {
-        return count($this->errors) > 0;
+        return \count($this->errors) > 0;
     }
 
     public function getErrors() {
         return $this->errors;
     }
 
-    private function addError(AbstractUnitObject $unit, $errorInfo) {
+    private function addError(AbstractUnitObject $unit, $errorInfo): void {
         $unitName = $unit->getName();
+
         if (!isset($this->errors[$unitName])) {
             $this->errors[$unitName] = [];
         }
         $this->errors[$unitName][] = $errorInfo;
     }
 
-    private function addUnresolved(AbstractUnitObject $unit, $missingUnit) {
+    private function addUnresolved(AbstractUnitObject $unit, $missingUnit): void {
         $unitName = $unit->getName();
+
         if (!isset($this->unresolved[$unitName])) {
             $this->unresolved[$unitName] = [];
         }
@@ -183,7 +145,7 @@ class InheritanceResolver {
         $this->project->registerForSaving($unit);
     }
 
-    private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends) {
+    private function processExtends(AbstractUnitObject $unit, AbstractUnitObject $extends): void {
         $this->project->registerForSaving($unit);
         $this->project->registerForSaving($extends);
 
@@ -226,22 +188,22 @@ class InheritanceResolver {
                 }
             }
         }
-
     }
 
-    private function processImplements(AbstractUnitObject $unit, AbstractUnitObject $implements) {
+    private function processImplements(AbstractUnitObject $unit, AbstractUnitObject $implements): void {
         $this->project->registerForSaving($unit);
         $this->project->registerForSaving($implements);
 
         if (!$implements instanceof InterfaceObject) {
             $this->addError(
                 $unit,
-                sprintf(
+                \sprintf(
                     'Trying to implement "%s" which is a %s',
                     $implements->getName(),
                     $implements->getType()
                 )
             );
+
             return;
         }
         $implements->addImplementor($unit);
@@ -259,7 +221,7 @@ class InheritanceResolver {
         }
     }
 
-    private function processTraitUse(AbstractUnitObject $unit, TraitUseObject $use, AbstractUnitObject $trait) {
+    private function processTraitUse(AbstractUnitObject $unit, TraitUseObject $use, AbstractUnitObject $trait): void {
         $this->project->registerForSaving($unit);
         $this->project->registerForSaving($trait);
 
@@ -291,19 +253,21 @@ class InheritanceResolver {
                 }
             }
         }
-
     }
 
-    private function setupDependencies() {
+    private function setupDependencies(): void {
         $this->dependencyStack = [
             $this->project,
         ];
 
         $publicOnlyMode = $this->config->isPublicOnlyMode();
+
         foreach ($this->config->getDependencyDirectories() as $depDir) {
             $idxName = $depDir . '/index.xml';
-            if (!file_exists($idxName)) {
+
+            if (!\file_exists($idxName)) {
                 $this->logger->log("'$idxName' not found - skipping dependency");
+
                 continue;
             }
             $dom = new fDOMDocument();
@@ -315,19 +279,16 @@ class InheritanceResolver {
     /**
      * @param $name
      *
-     * @return AbstractUnitObject
      * @throws ProjectException
      */
-    private function getUnitByName($name) {
+    private function getUnitByName($name): AbstractUnitObject {
         foreach ($this->dependencyStack as $dependency) {
             try {
                 return $dependency->getUnitByName($name);
             } catch (\Exception $e) {
             }
         }
+
         throw new ProjectException("No unit with name '$name' found");
     }
-
 }
-
-

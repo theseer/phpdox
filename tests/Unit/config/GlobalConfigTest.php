@@ -1,39 +1,4 @@
-<?php
-/**
- * Copyright (c) 2010-2015 Arne Blankerts <arne@blankerts.de>
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -42,12 +7,12 @@ use TheSeer\fDOM\fDOMDocument;
  * Class GlobalConfigTest
  *
  * @covers \TheSeer\phpDox\GlobalConfig
+ *
  * @uses   \TheSeer\fDom\fDOMDocument
  * @uses   \TheSeer\phpDox\FileInfo
  * @uses   \TheSeer\phpDox\Version
  */
 class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
-
     private $baseDir;
 
     /**
@@ -72,27 +37,18 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
 
     public function __construct($name = null, array $data = [], $dataName = '') {
         parent::__construct($name, $data, $dataName);
-        $this->baseDir = realpath(__DIR__ . '/../../data/config') . '/';
-    }
-
-    private function init($cfgName) {
-        $this->version = new Version('0.0');
-        $this->fileInfo = new FileInfo($this->baseDir . $cfgName . '.xml');
-        $this->cfgDom = new fDOMDocument();
-        $this->cfgDom->load($this->fileInfo->getPathname());
-        $this->cfgDom->registerNamespace('cfg', 'http://xml.phpdox.net/config');
-        $this->config = new GlobalConfig($this->version, new FileInfo('/tmp'), $this->cfgDom, $this->fileInfo);
+        $this->baseDir = \realpath(__DIR__ . '/../../data/config') . '/';
     }
 
     /**
      * @expectedException \TheSeer\phpDox\ConfigException
      * @expectedExceptionCode \TheSeer\phpDox\ConfigException::InvalidDataStructure
      */
-    public function testTryingToLoadInvalidConfigThrowsException() {
+    public function testTryingToLoadInvalidConfigThrowsException(): void {
         $this->init('broken');
     }
 
-    public function testConfigFileCanBeRetrieved() {
+    public function testConfigFileCanBeRetrieved(): void {
         $this->init('empty');
         $this->assertSame(
             $this->fileInfo,
@@ -100,18 +56,18 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testSilentModeDefaultsToFalse() {
+    public function testSilentModeDefaultsToFalse(): void {
         $this->init('empty');
         $this->assertFalse($this->config->isSilentMode());
     }
 
-    public function testSilentModeCanBeEnabled() {
+    public function testSilentModeCanBeEnabled(): void {
         $this->init('empty');
         $this->cfgDom->documentElement->setAttribute('silent', 'true');
         $this->assertTrue($this->config->isSilentMode());
     }
 
-    public function testSilentModeCanBeDisabled() {
+    public function testSilentModeCanBeDisabled(): void {
         $this->init('empty');
         $this->cfgDom->documentElement->setAttribute('silent', 'false');
         $this->assertFalse($this->config->isSilentMode());
@@ -120,7 +76,7 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
     /**
      * @uses TheSeer\phpDox\FileInfoCollection
      */
-    public function testGetCustomBootstrapFilesReturnsEmptyCollectionByDefault() {
+    public function testGetCustomBootstrapFilesReturnsEmptyCollectionByDefault(): void {
         $this->init('empty');
         $result = $this->config->getCustomBootstrapFiles();
         $this->assertInstanceOf('TheSeer\\phpDox\\FileInfoCollection', $result);
@@ -130,11 +86,12 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
     /**
      * @uses TheSeer\phpDox\FileInfoCollection
      */
-    public function testCustomBootstrapFilesCanBeRetrieved() {
+    public function testCustomBootstrapFilesCanBeRetrieved(): void {
         $this->init('bootstrap');
         $result = $this->config->getCustomBootstrapFiles();
         $this->assertCount(2, $result);
         $expected = ['/path/to/fileA.php', '/path/to/fileB.php'];
+
         foreach ($result as $pos => $entry) {
             $this->assertEquals($expected[$pos], $entry->getPathname());
         }
@@ -144,7 +101,7 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
      * @uses TheSeer\phpDox\ProjectConfig
      * @uses TheSeer\phpDox\Version
      */
-    public function testNamedProjectlistCanBeRetrieved() {
+    public function testNamedProjectlistCanBeRetrieved(): void {
         $this->init('named-projects');
         $results = $this->config->getProjects();
         $this->assertCount(2, $results);
@@ -156,7 +113,7 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
      * @uses TheSeer\phpDox\ProjectConfig
      * @uses TheSeer\phpDox\Version
      */
-    public function testIndexedProjectListCanBeRetrieved() {
+    public function testIndexedProjectListCanBeRetrieved(): void {
         $this->init('indexed-projects');
         $results = $this->config->getProjects();
         $this->assertCount(2, $results);
@@ -168,7 +125,7 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
      * @uses TheSeer\phpDox\ProjectConfig
      * @uses TheSeer\phpDox\Version
      */
-    public function testProjectListDoesNotIncludeDisabledProjects() {
+    public function testProjectListDoesNotIncludeDisabledProjects(): void {
         $this->init('disabled-projects');
         $results = $this->config->getProjects();
         $this->assertCount(1, $results);
@@ -177,14 +134,15 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @dataProvider resolverSrcProvider
+     *
      * @uses         TheSeer\phpDox\ProjectConfig
      * @uses         TheSeer\phpDox\Version
      */
-    public function testSourceVariableGetsResolvedCorrectly($expected, $file) {
+    public function testSourceVariableGetsResolvedCorrectly($expected, $file): void {
         $this->init('resolver/' . $file);
         /** @var ProjectConfig[] $projects */
         $projects = $this->config->getProjects();
-        $this->assertEquals($expected, current($projects)->getWorkDirectory()->getPathname());
+        $this->assertEquals($expected, \current($projects)->getWorkDirectory()->getPathname());
     }
 
     public function resolverSrcProvider() {
@@ -196,18 +154,20 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @dataProvider resolverProvider
+     *
      * @uses         TheSeer\phpDox\ProjectConfig
      * @uses         TheSeer\phpDox\Version
      */
-    public function testVariablesGetResolvedCorrectly($expected, $file) {
+    public function testVariablesGetResolvedCorrectly($expected, $file): void {
         $this->init('resolver/' . $file);
         /** @var ProjectConfig[] $projects */
         $projects = $this->config->getProjects();
-        $this->assertEquals($expected, current($projects)->getSourceDirectory()->getPathname());
+        $this->assertEquals($expected, \current($projects)->getSourceDirectory()->getPathname());
     }
 
     public function resolverProvider() {
         $version = new Version('0.0');
+
         return [
             'basedir' => [$this->baseDir . 'resolver', 'basedir'],
 
@@ -223,7 +183,7 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
             'phpDox.project.workdir'            => ['output', 'workdir'],
             'phpDox.project.workdir[undefined]' => ['xml', 'workdir-undefined'],
 
-            'phpDox.php.version' => [PHP_VERSION, 'php-version'],
+            'phpDox.php.version' => [\PHP_VERSION, 'php-version'],
 
             'property-global'  => ['propvalue', 'property-global'],
             'property-project' => ['propvalue', 'property-project'],
@@ -235,9 +195,10 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @dataProvider exceptionProvider
+     *
      * @uses         TheSeer\phpDox\Version
      */
-    public function testInvalidPropertyRequestThrowsException($file, $code) {
+    public function testInvalidPropertyRequestThrowsException($file, $code): void {
         $this->init('resolver/' . $file);
         $this->expectException('TheSeer\\phpDox\\ConfigException', $code);
         $this->config->getProjects();
@@ -251,5 +212,12 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
         ];
     }
 
+    private function init($cfgName): void {
+        $this->version  = new Version('0.0');
+        $this->fileInfo = new FileInfo($this->baseDir . $cfgName . '.xml');
+        $this->cfgDom   = new fDOMDocument();
+        $this->cfgDom->load($this->fileInfo->getPathname());
+        $this->cfgDom->registerNamespace('cfg', 'http://xml.phpdox.net/config');
+        $this->config = new GlobalConfig($this->version, new FileInfo('/tmp'), $this->cfgDom, $this->fileInfo);
+    }
 }
-

@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 class DependencyException extends \Exception {
+    public const UnitNotFound = 1;
 
-    const UnitNotFound = 1;
-    const InvalidUnitType = 2;
+    public const InvalidUnitType = 2;
 }
-
-

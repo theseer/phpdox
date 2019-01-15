@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMElement;
 
 class MethodObject {
-
     /**
      * @var fDOMElement
      */
@@ -33,7 +32,4 @@ class MethodObject {
     public function isProtected() {
         return $this->node->getAttribute('visibility', 'public') == 'protected';
     }
-
 }
-
-

@@ -1,57 +1,20 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * Exit codes:
- *   0 - No error
- *   1 - Execution Error
- *   3 - Parameter Error
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- *
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 use TheSeer\fDOM\fDOMException;
 
 class CLI {
+    public const ExitOK = 0;
 
-    const ExitOK = 0;
-    const ExitExecError = 1;
-    const ExitEnvError = 2;
-    const ExitParamError = 3;
-    const ExitConfigError = 4;
-    const ExitException = 5;
+    public const ExitExecError = 1;
+
+    public const ExitEnvError = 2;
+
+    public const ExitParamError = 3;
+
+    public const ExitConfigError = 4;
+
+    public const ExitException = 5;
 
     /**
      * @var Environment
@@ -70,14 +33,10 @@ class CLI {
      */
     private $factory;
 
-    /**
-     * @param Environment $env
-     * @param Factory     $factory
-     */
     public function __construct(Environment $env, Version $version, Factory $factory) {
         $this->environment = $env;
-        $this->version = $version;
-        $this->factory = $factory;
+        $this->version     = $version;
+        $this->factory     = $factory;
     }
 
     /**
@@ -88,22 +47,24 @@ class CLI {
         $errorHandler->register();
 
         try {
-
             $this->environment->ensureFitness();
 
             if ($options->showHelp() === true) {
                 $this->showVersion();
-                echo $options->getHelpScreen();
+                print $options->getHelpScreen();
+
                 return self::ExitOK;
             }
 
             if ($options->showVersion() === true) {
                 $this->showVersion();
+
                 return self::ExitOK;
             }
 
             if ($options->generateSkel() === true) {
                 $this->showSkeletonConfig($options->generateStrippedSkel());
+
                 return self::ExitOK;
             }
 
@@ -148,7 +109,6 @@ class CLI {
             }
 
             foreach ($config->getProjects() as $projectName => $projectConfig) {
-
                 $logger->log("Starting to process project '$projectName'");
 
                 $app->runConfigChangeDetection(
@@ -165,35 +125,40 @@ class CLI {
                 }
 
                 $logger->log("Processing project '$projectName' completed.");
-
             }
 
             $logger->buildSummary();
-            return self::ExitOK;
 
+            return self::ExitOK;
         } catch (EnvironmentException $e) {
             $this->showVersion();
-            fwrite(STDERR, 'Sorry, but your PHP environment is currently not able to run phpDox due to');
-            fwrite(STDERR, "\nthe following issue(s):\n\n" . $e->getMessage() . "\n\n");
-            fwrite(STDERR, "Please adjust your PHP configuration and try again.\n\n");
+            \fwrite(\STDERR, 'Sorry, but your PHP environment is currently not able to run phpDox due to');
+            \fwrite(\STDERR, "\nthe following issue(s):\n\n" . $e->getMessage() . "\n\n");
+            \fwrite(\STDERR, "Please adjust your PHP configuration and try again.\n\n");
+
             return self::ExitEnvError;
         } catch (CLIOptionsException $e) {
             $this->showVersion();
-            fwrite(STDERR, $e->getMessage() . "\n\n");
-            fwrite(STDERR, $options->getHelpScreen());
+            \fwrite(\STDERR, $e->getMessage() . "\n\n");
+            \fwrite(\STDERR, $options->getHelpScreen());
+
             return self::ExitParamError;
         } catch (ConfigLoaderException $e) {
             $this->showVersion();
-            fwrite(STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage() . "\n\n");
+            \fwrite(\STDERR, "\nAn error occured while trying to load the configuration file:\n\n" . $e->getMessage() . "\n\n");
+
             if ($e->getCode() == ConfigLoaderException::NeitherCandidateExists) {
-                fwrite(STDERR, "Using --skel might get you started.\n\n");
+                \fwrite(\STDERR, "Using --skel might get you started.\n\n");
             }
+
             return self::ExitConfigError;
         } catch (ConfigException $e) {
-            fwrite(STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage() . "\n\nPlease verify your configuration xml file.\n\n");
+            \fwrite(\STDERR, "\nYour configuration seems to be corrupted:\n\n\t" . $e->getMessage() . "\n\nPlease verify your configuration xml file.\n\n");
+
             return self::ExitConfigError;
         } catch (ApplicationException $e) {
-            fwrite(STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage() . "\n\nPlease verify your configuration.\n\n");
+            \fwrite(\STDERR, "\nAn application error occured while processing:\n\n\t" . $e->getMessage() . "\n\nPlease verify your configuration.\n\n");
+
             return self::ExitExecError;
         } catch (\Exception $e) {
             if ($e instanceof fDOMException) {
@@ -201,10 +166,12 @@ class CLI {
             }
             $this->showVersion();
             $errorHandler->handleException($e);
+
             return self::ExitException;
         } catch (\Throwable $e) {
             $this->showVersion();
             $errorHandler->handleException($e);
+
             return self::ExitException;
         }
     }
@@ -212,43 +179,41 @@ class CLI {
     /**
      * Helper to output version information.
      */
-    private function showVersion() {
+    private function showVersion(): void {
         static $shown = false;
+
         if ($shown) {
             return;
         }
         $shown = true;
-        echo $this->version->getInfoString() . "\n\n";
+        print $this->version->getInfoString() . "\n\n";
     }
 
-    private function showSkeletonConfig($strip) {
+    private function showSkeletonConfig($strip): void {
         $skel = $this->factory->getConfigSkeleton();
-        echo $strip ? $skel->renderStripped() : $skel->render();
+        print $strip ? $skel->renderStripped() : $skel->render();
     }
 
-    private function showList($title, Array $list) {
-        echo "\nThe following $title are registered:\n\n";
+    private function showList($title, array $list): void {
+        print "\nThe following $title are registered:\n\n";
+
         foreach ($list as $name => $desc) {
-            printf("   %s \t %s\n", $name, $desc);
+            \printf("   %s \t %s\n", $name, $desc);
         }
-        echo "\n\n";
+        print "\n\n";
     }
 
     /**
-     * @param CLIOptions $options
-     *
-     * @return GlobalConfig
      * @throws ConfigLoaderException
      */
-    private function loadConfig(CLIOptions $options) {
+    private function loadConfig(CLIOptions $options): GlobalConfig {
         $cfgLoader = $this->factory->getConfigLoader();
-        $cfgFile = $options->configFile();
+        $cfgFile   = $options->configFile();
+
         if ($cfgFile != '') {
             return $cfgLoader->load($cfgFile);
         }
+
         return $cfgLoader->autodetect();
     }
-
 }
-
-

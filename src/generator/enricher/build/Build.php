@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator\Enricher;
 
 use TheSeer\fDOM\fDOMDocument;
@@ -13,7 +13,6 @@ use TheSeer\phpDox\Version;
 
 class Build extends AbstractEnricher implements StartEnricherInterface,
     ClassEnricherInterface, TraitEnricherInterface, InterfaceEnricherInterface, TokenFileEnricherInterface {
-
     /**
      * @var array
      */
@@ -30,38 +29,35 @@ class Build extends AbstractEnricher implements StartEnricherInterface,
     private $version;
 
     public function __construct(EnrichConfig $config) {
-        $this->enrichers = array_keys($config->getGeneratorConfig()->getActiveEnrichSources());
-        $this->version = $config->getVersion();
+        $this->enrichers = \array_keys($config->getGeneratorConfig()->getActiveEnrichSources());
+        $this->version   = $config->getVersion();
     }
 
-    /**
-     * @return string
-     */
-    public function getName() {
+    public function getName(): string {
         return 'Build Information';
     }
 
-    public function enrichStart(PHPDoxStartEvent $event) {
+    public function enrichStart(PHPDoxStartEvent $event): void {
         $this->genericProcess($event->getIndex()->asDom());
     }
 
-    public function enrichClass(ClassStartEvent $event) {
+    public function enrichClass(ClassStartEvent $event): void {
         $this->genericProcess($event->getClass()->asDom());
     }
 
-    public function enrichInterface(InterfaceStartEvent $event) {
+    public function enrichInterface(InterfaceStartEvent $event): void {
         $this->genericProcess($event->getInterface()->asDom());
     }
 
-    public function enrichTrait(TraitStartEvent $event) {
+    public function enrichTrait(TraitStartEvent $event): void {
         $this->genericProcess($event->getTrait()->asDom());
     }
 
-    public function enrichTokenFile(TokenFileStartEvent $event) {
+    public function enrichTokenFile(TokenFileStartEvent $event): void {
         $this->genericProcess($event->getTokenFile()->asDom());
     }
 
-    private function genericProcess(fDOMDocument $dom) {
+    private function genericProcess(fDOMDocument $dom): void {
         $enrichment = $this->getEnrichtmentContainer($dom->documentElement, 'build');
         $enrichment->appendChild(
             $dom->importNode($this->getGeneralBuildInfo(), true)
@@ -73,13 +69,13 @@ class Build extends AbstractEnricher implements StartEnricherInterface,
             return $this->buildInfo;
         }
 
-        $dom = new fDOMDocument();
+        $dom             = new fDOMDocument();
         $this->buildInfo = $dom->createDocumentFragment();
 
         $dateNode = $dom->createElementNS(self::XMLNS, 'date');
         $this->buildInfo->appendChild($dateNode);
 
-        $date = new \DateTime('now');
+        $date = new \DateTimeImmutable('now');
         $dateNode->setAttribute('unix', $date->getTimestamp());
         $dateNode->setAttribute('date', $date->format('d-m-Y'));
         $dateNode->setAttribute('time', $date->format('H:i:s'));
@@ -92,7 +88,7 @@ class Build extends AbstractEnricher implements StartEnricherInterface,
         $phpdoxNode->setAttribute('version', $this->version->getVersion());
         $phpdoxNode->setAttribute('info', $this->version->getInfoString());
         $phpdoxNode->setAttribute('generated', $this->version->getGeneratedByString());
-        $phpdoxNode->setAttribute('phar', defined('PHPDOX_PHAR') ? 'yes' : 'no');
+        $phpdoxNode->setAttribute('phar', \defined('PHPDOX_PHAR') ? 'yes' : 'no');
 
         foreach ($this->enrichers as $enricher) {
             $enricherNode = $phpdoxNode->appendElementNS(self::XMLNS, 'enricher');
@@ -102,15 +98,16 @@ class Build extends AbstractEnricher implements StartEnricherInterface,
         $phpNode = $dom->createElementNS(self::XMLNS, 'php');
         $this->buildInfo->appendChild($phpNode);
 
-        $phpNode->setAttribute('version', PHP_VERSION);
-        $phpNode->setAttribute('os', PHP_OS);
+        $phpNode->setAttribute('version', \PHP_VERSION);
+        $phpNode->setAttribute('os', \PHP_OS);
 
-        foreach (get_loaded_extensions(true) as $extension) {
+        foreach (\get_loaded_extensions(true) as $extension) {
             $extNode = $dom->createElementNS(self::XMLNS, 'zendextension');
             $extNode->setAttribute('name', $extension);
             $phpNode->appendChild($extNode);
         }
-        foreach (get_loaded_extensions(false) as $extension) {
+
+        foreach (\get_loaded_extensions(false) as $extension) {
             $extNode = $dom->createElementNS(self::XMLNS, 'extension');
             $extNode->setAttribute('name', $extension);
             $phpNode->appendChild($extNode);
@@ -118,7 +115,4 @@ class Build extends AbstractEnricher implements StartEnricherInterface,
 
         return $this->buildInfo;
     }
-
 }
-
-

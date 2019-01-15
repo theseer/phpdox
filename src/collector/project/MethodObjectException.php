@@ -1,9 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 class MethodObjectException extends \Exception {
-
-    const InvalidVisibility = 1;
+    public const InvalidVisibility = 1;
 }
-
-

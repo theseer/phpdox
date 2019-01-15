@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 abstract class MethodEvent extends AbstractEvent {
-
     private $method;
 
     public function __construct(MethodObject $method) {
@@ -12,7 +11,4 @@ abstract class MethodEvent extends AbstractEvent {
     public function getMethod() {
         return $this->method;
     }
-
 }
-
-

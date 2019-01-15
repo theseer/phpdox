@@ -1,13 +1,10 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 /**
  * Class FileInfoCollection
- *
- * @package TheSeer\phpDox
  */
 class FileInfoCollection implements \Iterator, \Countable {
-
     /**
      * @var FileInfo[]
      */
@@ -18,59 +15,38 @@ class FileInfoCollection implements \Iterator, \Countable {
      */
     private $pos = 0;
 
-    /**
-     * @param FileInfo $file
-     */
-    public function add(FileInfo $file) {
+    public function add(FileInfo $file): void {
         $this->data[] = $file;
     }
 
     /**
-     * @return FileInfo
      * @throws \TheSeer\phpDox\FileInfoCollectionException
      */
-    public function current() {
+    public function current(): FileInfo {
         if (!isset($this->data[$this->pos])) {
             throw new FileInfoCollectionException('Empty collection');
         }
+
         return $this->data[$this->pos];
     }
 
-    /**
-     *
-     */
-    public function next() {
+    public function next(): void {
         $this->pos++;
     }
 
-    /**
-     * @return int
-     */
-    public function key() {
+    public function key(): int {
         return $this->pos;
     }
 
-    /**
-     * @return bool
-     */
-    public function valid() {
+    public function valid(): bool {
         return $this->count() > $this->pos;
     }
 
-    /**
-     *
-     */
-    public function rewind() {
+    public function rewind(): void {
         $this->pos = 0;
     }
 
-    /**
-     * @return int
-     */
-    public function count() {
-        return count($this->data);
+    public function count(): int {
+        return \count($this->data);
     }
-
 }
-
-

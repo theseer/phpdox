@@ -1,50 +1,11 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\fDOM\fDOMDocument;
 use TheSeer\fDOM\fDOMElement;
 use TheSeer\phpDox\FileInfo;
 
-/**
- *
- */
 class IndexCollection {
-
     private $dom;
 
     /**
@@ -56,26 +17,7 @@ class IndexCollection {
         $this->srcDir = $srcDir;
     }
 
-    private function getRootElement() {
-        if (!$this->dom instanceof fDOMDocument) {
-            $this->initDomDocument();
-        }
-        return $this->dom->documentElement;
-    }
-
-    private function initDomDocument() {
-        $this->dom = new fDOMDocument('1.0', 'UTF-8');
-        $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
-        $index = $this->dom->appendElementNS('http://xml.phpdox.net/src', 'index');
-        $index->setAttribute('basedir', $this->srcDir->getRealPath());
-    }
-
-    /**
-     * @param \TheSeer\fDOM\fDOMDocument $dom
-     *
-     * @return void
-     */
-    public function import(fDOMDocument $dom) {
+    public function import(fDOMDocument $dom): void {
         $this->dom = $dom;
         $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
     }
@@ -83,64 +25,59 @@ class IndexCollection {
     /**
      * This method exports all newly registered units into their respective files
      * and updates the collection file accordingly
-     *
-     * @param string $xmlDir
-     *
-     * @return \TheSeer\fDOM\fDOMDocument
      */
-    public function export() {
+    public function export(): fDOMDocument {
         if (!$this->dom instanceof fDOMDocument) {
             $this->initDomDocument();
         }
+
         return $this->dom;
     }
 
-    /**
-     * @param ClassObject $class
-     */
-    public function addClass(ClassObject $class) {
+    public function addClass(ClassObject $class): void {
         $this->addUnit($class, 'class');
     }
 
-    /**
-     * @param InterfaceObject $interface
-     */
-    public function addInterface(InterfaceObject $interface) {
+    public function addInterface(InterfaceObject $interface): void {
         $this->addUnit($interface, 'interface');
     }
 
-    /**
-     * @param TraitObject $trait
-     */
-    public function addTrait(TraitObject $trait) {
+    public function addTrait(TraitObject $trait): void {
         $this->addUnit($trait, 'trait');
     }
 
-    /**
-     * @param $path
-     *
-     * @return \DOMNodeList
-     */
-    public function findUnitNodesBySrcFile($path) {
-        $src = mb_substr($path, mb_strlen($this->srcDir) + 1);
-        return $this->getRootElement()->query(sprintf('//*[@src="%s"]', $src));
+    public function findUnitNodesBySrcFile(string $path): \DOMNodeList {
+        $src = \mb_substr($path, \mb_strlen( (string)$this->srcDir) + 1);
+
+        return $this->getRootElement()->query(\sprintf('//*[@src="%s"]', $src));
     }
 
     /**
      * @param $namespace
      * @param $name
-     *
-     * @return fDOMElement
      */
-    public function findUnitNodeByName($namespace, $name) {
+    public function findUnitNodeByName($namespace, $name): ?fDOMElement {
         return $this->getRootElement()->queryOne(
-            sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $name));
+            \sprintf('//phpdox:namespace[@name="%s"]/*[@name="%s"]', $namespace, $name)
+        );
     }
 
-    /**
-     * @param AbstractUnitObject $unit
-     */
-    private function addUnit(AbstractUnitObject $unit, $type) {
+    private function getRootElement() {
+        if (!$this->dom instanceof fDOMDocument) {
+            $this->initDomDocument();
+        }
+
+        return $this->dom->documentElement;
+    }
+
+    private function initDomDocument(): void {
+        $this->dom = new fDOMDocument('1.0', 'UTF-8');
+        $this->dom->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
+        $index = $this->dom->appendElementNS('http://xml.phpdox.net/src', 'index');
+        $index->setAttribute('basedir', $this->srcDir->getRealPath());
+    }
+
+    private function addUnit(AbstractUnitObject $unit, $type): void {
         $root = $this->getRootElement();
 
         if (!$this->findUnitNodeByName($unit->getNamespace(), $unit->getLocalName())) {
@@ -148,17 +85,20 @@ class IndexCollection {
             $unitNode->setAttribute('name', $unit->getLocalName());
 
             $src = $unit->getSourceFilename();
-            if ($src != '') {
+
+            if ($src !== null) {
                 $unitNode->setAttribute('src', $src->getRelative($this->srcDir, false));
             }
 
             $desc = $unit->getCompactDescription();
+
             if ($desc != '') {
                 $unitNode->setAttribute('description', $desc);
             }
 
             $xpath = 'phpdox:namespace[@name="' . $unit->getNamespace() . '"]';
-            $ctx = $root->queryOne($xpath);
+            $ctx   = $root->queryOne($xpath);
+
             if (!$ctx) {
                 $ctx = $root->appendElementNS('http://xml.phpdox.net/src', 'namespace');
                 $ctx->setAttribute('name', $unit->getNamespace());
@@ -166,7 +106,4 @@ class IndexCollection {
             $ctx->appendChild($unitNode);
         }
     }
-
 }
-
-

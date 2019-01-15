@@ -1,39 +1,4 @@
-<?php
-/**
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de> and Contributors
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *
- *   * Neither the name of Arne Blankerts nor the names of contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT  * NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER ORCONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- *
- */
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 use TheSeer\phpDox\Collector\Backend\Factory as BackendFactory;
@@ -51,10 +16,8 @@ use TheSeer\phpDox\Generator\Enricher\Factory as EnricherFactory;
  * @author     Arne Blankerts <arne@blankerts.de>
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
- *
  */
 class BootstrapApi {
-
     /**
      * Reference to the BackendFactory instance
      *
@@ -104,41 +67,33 @@ class BootstrapApi {
 
     /**
      * Constructor
-     *
-     * @param FactoryInterface $factory
      */
     public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
-        $this->backendFactory = $bf;
-        $this->engineFactory = $enf;
-        $this->parserFactory = $df;
+        $this->backendFactory  = $bf;
+        $this->engineFactory   = $enf;
+        $this->parserFactory   = $df;
         $this->enricherFactory = $erf;
-        $this->logger = $logger;
+        $this->logger          = $logger;
     }
 
     /**
      * Get list of all registered generator engines
-     *
-     * @return array
      */
-    public function getEngines() {
+    public function getEngines(): array {
         return $this->engines;
     }
 
     /**
      * Get list of all registered enrichers
-     *
-     * @return array
      */
-    public function getEnrichers() {
+    public function getEnrichers(): array {
         return $this->enrichers;
     }
 
     /**
      * Get list of all registered collector backends
-     *
-     * @return array
      */
-    public function getBackends() {
+    public function getBackends(): array {
         return $this->backends;
     }
 
@@ -147,12 +102,11 @@ class BootstrapApi {
      *
      * @param string $name        Name of the collector backend
      * @param string $description A describing text
-     *
-     * @return BackendBootstrapApi
      */
-    public function registerBackend($name, $description = 'no description set') {
+    public function registerBackend($name, $description = 'no description set'): BackendBootstrapApi {
         $this->logger->log("Registered collector backend '$name'");
         $this->backends[$name] = $description;
+
         return new BackendBootstrapApi($name, $this->backendFactory);
     }
 
@@ -161,22 +115,20 @@ class BootstrapApi {
      *
      * @param string $name        Name of the generator engine
      * @param string $description A describing text
-     *
-     * @return EngineBootstrapApi
      */
-    public function registerEngine($name, $description) {
+    public function registerEngine($name, $description): EngineBootstrapApi {
         $this->logger->log("Registered output engine '$name'");
         $this->engines[$name] = $description;
+
         return new EngineBootstrapApi($name, $this->engineFactory);
     }
 
     /**
      * @param $annotation
-     *
-     * @return ParserBootstrapApi
      */
-    public function registerParser($annotation) {
+    public function registerParser($annotation): ParserBootstrapApi {
         $this->logger->log("Registered parser for '$annotation' annotation");
+
         return new ParserBootstrapApi($annotation, $this->parserFactory);
     }
 
@@ -185,13 +137,11 @@ class BootstrapApi {
      *
      * @param string $name        Name of the enricher
      * @param string $description A describing text
-     *
-     * @return EnricherBootstrapApi
      */
-    public function registerEnricher($name, $description) {
+    public function registerEnricher($name, $description): EnricherBootstrapApi {
         $this->logger->log("Registered enricher '$name'");
         $this->enrichers[$name] = $description;
+
         return new EnricherBootstrapApi($name, $this->enricherFactory);
     }
 }
-

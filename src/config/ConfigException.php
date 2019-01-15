@@ -1,15 +1,16 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class ConfigException extends \Exception {
+    public const InvalidDataStructure = 1;
 
-    const InvalidDataStructure = 1;
-    const ProjectNotFound = 2;
-    const NoCollectorSection = 3;
-    const NoGeneratorSection = 4;
-    const OverrideNotAllowed = 5;
-    const PropertyNotFound = 6;
+    public const ProjectNotFound = 2;
 
+    public const NoCollectorSection = 3;
+
+    public const NoGeneratorSection = 4;
+
+    public const OverrideNotAllowed = 5;
+
+    public const PropertyNotFound = 6;
 }
-
-

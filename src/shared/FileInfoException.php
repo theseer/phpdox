@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
 class FileInfoException extends \Exception {
+    public const InvalidPath = 1;
 
-    const InvalidPath = 1;
-    const NotImplemented = 2;
+    public const NotImplemented = 2;
 }
-
-

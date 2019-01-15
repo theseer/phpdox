@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 use TheSeer\fDOM\fDOMDocument;
 
 class Index {
-
     private $dom;
 
     public function __construct(fDOMDocument $dom) {
@@ -30,7 +29,4 @@ class Index {
     public function hasClasses() {
         return $this->dom->queryOne('count(//phpdox:class)') > 0;
     }
-
 }
-
-

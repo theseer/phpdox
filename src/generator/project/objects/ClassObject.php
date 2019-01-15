@@ -1,15 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Generator;
 
 class ClassObject extends AbstractUnitObject {
-
-    /**
-     * @return MemberCollection
-     */
-    public function getMembers() {
+    public function getMembers(): MemberCollection {
         return new MemberCollection($this->asDom()->query('phpdox:member'));
     }
-
 }
-
-
