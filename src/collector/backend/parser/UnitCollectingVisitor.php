@@ -68,7 +68,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract {
             $this->aliasMap['::context'] = $this->namespace;
         } else {
             if ($node instanceof NodeType\UseUse) {
-                $this->aliasMap[$node->alias] = \implode('\\', $node->name->parts);
+                $this->aliasMap[$node->getAlias()->name] = \implode('\\', $node->name->parts);
             } else {
                 if ($node instanceof NodeType\Class_) {
                     $this->aliasMap['::unit'] = (string)$node->namespacedName;
@@ -322,7 +322,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract {
     private function processMethodParams(MethodObject $method, array $params): void {
         foreach ($params as $param) {
             /** @var $param \PhpParser\Node\Param */
-            $parameter = $method->addParameter($param->name);
+            $parameter = $method->addParameter($param->var->name);
             $parameter->setByReference($param->byRef);
             $this->setVariableType($parameter, $param->type);
             $this->setVariableDefaultValue($parameter, $param->default);
