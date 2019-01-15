@@ -1,6 +1,6 @@
 <?php
 
-namespace u\v\w {
+namespace u\v\w;
 
    interface interfaceB {
 

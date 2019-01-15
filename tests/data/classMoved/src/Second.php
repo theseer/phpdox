@@ -1,5 +1,5 @@
 <?php
-namespace Debug\Sample {
+namespace Debug\Sample;
 
     class RenamedSecond { }
 

@@ -1,5 +1,5 @@
 <?php
-namespace data\issue170\src {
+namespace data\issue170\src;
 
     /**
      * @method string getSomeString()

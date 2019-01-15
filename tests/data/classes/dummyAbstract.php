@@ -36,7 +36,7 @@
  * @license    BSD License
  */
 
-namespace TheSeer\phpDox\Tests\Issues\Fixtures {
+namespace TheSeer\phpDox\Tests\Issues\Fixtures;
 
     /**
      * Short description for Dummy class

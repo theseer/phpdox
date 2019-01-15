@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Foo\Bar {
+namespace Foo\Bar;
 
     trait BarTrait {
         public function fooA() {}
@@ -9,7 +9,7 @@ namespace Foo\Bar {
 
 }
 
-namespace TheSeer\Test\Fixtures {
+namespace TheSeer\Test\Fixtures;
 
     use Foo\Bar;
 

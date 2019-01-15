@@ -34,50 +34,47 @@
  * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
  * @license    BSD License
  */
-namespace TheSeer\phpDox {
+namespace TheSeer\phpDox;
 
-    class DirectoryCleanerTest extends \PHPUnit\Framework\TestCase {
+class DirectoryCleanerTest extends \PHPUnit\Framework\TestCase {
 
-        /**
-         * @var DirectoryCleaner
-         */
-        private $cleaner;
+    /**
+     * @var DirectoryCleaner
+     */
+    private $cleaner;
 
-        protected function setUp() {
-            $this->cleaner = new DirectoryCleaner();
-        }
+    protected function setUp() {
+        $this->cleaner = new DirectoryCleaner();
+    }
 
-        /**
-         * @expectedException \TheSeer\phpDox\DirectoryCleanerException
-         * @expectedExceptionCode \TheSeer\phpDox\DirectoryCleanerException::SecurityLimitation
-         */
-        public function testTryingToDeleteAShortPathThrowsException() {
-            $this->cleaner->process(new FileInfo('/tmp'));
-        }
+    /**
+     * @expectedException \TheSeer\phpDox\DirectoryCleanerException
+     * @expectedExceptionCode \TheSeer\phpDox\DirectoryCleanerException::SecurityLimitation
+     */
+    public function testTryingToDeleteAShortPathThrowsException() {
+        $this->cleaner->process(new FileInfo('/tmp'));
+    }
 
-        public function testTryingToDeleteNonExistingDirectoryJustReturns() {
-            $this->cleaner->process(new FileInfo('/not/existing/directory'));
-            $this->assertTrue(true);
-        }
+    public function testTryingToDeleteNonExistingDirectoryJustReturns() {
+        $this->cleaner->process(new FileInfo('/not/existing/directory'));
+        $this->assertTrue(true);
+    }
 
-        public function testCanDeleteRecursiveDirectoryStructure() {
-            $base = '/tmp/'. uniqid('dctest-');
-            $path = $base . '/a/b/c/d/e/f/g/h';
-            mkdir( $path, 0700, true);
-            touch( $path . '/test-h.txt' );
-            touch( $path . '/../test-g.txt' );
-            touch( $path . '/../../test-f.txt' );
+    public function testCanDeleteRecursiveDirectoryStructure() {
+        $base = '/tmp/' . uniqid('dctest-');
+        $path = $base . '/a/b/c/d/e/f/g/h';
+        mkdir($path, 0700, true);
+        touch($path . '/test-h.txt');
+        touch($path . '/../test-g.txt');
+        touch($path . '/../../test-f.txt');
 
-            $this->assertFileExists($path. '/test-h.txt');
-            $this->assertDirectoryExists($path);
+        $this->assertFileExists($path . '/test-h.txt');
+        $this->assertDirectoryExists($path);
 
-            $this->cleaner->process(new FileInfo($base));
+        $this->cleaner->process(new FileInfo($base));
 
-            $this->assertFileNotExists($path. '/test-h.txt', 'File vanished');
-            $this->assertDirectoryNotExists($base, 'Directory vanished');
-
-        }
-
+        $this->assertFileNotExists($path . '/test-h.txt', 'File vanished');
+        $this->assertDirectoryNotExists($base, 'Directory vanished');
 
     }
 
