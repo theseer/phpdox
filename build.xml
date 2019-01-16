@@ -132,7 +132,7 @@
 
 
     <target name="release" description="Make a release based on latest tag">
-    
+
         <exec executable="bash" outputproperty="version">
             <arg value="-c"/>
             <arg value="${basedir}/build/phar/phpdox*.phar --version | awk 'BEGIN { ORS = &quot;&quot;; } {print $2}'"/>
@@ -150,6 +150,22 @@
 
     </target>
 
+    <target name="getphive" description="Get phive on travis-ci">
+        <exec executable="wget" taskname="wget">
+            <arg value="https://phar.io/releases/phive.phar"/>
+        </exec>
+        <exec executable="wget" taskname="wget">
+            <arg value="https://phar.io/releases/phive.phar.asc"/>
+        </exec>
+        <exec executable="gpg" taskname="gpg-get-key">
+            <arg line="--keyserver hkps.pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79" />
+        </exec>
+        <exec executable="gpg" taskname="gpg-verify">
+            <arg line="--verify phive.phar.asc phive.phar" />
+        </exec>
+        <chmod file="phive.phar" perm="+x" />
+        <delete file="phive.phar.asc" />
+    </target>
 
     <target name="build" depends="clean,phpab,phpunit"/>
 </project>

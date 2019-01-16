@@ -18,12 +18,9 @@ matrix:
 
 before_install:
   - composer self-update
-  - wget https://phar.io/releases/phive.phar
-  - wget https://phar.io/releases/phive.phar.asc
-  - gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
-  - gpg --verify phive.phar.asc phive.phar
-  - chmod +x phive.phar
-  - sudo mv phive.phar /usr/local/bin/phive
+  - if [ ! -d $HOME/.phive ]; then mkdir $HOME/.phive ; fi
+  - if [ ! -f $HOME/.phive/phive.phar ]; then ant getphive ; mv phive.phar $HOME/.phive ; fi
+  - sudo cp $HOME/.phive/phive.phar /usr/local/bin/phive
 
 cache:
   directories:
