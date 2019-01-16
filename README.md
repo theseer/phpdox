@@ -12,7 +12,7 @@ and more.
 Requirements
 ------------
 
-- PHP Version 5.5+ (PHP 7.x recommended)
+- PHP Version 7.1+ (For PHP 5.5+, use phpDox 0.11.2)
   - ext/dom
   - ext/xsl
   - ext/iconv and [libiconv version >= 2.12](http://www.gnu.org/software/libiconv/documentation/libiconv/iconv.1.html)

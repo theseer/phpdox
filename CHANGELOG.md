@@ -1,5 +1,15 @@
 # Changelog of phpDox
 
+## phpDox 0.12.0 (?? ??? ????)
+
+Note: This release requires PHP 7.1+
+
+### Changed
+* Upgraded dependencies: Now using PHP-Parser ^4.2, PHP-Timer ^2.0
+* Changed all sources to follow PHP 7 syntax
+* Updated php core classes and interfaces data
+
+
 ## phpDox 0.11.2 (22 May 2018)
 
 Note: 0.11.x is the last series of releases that supports running under PHP 5.x 
