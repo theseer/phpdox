@@ -60,7 +60,7 @@
   </method>
   <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get the error text from the last operation.">Object oriented style</description>
+      <description compact="Get the error text from the last operation">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
@@ -154,7 +154,7 @@
   <method name="setTimeZone" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sets formatter&#x2BC;s timezone">Object oriented style</description>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="zone" optional="false" byreference="false" type="object" class="mixed"/>
   </method>

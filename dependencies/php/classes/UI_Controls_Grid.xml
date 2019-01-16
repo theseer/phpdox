@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Grid" namespace="" name="UI\Controls\Grid">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Grid" namespace="UI\Controls" name="Grid">
   <extends name="UI\Control" full="UI\Control"/>
   <constant name="Fill" value="">
     <docblock>
@@ -53,14 +53,14 @@
       <return type="void"/>
     </docblock>
     <parameter name="control" optional="false" byreference="false" type="object" class="UI\Control"/>
-    <parameter name="left" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="top" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="xspan" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="yspan" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="hexpand" optional="false" byreference="false" type="object" class="boolean"/>
-    <parameter name="halign" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="vexpand" optional="false" byreference="false" type="object" class="boolean"/>
-    <parameter name="valign" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="left" optional="false" byreference="false" type="int"/>
+    <parameter name="top" optional="false" byreference="false" type="int"/>
+    <parameter name="xspan" optional="false" byreference="false" type="int"/>
+    <parameter name="yspan" optional="false" byreference="false" type="int"/>
+    <parameter name="hexpand" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="halign" optional="false" byreference="false" type="int"/>
+    <parameter name="vexpand" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="valign" optional="false" byreference="false" type="int"/>
   </method>
   <method name="isPadded" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -73,7 +73,7 @@
       <description compact="Set Padding"/>
       <return type="void"/>
     </docblock>
-    <parameter name="padding" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="padding" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="false">
     <docblock>

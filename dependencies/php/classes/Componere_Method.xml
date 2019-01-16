@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Componere\Method" namespace="Componere" name="Method">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Method Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="closure" optional="false" byreference="false" type="object" class="\Closure"/>
+  </constructor>
+  <method name="setPrivate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Modification"/>
+      <return type="Method"/>
+    </docblock>
+  </method>
+  <method name="setProtected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Modification"/>
+      <return type="Method"/>
+    </docblock>
+  </method>
+  <method name="setStatic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Modification"/>
+      <return type="Method"/>
+    </docblock>
+  </method>
+  <method name="getReflector" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reflection"/>
+      <return type="\ReflectionMethod"/>
+    </docblock>
+  </method>
+</class>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Progress" namespace="" name="UI\Controls\Progress">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Progress" namespace="UI\Controls" name="Progress">
   <extends name="UI\Control" full="UI\Control"/>
   <method name="getValue" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -12,7 +12,7 @@
       <description compact="Set Value"/>
       <return type="void"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="false">
     <docblock>

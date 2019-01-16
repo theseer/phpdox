@@ -22,21 +22,21 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="string"/>
-    <parameter name="red" optional="false" byreference="false" type="string"/>
-    <parameter name="green" optional="false" byreference="false" type="string"/>
-    <parameter name="blue" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="red" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="green" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="blue" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="addColorStopRgba" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="string"/>
-    <parameter name="red" optional="false" byreference="false" type="string"/>
-    <parameter name="green" optional="false" byreference="false" type="string"/>
-    <parameter name="blue" optional="false" byreference="false" type="string"/>
-    <parameter name="alpha" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="red" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="green" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="blue" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="alpha" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="getColorStopCount" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -49,7 +49,7 @@
       <description compact=""/>
       <return type="array"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getExtend" abstract="false" static="false" visibility="public" final="false">
     <docblock>

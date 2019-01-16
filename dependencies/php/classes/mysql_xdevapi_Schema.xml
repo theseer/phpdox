@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\Schema" namespace="mysql_xdevapi" name="Schema">
+  <implements name="mysql_xdevapi\DatabaseObject" full="mysql_xdevapi\DatabaseObject"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="createCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Collection"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="dropCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="collection_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="existsInDatabase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getCollection" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Collection"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getCollectionAsTable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Table"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getCollections" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSession" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Session"/>
+    </docblock>
+  </method>
+  <method name="getTable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Table"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getTables" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

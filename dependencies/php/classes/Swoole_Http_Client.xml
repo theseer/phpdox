@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Http\Client" namespace="Swoole\Http" name="Client">
+  <member name="errCode" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="sock" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="addFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a file to the post form."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="true" byreference="false" type="string"/>
+    <parameter name="filename" optional="true" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the http connection."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destruct the HTTP client."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="download" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Download a file from the remote server."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="file" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="offset" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send the HTTP request after setting the parameters."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send GET http request to the remote server."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="isConnected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the HTTP connection is connected."/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register callback function by event name."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="event_name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="post" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send POST http request to the remote server."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Push data to websocket client."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="opcode" optional="true" byreference="false" type="string"/>
+    <parameter name="finish" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update the HTTP client paramters."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="settings" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setCookies" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the http request cookies."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="cookies" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the HTTP request body data."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setHeaders" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the HTTP request headers."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="headers" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="setMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the HTTP request method."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="method" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="upgrade" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Upgrade to websocket protocol."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

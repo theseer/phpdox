@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Exception\WriteException" namespace="" name="MongoDB\Driver\Exception\WriteException">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Exception\WriteException" namespace="MongoDB\Driver\Exception" name="WriteException">
   <implements name="MongoDB\Driver\Exception\Exception" full="MongoDB\Driver\Exception\Exception"/>
   <member name="writeResult" static="false" visibility="protected">
     <default>null</default>
     <docblock>
       <description compact="The MongoDB\Driver\WriteResult associated with the failed write operation."/>
       <var type="MongoDB\Driver\WriteResult"/>
+    </docblock>
+  </member>
+  <member name="errorLabels" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Contains an array of error labels to go with an exception. For example, error labels can be used to detect whether a transaction can be retried safely if the TransientTransactionError label is present. The existence of a specific error label should be tested for with the MongoDB\Driver\Exception\RuntimeException::hasErrorLabel, instead of interpreting this errorLabels property manually."/>
+      <var type="bool"/>
     </docblock>
   </member>
   <member name="message" static="false" visibility="protected">
@@ -41,6 +48,13 @@
       <description compact="Returns the WriteResult for the failed write operation"/>
       <return type="MongoDB\Driver\WriteResult"/>
     </docblock>
+  </method>
+  <method name="hasErrorLabel" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="errorLabel" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
     <docblock>

@@ -593,7 +593,7 @@
   <method name="resetVectorGraphics" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="rotate" abstract="false" static="false" final="false">
@@ -731,10 +731,10 @@
   <method name="setResolution" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="x_resolution" optional="false" byreference="false" type="string"/>
-    <parameter name="y_resolution" optional="false" byreference="false" type="string"/>
+    <parameter name="x_resolution" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y_resolution" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setStrokeAlpha" abstract="false" static="false" final="false">
     <docblock>
@@ -844,21 +844,21 @@
   <method name="setTextInterlineSpacing" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="spacing" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setTextInterwordSpacing" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="spacing" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setTextKerning" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="kerning" optional="false" byreference="false" type="object" class="float"/>
   </method>

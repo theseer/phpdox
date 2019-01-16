@@ -8,6 +8,12 @@
       <var type="int"/>
     </docblock>
   </member>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get number of nodes in the map"/>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="getNamedItem" abstract="false" static="false" final="false">
     <docblock>
       <description compact="&#10;   Retrieves a node specified by name&#10;  "/>

@@ -7,20 +7,6 @@
       <var type="int"/>
     </docblock>
   </member>
-  <member name="mysqli-&gt;client_info" static="false">
-    <default>null</default>
-    <docblock>
-      <description compact="Object oriented style">Object oriented style</description>
-      <var type="string"/>
-    </docblock>
-  </member>
-  <member name="mysqli-&gt;client_version" static="false">
-    <default>null</default>
-    <docblock>
-      <description compact="Object oriented style">Object oriented style</description>
-      <var type="int"/>
-    </docblock>
-  </member>
   <member name="mysqli-&gt;connect_errno" static="false">
     <default>null</default>
     <docblock>
@@ -61,6 +47,13 @@
     <docblock>
       <description compact="Object oriented style">Object oriented style</description>
       <var type="int"/>
+    </docblock>
+  </member>
+  <member name="mysqli-&gt;client_info" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact="Object oriented style">Object oriented style</description>
+      <var type="string"/>
     </docblock>
   </member>
   <member name="mysqli-&gt;client_version" static="false">
@@ -181,6 +174,18 @@
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="name" optional="true" byreference="false" type="string"/>
   </method>
+  <method name="connect" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Open a new connection to the MySQL server">Object oriented style</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="host" optional="true" byreference="false" type="string"/>
+    <parameter name="username" optional="true" byreference="false" type="string"/>
+    <parameter name="passwd" optional="true" byreference="false" type="string"/>
+    <parameter name="dbname" optional="true" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="int"/>
+    <parameter name="socket" optional="true" byreference="false" type="string"/>
+  </method>
   <method name="debug" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Performs debugging operations">Object oriented style</description>
@@ -210,6 +215,12 @@
     <docblock>
       <description compact="Returns statistics about the client connection">Object oriented style</description>
       <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="get_server_info" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="get_warnings" abstract="false" static="false" final="false">
@@ -305,7 +316,14 @@
   </method>
   <method name="escape_string" abstract="false" static="false" final="false">
     <docblock>
-      <description compact=""/>
+      <description compact="Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="escapestr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="real_escape_string" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection">Object oriented style</description>
       <return type="string"/>
     </docblock>
     <parameter name="escapestr" optional="false" byreference="false" type="string"/>

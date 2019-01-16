@@ -226,17 +226,17 @@
       <description compact="Default &quot;from&quot; callback function"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="reason" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="reason" optional="false" byreference="false" type="int"/>
     <parameter name="source" optional="false" byreference="false" type="string"/>
     <parameter name="codePoint" optional="false" byreference="false" type="string"/>
-    <parameter name="error" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="error" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getAliases" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the aliases of the given name"/>
       <return type="array"/>
     </docblock>
-    <parameter name="name" optional="true" byreference="false" type="string"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getAvailable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -253,13 +253,13 @@
   <method name="getDestinationType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the destination converter type"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get last error code on the object"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
@@ -277,7 +277,7 @@
   <method name="getSourceType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the source convertor type"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getStandards" abstract="false" static="false" visibility="public" final="false">
@@ -297,7 +297,7 @@
       <description compact="Get string representation of the callback reason"/>
       <return type="string"/>
     </docblock>
-    <parameter name="reason" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="reason" optional="true" byreference="false" type="int"/>
   </method>
   <method name="setDestinationEncoding" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -325,10 +325,10 @@
       <description compact="Default &quot;to&quot; callback function"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="reason" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="reason" optional="false" byreference="false" type="int"/>
     <parameter name="source" optional="false" byreference="false" type="string"/>
     <parameter name="codeUnits" optional="false" byreference="false" type="string"/>
-    <parameter name="error" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="error" optional="false" byreference="false" type="int"/>
   </method>
   <method name="transcode" abstract="false" static="false" visibility="public" final="false">
     <docblock>

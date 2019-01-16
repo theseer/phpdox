@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Combo" namespace="" name="UI\Controls\Combo">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Combo" namespace="UI\Controls" name="Combo">
   <extends name="UI\Control" full="UI\Control"/>
   <method name="append" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -11,7 +11,7 @@
   <method name="getSelected" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get Selected Option"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="onSelected" abstract="false" static="false" visibility="protected" final="false">
@@ -25,7 +25,7 @@
       <description compact="Set Selected Option"/>
       <return type="void"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="false">
     <docblock>

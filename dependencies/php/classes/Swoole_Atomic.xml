@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Atomic" namespace="Swoole" name="Atomic">
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a number to the value to the atomic object."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="add_value" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="cmpset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Compare and set the value of the atomic object."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="cmp_value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="new_value" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the current value of the atomic object."/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set a new value to the atomic object."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="sub" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Subtract a number to the value of the atomic object."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="sub_value" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+</class>

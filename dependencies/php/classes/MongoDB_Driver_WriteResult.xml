@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteResult" namespace="" name="MongoDB\Driver\WriteResult">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteResult" namespace="MongoDB\Driver" name="WriteResult">
   <method name="getDeletedCount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the number of documents deleted"/>
-      <return type="int|null"/>
+      <return type="integer|null"/>
     </docblock>
   </method>
   <method name="getInsertedCount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the number of documents inserted (excluding upserts)"/>
-      <return type="int|null"/>
+      <return type="integer|null"/>
     </docblock>
   </method>
   <method name="getMatchedCount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the number of documents selected for update"/>
-      <return type="int|null"/>
+      <return type="integer|null"/>
     </docblock>
   </method>
   <method name="getModifiedCount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the number of existing documents updated"/>
-      <return type="int|null"/>
+      <return type="integer|null"/>
     </docblock>
   </method>
   <method name="getServer" abstract="false" static="false" visibility="public" final="true">
@@ -33,7 +33,7 @@
   <method name="getUpsertedCount" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the number of documents inserted by an upsert"/>
-      <return type="int|null"/>
+      <return type="integer|null"/>
     </docblock>
   </method>
   <method name="getUpsertedIds" abstract="false" static="false" visibility="public" final="true">

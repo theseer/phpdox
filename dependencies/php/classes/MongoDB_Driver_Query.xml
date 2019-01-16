@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Query" namespace="" name="MongoDB\Driver\Query">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Query" namespace="MongoDB\Driver" name="Query">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Construct new Query"/>
+      <description compact="Create a new Query"/>
       <return type="void"/>
     </docblock>
     <parameter name="filter" optional="false" byreference="false" type="object" class="array|object"/>

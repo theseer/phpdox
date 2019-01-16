@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Channel" namespace="Swoole" name="Channel">
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destruct a Swoole channel."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read and pop data from swoole channel."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write and push data into Swoole channel.">Data can be any non-empty PHP variable, the variable will be serialized if it is not string type.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="stats" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get stats of swoole channel."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+</class>

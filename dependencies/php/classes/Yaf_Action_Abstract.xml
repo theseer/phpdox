@@ -89,7 +89,7 @@
   <method name="getViewpath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="init" abstract="false" static="false" visibility="public" final="false">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\EditableCombo" namespace="" name="UI\Controls\EditableCombo">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\EditableCombo" namespace="UI\Controls" name="EditableCombo">
   <extends name="UI\Control" full="UI\Control"/>
   <method name="append" abstract="false" static="false" visibility="public" final="false">
     <docblock>

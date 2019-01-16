@@ -70,6 +70,6 @@
       <description compact="Set the checks to run"/>
       <return type="void"/>
     </docblock>
-    <parameter name="checks" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="checks" optional="false" byreference="false" type="int"/>
   </method>
 </class>

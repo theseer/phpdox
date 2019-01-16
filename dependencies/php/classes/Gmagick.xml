@@ -351,7 +351,7 @@
   </method>
   <method name="getimageprofile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the named image profile."/>
+      <description compact="Returns the named image profile"/>
       <return type="string"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -388,7 +388,7 @@
   </method>
   <method name="getimagetype" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the potential image type. "/>
+      <description compact="Gets the potential image type"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -412,25 +412,25 @@
   </method>
   <method name="getpackagename" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the GraphicsMagick package name."/>
+      <description compact="Returns the GraphicsMagick package name"/>
       <return type="string"/>
     </docblock>
   </method>
   <method name="getquantumdepth" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the Gmagick quantum depth as a string. "/>
+      <description compact="Returns the Gmagick quantum depth as a string"/>
       <return type="array"/>
     </docblock>
   </method>
   <method name="getreleasedate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the GraphicsMagick release date as a string. "/>
+      <description compact="Returns the GraphicsMagick release date as a string"/>
       <return type="string"/>
     </docblock>
   </method>
   <method name="getsamplingfactors" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the horizontal and vertical sampling factor. "/>
+      <description compact="Gets the horizontal and vertical sampling factor"/>
       <return type="array"/>
     </docblock>
   </method>
@@ -467,7 +467,7 @@
   </method>
   <method name="labelimage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Adds a label to an image. "/>
+      <description compact="Adds a label to an image"/>
       <return type="mixed"/>
     </docblock>
     <parameter name="label" optional="false" byreference="false" type="string"/>
@@ -490,7 +490,7 @@
   </method>
   <method name="mapimage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Replaces the colors of an image with the closest color from a reference image."/>
+      <description compact="Replaces the colors of an image with the closest color from a reference image"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="gmagick" optional="false" byreference="false" type="object" class="gmagick"/>
@@ -610,7 +610,7 @@
   </method>
   <method name="queryformats" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns formats supported by Gmagick."/>
+      <description compact="Returns formats supported by Gmagick"/>
       <return type="array"/>
     </docblock>
     <parameter name="pattern" optional="true" byreference="false" type="string"/>
@@ -753,14 +753,14 @@
   </method>
   <method name="setimagebackgroundcolor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image background color. "/>
+      <description compact="Sets the image background color"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
   </method>
   <method name="setimageblueprimary" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image chromaticity blue primary point."/>
+      <description compact="Sets the image chromaticity blue primary point"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
@@ -768,7 +768,7 @@
   </method>
   <method name="setimagebordercolor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image border color."/>
+      <description compact="Sets the image border color"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="object" class="GmagickPixel"/>
@@ -839,7 +839,7 @@
   </method>
   <method name="setimagegreenprimary" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image chromaticity green primary point. "/>
+      <description compact="Sets the image chromaticity green primary point"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
@@ -854,14 +854,14 @@
   </method>
   <method name="setimageinterlacescheme" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the interlace scheme of the image."/>
+      <description compact="Sets the interlace scheme of the image"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="interlace" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setimageiterations" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image iterations. "/>
+      <description compact="Sets the image iterations"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="iterations" optional="false" byreference="false" type="int"/>
@@ -876,7 +876,7 @@
   </method>
   <method name="setimageredprimary" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image chromaticity red primary point. "/>
+      <description compact="Sets the image chromaticity red primary point"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
@@ -913,14 +913,14 @@
   </method>
   <method name="setimageunits" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image units of resolution. "/>
+      <description compact="Sets the image units of resolution"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="resolution" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setimagewhitepoint" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image chromaticity white point. "/>
+      <description compact="Sets the image chromaticity white point"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
@@ -928,7 +928,7 @@
   </method>
   <method name="setsamplingfactors" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the image sampling factors. "/>
+      <description compact="Sets the image sampling factors"/>
       <return type="Gmagick"/>
     </docblock>
     <parameter name="factors" optional="false" byreference="false" type="object" class="array"/>

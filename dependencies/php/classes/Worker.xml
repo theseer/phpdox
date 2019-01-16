@@ -23,7 +23,7 @@
   <method name="isWorking" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="State Detection"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="shutdown" abstract="false" static="false" visibility="public" final="false">
@@ -54,7 +54,7 @@
   <method name="getCreatorId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getCurrentThread" abstract="false" static="false" visibility="public" final="false">
@@ -66,13 +66,13 @@
   <method name="getCurrentThreadId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getThreadId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="globally" abstract="false" static="false" visibility="public" final="false">
@@ -84,19 +84,19 @@
   <method name="isJoined" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isStarted" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="join" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="kill" abstract="false" static="false" visibility="public" final="false">
@@ -108,8 +108,8 @@
   <method name="start" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="options" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
 </class>

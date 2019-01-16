@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="SplType" namespace="" name="SplType">
-  <constant name="__default" value="null">
+  <constant name="__default" value="NULL">
     <docblock>
       <var type="NULL"/>
     </docblock>

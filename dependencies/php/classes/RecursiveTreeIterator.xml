@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="RecursiveTreeIterator" namespace="" name="RecursiveTreeIterator">
   <implements name="OuterIterator" full="OuterIterator"/>
+  <constant name="LEAVES_ONLY" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SELF_FIRST" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CHILD_FIRST" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CATCH_GET_CHILD" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <constant name="BYPASS_CURRENT" value="4">
     <docblock>
       <var type="integer"/>
@@ -102,7 +122,7 @@
   <method name="getPostfix" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the postfix"/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getPrefix" abstract="false" static="false" visibility="public" final="false">
@@ -134,6 +154,13 @@
       <description compact="Rewind iterator"/>
       <return type="void"/>
     </docblock>
+  </method>
+  <method name="setPostfix" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set postfix"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="postfix" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setPrefixPart" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -254,7 +281,7 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="max_depth" optional="true" byreference="false" type="string"/>
+    <parameter name="max_depth" optional="true" byreference="false" type="int"/>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>

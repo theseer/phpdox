@@ -3,8 +3,8 @@
   <extends name="Exception" full="Exception"/>
   <method name="getType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getType purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve exception's type"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">

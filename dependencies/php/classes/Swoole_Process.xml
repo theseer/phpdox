@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Process" namespace="Swoole" name="Process">
+  <constant name="IPC_NOWAIT" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="alarm" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="High precision timer which triggers signal with fixed interval."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="interval_usec" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the pipe to the child process."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="daemon" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Change the process to be a daemon process."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="nochdir" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="noclose" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destory the process."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="exec" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Execute system commands."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="exec_file" optional="false" byreference="false" type="string"/>
+    <parameter name="args" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="exit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Stop the child processes."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="exit_code" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="freeQueue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destory the message queue created by swoole_process::useQueue."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="kill" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send signal to the child process."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="pid" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="signal_no" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="name" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set name of the process."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="process_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read and pop data from the message queue."/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="maxsize" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write and push data into the message queue."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read data sending to the process."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="maxsize" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="signal" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send signal to the child processes."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="signal_no" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Start the process."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="statQueue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the stats of the message queue used as the communication method between processes."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="useQueue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a message queue as the communication method between the parent process and child processes."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="wait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Wait for the events of child processes."/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="blocking" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write data into the pipe and communicate with the parent process or child processes."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

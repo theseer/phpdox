@@ -1,6 +1,132 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="DOMComment" namespace="" name="DOMComment">
   <extends name="DOMCharacterData" full="DOMCharacterData"/>
+  <member name="data" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The contents of the node."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="length" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The length of the contents."/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="nodeName" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Returns the most accurate name for the current node type"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="nodeValue" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The value of this node, depending on its type. Contrary to the W3C specification, the node value of DOMElement nodes is equal to DOMNode::textContent instead of NULL."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="nodeType" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Gets the type of the node. One of the predefined XML_xxx_NODE constants"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="parentNode" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The parent of this node. If there is no such node, this returns NULL."/>
+      <var type="DOMNode"/>
+    </docblock>
+  </member>
+  <member name="childNodes" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="A DOMNodeList that contains all children of this node. If there are no children, this is an empty DOMNodeList."/>
+      <var type="DOMNodeList"/>
+    </docblock>
+  </member>
+  <member name="firstChild" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The first child of this node. If there is no such node, this returns NULL."/>
+      <var type="DOMNode"/>
+    </docblock>
+  </member>
+  <member name="lastChild" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The last child of this node. If there is no such node, this returns NULL."/>
+      <var type="DOMNode"/>
+    </docblock>
+  </member>
+  <member name="previousSibling" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The node immediately preceding this node. If there is no such node, this returns NULL."/>
+      <var type="DOMNode"/>
+    </docblock>
+  </member>
+  <member name="nextSibling" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The node immediately following this node. If there is no such node, this returns NULL."/>
+      <var type="DOMNode"/>
+    </docblock>
+  </member>
+  <member name="attributes" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="A DOMNamedNodeMap containing the attributes of this node (if it is a DOMElement) or NULL otherwise."/>
+      <var type="DOMNamedNodeMap"/>
+    </docblock>
+  </member>
+  <member name="ownerDocument" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The DOMDocument object associated with this node."/>
+      <var type="DOMDocument"/>
+    </docblock>
+  </member>
+  <member name="namespaceURI" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The namespace URI of this node, or NULL if it is unspecified."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="prefix" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The namespace prefix of this node, or NULL if it is unspecified."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="localName" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Returns the local part of the qualified name of this node."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="baseURI" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The absolute base URI of this node or NULL if the implementation wasn't able to obtain an absolute URI."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="textContent" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The text content of this node and its descendants."/>
+      <var type="string"/>
+    </docblock>
+  </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Creates a new DOMComment object&#10;  "/>
@@ -8,14 +134,14 @@
     </docblock>
     <parameter name="value" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="appendData" abstract="false" static="false" final="false">
+  <method name="appendData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
     <parameter name="data" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="deleteData" abstract="false" static="false" final="false">
+  <method name="deleteData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -23,7 +149,7 @@
     <parameter name="offset" optional="false" byreference="false" type="int"/>
     <parameter name="count" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="insertData" abstract="false" static="false" final="false">
+  <method name="insertData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -31,7 +157,7 @@
     <parameter name="offset" optional="false" byreference="false" type="int"/>
     <parameter name="data" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="replaceData" abstract="false" static="false" final="false">
+  <method name="replaceData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
@@ -40,7 +166,7 @@
     <parameter name="count" optional="false" byreference="false" type="int"/>
     <parameter name="data" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="substringData" abstract="false" static="false" final="false">
+  <method name="substringData" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="string"/>
@@ -137,7 +263,7 @@
     <parameter name="feature" optional="false" byreference="false" type="string"/>
     <parameter name="version" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="lookupNamespaceURI" abstract="false" static="false" visibility="public" final="false">
+  <method name="lookupNamespaceUri" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="string"/>

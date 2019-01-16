@@ -110,14 +110,14 @@
   </method>
   <method name="getLanguage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getLanguage purpose"/>
+      <description compact="Retrieve client's prefered language"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getMethod purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve the request method"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getModuleName" abstract="false" static="false" visibility="public" final="false">
@@ -128,16 +128,16 @@
   </method>
   <method name="getParam" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getParam purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve calling parameter"/>
+      <return type="mixed"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="default" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getParams" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getParams purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve all calling parameters"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="getRequestUri" abstract="false" static="false" visibility="public" final="false">
@@ -156,56 +156,56 @@
   </method>
   <method name="isCli" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isCli purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is CLI request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isDispatched" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isDispatched purpose"/>
-      <return type="void"/>
+      <description compact="Determin if the request is dispatched"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isGet purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is GET request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isHead" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isHead purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is HEAD request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isOptions" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isOptions purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is OPTIONS request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isPost" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isPost purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is POST request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isPut" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isPut purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is PUT request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isRouted" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isRouted purpose"/>
-      <return type="void"/>
+      <description compact="Determin if request has been routed"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isXmlHttpRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The isXmlHttpRequest purpose"/>
-      <return type="void"/>
+      <description compact="Determine if request is AJAX request"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="setActionName" abstract="false" static="false" visibility="public" final="false">
@@ -217,7 +217,7 @@
   </method>
   <method name="setBaseUri" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="set base URI">Set base URI, base URI is used when doing routing, in routing phase request URI is used to route a request, while base URI is used to skip the leadding part(base URI) of request URI. That is, if comes a request with request URI a/b/c, then if you set base URI to "a/b", only "/c" will be used in routing phase. generally, you don't need to set this, Yaf will determine it automatically.</description>
+      <description compact="Set base URI">Set base URI, base URI is used when doing routing, in routing phase request URI is used to route a request, while base URI is used to skip the leadding part(base URI) of request URI. That is, if comes a request with request URI a/b/c, then if you set base URI to "a/b", only "/c" will be used in routing phase. generally, you don't need to set this, Yaf will determine it automatically.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="uir" optional="false" byreference="false" type="string"/>
@@ -244,8 +244,8 @@
   </method>
   <method name="setParam" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The setParam purpose"/>
-      <return type="void"/>
+      <description compact="Set a calling parameter to a request"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="true" byreference="false" type="string"/>

@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="RecursiveDirectoryIterator" namespace="" name="RecursiveDirectoryIterator">
   <implements name="SeekableIterator" full="SeekableIterator"/>
+  <constant name="CURRENT_AS_PATHNAME" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_AS_FILEINFO" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_AS_SELF" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_MODE_MASK" value="240">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_AS_PATHNAME" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_AS_FILENAME" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FOLLOW_SYMLINKS" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_MODE_MASK" value="3840">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NEW_CURRENT_AND_KEY" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP_DOTS" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNIX_PATHS" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a RecursiveDirectoryIterator"/>

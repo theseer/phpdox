@@ -24,7 +24,7 @@
   <method name="accept" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="string"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

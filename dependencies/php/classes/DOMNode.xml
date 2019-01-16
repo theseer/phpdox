@@ -201,7 +201,7 @@
     <parameter name="feature" optional="false" byreference="false" type="string"/>
     <parameter name="version" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="lookupNamespaceURI" abstract="false" static="false" visibility="public" final="false">
+  <method name="lookupNamespaceUri" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Gets the namespace URI of the node based on the prefix&#10;  "/>
       <return type="string"/>

@@ -126,7 +126,7 @@
       <description compact="Set max depth"/>
       <return type="void"/>
     </docblock>
-    <parameter name="max_depth" optional="true" byreference="false" type="string"/>
+    <parameter name="max_depth" optional="true" byreference="false" type="int"/>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>

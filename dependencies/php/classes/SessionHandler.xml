@@ -23,7 +23,7 @@
   <method name="gc" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Cleanup old sessions">Cleans up expired sessions. Called randomly by PHP internally when a session starts or when session_start is invoked. The frequency this is called is based on the session.gc_divisor and session.gc_probability configuration directives.</description>
-      <return type="bool"/>
+      <return type="int"/>
     </docblock>
     <parameter name="maxlifetime" optional="false" byreference="false" type="int"/>
   </method>

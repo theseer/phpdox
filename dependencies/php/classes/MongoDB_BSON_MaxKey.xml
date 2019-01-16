@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\MaxKey" namespace="" name="MongoDB\BSON\MaxKey">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\MaxKey" namespace="MongoDB\BSON" name="MaxKey">
+  <implements name="MongoDB\BSON\MaxKeyInterface" full="MongoDB\BSON\MaxKeyInterface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new MaxKey"/>

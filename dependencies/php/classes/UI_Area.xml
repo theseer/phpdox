@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Area" namespace="" name="UI\Area">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Area" namespace="UI" name="Area">
   <extends name="UI\Control" full="UI\Control"/>
   <constant name="Ctrl" value="">
     <docblock>
@@ -47,8 +47,8 @@
       <return type="void"/>
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
-    <parameter name="ext" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="flags" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="ext" optional="false" byreference="false" type="int"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
   </method>
   <method name="onMouse" abstract="false" static="false" visibility="protected" final="false">
     <docblock>
@@ -57,7 +57,7 @@
     </docblock>
     <parameter name="areaPoint" optional="false" byreference="false" type="object" class="UI\Point"/>
     <parameter name="areaSize" optional="false" byreference="false" type="object" class="UI\Size"/>
-    <parameter name="flags" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="flags" optional="false" byreference="false" type="int"/>
   </method>
   <method name="redraw" abstract="false" static="false" visibility="public" final="false">
     <docblock>

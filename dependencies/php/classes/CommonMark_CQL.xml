@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="CommonMark\CQL" namespace="CommonMark" name="CQL">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="CQL Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="query" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="__invoke" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="CQL Execution"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="root" optional="false" byreference="false" type="object" class="\CommonMark\Node"/>
+    <parameter name="handler" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+</class>

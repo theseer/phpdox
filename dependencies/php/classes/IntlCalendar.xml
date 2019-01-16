@@ -444,7 +444,7 @@
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="locale" optional="false" byreference="false" type="string"/>
-    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="" abstract="false" static="false" final="false">
     <docblock>
@@ -453,7 +453,7 @@
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="locale" optional="false" byreference="false" type="string"/>
-    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getLeastMaximum" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -768,17 +768,17 @@
   <method name="setLenient" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set whether date/time interpretation is to be lenient">Object oriented style</description>
-      <return type="ReturnType"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="isLenient" optional="false" byreference="false" type="string"/>
+    <parameter name="isLenient" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="" abstract="false" static="false" final="false">
     <docblock>
       <description compact=""/>
-      <return type="ReturnType"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
-    <parameter name="isLenient" optional="false" byreference="false" type="string"/>
+    <parameter name="isLenient" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setMinimalDaysInFirstWeek" abstract="false" static="false" visibility="public" final="false">
     <docblock>

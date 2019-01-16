@@ -6,7 +6,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="true" byreference="false" type="string"/>
-    <parameter name="initialval" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="initialval" optional="true" byreference="false" type="int"/>
     <parameter name="autounlock" optional="true" byreference="false" type="object" class="bool"/>
   </constructor>
   <method name="lock" abstract="false" static="false" visibility="public" final="false">
@@ -14,13 +14,13 @@
       <description compact="Decreases the count of the semaphore or waits"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="wait" optional="true" byreference="false" type="int"/>
   </method>
   <method name="unlock" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Increases the count of the semaphore"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="prevcount" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="prevcount" optional="true" byreference="false" type="int"/>
   </method>
 </class>

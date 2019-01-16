@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="SeasLog" namespace="" name="SeasLog">
+  <method name="alert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record alert log information">Record alert log information. "ALERT" - Action must be taken immediately. Immediate attention should be given to relevant personnel for emergency repairs.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="analyzerCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get log count by level, log_path and key_word"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="level" optional="false" byreference="false" type="string"/>
+    <parameter name="log_path" optional="true" byreference="false" type="string"/>
+    <parameter name="key_word" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="analyzerDetail" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get log detail by level, log_path, key_word, start, limit, order"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="level" optional="false" byreference="false" type="string"/>
+    <parameter name="log_path" optional="true" byreference="false" type="string"/>
+    <parameter name="key_word" optional="true" byreference="false" type="string"/>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
+    <parameter name="limit" optional="true" byreference="false" type="int"/>
+    <parameter name="order" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="closeLoggerStream" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Manually release stream flow from logger"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="model" optional="false" byreference="false" type="int"/>
+    <parameter name="logger" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="critical" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record critical log information">Record critical log information. "CRITICAL" - Critical conditions.Need to be repaired immediately, and the program component is unavailable.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="debug" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record debug log information">Record debug log information. "DEBUG" - Detailed debug information.Fine-grained information events.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="emergency" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record emergency log information">Record emergency log information. "EMERGENCY" - System is unusable.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="error" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record error log information">Record error log information. "ERROR" - Runtime errors that do not require immediate action but should typically.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="flushBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Flush logs buffer, dump to appender file, or send to remote api with tcp/udp">Flush logs buffer by seaslog.appender: dump to file, or send to remote api with tcp/udp. See also: seaslog.appender_retry seaslog.remote_host seaslog.remote_port</description>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getBasePath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the logs buffer in memory as array"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getBufferEnabled" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determin if buffer enabled"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getDatetimeFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get SeasLog datetime format style"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getLastLogger" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get SeasLog last logger path"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRequestID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get SeasLog request_id differentiated requests"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRequestVariable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get SeasLog request variable"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="info" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record info log information">Record info log information. "INFO" - Interesting events.Emphasizes the running process of the application.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="log" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The Common Record Log Function"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="level" optional="false" byreference="false" type="string"/>
+    <parameter name="message" optional="true" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="notice" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record notice log information">Record notice log information. "NOTICE" - Normal but significant events.Information that is more important than the INFO level during execution.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="setBasePath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set SeasLog base path"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="base_path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setDatetimeFormat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set SeasLog datetime format style"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="format" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setLogger" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set SeasLog logger name"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="logger" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRequestID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set SeasLog request_id differentiated requests"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="request_id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="setRequestVariable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Manually set SeasLog request variable"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="warning" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Record warning log information">Record warning log information. "WARNING" - Exceptional occurrences that are not errors. Potentially aberrant information that needs attention and needs to be repaired.</description>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="message" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="true" byreference="false" type="object" class="array"/>
+    <parameter name="logger" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

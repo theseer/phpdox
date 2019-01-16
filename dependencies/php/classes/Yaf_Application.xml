@@ -39,7 +39,7 @@
   <method name="app" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve an Application instance"/>
-      <return type="void"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="bootstrap" abstract="false" static="false" visibility="public" final="false">

@@ -38,4 +38,10 @@
       <return type="void"/>
     </docblock>
   </method>
+  <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Iterator"/>
+    </docblock>
+  </method>
 </class>

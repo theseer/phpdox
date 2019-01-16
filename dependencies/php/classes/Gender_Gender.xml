@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="Gender\Gender" namespace="" name="Gender\Gender">
+<class xmlns="http://xml.phpdox.net/src" full="Gender\Gender" namespace="Gender" name="Gender">
   <constant name="IS_FEMALE" value="70">
     <docblock>
       <var type="integer"/>
@@ -312,14 +312,14 @@
   </constant>
   <method name="connect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Connect to an external name dictionary."/>
-      <return type="boolean"/>
+      <description compact="Connect to an external name dictionary"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="dsn" optional="false" byreference="false" type="string"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Construct the Gender object."/>
+      <description compact="Construct the Gender object"/>
       <return type="void"/>
     </docblock>
     <parameter name="dsn" optional="true" byreference="false" type="string"/>
@@ -329,31 +329,31 @@
       <description compact="Get textual country representation"/>
       <return type="array"/>
     </docblock>
-    <parameter name="country" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="country" optional="false" byreference="false" type="int"/>
   </method>
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get gender of a name."/>
-      <return type="integer"/>
+      <description compact="Get gender of a name"/>
+      <return type="int"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="country" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="country" optional="true" byreference="false" type="int"/>
   </method>
   <method name="isNick" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Check if the name0 is an alias of the name1."/>
+      <description compact="Check if the name0 is an alias of the name1"/>
       <return type="array"/>
     </docblock>
     <parameter name="name0" optional="false" byreference="false" type="string"/>
     <parameter name="name1" optional="false" byreference="false" type="string"/>
-    <parameter name="country" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="country" optional="true" byreference="false" type="int"/>
   </method>
   <method name="similarNames" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get similar names."/>
+      <description compact="Get similar names"/>
       <return type="array"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="country" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="country" optional="true" byreference="false" type="int"/>
   </method>
 </class>

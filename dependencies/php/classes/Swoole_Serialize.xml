@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Serialize" namespace="Swoole" name="Serialize">
+  <method name="pack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Serialize the data."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="is_fast" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="unpack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unserialize the data."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="args" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

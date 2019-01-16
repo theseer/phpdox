@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Monitoring\CommandSucceededEvent" namespace="MongoDB\Driver\Monitoring" name="CommandSucceededEvent">
+  <method name="getCommandName" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getDurationMicros" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command's duration in microseconds"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getOperationId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command's operation ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getReply" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command reply document"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getRequestId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command's request ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getServer" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Server on which the command was executed"/>
+      <return type="MongoDB\Driver\Server"/>
+    </docblock>
+  </method>
+</class>

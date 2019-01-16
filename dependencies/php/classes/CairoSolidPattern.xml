@@ -40,7 +40,7 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="CairoMatrix"/>
   </method>
   <method name="status" abstract="false" static="false" visibility="public" final="false">
     <docblock>

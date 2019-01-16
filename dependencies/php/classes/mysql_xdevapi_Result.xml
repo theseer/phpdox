@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\Result" namespace="mysql_xdevapi" name="Result">
+  <implements name="mysql_xdevapi\BaseResult" full="mysql_xdevapi\BaseResult"/>
+  <method name="getAutoIncrementValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getGeneratedIds" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ArrayOfInt"/>
+    </docblock>
+  </method>
+  <method name="getWarnings" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getWarningsCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+</class>

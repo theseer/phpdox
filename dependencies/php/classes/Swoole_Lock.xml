@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Lock" namespace="Swoole" name="Lock">
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destory a Swoole memory lock."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="lock_read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Lock a read-write lock for reading."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Try to acquire the lock. It will block if the lock is not available."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="trylock_read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Try to lock a read-write lock for reading and return straight away even the lock is not available."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="trylock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Try to acquire the lock and return straight away even the lock is not available."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Release the lock."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

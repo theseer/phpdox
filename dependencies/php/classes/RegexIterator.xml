@@ -56,13 +56,13 @@
   </method>
   <method name="getMode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns operation mode."/>
+      <description compact="Returns operation mode"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="getPregFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the regular expression flags."/>
+      <description compact="Returns the regular expression flags"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -74,21 +74,21 @@
   </method>
   <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the flags."/>
+      <description compact="Sets the flags"/>
       <return type="void"/>
     </docblock>
     <parameter name="flags" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setMode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the operation mode."/>
+      <description compact="Sets the operation mode"/>
       <return type="void"/>
     </docblock>
     <parameter name="mode" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setPregFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the regular expression flags."/>
+      <description compact="Sets the regular expression flags"/>
       <return type="void"/>
     </docblock>
     <parameter name="preg_flags" optional="false" byreference="false" type="int"/>

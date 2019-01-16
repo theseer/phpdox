@@ -15,7 +15,7 @@
   </method>
   <method name="enqueue" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Adds an element to the queue.">Enqueues value at the end of the queue.</description>
+      <description compact="Adds an element to the queue">Enqueues value at the end of the queue.</description>
       <return type="void"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>

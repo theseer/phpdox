@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="ArrayIterator" namespace="" name="ArrayIterator">
   <implements name="ArrayAccess" full="ArrayAccess"/>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <method name="append" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Append an element"/>
@@ -42,7 +52,7 @@
   </method>
   <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get flags"/>
+      <description compact="Get behavior flags"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -79,31 +89,31 @@
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Check if offset exists"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get value for an offset"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set value for an offset"/>
       <return type="void"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
-    <parameter name="newval" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="newval" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Unset value for an offset"/>
       <return type="void"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -133,17 +143,17 @@
   </method>
   <method name="uasort" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="User defined sort"/>
+      <description compact="Sort with a user-defined comparison function and maintain index association">This method sorts the elements such that indices maintain their correlation with the values they are associated with, using a user-defined comparison function.</description>
       <return type="void"/>
     </docblock>
-    <parameter name="cmp_function" optional="false" byreference="false" type="string"/>
+    <parameter name="cmp_function" optional="false" byreference="false" type="object" class="callable"/>
   </method>
   <method name="uksort" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="User defined sort"/>
+      <description compact="Sort by keys using a user-defined comparison function">This method sorts the elements by keys using a user-supplied comparison function.</description>
       <return type="void"/>
     </docblock>
-    <parameter name="cmp_function" optional="false" byreference="false" type="string"/>
+    <parameter name="cmp_function" optional="false" byreference="false" type="object" class="callable"/>
   </method>
   <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
     <docblock>

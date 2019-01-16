@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionClassConstant" namespace="" name="ReflectionClassConstant">
+  <implements name="Reflector" full="Reflector"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Name of the class constant. Read-only, throws ReflectionException in attempt to write."/>
+    </docblock>
+  </member>
+  <member name="class" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Name of the class where the class constant is defined. Read-only, throws ReflectionException in attempt to write."/>
+    </docblock>
+  </member>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Constructs a ReflectionClassConstant"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="export" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Export"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="class" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="return" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getDeclaringClass" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets declaring class"/>
+      <return type="ReflectionClass"/>
+    </docblock>
+  </method>
+  <method name="getDocComment" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets doc comments"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getModifiers" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the class constant modifiers"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get name of the constant"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getValue" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets value"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="isPrivate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if class constant is private"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isProtected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if class constant is protected"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isPublic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Checks if class constant is public"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the string representation of the ReflectionClassConstant object"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\Table" namespace="mysql_xdevapi" name="Table">
+  <implements name="mysql_xdevapi\SchemaObject" full="mysql_xdevapi\SchemaObject"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableDelete"/>
+    </docblock>
+  </method>
+  <method name="existsInDatabase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getSchema" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Schema"/>
+    </docblock>
+  </method>
+  <method name="getSession" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Session"/>
+    </docblock>
+  </method>
+  <method name="insert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableInsert"/>
+    </docblock>
+    <parameter name="columns" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isView" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="select" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="columns" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="update" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+  </method>
+</class>

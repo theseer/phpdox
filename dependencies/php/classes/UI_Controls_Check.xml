@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Check" namespace="" name="UI\Controls\Check">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Check" namespace="UI\Controls" name="Check">
   <extends name="UI\Control" full="UI\Control"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -31,7 +31,7 @@
       <description compact="Set Checked"/>
       <return type="void"/>
     </docblock>
-    <parameter name="checked" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="checked" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setText" abstract="false" static="false" visibility="public" final="false">
     <docblock>

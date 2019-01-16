@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\BulkWrite" namespace="" name="MongoDB\Driver\BulkWrite">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\BulkWrite" namespace="MongoDB\Driver" name="BulkWrite">
   <implements name="Countable" full="Countable"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>

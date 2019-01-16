@@ -6,7 +6,7 @@
       <return type="string"/>
     </docblock>
     <parameter name="entry" optional="false" byreference="false" type="object" class="mixed"/>
-    <parameter name="type" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
   </method>
   <method name="clear" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -17,7 +17,7 @@
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Count items in the poll set"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getLastErrors" abstract="false" static="false" visibility="public" final="false">
@@ -29,16 +29,16 @@
   <method name="poll" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Poll the items"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
     <parameter name="readable" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="writable" optional="false" byreference="false" type="object" class="array"/>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="true" byreference="false" type="int"/>
   </method>
   <method name="remove" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Remove item from poll set"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="item" optional="false" byreference="false" type="object" class="mixed"/>
   </method>

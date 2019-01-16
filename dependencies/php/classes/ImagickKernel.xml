@@ -12,13 +12,14 @@
       <description compact="Description"/>
       <return type="void"/>
     </docblock>
+    <parameter name="scale" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="fromBuiltin" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="ImagickKernel"/>
     </docblock>
-    <parameter name="kernelType" optional="false" byreference="false" type="string"/>
+    <parameter name="kernelType" optional="false" byreference="false" type="int"/>
     <parameter name="kernelString" optional="false" byreference="false" type="string"/>
   </method>
   <method name="fromMatrix" abstract="false" static="false" visibility="public" final="false">
@@ -40,6 +41,8 @@
       <description compact="Description"/>
       <return type="void"/>
     </docblock>
+    <parameter name="scale" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="normalizeFlag" optional="true" byreference="false" type="int"/>
   </method>
   <method name="separate" abstract="false" static="false" visibility="public" final="false">
     <docblock>

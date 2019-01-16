@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\CrudOperationBindable" namespace="mysql_xdevapi" name="CrudOperationBindable">
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CrudOperationBindable"/>
+    </docblock>
+    <parameter name="placeholder_values" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</interface>

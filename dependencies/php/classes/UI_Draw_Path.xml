@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Path" namespace="" name="UI\Draw\Path">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Path" namespace="UI\Draw" name="Path">
   <constant name="Winding" value="">
     <docblock>
       <var type="integer"/>
@@ -15,7 +15,7 @@
       <description compact="Construct a new Path"/>
       <return type="void"/>
     </docblock>
-    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="addRectangle" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -57,7 +57,7 @@
       <description compact="The glyphExtents purpose"/>
       <return type="array"/>
     </docblock>
-    <parameter name="glyphs" optional="false" byreference="false" type="string"/>
+    <parameter name="glyphs" optional="false" byreference="false" type="object" class="array"/>
   </method>
   <method name="status" abstract="false" static="false" visibility="public" final="false">
     <docblock>

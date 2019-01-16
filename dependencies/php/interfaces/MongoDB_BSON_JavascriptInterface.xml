@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\JavascriptInterface" namespace="MongoDB\BSON" name="JavascriptInterface">
+  <method name="getCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the JavascriptInterface's code"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getScope" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the JavascriptInterface's scope document"/>
+      <return type="object|null"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the JavascriptInterface's code"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</interface>

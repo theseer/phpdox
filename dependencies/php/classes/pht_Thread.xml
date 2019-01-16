@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="pht\Thread" namespace="pht" name="Thread">
+  <method name="addClassTask" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Class threading"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="className" optional="false" byreference="false" type="string"/>
+    <parameter name="...ctorArgs" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="addFileTask" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="File threading"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fileName" optional="false" byreference="false" type="string"/>
+    <parameter name="...globals" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="addFunctionTask" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Function threading"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="func" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="...funcArgs" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="join" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Joins a thread"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Starts the new thread"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="taskCount" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a thread's task count"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+</class>

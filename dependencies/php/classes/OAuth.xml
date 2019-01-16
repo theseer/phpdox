@@ -144,7 +144,7 @@
   <method name="setAuthType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set authorization type"/>
-      <return type="mixed"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="auth_type" optional="false" byreference="false" type="int"/>
   </method>
@@ -179,7 +179,7 @@
   </method>
   <method name="setSSLChecks" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Tweak specific SSL checks for requests."/>
+      <description compact="Tweak specific SSL checks for requests"/>
       <return type="bool"/>
     </docblock>
     <parameter name="sslcheck" optional="false" byreference="false" type="int"/>

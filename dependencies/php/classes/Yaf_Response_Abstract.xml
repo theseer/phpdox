@@ -25,7 +25,7 @@
   </member>
   <method name="appendBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="append to body"/>
+      <description compact="Append to response body"/>
       <return type="bool"/>
     </docblock>
     <parameter name="content" optional="false" byreference="false" type="string"/>
@@ -33,14 +33,14 @@
   </method>
   <method name="clearBody" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The clearBody purpose"/>
+      <description compact="Discard all exists response body"/>
       <return type="bool"/>
     </docblock>
     <parameter name="key" optional="true" byreference="false" type="string"/>
   </method>
   <method name="clearHeaders" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The clearHeaders purpose"/>
+      <description compact="Discard all set headers"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -85,7 +85,7 @@
   </method>
   <method name="response" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="send response"/>
+      <description compact="Send response"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -105,9 +105,12 @@
   </method>
   <method name="setHeader" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The setHeader purpose"/>
-      <return type="void"/>
+      <description compact="Set reponse header"/>
+      <return type="bool"/>
     </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="replace" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setRedirect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -117,8 +120,8 @@
   </method>
   <method name="__toString" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="The __toString purpose"/>
-      <return type="void"/>
+      <description compact="Retrieve all bodys as string"/>
+      <return type="string"/>
     </docblock>
   </method>
 </class>

@@ -99,7 +99,7 @@
   </method>
   <method name="getLastInsertId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the auto generated id used in the last query."/>
+      <description compact="Returns the auto generated id used in the last query"/>
       <return type="int"/>
     </docblock>
     <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
@@ -148,7 +148,7 @@
   </method>
   <method name="getStatistics" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns statistics about the client connection."/>
+      <description compact="Returns statistics about the client connection"/>
       <return type="array"/>
     </docblock>
     <parameter name="connection" optional="false" byreference="false" type="object" class="mysqlnd_connection"/>
@@ -329,7 +329,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="MYSQLND_UH_RES_MYSQLND_NAME" optional="false" byreference="false" type="string"/>
-    <parameter name="&quot;level&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="level" optional="false" byreference="false" type="string"/>
   </method>
   <method name="simpleCommand" abstract="false" static="false" visibility="public" final="false">
     <docblock>

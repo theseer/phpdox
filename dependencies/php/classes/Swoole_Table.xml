@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Table" namespace="Swoole" name="Table">
+  <implements name="Iterator" full="Iterator"/>
+  <constant name="TYPE_INT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_STRING" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="TYPE_FLOAT" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="column" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the data type and size of the columns."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="type" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Count the rows in the table, or count all the elements in the table if $mode = 1."/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create the swoole memory table."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the current row."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="decr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Decrement the value in the Swoole table by $row_key and $column_key."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="column" optional="false" byreference="false" type="string"/>
+    <parameter name="decrby" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="del" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete a row in the Swoole table by $row_key."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="destroy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destroy the Swoole table."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="exist" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if a row is existed by $row_key."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the value in the Swoole table by $row_key and $column_key."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="row_key" optional="false" byreference="false" type="string"/>
+    <parameter name="column_key" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="incr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Increment the value by $row_key and $column_key."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="column" optional="false" byreference="false" type="string"/>
+    <parameter name="incrby" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the key of current row."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Iterator the next row."/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewind the iterator."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update a row of the table by $row_key."/>
+      <return type="VOID"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check current if the current row is valid."/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+</class>

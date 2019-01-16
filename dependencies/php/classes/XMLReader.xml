@@ -325,13 +325,13 @@
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="readInnerXML" abstract="false" static="false" visibility="public" final="false">
+  <method name="readInnerXml" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve XML from current node"/>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="readOuterXML" abstract="false" static="false" visibility="public" final="false">
+  <method name="readOuterXml" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve XML from current node, including itself"/>
       <return type="string"/>

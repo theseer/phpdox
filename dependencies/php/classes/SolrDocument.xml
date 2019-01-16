@@ -99,7 +99,7 @@
   <method name="getChildDocumentsCount" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the number of child documents"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getField" abstract="false" static="false" visibility="public" final="false">

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="CommonMark\Node\Item" namespace="CommonMark\Node" name="Item">
+  <implements name="CommonMark\Interfaces\IVisitable" full="CommonMark\Interfaces\IVisitable"/>
+  <member name="parent" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="?Node"/>
+    </docblock>
+  </member>
+  <member name="previous" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="?Node"/>
+    </docblock>
+  </member>
+  <member name="next" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="?Node"/>
+    </docblock>
+  </member>
+  <member name="lastChild" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="?Node"/>
+    </docblock>
+  </member>
+  <member name="firstChild" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="?Node"/>
+    </docblock>
+  </member>
+  <member name="startLine" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="endLine" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="startColumn" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="endColumn" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <method name="appendChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="CommonMark\Node"/>
+    </docblock>
+    <parameter name="child" optional="false" byreference="false" type="object" class="CommonMark\Node"/>
+  </method>
+  <method name="prependChild" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="CommonMark\Node"/>
+    </docblock>
+    <parameter name="child" optional="false" byreference="false" type="object" class="CommonMark\Node"/>
+  </method>
+  <method name="insertAfter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="CommonMark\Node"/>
+    </docblock>
+    <parameter name="sibling" optional="false" byreference="false" type="object" class="CommonMark\Node"/>
+  </method>
+  <method name="insertBefore" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="CommonMark\Node"/>
+    </docblock>
+    <parameter name="sibling" optional="false" byreference="false" type="object" class="CommonMark\Node"/>
+  </method>
+  <method name="replace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="CommonMark\Node"/>
+    </docblock>
+    <parameter name="target" optional="false" byreference="false" type="object" class="CommonMark\Node"/>
+  </method>
+  <method name="unlink" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="accept" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="visitor" optional="false" byreference="false" type="object" class="CommonMark\Interfaces\IVisitor"/>
+  </method>
+</class>

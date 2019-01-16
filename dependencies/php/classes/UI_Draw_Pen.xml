@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Pen" namespace="" name="UI\Draw\Pen">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Pen" namespace="UI\Draw" name="Pen">
   <method name="clip" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Clip a Path"/>
@@ -29,7 +29,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
-    <parameter name="with" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="with" optional="false" byreference="false" type="int"/>
   </method>
   <method name="restore" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -67,7 +67,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="object" class="UI\Draw\Path"/>
-    <parameter name="with" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="with" optional="false" byreference="false" type="int"/>
     <parameter name="stroke" optional="false" byreference="false" type="object" class="UI\Draw\Stroke"/>
   </method>
   <method name="transform" abstract="false" static="false" visibility="public" final="false">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Javascript" namespace="" name="MongoDB\BSON\Javascript">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Javascript" namespace="MongoDB\BSON" name="Javascript">
+  <implements name="MongoDB\BSON\JavascriptInterface" full="MongoDB\BSON\JavascriptInterface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new Javascript"/>

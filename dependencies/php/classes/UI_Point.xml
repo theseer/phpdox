@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Point" namespace="" name="UI\Point">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Point" namespace="UI" name="Point">
   <member name="x" static="false" visibility="public">
     <default>null</default>
     <docblock>

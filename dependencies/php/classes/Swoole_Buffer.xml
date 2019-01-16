@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Buffer" namespace="Swoole" name="Buffer">
+  <method name="append" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append the string or binary data at the end of the memory buffer and return the new size of memory allocated."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reset the memory buffer."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destruct the Swoole memory buffer."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="expand" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Expand the size of memory buffer."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read data from the memory buffer based on offset and length."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="length" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="recycle" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Release the memory to OS which is not used by the memory buffer."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="substr" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read data from the memory buffer based on offset and length. Or remove data from the memory buffer."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="length" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="remove" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the string value of the memory buffer."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write data to the memory buffer. The memory allocated for the buffer will not be changed."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

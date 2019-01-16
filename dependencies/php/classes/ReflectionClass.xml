@@ -106,7 +106,7 @@
   </method>
   <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets a ReflectionMethod for a class method."/>
+      <description compact="Gets a ReflectionMethod for a class method"/>
       <return type="ReflectionMethod"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -155,6 +155,19 @@
       <return type="ReflectionProperty"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getReflectionConstant" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets a ReflectionClassConstant for a class's constant"/>
+      <return type="ReflectionClassConstant"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getReflectionConstants" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets class constants"/>
+      <return type="array"/>
+    </docblock>
   </method>
   <method name="getShortName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -283,6 +296,12 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="isIterable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check whether this class is iterable"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
   <method name="isIterateable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if iterateable"/>
@@ -310,22 +329,21 @@
   </method>
   <method name="newInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new class instance from given arguments."/>
+      <description compact="Creates a new class instance from given arguments"/>
       <return type="object"/>
     </docblock>
-    <parameter name="args" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="newInstanceArgs" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new class instance from given arguments."/>
+      <description compact="Creates a new class instance from given arguments"/>
       <return type="object"/>
     </docblock>
     <parameter name="args" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="newInstanceWithoutConstructor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new class instance without invoking the constructor."/>
+      <description compact="Creates a new class instance without invoking the constructor"/>
       <return type="object"/>
     </docblock>
   </method>
@@ -335,11 +353,11 @@
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the string representation of the ReflectionClass object."/>
+      <description compact="Returns the string representation of the ReflectionClass object"/>
       <return type="string"/>
     </docblock>
   </method>

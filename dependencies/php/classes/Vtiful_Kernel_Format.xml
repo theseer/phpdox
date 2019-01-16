@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Vtiful\Kernel\Format" namespace="Vtiful\Kernel" name="Format">
+  <constant name="FORMAT_ALIGN_LEFT" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_CENTER" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_RIGHT" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_FILL" value="4">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_JUSTIFY" value="5">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_CENTER_ACROSS" value="6">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_DISTRIBUTED" value="7">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_VERTICAL_TOP" value="8">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_VERTICAL_BOTTOM" value="9">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_VERTICAL_CENTER" value="10">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_VERTICAL_JUSTIFY" value="11">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="FORMAT_ALIGN_VERTICAL_DISTRIBUTED" value="12">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="UNDERLINE_SINGLE" value="1">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="UNDERLINE_DOUBLE" value="2">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="UNDERLINE_SINGLE_ACCOUNTING" value="3">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <constant name="UNDERLINE_DOUBLE_ACCOUNTING" value="4">
+    <docblock>
+      <var type="int"/>
+    </docblock>
+  </constant>
+  <method name="align" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Vtiful\Kernel\Format align"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="handle" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="bold" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Vtiful\Kernel\Format bold"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="handle" optional="false" byreference="false" type="object" class="resource"/>
+  </method>
+  <method name="italic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Vtiful\Kernel\Format italic"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="handle" optional="false" byreference="false" type="object" class="resource"/>
+  </method>
+  <method name="underline" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Vtiful\Kernel\Format underline"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="handle" optional="false" byreference="false" type="object" class="resource"/>
+    <parameter name="style" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

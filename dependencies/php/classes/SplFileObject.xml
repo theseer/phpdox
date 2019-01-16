@@ -21,6 +21,16 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Construct a new file object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="open_mode" optional="true" byreference="false" type="string"/>
+    <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="context" optional="true" byreference="false" type="object" class="resource"/>
+  </constructor>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Retrieve current line of file"/>
@@ -47,7 +57,7 @@
   </method>
   <method name="fgetcsv" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets line from file and parse as CSV fields"/>
+      <description compact="Gets line from file and parse as CSV fields">Gets a line from the file which is in CSV format and returns an array containing the fields read.</description>
       <return type="array"/>
     </docblock>
     <parameter name="delimiter" optional="true" byreference="false" type="string"/>
@@ -219,25 +229,12 @@
     </docblock>
     <parameter name="max_len" optional="false" byreference="false" type="int"/>
   </method>
-  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact="Alias of SplFileObject::current"/>
-      <return type="void"/>
-    </docblock>
-  </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Not at EOF"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
-    <parameter name="file_name" optional="false" byreference="false" type="string"/>
-  </constructor>
   <method name="getATime" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>

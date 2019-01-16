@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="pht\HashTable" namespace="pht" name="HashTable">
+  <implements name="pht\Threaded" full="pht\Threaded"/>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires the hash table's mutex lock">This method will acquire the mutex lock associated with the hash table. The mutex lock should always be acquired when manipulating the hash table if it is being used by multiple threads.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="size" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the size of the hash table"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases the hash table's mutex lock"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

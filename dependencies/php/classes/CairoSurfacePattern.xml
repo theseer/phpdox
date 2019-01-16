@@ -38,7 +38,7 @@
       <description compact="The setFilter purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="filter" optional="false" byreference="false" type="string"/>
+    <parameter name="filter" optional="false" byreference="false" type="int"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -63,7 +63,7 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="CairoMatrix"/>
   </method>
   <method name="status" abstract="false" static="false" visibility="public" final="false">
     <docblock>

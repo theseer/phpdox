@@ -15,7 +15,7 @@
   </method>
   <method name="getBasename" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the base name of the file"/>
+      <description compact="Gets the base name of the file">This method returns the base name of the file, directory, or link without path info.</description>
       <return type="string"/>
     </docblock>
     <parameter name="suffix" optional="true" byreference="false" type="string"/>

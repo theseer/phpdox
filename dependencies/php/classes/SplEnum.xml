@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="SplEnum" namespace="" name="SplEnum">
   <extends name="SplType" full="SplType"/>
-  <constant name="__default" value="null">
+  <constant name="__default" value="NULL">
     <docblock>
       <var type="NULL"/>
     </docblock>
   </constant>
   <method name="getConstList" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns all consts (possible values) as an array."/>
+      <description compact="Returns all consts (possible values) as an array"/>
       <return type="array"/>
     </docblock>
     <parameter name="include_default" optional="true" byreference="false" type="object" class="bool"/>

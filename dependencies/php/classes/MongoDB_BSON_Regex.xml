@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Regex" namespace="" name="MongoDB\BSON\Regex">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Regex" namespace="MongoDB\BSON" name="Regex">
+  <implements name="MongoDB\BSON\RegexInterface" full="MongoDB\BSON\RegexInterface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new Regex"/>

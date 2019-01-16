@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="ParseError" namespace="" name="ParseError">
-  <extends name="Error" full="Error"/>
+  <extends name="CompileError" full="CompileError"/>
+  <member name="message" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The error message"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="code" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The error code"/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="file" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The filename where the error happened"/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="line" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="The line where the error happened"/>
+      <var type="int"/>
+    </docblock>
+  </member>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>

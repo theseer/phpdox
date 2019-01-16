@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\CollectionFind" namespace="mysql_xdevapi" name="CollectionFind">
+  <implements name="mysql_xdevapi\Executable" full="mysql_xdevapi\Executable"/>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="placeholder_values" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\DocResult"/>
+    </docblock>
+  </method>
+  <method name="fields" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="projection" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="groupBy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="having" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="limit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="rows" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="lockExclusive" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="lock_waiting_option" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="lockShared" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="lock_waiting_option" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="offset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

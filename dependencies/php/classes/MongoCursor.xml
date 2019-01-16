@@ -32,7 +32,7 @@
   </method>
   <method name="batchSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Limits the number of elements returned in one batch."/>
+      <description compact="Limits the number of elements returned in one batch"/>
       <return type="MongoCursor"/>
     </docblock>
     <parameter name="batchSize" optional="false" byreference="false" type="int"/>
@@ -68,7 +68,7 @@
   </method>
   <method name="doQuery" abstract="false" static="false" visibility="protected" final="false">
     <docblock>
-      <description compact="Execute the query.">Please do not use me.</description>
+      <description compact="Execute the query">Please do not use me.</description>
       <return type="void"/>
     </docblock>
   </method>
@@ -227,7 +227,7 @@
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if the cursor is reading a valid result."/>
+      <description compact="Checks if the cursor is reading a valid result"/>
       <return type="bool"/>
     </docblock>
   </method>

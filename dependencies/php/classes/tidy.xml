@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="tidy" namespace="" name="tidy">
-  <member name="tidy-&gt;errorBuffer" static="false">
+  <member name="tidy-&gt;errorBuffer" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="Object oriented style (property):">Object oriented style (property):</description>
       <var type="string"/>
     </docblock>
   </member>
-  <method name="body" abstract="false" static="false" final="false">
+  <method name="body" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a tidyNode object starting from the &lt;body&gt; tag of the tidy parse tree">Object oriented style</description>
       <return type="tidyNode"/>
     </docblock>
   </method>
-  <method name="cleanRepair" abstract="false" static="false" final="false">
+  <method name="cleanRepair" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Execute configured cleanup and repair operations on parsed markup">Object oriented style</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <constructor name="__construct" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Constructs a new tidy object"/>
       <return type="void"/>
@@ -29,75 +29,75 @@
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
     <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
   </constructor>
-  <method name="diagnose" abstract="false" static="false" final="false">
+  <method name="diagnose" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Run configured diagnostics on parsed and repaired markup">Object oriented style</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="getConfig" abstract="false" static="false" final="false">
+  <method name="getConfig" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get current Tidy configuration">Object oriented style</description>
       <return type="array"/>
     </docblock>
   </method>
-  <method name="getHtmlVer" abstract="false" static="false" final="false">
+  <method name="getHtmlVer" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the Detected HTML version for the specified document">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="getOpt" abstract="false" static="false" final="false">
+  <method name="getOpt" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the value of the specified configuration option for the tidy document">Object oriented style</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="option" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getOptDoc" abstract="false" static="false" final="false">
+  <method name="getOptDoc" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Returns the documentation for the given option name&#10;  ">Object oriented style</description>
       <return type="string"/>
     </docblock>
     <parameter name="optname" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="getRelease" abstract="false" static="false" final="false">
+  <method name="getRelease" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get release date (version) for Tidy library">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>
-  <method name="getStatus" abstract="false" static="false" final="false">
+  <method name="getStatus" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get status of specified document">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
-  <method name="head" abstract="false" static="false" final="false">
+  <method name="head" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a tidyNode object starting from the &lt;head&gt; tag of the tidy parse tree">Object oriented style</description>
       <return type="tidyNode"/>
     </docblock>
   </method>
-  <method name="html" abstract="false" static="false" final="false">
+  <method name="html" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a tidyNode object starting from the &lt;html&gt; tag of the tidy parse tree">Object oriented style</description>
       <return type="tidyNode"/>
     </docblock>
   </method>
-  <method name="isXhtml" abstract="false" static="false" final="false">
+  <method name="isXhtml" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Indicates if the document is a XHTML document">Object oriented style</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isXml" abstract="false" static="false" final="false">
+  <method name="isXml" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Indicates if the document is a generic (non HTML/XHTML) XML document">Object oriented style</description>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="parseFile" abstract="false" static="false" final="false">
+  <method name="parseFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Parse markup in file or URI">Object oriented style</description>
       <return type="bool"/>
@@ -107,7 +107,7 @@
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
     <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="parseString" abstract="false" static="false" final="false">
+  <method name="parseString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Parse a document stored in a string">Object oriented style</description>
       <return type="bool"/>
@@ -116,7 +116,7 @@
     <parameter name="config" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="repairFile" abstract="false" static="false" final="false">
+  <method name="repairFile" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Repair a file and return it as a string">Object oriented style</description>
       <return type="string"/>
@@ -126,7 +126,7 @@
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
     <parameter name="use_include_path" optional="true" byreference="false" type="object" class="bool"/>
   </method>
-  <method name="repairString" abstract="false" static="false" final="false">
+  <method name="repairString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Repair a string using an optionally provided configuration file">Object oriented style</description>
       <return type="string"/>
@@ -135,7 +135,7 @@
     <parameter name="config" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="encoding" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="root" abstract="false" static="false" final="false">
+  <method name="root" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns a tidyNode object representing the root of the tidy parse tree">Object oriented style</description>
       <return type="tidyNode"/>

@@ -69,26 +69,26 @@
       <description compact="The markDirtyRectangle purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
-    <parameter name="width" optional="false" byreference="false" type="string"/>
-    <parameter name="height" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setDeviceOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setDeviceOffset purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setFallbackResolution" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setFallbackResolution purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="showPage" abstract="false" static="false" visibility="public" final="false">
     <docblock>

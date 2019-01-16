@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="CommonMark\Parser" namespace="CommonMark" name="Parser">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Parsing"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="parse" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Parsing"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="buffer" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="finish" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Parsing"/>
+      <return type="CommonMark\Node"/>
+    </docblock>
+  </method>
+</class>

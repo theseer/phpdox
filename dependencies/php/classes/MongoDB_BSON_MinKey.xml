@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\MinKey" namespace="" name="MongoDB\BSON\MinKey">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\MinKey" namespace="MongoDB\BSON" name="MinKey">
+  <implements name="MongoDB\BSON\MinKeyInterface" full="MongoDB\BSON\MinKeyInterface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new MinKey"/>

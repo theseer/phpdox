@@ -14,7 +14,7 @@
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new timestamp."/>
+      <description compact="Creates a new timestamp"/>
       <return type="void"/>
     </docblock>
     <parameter name="sec" optional="true" byreference="false" type="int"/>

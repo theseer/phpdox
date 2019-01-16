@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="wkhtmltox\PDF\Object" namespace="wkhtmltox\PDF" name="Object">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new PDF Object"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="buffer" optional="false" byreference="false" type="string"/>
+    <parameter name="settings" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+</class>

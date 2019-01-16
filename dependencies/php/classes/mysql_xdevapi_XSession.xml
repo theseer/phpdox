@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\XSession" namespace="mysql_xdevapi" name="XSession">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+</class>

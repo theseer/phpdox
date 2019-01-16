@@ -11,7 +11,7 @@
       <description compact="The equal purpose"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="other" optional="false" byreference="false" type="string"/>
+    <parameter name="other" optional="false" byreference="false" type="object" class="CairoFontOptions"/>
   </method>
   <method name="getAntialias" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -48,35 +48,35 @@
       <description compact="The merge purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="other" optional="false" byreference="false" type="string"/>
+    <parameter name="other" optional="false" byreference="false" type="object" class="CairoFontOptions"/>
   </method>
   <method name="setAntialias" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setAntialias purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="antialias" optional="false" byreference="false" type="string"/>
+    <parameter name="antialias" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setHintMetrics" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setHintMetrics purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="hint_metrics" optional="false" byreference="false" type="string"/>
+    <parameter name="hint_metrics" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setHintStyle" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setHintStyle purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="hint_style" optional="false" byreference="false" type="string"/>
+    <parameter name="hint_style" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setSubpixelOrder" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setSubpixelOrder purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="subpixel_order" optional="false" byreference="false" type="string"/>
+    <parameter name="subpixel_order" optional="false" byreference="false" type="int"/>
   </method>
   <method name="status" abstract="false" static="false" visibility="public" final="false">
     <docblock>

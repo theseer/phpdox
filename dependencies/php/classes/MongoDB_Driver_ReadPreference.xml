@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\ReadPreference" namespace="" name="MongoDB\Driver\ReadPreference">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\ReadPreference" namespace="MongoDB\Driver" name="ReadPreference">
   <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
   <constant name="RP_PRIMARY" value="1">
     <docblock>
@@ -44,23 +44,23 @@
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Construct immutable ReadPreference"/>
+      <description compact="Create a new ReadPreference"/>
       <return type="void"/>
     </docblock>
-    <parameter name="mode" optional="false" byreference="false" type="int"/>
+    <parameter name="mode" optional="false" byreference="false" type="object" class="string|integer"/>
     <parameter name="tagSets" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="getMaxStalenessSeconds" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the ReadPreference's &quot;maxStalenessSeconds&quot; option"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getMode" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the ReadPreference's &quot;mode&quot; option"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getTagSets" abstract="false" static="false" visibility="public" final="true">

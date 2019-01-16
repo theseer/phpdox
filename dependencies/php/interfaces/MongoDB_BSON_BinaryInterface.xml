@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\BinaryInterface" namespace="MongoDB\BSON" name="BinaryInterface">
+  <method name="getData" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the BinaryInterface's data"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the BinaryInterface's type"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the BinaryInterface's data"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</interface>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="wkhtmltox\PDF\Converter" namespace="wkhtmltox\PDF" name="Converter">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create a new PDF converter"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="settings" optional="true" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add an object for conversion"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="object" optional="false" byreference="false" type="object" class="wkhtmltox\PDF\Object"/>
+  </method>
+  <method name="convert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Perform PDF conversion"/>
+      <return type="?string"/>
+    </docblock>
+  </method>
+  <method name="getVersion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine version of Converter"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

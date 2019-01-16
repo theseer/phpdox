@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Color" namespace="" name="UI\Draw\Color">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Color" namespace="UI\Draw" name="Color">
   <constant name="Red" value="">
     <docblock>
       <var type="integer"/>
@@ -56,21 +56,21 @@
       <description compact="Construct new Color"/>
       <return type="void"/>
     </docblock>
-    <parameter name="color" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="color" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="getChannel" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Color Manipulation"/>
       <return type="float"/>
     </docblock>
-    <parameter name="channel" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="channel" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setChannel" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Color Manipulation"/>
       <return type="void"/>
     </docblock>
-    <parameter name="channel" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="channel" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="float"/>
   </method>
 </class>

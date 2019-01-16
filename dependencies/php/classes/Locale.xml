@@ -123,14 +123,14 @@
   </method>
   <method name="parseLocale" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns a key-value array of locale ID subtag elements.">Object oriented style</description>
+      <description compact="Returns a key-value array of locale ID subtag elements">Object oriented style</description>
       <return type="array"/>
     </docblock>
     <parameter name="locale" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setDefault" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="sets the default runtime locale">Object oriented style</description>
+      <description compact="Sets the default runtime locale">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="locale" optional="false" byreference="false" type="string"/>

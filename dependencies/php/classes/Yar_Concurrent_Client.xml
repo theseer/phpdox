@@ -25,13 +25,15 @@
     </docblock>
     <parameter name="uri" optional="false" byreference="false" type="string"/>
     <parameter name="method" optional="false" byreference="false" type="string"/>
-    <parameter name="parameters" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="parameters" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="error_callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="loop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Send all calls"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
     <parameter name="error_callback" optional="true" byreference="false" type="object" class="callable"/>
@@ -39,7 +41,7 @@
   <method name="reset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Clean all registered calls"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

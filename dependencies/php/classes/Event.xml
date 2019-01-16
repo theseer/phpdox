@@ -42,21 +42,21 @@
       <description compact="Makes event pending">Marks event pending. Non-pending event will never occur, and the event callback will never be called. In conjuction with Event::del an event could be re-scheduled by user at any time.</description>
       <return type="bool"/>
     </docblock>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="addSignal" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Makes signal event pending"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="addTimer" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Makes timer event pending"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -89,7 +89,7 @@
   </method>
   <method name="free" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Make event non-pending and free resources allocated for this&#10;  event.">Removes event from the list of events monitored by libevent, and free resources allocated for the event.</description>
+      <description compact="Make event non-pending and free resources allocated for this&#10;  event">Removes event from the list of events monitored by libevent, and free resources allocated for the event.</description>
       <return type="void"/>
     </docblock>
   </method>

@@ -13,7 +13,7 @@
   <method name="countEquivalentIDs" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the number of IDs in the equivalency group that includes the given ID"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
     <parameter name="zoneId" optional="false" byreference="false" type="string"/>
   </method>
@@ -37,6 +37,15 @@
     </docblock>
     <parameter name="zoneId" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="createTimeZoneIDEnumeration" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get an enumeration over system time zone IDs with the given filter conditions"/>
+      <return type="IntlIterator"/>
+    </docblock>
+    <parameter name="zoneType" optional="false" byreference="false" type="int"/>
+    <parameter name="region" optional="true" byreference="false" type="string"/>
+    <parameter name="rawOffset" optional="true" byreference="false" type="int"/>
+  </method>
   <method name="fromDateTimeZone" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create a timezone object from DateTimeZone"/>
@@ -58,13 +67,13 @@
       <return type="string"/>
     </docblock>
     <parameter name="isDaylight" optional="true" byreference="false" type="object" class="bool"/>
-    <parameter name="style" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="style" optional="true" byreference="false" type="int"/>
     <parameter name="locale" optional="true" byreference="false" type="string"/>
   </method>
   <method name="getDSTSavings" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the amount of time to be added to local standard time to get local wall clock time"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getEquivalentID" abstract="false" static="false" visibility="public" final="false">
@@ -73,12 +82,12 @@
       <return type="string"/>
     </docblock>
     <parameter name="zoneId" optional="false" byreference="false" type="string"/>
-    <parameter name="index" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get last error code on the object">Object oriented style (method):</description>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
@@ -99,27 +108,55 @@
       <return type="string"/>
     </docblock>
   </method>
+  <method name="getIDForWindowsID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Translate a Windows timezone into a system timezone"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="timezone" optional="false" byreference="false" type="string"/>
+    <parameter name="region" optional="true" byreference="false" type="string"/>
+  </method>
   <method name="getOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the time zone raw and GMT offset for the given moment in time"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
     <parameter name="date" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="local" optional="false" byreference="false" type="object" class="bool"/>
-    <parameter name="rawOffset" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="dstOffset" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="rawOffset" optional="false" byreference="false" type="int"/>
+    <parameter name="dstOffset" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getRawOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the raw GMT offset (before taking daylight savings time into account"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
+  </method>
+  <method name="getRegion" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the region code associated with the given system time zone ID"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="zoneId" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getTZDataVersion" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the timezone data version currently used by ICU"/>
       <return type="string"/>
     </docblock>
+  </method>
+  <method name="getUnknown" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the &quot;unknown&quot; time zone"/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+  </method>
+  <method name="getWindowsID" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Translate a system timezone into a Windows timezone"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="timezone" optional="false" byreference="false" type="string"/>
   </method>
   <method name="hasSameRules" abstract="false" static="false" visibility="public" final="false">
     <docblock>

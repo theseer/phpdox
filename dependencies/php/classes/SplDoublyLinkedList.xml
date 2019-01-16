@@ -23,7 +23,7 @@
   </method>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Counts the number of elements in the doubly linked list."/>
+      <description compact="Counts the number of elements in the doubly linked list"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -41,7 +41,7 @@
   </method>
   <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks whether the doubly linked list is empty."/>
+      <description compact="Checks whether the doubly linked list is empty"/>
       <return type="bool"/>
     </docblock>
   </method>

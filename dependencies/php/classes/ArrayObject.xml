@@ -41,20 +41,20 @@
   </method>
   <method name="exchangeArray" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Exchange the array for another one."/>
+      <description compact="Exchange the array for another one"/>
       <return type="array"/>
     </docblock>
     <parameter name="input" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="getArrayCopy" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a copy of the ArrayObject."/>
+      <description compact="Creates a copy of the ArrayObject"/>
       <return type="array"/>
     </docblock>
   </method>
   <method name="getFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the behavior flags."/>
+      <description compact="Gets the behavior flags"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -66,7 +66,7 @@
   </method>
   <method name="getIteratorClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the iterator classname for the ArrayObject."/>
+      <description compact="Gets the iterator classname for the ArrayObject"/>
       <return type="string"/>
     </docblock>
   </method>
@@ -125,14 +125,14 @@
   </method>
   <method name="setFlags" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the behavior flags."/>
+      <description compact="Sets the behavior flags"/>
       <return type="void"/>
     </docblock>
     <parameter name="flags" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setIteratorClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the iterator classname for the ArrayObject."/>
+      <description compact="Sets the iterator classname for the ArrayObject"/>
       <return type="void"/>
     </docblock>
     <parameter name="iterator_class" optional="false" byreference="false" type="string"/>

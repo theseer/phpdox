@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Http\Response" namespace="Swoole\Http" name="Response">
+  <method name="cookie" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the cookies of the HTTP response."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="expires" optional="true" byreference="false" type="string"/>
+    <parameter name="path" optional="true" byreference="false" type="string"/>
+    <parameter name="domain" optional="true" byreference="false" type="string"/>
+    <parameter name="secure" optional="true" byreference="false" type="string"/>
+    <parameter name="httponly" optional="true" byreference="false" type="string"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destruct the HTTP response."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="end" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data for the HTTP request and finish the response."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="content" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="gzip" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Enable the gzip of response content.&#10;"/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="compress_level" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="header" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the HTTP response headers."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="ucwords" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="initHeader" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Init the HTTP response header."/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="rawcookie" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the raw cookies to the HTTP response."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="true" byreference="false" type="string"/>
+    <parameter name="expires" optional="true" byreference="false" type="string"/>
+    <parameter name="path" optional="true" byreference="false" type="string"/>
+    <parameter name="domain" optional="true" byreference="false" type="string"/>
+    <parameter name="secure" optional="true" byreference="false" type="string"/>
+    <parameter name="httponly" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="sendfile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send file through the HTTP response."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="status" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the status code of the HTTP response."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="http_code" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Append HTTP body content to the HTTP response."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="content" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

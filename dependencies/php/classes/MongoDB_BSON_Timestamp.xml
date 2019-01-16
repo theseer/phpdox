@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Timestamp" namespace="" name="MongoDB\BSON\Timestamp">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Timestamp" namespace="MongoDB\BSON" name="Timestamp">
+  <implements name="MongoDB\BSON\TimestampInterface" full="MongoDB\BSON\TimestampInterface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new Timestamp"/>
       <return type="void"/>
     </docblock>
-    <parameter name="increment" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="timestamp" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="increment" optional="false" byreference="false" type="int"/>
+    <parameter name="timestamp" optional="false" byreference="false" type="int"/>
   </constructor>
+  <method name="getIncrement" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the increment component of this Timestamp"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the timestamp component of this Timestamp"/>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns a representation that can be converted to JSON"/>

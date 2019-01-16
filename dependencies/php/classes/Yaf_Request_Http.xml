@@ -3,7 +3,7 @@
   <extends name="Yaf_Request_Abstract" full="Yaf_Request_Abstract"/>
   <method name="__clone" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="The __clone purpose"/>
+      <description compact="Yaf_Request_Http can not be cloned"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -53,6 +53,12 @@
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="default" optional="true" byreference="false" type="string"/>
   </method>
+  <method name="getRaw" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve Raw request body"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
   <method name="getRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The getRequest purpose"/>
@@ -61,7 +67,7 @@
   </method>
   <method name="isXmlHttpRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Whether a Ajax Request">Check the request whether it is a Ajax Request. This method depends on the request header: HTTP_X_REQUESTED_WITH, some Javascript library doesn't set this header while doing Ajax request</description>
+      <description compact="Determin if request is Ajax Request">Check the request whether it is a Ajax Request. This method depends on the request header: HTTP_X_REQUESTED_WITH, some Javascript library doesn't set this header while doing Ajax request</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -106,7 +112,7 @@
   <method name="getMethod" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getModuleName" abstract="false" static="false" visibility="public" final="false">
@@ -118,7 +124,7 @@
   <method name="getParam" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="mixed"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="default" optional="true" byreference="false" type="string"/>
@@ -126,7 +132,7 @@
   <method name="getParams" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="getRequestUri" abstract="false" static="false" visibility="public" final="false">
@@ -146,55 +152,55 @@
   <method name="isCli" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isDispatched" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isHead" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isOptions" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isPost" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isPut" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isRouted" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isXmlHttpRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="setActionName" abstract="false" static="false" visibility="public" final="false">
@@ -234,7 +240,7 @@
   <method name="setParam" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
     <parameter name="value" optional="true" byreference="false" type="string"/>

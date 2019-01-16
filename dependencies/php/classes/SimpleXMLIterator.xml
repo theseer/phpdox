@@ -15,7 +15,7 @@
   </method>
   <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks whether the current element has sub elements."/>
+      <description compact="Checks whether the current element has sub elements"/>
       <return type="bool"/>
     </docblock>
   </method>

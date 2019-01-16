@@ -3,7 +3,7 @@
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Whether an offset exists">Whether or not an offset exists.</description>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="object" class="mixed"/>
   </method>

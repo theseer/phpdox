@@ -6,7 +6,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
   </constructor>
   <method name="first" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -19,8 +19,8 @@
       <description compact="Copy data from named shared memory"/>
       <return type="void"/>
     </docblock>
-    <parameter name="start" optional="true" byreference="false" type="object" class="integer"/>
-    <parameter name="length" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
   </method>
   <method name="size" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -34,6 +34,6 @@
       <return type="void"/>
     </docblock>
     <parameter name="string" optional="true" byreference="false" type="string"/>
-    <parameter name="start" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="start" optional="true" byreference="false" type="int"/>
   </method>
 </class>

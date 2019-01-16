@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Manager" namespace="" name="MongoDB\Driver\Manager">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Manager" namespace="MongoDB\Driver" name="Manager">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Create new MongoDB Manager"/>
@@ -16,16 +16,16 @@
     </docblock>
     <parameter name="namespace" optional="false" byreference="false" type="string"/>
     <parameter name="bulk" optional="false" byreference="false" type="object" class="MongoDB\Driver\BulkWrite"/>
-    <parameter name="writeConcern" optional="true" byreference="false" type="object" class="MongoDB\Driver\WriteConcern"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="executeCommand" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Execute a database command"/>
+      <description compact="Execute a database command">Selects a server according to the "readPreference" option and executes the command on that server. By default, the read preference from the MongoDB Connection URI will be used.</description>
       <return type="MongoDB\Driver\Cursor"/>
     </docblock>
     <parameter name="db" optional="false" byreference="false" type="string"/>
     <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
-    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="executeQuery" abstract="false" static="false" visibility="public" final="true">
     <docblock>
@@ -34,7 +34,34 @@
     </docblock>
     <parameter name="namespace" optional="false" byreference="false" type="string"/>
     <parameter name="query" optional="false" byreference="false" type="object" class="MongoDB\Driver\Query"/>
-    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="executeReadCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command that reads">Selects a server according to the "readPreference" option and executes the command on that server. By default, the read preference from the MongoDB Connection URI will be used.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="executeReadWriteCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command that reads and writes">Executes the command on the primary server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="executeWriteCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command that writes">Executes the command on the primary server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="getReadConcern" abstract="false" static="false" visibility="public" final="true">
     <docblock>
@@ -50,7 +77,7 @@
   </method>
   <method name="getServers" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Return the servers to which this manager is connected">Returns an array of MongoDB\Driver\Server instances to which this manager is connected.</description>
+      <description compact="Return the servers to which this manager is connected"/>
       <return type="array"/>
     </docblock>
   </method>
@@ -62,9 +89,16 @@
   </method>
   <method name="selectServer" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Select a server matching a read preference">Selects a MongoDB\Driver\Server matching readPreference. This may be used to preselect a server in order to perform version checking before executing an operation.</description>
+      <description compact="Select a server matching a read preference"/>
       <return type="MongoDB\Driver\Server"/>
     </docblock>
     <parameter name="readPreference" optional="false" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+  </method>
+  <method name="startSession" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Start a new client session for use with this client"/>
+      <return type="MongoDB\Driver\Session"/>
+    </docblock>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
 </class>

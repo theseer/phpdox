@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Session" namespace="MongoDB\Driver" name="Session">
+  <method name="abortTransaction" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Aborts a transaction"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="advanceClusterTime" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Advances the cluster time for this session">Advances the cluster time for this session. If the cluster time is less than or equal to the session's current cluster time, this function is a no-op.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="clusterTime" optional="false" byreference="false" type="object" class="array|object"/>
+  </method>
+  <method name="advanceOperationTime" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Advances the operation time for this session">Advances the operation time for this session. If the operation time is less than or equal to the session's current operation time, this function is a no-op.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="operationTime" optional="false" byreference="false" type="object" class="MongoDB\BSON\TimestampInterface"/>
+  </method>
+  <method name="commitTransaction" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Commits a transaction"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="true">
+    <docblock>
+      <description compact="Create a new Session (not used)"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="endSession" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Terminates a session"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getClusterTime" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the cluster time for this session"/>
+      <return type="object|null"/>
+    </docblock>
+  </method>
+  <method name="getLogicalSessionId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the logical session ID for this session"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getOperationTime" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the operation time for this session"/>
+      <return type="MongoDB\BSON\Timestamp|null"/>
+    </docblock>
+  </method>
+  <method name="startTransaction" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Starts a transaction">This method starts a new transaction within this session. When the session is attached to operations through the "session" argument, these operations become of the started transaction.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="options" optional="false" byreference="false" type="object" class="array|object"/>
+  </method>
+</class>

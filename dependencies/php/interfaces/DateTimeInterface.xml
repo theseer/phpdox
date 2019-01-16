@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <interface xmlns="http://xml.phpdox.net/src" full="DateTimeInterface" namespace="" name="DateTimeInterface">
+  <constant name="ATOM" value="&quot;Y-m-d\TH:i:sP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="COOKIE" value="&quot;l, d-M-Y H:i:s T&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="ISO8601" value="&quot;Y-m-d\TH:i:sO&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC822" value="&quot;D, d M y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC850" value="&quot;l, d-M-y H:i:s T&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC1036" value="&quot;D, d M y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC1123" value="&quot;D, d M Y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC2822" value="&quot;D, d M Y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC3339" value="&quot;Y-m-d\TH:i:sP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RFC3339_EXTENDED" value="&quot;Y-m-d\TH:i:s.vP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="RSS" value="&quot;D, d M Y H:i:s O&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
+  <constant name="W3C" value="&quot;Y-m-d\TH:i:sP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
   <method name="diff" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the difference between two DateTime objects">Object oriented style</description>

@@ -5,8 +5,8 @@
       <description compact="Construct a new ZMQContext object"/>
       <return type="void"/>
     </docblock>
-    <parameter name="io_threads" optional="true" byreference="false" type="object" class="integer"/>
-    <parameter name="is_persistent" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="io_threads" optional="true" byreference="false" type="int"/>
+    <parameter name="is_persistent" optional="true" byreference="false" type="object" class="bool"/>
   </constructor>
   <method name="getOpt" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -20,14 +20,14 @@
       <description compact="Create a new socket"/>
       <return type="ZMQSocket"/>
     </docblock>
-    <parameter name="type" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
     <parameter name="persistent_id" optional="true" byreference="false" type="string"/>
     <parameter name="on_new_socket" optional="true" byreference="false" type="object" class="callback"/>
   </method>
   <method name="isPersistent" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Whether the context is persistent"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="setOpt" abstract="false" static="false" visibility="public" final="false">
@@ -35,7 +35,7 @@
       <description compact="Set a socket option"/>
       <return type="ZMQContext"/>
     </docblock>
-    <parameter name="key" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
 </class>

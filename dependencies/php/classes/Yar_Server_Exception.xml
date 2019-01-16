@@ -9,7 +9,7 @@
   </member>
   <method name="getType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The getType purpose"/>
+      <description compact="Retrieve exception's type"/>
       <return type="string"/>
     </docblock>
   </method>

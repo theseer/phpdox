@@ -171,6 +171,19 @@
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="getReflectionConstant" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReflectionClassConstant"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getReflectionConstants" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
   <method name="getShortName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -298,6 +311,12 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="isIterable" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
   <method name="isIterateable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -328,7 +347,6 @@
       <description compact=""/>
       <return type="object"/>
     </docblock>
-    <parameter name="args" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="newInstanceArgs" abstract="false" static="false" visibility="public" final="false">
@@ -350,7 +368,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="value" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>

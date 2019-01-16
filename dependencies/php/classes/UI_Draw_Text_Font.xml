@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font" namespace="" name="UI\Draw\Text\Font">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font" namespace="UI\Draw\Text" name="Font">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a new Font"/>

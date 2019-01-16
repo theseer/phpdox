@@ -9,7 +9,7 @@
   </constructor>
   <method name="compare" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Compare priorities in order to place elements correctly in the heap while sifting up."/>
+      <description compact="Compare priorities in order to place elements correctly in the heap while sifting up"/>
       <return type="int"/>
     </docblock>
     <parameter name="priority1" optional="false" byreference="false" type="object" class="mixed"/>
@@ -17,7 +17,7 @@
   </method>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Counts the number of elements in the queue."/>
+      <description compact="Counts the number of elements in the queue"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -29,21 +29,33 @@
   </method>
   <method name="extract" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Extracts a node from top of the heap and shift up."/>
+      <description compact="Extracts a node from top of the heap and sift up"/>
       <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getExtractFlags" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the flags of extraction"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="insert" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Inserts an element in the queue by sifting it up."/>
+      <description compact="Inserts an element in the queue by sifting it up"/>
       <return type="void"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="priority" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
+  <method name="isCorrupted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Tells if the priority queue is in a corrupted state"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
   <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks whether the queue is empty."/>
+      <description compact="Checks whether the queue is empty"/>
       <return type="bool"/>
     </docblock>
   </method>
@@ -61,7 +73,7 @@
   </method>
   <method name="recoverFromCorruption" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Recover from the corrupted state and allow further actions on the queue."/>
+      <description compact="Recover from the corrupted state and allow further actions on the queue"/>
       <return type="void"/>
     </docblock>
   </method>

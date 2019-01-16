@@ -24,7 +24,7 @@
       <description compact="Returns the color"/>
       <return type="array"/>
     </docblock>
-    <parameter name="normalized" optional="true" byreference="false" type="object" class="bool"/>
+    <parameter name="normalized" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getColorAsString" abstract="false" static="false" final="false">
     <docblock>
@@ -41,7 +41,7 @@
   <method name="getColorQuantum" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="mixed"/>
+      <return type="array"/>
     </docblock>
   </method>
   <method name="getColorValue" abstract="false" static="false" final="false">
@@ -54,8 +54,9 @@
   <method name="getColorValueQuantum" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="mixed"/>
+      <return type="number"/>
     </docblock>
+    <parameter name="color" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getHSL" abstract="false" static="false" final="false">
     <docblock>
@@ -103,9 +104,9 @@
   <method name="setcolorcount" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="colorCount" optional="false" byreference="false" type="string"/>
+    <parameter name="colorCount" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setColorValue" abstract="false" static="false" final="false">
     <docblock>
@@ -118,10 +119,10 @@
   <method name="setColorValueQuantum" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="int"/>
-    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="number"/>
   </method>
   <method name="setHSL" abstract="false" static="false" final="false">
     <docblock>
@@ -135,7 +136,7 @@
   <method name="setIndex" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Description"/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>

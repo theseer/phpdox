@@ -46,6 +46,12 @@
       <return type="int"/>
     </docblock>
   </method>
+  <method name="getContent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the complete file contents of the entry"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="getMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns file-specific meta-data saved with a file"/>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Parle\Stack" namespace="Parle" name="Stack">
+  <member name="empty" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Whether the stack is empty, readonly."/>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <member name="size" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Stack size, readonly."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="top" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Element on the top of the stack."/>
+      <var type="mixed"/>
+    </docblock>
+  </member>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pop an item from the stack"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Push an item into the stack"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="item" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+</class>

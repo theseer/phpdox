@@ -138,14 +138,14 @@
   </method>
   <method name="disable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Disable events read, write, or both on a buffer event."/>
+      <description compact="Disable events read, write, or both on a buffer event"/>
       <return type="bool"/>
     </docblock>
     <parameter name="events" optional="false" byreference="false" type="int"/>
   </method>
   <method name="enable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Enable events read, write, or both on a buffer event."/>
+      <description compact="Enable events read, write, or both on a buffer event"/>
       <return type="bool"/>
     </docblock>
     <parameter name="events" optional="false" byreference="false" type="int"/>
@@ -247,31 +247,31 @@
   </method>
   <method name="sslGetCipherInfo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns a textual description of the cipher.">Retrieves description of the current cipher by means of the SSL_CIPHER_description SSL API function (see SSL_CIPHER_get_name(3) man page).</description>
+      <description compact="Returns a textual description of the cipher">Retrieves description of the current cipher by means of the SSL_CIPHER_description SSL API function (see SSL_CIPHER_get_name(3) man page).</description>
       <return type="string"/>
     </docblock>
   </method>
   <method name="sslGetCipherName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the current cipher name of the SSL connection.">Retrieves name of cipher used by current SSL connection.</description>
+      <description compact="Returns the current cipher name of the SSL connection">Retrieves name of cipher used by current SSL connection.</description>
       <return type="string"/>
     </docblock>
   </method>
   <method name="sslGetCipherVersion" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns version of cipher used by current SSL connection.">Retrieves version of cipher used by current SSL connection.</description>
+      <description compact="Returns version of cipher used by current SSL connection">Retrieves version of cipher used by current SSL connection.</description>
       <return type="string"/>
     </docblock>
   </method>
   <method name="sslGetProtocol" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the name of the protocol used for current SSL connection.">Returns the name of the protocol used for current SSL connection.</description>
+      <description compact="Returns the name of the protocol used for current SSL connection">Returns the name of the protocol used for current SSL connection.</description>
       <return type="string"/>
     </docblock>
   </method>
   <method name="sslRenegotiate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Tells a bufferevent to begin SSL renegotiation.">Tells a bufferevent to begin SSL renegotiation.</description>
+      <description compact="Tells a bufferevent to begin SSL renegotiation">Tells a bufferevent to begin SSL renegotiation.</description>
       <return type="void"/>
     </docblock>
   </method>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Key" namespace="" name="UI\Key">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Key" namespace="UI" name="Key">
   <constant name="Escape" value="">
     <docblock>
       <var type="integer"/>

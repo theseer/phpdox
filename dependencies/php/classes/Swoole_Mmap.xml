@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Mmap" namespace="Swoole" name="Mmap">
+  <method name="open" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Map a file into memory and return the stream resource which can be used by PHP stream operations."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="true" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

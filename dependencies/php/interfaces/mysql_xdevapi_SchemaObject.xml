@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\SchemaObject" namespace="mysql_xdevapi" name="SchemaObject">
+  <implements name="mysql_xdevapi\DatabaseObject" full="mysql_xdevapi\DatabaseObject"/>
+  <method name="getSchema" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Schema"/>
+    </docblock>
+  </method>
+</interface>

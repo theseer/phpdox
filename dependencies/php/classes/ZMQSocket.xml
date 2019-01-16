@@ -6,7 +6,7 @@
       <return type="ZMQSocket"/>
     </docblock>
     <parameter name="dsn" optional="false" byreference="false" type="string"/>
-    <parameter name="force" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="force" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="connect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -14,7 +14,7 @@
       <return type="ZMQSocket"/>
     </docblock>
     <parameter name="dsn" optional="false" byreference="false" type="string"/>
-    <parameter name="force" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="force" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" final="false">
     <docblock>
@@ -48,7 +48,7 @@
   <method name="getSocketType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the socket type"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getSockOpt" abstract="false" static="false" visibility="public" final="false">
@@ -61,7 +61,7 @@
   <method name="isPersistent" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Whether the socket is persistent"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="recv" abstract="false" static="false" visibility="public" final="false">
@@ -69,14 +69,14 @@
       <description compact="Receives a message"/>
       <return type="string"/>
     </docblock>
-    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
   </method>
   <method name="recvMulti" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Receives a multipart message"/>
-      <return type="string"/>
+      <return type="array"/>
     </docblock>
-    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
   </method>
   <method name="send" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -84,7 +84,7 @@
       <return type="ZMQSocket"/>
     </docblock>
     <parameter name="message" optional="false" byreference="false" type="string"/>
-    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
   </method>
   <method name="send" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -92,14 +92,14 @@
       <return type="ZMQSocket"/>
     </docblock>
     <parameter name="message" optional="false" byreference="false" type="object" class="array"/>
-    <parameter name="mode" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
   </method>
   <method name="setSockOpt" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set a socket option"/>
       <return type="ZMQSocket"/>
     </docblock>
-    <parameter name="key" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="key" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="unbind" abstract="false" static="false" visibility="public" final="false">

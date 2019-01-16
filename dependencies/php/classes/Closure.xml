@@ -33,7 +33,7 @@
   </method>
   <method name="fromCallable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Converts a callable into a closure."/>
+      <description compact="Converts a callable into a closure"/>
       <return type="Closure"/>
     </docblock>
     <parameter name="callable" optional="false" byreference="false" type="object" class="callable"/>

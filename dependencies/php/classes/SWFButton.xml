@@ -53,7 +53,7 @@
   </method>
   <method name="setMenu" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="enable track as menu button behaviour"/>
+      <description compact="Enable track as menu button behaviour"/>
       <return type="void"/>
     </docblock>
     <parameter name="flag" optional="false" byreference="false" type="int"/>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\CrudOperationSkippable" namespace="mysql_xdevapi" name="CrudOperationSkippable">
+  <method name="skip" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CrudOperationSkippable"/>
+    </docblock>
+    <parameter name="skip" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+</interface>

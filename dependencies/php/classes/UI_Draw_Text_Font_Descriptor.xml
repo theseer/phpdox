@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Descriptor" namespace="" name="UI\Draw\Text\Font\Descriptor">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Descriptor" namespace="UI\Draw\Text\Font" name="Descriptor">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a new Font Descriptor"/>
@@ -7,9 +7,9 @@
     </docblock>
     <parameter name="family" optional="false" byreference="false" type="string"/>
     <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
-    <parameter name="weight" optional="true" byreference="false" type="object" class="integer"/>
-    <parameter name="italic" optional="true" byreference="false" type="object" class="integer"/>
-    <parameter name="stretch" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="weight" optional="true" byreference="false" type="int"/>
+    <parameter name="italic" optional="true" byreference="false" type="int"/>
+    <parameter name="stretch" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="getFamily" abstract="false" static="false" visibility="public" final="false">
     <docblock>

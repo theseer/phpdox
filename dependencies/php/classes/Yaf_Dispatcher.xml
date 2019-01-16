@@ -107,7 +107,7 @@
   </method>
   <method name="enableView" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="enable view rendering"/>
+      <description compact="Enable view rendering"/>
       <return type="Yaf_Dispatcher"/>
     </docblock>
   </method>

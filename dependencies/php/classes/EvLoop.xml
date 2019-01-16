@@ -50,7 +50,7 @@
   </member>
   <method name="backend" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns an integer describing the backend used by libev."/>
+      <description compact="Returns an integer describing the backend used by libev"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -81,22 +81,22 @@
     </docblock>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
-    <parameter name="io_interval" optional="true" byreference="false" type="object" class="double"/>
-    <parameter name="timeout_interval" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="io_interval" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="timeout_interval" optional="true" byreference="false" type="object" class="float"/>
   </constructor>
   <method name="defaultLoop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns or creates the default event loop."/>
+      <description compact="Returns or creates the default event loop"/>
       <return type="EvLoop"/>
     </docblock>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
-    <parameter name="io_interval" optional="true" byreference="false" type="object" class="double"/>
-    <parameter name="timeout_interval" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="io_interval" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="timeout_interval" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="embed" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Creates an instance of EvEmbed watcher associated&#10;  with the current EvLoop object."/>
+      <description compact="Creates an instance of EvEmbed watcher associated&#10;  with the current EvLoop object"/>
       <return type="EvEmbed"/>
     </docblock>
     <parameter name="other" optional="false" byreference="false" type="string"/>
@@ -148,12 +148,12 @@
   <method name="now" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the current &quot;event loop time&quot;"/>
-      <return type="double"/>
+      <return type="float"/>
     </docblock>
   </method>
   <method name="nowUpdate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Establishes the current time by querying the kernel, updating the time&#10;    returned by EvLoop::now in the progress."/>
+      <description compact="Establishes the current time by querying the kernel, updating the time&#10;    returned by EvLoop::now in the progress"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -162,8 +162,8 @@
       <description compact="Creates EvPeriodic watcher object associated with the current&#10;  event loop instance"/>
       <return type="EvPeriodic"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="interval" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="priority" optional="true" byreference="false" type="int"/>
@@ -206,7 +206,7 @@
       <return type="EvStat"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
-    <parameter name="interval" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="priority" optional="true" byreference="false" type="int"/>
@@ -229,8 +229,8 @@
       <description compact="Creates EvTimer watcher object associated with the current event&#10;  loop instance"/>
       <return type="EvTimer"/>
     </docblock>
-    <parameter name="after" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="repeat" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="after" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="repeat" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="priority" optional="true" byreference="false" type="int"/>

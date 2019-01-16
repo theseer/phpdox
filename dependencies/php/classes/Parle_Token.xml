@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Parle\Token" namespace="Parle" name="Token">
+  <constant name="EOI" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNKNOWN" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP" value="-2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="id" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Token id."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="value" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Token value."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+</class>

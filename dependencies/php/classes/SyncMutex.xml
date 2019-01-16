@@ -12,7 +12,7 @@
       <description compact="Waits for an exclusive lock"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="wait" optional="true" byreference="false" type="int"/>
   </method>
   <method name="unlock" abstract="false" static="false" visibility="public" final="false">
     <docblock>

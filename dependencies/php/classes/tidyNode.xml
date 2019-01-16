@@ -1,117 +1,123 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="tidyNode" namespace="" name="tidyNode">
-  <member name="value" static="false">
+  <member name="value" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="The HTML representation of the node, including the surrounding tags."/>
       <var type="string"/>
     </docblock>
   </member>
-  <member name="name" static="false">
+  <member name="name" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="The name of the HTML node"/>
       <var type="string"/>
     </docblock>
   </member>
-  <member name="type" static="false">
+  <member name="type" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="The type of the tag (one of the constants above, e.g. TIDY_NODETYPE_PHP)"/>
+      <description compact="The type of the node (one of the nodetype constants, e.g. TIDY_NODETYPE_PHP)"/>
       <var type="int"/>
     </docblock>
   </member>
-  <member name="line" static="false">
+  <member name="line" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="The line number at which the tags is located in the file"/>
       <var type="int"/>
     </docblock>
   </member>
-  <member name="column" static="false">
+  <member name="column" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="The column number at which the tags is located in the file"/>
       <var type="int"/>
     </docblock>
   </member>
-  <member name="proprietary" static="false">
+  <member name="proprietary" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="Indicates if the node is a proprietary tag"/>
       <var type="bool"/>
     </docblock>
   </member>
-  <member name="id" static="false">
+  <member name="id" static="false" visibility="public">
     <default>null</default>
     <docblock>
-      <description compact="The ID of the tag (one of the constants above, e.g. TIDY_TAG_FRAME)"/>
+      <description compact="The ID of the node (one of the tag constants, e.g. TIDY_TAG_FRAME)"/>
       <var type="int"/>
     </docblock>
   </member>
-  <member name="attribute" static="false">
+  <member name="attribute" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="An array of string, representing the attributes names (as keys) of the current node."/>
       <var type="array"/>
     </docblock>
   </member>
-  <member name="child" static="false">
+  <member name="child" static="false" visibility="public">
     <default>null</default>
     <docblock>
       <description compact="An array of tidyNode, representing the children of the current node."/>
       <var type="array"/>
     </docblock>
   </member>
-  <method name="getParent" abstract="false" static="false" final="false">
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Private constructor to disallow direct instantiation"/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="getParent" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the parent node of the current node"/>
       <return type="tidyNode"/>
     </docblock>
   </method>
-  <method name="hasChildren" abstract="false" static="false" final="false">
+  <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a node has children"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="hasSiblings" abstract="false" static="false" final="false">
+  <method name="hasSiblings" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a node has siblings"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isAsp" abstract="false" static="false" final="false">
+  <method name="isAsp" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if this node is ASP"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isComment" abstract="false" static="false" final="false">
+  <method name="isComment" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a node represents a comment"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isHtml" abstract="false" static="false" final="false">
+  <method name="isHtml" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a node is part of a HTML document"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isJste" abstract="false" static="false" final="false">
+  <method name="isJste" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if this node is JSTE"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isPhp" abstract="false" static="false" final="false">
+  <method name="isPhp" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a node is PHP"/>
       <return type="bool"/>
     </docblock>
   </method>
-  <method name="isText" abstract="false" static="false" final="false">
+  <method name="isText" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Checks if a node represents text (no markup)"/>
       <return type="bool"/>

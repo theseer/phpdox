@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Parle\ErrorInfo" namespace="Parle" name="ErrorInfo">
+  <member name="id" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Error id."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="position" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Position in the input, where the error occurred."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="token" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="If applicable - the Parle\Token related to the error, otherwise NULL."/>
+      <var type="mixed"/>
+    </docblock>
+  </member>
+</class>

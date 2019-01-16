@@ -41,7 +41,7 @@
   </method>
   <method name="closeCursor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Closes the cursor, enabling the statement to be executed again.&#10;  ">PDOStatement::closeCursor frees up the connection to the server so that other SQL statements may be issued, but leaves the statement in a state that enables it to be executed again.</description>
+      <description compact="&#10;   Closes the cursor, enabling the statement to be executed again&#10;  ">PDOStatement::closeCursor frees up the connection to the server so that other SQL statements may be issued, but leaves the statement in a state that enables it to be executed again.</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -103,7 +103,7 @@
   </method>
   <method name="fetchObject" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Fetches the next row and returns it as an object.">Fetches the next row and returns it as an object. This function is an alternative to PDOStatement::fetch with PDO::FETCH_CLASS or PDO::FETCH_OBJ style.</description>
+      <description compact="Fetches the next row and returns it as an object">Fetches the next row and returns it as an object. This function is an alternative to PDOStatement::fetch with PDO::FETCH_CLASS or PDO::FETCH_OBJ style.</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="class_name" optional="true" byreference="false" type="string"/>

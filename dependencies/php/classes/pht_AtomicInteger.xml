@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="pht\AtomicInteger" namespace="pht" name="AtomicInteger">
+  <implements name="pht\Threaded" full="pht\Threaded"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="AtomicInteger creation"/>
+      <return type="AtomicInteger"/>
+    </docblock>
+    <parameter name="value" optional="true" byreference="false" type="int"/>
+  </constructor>
+  <method name="dec" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Decrements the atomic integer's value by one"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the atomic integer's value"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="inc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Increments the atomic integer's value by one"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires the atomic integer's mutex lock">This method will acquire the mutex lock associated with the atomic integer. The mutex lock only needs to be acquired when needing to group together multiple operations.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Sets the atomic integer's value"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases the atomic integer's mutex lock"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Connection\Iterator" namespace="Swoole\Connection" name="Iterator">
+  <implements name="Iterator" full="Iterator"/>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Count connections."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="current" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return current connection entry."/>
+      <return type="Connection"/>
+    </docblock>
+  </method>
+  <method name="key" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Return key of the current connection."/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="next" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Move to the next connection."/>
+      <return type="Connection"/>
+    </docblock>
+  </method>
+  <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if offet exists."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Offset to retrieve."/>
+      <return type="Connection"/>
+    </docblock>
+    <parameter name="index" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Assign a Connection to the specified offset."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+    <parameter name="connection" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unset an offset."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="rewind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Rewinds iterator"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="valid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if current position is valid."/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+</class>

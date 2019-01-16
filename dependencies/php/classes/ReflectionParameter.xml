@@ -116,7 +116,7 @@
   </method>
   <method name="isDefaultValueConstant" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns whether the default value of this parameter is constant"/>
+      <description compact="Returns whether the default value of this parameter is a constant"/>
       <return type="bool"/>
     </docblock>
   </method>

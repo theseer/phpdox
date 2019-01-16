@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Componere\Abstract\Definition" namespace="Componere\Abstract" name="Definition">
+  <method name="addInterface" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add Interface"/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="interface" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add Method"/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="method" optional="false" byreference="false" type="object" class="\Componere\Method"/>
+  </method>
+  <method name="addTrait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add Trait"/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="trait" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getReflector" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reflection"/>
+      <return type="\ReflectionClass"/>
+    </docblock>
+  </method>
+</class>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Async" namespace="Swoole" name="Async">
+  <method name="dnsLookup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Async and non-blocking hostname to IP lookup."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="hostname" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read file stream asynchronously."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="chunk_size" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="offset" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="readFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Read a file asynchronously."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update the async I/O options."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="settings" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write data to a file stream asynchronously."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="writeFile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="flags" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

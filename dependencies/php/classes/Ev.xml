@@ -172,7 +172,7 @@
   </constant>
   <method name="backend" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns an integer describing the backend used by libev."/>
+      <description compact="Returns an integer describing the backend used by libev"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -184,7 +184,7 @@
   </method>
   <method name="embeddableBackends" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns the set of backends that are embeddable in other event loops."/>
+      <description compact="Returns the set of backends that are embeddable in other event loops"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -204,25 +204,25 @@
   </method>
   <method name="iteration" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Return the number of times the default event loop has polled for new&#10;  events."/>
+      <description compact="Return the number of times the default event loop has polled for new&#10;  events"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="now" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns the time when the last iteration of the default event&#10;  loop has started."/>
-      <return type="double"/>
+      <description compact="Returns the time when the last iteration of the default event&#10;  loop has started"/>
+      <return type="float"/>
     </docblock>
   </method>
   <method name="nowUpdate" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Establishes the current time by querying the kernel, updating the time&#10;    returned by Ev::now in the progress.">Establishes the current time by querying the kernel, updating the time returned by Ev::now in the progress. This is a costly operation and is usually done automatically within Ev::run .</description>
+      <description compact="Establishes the current time by querying the kernel, updating the time&#10;    returned by Ev::now in the progress">Establishes the current time by querying the kernel, updating the time returned by Ev::now in the progress. This is a costly operation and is usually done automatically within Ev::run .</description>
       <return type="void"/>
     </docblock>
   </method>
   <method name="recommendedBackends" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns a bit mask of recommended backends for current&#10;  platform."/>
+      <description compact="Returns a bit mask of recommended backends for current&#10;  platform"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -241,10 +241,10 @@
   </method>
   <method name="sleep" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Block the process for the given number of seconds."/>
+      <description compact="Block the process for the given number of seconds"/>
       <return type="void"/>
     </docblock>
-    <parameter name="seconds" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="seconds" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="stop" abstract="false" static="false" visibility="public" final="true">
     <docblock>
@@ -255,7 +255,7 @@
   </method>
   <method name="supportedBackends" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns the set of backends supported by current libev&#10;  configuration."/>
+      <description compact="Returns the set of backends supported by current libev&#10;  configuration"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -267,8 +267,8 @@
   </method>
   <method name="time" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns the current time in fractional seconds since the epoch."/>
-      <return type="double"/>
+      <description compact="Returns the current time in fractional seconds since the epoch"/>
+      <return type="float"/>
     </docblock>
   </method>
   <method name="verify" abstract="false" static="false" visibility="public" final="true">

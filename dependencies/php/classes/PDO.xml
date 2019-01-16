@@ -7,7 +7,7 @@
     </docblock>
     <parameter name="dsn" optional="false" byreference="false" type="string"/>
     <parameter name="username" optional="true" byreference="false" type="string"/>
-    <parameter name="password" optional="true" byreference="false" type="string"/>
+    <parameter name="passwd" optional="true" byreference="false" type="string"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="beginTransaction" abstract="false" static="false" visibility="public" final="false">
@@ -25,7 +25,7 @@
   <method name="errorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Fetch the SQLSTATE associated with the last operation on the database handle&#10;  "/>
-      <return type="mixed"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="errorInfo" abstract="false" static="false" visibility="public" final="false">
@@ -69,7 +69,7 @@
   </method>
   <method name="prepare" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Prepares a statement for execution and returns a statement object&#10;  ">Prepares an SQL statement to be executed by the PDOStatement::execute method. The SQL statement can contain zero or more named (:name) or question mark (?) parameter markers for which real values will be substituted when the statement is executed. You cannot use both named and question mark parameter markers within the same SQL statement; pick one or the other parameter style. Use these parameters to bind any user-input, do not include the user-input directly in the query.</description>
+      <description compact="&#10;   Prepares a statement for execution and returns a statement object&#10;  ">Prepares an SQL statement to be executed by the PDOStatement::execute method. The statement template can contain zero or more named (:name) or question mark (?) parameter markers for which real values will be substituted when the statement is executed. Both named and question mark parameter markers cannot be used within the same statement template; only one or the other parameter style. Use these parameters to bind any user-input, do not include the user-input directly in the query.</description>
       <return type="PDOStatement"/>
     </docblock>
     <parameter name="statement" optional="false" byreference="false" type="string"/>
@@ -84,7 +84,7 @@
   </method>
   <method name="quote" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Quotes a string for use in a query.&#10;  ">PDO::quote places quotes around the input string (if required) and escapes special characters within the input string, using a quoting style appropriate to the underlying driver.</description>
+      <description compact="&#10;   Quotes a string for use in a query&#10;  ">PDO::quote places quotes around the input string (if required) and escapes special characters within the input string, using a quoting style appropriate to the underlying driver.</description>
       <return type="string"/>
     </docblock>
     <parameter name="string" optional="false" byreference="false" type="string"/>

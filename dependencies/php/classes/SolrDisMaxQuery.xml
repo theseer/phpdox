@@ -147,7 +147,7 @@
   </method>
   <method name="setBoostFunction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets a Boost Function (bf parameter).">Sets Boost Function (bf parameter).</description>
+      <description compact="Sets a Boost Function (bf parameter)">Sets Boost Function (bf parameter).</description>
       <return type="SolrDisMaxQuery"/>
     </docblock>
     <parameter name="function" optional="false" byreference="false" type="string"/>
@@ -189,7 +189,7 @@
   </method>
   <method name="setQueryPhraseSlop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="specifies the amount of slop permitted on phrase queries explicitly included in the user's query string (qf parameter)">The Query Phrase Slop is the amount of slop permitted on phrase queries explicitly included in the user's query string with the qf parameter.</description>
+      <description compact="Specifies the amount of slop permitted on phrase queries explicitly included in the user's query string (qf parameter)">The Query Phrase Slop is the amount of slop permitted on phrase queries explicitly included in the user's query string with the qf parameter.</description>
       <return type="SolrDisMaxQuery"/>
     </docblock>
     <parameter name="slop" optional="false" byreference="false" type="string"/>
@@ -319,7 +319,7 @@
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="field" optional="false" byreference="false" type="string"/>
-    <parameter name="order" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="order" optional="true" byreference="false" type="int"/>
   </method>
   <method name="addHighlightField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -406,7 +406,7 @@
   <method name="getExpandRows" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getExpandSortFields" abstract="false" static="false" visibility="public" final="false">
@@ -544,7 +544,7 @@
   <method name="getGroupCachePercent" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getGroupFacet" abstract="false" static="false" visibility="public" final="false">
@@ -574,7 +574,7 @@
   <method name="getGroupLimit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getGroupMain" abstract="false" static="false" visibility="public" final="false">
@@ -592,7 +592,7 @@
   <method name="getGroupOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getGroupQueries" abstract="false" static="false" visibility="public" final="false">
@@ -1048,7 +1048,7 @@
       <description compact=""/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setExplainOther" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -1172,7 +1172,7 @@
       <description compact=""/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="percent" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="percent" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setGroupFacet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -1193,7 +1193,7 @@
       <description compact=""/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setGroupMain" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -1214,7 +1214,7 @@
       <description compact=""/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setGroupTruncate" abstract="false" static="false" visibility="public" final="false">
     <docblock>

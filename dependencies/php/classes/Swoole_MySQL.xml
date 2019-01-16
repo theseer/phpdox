@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\MySQL" namespace="Swoole" name="MySQL">
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the async MySQL connection."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect to the remote MySQL server."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="server_config" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destory the async MySQL client."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="getBuffer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register callback function based on event name."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="event_name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="query" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Run the SQL query."/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="sql" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+</class>

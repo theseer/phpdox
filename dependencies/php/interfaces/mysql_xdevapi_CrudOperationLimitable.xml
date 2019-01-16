@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\CrudOperationLimitable" namespace="mysql_xdevapi" name="CrudOperationLimitable">
+  <method name="limit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CrudOperationLimitable"/>
+    </docblock>
+    <parameter name="rows" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+</interface>

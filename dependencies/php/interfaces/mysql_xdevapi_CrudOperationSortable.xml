@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\CrudOperationSortable" namespace="mysql_xdevapi" name="CrudOperationSortable">
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CrudOperationSortable"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="string"/>
+  </method>
+</interface>

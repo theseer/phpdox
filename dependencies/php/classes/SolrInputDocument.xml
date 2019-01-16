@@ -106,7 +106,7 @@
   <method name="getChildDocumentsCount" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the number of child documents"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getField" abstract="false" static="false" visibility="public" final="false">
@@ -138,7 +138,7 @@
   <method name="hasChildDocuments" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns true if the document has any child documents"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="merge" abstract="false" static="false" visibility="public" final="false">

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Parle\Parser" namespace="Parle" name="Parser">
+  <constant name="ACTION_ERROR" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ACTION_SHIFT" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ACTION_REDUCE" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ACTION_GOTO" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ACTION_ACCEPT" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERROR_SYNTAX" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERROR_NON_ASSOCIATIVE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="ERROR_UNKOWN_TOKEN" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="action" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Current parser action that matches one of the action class constants, readonly."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="reduceId" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Grammar rule id just processed in the reduce action. The value corresponds either to a token or to a production id. Readonly."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <method name="advance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Process next parser rule"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="build" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Finalize the grammar rules"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="consume" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Consume the data for processing"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="lexer" optional="false" byreference="false" type="object" class="Parle\Lexer"/>
+  </method>
+  <method name="dump" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Dump the grammar"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="errorInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve the error information"/>
+      <return type="Parle\ErrorInfo"/>
+    </docblock>
+  </method>
+  <method name="left" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Declare a token with left-associativity"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tok" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="nonassoc" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Declare a token with no associativity"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tok" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="precedence" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Declare a precedence rule"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tok" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a grammar rule"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="rule" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reset parser state"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tokenId" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="right" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Declare a token with right-associativity"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tok" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sigil" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve a matching part of a rule"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="idx" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="token" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Declare a token"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tok" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="tokenId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get token id"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="tok" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="trace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Trace the parser operation"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="validate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Validate input"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="lexer" optional="false" byreference="false" type="object" class="Parle\Lexer"/>
+  </method>
+</class>

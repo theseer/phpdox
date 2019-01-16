@@ -2,49 +2,49 @@
 <class xmlns="http://xml.phpdox.net/src" full="Counter" namespace="" name="Counter">
   <constructor name="__construct" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Creates an instance of a Counter which maintains a single numeric value.&#10;     "/>
+      <description compact="&#10;      Creates an instance of a Counter which maintains a single numeric value&#10;     "/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="initial_value" optional="true" byreference="false" type="object" class="integer"/>
-    <parameter name="flags" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="initial_value" optional="true" byreference="false" type="int"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="getValue" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Get the current value of a counter.&#10;     "/>
-      <return type="integer"/>
+      <description compact="&#10;      Get the current value of a counter&#10;     "/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="bumpValue" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Change the current value of a counter.&#10;     "/>
+      <description compact="&#10;      Change the current value of a counter&#10;     "/>
       <return type="void"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
   </method>
   <method name="resetValue" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Reset the current value of a counter.&#10;     "/>
+      <description compact="&#10;      Reset the current value of a counter&#10;     "/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="getMeta" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Return a piece of metainformation about a counter.&#10;     "/>
+      <description compact="&#10;      Return a piece of metainformation about a counter&#10;     "/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="attribute" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="attribute" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getNamed" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Retrieve an existing named counter.&#10;     "/>
+      <description compact="&#10;      Retrieve an existing named counter&#10;     "/>
       <return type="Counter"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setCounterClass" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="&#10;      Set the class returned by Counter::getNamed.&#10;     "/>
+      <description compact="&#10;      Set the class returned by Counter::getNamed&#10;     "/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>

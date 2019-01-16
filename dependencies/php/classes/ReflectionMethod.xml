@@ -53,7 +53,7 @@
   </constructor>
   <method name="export" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Export a reflection method."/>
+      <description compact="Export a reflection method"/>
       <return type="string"/>
     </docblock>
     <parameter name="class" optional="false" byreference="false" type="string"/>
@@ -69,7 +69,7 @@
   </method>
   <method name="getDeclaringClass" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets declaring class for the reflected method."/>
+      <description compact="Gets declaring class for the reflected method"/>
       <return type="ReflectionClass"/>
     </docblock>
   </method>
@@ -81,7 +81,7 @@
   </method>
   <method name="getPrototype" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the method prototype (if there is one)."/>
+      <description compact="Gets the method prototype (if there is one)"/>
       <return type="ReflectionMethod"/>
     </docblock>
   </method>
@@ -91,7 +91,6 @@
       <return type="mixed"/>
     </docblock>
     <parameter name="object" optional="false" byreference="false" type="object" class="object"/>
-    <parameter name="parameter" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="invokeArgs" abstract="false" static="false" visibility="public" final="false">
@@ -159,7 +158,7 @@
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the string representation of the Reflection method object."/>
+      <description compact="Returns the string representation of the Reflection method object"/>
       <return type="string"/>
     </docblock>
   </method>

@@ -3,7 +3,7 @@
   <extends name="Iterator" full="Iterator"/>
   <method name="getInnerIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the inner iterator for the current entry."/>
+      <description compact="Returns the inner iterator for the current entry"/>
       <return type="Iterator"/>
     </docblock>
   </method>
@@ -34,7 +34,7 @@
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </interface>

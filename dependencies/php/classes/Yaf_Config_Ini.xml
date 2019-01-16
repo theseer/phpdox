@@ -11,39 +11,39 @@
   </constructor>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The count purpose"/>
+      <description compact="Count all elements in Yaf_Config.ini"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The current purpose"/>
+      <description compact="Retrieve the current value"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="__get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __get purpose"/>
+      <description compact="Retrieve a element"/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="true" byreference="false" type="string"/>
   </method>
   <method name="__isset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The __isset purpose"/>
+      <description compact="Determine if a key is exists"/>
       <return type="void"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The key purpose"/>
+      <description compact="Fetch current element's key"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The next purpose"/>
+      <description compact="Advance the internal pointer"/>
       <return type="void"/>
     </docblock>
   </method>
@@ -98,7 +98,7 @@
   </method>
   <method name="toArray" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns a PHP array"/>
+      <description compact="Return config as a PHP array"/>
       <return type="array"/>
     </docblock>
   </method>

@@ -10,7 +10,7 @@
   <method name="getCreatorId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Identification"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getCurrentThread" abstract="false" static="false" visibility="public" final="false">
@@ -22,13 +22,13 @@
   <method name="getCurrentThreadId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Identification"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getThreadId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Identification"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="globally" abstract="false" static="false" visibility="public" final="false">
@@ -40,19 +40,19 @@
   <method name="isJoined" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="State Detection"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isStarted" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="State Detection"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="join" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Synchronization"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="kill" abstract="false" static="false" visibility="public" final="false">
@@ -64,22 +64,22 @@
   <method name="start" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Execution"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="options" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="options" optional="true" byreference="false" type="int"/>
   </method>
   <method name="chunk" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="array"/>
     </docblock>
-    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="preserve" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="preserve" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="count" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="extend" abstract="false" static="false" visibility="public" final="false">
@@ -107,31 +107,31 @@
   <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isTerminated" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="isWaiting" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="lock" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="merge" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="from" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
@@ -139,13 +139,19 @@
   <method name="notify" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="notifyOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="pop" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="run" abstract="false" static="false" visibility="public" final="false">
@@ -171,14 +177,14 @@
   <method name="unlock" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="wait" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="true" byreference="false" type="int"/>
   </method>
 </class>

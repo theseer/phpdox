@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="CommonMark\Interfaces\IVisitable" namespace="CommonMark\Interfaces" name="IVisitable">
+  <method name="accept" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Visitation"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="visitor" optional="false" byreference="false" type="object" class="CommonMark\Interfaces\IVisitor"/>
+  </method>
+</interface>

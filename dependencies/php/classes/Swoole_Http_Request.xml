@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Http\Request" namespace="Swoole\Http" name="Request">
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destruct the HTTP request."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="rawcontent" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the raw HTTP POST body."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

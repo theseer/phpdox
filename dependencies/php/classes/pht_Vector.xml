@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="pht\Vector" namespace="pht" name="Vector">
+  <implements name="pht\Threaded" full="pht\Threaded"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Vector creation"/>
+      <return type="Vector"/>
+    </docblock>
+    <parameter name="size" optional="true" byreference="false" type="int"/>
+    <parameter name="value" optional="true" byreference="false" type="object" class="mixed"/>
+  </constructor>
+  <method name="deleteAt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Deletes a value in the vector">This method deletes a value at the specified offset in the vector (in linear time).</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="insertAt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Inserts a value into the vector"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires the vector's mutex lock">This method will acquire the mutex lock associated with the vector. The mutex lock should always be acquired when manipulating the vector if it is being used by multiple threads.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pops a value to the vector"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pushes a value to the vector">This method pushes a value onto the end of a vector (in constant time). The vector will automatically be resized if it is not large enough.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="resize" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resizes a vector"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="shift" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Shifts a value from the vector"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="size" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the size of the vector"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases the vector's mutex lock"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="unshift" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unshifts a value to the vector front"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="updateAt" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Updates a value in the vector">This method updates a value at the specified offset in the vector (in linear time). The vector will automatically be resized if it is not large enough.</description>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

@@ -19,37 +19,37 @@
   <method name="getBreakIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get IntlBreakIterator backing this parts iterator"/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
   </method>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="ReturnType"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="ReturnType"/>
+      <return type="void"/>
     </docblock>
   </method>
   <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="ReturnType"/>
+      <return type="void"/>
     </docblock>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="ReturnType"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

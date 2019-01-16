@@ -84,7 +84,7 @@
   <method name="setSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Change the size of an array"/>
-      <return type="int"/>
+      <return type="bool"/>
     </docblock>
     <parameter name="size" optional="false" byreference="false" type="int"/>
   </method>

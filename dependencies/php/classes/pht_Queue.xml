@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="pht\Queue" namespace="pht" name="Queue">
+  <implements name="pht\Threaded" full="pht\Threaded"/>
+  <method name="front" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the first value from a queue">This method will remove a value from the front of the queue (in constant time). Attempting to return the front value from an empty queue will result in an Error exception.</description>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires the queue's mutex lock">This method will acquire the mutex lock associated with the queue. The mutex lock should always be acquired when manipulating the queue if it is being used by multiple threads.</description>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="pop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pops a value off of the front of a queue"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pushes a value to the end of a queue"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="size" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the size of the queue"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases the queue's mutex lock"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

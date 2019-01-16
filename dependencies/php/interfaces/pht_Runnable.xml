@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="pht\Runnable" namespace="pht" name="Runnable">
+  <method name="run" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="The entry point of a threaded class"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</interface>

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="RecursiveArrayIterator" namespace="" name="RecursiveArrayIterator">
   <implements name="RecursiveIterator" full="RecursiveIterator"/>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <constant name="" value="4">
     <docblock>
       <var type="integer"/>
@@ -8,13 +18,13 @@
   </constant>
   <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns an iterator for the current entry if it is an array or an object."/>
+      <description compact="Returns an iterator for the current entry if it is an array or an object"/>
       <return type="RecursiveArrayIterator"/>
     </docblock>
   </method>
   <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns whether current entry is an array or an object."/>
+      <description compact="Returns whether current entry is an array or an object"/>
       <return type="bool"/>
     </docblock>
   </method>
@@ -96,31 +106,31 @@
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="void"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="offsetGet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
-    <parameter name="newval" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="newval" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="index" optional="false" byreference="false" type="string"/>
+    <parameter name="index" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -153,14 +163,14 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="cmp_function" optional="false" byreference="false" type="string"/>
+    <parameter name="cmp_function" optional="false" byreference="false" type="object" class="callable"/>
   </method>
   <method name="uksort" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="cmp_function" optional="false" byreference="false" type="string"/>
+    <parameter name="cmp_function" optional="false" byreference="false" type="object" class="callable"/>
   </method>
   <method name="unserialize" abstract="false" static="false" visibility="public" final="false">
     <docblock>

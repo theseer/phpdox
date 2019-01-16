@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Http\Server" namespace="Swoole\Http" name="Server">
+  <extends name="Swoole\Server" full="Swoole\Server"/>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Bind callback function to HTTP server by event name."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="event_name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Start the swoole http server."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="addlistener" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="socket_type" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addProcess" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="process" optional="false" byreference="false" type="object" class="swoole_process"/>
+  </method>
+  <method name="after" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="after_time_ms" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="param" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="uid" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="clearTimer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timer_id" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timer_id" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="reset" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="confirm" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="connection_info" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="reactor_id" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="connection_list" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="start_fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="pagesize" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="defer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="exist" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="finish" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getClientInfo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="reactor_id" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getClientList" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="start_fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="pagesize" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="getLastError" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="heartbeat" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="if_close_connection" optional="false" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="listen" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="socket_type" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="event_name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="pause" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="protect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="is_protected" optional="true" byreference="false" type="object" class="boolean"/>
+  </method>
+  <method name="reload" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+  </method>
+  <method name="resume" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="send" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="reactor_id" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="sendfile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="sendMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="worker_id" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="sendto" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="ip" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="server_socket" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="sendwait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="settings" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="shutdown" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="stats" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="stop" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="worker_id" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="task" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="dst_worker_id" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="callback" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="taskwait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="worker_id" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="taskWaitMulti" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tasks" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="timeout_ms" optional="true" byreference="false" type="object" class="double"/>
+  </method>
+  <method name="tick" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="interval_ms" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+</class>

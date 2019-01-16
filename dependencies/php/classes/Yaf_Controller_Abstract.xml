@@ -64,7 +64,7 @@
   </method>
   <method name="forward" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="foward to another action">forward current execution process to other action. this method doesn't switch to the destination action immediately, it will take place after current flow finish.</description>
+      <description compact="Foward to another action">forward current execution process to other action. this method doesn't switch to the destination action immediately, it will take place after current flow finish.</description>
       <return type="void"/>
     </docblock>
     <parameter name="action" optional="false" byreference="false" type="string"/>
@@ -110,7 +110,7 @@
   <method name="getViewpath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The getViewpath purpose"/>
-      <return type="void"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="init" abstract="false" static="false" visibility="public" final="false">

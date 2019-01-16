@@ -64,7 +64,7 @@
   </method>
   <method name="getSocketName" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retreives the current address to which the&#10;  listener's socket is bound."/>
+      <description compact="Retreives the current address to which the&#10;  listener's socket is bound"/>
       <return type="bool"/>
     </docblock>
     <parameter name="address" optional="false" byreference="false" type="string"/>

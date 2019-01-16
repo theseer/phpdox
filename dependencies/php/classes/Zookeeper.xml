@@ -2,7 +2,7 @@
 <class xmlns="http://xml.phpdox.net/src" full="Zookeeper" namespace="" name="Zookeeper">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Create a handle to used communicate with zookeeper."/>
+      <description compact="Create a handle to used communicate with zookeeper"/>
       <return type="void"/>
     </docblock>
     <parameter name="host" optional="true" byreference="false" type="string"/>
@@ -11,16 +11,22 @@
   </constructor>
   <method name="addAuth" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Specify application credentials."/>
+      <description compact="Specify application credentials"/>
       <return type="bool"/>
     </docblock>
     <parameter name="scheme" optional="false" byreference="false" type="string"/>
     <parameter name="cert" optional="false" byreference="false" type="string"/>
     <parameter name="completion_cb" optional="true" byreference="false" type="object" class="callable"/>
   </method>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the zookeeper handle and free up any resources"/>
+      <return type="void"/>
+    </docblock>
+  </method>
   <method name="connect" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Create a handle to used communicate with zookeeper."/>
+      <description compact="Create a handle to used communicate with zookeeper"/>
       <return type="void"/>
     </docblock>
     <parameter name="host" optional="false" byreference="false" type="string"/>
@@ -29,7 +35,7 @@
   </method>
   <method name="create" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Create a node synchronously."/>
+      <description compact="Create a node synchronously"/>
       <return type="string"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
@@ -39,7 +45,7 @@
   </method>
   <method name="delete" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Delete a node in zookeeper synchronously."/>
+      <description compact="Delete a node in zookeeper synchronously"/>
       <return type="bool"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
@@ -47,7 +53,7 @@
   </method>
   <method name="exists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks the existence of a node in zookeeper synchronously."/>
+      <description compact="Checks the existence of a node in zookeeper synchronously"/>
       <return type="bool"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
@@ -55,7 +61,7 @@
   </method>
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the data associated with a node synchronously."/>
+      <description compact="Gets the data associated with a node synchronously"/>
       <return type="string"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
@@ -65,38 +71,52 @@
   </method>
   <method name="getAcl" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Gets the acl associated with a node synchronously."/>
+      <description compact="Gets the acl associated with a node synchronously"/>
       <return type="array"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
   </method>
+  <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Lists the children of a node synchronously"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="watcher_cb" optional="true" byreference="false" type="object" class="callable"/>
+  </method>
   <method name="getClientId" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="return the client session id, only valid if the connections is currently connected (ie. last watcher state is ZOO_CONNECTED_STATE)"/>
+      <description compact="Return the client session id, only valid if the connections is currently connected (ie. last watcher state is ZOO_CONNECTED_STATE)"/>
       <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getConfig" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get instance of ZookeeperConfig"/>
+      <return type="ZookeeperConfig"/>
     </docblock>
   </method>
   <method name="getRecvTimeout" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Return the timeout for this session, only valid if the connections is currently connected (ie. last watcher state is ZOO_CONNECTED_STATE). This value may change after a server re-connect."/>
+      <description compact="Return the timeout for this session, only valid if the connections is currently connected (ie. last watcher state is ZOO_CONNECTED_STATE). This value may change after a server re-connect"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="getState" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get the state of the zookeeper connection."/>
+      <description compact="Get the state of the zookeeper connection"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="isRecoverable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Checks if the current zookeeper connection state can be recovered."/>
+      <description compact="Checks if the current zookeeper connection state can be recovered"/>
       <return type="bool"/>
     </docblock>
   </method>
   <method name="set" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the data associated with a node."/>
+      <description compact="Sets the data associated with a node"/>
       <return type="bool"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
@@ -106,7 +126,7 @@
   </method>
   <method name="setAcl" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the acl associated with a node synchronously."/>
+      <description compact="Sets the acl associated with a node synchronously"/>
       <return type="bool"/>
     </docblock>
     <parameter name="path" optional="false" byreference="false" type="string"/>
@@ -115,28 +135,28 @@
   </method>
   <method name="setDebugLevel" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the debugging level for the library."/>
+      <description compact="Sets the debugging level for the library"/>
       <return type="bool"/>
     </docblock>
     <parameter name="logLevel" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setDeterministicConnOrder" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Enable/disable quorum endpoint order randomization."/>
+      <description compact="Enable/disable quorum endpoint order randomization"/>
       <return type="bool"/>
     </docblock>
     <parameter name="yesOrNo" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setLogStream" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the stream to be used by the library for logging."/>
+      <description compact="Sets the stream to be used by the library for logging"/>
       <return type="bool"/>
     </docblock>
     <parameter name="stream" optional="false" byreference="false" type="object" class="resource"/>
   </method>
   <method name="setWatcher" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Set a watcher function."/>
+      <description compact="Set a watcher function"/>
       <return type="bool"/>
     </docblock>
     <parameter name="watcher_cb" optional="false" byreference="false" type="object" class="callable"/>
@@ -167,6 +187,16 @@
     </docblock>
   </constant>
   <constant name="" value="31">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
     <docblock>
       <var type="integer"/>
     </docblock>
@@ -222,6 +252,186 @@
     </docblock>
   </constant>
   <constant name="" value="999">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-100">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-101">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-102">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-103">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-108">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-110">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-111">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-112">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-113">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-114">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-115">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-116">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-117">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-118">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-119">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-120">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-121">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="-122">
     <docblock>
       <var type="integer"/>
     </docblock>

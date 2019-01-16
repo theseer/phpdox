@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="HRTime\StopWatch" namespace="" name="HRTime\StopWatch">
+<class xmlns="http://xml.phpdox.net/src" full="HRTime\StopWatch" namespace="HRTime" name="StopWatch">
   <extends name="HRTime\PerformanceCounter" full="HRTime\PerformanceCounter"/>
   <method name="getElapsedTicks" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get elapsed ticks for all intervals."/>
+      <description compact="Get elapsed ticks for all intervals"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="getElapsedTime" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get elapsed time for all intervals."/>
+      <description compact="Get elapsed time for all intervals"/>
       <return type="float"/>
     </docblock>
-    <parameter name="unit" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="unit" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getLastElapsedTicks" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get elapsed ticks for the last interval."/>
+      <description compact="Get elapsed ticks for the last interval"/>
       <return type="int"/>
     </docblock>
   </method>
   <method name="getLastElapsedTime" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get elapsed time for the last interval."/>
+      <description compact="Get elapsed time for the last interval"/>
       <return type="float"/>
     </docblock>
-    <parameter name="unit" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="unit" optional="true" byreference="false" type="int"/>
   </method>
   <method name="isRunning" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Whether the measurement is running."/>
+      <description compact="Whether the measurement is running"/>
       <return type="bool"/>
     </docblock>
   </method>
@@ -62,6 +62,6 @@
       <description compact=""/>
       <return type="int"/>
     </docblock>
-    <parameter name="start" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="start" optional="false" byreference="false" type="int"/>
   </method>
 </class>

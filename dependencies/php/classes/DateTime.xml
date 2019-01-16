@@ -46,6 +46,11 @@
       <var type="string"/>
     </docblock>
   </constant>
+  <constant name="RFC3339_EXTENDED" value="&quot;Y-m-d\TH:i:s.vP&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
   <constant name="RSS" value="&quot;D, d M Y H:i:s O&quot;">
     <docblock>
       <var type="string"/>
@@ -126,6 +131,7 @@
     <parameter name="hour" optional="false" byreference="false" type="int"/>
     <parameter name="minute" optional="false" byreference="false" type="int"/>
     <parameter name="second" optional="true" byreference="false" type="int"/>
+    <parameter name="microseconds" optional="true" byreference="false" type="int"/>
   </method>
   <method name="setTimestamp" abstract="false" static="false" visibility="public" final="false">
     <docblock>

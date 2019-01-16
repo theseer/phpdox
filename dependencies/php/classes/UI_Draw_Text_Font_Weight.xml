@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Weight" namespace="" name="UI\Draw\Text\Font\Weight">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Weight" namespace="UI\Draw\Text\Font" name="Weight">
   <constant name="Thin" value="">
     <docblock>
       <var type="integer"/>

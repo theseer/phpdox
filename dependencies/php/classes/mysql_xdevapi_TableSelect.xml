@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\TableSelect" namespace="mysql_xdevapi" name="TableSelect">
+  <implements name="mysql_xdevapi\Executable" full="mysql_xdevapi\Executable"/>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="placeholder_values" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\RowResult"/>
+    </docblock>
+  </method>
+  <method name="groupBy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="having" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="limit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="rows" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="lockExclusive" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="lock_waiting_option" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="lockShared" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="lock_waiting_option" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="offset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="orderby" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="where" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableSelect"/>
+    </docblock>
+    <parameter name="where_expr" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

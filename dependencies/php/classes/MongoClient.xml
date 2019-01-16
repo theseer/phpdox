@@ -136,7 +136,7 @@
   </method>
   <method name="listDBs" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Lists all of the databases available."/>
+      <description compact="Lists all of the databases available"/>
       <return type="array"/>
     </docblock>
   </method>

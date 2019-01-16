@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="pht\Threaded" namespace="pht" name="Threaded">
+  <method name="lock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Acquires the mutex lock"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="unlock" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Releases the mutex lock"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</interface>

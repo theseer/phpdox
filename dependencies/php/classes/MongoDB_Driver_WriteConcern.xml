@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteConcern" namespace="" name="MongoDB\Driver\WriteConcern">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteConcern" namespace="MongoDB\Driver" name="WriteConcern">
   <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
   <constant name="MAJORITY" value="&quot;majority&quot;">
     <docblock>
@@ -14,29 +14,35 @@
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Construct immutable WriteConcern"/>
+      <description compact="Create a new WriteConcern"/>
       <return type="void"/>
     </docblock>
-    <parameter name="w" optional="false" byreference="false" type="object" class="string|int"/>
-    <parameter name="wtimeout" optional="true" byreference="false" type="object" class="integer"/>
-    <parameter name="journal" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="w" optional="false" byreference="false" type="object" class="string|integer"/>
+    <parameter name="wtimeout" optional="true" byreference="false" type="int"/>
+    <parameter name="journal" optional="true" byreference="false" type="object" class="bool"/>
   </constructor>
   <method name="getJournal" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the WriteConcern's &quot;journal&quot; option"/>
-      <return type="bool|null"/>
+      <return type="boolean|null"/>
     </docblock>
   </method>
   <method name="getW" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the WriteConcern's &quot;w&quot; option"/>
-      <return type="string|int|null"/>
+      <return type="string|integer|null"/>
     </docblock>
   </method>
   <method name="getWtimeout" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the WriteConcern's &quot;wtimeout&quot; option"/>
       <return type="int"/>
+    </docblock>
+  </method>
+  <method name="isDefault" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this is the default write concern">Returns whether this is the default write concern (i.e. no options are specified). This method is primarily intended to be used in conjunction with MongoDB\Driver\Manager::getWriteConcern to determine whether the Manager has been constructed without any write concern options.</description>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

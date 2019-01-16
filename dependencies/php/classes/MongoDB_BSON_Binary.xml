@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Binary" namespace="" name="MongoDB\BSON\Binary">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Binary" namespace="MongoDB\BSON" name="Binary">
+  <implements name="MongoDB\BSON\BinaryInterface" full="MongoDB\BSON\BinaryInterface"/>
   <constant name="TYPE_GENERIC" value="0">
     <docblock>
       <var type="integer"/>
@@ -42,7 +42,7 @@
       <return type="void"/>
     </docblock>
     <parameter name="data" optional="false" byreference="false" type="string"/>
-    <parameter name="type" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="type" optional="false" byreference="false" type="int"/>
   </constructor>
   <method name="getData" abstract="false" static="false" visibility="public" final="true">
     <docblock>
@@ -53,7 +53,7 @@
   <method name="getType" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the Binary's type"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Componere\Value" namespace="Componere" name="Value">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Value Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="default" optional="true" byreference="false" type=""/>
+  </constructor>
+  <method name="setPrivate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Modification"/>
+      <return type="Value"/>
+    </docblock>
+  </method>
+  <method name="setProtected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Modification"/>
+      <return type="Value"/>
+    </docblock>
+  </method>
+  <method name="setStatic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Modification"/>
+      <return type="Value"/>
+    </docblock>
+  </method>
+  <method name="isPrivate" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isProtected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isStatic" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Accessibility Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="hasDefault" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Value Interaction"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

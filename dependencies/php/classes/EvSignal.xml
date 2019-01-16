@@ -33,7 +33,7 @@
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Constructs EvPeriodic watcher object"/>
+      <description compact="Constructs EvSignal watcher object"/>
       <return type="void"/>
     </docblock>
     <parameter name="signum" optional="false" byreference="false" type="int"/>

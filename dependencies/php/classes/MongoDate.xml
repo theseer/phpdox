@@ -14,7 +14,7 @@
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new date."/>
+      <description compact="Creates a new date"/>
       <return type="void"/>
     </docblock>
     <parameter name="sec" optional="true" byreference="false" type="int"/>

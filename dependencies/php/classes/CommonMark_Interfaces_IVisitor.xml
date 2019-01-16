@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="CommonMark\Interfaces\IVisitor" namespace="CommonMark\Interfaces" name="IVisitor">
+  <constant name="Done" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Enter" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="Leave" value="">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="enter" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Visitation"/>
+      <return type="?int|IVisitable"/>
+    </docblock>
+    <parameter name="visitable" optional="false" byreference="false" type="object" class="IVisitable"/>
+  </method>
+  <method name="leave" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Visitation"/>
+      <return type="?int|IVisitable"/>
+    </docblock>
+    <parameter name="visitable" optional="false" byreference="false" type="object" class="IVisitable"/>
+  </method>
+</class>

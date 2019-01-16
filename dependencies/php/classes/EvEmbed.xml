@@ -36,7 +36,7 @@
   </method>
   <method name="sweep" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Make a single, non-blocking sweep over the embedded loop."/>
+      <description compact="Make a single, non-blocking sweep over the embedded loop"/>
       <return type="void"/>
     </docblock>
   </method>

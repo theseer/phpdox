@@ -6,16 +6,16 @@
       <return type="mixed"/>
     </docblock>
     <parameter name="function_name" optional="false" byreference="false" type="string"/>
-    <parameter name="arguments" optional="false" byreference="false" type="string"/>
+    <parameter name="arguments" optional="false" byreference="false" type="object" class="array"/>
   </method>
-  <method name="SoapClient" abstract="false" static="false" visibility="public" final="false">
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="SoapClient constructor"/>
       <return type="void"/>
     </docblock>
     <parameter name="wsdl" optional="false" byreference="false" type="object" class="mixed"/>
     <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
-  </method>
+  </constructor>
   <method name="__doRequest" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Performs a SOAP request">Performs SOAP request over HTTP.</description>
@@ -26,6 +26,12 @@
     <parameter name="action" optional="false" byreference="false" type="string"/>
     <parameter name="version" optional="false" byreference="false" type="int"/>
     <parameter name="one_way" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="__getCookies" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get list of cookies"/>
+      <return type="array"/>
+    </docblock>
   </method>
   <method name="__getFunctions" abstract="false" static="false" visibility="public" final="false">
     <docblock>

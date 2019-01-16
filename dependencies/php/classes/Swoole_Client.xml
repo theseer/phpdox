@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Client" namespace="Swoole" name="Client">
+  <constant name="MSG_OOB" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MSG_PEEK" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MSG_DONTWAIT" value="128">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MSG_WAITALL" value="64">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="errCode" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="sock" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="reuse" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="reuseCount" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="close" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Close the connection established."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="force" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Connect to the remote TCP or UDP port."/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="host" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="flag" optional="true" byreference="false" type="object" class="integer"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Destruct the Swoole client."/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="getpeername" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the remote socket name of the connection."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getsockname" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the local socket name of the connection."/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="isConnected" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the connection is established."/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add callback functions triggered by events."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="event" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="pause" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pause receiving data."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="pipe" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Redirect the data to another file descriptor."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="socket" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="recv" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Receive data from the remote socket."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="size" optional="true" byreference="false" type="string"/>
+    <parameter name="flag" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="resume" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Resume receiving data."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="send" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data to the remote TCP socket."/>
+      <return type="integer"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="flag" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="sendfile" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send file to the remote TCP socket."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="filename" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="sendto" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Send data to the remote UDP address."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="ip" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the Swoole client parameters before the connection is established."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="settings" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="sleep" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove the TCP client from system event loop."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="wakeup" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add the TCP client back into the system event loop."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

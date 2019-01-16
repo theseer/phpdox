@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\UTCDateTime" namespace="" name="MongoDB\BSON\UTCDateTime">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\UTCDateTime" namespace="MongoDB\BSON" name="UTCDateTime">
+  <implements name="MongoDB\BSON\UTCDateTimeInterface" full="MongoDB\BSON\UTCDateTimeInterface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new UTCDateTime"/>

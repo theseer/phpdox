@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Server" namespace="" name="MongoDB\Driver\Server">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Server" namespace="MongoDB\Driver" name="Server">
   <constant name="TYPE_UNKNOWN" value="0">
     <docblock>
       <var type="integer"/>
@@ -58,25 +58,52 @@
     </docblock>
     <parameter name="namespace" optional="false" byreference="false" type="string"/>
     <parameter name="bulk" optional="false" byreference="false" type="object" class="MongoDB\Driver\BulkWrite"/>
-    <parameter name="writeConcern" optional="true" byreference="false" type="object" class="MongoDB\Driver\WriteConcern"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="executeCommand" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Execute a database command on this server">Executes command on this server.</description>
+      <description compact="Execute a database command on this server">Executes the command on this server.</description>
       <return type="MongoDB\Driver\Cursor"/>
     </docblock>
     <parameter name="db" optional="false" byreference="false" type="string"/>
     <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
-    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="executeQuery" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Execute a database query on this server">Executes query on this server.</description>
+      <description compact="Execute a database query on this server"/>
       <return type="MongoDB\Driver\Cursor"/>
     </docblock>
     <parameter name="namespace" optional="false" byreference="false" type="string"/>
     <parameter name="query" optional="false" byreference="false" type="object" class="MongoDB\Driver\Query"/>
-    <parameter name="readPreference" optional="true" byreference="false" type="object" class="MongoDB\Driver\ReadPreference"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="executeReadCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command that reads on this server">Executes the command on this server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="executeReadWriteCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command that reads and writes on this server">Executes the command on this server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="executeWriteCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Execute a database command that writes on this server">Executes the command on this server.</description>
+      <return type="MongoDB\Driver\Cursor"/>
+    </docblock>
+    <parameter name="db" optional="false" byreference="false" type="string"/>
+    <parameter name="command" optional="false" byreference="false" type="object" class="MongoDB\Driver\Command"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </method>
   <method name="getHost" abstract="false" static="false" visibility="public" final="true">
     <docblock>

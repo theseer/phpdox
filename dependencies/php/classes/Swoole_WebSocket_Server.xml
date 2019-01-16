@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\WebSocket\Server" namespace="Swoole\WebSocket" name="Server">
+  <extends name="Swoole\Http\Server" full="Swoole\Http\Server"/>
+  <method name="exist" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if the the file description is existed."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Register event callback function"/>
+      <return type="ReturnType"/>
+    </docblock>
+    <parameter name="event_name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="pack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get a pack of binary data to send in a single frame."/>
+      <return type="binary"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="opcode" optional="true" byreference="false" type="string"/>
+    <parameter name="finish" optional="true" byreference="false" type="string"/>
+    <parameter name="mask" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Push data to the remote client."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+    <parameter name="opcode" optional="true" byreference="false" type="string"/>
+    <parameter name="finish" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="unpack" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Unpack the binary data received from the client."/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="object" class="binary"/>
+  </method>
+  <method name="on" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="event_name" optional="false" byreference="false" type="string"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="start" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </method>
+</class>

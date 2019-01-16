@@ -38,13 +38,14 @@
       <return type="void"/>
     </docblock>
     <parameter name="url" optional="false" byreference="false" type="string"/>
+    <parameter name="options" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
   <method name="setOpt" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set calling contexts"/>
-      <return type="boolean"/>
+      <return type="Yar_Client"/>
     </docblock>
-    <parameter name="name" optional="false" byreference="false" type="object" class="number"/>
+    <parameter name="name" optional="false" byreference="false" type="int"/>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
 </class>

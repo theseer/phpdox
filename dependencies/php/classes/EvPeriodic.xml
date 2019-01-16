@@ -39,14 +39,14 @@
   </member>
   <method name="again" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Simply stops and restarts the periodic watcher again."/>
+      <description compact="Simply stops and restarts the periodic watcher again"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="at" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the absolute time that this&#10;  watcher is supposed to trigger next"/>
-      <return type="double"/>
+      <return type="float"/>
     </docblock>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
@@ -54,7 +54,7 @@
       <description compact="Constructs EvPeriodic watcher object"/>
       <return type="void"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="interval" optional="false" byreference="false" type="string"/>
     <parameter name="reschedule_cb" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
@@ -66,8 +66,8 @@
       <description compact="Create a stopped EvPeriodic watcher"/>
       <return type="EvPeriodic"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="interval" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="reschedule_cb" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
@@ -78,8 +78,8 @@
       <description compact="Configures the watcher"/>
       <return type="void"/>
     </docblock>
-    <parameter name="offset" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="interval" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="offset" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="interval" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="clear" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -33,14 +33,14 @@
   </constant>
   <method name="addExpandFilterQuery" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Overrides main filter query, determines which documents to include in the main group."/>
+      <description compact="Overrides main filter query, determines which documents to include in the main group"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="fq" optional="false" byreference="false" type="string"/>
   </method>
   <method name="addExpandSortField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Orders the documents within the expanded groups (expand.sort parameter)."/>
+      <description compact="Orders the documents within the expanded groups (expand.sort parameter)"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="field" optional="false" byreference="false" type="string"/>
@@ -91,32 +91,32 @@
   </method>
   <method name="addGroupField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Add a field to be used to group results."/>
+      <description compact="Add a field to be used to group results"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
   <method name="addGroupFunction" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Allows grouping results based on the unique values of a function query (group.func parameter)."/>
+      <description compact="Allows grouping results based on the unique values of a function query (group.func parameter)"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
   <method name="addGroupQuery" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Allows grouping of documents that match the given query."/>
+      <description compact="Allows grouping of documents that match the given query"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
   <method name="addGroupSortField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Add a group sort field (group.sort parameter)."/>
+      <description compact="Add a group sort field (group.sort parameter)"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="field" optional="false" byreference="false" type="string"/>
-    <parameter name="order" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="order" optional="true" byreference="false" type="int"/>
   </method>
   <method name="addHighlightField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -203,7 +203,7 @@
   <method name="getExpandRows" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns The number of rows to display in each group (expand.rows)"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getExpandSortFields" abstract="false" static="false" visibility="public" final="false">
@@ -341,7 +341,7 @@
   <method name="getGroupCachePercent" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns group cache percent value"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getGroupFacet" abstract="false" static="false" visibility="public" final="false">
@@ -371,7 +371,7 @@
   <method name="getGroupLimit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the group.limit value"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getGroupMain" abstract="false" static="false" visibility="public" final="false">
@@ -389,7 +389,7 @@
   <method name="getGroupOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the group.offset value"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getGroupQueries" abstract="false" static="false" visibility="public" final="false">
@@ -722,7 +722,7 @@
   </method>
   <method name="removeExpandSortField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Removes an expand sort field from the expand.sort parameter."/>
+      <description compact="Removes an expand sort field from the expand.sort parameter"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="field" optional="false" byreference="false" type="string"/>
@@ -845,7 +845,7 @@
       <description compact="Sets the number of rows to display in each group (expand.rows). Server Default 5"/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setExplainOther" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -969,7 +969,7 @@
       <description compact="Enables caching for result grouping"/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="percent" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="percent" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setGroupFacet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -980,42 +980,42 @@
   </method>
   <method name="setGroupFormat" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the group format, result structure (group.format parameter)."/>
+      <description compact="Sets the group format, result structure (group.format parameter)"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setGroupLimit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Specifies the number of results to return for each group. The server default value is 1."/>
+      <description compact="Specifies the number of results to return for each group. The server default value is 1"/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setGroupMain" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="If true, the result of the first field grouping command is used as the main result list in the response, using group.format=simple."/>
+      <description compact="If true, the result of the first field grouping command is used as the main result list in the response, using group.format=simple"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setGroupNGroups" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="If true, Solr includes the number of groups that have matched the query in the results."/>
+      <description compact="If true, Solr includes the number of groups that have matched the query in the results"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setGroupOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the group.offset parameter."/>
+      <description compact="Sets the group.offset parameter"/>
       <return type="SolrQuery"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setGroupTruncate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="If true, facet counts are based on the most relevant document of each group matching the query."/>
+      <description compact="If true, facet counts are based on the most relevant document of each group matching the query"/>
       <return type="SolrQuery"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="bool"/>

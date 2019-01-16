@@ -204,7 +204,7 @@
   </method>
   <method name="error" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns an error string for the last error encountered."/>
+      <description compact="Returns an error string for the last error encountered"/>
       <return type="string"/>
     </docblock>
   </method>

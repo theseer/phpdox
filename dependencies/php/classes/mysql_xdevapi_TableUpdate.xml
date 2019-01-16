@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\TableUpdate" namespace="mysql_xdevapi" name="TableUpdate">
+  <implements name="mysql_xdevapi\Executable" full="mysql_xdevapi\Executable"/>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+    <parameter name="placeholder_values" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+  </method>
+  <method name="limit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+    <parameter name="rows" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="orderby" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+    <parameter name="orderby_expr" optional="false" byreference="false" type="object" class="mixed"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+    <parameter name="table_field" optional="false" byreference="false" type="string"/>
+    <parameter name="expression_or_literal" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="where" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\TableUpdate"/>
+    </docblock>
+    <parameter name="where_expr" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

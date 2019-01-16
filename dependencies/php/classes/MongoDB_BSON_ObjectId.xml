@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\ObjectId" namespace="MongoDB\BSON" name="ObjectId">
+  <implements name="MongoDB\BSON\ObjectIdInterface" full="MongoDB\BSON\ObjectIdInterface"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Construct a new ObjectId"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="id" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the timestamp component of this ObjectId"/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns a representation that can be converted to JSON"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="serialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Serialize an ObjectId"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the hexidecimal representation of this ObjectId"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Unserialize an ObjectId"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="serialized" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

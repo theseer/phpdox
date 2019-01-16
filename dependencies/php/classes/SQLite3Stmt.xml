@@ -11,7 +11,7 @@
   </method>
   <method name="bindValue" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Binds the value of a parameter to a statement variable"/>
+      <description compact="Binds the value of a parameter to a statement variable">Binds the value of a parameter to a statement variable.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="sql_param" optional="false" byreference="false" type="object" class="mixed"/>
@@ -20,7 +20,7 @@
   </method>
   <method name="clear" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Clears all current bound parameters"/>
+      <description compact="Clears all current bound parameters">Clears all current bound parameters (sets them to NULL).</description>
       <return type="bool"/>
     </docblock>
   </method>
@@ -36,6 +36,13 @@
       <return type="SQLite3Result"/>
     </docblock>
   </method>
+  <method name="getSQL" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the SQL of the statement"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="expanded" optional="true" byreference="false" type="object" class="bool"/>
+  </method>
   <method name="paramCount" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the number of parameters within the prepared statement"/>
@@ -44,7 +51,7 @@
   </method>
   <method name="readOnly" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact=""/>
+      <description compact="Returns whether a statement is definitely read only"/>
       <return type="bool"/>
     </docblock>
   </method>

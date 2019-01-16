@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Timer" namespace="Swoole" name="Timer">
+  <method name="after" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Trigger a callback function after a period of time."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="after_time_ms" optional="false" byreference="false" type="int"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Delete a timer by timer ID."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="timer_id" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="exists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Check if a timer is existed."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="timer_id" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="tick" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Repeats a given function at every given time-interval."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="interval_ms" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="param" optional="true" byreference="false" type="string"/>
+  </method>
+</class>

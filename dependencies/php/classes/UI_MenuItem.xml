@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\MenuItem" namespace="" name="UI\MenuItem">
+<class xmlns="http://xml.phpdox.net/src" full="UI\MenuItem" namespace="UI" name="MenuItem">
   <method name="disable" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Disable Menu Item"/>
@@ -29,6 +29,6 @@
       <description compact="Set Checked"/>
       <return type="void"/>
     </docblock>
-    <parameter name="checked" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="checked" optional="false" byreference="false" type="object" class="bool"/>
   </method>
 </class>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\CollectionModify" namespace="mysql_xdevapi" name="CollectionModify">
+  <implements name="mysql_xdevapi\Executable" full="mysql_xdevapi\Executable"/>
+  <method name="arrayAppend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="collection_field" optional="false" byreference="false" type="string"/>
+    <parameter name="expression_or_literal" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="arrayInsert" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="collection_field" optional="false" byreference="false" type="string"/>
+    <parameter name="expression_or_literal" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="bind" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="placeholder_values" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="execute" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Result"/>
+    </docblock>
+  </method>
+  <method name="limit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="rows" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="patch" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="document" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="replace" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="collection_field" optional="false" byreference="false" type="string"/>
+    <parameter name="expression_or_literal" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="collection_field" optional="false" byreference="false" type="string"/>
+    <parameter name="expression_or_literal" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="skip" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="position" optional="false" byreference="false" type="object" class="integer"/>
+  </method>
+  <method name="sort" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="sort_expr" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="unset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="fields" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+</class>

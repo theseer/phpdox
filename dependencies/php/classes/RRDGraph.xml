@@ -15,7 +15,7 @@
   </method>
   <method name="saveVerbose" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Saves the RRD database query into image and returns the verbose&#10;   information about generated graph.&#10;  "/>
+      <description compact="Saves the RRD database query into image and returns the verbose&#10;   information about generated graph&#10;  "/>
       <return type="array"/>
     </docblock>
   </method>

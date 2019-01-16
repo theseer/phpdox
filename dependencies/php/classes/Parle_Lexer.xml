@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Parle\Lexer" namespace="Parle" name="Lexer">
+  <constant name="ICASE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOT_NOT_LF" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOT_NOT_CRLF" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP_WS" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="MATCH_ZERO_LEN" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <member name="bol" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Start of input flag."/>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <member name="flags" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Lexer flags."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="state" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Current lexer state, readonly."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="marker" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Position of the latest token match, readonly."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="cursor" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Current input offset, readonly."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <method name="advance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Process next lexer rule"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="build" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Finalize the lexer rule set"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="callout" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Define token callback"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="int"/>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+  </method>
+  <method name="consume" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Pass the data for processing"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="dump" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Dump the state machine"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="getToken" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve the current token"/>
+      <return type="Parle\Token"/>
+    </docblock>
+  </method>
+  <method name="insertMacro" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Insert regex macro"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="regex" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="push" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a lexer rule"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="regex" optional="false" byreference="false" type="string"/>
+    <parameter name="id" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="reset" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Reset lexer"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="pos" optional="false" byreference="false" type="int"/>
+  </method>
+</class>

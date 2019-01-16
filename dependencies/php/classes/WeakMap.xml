@@ -21,7 +21,7 @@
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the current key under iteration."/>
+      <description compact="Returns the current key under iteration"/>
       <return type="object"/>
     </docblock>
   </method>

@@ -177,7 +177,7 @@
   </method>
   <method name="setfillcolor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the fill color to be used for drawing filled objects. "/>
+      <description compact="Sets the fill color to be used for drawing filled objects"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="object" class="mixed"/>
@@ -191,14 +191,14 @@
   </method>
   <method name="setfont" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the fully-specified font to use when annotating with text. "/>
+      <description compact="Sets the fully-specified font to use when annotating with text"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="font" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setfontsize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the font pointsize to use when annotating with text. "/>
+      <description compact="Sets the font pointsize to use when annotating with text"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="pointsize" optional="false" byreference="false" type="object" class="float"/>
@@ -219,21 +219,21 @@
   </method>
   <method name="setstrokecolor" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the color used for stroking object outlines. "/>
+      <description compact="Sets the color used for stroking object outlines"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="color" optional="false" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setstrokeopacity" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Specifies the opacity of stroked object outlines."/>
+      <description compact="Specifies the opacity of stroked object outlines"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="stroke_opacity" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setstrokewidth" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the width of the stroke used to draw object outlines. "/>
+      <description compact="Sets the width of the stroke used to draw object outlines"/>
       <return type="GmagickDraw"/>
     </docblock>
     <parameter name="width" optional="false" byreference="false" type="object" class="float"/>

@@ -2,14 +2,14 @@
 <class xmlns="http://xml.phpdox.net/src" full="RRDCreator" namespace="" name="RRDCreator">
   <method name="addArchive" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Adds RRA - archive of data values for each data source."/>
+      <description compact="Adds RRA - archive of data values for each data source"/>
       <return type="void"/>
     </docblock>
     <parameter name="description" optional="false" byreference="false" type="string"/>
   </method>
   <method name="addDataSource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Adds data source definition for RRD database."/>
+      <description compact="Adds data source definition for RRD database"/>
       <return type="void"/>
     </docblock>
     <parameter name="description" optional="false" byreference="false" type="string"/>

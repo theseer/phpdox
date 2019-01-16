@@ -46,7 +46,7 @@
   </method>
   <method name="getLocale" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get the locale for which the formatter was created.">Object oriented style</description>
+      <description compact="Get the locale for which the formatter was created">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>

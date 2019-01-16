@@ -26,7 +26,7 @@
       <return type="string"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
-    <parameter name="return" optional="true" byreference="false" type="string"/>
+    <parameter name="return" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="getAuthor" abstract="false" static="false" visibility="public" final="false">
     <docblock>

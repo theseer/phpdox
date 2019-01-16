@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="SessionUpdateTimestampHandlerInterface" namespace="" name="SessionUpdateTimestampHandlerInterface">
+  <method name="updateTimestamp" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update timestamp"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="val" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="validateId" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Validate ID"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+  </method>
+</interface>

@@ -10,7 +10,7 @@
   </constructor>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Return the current DirectoryIterator item."/>
+      <description compact="Return the current DirectoryIterator item"/>
       <return type="DirectoryIterator"/>
     </docblock>
   </method>
@@ -22,7 +22,7 @@
   </method>
   <method name="getBasename" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get base name of current DirectoryIterator item."/>
+      <description compact="Get base name of current DirectoryIterator item"/>
       <return type="string"/>
     </docblock>
     <parameter name="suffix" optional="true" byreference="false" type="string"/>
@@ -41,7 +41,7 @@
   </method>
   <method name="getFilename" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Return file name of current DirectoryIterator item."/>
+      <description compact="Return file name of current DirectoryIterator item"/>
       <return type="string"/>
     </docblock>
   </method>

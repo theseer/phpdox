@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteError" namespace="" name="MongoDB\Driver\WriteError">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\WriteError" namespace="MongoDB\Driver" name="WriteError">
   <method name="getCode" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns the WriteError's error code"/>

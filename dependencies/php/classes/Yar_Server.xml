@@ -16,7 +16,7 @@
   <method name="handle" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Start RPC Server">Start a RPC HTTP server, and ready for accpet RPC requests. Usual RPC calls will be issued as HTTP POST requests. If a HTTP GET request is issued to the uri, the service information (commented section above) will be printed on the page</description>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

@@ -156,12 +156,12 @@
   </method>
   <method name="get" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve an item">Memcached::get returns the item that was previously stored under the key. If the item is found and cas_token variable is provided, it will contain the CAS token value for the item. See Memcached::cas for how to use CAS tokens. Read-through caching callback may be specified via cache_cb parameter.</description>
+      <description compact="Retrieve an item">Memcached::get returns the item that was previously stored under the key. If the item is found and the flags is given Memcached::GET_EXTENDED, it will also return the CAS token value for the item. See Memcached::cas for how to use CAS tokens. Read-through caching callback may be specified via cache_cb parameter.</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="cache_cb" optional="true" byreference="false" type="object" class="callable"/>
-    <parameter name="cas_token" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="$flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getAllKeys" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -177,7 +177,7 @@
     <parameter name="server_key" optional="false" byreference="false" type="string"/>
     <parameter name="key" optional="false" byreference="false" type="string"/>
     <parameter name="cache_cb" optional="true" byreference="false" type="object" class="callable"/>
-    <parameter name="cas_token" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getDelayed" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -200,11 +200,10 @@
   </method>
   <method name="getMulti" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve multiple items">Memcached::getMulti is similar to Memcached::get, but instead of a single key item, it retrieves multiple items the keys of which are specified in the keys array. If cas_tokens variable is provided, it is filled with the CAS token values for the found items. Unlike Memcached::get it is not possible to specify a read-through cache callback for Memcached::getMulti, because the memcache protocol does not provide information on which keys were not found in the multi-key request.</description>
+      <description compact="Retrieve multiple items">Memcached::getMulti is similar to Memcached::get, but instead of a single key item, it retrieves multiple items the keys of which are specified in the keys array. Before v3.0 a second argument cas_tokens was in use. It was filled with the CAS token values for the found items. The cas_tokens parameter was removed in v3.0 of the extension. It was replaced with a new flag Memcached::GET_EXTENDED that needs is to be used as the value for flags.</description>
       <return type="mixed"/>
     </docblock>
     <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
-    <parameter name="cas_tokens" optional="true" byreference="false" type="object" class="array"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getMultiByKey" abstract="false" static="false" visibility="public" final="false">
@@ -214,7 +213,6 @@
     </docblock>
     <parameter name="server_key" optional="false" byreference="false" type="string"/>
     <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
-    <parameter name="cas_tokens" optional="true" byreference="false" type="string"/>
     <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getOption" abstract="false" static="false" visibility="public" final="false">

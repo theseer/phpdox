@@ -8,7 +8,7 @@
   </constructor>
   <method name="getType" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieves the font face type"/>
+      <description compact="Retrieves the font face type">Object oriented style (method):</description>
       <return type="int"/>
     </docblock>
   </method>

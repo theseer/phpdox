@@ -3,37 +3,37 @@
   <method name="create" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Create a Mutex"/>
-      <return type="long"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="lock" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="lock" optional="true" byreference="false" type="object" class="bool"/>
   </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Destroy Mutex"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="mutex" optional="false" byreference="false" type="int"/>
   </method>
   <method name="lock" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Acquire Mutex">Attempt to lock the Mutex for the caller.</description>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="mutex" optional="false" byreference="false" type="int"/>
   </method>
   <method name="trylock" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Attempt to Acquire Mutex"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="mutex" optional="false" byreference="false" type="int"/>
   </method>
   <method name="unlock" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Release Mutex"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
-    <parameter name="destroy" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="mutex" optional="false" byreference="false" type="int"/>
+    <parameter name="destroy" optional="true" byreference="false" type="object" class="bool"/>
   </method>
 </class>

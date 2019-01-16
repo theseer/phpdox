@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Decimal128" namespace="" name="MongoDB\BSON\Decimal128">
-  <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Decimal128" namespace="MongoDB\BSON" name="Decimal128">
+  <implements name="MongoDB\BSON\Decimal128Interface" full="MongoDB\BSON\Decimal128Interface"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Construct a new Decimal128"/>

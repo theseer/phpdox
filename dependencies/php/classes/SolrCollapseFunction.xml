@@ -24,7 +24,7 @@
   </constructor>
   <method name="getField" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the field that is being collapsed on."/>
+      <description compact="Returns the field that is being collapsed on"/>
       <return type="string"/>
     </docblock>
   </method>
@@ -55,7 +55,7 @@
   <method name="getSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns size parameter"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="setField" abstract="false" static="false" visibility="public" final="false">
@@ -74,7 +74,7 @@
   </method>
   <method name="setMax" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Selects the group heads by the max value of a numeric field or function query."/>
+      <description compact="Selects the group heads by the max value of a numeric field or function query"/>
       <return type="SolrCollapseFunction"/>
     </docblock>
     <parameter name="max" optional="false" byreference="false" type="string"/>
@@ -95,10 +95,10 @@
   </method>
   <method name="setSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Sets the initial size of the collapse data structures when collapsing on a numeric field only."/>
+      <description compact="Sets the initial size of the collapse data structures when collapsing on a numeric field only"/>
       <return type="SolrCollapseFunction"/>
     </docblock>
-    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>

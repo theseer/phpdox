@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\Statement" namespace="mysql_xdevapi" name="Statement">
+  <constant name="EXECUTE_ASYNC" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="BUFFERED" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <method name="getNextResult" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Result"/>
+    </docblock>
+  </method>
+  <method name="getResult" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Result"/>
+    </docblock>
+  </method>
+  <method name="hasMoreResults" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+</class>

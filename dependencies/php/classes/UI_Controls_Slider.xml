@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Slider" namespace="" name="UI\Controls\Slider">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Slider" namespace="UI\Controls" name="Slider">
   <extends name="UI\Control" full="UI\Control"/>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a new Slider"/>
       <return type="void"/>
     </docblock>
-    <parameter name="min" optional="false" byreference="false" type="object" class="integer"/>
-    <parameter name="max" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="min" optional="false" byreference="false" type="int"/>
+    <parameter name="max" optional="false" byreference="false" type="int"/>
   </constructor>
   <method name="getValue" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get Value"/>
-      <return type="integer"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="onChange" abstract="false" static="false" visibility="protected" final="false">
@@ -26,7 +26,7 @@
       <description compact="Set Value"/>
       <return type="void"/>
     </docblock>
-    <parameter name="value" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
   </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="false">
     <docblock>

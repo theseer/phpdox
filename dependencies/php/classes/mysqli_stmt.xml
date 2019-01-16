@@ -147,6 +147,12 @@
     </docblock>
     <parameter name="stmt" optional="false" byreference="false" type="object" class="mysqli_stmt"/>
   </method>
+  <method name="num_rows" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact="Return the number of rows in statements result set">Object oriented style</description>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="prepare" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Prepare an SQL statement for execution">Object oriented style</description>

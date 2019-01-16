@@ -9,14 +9,14 @@
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new 64-bit integer."/>
+      <description compact="Creates a new 64-bit integer"/>
       <return type="void"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="string"/>
   </constructor>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the string representation of this 64-bit integer."/>
+      <description compact="Returns the string representation of this 64-bit integer"/>
       <return type="string"/>
     </docblock>
   </method>

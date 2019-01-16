@@ -29,7 +29,7 @@
   </constructor>
   <method name="getFromNeuron" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns the postions of starting neuron."/>
+      <description compact="Returns the postions of starting neuron"/>
       <return type="int"/>
     </docblock>
   </method>
@@ -48,7 +48,7 @@
   <method name="setWeight" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Sets the connections weight">Sets the connection weight.</description>
-      <return type="bool"/>
+      <return type="void"/>
     </docblock>
     <parameter name="weight" optional="false" byreference="false" type="object" class="float"/>
   </method>

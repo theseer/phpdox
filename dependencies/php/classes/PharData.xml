@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="PharData" namespace="" name="PharData">
-  <extends name="Phar" full="Phar"/>
+  <extends name="RecursiveDirectoryIterator" full="RecursiveDirectoryIterator"/>
+  <constant name="CURRENT_AS_PATHNAME" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_AS_FILEINFO" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_AS_SELF" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_MODE_MASK" value="240">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_AS_PATHNAME" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_AS_FILENAME" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FOLLOW_SYMLINKS" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_MODE_MASK" value="3840">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NEW_CURRENT_AND_KEY" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP_DOTS" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNIX_PATHS" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <method name="addEmptyDir" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Add an empty directory to the tar/zip archive"/>
-      <return type="bool"/>
+      <return type="void"/>
     </docblock>
     <parameter name="dirname" optional="false" byreference="false" type="string"/>
   </method>
@@ -19,7 +74,7 @@
   <method name="addFromString" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Add a file from the filesystem to the tar/zip archive"/>
-      <return type="bool"/>
+      <return type="void"/>
     </docblock>
     <parameter name="localname" optional="false" byreference="false" type="string"/>
     <parameter name="contents" optional="false" byreference="false" type="string"/>
@@ -34,7 +89,7 @@
   </method>
   <method name="buildFromIterator" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Construct a tar or zip archive from an iterator."/>
+      <description compact="Construct a tar or zip archive from an iterator"/>
       <return type="array"/>
     </docblock>
     <parameter name="iter" optional="false" byreference="false" type="object" class="Iterator"/>
@@ -51,7 +106,7 @@
   <method name="compressFiles" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Compresses all files in the current tar/zip archive">For tar-based archives, this method throws a BadMethodCallException, as compression of individual files within a tar archive is not supported by the file format. Use PharData::compress to compress an entire tar-based archive.</description>
-      <return type="bool"/>
+      <return type="void"/>
     </docblock>
     <parameter name="compression" optional="false" byreference="false" type="int"/>
   </method>
@@ -134,7 +189,7 @@
   </method>
   <method name="offsetSet" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="set the contents of a file within the tar/zip to those of an external file or string"/>
+      <description compact="Set the contents of a file within the tar/zip to those of an external file or string"/>
       <return type="void"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
@@ -142,21 +197,21 @@
   </method>
   <method name="offsetUnset" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="remove a file from a tar/zip archive"/>
+      <description compact="Remove a file from a tar/zip archive"/>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setAlias" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="dummy function (Phar::setAlias is not valid for PharData)"/>
+      <description compact="Dummy function (Phar::setAlias is not valid for PharData)"/>
       <return type="bool"/>
     </docblock>
     <parameter name="alias" optional="false" byreference="false" type="string"/>
   </method>
   <method name="setDefaultStub" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="dummy function (Phar::setDefaultStub is not valid for PharData)"/>
+      <description compact="Dummy function (Phar::setDefaultStub is not valid for PharData)"/>
       <return type="bool"/>
     </docblock>
     <parameter name="index" optional="true" byreference="false" type="string"/>
@@ -171,14 +226,14 @@
   </method>
   <method name="setSignatureAlgorithm" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="set the signature algorithm for a phar and apply it.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Set the signature algorithm for a phar and apply it">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="sigtype" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setStub" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="dummy function (Phar::setStub is not valid for PharData)"/>
+      <description compact="Dummy function (Phar::setStub is not valid for PharData)"/>
       <return type="bool"/>
     </docblock>
     <parameter name="stub" optional="false" byreference="false" type="string"/>
@@ -353,6 +408,12 @@
     <parameter name="files" optional="true" byreference="false" type="object" class="string|array"/>
     <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
   </method>
+  <method name="getAlias" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="getMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
@@ -363,6 +424,12 @@
     <docblock>
       <description compact=""/>
       <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getSignature" abstract="false" static="false" visibility="public" final="false">
@@ -531,7 +598,7 @@
   </method>
   <method name="setSignatureAlgorithm" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="set the signature algorithm for a phar and apply it.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Set the signature algorithm for a phar and apply it">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="sigtype" optional="false" byreference="false" type="int"/>

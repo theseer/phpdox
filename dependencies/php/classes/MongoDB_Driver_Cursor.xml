@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Cursor" namespace="" name="MongoDB\Driver\Cursor">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Cursor" namespace="MongoDB\Driver" name="Cursor">
   <implements name="Traversable" full="Traversable"/>
   <constructor name="__construct" abstract="false" static="false" final="true">
     <docblock>
@@ -21,7 +21,7 @@
   </method>
   <method name="isDead" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Checks if the cursor is still open on the server">Returns whether the cursor is still open on the server (i.e. the server has more results that have yet to be sent to the client).</description>
+      <description compact="Checks if the cursor may have additional results"/>
       <return type="bool"/>
     </docblock>
   </method>

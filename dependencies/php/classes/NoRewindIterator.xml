@@ -34,7 +34,7 @@
   </method>
   <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Prevents the rewind operation on the inner iterator."/>
+      <description compact="Prevents the rewind operation on the inner iterator"/>
       <return type="void"/>
     </docblock>
   </method>

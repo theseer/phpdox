@@ -18,12 +18,6 @@
       <description compact="references to Workers"/>
     </docblock>
   </member>
-  <member name="work" static="false" visibility="protected">
-    <default>null</default>
-    <docblock>
-      <description compact="references to Threaded objects submitted to the Pool"/>
-    </docblock>
-  </member>
   <member name="ctor" static="false" visibility="protected">
     <default>null</default>
     <docblock>
@@ -48,7 +42,7 @@
       <description compact="Creates a new Pool of Workers"/>
       <return type="Pool"/>
     </docblock>
-    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
     <parameter name="class" optional="true" byreference="false" type="string"/>
     <parameter name="ctor" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
@@ -57,7 +51,7 @@
       <description compact="Resize the Pool"/>
       <return type="void"/>
     </docblock>
-    <parameter name="size" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="size" optional="false" byreference="false" type="int"/>
   </method>
   <method name="shutdown" abstract="false" static="false" visibility="public" final="false">
     <docblock>

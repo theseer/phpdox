@@ -40,7 +40,7 @@
   </method>
   <method name="getUTF8Width" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="calculates the width of the given string in this text objects current font and size"/>
+      <description compact="Calculates the width of the given string in this text objects current font and size"/>
       <return type="float"/>
     </docblock>
     <parameter name="string" optional="false" byreference="false" type="string"/>

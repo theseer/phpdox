@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="SplTempFileObject" namespace="" name="SplTempFileObject">
   <implements name="SeekableIterator" full="SeekableIterator"/>
+  <constant name="DROP_NEW_LINE" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="READ_AHEAD" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP_EMPTY" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="READ_CSV" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Construct a new temporary file object"/>
@@ -205,12 +225,6 @@
       <return type="void"/>
     </docblock>
     <parameter name="max_len" optional="false" byreference="false" type="int"/>
-  </method>
-  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
-    <docblock>
-      <description compact=""/>
-      <return type="void"/>
-    </docblock>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\UTCDateTimeInterface" namespace="MongoDB\BSON" name="UTCDateTimeInterface">
+  <method name="toDateTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the DateTime representation of this UTCDateTimeInterface"/>
+      <return type="DateTime"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Returns the string representation of this UTCDateTimeInterface"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</interface>

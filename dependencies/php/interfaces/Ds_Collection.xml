@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<interface xmlns="http://xml.phpdox.net/src" full="Ds\Collection" namespace="" name="Ds\Collection">
+<interface xmlns="http://xml.phpdox.net/src" full="Ds\Collection" namespace="Ds" name="Collection">
   <implements name="Traversable" full="Traversable"/>
   <method name="clear" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Removes all values."/>
+      <description compact="Removes all values"/>
       <return type="void"/>
     </docblock>
   </method>
   <method name="copy" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns a shallow copy of the collection."/>
+      <description compact="Returns a shallow copy of the collection"/>
       <return type="Ds\Collection"/>
     </docblock>
   </method>
@@ -21,7 +21,7 @@
   </method>
   <method name="toArray" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;    Converts the collection to an array.&#10;  ">Converts the collection to an array.</description>
+      <description compact="&#10;    Converts the collection to an array&#10;  ">Converts the collection to an array.</description>
       <return type="array"/>
     </docblock>
   </method>

@@ -16,7 +16,7 @@
   <method name="gc" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Cleanup old sessions"/>
-      <return type="bool"/>
+      <return type="int"/>
     </docblock>
     <parameter name="maxlifetime" optional="false" byreference="false" type="int"/>
   </method>

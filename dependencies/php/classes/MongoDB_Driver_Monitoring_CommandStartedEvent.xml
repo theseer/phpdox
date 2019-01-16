@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Monitoring\CommandStartedEvent" namespace="MongoDB\Driver\Monitoring" name="CommandStartedEvent">
+  <method name="getCommand" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command document"/>
+      <return type="object"/>
+    </docblock>
+  </method>
+  <method name="getCommandName" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command name"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getDatabaseName" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the database on which the command was executed"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getOperationId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command's operation ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getRequestId" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the command's request ID"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getServer" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Returns the Server on which the command was executed"/>
+      <return type="MongoDB\Driver\Server"/>
+    </docblock>
+  </method>
+</class>

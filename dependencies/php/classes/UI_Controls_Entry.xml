@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Entry" namespace="" name="UI\Controls\Entry">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Entry" namespace="UI\Controls" name="Entry">
   <extends name="UI\Control" full="UI\Control"/>
   <constant name="Normal" value="">
     <docblock>
@@ -21,7 +21,7 @@
       <description compact="Construct a new Entry"/>
       <return type="void"/>
     </docblock>
-    <parameter name="type" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="getText" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -46,7 +46,7 @@
       <description compact="Set Read Only"/>
       <return type="void"/>
     </docblock>
-    <parameter name="readOnly" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="readOnly" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setText" abstract="false" static="false" visibility="public" final="false">
     <docblock>

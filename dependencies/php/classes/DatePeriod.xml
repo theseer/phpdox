@@ -6,6 +6,48 @@
       <var type="integer"/>
     </docblock>
   </constant>
+  <member name="recurrences" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The number of recurrences."/>
+      <var type="integer"/>
+    </docblock>
+  </member>
+  <member name="include_start_date" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="Whether to include the start date in the set of recurring dates or not."/>
+      <var type="boolean"/>
+    </docblock>
+  </member>
+  <member name="start" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The start date of the period."/>
+      <var type="DateTimeInterface"/>
+    </docblock>
+  </member>
+  <member name="current" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="During iteration this will contain the current date within the period."/>
+      <var type="DateTimeInterface"/>
+    </docblock>
+  </member>
+  <member name="end" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="The end date of the period."/>
+      <var type="DateTimeInterface"/>
+    </docblock>
+  </member>
+  <member name="interval" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact="An ISO 8601 repeating interval specification."/>
+      <var type="DateInterval"/>
+    </docblock>
+  </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Creates a new DatePeriod object"/>

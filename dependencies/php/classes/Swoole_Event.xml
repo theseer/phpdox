@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Event" namespace="Swoole" name="Event">
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add new callback functions of a socket into the EventLoop."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="int"/>
+    <parameter name="read_callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="write_callback" optional="true" byreference="false" type="object" class="callable"/>
+    <parameter name="events" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="defer" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add a callback function to the next event loop."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="del" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Remove all event callback functions of a socket."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="exit" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Exit the eventloop, only available at client side."/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Update the event callback functions of a socket."/>
+      <return type="boolean"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="int"/>
+    <parameter name="read_callback" optional="true" byreference="false" type="string"/>
+    <parameter name="write_callback" optional="true" byreference="false" type="string"/>
+    <parameter name="events" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="wait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Write data to the socket."/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="fd" optional="false" byreference="false" type="string"/>
+    <parameter name="data" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

@@ -274,48 +274,48 @@
       <description compact="The inFill purpose">Object oriented style (method):</description>
       <return type="bool"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="inStroke" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The inStroke purpose">Object oriented style (method):</description>
       <return type="bool"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="lineTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The lineTo purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="mask" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The mask purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="pattern" optional="false" byreference="false" type="string"/>
+    <parameter name="pattern" optional="false" byreference="false" type="object" class="CairoPattern"/>
   </method>
   <method name="maskSurface" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The maskSurface purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="surface" optional="false" byreference="false" type="string"/>
-    <parameter name="x" optional="true" byreference="false" type="string"/>
-    <parameter name="y" optional="true" byreference="false" type="string"/>
+    <parameter name="surface" optional="false" byreference="false" type="object" class="CairoSurface"/>
+    <parameter name="x" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="moveTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The moveTo purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="newPath" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -340,7 +340,7 @@
       <description compact="The paintWithAlpha purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="alpha" optional="false" byreference="false" type="string"/>
+    <parameter name="alpha" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="pathExtents" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -371,45 +371,45 @@
       <description compact="The pushGroupWithContent purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="content" optional="false" byreference="false" type="string"/>
+    <parameter name="content" optional="false" byreference="false" type="int"/>
   </method>
   <method name="rectangle" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The rectangle purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
-    <parameter name="width" optional="false" byreference="false" type="string"/>
-    <parameter name="height" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="relCurveTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The relCurveTo purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x1" optional="false" byreference="false" type="string"/>
-    <parameter name="y1" optional="false" byreference="false" type="string"/>
-    <parameter name="x2" optional="false" byreference="false" type="string"/>
-    <parameter name="y2" optional="false" byreference="false" type="string"/>
-    <parameter name="x3" optional="false" byreference="false" type="string"/>
-    <parameter name="y3" optional="false" byreference="false" type="string"/>
+    <parameter name="x1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y1" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y2" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="x3" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y3" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="relLineTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The relLineTo purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="relMoveTo" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The relMoveTo purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="resetClip" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -428,7 +428,7 @@
       <description compact="The rotate purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="angle" optional="false" byreference="false" type="string"/>
+    <parameter name="angle" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="save" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -441,8 +441,8 @@
       <description compact="The scale purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="selectFontFace" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -450,30 +450,30 @@
       <return type="void"/>
     </docblock>
     <parameter name="family" optional="false" byreference="false" type="string"/>
-    <parameter name="slant" optional="true" byreference="false" type="string"/>
-    <parameter name="weight" optional="true" byreference="false" type="string"/>
+    <parameter name="slant" optional="true" byreference="false" type="int"/>
+    <parameter name="weight" optional="true" byreference="false" type="int"/>
   </method>
   <method name="setAntialias" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setAntialias purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="antialias" optional="true" byreference="false" type="string"/>
+    <parameter name="antialias" optional="true" byreference="false" type="int"/>
   </method>
   <method name="setDash" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setDash purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="dashes" optional="false" byreference="false" type="string"/>
-    <parameter name="offset" optional="true" byreference="false" type="string"/>
+    <parameter name="dashes" optional="false" byreference="false" type="object" class="array"/>
+    <parameter name="offset" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="setFillRule" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setFillRule purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="setting" optional="false" byreference="false" type="string"/>
+    <parameter name="setting" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setFontFace" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -487,112 +487,112 @@
       <description compact="The setFontMatrix purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="CairoMatrix"/>
   </method>
   <method name="setFontOptions" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setFontOptions purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="fontoptions" optional="false" byreference="false" type="string"/>
+    <parameter name="fontoptions" optional="false" byreference="false" type="object" class="CairoFontOptions"/>
   </method>
   <method name="setFontSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setFontSize purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="size" optional="false" byreference="false" type="string"/>
+    <parameter name="size" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setLineCap" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setLineCap purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="setting" optional="false" byreference="false" type="string"/>
+    <parameter name="setting" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setLineJoin" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setLineJoin purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="setting" optional="false" byreference="false" type="string"/>
+    <parameter name="setting" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setLineWidth" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setLineWidth purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="width" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setMatrix" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setMatrix purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="CairoMatrix"/>
   </method>
   <method name="setMiterLimit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setMiterLimit purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="limit" optional="false" byreference="false" type="string"/>
+    <parameter name="limit" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setOperator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setOperator purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="setting" optional="false" byreference="false" type="string"/>
+    <parameter name="setting" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setScaledFont" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setScaledFont purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="scaledfont" optional="false" byreference="false" type="string"/>
+    <parameter name="scaledfont" optional="false" byreference="false" type="object" class="CairoScaledFont"/>
   </method>
   <method name="setSource" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setSource purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="pattern" optional="false" byreference="false" type="string"/>
+    <parameter name="pattern" optional="false" byreference="false" type="object" class="CairoPattern"/>
   </method>
   <method name="setSourceRGB" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setSourceRGB purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="red" optional="false" byreference="false" type="string"/>
-    <parameter name="green" optional="false" byreference="false" type="string"/>
-    <parameter name="blue" optional="false" byreference="false" type="string"/>
+    <parameter name="red" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="green" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="blue" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setSourceRGBA" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setSourceRGBA purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="red" optional="false" byreference="false" type="string"/>
-    <parameter name="green" optional="false" byreference="false" type="string"/>
-    <parameter name="blue" optional="false" byreference="false" type="string"/>
-    <parameter name="alpha" optional="false" byreference="false" type="string"/>
+    <parameter name="red" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="green" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="blue" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="alpha" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setSourceSurface" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setSourceSurface purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="surface" optional="false" byreference="false" type="string"/>
-    <parameter name="x" optional="true" byreference="false" type="string"/>
-    <parameter name="y" optional="true" byreference="false" type="string"/>
+    <parameter name="surface" optional="false" byreference="false" type="object" class="CairoSurface"/>
+    <parameter name="x" optional="true" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="setTolerance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setTolerance purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="tolerance" optional="false" byreference="false" type="string"/>
+    <parameter name="tolerance" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="showPage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -650,30 +650,30 @@
       <description compact="The transform purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="matrix" optional="false" byreference="false" type="string"/>
+    <parameter name="matrix" optional="false" byreference="false" type="object" class="CairoMatrix"/>
   </method>
   <method name="translate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The translate purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="userToDevice" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The userToDevice purpose">Object oriented style (method):</description>
       <return type="array"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="userToDeviceDistance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The userToDeviceDistance purpose">Object oriented style (method):</description>
       <return type="array"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
 </class>

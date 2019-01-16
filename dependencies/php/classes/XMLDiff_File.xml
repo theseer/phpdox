@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="XMLDiff\File" namespace="" name="XMLDiff\File">
+<class xmlns="http://xml.phpdox.net/src" full="XMLDiff\File" namespace="XMLDiff" name="File">
   <extends name="XMLDiff\Base" full="XMLDiff\Base"/>
   <method name="diff" abstract="false" static="false" visibility="public" final="false">
     <docblock>

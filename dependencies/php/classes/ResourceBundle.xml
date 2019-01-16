@@ -26,13 +26,13 @@
   </method>
   <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get bundle's last error code.">Object oriented style</description>
+      <description compact="Get bundle's last error code">Object oriented style</description>
       <return type="int"/>
     </docblock>
   </method>
   <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get bundle's last error message.">Object oriented style</description>
+      <description compact="Get bundle's last error message">Object oriented style</description>
       <return type="string"/>
     </docblock>
   </method>

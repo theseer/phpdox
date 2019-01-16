@@ -105,145 +105,145 @@
   <method name="createCharacterInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Create break iterator for boundaries of combining character sequences&#10;  "/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
-    <parameter name="&quot;locale&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
   </method>
   <method name="createCodePointInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create break iterator for boundaries of code points"/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
   </method>
   <method name="createLineInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Create break iterator for logically possible line breaks&#10;  "/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
-    <parameter name="&quot;locale&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
   </method>
   <method name="createSentenceInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create break iterator for sentence breaks"/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
-    <parameter name="&quot;locale&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
   </method>
   <method name="createTitleInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create break iterator for title-casing breaks"/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
-    <parameter name="&quot;locale&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
   </method>
   <method name="createWordInstance" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create break iterator for word breaks"/>
-      <return type="ReturnType"/>
+      <return type="IntlBreakIterator"/>
     </docblock>
-    <parameter name="&quot;locale&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
   </method>
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get index of current position"/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="first" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set position to the first character in the text"/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="following" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="&#10;   Advance the iterator to the first boundary following specified offset&#10;  "/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="&quot;offset&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
   </method>
   <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get last error code on the object">Object oriented style (method):</description>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Get last error code on the object">Object oriented style (method):</description>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get last error message on the object">Object oriented style (method):</description>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Get last error message on the object">Object oriented style (method):</description>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getLocale" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the locale associated with the object"/>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
-    <parameter name="&quot;locale_type&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="locale_type" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getPartsIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Create iterator for navigating fragments between boundaries"/>
-      <return type="ReturnType"/>
+      <return type="IntlPartsIterator"/>
     </docblock>
-    <parameter name="&quot;key_type&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="key_type" optional="true" byreference="false" type="int"/>
   </method>
   <method name="getText" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the text being scanned"/>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="isBoundary" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Tell whether an offset is a boundary&#x2BC;s offset"/>
-      <return type="ReturnType"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="&quot;offset&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
   </method>
   <method name="last" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the iterator position to index beyond the last character"/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Advance the iterator the next boundary"/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="&quot;offset&quot;" optional="true" byreference="false" type="string"/>
+    <parameter name="offset" optional="true" byreference="false" type="int"/>
   </method>
   <method name="preceding" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the iterator position to the first boundary before an offset"/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
-    <parameter name="&quot;offset&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="offset" optional="false" byreference="false" type="int"/>
   </method>
   <method name="previous" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the iterator position to the boundary immediately before the current"/>
-      <return type="ReturnType"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="setText" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Set the text being scanned"/>
-      <return type="ReturnType"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="&quot;text&quot;" optional="false" byreference="false" type="string"/>
+    <parameter name="text" optional="false" byreference="false" type="string"/>
   </method>
 </class>

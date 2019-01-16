@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="ReflectionNamedType" namespace="" name="ReflectionNamedType">
+  <extends name="ReflectionType" full="ReflectionType"/>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the text of the type hint"/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="allowsNull" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="isBuiltin" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="__toString" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+</class>

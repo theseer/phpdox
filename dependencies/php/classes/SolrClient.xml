@@ -130,14 +130,14 @@
   </destructor>
   <method name="getById" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get Document By Id. Utilizes Solr Realtime Get (RTG)."/>
+      <description compact="Get Document By Id. Utilizes Solr Realtime Get (RTG)"/>
       <return type="SolrQueryResponse"/>
     </docblock>
     <parameter name="id" optional="false" byreference="false" type="string"/>
   </method>
   <method name="getByIds" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Get Documents by their Ids. Utilizes Solr Realtime Get (RTG)."/>
+      <description compact="Get Documents by their Ids. Utilizes Solr Realtime Get (RTG)"/>
       <return type="SolrQueryResponse"/>
     </docblock>
     <parameter name="ids" optional="false" byreference="false" type="object" class="array"/>

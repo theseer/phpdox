@@ -33,7 +33,7 @@
       <return type="ZMQDevice"/>
     </docblock>
     <parameter name="cb_func" optional="false" byreference="false" type="object" class="callable"/>
-    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
     <parameter name="user_data" optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setIdleTimeout" abstract="false" static="false" visibility="public" final="false">
@@ -41,7 +41,7 @@
       <description compact="Set the idle timeout"/>
       <return type="ZMQDevice"/>
     </docblock>
-    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setTimerCallback" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -49,7 +49,7 @@
       <return type="ZMQDevice"/>
     </docblock>
     <parameter name="cb_func" optional="false" byreference="false" type="object" class="callable"/>
-    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
     <parameter name="user_data" optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="setTimerTimeout" abstract="false" static="false" visibility="public" final="false">
@@ -57,6 +57,6 @@
       <description compact="Set the timer timeout"/>
       <return type="ZMQDevice"/>
     </docblock>
-    <parameter name="timeout" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="timeout" optional="false" byreference="false" type="int"/>
   </method>
 </class>

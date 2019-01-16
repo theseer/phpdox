@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Size" namespace="" name="UI\Size">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Size" namespace="UI" name="Size">
   <member name="width" static="false" visibility="public">
     <default>null</default>
     <docblock>

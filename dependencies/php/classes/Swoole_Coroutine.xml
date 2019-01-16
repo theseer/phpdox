@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Swoole\Coroutine" namespace="Swoole" name="Coroutine">
+  <method name="call_user_func_array" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Call a callback with an array of parameters"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="param_array" optional="false" byreference="false" type="object" class="array"/>
+  </method>
+  <method name="call_user_func" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Call a callback given by the first parameter"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
+    <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="cli_wait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="create" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="getuid" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="resume" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+  <method name="suspend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="ReturnType"/>
+    </docblock>
+  </method>
+</class>

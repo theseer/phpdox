@@ -12,7 +12,7 @@
   <method name="accept" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Calls the callback with the current value, the current key and the inner iterator as arguments">This method calls the callback with the current value, current key and the inner iterator.</description>
-      <return type="string"/>
+      <return type="bool"/>
     </docblock>
   </method>
   <method name="accept" abstract="false" static="false" visibility="public" final="false">

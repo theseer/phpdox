@@ -80,7 +80,7 @@
   </method>
   <method name="createIndex" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Creates an index on the specified field(s) if it does not already exist.&#10;  ">Creates an index on the specified field(s) if it does not already exist. Fields may be indexed with a direction (e.g. ascending or descending) or a special type (e.g. text, geospatial, hashed).</description>
+      <description compact="&#10;   Creates an index on the specified field(s) if it does not already exist&#10;  ">Creates an index on the specified field(s) if it does not already exist. Fields may be indexed with a direction (e.g. ascending or descending) or a special type (e.g. text, geospatial, hashed).</description>
       <return type="bool"/>
     </docblock>
     <parameter name="keys" optional="false" byreference="false" type="object" class="array"/>
@@ -101,7 +101,7 @@
   </method>
   <method name="distinct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Retrieve a list of distinct values for the given key across a collection."/>
+      <description compact="Retrieve a list of distinct values for the given key across a collection"/>
       <return type="array"/>
     </docblock>
     <parameter name="key" optional="false" byreference="false" type="string"/>
@@ -115,7 +115,7 @@
   </method>
   <method name="ensureIndex" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Creates an index on the specified field(s) if it does not already exist.&#10;  ">This method is deprecated since version 1.5.0. Please use MongoCollection::createIndex instead.</description>
+      <description compact="&#10;   Creates an index on the specified field(s) if it does not already exist&#10;  ">This method is deprecated since version 1.5.0. Please use MongoCollection::createIndex instead.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="key|keys" optional="false" byreference="false" type="object" class="string|array"/>

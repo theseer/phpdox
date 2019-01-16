@@ -48,8 +48,8 @@
       <description compact="Constructs an EvTimer watcher object"/>
       <return type="void"/>
     </docblock>
-    <parameter name="after" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="repeat" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="after" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="repeat" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="priority" optional="true" byreference="false" type="int"/>
@@ -59,8 +59,8 @@
       <description compact="Creates EvTimer stopped watcher object"/>
       <return type="EvTimer"/>
     </docblock>
-    <parameter name="after" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="repeat" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="after" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="repeat" optional="false" byreference="false" type="object" class="float"/>
     <parameter name="callback" optional="false" byreference="false" type="object" class="callable"/>
     <parameter name="data" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="priority" optional="true" byreference="false" type="int"/>
@@ -70,8 +70,8 @@
       <description compact="Configures the watcher"/>
       <return type="void"/>
     </docblock>
-    <parameter name="after" optional="false" byreference="false" type="object" class="double"/>
-    <parameter name="repeat" optional="false" byreference="false" type="object" class="double"/>
+    <parameter name="after" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="repeat" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="clear" abstract="false" static="false" visibility="public" final="false">
     <docblock>

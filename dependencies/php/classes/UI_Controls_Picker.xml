@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Picker" namespace="" name="UI\Controls\Picker">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Picker" namespace="UI\Controls" name="Picker">
   <extends name="UI\Control" full="UI\Control"/>
   <constant name="Date" value="">
     <docblock>
@@ -21,7 +21,7 @@
       <description compact="Construct a new Picker"/>
       <return type="void"/>
     </docblock>
-    <parameter name="type" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="type" optional="true" byreference="false" type="int"/>
   </constructor>
   <method name="destroy" abstract="false" static="false" visibility="public" final="false">
     <docblock>

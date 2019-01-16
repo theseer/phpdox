@@ -53,22 +53,22 @@
       <description compact="The restrictToLevel purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="level" optional="false" byreference="false" type="string"/>
+    <parameter name="level" optional="false" byreference="false" type="int"/>
   </method>
   <method name="setEps" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setEps purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="level" optional="false" byreference="false" type="string"/>
+    <parameter name="level" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The setSize purpose"/>
       <return type="void"/>
     </docblock>
-    <parameter name="width" optional="false" byreference="false" type="string"/>
-    <parameter name="height" optional="false" byreference="false" type="string"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -139,26 +139,26 @@
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
-    <parameter name="width" optional="false" byreference="false" type="string"/>
-    <parameter name="height" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="width" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="height" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setDeviceOffset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="setFallbackResolution" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
       <return type="void"/>
     </docblock>
-    <parameter name="x" optional="false" byreference="false" type="string"/>
-    <parameter name="y" optional="false" byreference="false" type="string"/>
+    <parameter name="x" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="y" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="showPage" abstract="false" static="false" visibility="public" final="false">
     <docblock>

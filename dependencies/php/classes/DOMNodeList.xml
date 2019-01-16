@@ -8,10 +8,16 @@
       <var type="int"/>
     </docblock>
   </member>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get number of nodes in the list"/>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="item" abstract="false" static="false" final="false">
     <docblock>
       <description compact="&#10;   Retrieves a node specified by index&#10;  ">Retrieves a node specified by index within the DOMNodeList object.</description>
-      <return type="DOMElement"/>
+      <return type="DOMNode"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>

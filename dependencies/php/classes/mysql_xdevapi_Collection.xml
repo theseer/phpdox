@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="mysql_xdevapi\Collection" namespace="mysql_xdevapi" name="Collection">
+  <implements name="mysql_xdevapi\SchemaObject" full="mysql_xdevapi\SchemaObject"/>
+  <member name="name" static="false" visibility="public">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionAdd"/>
+    </docblock>
+    <parameter name="document" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="addOrReplaceOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Result"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+    <parameter name="doc" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="integer"/>
+    </docblock>
+  </method>
+  <method name="createIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="index_name" optional="false" byreference="false" type="string"/>
+    <parameter name="index_desc_json" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="dropIndex" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="index_name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="existsInDatabase" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="find" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionFind"/>
+    </docblock>
+    <parameter name="search_condition" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="getName" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Document"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getSchema" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Schema Object"/>
+    </docblock>
+  </method>
+  <method name="getSession" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Session"/>
+    </docblock>
+  </method>
+  <method name="modify" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionModify"/>
+    </docblock>
+    <parameter name="search_condition" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="remove" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\CollectionRemove"/>
+    </docblock>
+    <parameter name="search_condition" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="removeOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Result"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="replaceOne" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="mysql_xdevapi\Result"/>
+    </docblock>
+    <parameter name="id" optional="false" byreference="false" type="string"/>
+    <parameter name="doc" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

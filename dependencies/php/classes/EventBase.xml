@@ -48,7 +48,7 @@
       <description compact="Stop dispatching events"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="double"/>
+    <parameter name="timeout" optional="true" byreference="false" type="object" class="float"/>
   </method>
   <method name="free" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -71,7 +71,7 @@
   <method name="getTimeOfDayCached" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns the current event base time"/>
-      <return type="double"/>
+      <return type="float"/>
     </docblock>
   </method>
   <method name="gotExit" abstract="false" static="false" visibility="public" final="false">
@@ -102,7 +102,7 @@
   </method>
   <method name="reInit" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Re-initialize event base(after a fork)."/>
+      <description compact="Re-initialize event base(after a fork)"/>
       <return type="bool"/>
     </docblock>
   </method>

@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="RecursiveRegexIterator" namespace="" name="RecursiveRegexIterator">
   <implements name="RecursiveIterator" full="RecursiveIterator"/>
+  <constant name="" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new RecursiveRegexIterator."/>
+      <description compact="Creates a new RecursiveRegexIterator"/>
       <return type="void"/>
     </docblock>
     <parameter name="iterator" optional="false" byreference="false" type="object" class="RecursiveIterator"/>
@@ -14,13 +44,13 @@
   </constructor>
   <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns an iterator for the current entry."/>
+      <description compact="Returns an iterator for the current entry"/>
       <return type="RecursiveRegexIterator"/>
     </docblock>
   </method>
   <method name="hasChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns whether an iterator can be obtained for the current entry."/>
+      <description compact="Returns whether an iterator can be obtained for the current entry"/>
       <return type="bool"/>
     </docblock>
   </method>

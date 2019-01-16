@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Exception\AuthenticationException" namespace="" name="MongoDB\Driver\Exception\AuthenticationException">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Exception\AuthenticationException" namespace="MongoDB\Driver\Exception" name="AuthenticationException">
   <implements name="MongoDB\Driver\Exception\Exception" full="MongoDB\Driver\Exception\Exception"/>
+  <member name="errorLabels" static="false" visibility="protected">
+    <default>null</default>
+    <docblock>
+      <description compact="Contains an array of error labels to go with an exception. For example, error labels can be used to detect whether a transaction can be retried safely if the TransientTransactionError label is present. The existence of a specific error label should be tested for with the MongoDB\Driver\Exception\RuntimeException::hasErrorLabel, instead of interpreting this errorLabels property manually."/>
+      <var type="bool"/>
+    </docblock>
+  </member>
   <member name="message" static="false" visibility="protected">
     <default>null</default>
     <docblock>
@@ -29,6 +36,13 @@
       <var type="int"/>
     </docblock>
   </member>
+  <method name="hasErrorLabel" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="errorLabel" optional="false" byreference="false" type="string"/>
+  </method>
   <method name="getMessage" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact=""/>

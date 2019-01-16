@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="ZipArchive" namespace="" name="ZipArchive">
+  <implements name="Countable" full="Countable"/>
   <member name="status" static="false">
     <default>null</default>
     <docblock>
@@ -84,16 +85,22 @@
       <return type="bool"/>
     </docblock>
   </method>
+  <method name="count" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Counts the number of files in the achive"/>
+      <return type="int"/>
+    </docblock>
+  </method>
   <method name="deleteIndex" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="delete an entry in the archive using its index"/>
+      <description compact="Delete an entry in the archive using its index"/>
       <return type="bool"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
   </method>
   <method name="deleteName" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="delete an entry in the archive using its name"/>
+      <description compact="Delete an entry in the archive using its name"/>
       <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -183,7 +190,7 @@
   </method>
   <method name="getStream" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Get a file handler to the entry defined by its name (read only)."/>
+      <description compact="Get a file handler to the entry defined by its name (read only)"/>
       <return type="resource"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -308,7 +315,7 @@
   </method>
   <method name="statIndex" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Get the details of an entry defined by its index."/>
+      <description compact="Get the details of an entry defined by its index"/>
       <return type="array"/>
     </docblock>
     <parameter name="index" optional="false" byreference="false" type="int"/>
@@ -316,7 +323,7 @@
   </method>
   <method name="statName" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Get the details of an entry defined by its name."/>
+      <description compact="Get the details of an entry defined by its name"/>
       <return type="array"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>
@@ -330,7 +337,7 @@
   </method>
   <method name="unchangeArchive" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Revert all global changes done in the archive."/>
+      <description compact="Revert all global changes done in the archive"/>
       <return type="bool"/>
     </docblock>
   </method>
@@ -343,7 +350,7 @@
   </method>
   <method name="unchangeName" abstract="false" static="false" final="false">
     <docblock>
-      <description compact="Revert all changes done to an entry with the given name."/>
+      <description compact="Revert all changes done to an entry with the given name"/>
       <return type="bool"/>
     </docblock>
     <parameter name="name" optional="false" byreference="false" type="string"/>

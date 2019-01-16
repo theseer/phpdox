@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\ReadConcern" namespace="" name="MongoDB\Driver\ReadConcern">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\ReadConcern" namespace="MongoDB\Driver" name="ReadConcern">
   <implements name="MongoDB\BSON\Serializable" full="MongoDB\BSON\Serializable"/>
+  <constant name="AVAILABLE" value="&quot;available&quot;">
+    <docblock>
+      <var type="string"/>
+    </docblock>
+  </constant>
   <constant name="LINEARIZABLE" value="&quot;linearizable&quot;">
     <docblock>
       <var type="string"/>
@@ -24,7 +29,7 @@
   </method>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Construct immutable ReadConcern"/>
+      <description compact="Create a new ReadConcern"/>
       <return type="void"/>
     </docblock>
     <parameter name="level" optional="true" byreference="false" type="string"/>
@@ -33,6 +38,12 @@
     <docblock>
       <description compact="Returns the ReadConcern's &quot;level&quot; option"/>
       <return type="string|null"/>
+    </docblock>
+  </method>
+  <method name="isDefault" abstract="false" static="false" visibility="public" final="true">
+    <docblock>
+      <description compact="Checks if this is the default read concern">Returns whether this is the default read concern (i.e. no options are specified). This method is primarily intended to be used in conjunction with MongoDB\Driver\Manager::getReadConcern to determine whether the Manager has been constructed without any read concern options.</description>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

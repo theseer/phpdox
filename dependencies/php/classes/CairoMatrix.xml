@@ -60,8 +60,7 @@
       <description compact="The rotate purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="sx" optional="false" byreference="false" type="string"/>
-    <parameter name="sy" optional="false" byreference="false" type="string"/>
+    <parameter name="radians" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="scale" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -76,23 +75,23 @@
       <description compact="The transformDistance purpose"/>
       <return type="array"/>
     </docblock>
-    <parameter name="dx" optional="false" byreference="false" type="string"/>
-    <parameter name="dy" optional="false" byreference="false" type="string"/>
+    <parameter name="dx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="dy" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="transformPoint" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The transformPoint purpose"/>
       <return type="array"/>
     </docblock>
-    <parameter name="dx" optional="false" byreference="false" type="string"/>
-    <parameter name="dy" optional="false" byreference="false" type="string"/>
+    <parameter name="dx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="dy" optional="false" byreference="false" type="object" class="float"/>
   </method>
   <method name="translate" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="The translate purpose">Object oriented style (method):</description>
       <return type="void"/>
     </docblock>
-    <parameter name="tx" optional="false" byreference="false" type="string"/>
-    <parameter name="ty" optional="false" byreference="false" type="string"/>
+    <parameter name="tx" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="ty" optional="false" byreference="false" type="object" class="float"/>
   </method>
 </class>

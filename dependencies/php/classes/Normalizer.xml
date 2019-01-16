@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="Normalizer" namespace="" name="Normalizer">
+  <method name="getRawDecomposition" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Gets the Decomposition_Mapping property for the given UTF-8 encoded code point">Object oriented style</description>
+      <return type="string"/>
+    </docblock>
+    <parameter name="input" optional="false" byreference="false" type="string"/>
+  </method>
   <method name="isNormalized" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="&#10;   Checks if the provided string is already in the specified normalization&#10;   form.&#10;  ">Object oriented style</description>
+      <description compact="&#10;   Checks if the provided string is already in the specified normalization&#10;   form&#10;  ">Object oriented style</description>
       <return type="bool"/>
     </docblock>
     <parameter name="input" optional="false" byreference="false" type="string"/>

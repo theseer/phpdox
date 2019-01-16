@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Italic" namespace="" name="UI\Draw\Text\Font\Italic">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Italic" namespace="UI\Draw\Text\Font" name="Italic">
   <constant name="Normal" value="0">
     <docblock>
       <var type="integer"/>

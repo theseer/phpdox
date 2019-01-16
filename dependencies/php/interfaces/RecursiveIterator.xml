@@ -3,7 +3,7 @@
   <extends name="Iterator" full="Iterator"/>
   <method name="getChildren" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns an iterator for the current entry."/>
+      <description compact="Returns an iterator for the current entry"/>
       <return type="RecursiveIterator"/>
     </docblock>
   </method>
@@ -40,7 +40,7 @@
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </interface>

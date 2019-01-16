@@ -38,7 +38,6 @@
       <description compact="Invokes function"/>
       <return type="mixed"/>
     </docblock>
-    <parameter name="parameter" optional="true" byreference="false" type="object" class="mixed"/>
     <parameter name="..." optional="true" byreference="false" type="object" class="mixed"/>
   </method>
   <method name="invokeArgs" abstract="false" static="false" visibility="public" final="false">

@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="IntlGregorianCalendar" namespace="" name="IntlGregorianCalendar">
+  <extends name="IntlCalendar" full="IntlCalendar"/>
+  <constant name="FIELD_ERA" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_YEAR" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MONTH" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_WEEK_OF_YEAR" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_WEEK_OF_MONTH" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DATE" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_YEAR" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_WEEK" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_WEEK_IN_MONTH" value="8">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_AM_PM" value="9">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_HOUR" value="10">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_HOUR_OF_DAY" value="11">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MINUTE" value="12">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_SECOND" value="13">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MILLISECOND" value="14">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_ZONE_OFFSET" value="15">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DST_OFFSET" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_YEAR_WOY" value="17">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DOW_LOCAL" value="18">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_EXTENDED_YEAR" value="19">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_JULIAN_DAY" value="20">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_MILLISECONDS_IN_DAY" value="21">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_IS_LEAP_MONTH" value="22">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_FIELD_COUNT " value="23">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FIELD_DAY_OF_MONTH" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_SUNDAY" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_MONDAY" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TUESDAY" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_WEDNESDAY" value="4">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_THURSDAY" value="5">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_FRIDAY" value="6">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_SATURDAY" value="7">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKDAY" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKEND" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKEND_OFFSET" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="DOW_TYPE_WEEKEND_CEASE" value="3">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WALLTIME_FIRST" value="1">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WALLTIME_LAST" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="WALLTIME_NEXT_VALID" value="2">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Create the Gregorian Calendar class"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="tz" optional="true" byreference="false" type="object" class="IntlTimeZone"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
+  </constructor>
+  <method name="getGregorianChange" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the Gregorian Calendar change date"/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="isLeapYear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine if the given year is a leap year"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setGregorianChange" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Set the Gregorian Calendar the change date"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="date" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="add" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="amount" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="amount" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="after" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="before" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="clear" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="true" byreference="false" type="int"/>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="void"/>
+    </docblock>
+  </constructor>
+  <method name="createInstance" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="IntlCalendar"/>
+    </docblock>
+    <parameter name="timeZone" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="IntlCalendar"/>
+    </docblock>
+    <parameter name="timeZone" optional="true" byreference="false" type="object" class="mixed"/>
+    <parameter name="locale" optional="true" byreference="false" type="string"/>
+  </method>
+  <method name="equals" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="fieldDifference" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="when" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="when" optional="false" byreference="false" type="object" class="float"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="fromDateTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="IntlCalendar"/>
+    </docblock>
+    <parameter name="dateTime" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="IntlCalendar"/>
+    </docblock>
+    <parameter name="dateTime" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getActualMaximum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getActualMinimum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getAvailableLocales" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="getDayOfWeekType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getErrorCode" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="getErrorMessage" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getFirstDayOfWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getGreatestMinimum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getKeywordValuesForLocale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Iterator"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Iterator"/>
+    </docblock>
+    <parameter name="key" optional="false" byreference="false" type="string"/>
+    <parameter name="locale" optional="false" byreference="false" type="string"/>
+    <parameter name="commonlyUsed" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="getLeastMaximum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getLocale" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="localeType" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="localeType" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getMaximum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getMinimalDaysInFirstWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getMinimum" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="getNow" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="getRepeatedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getSkippedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="float"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="IntlTimeZone"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getType" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="getWeekendTransition" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="inDaylightTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="isEquivalentTo" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="other" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="isLenient" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+  <method name="isSet" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="isWeekend" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="date" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="date" optional="true" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="roll" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="amountOrUpOrDown" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="amountOrUpOrDown" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="set" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="month" optional="false" byreference="false" type="int"/>
+    <parameter name="dayOfMonth" optional="true" byreference="false" type="int"/>
+    <parameter name="hour" optional="true" byreference="false" type="int"/>
+    <parameter name="minute" optional="true" byreference="false" type="int"/>
+    <parameter name="second" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="field" optional="false" byreference="false" type="int"/>
+    <parameter name="value" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="year" optional="false" byreference="false" type="int"/>
+    <parameter name="month" optional="false" byreference="false" type="int"/>
+    <parameter name="dayOfMonth" optional="true" byreference="false" type="int"/>
+    <parameter name="hour" optional="true" byreference="false" type="int"/>
+    <parameter name="minute" optional="true" byreference="false" type="int"/>
+    <parameter name="second" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="setFirstDayOfWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="dayOfWeek" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setLenient" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="isLenient" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="isLenient" optional="false" byreference="false" type="object" class="bool"/>
+  </method>
+  <method name="setMinimalDaysInFirstWeek" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="minimalDays" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="minimalDays" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setRepeatedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wallTimeOption" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="wallTimeOption" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setSkippedWallTimeOption" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="wallTimeOption" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="wallTimeOption" optional="false" byreference="false" type="int"/>
+  </method>
+  <method name="setTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="date" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="date" optional="false" byreference="false" type="object" class="float"/>
+  </method>
+  <method name="setTimeZone" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="timeZone" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+    <parameter name="timeZone" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="toDateTime" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DateTime"/>
+    </docblock>
+  </method>
+  <method name="" abstract="false" static="false" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="DateTime"/>
+    </docblock>
+    <parameter name="cal" optional="false" byreference="false" type="object" class="IntlCalendar"/>
+  </method>
+</class>

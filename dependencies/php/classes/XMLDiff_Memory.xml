@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="XMLDiff\Memory" namespace="" name="XMLDiff\Memory">
+<class xmlns="http://xml.phpdox.net/src" full="XMLDiff\Memory" namespace="XMLDiff" name="Memory">
   <extends name="XMLDiff\Base" full="XMLDiff\Base"/>
   <method name="diff" abstract="false" static="false" visibility="public" final="false">
     <docblock>

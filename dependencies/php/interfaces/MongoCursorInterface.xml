@@ -3,7 +3,7 @@
   <extends name="Iterator" full="Iterator"/>
   <method name="batchSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Limits the number of elements returned in one batch."/>
+      <description compact="Limits the number of elements returned in one batch"/>
       <return type="MongoCursorInterface"/>
     </docblock>
     <parameter name="batchSize" optional="false" byreference="false" type="int"/>
@@ -68,7 +68,7 @@
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact=""/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </interface>

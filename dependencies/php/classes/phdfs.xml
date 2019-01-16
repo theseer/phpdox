@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="phdfs" namespace="" name="phdfs">
+  <member name="host" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <member name="port" static="false">
+    <default>null</default>
+    <docblock>
+      <description compact=""/>
+    </docblock>
+  </member>
+  <method name="connect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="ip" optional="false" byreference="false" type="string"/>
+    <parameter name="port" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <method name="copy" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="source_file" optional="false" byreference="false" type="string"/>
+    <parameter name="destination_file" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="create_directory" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="delete" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <destructor name="__destruct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="void"/>
+    </docblock>
+  </destructor>
+  <method name="disconnect" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="exists" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="file_info" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="list_directory" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="array"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="level" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="read" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="string"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="rename" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="old_path" optional="false" byreference="false" type="string"/>
+    <parameter name="new_path" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="tell" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="int"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="read_length" optional="true" byreference="false" type="int"/>
+  </method>
+  <method name="write" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Description"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="path" optional="false" byreference="false" type="string"/>
+    <parameter name="buffer" optional="false" byreference="false" type="string"/>
+    <parameter name="mode" optional="true" byreference="false" type="int"/>
+  </method>
+</class>

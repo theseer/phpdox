@@ -80,7 +80,7 @@
     <parameter name="doc" optional="false" byreference="false" type="object" class="DOMDocument"/>
     <parameter name="uri" optional="false" byreference="false" type="string"/>
   </method>
-  <method name="transformToXML" abstract="false" static="false" final="false">
+  <method name="transformToXml" abstract="false" static="false" final="false">
     <docblock>
       <description compact="Transform to XML"/>
       <return type="string"/>

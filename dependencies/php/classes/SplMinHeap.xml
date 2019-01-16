@@ -3,7 +3,7 @@
   <implements name="Iterator" full="Iterator"/>
   <method name="compare" abstract="false" static="false" visibility="protected" final="false">
     <docblock>
-      <description compact="Compare elements in order to place them correctly in the heap while sifting up."/>
+      <description compact="Compare elements in order to place them correctly in the heap while sifting up"/>
       <return type="int"/>
     </docblock>
     <parameter name="value1" optional="false" byreference="false" type="object" class="mixed"/>
@@ -41,6 +41,12 @@
       <return type="void"/>
     </docblock>
     <parameter name="value" optional="false" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="isCorrupted" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="bool"/>
+    </docblock>
   </method>
   <method name="isEmpty" abstract="false" static="false" visibility="public" final="false">
     <docblock>

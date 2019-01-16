@@ -27,13 +27,13 @@
   </method>
   <method name="poolDebug" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Returns information about all connection pools."/>
+      <description compact="Returns information about all connection pools"/>
       <return type="array"/>
     </docblock>
   </method>
   <method name="setPoolSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Set the size for future connection pools."/>
+      <description compact="Set the size for future connection pools"/>
       <return type="bool"/>
     </docblock>
     <parameter name="size" optional="false" byreference="false" type="int"/>

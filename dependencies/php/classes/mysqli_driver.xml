@@ -53,7 +53,7 @@
       <description compact="Initialize and start embedded server">Object oriented style</description>
       <return type="bool"/>
     </docblock>
-    <parameter name="start" optional="false" byreference="false" type="object" class="bool"/>
+    <parameter name="start" optional="false" byreference="false" type="int"/>
     <parameter name="arguments" optional="false" byreference="false" type="object" class="array"/>
     <parameter name="groups" optional="false" byreference="false" type="object" class="array"/>
   </method>

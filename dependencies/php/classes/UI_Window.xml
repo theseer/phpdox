@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Window" namespace="" name="UI\Window">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Window" namespace="UI" name="Window">
   <extends name="UI\Control" full="UI\Control"/>
   <member name="controls" static="false" visibility="protected">
     <default>null</default>
@@ -14,7 +14,7 @@
     </docblock>
     <parameter name="title" optional="false" byreference="false" type="string"/>
     <parameter name="size" optional="false" byreference="false" type="object" class="Size"/>
-    <parameter name="menu" optional="true" byreference="false" type="object" class="boolean"/>
+    <parameter name="menu" optional="true" byreference="false" type="object" class="bool"/>
   </constructor>
   <method name="add" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -92,21 +92,21 @@
       <description compact="Border Use"/>
       <return type="void"/>
     </docblock>
-    <parameter name="borders" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="borders" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setFullScreen" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Full Screen Use"/>
       <return type="void"/>
     </docblock>
-    <parameter name="full" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="full" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setMargin" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Margin Use"/>
       <return type="void"/>
     </docblock>
-    <parameter name="margin" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="margin" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setSize" abstract="false" static="false" visibility="public" final="false">
     <docblock>

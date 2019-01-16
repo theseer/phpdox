@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Yaconf" namespace="" name="Yaconf">
+  <method name="get" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Retrieve a item"/>
+      <return type="mixed"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="default_value" optional="true" byreference="false" type="object" class="mixed"/>
+  </method>
+  <method name="has" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Determine if a item exists"/>
+      <return type="bool"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+</class>

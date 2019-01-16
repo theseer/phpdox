@@ -10,7 +10,7 @@
   </method>
   <method name="dispatchLoopStartup" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The dispatchLoopStartup purpose"/>
+      <description compact="Hook before dispatch loop"/>
       <return type="void"/>
     </docblock>
     <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>

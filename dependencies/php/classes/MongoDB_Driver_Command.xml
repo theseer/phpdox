@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Command" namespace="" name="MongoDB\Driver\Command">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\Driver\Command" namespace="MongoDB\Driver" name="Command">
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Create a new Command"/>
+      <description compact="Create a new Command">Constructs a new MongoDB\Driver\Command, which is an immutable value object that represents a database command. The command may then be executed with MongoDB\Driver\Manager::executeCommand.</description>
       <return type="void"/>
     </docblock>
     <parameter name="document" optional="false" byreference="false" type="object" class="array|object"/>
+    <parameter name="commandOptions" optional="true" byreference="false" type="object" class="array"/>
   </constructor>
 </class>

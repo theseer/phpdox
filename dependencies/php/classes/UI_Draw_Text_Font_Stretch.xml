@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Stretch" namespace="" name="UI\Draw\Text\Font\Stretch">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Draw\Text\Font\Stretch" namespace="UI\Draw\Text\Font" name="Stretch">
   <constant name="UltraCondensed" value="0">
     <docblock>
       <var type="integer"/>

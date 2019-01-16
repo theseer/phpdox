@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Group" namespace="" name="UI\Controls\Group">
+<class xmlns="http://xml.phpdox.net/src" full="UI\Controls\Group" namespace="UI\Controls" name="Group">
   <extends name="UI\Control" full="UI\Control"/>
   <member name="controls" static="false" visibility="protected">
     <default>null</default>
@@ -38,7 +38,7 @@
       <description compact="Set Margin"/>
       <return type="void"/>
     </docblock>
-    <parameter name="margin" optional="false" byreference="false" type="object" class="boolean"/>
+    <parameter name="margin" optional="false" byreference="false" type="object" class="bool"/>
   </method>
   <method name="setTitle" abstract="false" static="false" visibility="public" final="false">
     <docblock>

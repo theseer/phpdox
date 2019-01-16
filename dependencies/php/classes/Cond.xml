@@ -3,37 +3,37 @@
   <method name="broadcast" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Broadcast a Condition"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="condition" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="condition" optional="false" byreference="false" type="int"/>
   </method>
   <method name="create" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Create a Condition"/>
-      <return type="long"/>
+      <return type="int"/>
     </docblock>
   </method>
   <method name="destroy" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Destroy a Condition"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="condition" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="condition" optional="false" byreference="false" type="int"/>
   </method>
   <method name="signal" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Signal a Condition"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="condition" optional="false" byreference="false" type="object" class="long"/>
+    <parameter name="condition" optional="false" byreference="false" type="int"/>
   </method>
   <method name="wait" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Wait for Condition"/>
-      <return type="boolean"/>
+      <return type="bool"/>
     </docblock>
-    <parameter name="condition" optional="false" byreference="false" type="object" class="long"/>
-    <parameter name="mutex" optional="false" byreference="false" type="object" class="long"/>
-    <parameter name="timeout" optional="true" byreference="false" type="object" class="long"/>
+    <parameter name="condition" optional="false" byreference="false" type="int"/>
+    <parameter name="mutex" optional="false" byreference="false" type="int"/>
+    <parameter name="timeout" optional="true" byreference="false" type="int"/>
   </method>
 </class>

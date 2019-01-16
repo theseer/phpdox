@@ -4,31 +4,31 @@
   <method name="current" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the current element"/>
-      <return type="ReturnType"/>
+      <return type="mixed"/>
     </docblock>
   </method>
   <method name="key" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Get the current key"/>
-      <return type="ReturnType"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="next" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Move forward to the next element"/>
-      <return type="ReturnType"/>
+      <return type="void"/>
     </docblock>
   </method>
   <method name="rewind" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Rewind the iterator to the first element"/>
-      <return type="ReturnType"/>
+      <return type="void"/>
     </docblock>
   </method>
   <method name="valid" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Check if current position is valid"/>
-      <return type="ReturnType"/>
+      <return type="bool"/>
     </docblock>
   </method>
 </class>

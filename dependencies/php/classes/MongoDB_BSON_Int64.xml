@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\ObjectID" namespace="" name="MongoDB\BSON\ObjectID">
+<class xmlns="http://xml.phpdox.net/src" full="MongoDB\BSON\Int64" namespace="MongoDB\BSON" name="Int64">
   <implements name="MongoDB\BSON\Type" full="MongoDB\BSON\Type"/>
-  <constructor name="__construct" abstract="false" static="false" visibility="public" final="true">
+  <constructor name="__construct" abstract="false" static="false" final="true">
     <docblock>
-      <description compact="Construct a new ObjectID"/>
+      <description compact="Construct a new Int64 (unused)"/>
       <return type="void"/>
     </docblock>
-    <parameter name="id" optional="true" byreference="false" type="string"/>
   </constructor>
-  <method name="getTimestamp" abstract="false" static="false" visibility="public" final="true">
-    <docblock>
-      <description compact="Returns the timestamp component of this ObjectID"/>
-      <return type="integer"/>
-    </docblock>
-  </method>
   <method name="jsonSerialize" abstract="false" static="false" visibility="public" final="true">
     <docblock>
       <description compact="Returns a representation that can be converted to JSON"/>
@@ -22,19 +15,19 @@
   </method>
   <method name="serialize" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Serialize an ObjectID"/>
+      <description compact="Serialize an Int64"/>
       <return type="string"/>
     </docblock>
   </method>
   <method name="__toString" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Returns the hexidecimal representation of this ObjectID"/>
+      <description compact="Returns the string representation of this Int64"/>
       <return type="string"/>
     </docblock>
   </method>
   <method name="unserialize" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="Unserialize an ObjectID"/>
+      <description compact="Unserialize an Int64"/>
       <return type="void"/>
     </docblock>
     <parameter name="serialized" optional="false" byreference="false" type="string"/>

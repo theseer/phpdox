@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class xmlns="http://xml.phpdox.net/src" full="HRTime\PerformanceCounter" namespace="" name="HRTime\PerformanceCounter">
+<class xmlns="http://xml.phpdox.net/src" full="HRTime\PerformanceCounter" namespace="HRTime" name="PerformanceCounter">
   <method name="getFrequency" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Timer frequency in ticks per second"/>
@@ -17,6 +17,6 @@
       <description compact="Ticks elapsed since the given value"/>
       <return type="int"/>
     </docblock>
-    <parameter name="start" optional="false" byreference="false" type="object" class="integer"/>
+    <parameter name="start" optional="false" byreference="false" type="int"/>
   </method>
 </class>

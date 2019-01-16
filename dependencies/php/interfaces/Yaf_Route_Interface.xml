@@ -2,7 +2,7 @@
 <interface xmlns="http://xml.phpdox.net/src" full="Yaf_Route_Interface" namespace="" name="Yaf_Route_Interface">
   <method name="assemble" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="assemble a request">this method returns a url according to the argument info, and append query strings to the url according to the argument query.</description>
+      <description compact="Assemble a request">this method returns a url according to the argument info, and append query strings to the url according to the argument query.</description>
       <return type="string"/>
     </docblock>
     <parameter name="info" optional="false" byreference="false" type="object" class="array"/>
@@ -10,7 +10,7 @@
   </method>
   <method name="route" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="route a request">Yaf_Route_Interface::route is the only method that a custom route should implement. since of 2.3.0, there is another method should also be implemented, see Yaf_Route_Interface::assemble.</description>
+      <description compact="Route a request">Yaf_Route_Interface::route is the only method that a custom route should implement. since of 2.3.0, there is another method should also be implemented, see Yaf_Route_Interface::assemble.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="request" optional="false" byreference="false" type="object" class="Yaf_Request_Abstract"/>

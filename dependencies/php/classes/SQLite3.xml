@@ -111,15 +111,16 @@
     <parameter name="flags" optional="true" byreference="false" type="int"/>
     <parameter name="encryption_key" optional="true" byreference="false" type="string"/>
   </method>
-  <method name="open" abstract="false" static="false" visibility="public" final="false">
+  <method name="openBlob" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Opens an SQLite database"/>
+      <description compact="Opens a stream resource to read a BLOB">Opens a stream resource to read or write a BLOB, which would be selected by:</description>
       <return type="resource"/>
     </docblock>
     <parameter name="table" optional="false" byreference="false" type="string"/>
     <parameter name="column" optional="false" byreference="false" type="string"/>
     <parameter name="rowid" optional="false" byreference="false" type="int"/>
     <parameter name="dbname" optional="true" byreference="false" type="string"/>
+    <parameter name="flags" optional="true" byreference="false" type="int"/>
   </method>
   <method name="prepare" abstract="false" static="false" visibility="public" final="false">
     <docblock>

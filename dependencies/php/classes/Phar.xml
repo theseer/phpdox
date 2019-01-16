@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class xmlns="http://xml.phpdox.net/src" full="Phar" namespace="" name="Phar">
   <implements name="Countable" full="Countable"/>
+  <constant name="CURRENT_AS_PATHNAME" value="32">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_AS_FILEINFO" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_AS_SELF" value="16">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="CURRENT_MODE_MASK" value="240">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_AS_PATHNAME" value="0">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_AS_FILENAME" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="FOLLOW_SYMLINKS" value="512">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="KEY_MODE_MASK" value="3840">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="NEW_CURRENT_AND_KEY" value="256">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="SKIP_DOTS" value="4096">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
+  <constant name="UNIX_PATHS" value="8192">
+    <docblock>
+      <var type="integer"/>
+    </docblock>
+  </constant>
   <method name="addEmptyDir" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Add an empty directory to the phar archive">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
@@ -32,7 +87,7 @@
   </method>
   <method name="buildFromDirectory" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Construct a phar archive from the files within a directory.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Construct a phar archive from the files within a directory">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="array"/>
     </docblock>
     <parameter name="base_dir" optional="false" byreference="false" type="string"/>
@@ -40,7 +95,7 @@
   </method>
   <method name="buildFromIterator" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Construct a phar archive from an iterator.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Construct a phar archive from an iterator">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="array"/>
     </docblock>
     <parameter name="iter" optional="false" byreference="false" type="object" class="Iterator"/>
@@ -170,6 +225,12 @@
     <parameter name="files" optional="true" byreference="false" type="object" class="string|array"/>
     <parameter name="overwrite" optional="true" byreference="false" type="object" class="bool"/>
   </method>
+  <method name="getAlias" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the alias for Phar"/>
+      <return type="string"/>
+    </docblock>
+  </method>
   <method name="getMetadata" abstract="false" static="false" visibility="public" final="false">
     <docblock>
       <description compact="Returns phar archive meta-data"/>
@@ -180,6 +241,12 @@
     <docblock>
       <description compact="Return whether phar was modified"/>
       <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getPath" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get the real path to the Phar archive on disk"/>
+      <return type="string"/>
     </docblock>
   </method>
   <method name="getSignature" abstract="false" static="false" visibility="public" final="false">
@@ -220,7 +287,7 @@
   </method>
   <method name="interceptFileFuncs" abstract="false" static="false" visibility="public" final="true">
     <docblock>
-      <description compact="instructs phar to intercept fopen, file_get_contents, opendir, and all of the stat-related functions">instructs phar to intercept fopen, readfile, file_get_contents, opendir, and all of the stat-related functions. If any of these functions is called from within a phar archive with a relative path, the call is modified to access a file within the phar archive. Absolute paths are assumed to be attempts to load external files from the filesystem.</description>
+      <description compact="Instructs phar to intercept fopen, file_get_contents, opendir, and all of the stat-related functions">instructs phar to intercept fopen, readfile, file_get_contents, opendir, and all of the stat-related functions. If any of these functions is called from within a phar archive with a relative path, the call is modified to access a file within the phar archive. Absolute paths are assumed to be attempts to load external files from the filesystem.</description>
       <return type="void"/>
     </docblock>
   </method>
@@ -290,7 +357,7 @@
   </method>
   <method name="offsetExists" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="determines whether a file exists in the phar">This is an implementation of the ArrayAccess interface allowing direct manipulation of the contents of a Phar archive using array access brackets.</description>
+      <description compact="Determines whether a file exists in the phar">This is an implementation of the ArrayAccess interface allowing direct manipulation of the contents of a Phar archive using array access brackets.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
@@ -304,7 +371,7 @@
   </method>
   <method name="offsetSet" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="set the contents of an internal file to those of an external file">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Set the contents of an internal file to those of an external file">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
@@ -312,7 +379,7 @@
   </method>
   <method name="offsetUnset" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="remove a file from a phar">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Remove a file from a phar">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="bool"/>
     </docblock>
     <parameter name="offset" optional="false" byreference="false" type="string"/>
@@ -348,7 +415,7 @@
   </method>
   <method name="setSignatureAlgorithm" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="set the signature algorithm for a phar and apply it.">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
+      <description compact="Set the signature algorithm for a phar and apply it">This method requires the php.ini setting phar.readonly to be set to 0 in order to work for Phar objects. Otherwise, a PharException will be thrown.</description>
       <return type="void"/>
     </docblock>
     <parameter name="sigtype" optional="false" byreference="false" type="int"/>

@@ -13,7 +13,7 @@
       <description compact="Waits for a read lock"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="wait" optional="true" byreference="false" type="int"/>
   </method>
   <method name="readunlock" abstract="false" static="false" visibility="public" final="false">
     <docblock>
@@ -26,7 +26,7 @@
       <description compact="Waits for an exclusive write lock"/>
       <return type="bool"/>
     </docblock>
-    <parameter name="wait" optional="true" byreference="false" type="object" class="integer"/>
+    <parameter name="wait" optional="true" byreference="false" type="int"/>
   </method>
   <method name="writeunlock" abstract="false" static="false" visibility="public" final="false">
     <docblock>

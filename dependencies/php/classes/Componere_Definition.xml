@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class xmlns="http://xml.phpdox.net/src" full="Componere\Definition" namespace="Componere" name="Definition">
+  <extends name="Componere\Definition" full="Componere\Definition"/>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Definition Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Definition Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="parent" optional="false" byreference="false" type="string"/>
+  </constructor>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Definition Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="interfaces" optional="false" byreference="false" type="object" class="array"/>
+  </constructor>
+  <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Definition Construction"/>
+      <return type="void"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="parent" optional="false" byreference="false" type="string"/>
+    <parameter name="interfaces" optional="false" byreference="false" type="object" class="array"/>
+  </constructor>
+  <method name="addConstant" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add Constant"/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="\Componere\Value"/>
+  </method>
+  <method name="addProperty" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Add Property"/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="value" optional="false" byreference="false" type="object" class="\Componere\Value"/>
+  </method>
+  <method name="register" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Registration"/>
+      <return type="void"/>
+    </docblock>
+  </method>
+  <method name="isRegistered" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="State Detection"/>
+      <return type="bool"/>
+    </docblock>
+  </method>
+  <method name="getClosure" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Closure"/>
+      <return type="\Closure"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getClosures" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact="Get Closures"/>
+      <return type="array"/>
+    </docblock>
+  </method>
+  <method name="addInterface" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="interface" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="addMethod" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="name" optional="false" byreference="false" type="string"/>
+    <parameter name="method" optional="false" byreference="false" type="object" class="\Componere\Method"/>
+  </method>
+  <method name="addTrait" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="Definition"/>
+    </docblock>
+    <parameter name="trait" optional="false" byreference="false" type="string"/>
+  </method>
+  <method name="getReflector" abstract="false" static="false" visibility="public" final="false">
+    <docblock>
+      <description compact=""/>
+      <return type="\ReflectionClass"/>
+    </docblock>
+  </method>
+</class>

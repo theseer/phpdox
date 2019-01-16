@@ -49,7 +49,7 @@
   </member>
   <constructor name="__construct" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="Creates a new binary data object.">Creates a new binary data object.</description>
+      <description compact="Creates a new binary data object">Creates a new binary data object.</description>
       <return type="void"/>
     </docblock>
     <parameter name="data" optional="false" byreference="false" type="string"/>
@@ -57,7 +57,7 @@
   </constructor>
   <method name="__toString" abstract="false" static="false" visibility="public" final="false">
     <docblock>
-      <description compact="The string representation of this binary data object."/>
+      <description compact="The string representation of this binary data object"/>
       <return type="string"/>
     </docblock>
   </method>
