@@ -1,4 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(SourceSansPro-Regular.ttf) format('truetype');
+}
 
 html {
     background-color: #888888;
@@ -120,7 +125,7 @@ h3 {
 }
 
 #index h1 {
-    text-shadow: 0px -1px 0 #555555;
+    text-shadow: 0 -1px 0 #555555;
 }
 
 #index p {
@@ -198,7 +203,6 @@ h3 {
 .wrapped {
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
 }
@@ -222,7 +226,7 @@ h3 {
 
 .box {
     padding:1em;
-    margin:1em 1em 2em 0em;
+    margin:1em 1em 2em 0;
     border: 1px solid #cccccc;
     font-size: 1em;
     color: #888888;
@@ -259,7 +263,7 @@ ul.members li {
     padding:1em;
     background-color: #efefef;
     border-top: 2px solid rgba(255,147,30,1);
-    font-family: "Courier New", Courier, mono;
+    font-family: "Courier New", Courier, monospace;
     width:50em;
 }
 
@@ -354,8 +358,8 @@ nav.box {
 
 nav.box ul {
     list-style: none outside none;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 nav.box ul li {
