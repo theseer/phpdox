@@ -20,7 +20,7 @@ class TokenFileIterator implements \Iterator {
 
     public function current(): TokenFile {
         $item = $this->nodeList->item($this->pos);
-        $path = \dirname(\urldecode($item->ownerDocument->documentURI)) . '/' . $item->getAttribute('xml');
+        $path = \dirname(\str_replace('file:/', '', \urldecode($item->ownerDocument->documentURI))) . '/' . $item->getAttribute('xml');
 
         return new TokenFile(new FileInfo($path));
     }

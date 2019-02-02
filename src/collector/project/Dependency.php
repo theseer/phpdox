@@ -26,7 +26,7 @@ class Dependency {
 
     public function __construct(fDOMDocument $dom, Project $project, $publicOnlyMode) {
         $this->index   = $dom;
-        $this->baseDir = \dirname(\urldecode($dom->documentURI));
+        $this->baseDir = \dirname(\str_replace('file:/', '', \urldecode($dom->documentURI)));
         $this->index->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
         $this->project        = $project;
         $this->publicOnlyMode = $publicOnlyMode;

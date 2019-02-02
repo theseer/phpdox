@@ -35,7 +35,7 @@ class FileInfo extends \SplFileInfo {
             $result = '/' . $result;
         }
 
-        return 'file://' . $result;
+        return 'file://' . urlencode($result);
     }
 
     public function getPath() {
