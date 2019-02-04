@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phive xmlns="https://phar.io/phive">
-  <phar name="phploc" version="^3.0.1" installed="3.0.1" location="./tools/phploc"/>
-  <phar name="phpunit" version="^7.0" installed="7.5.1" location="./tools/phpunit" copy="false"/>
-  <phar name="phpab" version="^1.23.0" installed="1.24.1" location="./tools/phpab"/>
+  <phar name="phploc" version="^3.0.1" installed="3.0.1" location="./tools/phploc" copy="false"/>
+  <phar name="phpunit" version="^7.0" installed="7.5.3" location="./tools/phpunit" copy="false"/>
+  <phar name="phpab" version="^1.25.2" installed="1.25.2" location="./tools/phpab" copy="false"/>
 </phive>
