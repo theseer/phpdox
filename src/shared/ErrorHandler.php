@@ -140,7 +140,7 @@ class ErrorHandler {
     private function getLastError(): array {
         $error = \error_get_last();
 
-        if ($error && $error['type'] === \E_USER_NOTICE) {
+        if ($error === null || $error['type'] === \E_USER_NOTICE) {
             return [];
         }
 
