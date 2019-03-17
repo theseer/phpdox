@@ -262,7 +262,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract {
             return;
         }
 
-        if (\in_array($returnType, ['void', 'float', 'int', 'string', 'bool', 'callable', 'array'])) {
+        if (\in_array($returnType, ['void', 'float', 'int', 'string', 'bool', 'callable', 'array', 'object'])) {
             $returnTypeObject = $method->setReturnType($returnType);
             $returnTypeObject->setNullable(false);
 
