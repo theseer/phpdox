@@ -29,7 +29,7 @@ class Version {
     }
 
     public function getInfoString() {
-        return 'phpDox ' . $this->getVersion() . ' - Copyright (C) 2010 - ' . \date('Y', \getenv('SOURCE_DATE_EPOCH') ?: \time()) . ' by Arne Blankerts and Contributors';
+        return 'phpDox ' . $this->getVersion() . ' - Copyright (C) 2010 - ' . \date('Y', (int)\getenv('SOURCE_DATE_EPOCH') ?: \time()) . ' by Arne Blankerts and Contributors';
     }
 
     public function getGeneratedByString() {
