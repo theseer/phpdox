@@ -43,7 +43,7 @@ class SourceFile extends FileInfo {
 
         $source = \file_get_contents($this->getPathname());
 
-        if ($source == '') {
+        if ($source === '') {
             $this->src = '';
 
             return '';
@@ -70,6 +70,13 @@ class SourceFile extends FileInfo {
             },
             $source
         );
+
+        if ($this->src === null) {
+            throw new SourceFileException(
+                sprintf('Error %d while executing regular expression callback', \preg_last_error()),
+                SourceFileException::RegexError
+            );
+        }
 
         return $this->src;
     }
