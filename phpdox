@@ -61,7 +61,7 @@ if (!$found) {
 
 $factory = new TheSeer\phpDox\Factory(
     new \TheSeer\phpDox\FileInfo(__DIR__),
-    new \TheSeer\phpDox\Version('0.12.0-dev')
+    new \TheSeer\phpDox\Version('0.12.1-dev')
 );
 
 exit($factory->getCLI()->run(
