@@ -56,6 +56,7 @@ class ParserTest extends TestCase {
             ['param_without_description'],
             ['param_without_varname'],
             ['param_without_varname_and_description'],
+            ['property'],
             ['see'],
             ['since'],
             ['throws'],

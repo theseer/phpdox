@@ -25,11 +25,14 @@ class FactoryTest extends \PHPUnit\Framework\TestCase {
             'invalid' => 'TheSeer\\phpDox\\DocBlock\\InvalidParser',
             'generic' => 'TheSeer\\phpDox\\DocBlock\\GenericParser',
 
-            'description' => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
-            'param'       => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
-            'var'         => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'return'      => 'TheSeer\\phpDox\\DocBlock\\VarParser',
-            'license'     => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
+            'description'    => 'TheSeer\\phpDox\\DocBlock\\DescriptionParser',
+            'param'          => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
+            'property-read'  => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
+            'property-write' => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
+            'property'       => 'TheSeer\\phpDox\\DocBlock\\ParamParser',
+            'var'            => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'return'         => 'TheSeer\\phpDox\\DocBlock\\VarParser',
+            'license'        => 'TheSeer\\phpDox\\DocBlock\\LicenseParser',
 
             'internal' => 'TheSeer\\phpDox\\DocBlock\\InternalParser'
         ];

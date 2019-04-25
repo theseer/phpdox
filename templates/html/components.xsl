@@ -287,7 +287,57 @@
                     </xsl:for-each>
                 </ul>
             </xsl:if>
+            <xsl:if test="//pdx:docblock/pdx:property">
+                <h4>magic</h4>
+                <ul class="members">
+                    <xsl:for-each select="//pdx:docblock/pdx:property">
+                        <xsl:sort select="@variable" />
+                        <xsl:call-template name="magicmemberli" />
+                    </xsl:for-each>
+                </ul>
+            </xsl:if>
+            <xsl:if test="//pdx:docblock/pdx:property-read">
+                <h4>magic — Read only</h4>
+                <ul class="members">
+                    <xsl:for-each select="//pdx:docblock/pdx:property-read">
+                        <xsl:sort select="@variable" />
+                        <xsl:call-template name="magicmemberli" />
+                    </xsl:for-each>
+                </ul>
+            </xsl:if>
+            <xsl:if test="//pdx:docblock/pdx:property-write">
+                <h4>magic — Write only</h4>
+                <ul class="members">
+                    <xsl:for-each select="//pdx:docblock/pdx:property-write">
+                        <xsl:sort select="@variable" />
+                        <xsl:call-template name="magicmemberli" />
+                    </xsl:for-each>
+                </ul>
+            </xsl:if>
         </div>
+    </xsl:template>
+
+    <!-- ######################################################################################################### -->
+
+    <xsl:template name="magicmemberli">
+        <li id="{@variable}">
+            <strong><xsl:value-of select="@variable" /></strong>
+            <xsl:if test="@type">
+                —
+                <xsl:choose>
+                    <xsl:when test="@type = 'object'">
+                        <xsl:copy-of select="pdxf:link(pdx:type, '', pdx:type/@full)" />
+                    </xsl:when>
+                    <xsl:otherwise><xsl:value-of select="@type" /></xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+            <xsl:if test="@description != ''">
+                <br/>
+                <span class="indent">
+                    <xsl:value-of select="@description" />
+                </span>
+            </xsl:if>
+        </li>
     </xsl:template>
 
     <!-- ######################################################################################################### -->

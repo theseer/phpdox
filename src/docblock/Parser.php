@@ -41,7 +41,7 @@ class Parser {
                 }
                 $buffer = [];
 
-                \preg_match('/^\@([a-zA-Z0-9_]+)(.*)$/', $line, $lineParts);
+                \preg_match('/^\@([a-zA-Z0-9_-]+)(.*)$/', $line, $lineParts);
                 $name    = ($lineParts[1] ?? '(undefined)');
                 $payload = (isset($lineParts[2]) ? \trim($lineParts[2]) : '');
 
