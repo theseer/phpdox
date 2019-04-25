@@ -74,6 +74,21 @@
                     </xsl:choose></xsl:if>;
                     </li>
                 </xsl:for-each>
+                <xsl:for-each select="$unit/pdx:docblock/*[self::pdx:property or self::pdx:property-read or self::pdx:property-write]">
+                    <li>
+                        <i>magic<xsl:if test="local-name() = 'property-read'"> (r/o)</xsl:if><xsl:if test="local-name() = 'property-write'"> (w/o)</xsl:if></i>&#160;<xsl:choose>
+                            <xsl:when test="@type = 'object'">
+                                <xsl:value-of select="pdx:type/@name" />
+                            </xsl:when>
+                            <xsl:when test="@type = '{unknown}'">
+                                <xsl:text>object</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@type" />
+                            </xsl:otherwise>
+                        </xsl:choose>&#160;<a href="#members"><xsl:value-of select="@variable" /></a>;
+                    </li>
+                </xsl:for-each>
             </ul>
             </xsl:if>
 

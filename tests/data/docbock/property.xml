@@ -1,0 +1,1 @@
+<docblock xmlns="http://xml.phpdox.net/src"><description/><property type="int" variable="$state" description="The class state"/><property-read description="The previous class state" type="int" variable="$pastState"/><property-write description="The number or call" type="int" variable="$call"/></docblock>
