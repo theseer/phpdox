@@ -1,16 +1,13 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
-class VarElement extends GenericElement {
-    public const XMLNS = 'http://xml.phpdox.net/src';
+use TheSeer\phpDox\TypeAwareInterface;
+use TheSeer\phpDox\TypeAwareTrait;
 
-    /**
-     * @var string[]
-     */
-    private $types = [
-        '', 'null', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int',
-        'float', 'string', 'boolean', 'resource'
-    ];
+class VarElement extends GenericElement implements TypeAwareInterface {
+    use TypeAwareTrait;
+
+    public const XMLNS = 'http://xml.phpdox.net/src';
 
     public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
         $node = parent::asDom($ctx);
@@ -34,7 +31,7 @@ class VarElement extends GenericElement {
             $node->setAttribute('of', $type);
         }
 
-        if (!\in_array($type, $this->types)) {
+        if (!$this->isBuiltInType($type, self::TYPE_PHPDOC|self::TYPE_PHPDOX)) {
             if (!$node->hasAttribute('of')) {
                 $node->setAttribute('type', 'object');
             } else {

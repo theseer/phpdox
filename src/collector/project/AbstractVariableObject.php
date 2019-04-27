@@ -2,11 +2,15 @@
 namespace TheSeer\phpDox\Collector;
 
 use TheSeer\fDOM\fDOMElement;
+use TheSeer\phpDox\TypeAwareInterface;
+use TheSeer\phpDox\TypeAwareTrait;
 
 /**
  * Class AbstractVariableObject
  */
-abstract class AbstractVariableObject {
+abstract class AbstractVariableObject implements TypeAwareInterface {
+    use TypeAwareTrait;
+
     public const XMLNS = 'http://xml.phpdox.net/src';
 
     /**
@@ -17,7 +21,7 @@ abstract class AbstractVariableObject {
     /**
      * @var array
      */
-    private $types = ['{unknown}', 'object', 'array', 'int', 'integer', 'float', 'string', 'bool', 'boolean', 'resource', 'callable'];
+    private $types = [];
 
     public function __construct(fDOMElement $ctx) {
         $this->ctx = $ctx;
@@ -61,7 +65,7 @@ abstract class AbstractVariableObject {
     }
 
     public function isInternalType($type) {
-        return \in_array(\mb_strtolower((string)$type), $this->types);
+        return $this->isBuiltInType((string)$type) || \in_array(\mb_strtolower((string)$type), $this->types);
     }
 
     /**
