@@ -1,0 +1,28 @@
+<docblock xmlns="http://xml.phpdox.net/src">
+  <description />
+  <param type="string" variable="$var1"/>
+  <param type="int" variable="$var2"/>
+  <param type="integer" variable="$var3"/>
+  <param type="bool" variable="$var4"/>
+  <param type="boolean" variable="$var5"/>
+  <param type="float" variable="$var6"/>
+  <param type="null" variable="$var7"/>
+  <param type="array" variable="$var8"/>
+  <param type="object" variable="$var9">
+    <type full="\A" name="A" namespace=""/>
+  </param>
+  <param type="object" variable="$var10">
+    <type full="\A" name="A" namespace=""/>
+  </param>
+  <param type="callable" variable="$var12"/>
+  <param type="resource" variable="$var13"/>
+  <param type="mixed" variable="$var14"/>
+  <param type="object" variable="$var15"/>
+  <param type="true" variable="$var16"/>
+  <param type="false" variable="$var17"/>
+  <param type="void" variable="$var18"/>
+  <param type="object" variable="$var19">
+    <type full="SomeType" name="SomeType" namespace=""/>
+  </param>
+  <return type="$this" />
+</docblock>

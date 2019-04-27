@@ -21,8 +21,12 @@ use TheSeer\phpDox\Collector\AbstractVariableObject;
 use TheSeer\phpDox\Collector\InlineComment;
 use TheSeer\phpDox\Collector\MethodObject;
 use TheSeer\phpDox\DocBlock\Parser as DocBlockParser;
+use TheSeer\phpDox\TypeAwareInterface;
+use TheSeer\phpDox\TypeAwareTrait;
 
-class UnitCollectingVisitor extends NodeVisitorAbstract {
+class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInterface {
+    use TypeAwareTrait;
+
     /**
      * @var \TheSeer\phpDox\DocBlock\Parser
      */
@@ -262,7 +266,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract {
             return;
         }
 
-        if (\in_array($returnType, ['void', 'float', 'int', 'string', 'bool', 'callable', 'array', 'object'])) {
+        if ($this->isBuiltInType((string)$returnType, self::TYPE_RETURN)) {
             $returnTypeObject = $method->setReturnType($returnType);
             $returnTypeObject->setNullable(false);
 
@@ -495,7 +499,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract {
 
             return [
                 'type'  => 'expression',
-                'value' => \substr($code, 0, -1)
+                'value' => $code
             ];
         }
 

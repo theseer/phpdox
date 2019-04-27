@@ -28,7 +28,7 @@ class ParserTest extends TestCase {
 
         $factory = new Factory();
         $parser  = new Parser($factory);
-        $result  = $parser->parse($block, []);
+        $result  = $parser->parse($block, ['::unit' => '\\A']);
 
         $this->assertInstanceOf(DocBlock::class, $result);
 
@@ -53,6 +53,7 @@ class ParserTest extends TestCase {
             ['heading'],
             ['multiat'],
             ['multiline_body'],
+            ['param_all_type'],
             ['param_without_description'],
             ['param_without_varname'],
             ['param_without_varname_and_description'],

@@ -1,7 +1,12 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
-class GenericParser {
+use TheSeer\phpDox\TypeAwareInterface;
+use TheSeer\phpDox\TypeAwareTrait;
+
+class GenericParser implements TypeAwareInterface {
+    use TypeAwareTrait;
+
     protected $factory;
 
     protected $aliasMap;
@@ -9,11 +14,6 @@ class GenericParser {
     protected $name;
 
     protected $payload;
-
-    private $types = [
-        '', 'null', 'mixed', '{unknown}', 'object', 'array', 'integer', 'int',
-        'float', 'string', 'boolean', 'resource'
-    ];
 
     public function __construct(Factory $factory, $name) {
         $this->factory = $factory;
@@ -52,7 +52,7 @@ class GenericParser {
         }
 
         // Do not mess with scalar and fixed types
-        if (\in_array($type, $this->types)) {
+        if ($this->isBuiltInType($type)) {
             return $type;
         }
 

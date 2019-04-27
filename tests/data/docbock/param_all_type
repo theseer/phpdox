@@ -1,0 +1,21 @@
+/**
+ * @param string $var1
+ * @param int $var2
+ * @param integer $var3
+ * @param bool $var4
+ * @param boolean $var5
+ * @param float $var6
+ * @param null $var7
+ * @param array $var8
+ * @param self $var9
+ * @param static $var10
+ * @param callable $var12
+ * @param resource $var13
+ * @param mixed $var14
+ * @param object $var15
+ * @param true $var16
+ * @param false $var17
+ * @param void $var18
+ * @param SomeType $var19
+ * @return $this
+ */

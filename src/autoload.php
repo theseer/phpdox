@@ -219,6 +219,8 @@ spl_autoload_register(
                 'theseer\\phpdox\\projectconfig' => '/config/ProjectConfig.php',
                 'theseer\\phpdox\\shellprogresslogger' => '/logger/ShellProgressLogger.php',
                 'theseer\\phpdox\\silentprogresslogger' => '/logger/SilentProgressLogger.php',
+                'theseer\\phpdox\\typeawareinterface' => '/shared/TypeAwareInterface.php',
+                'theseer\\phpdox\\typeawaretrait' => '/shared/TypeAwareTrait.php',
                 'theseer\\phpdox\\version' => '/shared/Version.php'
             );
         }
