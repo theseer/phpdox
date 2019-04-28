@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+    <project name="Example" source="${basedir}/src" workdir="${basedir}/xml">
+        <collector backend="parser" />
+
+        <generator output="${basedir}/xml">
+
+            <build engine="html" enabled="true" output="html">
+                <template dir="${phpDox.home}/templates/html" />
+                <file extension="html" />
+            </build>
+
+        </generator>
+    </project>
+</phpdox>
