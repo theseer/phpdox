@@ -168,6 +168,7 @@
                     </xsl:when>
                     <xsl:otherwise><xsl:value-of select="@type" /></xsl:otherwise>
                 </xsl:choose>
+                <xsl:if test="$param/@variadic = 'true'">[]</xsl:if>
                 </dt>
                 <dd><xsl:value-of select="$docparam/@description" />
                     <xsl:if test="$docparam/text() != ''">
@@ -218,6 +219,7 @@
             </xsl:otherwise>
         </xsl:choose>
         <xsl:if test="$param/@byreference = 'true'">&amp;</xsl:if>
+        <xsl:if test="$param/@variadic = 'true'">...</xsl:if>
         $<xsl:value-of select="$param/@name" />
         <xsl:if test="$param/@default"> = <xsl:choose>
             <xsl:when test="$param/@default = ''"><xsl:value-of select="$param/@constant" /></xsl:when>

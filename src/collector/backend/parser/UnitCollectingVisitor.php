@@ -324,6 +324,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract {
             /** @var $param \PhpParser\Node\Param */
             $parameter = $method->addParameter($param->var->name);
             $parameter->setByReference($param->byRef);
+            $parameter->setVariadic($param->variadic);
             $this->setVariableType($parameter, $param->type);
             $this->setVariableDefaultValue($parameter, $param->default);
         }

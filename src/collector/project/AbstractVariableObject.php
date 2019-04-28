@@ -86,6 +86,10 @@ abstract class AbstractVariableObject {
         return $this->ctx->getAttribute('type');
     }
 
+    public function setVariadic($isVariadic): void {
+        $this->ctx->setAttribute('variadic', $isVariadic ? 'true' : 'false');
+    }
+
     public function setNullable($isNullable): void {
         $this->ctx->setAttribute('nullable', $isNullable ? 'true' : 'false');
     }
