@@ -47,6 +47,26 @@ class GenericParser {
     }
 
     protected function lookupType($type) {
+        $types = explode('|', $type);
+
+        foreach ($types as &$oneType) {
+            $isArray = false;
+            if (substr($oneType, -2, 2) === '[]') {
+                $isArray = true;
+                $oneType = substr($oneType, 0, -2);
+            }
+
+            $oneType = $this->lookupOneType($oneType);
+
+            if ($isArray) {
+                $oneType .= '[]';
+            }
+        }
+
+        return implode('|', $types);
+    }
+
+    protected function lookupOneType($type) {
         if ($type === 'self' || $type === 'static') {
             return $this->aliasMap['::unit'];
         }

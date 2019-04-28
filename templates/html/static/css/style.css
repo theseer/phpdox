@@ -252,6 +252,12 @@ ul.styled {
 ul.members li {
     margin-bottom: 0.5em;
 }
+ul.members li .multiple:after {
+    content: "|";
+}
+ul.members li .multiple:last-child:after {
+    content: '';
+}
 
 .styled h4 {
     padding:0;

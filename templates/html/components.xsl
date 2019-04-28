@@ -302,6 +302,20 @@
                         <xsl:variable name="ctx" select="pdx:docblock/pdx:var/pdx:type" />
                         <xsl:copy-of select="pdxf:link($ctx, '', $ctx/@full)" />
                     </xsl:when>
+                    <xsl:when test="pdx:docblock/pdx:var/@type = 'array'">
+                        <xsl:variable name="ctx" select="pdx:docblock/pdx:var/pdx:type" />
+                        <xsl:choose>
+                            <xsl:when test="pdx:docblock/pdx:var/@of = 'object'">
+                                <xsl:copy-of select="pdxf:link($ctx, '', $ctx/@full)" />
+                            </xsl:when>
+                            <xsl:otherwise><xsl:value-of select="pdx:docblock/pdx:var/@of" /></xsl:otherwise>
+                        </xsl:choose>[]
+                    </xsl:when>
+                    <xsl:when test="pdx:docblock/pdx:var/@type = 'mixed' and count(pdx:docblock/pdx:var/pdx:type) > 0">
+                        <xsl:for-each select="pdx:docblock/pdx:var/pdx:type">
+                            <xsl:call-template name="mixedvartype" />
+                        </xsl:for-each>
+                    </xsl:when>
                     <xsl:otherwise><xsl:value-of select="pdx:docblock/pdx:var/@type" /></xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
@@ -312,6 +326,18 @@
                 </span>
             </xsl:if>
         </li>
+    </xsl:template>
+
+    <!-- ######################################################################################################### -->
+
+    <xsl:template name="mixedvartype">
+        <span class="multiple">
+        <xsl:choose>
+            <xsl:when test="@name = @full"><xsl:value-of select="@name" /></xsl:when>
+            <xsl:otherwise><xsl:copy-of select="pdxf:link(., '', @full)" /></xsl:otherwise>
+        </xsl:choose>
+        <xsl:if test="@array = 'true'">[]</xsl:if>
+        </span>
     </xsl:template>
 
     <!-- ######################################################################################################### -->
