@@ -2,7 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pdx="http://xml.phpdox.net/src"
                 xmlns:pdxf="http://xml.phpdox.net/functions"
-                xmlns:pu="http://schema.phpunit.de/coverage/1.0"
+                xmlns:pu="https://schema.phpunit.de/coverage/1.0"
                 xmlns:func="http://exslt.org/functions"
                 xmlns:idx="http://xml.phpdox.net/src"
                 xmlns:git="http://xml.phpdox.net/gitlog"
