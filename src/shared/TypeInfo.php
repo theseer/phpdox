@@ -1,9 +1,15 @@
 <?php
 namespace TheSeer\phpDox;
 
-trait TypeAwareTrait
+class TypeInfo
 {
-    public function getBuiltInTypes(int $context = TypeAwareInterface::TYPE_ALL): array {
+    public const TYPE_RETURN = 1;
+    public const TYPE_PHPDOC = 2;
+    public const TYPE_BUILTIN = 4;
+    public const TYPE_PHPDOX = 8;
+    public const TYPE_ALL = self::TYPE_RETURN + self::TYPE_PHPDOC + self::TYPE_BUILTIN + self::TYPE_PHPDOX;
+
+    public function getBuiltInTypes(int $context = self::TYPE_ALL): array {
         /*
          * From:
          * http://docs.phpdoc.org/guides/types.html#primitives
@@ -31,23 +37,23 @@ trait TypeAwareTrait
         $type = [];
 
         switch (true) {
-            case ($context & TypeAwareInterface::TYPE_RETURN) !== 0:
+            case ($context & self::TYPE_RETURN) !== 0:
                 $type = array_merge($type, $returnType);
                 // no-break
-            case ($context & TypeAwareInterface::TYPE_PHPDOC) !== 0:
+            case ($context & self::TYPE_PHPDOC) !== 0:
                 $type = array_merge($type, $docblockType);
                 // no-break
-            case ($context & TypeAwareInterface::TYPE_BUILTIN) !== 0:
+            case ($context & self::TYPE_BUILTIN) !== 0:
                 $type = array_merge($type, $variableType);
                 // no-break
-            case ($context & TypeAwareInterface::TYPE_PHPDOX) !== 0:
+            case ($context & self::TYPE_PHPDOX) !== 0:
                 $type = array_merge($type, $phpdoxType);
                 // no-break
         }
 
         return array_unique($type);
     }
-    public function isBuiltInType(string $type, int $context = TypeAwareInterface::TYPE_ALL): bool {
+    public function isBuiltInType(string $type, int $context = self::TYPE_ALL): bool {
         return \in_array(\mb_strtolower($type), $this->getBuiltInTypes($context), true);
     }
 }
