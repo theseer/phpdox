@@ -60,7 +60,7 @@ class VarElement extends GenericElement implements TypeAwareInterface {
         $nodeType->setAttribute('full', $type);
         $nodeType->setAttribute('array', $isArray?'true':'false');
 
-        if (\in_array($type, $this->types, true)) {
+        if ($this->isBuiltInType($type, self::TYPE_PHPDOC|self::TYPE_PHPDOX)) {
             $nodeType->setAttribute('name', $type);
             $nodeType->setAttribute('namespace', '');
             return;
