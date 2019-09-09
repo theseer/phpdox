@@ -185,7 +185,7 @@
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
             <code>
-                <xsl:value-of select="$method/@visibility" /> function <xsl:value-of select="$methodName" />(<xsl:if test="$method/pdx:parameter">
+                <xsl:value-of select="$method/@visibility" /> function <xsl:value-of select="$methodName" />( <xsl:if test="$method/pdx:parameter">
                 <xsl:call-template name="parameter">
                     <xsl:with-param name="param" select="$method/pdx:parameter[1]" />
                 </xsl:call-template>&#160;</xsl:if>)
@@ -206,7 +206,7 @@
                     <xsl:variable name="dparam" select="$method/pdx:docblock//pdx:param[@variable = concat('$', $param/@name)]" />
                     <xsl:choose>
                         <xsl:when test="$dparam/@type = 'object'">
-                            <xsl:copy-of select="pdxf:link($dparam/pdx:type, '', $dparam/pdx:type/@name)" />
+                            <xsl:value-of select="$dparam/@type" />
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="$dparam/@type" />
