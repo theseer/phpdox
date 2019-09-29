@@ -47,15 +47,19 @@
                 <xsl:when test="$copy">
                     <xsl:value-of select="$copy"/>
                 </xsl:when>
-                <xsl:otherwise>
+                <xsl:when test="$ctx/@name">
                     <xsl:value-of select="$ctx/@name"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>object</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
 
         <func:result>
+            <xsl:value-of select="$ctx"/>
             <xsl:choose>
-                <xsl:when test="$ctx/@unresolved = 'true'">
+                <xsl:when test="$ctx/@unresolved = 'true' or not($ctx/@full)">
                     <xsl:value-of select="$text"/>
                 </xsl:when>
                 <xsl:otherwise>
