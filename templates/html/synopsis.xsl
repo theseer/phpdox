@@ -77,7 +77,7 @@
                 <xsl:for-each select="$unit/pdx:docblock/*[self::pdx:property or self::pdx:property-read or self::pdx:property-write]">
                     <li>
                         <i>magic<xsl:if test="local-name() = 'property-read'"> (r/o)</xsl:if><xsl:if test="local-name() = 'property-write'"> (w/o)</xsl:if></i>&#160;<xsl:choose>
-                            <xsl:when test="@type = 'object'">
+                            <xsl:when test="@type = 'object' and pdx:type/@name">
                                 <xsl:value-of select="pdx:type/@name" />
                             </xsl:when>
                             <xsl:when test="@type = '{unknown}'">
@@ -144,10 +144,11 @@
 
     <xsl:template name="vartype">
         <xsl:choose>
-            <xsl:when test="pdx:docblock/pdx:var/@type = 'object'">&#160;<span title="{pdx:docblock/pdx:var/pdx:type/@full}"><xsl:value-of select="pdx:docblock/pdx:var/pdx:type/@name" /></span></xsl:when>
+            <xsl:when test="pdx:docblock/pdx:var/@type = 'object' and pdx:docblock/pdx:var/pdx:type">&#160;<span title="{pdx:docblock/pdx:var/pdx:type/@full}"><xsl:value-of select="pdx:docblock/pdx:var/pdx:type/@name" /></span></xsl:when>
             <xsl:when test="@type = '{unknown}'">
                 <xsl:if test="pdx:docblock/pdx:var/@type">&#160;<xsl:value-of select="pdx:docblock/pdx:var/@type" /></xsl:if>
             </xsl:when>
+            <xsl:when test="pdx:docblock/pdx:var/@type and not(@type)">&#160;<xsl:value-of select="pdx:docblock/pdx:var/@type" /></xsl:when>
             <xsl:otherwise>&#160;<xsl:value-of select="@type" /></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -159,11 +160,11 @@
         <xsl:choose>
             <xsl:when test="pdx:return"><xsl:if test="pdx:return/@nullable = 'true'">?</xsl:if>
                 <xsl:choose>
-                    <xsl:when test="pdx:return/@type = 'object'"><span title="{pdx:return/pdx:type/@name}"><xsl:value-of select="pdx:return/pdx:type/@name" /></span></xsl:when>
+                    <xsl:when test="pdx:return/@type = 'object' and pdx:return/pdx:type"><span title="{pdx:return/pdx:type/@name}"><xsl:value-of select="pdx:return/pdx:type/@name" /></span></xsl:when>
                     <xsl:otherwise><xsl:value-of select="pdx:return/@type" /></xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:when test="pdx:docblock/pdx:return/@type = 'object'"><xsl:value-of select="pdx:docblock/pdx:return/pdx:type/@name" /></xsl:when>
+            <xsl:when test="pdx:docblock/pdx:return/@type = 'object' and pdx:docblock/pdx:return/pdx:type"><xsl:value-of select="pdx:docblock/pdx:return/pdx:type/@name" /></xsl:when>
             <xsl:when test="not(pdx:docblock/pdx:return)">void</xsl:when>
             <xsl:otherwise><xsl:value-of select="pdx:docblock/pdx:return/@type" /></xsl:otherwise>
         </xsl:choose>

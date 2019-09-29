@@ -325,7 +325,7 @@
             <xsl:if test="@type">
                 —
                 <xsl:choose>
-                    <xsl:when test="@type = 'object'">
+                    <xsl:when test="@type = 'object' and pdx:type">
                         <xsl:copy-of select="pdxf:link(pdx:type, '', pdx:type/@full)" />
                     </xsl:when>
                     <xsl:otherwise><xsl:value-of select="@type" /></xsl:otherwise>
@@ -504,7 +504,7 @@
     <xsl:template name="type">
         <xsl:param name="ctx" />
         <xsl:choose>
-            <xsl:when test="$ctx/pdx:docblock/pdx:return/@type = 'object'"><xsl:value-of select="$ctx/pdx:docblock/pdx:return/pdx:type/@name" /></xsl:when>
+            <xsl:when test="$ctx/pdx:docblock/pdx:return/@type = 'object' and $ctx/pdx:docblock/pdx:return/pdx:type/@name"><xsl:value-of select="$ctx/pdx:docblock/pdx:return/pdx:type/@name" /></xsl:when>
             <xsl:when test="not($ctx/pdx:docblock/pdx:return)">void</xsl:when>
             <xsl:otherwise><xsl:value-of select="$ctx/pdx:docblock/pdx:return/@type" /></xsl:otherwise>
         </xsl:choose>
