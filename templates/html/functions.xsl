@@ -57,7 +57,6 @@
         </xsl:variable>
 
         <func:result>
-            <xsl:value-of select="$ctx"/>
             <xsl:choose>
                 <xsl:when test="$ctx/@unresolved = 'true' or not($ctx/@full)">
                     <xsl:value-of select="$text"/>
