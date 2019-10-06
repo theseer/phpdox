@@ -7,8 +7,9 @@
                 xmlns:idx="http://xml.phpdox.net/src"
                 xmlns:git="http://xml.phpdox.net/gitlog"
                 xmlns:ctx="ctx://engine/html"
+                xmlns:php="http://php.net/xsl"
                 extension-element-prefixes="func"
-                exclude-result-prefixes="idx pdx pdxf pu git ctx">
+                exclude-result-prefixes="idx pdx pdxf pu git ctx php">
 
     <xsl:import href="components.xsl" />
 
@@ -49,11 +50,15 @@
                     <xsl:for-each select="*[local-name() = $mode]">
                         <xsl:sort select="@name" order="ascending" />
 
+                        <xsl:variable name="fullclass"><xsl:choose>
+                            <xsl:when test="../@name != ''"><xsl:value-of select="concat(../@name, '\')" /></xsl:when>
+                            <xsl:otherwise/>
+                        </xsl:choose><xsl:value-of select="@name" /></xsl:variable>
                         <xsl:variable name="link"><xsl:choose>
                             <xsl:when test="local-name(.) = 'class'">classes</xsl:when>
                             <xsl:when test="local-name(.) = 'interface'">interfaces</xsl:when>
                             <xsl:otherwise>traits</xsl:otherwise>
-                        </xsl:choose>/<xsl:value-of select="translate(../@name, '\', '_')" /><xsl:if test="not(../@name = '')">_</xsl:if><xsl:value-of select="@name" />.<xsl:value-of select="$extension" /></xsl:variable>
+                        </xsl:choose>/<xsl:value-of select="php:function('sha1', $fullclass)" />.<xsl:value-of select="$extension" /></xsl:variable>
                         <tr>
                             <td><a href="{$link}"><xsl:value-of select="@name" /></a></td>
                             <td>

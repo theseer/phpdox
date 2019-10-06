@@ -238,7 +238,7 @@ class Project {
                 ProjectException::UnitNotFoundInIndex
             );
         }
-        $name                    = \str_replace('\\', '_', $unit->getName());
+        $name                    = sha1($unit->getName());
         $dom                     = $unit->export();
         $dom->formatOutput       = true;
         $dom->preserveWhiteSpace = false;

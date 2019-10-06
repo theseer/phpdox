@@ -194,6 +194,8 @@ class Html extends AbstractEngine {
             $xsl->setParameter('', 'project', $this->projectNode->getAttribute('name'));
         }
 
+        $xsl->registerPHPFunctions('sha1');
+
         return $xsl;
     }
 
@@ -256,7 +258,7 @@ class Html extends AbstractEngine {
     }
 
     private function classNameToFileName($class, $method = null) {
-        $name = \str_replace('\\', '_', $class);
+        $name = sha1($class);
 
         if ($method !== null) {
             $name .= '/' . $method;
