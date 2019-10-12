@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
+use TheSeer\phpDox\DirectoryCleanerException;
+
 class DirectoryCleanerTest extends \PHPUnit\Framework\TestCase {
     /**
      * @var DirectoryCleaner
@@ -11,11 +13,10 @@ class DirectoryCleanerTest extends \PHPUnit\Framework\TestCase {
         $this->cleaner = new DirectoryCleaner();
     }
 
-    /**
-     * @expectedException \TheSeer\phpDox\DirectoryCleanerException
-     * @expectedExceptionCode \TheSeer\phpDox\DirectoryCleanerException::SecurityLimitation
-     */
     public function testTryingToDeleteAShortPathThrowsException(): void {
+        self::expectException(DirectoryCleanerException::class);
+        self::expectExceptionCode(DirectoryCleanerException::SecurityLimitation);
+
         $this->cleaner->process(new FileInfo('/tmp'));
     }
 

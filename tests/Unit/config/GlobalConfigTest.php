@@ -2,6 +2,7 @@
 namespace TheSeer\phpDox;
 
 use TheSeer\fDOM\fDOMDocument;
+use TheSeer\phpDox\ConfigException;
 
 /**
  * Class GlobalConfigTest
@@ -40,11 +41,10 @@ class GlobalConfigTest extends \PHPUnit\Framework\TestCase {
         $this->baseDir = \realpath(__DIR__ . '/../../data/config') . '/';
     }
 
-    /**
-     * @expectedException \TheSeer\phpDox\ConfigException
-     * @expectedExceptionCode \TheSeer\phpDox\ConfigException::InvalidDataStructure
-     */
     public function testTryingToLoadInvalidConfigThrowsException(): void {
+        self::expectException(ConfigException::class);
+        self::expectExceptionCode(ConfigException::InvalidDataStructure);
+
         $this->init('broken');
     }
 

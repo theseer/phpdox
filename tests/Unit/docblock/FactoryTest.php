@@ -3,6 +3,7 @@ namespace TheSeer\phpDox\Tests\Unit\DocBlock;
 
 use TheSeer\fDOM\fDOMDocument;
 use TheSeer\phpDox\DocBlock\Factory;
+use TheSeer\phpDox\DocBlock\FactoryException;
 use TheSeer\phpDox\DocBlock\GenericParser;
 use TheSeer\phpDox\DocBlock\InlineProcessor;
 use TheSeer\phpDox\FactoryInterface;
@@ -38,10 +39,11 @@ class FactoryTest extends \PHPUnit\Framework\TestCase {
     }
 
     /**
-     * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
      * @covers \TheSeer\phpDox\DocBlock\Factory::addParserFactory
      */
     public function testAddParserFactoryExpectingFactoryException(): void {
+        self::expectException(FactoryException::class);
+
         $mock = $this->createMock(FactoryInterface::class);
         $this->factory->addParserFactory([], $mock);
     }
@@ -56,10 +58,11 @@ class FactoryTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @dataProvider addParserClassDataprovider
-     * @expectedException \TheSeer\phpDox\DocBlock\FactoryException
      * @covers       \TheSeer\phpDox\DocBlock\Factory::addParserClass
      */
     public function testAddParserClassExpectingFactoryException($annotation, $classname): void {
+        self::expectException(FactoryException::class);
+
         $this->factory->addParserClass($annotation, $classname);
     }
 
