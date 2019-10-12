@@ -3,6 +3,7 @@ namespace TheSeer\phpDox\DocBlock;
 
 use PHPUnit\Framework\TestCase;
 use TheSeer\fDOM\fDOMDocument;
+use TheSeer\phpDox\DocBlock\DocBlockException;
 
 /**
  * Class DocBlockTest
@@ -58,10 +59,11 @@ class DocBlockTest extends TestCase {
     }
 
     /**
-     * @expectedException \TheSeer\phpDox\DocBlock\DocBlockException
      * @covers \TheSeer\phpDox\DocBlock\DocBlock::getElementByName
      */
     public function testTryingToGetANonExistingElementThrowsException(): void {
+        self::expectException(DocBlockException::class);
+
         $this->docBlock->getElementByName('non-set');
     }
 
