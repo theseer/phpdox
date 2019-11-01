@@ -21,11 +21,9 @@ use TheSeer\phpDox\Collector\AbstractVariableObject;
 use TheSeer\phpDox\Collector\InlineComment;
 use TheSeer\phpDox\Collector\MethodObject;
 use TheSeer\phpDox\DocBlock\Parser as DocBlockParser;
-use TheSeer\phpDox\TypeAwareInterface;
-use TheSeer\phpDox\TypeAwareTrait;
+use TheSeer\phpDox\TypeInfo;
 
-class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInterface {
-    use TypeAwareTrait;
+class UnitCollectingVisitor extends NodeVisitorAbstract {
 
     /**
      * @var \TheSeer\phpDox\DocBlock\Parser
@@ -52,6 +50,11 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
      */
     private $unit;
 
+    /**
+     * @var TypeInfo
+     */
+    private $typeInfo;
+
     private $modifier = [
         NodeType\Class_::MODIFIER_PUBLIC    => 'public',
         NodeType\Class_::MODIFIER_PROTECTED => 'protected',
@@ -61,6 +64,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
     public function __construct(DocBlockParser $parser, ParseResult $result) {
         $this->docBlockParser = $parser;
         $this->result         = $result;
+        $this->typeInfo       = new TypeInfo();
     }
 
     /**
@@ -266,25 +270,27 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             return;
         }
 
-        if ($this->isBuiltInType((string)$returnType, self::TYPE_RETURN)) {
-            $returnTypeObject = $method->setReturnType($returnType);
+        $stringReturnType = $returnType instanceof NullableType ? (string)$returnType->type:(string)$returnType;
+
+        if ($this->typeInfo->isBuiltInType($stringReturnType, TypeInfo::TYPE_RETURN)) {
+            $returnTypeObject = $method->setReturnType($stringReturnType);
             $returnTypeObject->setNullable(false);
 
             return;
         }
 
         if ($returnType instanceof \PhpParser\Node\Name\FullyQualified) {
-            $returnTypeObject = $method->setReturnType($returnType->toString());
+            $returnTypeObject = $method->setReturnType($stringReturnType);
             $returnTypeObject->setNullable(false);
 
             return;
         }
 
         if ($returnType instanceof NullableType) {
-            if ((string)$returnType->type === 'self') {
+            if ($stringReturnType === 'self') {
                 $returnTypeObject = $method->setReturnType($this->unit->getName());
             } else {
-                $returnTypeObject = $method->setReturnType($returnType->type);
+                $returnTypeObject = $method->setReturnType($stringReturnType);
             }
             $returnTypeObject->setNullable(true);
 

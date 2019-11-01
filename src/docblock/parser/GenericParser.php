@@ -1,11 +1,9 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
-use TheSeer\phpDox\TypeAwareInterface;
-use TheSeer\phpDox\TypeAwareTrait;
+use TheSeer\phpDox\TypeInfo;
 
-class GenericParser implements TypeAwareInterface {
-    use TypeAwareTrait;
+class GenericParser {
 
     protected $factory;
 
@@ -15,9 +13,15 @@ class GenericParser implements TypeAwareInterface {
 
     protected $payload;
 
+    /**
+     * @var TypeInfo
+     */
+    protected $typeInfo;
+
     public function __construct(Factory $factory, $name) {
-        $this->factory = $factory;
-        $this->name    = $name;
+        $this->factory  = $factory;
+        $this->name     = $name;
+        $this->typeInfo = new TypeInfo();
     }
 
     public function setAliasMap(array $map): void {
@@ -72,7 +76,7 @@ class GenericParser implements TypeAwareInterface {
         }
 
         // Do not mess with scalar and fixed types
-        if ($this->isBuiltInType($type)) {
+        if ($this->typeInfo->isBuiltInType($type)) {
             return $type;
         }
 

@@ -1,13 +1,22 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\DocBlock;
 
-use TheSeer\phpDox\TypeAwareInterface;
-use TheSeer\phpDox\TypeAwareTrait;
+use TheSeer\phpDox\TypeInfo;
 
-class VarElement extends GenericElement implements TypeAwareInterface {
-    use TypeAwareTrait;
+class VarElement extends GenericElement {
 
     public const XMLNS = 'http://xml.phpdox.net/src';
+
+    /**
+     * @var TypeInfo
+     */
+    private $typeInfo;
+
+    public function __construct(Factory $factory, $name) {
+        parent::__construct($factory, $name);
+        $this->typeInfo = new TypeInfo();
+    }
+
 
     public function asDom(\TheSeer\fDOM\fDOMDocument $ctx) {
         $node = parent::asDom($ctx);
@@ -31,7 +40,7 @@ class VarElement extends GenericElement implements TypeAwareInterface {
             $node->setAttribute('of', $type);
         }
 
-        if (!$this->isBuiltInType($type, self::TYPE_PHPDOC|self::TYPE_PHPDOX)) {
+        if (!$this->typeInfo->isBuiltInType($type, TypeInfo::TYPE_PHPDOC|TypeInfo::TYPE_PHPDOX)) {
             if (!$node->hasAttribute('of')) {
                 $node->setAttribute('type', 'object');
             } else {
@@ -60,7 +69,7 @@ class VarElement extends GenericElement implements TypeAwareInterface {
         $nodeType->setAttribute('full', $type);
         $nodeType->setAttribute('array', $isArray?'true':'false');
 
-        if ($this->isBuiltInType($type, self::TYPE_PHPDOC|self::TYPE_PHPDOX)) {
+        if ($this->typeInfo->isBuiltInType($type, TypeInfo::TYPE_PHPDOC|TypeInfo::TYPE_PHPDOX)) {
             $nodeType->setAttribute('name', $type);
             $nodeType->setAttribute('namespace', '');
             return;
