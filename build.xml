@@ -55,6 +55,14 @@
         </exec>
     </target>
 
+    <target name="phan" description="Generate phan.xml">
+        <exec executable="${basedir}/tools/phan">
+            <arg line="-k ${basedir}/phan-config.php" />
+            <arg line="-m checkstyle" />
+            <arg line="-o ${basedir}/build/logs/phan.xml" />
+        </exec>
+    </target>
+
     <target name="api">
         <delete dir="${basedir}/build/api" />
         <exec executable="${basedir}/phpdox" />
