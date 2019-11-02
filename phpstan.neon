@@ -1,0 +1,5 @@
+parameters:
+    bootstrap: ./vendor/autoload.php
+    level: 0
+    paths:
+        - ./src
