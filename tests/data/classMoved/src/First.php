@@ -3,4 +3,3 @@ namespace Debug\Sample;
 
     class First {}
 
-}

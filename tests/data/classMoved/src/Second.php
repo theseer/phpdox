@@ -3,4 +3,4 @@ namespace Debug\Sample;
 
     class RenamedSecond { }
 
-}
+
