@@ -72,4 +72,4 @@ namespace TheSeer\phpDox\Tests\Issues\Fixtures;
             $this->myProtected = $count;
         }
     }
-}
+

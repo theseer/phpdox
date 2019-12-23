@@ -103,4 +103,4 @@ namespace TheSeer\phpDox\Tests\Fixtures;
             return;
         }
     }
-}
+

@@ -64,4 +64,4 @@ namespace TheSeer\phpDox\Tests\Fixtures;
             // do something
         }
     }
-}
+

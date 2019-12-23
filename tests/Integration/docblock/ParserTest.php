@@ -22,7 +22,7 @@ class ParserTest extends TestCase {
      */
     public function testParse($src): void {
         $expected = new fDOMDocument();
-        $dir      = __DIR__ . '/../../data/docbock/';
+        $dir      = __DIR__ . '/../../data/docblock/';
         $block    = \file_get_contents($dir . $src);
         $expected->load($dir . $src . '.xml');
 
