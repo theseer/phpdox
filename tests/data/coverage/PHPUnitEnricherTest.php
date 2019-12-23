@@ -12,13 +12,13 @@ class PHPUnitEnricherTest extends \PHPUnit\Framework\TestCase {
                     ->getMock();
         $config->expects($this->once())
                ->method('getCoveragePath')
-               ->will($this->returnValue(__DIR__ . '/coverage'));
+               ->will($this->returnValue(new \TheSeer\phpDox\FileInfo(__DIR__ . '/coverage')));
 
         $enricher = new Enricher\PHPUnit($config);
 
         $stub = new TheSeer\fDOM\fDOMDocument();
         $stub->preserveWhiteSpace = false;
-        $stub->load(__DIR__ . '/xml/classes/Api_Helper_SummaryFactory.xml');
+        $stub->load(__DIR__ . '/coverage/Helper/SummaryFactory.php.xml');
         $stub->registerNamespace('phpdox', 'http://xml.phpdox.net/src');
 
         $event = new \TheSeer\phpDox\Generator\ClassStartEvent(
@@ -27,6 +27,6 @@ class PHPUnitEnricherTest extends \PHPUnit\Framework\TestCase {
         $enricher->enrichClass($event);
 
         $stub->formatOutput = true;
-        echo $stub->saveXML();
+        //echo $stub->saveXML();
     }
 }
