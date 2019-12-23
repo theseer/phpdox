@@ -15,8 +15,7 @@ matrix:
 before_install:
 - composer self-update
 - if [ ! -d $HOME/.phive ]; then mkdir $HOME/.phive ; fi
-- if [ ! -f $HOME/.phive/phive.phar ]; then wget -O phive.phar https://phar.io/releases/phive.phar && mv phive.phar $HOME/.phive
-  ; fi
+- if [ ! -f $HOME/.phive/phive.phar ]; then wget -O phive.phar https://phar.io/releases/phive.phar && chmod 755 phive.phar && mv phive.phar $HOME/.phive/ ; fi
 - sudo cp $HOME/.phive/phive.phar /usr/local/bin/phive
 cache:
   directories:
