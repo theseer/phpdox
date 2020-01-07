@@ -345,6 +345,9 @@ class Git extends AbstractEnricher implements FullEnricherInterface {
 
     private function ensureGitVersionSupported($binary): void {
         $output  = \exec(\sprintf('%s --version', $binary));
+        if (\preg_match('/Apple Git/', $output)) {
+            $output = \preg_replace('/\s+\(Apple Git-\d+(\.\d+)?\)/', '', $output);
+        }
         $parts   = \explode(' ', $output);
         $version = \array_pop($parts);
 

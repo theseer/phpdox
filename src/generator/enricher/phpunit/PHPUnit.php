@@ -41,6 +41,7 @@ class PHPUnit extends AbstractEnricher implements
     private $coverage = [];
 
     /**
+     * @param PHPUnitConfig $config
      * @throws EnricherException
      */
     public function __construct(PHPUnitConfig $config) {

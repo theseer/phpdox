@@ -1,6 +1,10 @@
 os:
 - linux
 language: php
+addons:
+  apt:
+    packages:
+      ant
 php:
 - 7.1.26
 - 7.2
