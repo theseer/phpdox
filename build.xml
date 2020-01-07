@@ -55,18 +55,25 @@
         </exec>
     </target>
 
-    <target name="phpstan" description="Generate phpstan.txt">
-        <exec executable="${basedir}/tools/phpstan" output="${basedir}/build/logs/phpstan.xml">
+    <target name="phpstan" description="Display PHPStan analysis">
+        <exec executable="${basedir}/tools/phpstan">
             <arg value="analyse" />
+            <arg line="-c ${basedir}/phpstan.neon" />
             <arg value="--no-progress" />
             <arg line="--memory-limit 4g" />
-            <arg line="-c ${basedir}/phpstan.neon" />
-            <arg line="--error-format=checkstyle" />
         </exec>
 
-        <loadfile property="phpstan-result" srcFile="${basedir}/build/logs/phpstan.xml"/>
+        <property name="phpstan.done" value="true" />
+    </target>
 
-        <echo>${phpstan-result}</echo>
+    <target name="phpstan-ci" description="Generate phpstan.xml">
+        <exec executable="${basedir}/tools/phpstan" output="${basedir}/build/logs/phpstan.xml">
+            <arg value="analyse" />
+            <arg line="-c ${basedir}/phpstan.neon" />
+            <arg value="--no-progress" />
+            <arg line="--error-format=checkstyle" />
+            <arg line="--memory-limit 4g" />
+        </exec>
 
         <property name="phpstan.done" value="true" />
     </target>
