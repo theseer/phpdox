@@ -55,11 +55,23 @@
         </exec>
     </target>
 
-    <target name="phan" description="Generate phan.xml">
+    <target name="phan" description="Display Phan analysis">
+        <exec executable="${basedir}/tools/phan">
+            <arg line="-k ${basedir}/phan-config.php" />
+            <arg line="-m text" />
+            <arg line="-z" />
+            <arg line="-S" />
+        </exec>
+    </target>
+
+    <target name="phan-ci" description="Generate phan.xml">
         <exec executable="${basedir}/tools/phan">
             <arg line="-k ${basedir}/phan-config.php" />
             <arg line="-m checkstyle" />
             <arg line="-o ${basedir}/build/logs/phan.xml" />
+            <arg line="-z" />
+            <arg line="-S" />
+            <arg line="--no-progress-bar" />
         </exec>
     </target>
 
