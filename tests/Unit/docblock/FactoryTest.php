@@ -32,28 +32,11 @@ class FactoryTest extends \PHPUnit\Framework\TestCase {
     /**
      * @covers \TheSeer\phpDox\DocBlock\Factory::addParserFactory
      */
-    public function testAddParserFactory(): void {
-        $mock = $this->createMock(FactoryInterface::class);
-        $this->factory->addParserFactory('Tux', $mock);
-        $this->assertAttributeContains($mock, 'parserMap', $this->factory);
-    }
-
-    /**
-     * @covers \TheSeer\phpDox\DocBlock\Factory::addParserFactory
-     */
     public function testAddParserFactoryExpectingFactoryException(): void {
         self::expectException(FactoryException::class);
 
         $mock = $this->createMock(FactoryInterface::class);
         $this->factory->addParserFactory([], $mock);
-    }
-
-    /**
-     * @covers \TheSeer\phpDox\DocBlock\Factory::addParserClass
-     */
-    public function testAddParserClass(): void {
-        $this->factory->addParserClass('Tux', 'Gnu');
-        $this->assertAttributeContains('Gnu', 'parserMap', $this->factory);
     }
 
     /**

@@ -266,7 +266,10 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             return;
         }
 
-        if ($this->isBuiltInType((string)$returnType, self::TYPE_RETURN)) {
+        $typeStr = $returnType instanceof NullableType
+            ? ((string)$returnType->type)
+            : ((string)$returnType);
+        if ($this->isBuiltInType($typeStr, self::TYPE_RETURN)) {
             $returnTypeObject = $method->setReturnType($returnType);
             $returnTypeObject->setNullable(false);
 
