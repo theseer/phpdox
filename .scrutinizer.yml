@@ -3,7 +3,7 @@ build:
     analysis:
       tests:
         override:
-          - phpcs-run --standard=phpcs.xml --colors --report-checkstyle
+          - phpcs-run
       dependencies:
         after:
           - composer require --dev "squizlabs/php_codesniffer=3.5.4"
