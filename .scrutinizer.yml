@@ -1,6 +1,9 @@
 build:
   nodes:
     analysis:
+      tests:
+        override:
+          - phpcs-run --standard=phpcs.xml --colors --report-checkstyle
       dependencies:
         after:
           - composer require --dev "squizlabs/php_codesniffer=3.5.4"
