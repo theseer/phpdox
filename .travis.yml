@@ -6,10 +6,8 @@ addons:
     packages:
       ant
 php:
-- 7.1.26
 - 7.2
 - 7.3
-- 7.1snapshot
 - 7.2snapshot
 - 7.3snapshot
 - master
@@ -30,7 +28,7 @@ cache:
   - "$HOME/.composer/cache"
   - "$HOME/.gnupg"
 install:
-- travis_retry composer install --no-interaction --prefer-source
+- travis_retry composer update --no-interaction --prefer-source
 - phive --no-progress install --trust-gpg-keys 4AA394086372C20A,2A8299CE842DD38C,E82B2FB314E9906E
 script: "./tools/phpunit"
 notifications:
