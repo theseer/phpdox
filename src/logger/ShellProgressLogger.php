@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox;
 
+use SebastianBergmann\Timer\ResourceUsageFormatter;
 use SebastianBergmann\Timer\Timer;
 
 /**
@@ -88,7 +89,30 @@ class ShellProgressLogger implements ProgressLogger {
 
     public function buildSummary(): void {
         print "\n\n";
-        print Timer::resourceUsage();
+        print $this->resourceUsage();
         print "\n\n";
+    }
+
+    /**
+     * @return string
+     */
+    private function resourceUsage(): string {
+        $result = '';
+
+        if(
+            class_exists(ResourceUsageFormatter::class) &&
+            method_exists(ResourceUsageFormatter::class, 'resourceUsageSinceStartOfRequest')
+        ) {
+            /** @var ResourceUsageFormatter $resource */
+            $resource = new ResourceUsageFormatter();
+            $result = $resource->resourceUsageSinceStartOfRequest();
+        } else if(
+            class_exists(Timer::class) &&
+            method_exists(Timer::class, 'resourceUsage')
+        ) {
+            $result = Timer::resourceUsage();
+        }
+
+        return $result;
     }
 }
