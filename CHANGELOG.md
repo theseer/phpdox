@@ -1,5 +1,23 @@
 # Changelog of phpDox
 
+## phpDox 0.12.1 (?? ??? 2019)
+
+Note: This release requires PHP 7.1+
+
+### Changed
+* [#356](https://github.com/theseer/phpdox/issue/356): Added Exception to explicitly handle a potential null in SourceFile
+
+### Fixed
+* [#361](https://github.com/theseer/phpdox/issue/361): Coverage does not contain correct values
+* [#233](https://github.com/theseer/phpdox/issue/233): native "callback" type is parsed as "object"
+
+### Merged
+* [#358](https://github.com/theseer/phpdox/pull/358): Fix typehint for callable (MacFJA)
+* [#357](https://github.com/theseer/phpdox/pull/357): Add support for @property / @property-read / @property-write (MacFJA)
+* [#355](https://github.com/theseer/phpdox/pull/355): Declare SOURCE_DATE_EPOCH as an integer
+* [#354](https://github.com/theseer/phpdox/pull/354): Added object return type support for PHP 7.2 (MacFJA)
+
+
 ## phpDox 0.12.0 (13 Mar 2019)
 
 Note: This release requires PHP 7.1+
