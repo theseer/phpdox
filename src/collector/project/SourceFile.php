@@ -42,6 +42,9 @@ class SourceFile extends FileInfo {
         }
 
         $source = \file_get_contents($this->getPathname());
+        if ($source === false) {
+            throw new SourceFileException("Source file couldn't be read", SourceFileException::ReadError);
+        }
 
         if ($source === '') {
             $this->src = '';
@@ -49,9 +52,11 @@ class SourceFile extends FileInfo {
             return '';
         }
 
-        if ($this->encoding == 'auto') {
-            $info           = new \finfo();
-            $this->encoding = $info->file((string)$this, \FILEINFO_MIME_ENCODING);
+        if ($this->encoding === 'auto') {
+            $this->encoding = (new \finfo())->file(
+                (string)$this,
+                \FILEINFO_MIME_ENCODING
+            );
         }
 
         try {
@@ -63,7 +68,7 @@ class SourceFile extends FileInfo {
         // Replace xml relevant control characters by surrogates
         $this->src = \preg_replace_callback(
             '/(?![\x{000d}\x{000a}\x{0009}])\p{C}/u',
-            function (array $matches) {
+            static function (array $matches) {
                 $unicodeChar = '\u' . (2400 + \ord($matches[0]));
 
                 return \json_decode('"' . $unicodeChar . '"');

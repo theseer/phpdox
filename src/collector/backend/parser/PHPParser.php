@@ -1,6 +1,9 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector\Backend;
 
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitor\NameResolver;
+use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use TheSeer\phpDox\Collector\SourceFile;
 use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
@@ -8,7 +11,7 @@ use TheSeer\phpDox\ErrorHandler;
 
 class PHPParser implements BackendInterface {
     /**
-     * @var \PhpParser\Parser
+     * @var Parser
      */
     private $parser;
 
@@ -28,15 +31,12 @@ class PHPParser implements BackendInterface {
     }
 
     /**
-     * @param bool $publicOnly
-     *
      * @throws ParseErrorException
      */
-    public function parse(SourceFile $sourceFile, $publicOnly): ParseResult {
+    public function parse(SourceFile $sourceFile, bool $publicOnly): ParseResult {
         try {
             $result = new ParseResult($sourceFile);
-            $parser = $this->getParserInstance();
-            $nodes  = $parser->parse($sourceFile->getSource());
+            $nodes  = $this->getParserInstance()->parse($sourceFile->getSource());
 
             if (!$nodes) {
                 throw new ParseErrorException("Parser didn't return any nodes", ParseErrorException::GeneralParseError);
@@ -51,7 +51,7 @@ class PHPParser implements BackendInterface {
         }
     }
 
-    private function getParserInstance(): \PhpParser\Parser {
+    private function getParserInstance(): Parser {
         if ($this->parser === null) {
             $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, new CustomLexer());
         }
@@ -62,9 +62,9 @@ class PHPParser implements BackendInterface {
     /**
      * @param bool $publicOnly
      */
-    private function getTraverserInstance(ParseResult $result, $publicOnly): \PhpParser\NodeTraverser {
-        $traverser = new \PhpParser\NodeTraverser();
-        $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
+    private function getTraverserInstance(ParseResult $result, $publicOnly): NodeTraverser {
+        $traverser = new NodeTraverser();
+        $traverser->addVisitor(new NameResolver());
 
         if ($publicOnly === true) {
             $traverser->addVisitor(new PublicOnlyVisitor());

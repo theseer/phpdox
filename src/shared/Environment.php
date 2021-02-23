@@ -43,7 +43,11 @@ class Environment {
         \ini_set('xdebug.scream', 'off');
         \ini_set('xdebug.max_nesting_level', '8192');
         \ini_set('xdebug.show_exception_trace', 'off');
-        xdebug_disable();
+        \ini_set('xdebug.mode', 'off');
+
+        if (function_exists('xdebug_disable')) {
+            xdebug_disable();
+        }
     }
 
     private function ensureTimezoneSet(): void {

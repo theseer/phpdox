@@ -5,4 +5,5 @@ class SourceFileException extends \Exception {
     public const BadEncoding = 1;
     public const InvalidDataBytes = 2;
     public const RegexError = 3;
+    public const ReadError = 4;
 }

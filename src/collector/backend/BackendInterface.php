@@ -4,8 +4,5 @@ namespace TheSeer\phpDox\Collector\Backend;
 use TheSeer\phpDox\Collector\SourceFile;
 
 interface BackendInterface {
-    /**
-     * @param bool $publicOnly
-     */
-    public function parse(SourceFile $sourceFile, $publicOnly): ParseResult;
+    public function parse(SourceFile $sourceFile, bool $publicOnly): ParseResult;
 }
