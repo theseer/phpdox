@@ -7,6 +7,11 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
+                'theseer\\fxsl\\fxslcallback' => '/xsl/fxslcallback.php',
+                'theseer\\fxsl\\fxsltprocessorbase' => '/xsl/fxsltprocessorbase.php',
+                'theseer\\fxsl\\fxsltprocessorexception' => '/xsl/fxsltprocessorbase.php',
+                'theseer\\fxsl\\fxsltprocessornew' => '/xsl/fxsltprocessorNew.php',
+                'theseer\\fxsl\\fxsltprocessorold' => '/xsl/fxsltprocessorOld.php',
                 'theseer\\phpdox\\application' => '/Application.php',
                 'theseer\\phpdox\\applicationexception' => '/ApplicationException.php',
                 'theseer\\phpdox\\backendbootstrapapi' => '/bootstrap/BackendBootstrapApi.php',

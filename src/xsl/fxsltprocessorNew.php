@@ -1,7 +1,6 @@
-#!/usr/bin/env php
 <?php
-/*
- * Copyright (c) 2010-2019 Arne Blankerts <arne@blankerts.de>
+/**
+ * Copyright (c) 2011-2014 Arne Blankerts <arne@blankerts.de>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,41 +29,44 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package    phpDox
- * @author     Arne Blankerts <arne@blankerts.de>
- * @copyright  Arne Blankerts <arne@blankerts.de>, All rights reserved.
- * @license    BSD License
- * @exitcodes  0 No error
- *             1 Execution Error
- *             3 Parameter Error
+ *
+ * @category  PHP
+ * @package   TheSeer\fXSL
+ * @author    Arne Blankerts <arne@blankerts.de>
+ * @copyright Arne Blankerts <arne@blankerts.de>, All rights reserved.
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @link      http://github.com/theseer/fxsl
  *
  */
 
-require __DIR__ . '/src/runtimecheck.php';
-require __DIR__ . '/src/autoload.php';
-require __DIR__ . '/src/xsl/bc-alias.php';
+namespace TheSeer\fXSL {
 
-$found = false;
-foreach(array(__DIR__ . '/vendor', __DIR__ . '/../..') as $vendor) {
-    if (file_exists($vendor . '/autoload.php')) {
-        $found = true;
-        require $vendor . '/autoload.php';
-        break;
+    use DOMDocument;
+
+    /**
+     * fXSLTProcessorNew
+     *
+     * Compatibility wrapper to deal with PHP 8 signatures
+     *
+     * @category  PHP
+     * @package   TheSeer\fXSL
+     * @author    Arne Blankerts <arne@blankerts.de>
+     * @access    public
+     */
+    class fXSLTProcessorNew extends fXSLTProcessorBase {
+
+        public function transformToDoc(object $doc, ?string $returnClass = null): DOMDocument|false {
+            return parent::internalTransformToDoc($doc);
+        }
+
+        public function transformToUri(object $doc, string $uri): int {
+            return parent::internalTransformToUri($doc, $uri);
+        }
+
+        public function transformToXml(object $doc): string|false|null {
+            return parent::internalTransformToXml($doc);
+        }
+
     }
+
 }
-
-if (!$found) {
-    fwrite(STDERR,
-        "The vendor directory was not found at the expected locations.\nDid you run composer install?\n\n"
-    );
-    exit(1);
-}
-
-$factory = new TheSeer\phpDox\Factory(
-    new \TheSeer\phpDox\FileInfo(__DIR__),
-    new \TheSeer\phpDox\Version('0.12.1-dev')
-);
-
-exit($factory->getCLI()->run(
-    new TheSeer\phpDox\CLIOptions($_SERVER['argv'])
-));
