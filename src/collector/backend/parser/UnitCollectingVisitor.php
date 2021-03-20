@@ -15,6 +15,7 @@ use PhpParser\Node\Scalar\LNumber;
 use PhpParser\Node\Scalar\MagicConst;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt as NodeType;
+use PhpParser\Node\UnionType;
 use PhpParser\NodeVisitorAbstract;
 use TheSeer\phpDox\Collector\AbstractUnitObject;
 use TheSeer\phpDox\Collector\AbstractVariableObject;
@@ -263,6 +264,11 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
 
     private function processMethodReturnType(MethodObject $method, $returnType): void {
         if ($returnType === null) {
+            return;
+        }
+
+        if ($returnType instanceof UnionType) {
+            $method->setReturnType(join('|', $returnType->types));
             return;
         }
 
