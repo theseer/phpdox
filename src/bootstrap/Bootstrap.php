@@ -2,6 +2,17 @@
 namespace TheSeer\phpDox;
 
 class Bootstrap {
+
+    /**
+     * @var ProgressLogger
+     */
+    private $logger;
+
+    /**
+     * @var BootstrapApi
+     */
+    private $api;
+
     public function __construct(ProgressLogger $logger, BootstrapApi $api) {
         $this->logger = $logger;
         $this->api    = $api;

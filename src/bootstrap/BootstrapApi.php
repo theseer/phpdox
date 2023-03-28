@@ -66,6 +66,11 @@ class BootstrapApi {
     private $backends = [];
 
     /**
+     * @var ProgressLogger
+     */
+    private $logger;
+
+    /**
      * Constructor
      */
     public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
