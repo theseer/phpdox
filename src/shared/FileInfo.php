@@ -9,6 +9,7 @@ class FileInfo extends \SplFileInfo {
     /**
      * @throws FileInfoException
      */
+    #[\ReturnTypeWillChange]
     public function getRealPath() {
         $path = parent::getRealPath();
 
@@ -38,6 +39,7 @@ class FileInfo extends \SplFileInfo {
         return 'file://' . urlencode($result);
     }
 
+    #[\ReturnTypeWillChange]
     public function getPath() {
         return $this->toUnix(parent::getPath());
     }
@@ -70,6 +72,7 @@ class FileInfo extends \SplFileInfo {
      *
      * @throws FileInfoException
      */
+    #[\ReturnTypeWillChange]
     public function getFileInfo($class_name = null): void {
         throw new FileInfoException('getFileInfo not implemented', FileInfoException::NotImplemented);
     }
@@ -79,6 +82,7 @@ class FileInfo extends \SplFileInfo {
      *
      * @throws FileInfoException
      */
+    #[\ReturnTypeWillChange]
     public function getPathInfo($class_name = null): void {
         throw new FileInfoException('getPathInfo not implemented', FileInfoException::NotImplemented);
     }
