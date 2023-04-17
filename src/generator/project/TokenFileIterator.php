@@ -29,10 +29,12 @@ class TokenFileIterator implements \Iterator {
         $this->pos++;
     }
 
+    #[\ReturnTypeWillChange]
     public function key() {
         return $this->pos;
     }
 
+    #[\ReturnTypeWillChange]
     public function valid() {
         return $this->nodeList->length > $this->pos;
     }
