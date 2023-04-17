@@ -149,6 +149,7 @@ namespace TheSeer\fXSL {
          *
          * Extended version to throw exception on error
          */
+        #[\ReturnTypeWillChange]
         public function importStylesheet($stylesheet) {
             if ($stylesheet->documentElement->namespaceURI != 'http://www.w3.org/1999/XSL/Transform') {
                 throw new fXSLTProcessorException(
@@ -164,6 +165,7 @@ namespace TheSeer\fXSL {
          *
          * Extended version to enforce callability of fXSLProcessor::callbackHook and generally callable methods
          */
+        #[\ReturnTypeWillChange]
         public function registerPHPFunctions($restrict = NULL) {
             if (is_string($restrict)) {
                 $restrict = array($restrict);
