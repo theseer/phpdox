@@ -55,6 +55,22 @@
         </exec>
     </target>
 
+    <target name="psalm" description="Display Psalm analysis">
+        <exec executable="${basedir}/tools/psalm">
+            <arg line="-c=${basedir}/psalm.xml" />
+            <arg line="--output-format=compact" />
+        </exec>
+    </target>
+
+    <target name="psalm-ci" description="Generate psalm.xml">
+        <exec executable="${basedir}/tools/psalm" output="${basedir}/build/logs/psalm.xml">
+            <arg line="-c=${basedir}/psalm.xml" />
+            <arg line="--show-info=false" />
+            <arg line="--output-format=xml" />
+            <arg line="--no-progress" />
+        </exec>
+    </target>
+
     <target name="api">
         <delete dir="${basedir}/build/api" />
         <exec executable="${basedir}/phpdox" />
