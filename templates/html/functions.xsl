@@ -7,8 +7,9 @@
                 xmlns:idx="http://xml.phpdox.net/src"
                 xmlns:git="http://xml.phpdox.net/gitlog"
                 xmlns:ctx="ctx://engine/html"
+                xmlns:php="http://php.net/xsl"
                 extension-element-prefixes="func"
-                exclude-result-prefixes="idx pdx pdxf pu git ctx">
+                exclude-result-prefixes="idx pdx pdxf pu git ctx php">
 
     <func:function name="pdxf:link">
         <xsl:param name="ctx"/>
@@ -39,7 +40,7 @@
 
         <xsl:variable name="link">
             <xsl:value-of
-                    select="concat($base, $dir, '/', translate($ctx/@full, '\', '_'), $withMethod, '.', $extension)"/>
+                    select="concat($base, $dir, '/', php:function('sha1', concat('', $ctx/@full)), $withMethod, '.', $extension)"/>
         </xsl:variable>
 
         <xsl:variable name="text">

@@ -45,9 +45,10 @@ class Xml extends AbstractEngine {
             }
         }
         $dom = $ctx->asDom();
+        $fname = sha1($dom->documentElement->getAttribute('full'));
         $this->saveDomDocument(
             $dom,
-            $this->outputDir . '/' . $path . '/' . \str_replace('\\', '_', $dom->documentElement->getAttribute('full')) . '.xml'
+            $this->outputDir . '/' . $path . '/' . $fname . '.xml'
         );
     }
 
